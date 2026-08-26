@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Intelligent Architecture - Synthesis Engine</title>
+    
+    <!-- IMPORT PREMIUM FONTS FOR THE LOGO -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --bg-page: #020617; 
@@ -30,31 +34,29 @@
 
         /* ================= NAVIGATION ================= */
         nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(2, 6, 23, 0.85);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-base);
-            z-index: 100;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: center;
+            position: fixed; top: 0; width: 100%;
+            background: rgba(2, 6, 23, 0.85); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-base); z-index: 100;
+            padding: 1rem 2rem; display: flex; justify-content: center;
         }
-
         .nav-links { display: flex; gap: 2rem; list-style: none; }
         .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; }
         .nav-links a:hover { color: var(--color-cyan); }
 
-        /* ================= HERO HEADER (RESTORED) ================= */
+        /* ================= HERO HEADER ================= */
         .hero { padding: 140px 20px 80px; text-align: center; border-bottom: 1px solid var(--border-base); margin-bottom: 4rem; }
         
         .hero-title-container { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 15px; flex-wrap: wrap; }
-        .hero-title { font-size: 3.5rem; font-weight: 400; letter-spacing: 2px; color: var(--text-main); }
-        .hero-logo { font-family: "Georgia", serif; font-style: italic; font-size: 4.5rem; color: var(--color-blue); font-weight: bold; line-height: 1; }
-        .hero-subtitle { font-size: 1.5rem; color: var(--color-cyan); font-weight: 500; max-width: 800px; margin: 0 auto; }
         
-        /* New Badge Class */
+        /* THE REBUILT LOGO STYLES */
+        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 3.2rem; font-weight: 400; letter-spacing: 3px; color: var(--text-main); }
+        .hero-logo { font-family: 'Playfair Display', serif; font-style: italic; font-size: 4.5rem; color: var(--color-blue); font-weight: 700; line-height: 1; }
+        
+        /* THE ORPHAN FIX */
+        .hero-subtitle { font-size: 1.5rem; color: var(--color-cyan); font-weight: 500; max-width: 1000px; margin: 0 auto; }
+        .nowrap { white-space: nowrap; } /* Locks text together */
+        
+        /* THE BADGE FIX */
         .badge-container { margin-top: 35px; display: flex; justify-content: center; }
         .ms-badge { height: 140px; width: auto; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5)); }
 
@@ -62,7 +64,6 @@
         .module-section { display: flex; flex-direction: column; align-items: center; padding: 0 20px 80px; }
         .architecture-container { width: 100%; max-width: 1200px; display: flex; flex-direction: column; align-items: center; }
         
-        /* Summary Section Moved to Top */
         .summary-section { max-width: 900px; text-align: center; margin-bottom: 3rem; }
         .summary-title { font-size: 1.8rem; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1rem; color: var(--color-cyan); }
         .summary-text { font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; }
@@ -126,11 +127,13 @@
             <h1 class="hero-title">INTELLIGENT ARCHITECTURE</h1>
             <span class="hero-logo">IA</span>
         </div>
-        <p class="hero-subtitle">Autonomous Zero-Trust Machine Identity Provisioning for Microsoft Entra ID</p>
         
-        <!-- INJECTED SC-300 BADGE -->
+        <!-- SUBTITLE WITH THE ORPHAN FIX APPLIED -->
+        <p class="hero-subtitle">Autonomous Zero-Trust Machine Identity Provisioning for <span class="nowrap">Microsoft Entra ID</span></p>
+        
+        <!-- BADGE FILENAME FIXED -->
         <div class="badge-container">
-            <img src="SC300-badge.png" alt="Microsoft SC-300 Certification" class="ms-badge">
+            <img src="BADGE-2.png" alt="Microsoft SC-300 Certification" class="ms-badge">
         </div>
     </header>
 
@@ -138,7 +141,6 @@
     <section id="execution" class="module-section">
         <div class="architecture-container">
             
-            <!-- SUMMARY SECTION MOVED TO TOP -->
             <div class="summary-section">
                 <h2 class="summary-title">Deterministic Execution & Capability Scaling</h2>
                 <p class="summary-text">
@@ -146,7 +148,6 @@
                 </p>
             </div>
 
-            <!-- SCROLLABLE DIAGRAM CANVAS -->
             <div class="canvas-wrapper">
                 <div class="diagram-canvas">
                     <svg class="routing-lines" xmlns="http://www.w3.org/2000/svg">

@@ -38,28 +38,30 @@
             position: fixed; top: 0; width: 100%;
             background: rgba(2, 6, 23, 0.85); backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-base); z-index: 100;
-            padding: 1rem 2rem; display: flex; justify-content: center;
+            padding: 1.2rem 2rem; display: flex; justify-content: center;
         }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
-        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 1rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; }
         .nav-links a:hover { color: var(--color-cyan); }
 
         /* ================= HERO HEADER ================= */
-        .hero { padding: 140px 20px 80px; text-align: center; border-bottom: 1px solid var(--border-base); }
-        .hero-title-container { display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
-        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 3.5rem; font-weight: 600; letter-spacing: 3px; color: var(--text-main); text-transform: uppercase; }
-        .hero-subtitle { font-size: 1.5rem; color: var(--color-cyan); font-weight: 500; max-width: 1000px; margin: 0 auto; }
+        .hero { padding: 160px 20px 100px; text-align: center; border-bottom: 1px solid var(--border-base); }
+        .hero-title-container { display: flex; align-items: center; justify-content: center; margin-bottom: 25px; }
+        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 4rem; font-weight: 600; letter-spacing: 3px; color: var(--text-main); text-transform: uppercase; }
+        .hero-subtitle { font-size: 1.7rem; color: var(--color-cyan); font-weight: 500; max-width: 1000px; margin: 0 auto; }
         .nowrap { white-space: nowrap; }
-        .badge-container { margin-top: 35px; display: flex; justify-content: center; }
-        .ms-badge { height: 140px; width: auto; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5)); }
+        .badge-container { margin-top: 45px; display: flex; justify-content: center; }
+        .ms-badge { height: 160px; width: auto; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5)); }
 
         /* ================= MODULE 1: EXECUTION ENVIRONMENT ================= */
-        .module-section { display: flex; flex-direction: column; align-items: center; padding: 4rem 20px 0; }
+        .module-section { display: flex; flex-direction: column; align-items: center; padding: 5rem 20px 0; }
         .architecture-container { width: 100%; max-width: 1300px; display: flex; flex-direction: column; align-items: center; }
         
-        .summary-section { max-width: 900px; text-align: center; margin-bottom: 3rem; }
-        .summary-title { font-size: 1.8rem; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1rem; color: var(--logo-blue); }
-        .summary-text { font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; }
+        .summary-section { max-width: 1000px; text-align: center; margin-bottom: 4rem; }
+        .summary-title { font-size: 2.2rem; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1.5rem; color: var(--logo-blue); }
+        
+        /* BUMPED UP READABILITY TEXT */
+        .summary-text { font-size: 1.25rem; color: var(--text-muted); line-height: 1.9; }
         
         .canvas-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 15px; }
 
@@ -72,9 +74,9 @@
         .routing-lines { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
         
         .node { position: absolute; background: var(--bg-node); border: 1px solid var(--border-base); border-radius: 8px; padding: 1.5rem; z-index: 2; backdrop-filter: blur(8px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3); }
-        .node-title { font-size: 1.1rem; font-weight: 900; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 1rem; line-height: 1.2; }
-        .node-text { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
-        .tag { font-family: monospace; font-size: 0.7rem; font-weight: 700; padding: 3px 6px; border: 1px solid; border-radius: 4px; display: inline-block; margin-bottom: 0.75rem; letter-spacing: 0.5px; }
+        .node-title { font-size: 1.15rem; font-weight: 900; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 1rem; line-height: 1.2; }
+        .node-text { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+        .tag { font-family: monospace; font-size: 0.75rem; font-weight: 700; padding: 4px 8px; border: 1px solid; border-radius: 4px; display: inline-block; margin-bottom: 0.75rem; letter-spacing: 0.5px; }
 
         .node-engineer { left: 40px; top: 60px; width: 240px; border-left: 4px solid var(--color-blue); }
         .node-engineer .tag { color: var(--color-blue); border-color: rgba(59, 130, 246, 0.3); }
@@ -110,7 +112,7 @@
 
         /* ================= MASSIVE TRANSITION BRIDGE ================= */
         .transition-wrapper {
-            width: 100%; max-width: 1300px; margin: 6rem auto 5rem;
+            width: 100%; max-width: 1300px; margin: 7rem auto 6rem;
             text-align: center; position: relative;
         }
         .section-divider-line {
@@ -121,92 +123,102 @@
         .deep-dive-header {
             position: relative; z-index: 2; display: inline-block;
             background: var(--bg-page); padding: 0 30px;
-            font-family: 'Montserrat', sans-serif; font-size: 2.5rem; font-weight: 900;
+            font-family: 'Montserrat', sans-serif; font-size: 2.8rem; font-weight: 900;
             letter-spacing: 4px; text-transform: uppercase; color: var(--color-purple);
         }
 
-        /* ================= SHARED GRID STRUCTURE ================= */
-        .grid-section { padding: 0 20px 80px; width: 100%; display: flex; flex-direction: column; align-items: center; }
-        .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1300px; width: 100%; align-items: center; }
+        /* ================= SHARED STACKED LAYOUT (WEBSITE STYLE) ================= */
+        .stacked-section { padding: 0 20px 80px; width: 100%; display: flex; flex-direction: column; align-items: center; }
         
-        /* Shared Text Block Styles */
-        .section-kicker { color: var(--color-cyan); font-weight: 700; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; display: block; }
-        .section-title { font-family: 'Montserrat', sans-serif; font-size: 2.8rem; font-weight: 900; line-height: 1.2; margin-bottom: 3rem; color: var(--text-main); }
+        .section-intro { max-width: 1000px; text-align: center; margin-bottom: 4rem; }
+        .section-kicker { color: var(--color-cyan); font-weight: 700; font-size: 1.1rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; display: block; }
+        .section-title { font-family: 'Montserrat', sans-serif; font-size: 3rem; font-weight: 900; line-height: 1.2; margin-bottom: 3rem; color: var(--text-main); }
         
-        .feature-block { margin-bottom: 2.5rem; padding-left: 1.5rem; border-left: 3px solid; }
-        .feature-block.blue { border-color: var(--color-blue); }
-        .feature-block.cyan { border-color: var(--color-cyan); }
-        .feature-block.green { border-color: var(--color-green); }
-        .feature-block.purple { border-color: var(--color-purple); }
+        /* WEB FEATURE CARDS (Replaces paragraphs) */
+        .feature-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; width: 100%; max-width: 1300px; margin-bottom: 4rem; }
+        .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; width: 100%; max-width: 1100px; margin-bottom: 4rem; margin-left: auto; margin-right: auto; }
         
-        .feature-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--text-main); }
-        .feature-text { color: var(--text-muted); font-size: 1rem; line-height: 1.7; }
+        .feature-card { 
+            background: rgba(15, 23, 42, 0.4); border-top: 4px solid; padding: 2rem; 
+            border-radius: 8px; text-align: left; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); 
+        }
+        .feature-card.blue { border-color: var(--color-blue); }
+        .feature-card.cyan { border-color: var(--color-cyan); }
+        .feature-card.green { border-color: var(--color-green); }
+        .feature-card.purple { border-color: var(--color-purple); }
+        .feature-card.red { border-color: var(--color-red); }
         
-        /* Shared Diagram Wrapper Styles */
-        .diagram-wrapper-small {
-            position: relative; width: 100%; max-width: 600px; height: 500px; margin: 0 auto;
+        .feature-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-main); }
+        
+        /* BUMPED UP FEATURE TEXT */
+        .feature-text { color: var(--text-muted); font-size: 1.15rem; line-height: 1.8; }
+        
+        /* Shared Full-Width Diagram Wrapper Styles */
+        .diagram-wrapper-wide {
+            position: relative; width: 100%; max-width: 1300px; margin: 0 auto;
             background-image: linear-gradient(to right, rgba(30, 41, 59, 0.3) 1px, transparent 1px), linear-gradient(to bottom, rgba(30, 41, 59, 0.3) 1px, transparent 1px);
-            background-size: 30px 30px; border: 1px solid var(--border-base); border-radius: 12px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            background-size: 40px 40px; border: 1px solid var(--border-base); border-radius: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); overflow: hidden;
         }
         
-        .diagram-caption { margin-top: 2rem; text-align: center; font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; padding: 0 20px; }
+        .diagram-caption { margin-top: 2.5rem; text-align: center; font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; padding: 0 20px; max-width: 900px; margin-left: auto; margin-right: auto; }
 
         /* ================= MODULE 2 SPECIFICS: ANATOMY ================= */
-        .a-node { position: absolute; background: var(--bg-page); border: 1px solid var(--border-base); border-radius: 6px; padding: 1rem; text-align: center; z-index: 2; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.5); }
-        .a-node .tag { border-color: rgba(255,255,255,0.2); color: var(--text-muted); font-size: 0.6rem; padding: 2px 5px; margin-bottom: 8px; }
-        .a-node .title { font-weight: 700; font-size: 0.95rem; text-transform: uppercase; margin-bottom: 4px; }
-        .a-node .sub { font-size: 0.75rem; color: var(--text-muted); }
+        .anatomy-diagram { height: 500px; }
         
-        .a-input { width: 260px; top: 40px; left: 170px; border-color: rgba(59, 130, 246, 0.5); }
+        .a-node { position: absolute; background: var(--bg-page); border: 1px solid var(--border-base); border-radius: 6px; padding: 1.5rem; text-align: center; z-index: 2; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.5); }
+        .a-node .tag { border-color: rgba(255,255,255,0.2); color: var(--text-muted); font-size: 0.75rem; padding: 4px 8px; margin-bottom: 10px; }
+        .a-node .title { font-weight: 700; font-size: 1.1rem; text-transform: uppercase; margin-bottom: 4px; }
+        .a-node .sub { font-size: 0.9rem; color: var(--text-muted); }
+        
+        /* Centered in a 1300px canvas (Center = 650px) */
+        .a-input { width: 300px; top: 40px; left: 500px; border-color: rgba(59, 130, 246, 0.5); }
         .a-engine { 
-            width: 320px; top: 180px; left: 140px; padding: 1.5rem 1rem;
+            width: 360px; top: 180px; left: 470px; 
             border: 1px solid var(--color-cyan);
-            box-shadow: 0 0 20px rgba(14, 165, 233, 0.15);
+            box-shadow: 0 0 25px rgba(14, 165, 233, 0.15);
         }
-        .a-out-1 { width: 220px; top: 350px; left: 40px; border-color: rgba(59, 130, 246, 0.5); }
-        .a-out-2 { width: 220px; top: 350px; left: 340px; border-color: rgba(16, 185, 129, 0.5); }
+        .a-out-1 { width: 280px; top: 350px; left: 210px; border-color: rgba(59, 130, 246, 0.5); }
+        .a-out-2 { width: 280px; top: 350px; left: 810px; border-color: rgba(16, 185, 129, 0.5); }
 
         /* ================= MODULE 3 SPECIFICS: WORKFLOW (CIRCULAR) ================= */
-        .workflow-diagram { display: flex; justify-content: center; align-items: center; }
+        .workflow-diagram { height: 650px; display: flex; justify-content: center; align-items: center; }
         
         .w-center {
-            position: relative; z-index: 2; width: 150px; height: 150px; border-radius: 50%;
+            position: relative; z-index: 2; width: 180px; height: 180px; border-radius: 50%;
             background: radial-gradient(circle, rgba(14,165,233,0.15) 0%, var(--bg-page) 70%);
             border: 2px solid var(--color-cyan); display: flex; flex-direction: column; justify-content: center; align-items: center;
-            box-shadow: 0 0 25px rgba(14, 165, 233, 0.3); text-align: center;
+            box-shadow: 0 0 35px rgba(14, 165, 233, 0.3); text-align: center;
         }
-        .w-center-title { font-size: 0.7rem; color: var(--color-cyan); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2px; }
-        .w-center-main { font-weight: 900; font-size: 1rem; color: var(--text-main); }
+        .w-center-title { font-size: 0.8rem; color: var(--color-cyan); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+        .w-center-main { font-weight: 900; font-size: 1.2rem; color: var(--text-main); }
 
         .w-ring {
             position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 380px; height: 380px; border-radius: 50%;
+            width: 480px; height: 480px; border-radius: 50%;
             border: 3px dashed rgba(14, 165, 233, 0.3); z-index: 1;
         }
 
         .w-node {
             position: absolute; background: var(--bg-page); border: 2px solid; border-radius: 6px; 
-            padding: 0.75rem 1.25rem; text-align: center; font-weight: 700; font-size: 0.9rem; 
+            padding: 1rem 1.5rem; text-align: center; font-weight: 700; font-size: 1.1rem; 
             z-index: 3; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.5); color: var(--text-main);
         }
         
-        /* Node positioning around the ring */
-        .w-n1 { top: 60px; left: 50%; transform: translateX(-50%); border-color: var(--color-blue); }
-        .w-n2 { top: 50%; right: 30px; transform: translateY(-50%); border-color: var(--color-blue); }
-        .w-n3 { bottom: 60px; left: 50%; transform: translateX(-50%); border-color: var(--color-red); }
-        .w-n4 { top: 50%; left: 30px; transform: translateY(-50%); border-color: var(--color-blue); }
+        /* Node positioning perfectly orbiting the 480px ring */
+        .w-n1 { top: 85px; left: 50%; transform: translateX(-50%); border-color: var(--color-blue); }
+        .w-n2 { top: 50%; left: calc(50% + 240px); transform: translate(-50%, -50%); border-color: var(--color-blue); }
+        .w-n3 { bottom: 85px; left: 50%; transform: translateX(-50%); border-color: var(--color-red); }
+        .w-n4 { top: 50%; left: calc(50% - 240px); transform: translate(-50%, -50%); border-color: var(--color-blue); }
 
         @media (max-width: 992px) {
-            .content-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .hero-title { font-size: 2.2rem; }
+            .feature-grid-3, .feature-grid-2x2 { grid-template-columns: 1fr; }
+            .hero-title { font-size: 2.8rem; }
             .section-title { font-size: 2.2rem; }
-            .summary-title { font-size: 1.4rem; }
-            .deep-dive-header { font-size: 1.6rem; padding: 0 15px; }
+            .deep-dive-header { font-size: 1.8rem; padding: 0 15px; }
         }
         @media (max-width: 650px) {
-            .diagram-wrapper-small { transform: scale(0.85); transform-origin: center top; margin-bottom: -50px; }
-            .w-node { padding: 0.5rem 0.75rem; font-size: 0.8rem; }
+            .diagram-wrapper-wide { transform: scale(0.85); transform-origin: center top; margin-bottom: -50px; }
         }
     </style>
 </head>
@@ -264,10 +276,9 @@
                         <path d="M 1090 340 L 1150 340 L 1150 393" fill="none" stroke="#14b8a6" stroke-width="2" marker-end="url(#arrow-teal)" />
                     </svg>
 
-                    <!-- Nodes -->
                     <div class="node node-engineer"><div class="tag">[ROLE: CLOUD ARCHITECT]</div><div class="node-title">Security Engineer</div><div class="node-text">Inputs target coordinates (Tenant ID, Sub ID, KV Name) and strict GitHub Subject Claims.<span class="highlight">Validates execution gates.</span></div></div>
                     <div class="node node-engine"><div class="tag">[CORE SOFTWARE PRODUCT]</div><div class="node-title">Declarative Zero-Trust Synthesis Engine</div><div class="tag">[DIRECTIVE: DETERMINISTIC]</div><div class="node-text">Proprietary intellectual property. A strict system directive governing the AI to enforce a mathematically certain Entra ID zero-trust baseline.</div></div>
-                    <div class="node node-compiler"><div class="tag">[STATE: HITL ACTIVE LOOP]</div><div class="node-title">AI Compiler<br><span style="font-size: 0.8rem; font-weight: 500; color: #a855f7;">(INTERACTIVE STATE MACHINE)</span></div><div class="node-text">Operates as a guided interactive loop. Validates inputs with the engineer at strict gates to prevent drift and logic hallucination.</div></div>
+                    <div class="node node-compiler"><div class="tag">[STATE: HITL ACTIVE LOOP]</div><div class="node-title">AI Compiler<br><span style="font-size: 0.85rem; font-weight: 500; color: #a855f7;">(INTERACTIVE STATE MACHINE)</span></div><div class="node-text">Operates as a guided interactive loop. Validates inputs with the engineer at strict gates to prevent drift and logic hallucination.</div></div>
                     <div class="node node-iac"><div class="tag">[PAYLOAD: main.tf]</div><div class="node-title">IaC Generation</div><div class="node-text">Environment-agnostic Terraform payload (main.tf) synthesized upon coordinate lock.</div></div>
                     <div class="node node-core"><div class="tag">[STATE: CRYPTOGRAPHIC OIDC]</div><div class="node-title">Zero-Trust Machine Identity Core</div><div class="node-text">The hardened foundation.<span class="highlight">Passwordless OIDC workload federation established.</span></div></div>
                     <div class="node node-ial"><div class="tag">[ARTIFACT: IAL_RECORD.md]</div><div class="node-title">Identity Architecture Ledger (IAL)</div><div class="node-text">Records and validates the immutable target state infrastructure configuration.</div></div>
@@ -284,72 +295,69 @@
     </div>
 
     <!-- MODULE 2: ANATOMY OF THE ENGINE -->
-    <section id="anatomy" class="grid-section">
-        <div class="content-grid">
-            
-            <!-- LEFT COLUMN: TEXT -->
-            <div class="anatomy-text-content">
-                <span class="section-kicker">Defining The Framework</span>
-                <h2 class="section-title">The Anatomy of the Declarative Zero-Trust Synthesis Engine</h2>
-                
-                <div class="feature-block blue">
-                    <h3 class="feature-title">The AI Compiler Protocol</h3>
-                    <p class="feature-text">The engine operates as a strict, iterative protocol. It takes human inputs—such as target deployment coordinates and scope—and mathematically compiles them into executable infrastructure payloads via governed system directives.</p>
-                </div>
-                
-                <div class="feature-block cyan">
-                    <h3 class="feature-title">The Zero-Trust Baseline Enforcer</h3>
-                    <p class="feature-text">Rather than relying on human memory or fragile scripts, the framework automatically enforces Microsoft Entra ID zero-trust logic. It strictly establishes passwordless OpenID Connect (OIDC) federations and refuses to execute if parameters violate the security baseline.</p>
-                </div>
-                
-                <div class="feature-block green">
-                    <h3 class="feature-title">The Proof-of-Governance Generator</h3>
-                    <p class="feature-text">The platform does not just deploy infrastructure; it generates its own proof. It natively produces immutable state configurations (the IAL) and the Audit Results Ledger (ARL) to verify operations. It then outputs hardened KQL diagnostic queries to cryptographically prove runtime execution during audits.</p>
-                </div>
-            </div>
-
-            <!-- RIGHT COLUMN: DIAGRAM -->
-            <div class="diagram-column">
-                <div class="diagram-wrapper-small">
-                    <!-- Anatomy SVG Lines -->
-                    <svg class="anatomy-svg" xmlns="http://www.w3.org/2000/svg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
-                        <defs>
-                            <marker id="arr-cyan-2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0ea5e9" /></marker>
-                        </defs>
-                        <path d="M 300 120 L 300 173" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="6, 6" marker-end="url(#arr-cyan-2)" />
-                        <path d="M 300 275 L 300 310 L 150 310 L 150 343" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arr-cyan-2)" />
-                        <path d="M 300 275 L 300 310 L 450 310 L 450 343" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arr-cyan-2)" />
-                    </svg>
-
-                    <!-- Anatomy Nodes -->
-                    <div class="a-node a-input">
-                        <div class="tag">[PHASE 1: INPUT]</div>
-                        <div class="title">DEPLOYMENT COORDINATES</div>
-                        <div class="sub">Scope, Tenant, Target Assets</div>
-                    </div>
-                    
-                    <div class="a-node a-engine">
-                        <div class="tag" style="color: var(--color-cyan); border-color: rgba(14,165,233,0.3);">[PHASE 2: CORE PROCESSING]</div>
-                        <div class="title" style="font-size: 1.1rem;">DECLARATIVE ZERO-TRUST<br>SYNTHESIS ENGINE</div>
-                    </div>
-                    
-                    <div class="a-node a-out-1">
-                        <div class="tag">[EXECUTION OUTPUT]</div>
-                        <div class="title">OIDC FEDERATION</div>
-                        <div class="sub">Secure Payload via AI Compiler</div>
-                    </div>
-                    
-                    <div class="a-node a-out-2">
-                        <div class="tag" style="color: var(--color-green); border-color: rgba(16,185,129,0.3);">[GOVERNANCE OUTPUT]</div>
-                        <div class="title">IMMUTABLE LEDGERS</div>
-                        <div class="sub" style="color: var(--color-green);">(IAL, ARL, KQL)</div>
-                    </div>
-                </div>
-                
-                <p class="diagram-caption">The framework mathematically compiles human inputs into secure infrastructure execution while simultaneously generating immutable audit artifacts.</p>
-            </div>
-
+    <section id="anatomy" class="stacked-section">
+        
+        <div class="section-intro">
+            <span class="section-kicker">Defining The Framework</span>
+            <h2 class="section-title">The Anatomy of the Declarative Zero-Trust Synthesis Engine</h2>
         </div>
+        
+        <!-- HORIZONTAL TEXT CARDS -->
+        <div class="feature-grid-3">
+            <div class="feature-card blue">
+                <h3 class="feature-title">The AI Compiler Protocol</h3>
+                <p class="feature-text">The engine operates as a strict, iterative protocol. It takes human inputs—such as target deployment coordinates and scope—and mathematically compiles them into executable infrastructure payloads via governed system directives.</p>
+            </div>
+            
+            <div class="feature-card cyan">
+                <h3 class="feature-title">The Zero-Trust Baseline Enforcer</h3>
+                <p class="feature-text">Rather than relying on human memory or fragile scripts, the framework automatically enforces Microsoft Entra ID zero-trust logic. It strictly establishes passwordless OpenID Connect (OIDC) federations and refuses to execute if parameters violate the security baseline.</p>
+            </div>
+            
+            <div class="feature-card green">
+                <h3 class="feature-title">The Proof-of-Governance Generator</h3>
+                <p class="feature-text">The platform does not just deploy infrastructure; it generates its own proof. It natively produces immutable state configurations (the IAL) and the Audit Results Ledger (ARL) to verify operations. It then outputs hardened KQL diagnostic queries to cryptographically prove runtime execution during audits.</p>
+            </div>
+        </div>
+
+        <!-- FULL WIDTH DIAGRAM -->
+        <div class="diagram-wrapper-wide anatomy-diagram">
+            <svg class="anatomy-svg" xmlns="http://www.w3.org/2000/svg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
+                <defs>
+                    <marker id="arr-cyan-2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0ea5e9" /></marker>
+                </defs>
+                <!-- Line mapping scaled precisely for 1300px width (center X is 650) -->
+                <path d="M 650 120 L 650 173" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="6, 6" marker-end="url(#arr-cyan-2)" />
+                <path d="M 650 275 L 650 310 L 350 310 L 350 343" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arr-cyan-2)" />
+                <path d="M 650 275 L 650 310 L 950 310 L 950 343" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arr-cyan-2)" />
+            </svg>
+
+            <div class="a-node a-input">
+                <div class="tag">[PHASE 1: INPUT]</div>
+                <div class="title">DEPLOYMENT COORDINATES</div>
+                <div class="sub">Scope, Tenant, Target Assets</div>
+            </div>
+            
+            <div class="a-node a-engine">
+                <div class="tag" style="color: var(--color-cyan); border-color: rgba(14,165,233,0.3);">[PHASE 2: CORE PROCESSING]</div>
+                <div class="title" style="font-size: 1.25rem;">DECLARATIVE ZERO-TRUST<br>SYNTHESIS ENGINE</div>
+            </div>
+            
+            <div class="a-node a-out-1">
+                <div class="tag">[EXECUTION OUTPUT]</div>
+                <div class="title">OIDC FEDERATION</div>
+                <div class="sub">Secure Payload via AI Compiler</div>
+            </div>
+            
+            <div class="a-node a-out-2">
+                <div class="tag" style="color: var(--color-green); border-color: rgba(16,185,129,0.3);">[GOVERNANCE OUTPUT]</div>
+                <div class="title">IMMUTABLE LEDGERS</div>
+                <div class="sub" style="color: var(--color-green);">(IAL, ARL, KQL)</div>
+            </div>
+        </div>
+        
+        <p class="diagram-caption">The framework mathematically compiles human inputs into secure infrastructure execution while simultaneously generating immutable audit artifacts.</p>
+
     </section>
 
     <!-- TRANSITION BRIDGE 2 -->
@@ -359,60 +367,55 @@
     </div>
 
     <!-- MODULE 3: ARCHITECTURAL WORKFLOW -->
-    <section id="workflow" class="grid-section">
-        <div class="content-grid">
+    <section id="workflow" class="stacked-section">
+        
+        <div class="section-intro">
+            <span class="section-kicker">Prompt-Driven Infrastructure Synthesis</span>
+            <h2 class="section-title">The Architectural Workflow</h2>
+        </div>
+        
+        <!-- 2x2 TEXT CARDS -->
+        <div class="feature-grid-2x2">
+            <div class="feature-card blue">
+                <h3 class="feature-title">Strategic Command</h3>
+                <p class="feature-text">The workflow begins with the human architect. Rather than executing manual, step-by-step configurations, the engineer focuses entirely on higher-level strategy—defining the target coordinates, scope, and strict security constraints required for the environment.</p>
+            </div>
             
-            <!-- LEFT COLUMN: TEXT -->
-            <div class="workflow-text-content">
-                <span class="section-kicker">Prompt-Driven Infrastructure Synthesis</span>
-                <h2 class="section-title">The Architectural Workflow</h2>
-                
-                <div class="feature-block blue">
-                    <h3 class="feature-title">Strategic Command</h3>
-                    <p class="feature-text">The workflow begins with the human architect. Rather than executing manual, step-by-step configurations, the engineer focuses entirely on higher-level strategy—defining the target coordinates, scope, and strict security constraints required for the environment.</p>
-                </div>
-                
-                <div class="feature-block purple">
-                    <h3 class="feature-title">A Common Architectural Language</h3>
-                    <p class="feature-text">By feeding governed system directives into the Engine, the framework creates a shared, structured lexicon between the engineer and the AI. This controls the model, ensuring both human and machine operate under the exact same zero-trust parameters.</p>
-                </div>
-
-                <div class="feature-block" style="border-color: var(--color-red);">
-                    <h3 class="feature-title">Anchoring Tangential Drift</h3>
-                    <p class="feature-text">Real-world engineering inevitably involves troubleshooting, patching code errors, and navigating tangential issues. The framework acts as a rigid anchor. When the AI assists in patching these errors, the directives force it to continually return to the overarching architectural goals, preventing logic drift.</p>
-                </div>
-                
-                <div class="feature-block cyan">
-                    <h3 class="feature-title">The Validation Loop</h3>
-                    <p class="feature-text">Before final deployment, the architect reviews the AI-generated state files and audit ledgers, ensuring the output is mathematically certain. The human governs the strategy; the AI scales the execution.</p>
-                </div>
+            <div class="feature-card purple">
+                <h3 class="feature-title">A Common Architectural Language</h3>
+                <p class="feature-text">By feeding governed system directives into the Engine, the framework creates a shared, structured lexicon between the engineer and the AI. This controls the model, ensuring both human and machine operate under the exact same zero-trust parameters.</p>
             </div>
 
-            <!-- RIGHT COLUMN: CIRCULAR DIAGRAM -->
-            <div class="diagram-column">
-                <div class="diagram-wrapper-small workflow-diagram">
-                    
-                    <!-- Orbital Ring -->
-                    <div class="w-ring"></div>
-                    
-                    <!-- Center Anchor -->
-                    <div class="w-center">
-                        <div class="w-center-title">GOVERNANCE</div>
-                        <div class="w-center-main">Anchor</div>
-                    </div>
-
-                    <!-- Orbital Nodes -->
-                    <div class="w-node w-n1">1. Human Strategy</div>
-                    <div class="w-node w-n2">2. AI Synthesis</div>
-                    <div class="w-node w-n3">3. Drift Correction</div>
-                    <div class="w-node w-n4">4. Validation</div>
-
-                </div>
-                
-                <p class="diagram-caption">The continuous prompt-driven feedback loop. The framework acts as a rigid anchor, allowing the architect to patch tangential errors without losing focus on the zero-trust baseline.</p>
+            <div class="feature-card red">
+                <h3 class="feature-title">Anchoring Tangential Drift</h3>
+                <p class="feature-text">Real-world engineering inevitably involves troubleshooting, patching code errors, and navigating tangential issues. The framework acts as a rigid anchor. When the AI assists in patching these errors, the directives force it to continually return to the overarching architectural goals, preventing logic drift.</p>
             </div>
+            
+            <div class="feature-card cyan">
+                <h3 class="feature-title">The Validation Loop</h3>
+                <p class="feature-text">Before final deployment, the architect reviews the AI-generated state files and audit ledgers, ensuring the output is mathematically certain. The human governs the strategy; the AI scales the execution.</p>
+            </div>
+        </div>
+
+        <!-- FULL WIDTH CIRCULAR DIAGRAM -->
+        <div class="diagram-wrapper-wide workflow-diagram">
+            
+            <div class="w-ring"></div>
+            
+            <div class="w-center">
+                <div class="w-center-title">GOVERNANCE</div>
+                <div class="w-center-main">Anchor</div>
+            </div>
+
+            <div class="w-node w-n1">1. Human Strategy</div>
+            <div class="w-node w-n2">2. AI Synthesis</div>
+            <div class="w-node w-n3">3. Drift Correction</div>
+            <div class="w-node w-n4">4. Validation</div>
 
         </div>
+        
+        <p class="diagram-caption">The continuous prompt-driven feedback loop. The framework acts as a rigid anchor, allowing the architect to patch tangential errors without losing focus on the zero-trust baseline.</p>
+
     </section>
 
 </body>

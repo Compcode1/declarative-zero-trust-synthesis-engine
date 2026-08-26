@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Intelligent Architecture - Synthesis Engine</title>
     
-    <!-- IMPORT PREMIUM FONT FOR THE MAIN TEXT -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+    <!-- IMPORT PREMIUM FONTS: Montserrat (Main Text), Playfair Display (The 'I'), Great Vibes (The 'A') -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;500&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -21,6 +21,7 @@
             --color-grey: #64748b;
             --color-green: #10b981;
             --color-teal: #14b8a6;
+            --logo-blue: #2563eb; /* Deep, vibrant royal blue for the IA */
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -49,17 +50,25 @@
         .hero-title-container { display: flex; align-items: center; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap; }
         .hero-title { font-family: 'Montserrat', sans-serif; font-size: 3.2rem; font-weight: 400; letter-spacing: 3px; color: var(--text-main); text-transform: uppercase; }
         
-        /* THE TIGHT IA BADGE FIX */
-        .ia-logo-badge {
-            background: #ffffff;
-            padding: 6px 14px;
-            border-radius: 8px;
+        /* THE NEW TYPOGRAPHIC IA LOGO */
+        .custom-ia-logo {
             display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            align-items: baseline;
+            line-height: 1;
+            user-select: none; /* Prevents text highlighting */
         }
-        .ia-logo-badge img { height: 50px; width: auto; display: block; }
+        .ia-i {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            color: var(--logo-blue);
+            font-weight: 700;
+        }
+        .ia-a {
+            font-family: 'Great Vibes', cursive;
+            font-size: 6.5rem; /* Script fonts naturally render smaller, so we boost the size */
+            color: var(--logo-blue);
+            margin-left: -8px; /* Tucks the A beautifully next to the I */
+        }
         
         .hero-subtitle { font-size: 1.5rem; color: var(--color-cyan); font-weight: 500; max-width: 1000px; margin: 0 auto; }
         .nowrap { white-space: nowrap; }
@@ -108,6 +117,8 @@
         
         @media (max-width: 768px) {
             .hero-title { font-size: 2.2rem; }
+            .ia-i { font-size: 3.5rem; }
+            .ia-a { font-size: 4.5rem; }
             .hero-subtitle { font-size: 1.1rem; }
             .nav-links { gap: 1rem; flex-wrap: wrap; justify-content: center; }
             .ms-badge { height: 110px; }
@@ -132,10 +143,10 @@
         <div class="hero-title-container">
             <h1 class="hero-title">INTELLIGENT ARCHITECTURE</h1>
             
-            <!-- ACTUAL IA LOGO WRAPPED IN A COMPACT BADGE -->
-            <div class="ia-logo-badge">
-                <img src="cropped-LOGO-IMPROVED.png" alt="IA Logo">
-            </div>
+            <!-- THE NEW PURE TYPOGRAPHY LOGO -->
+            <span class="custom-ia-logo">
+                <span class="ia-i">I</span><span class="ia-a">A</span>
+            </span>
         </div>
         
         <p class="hero-subtitle">Autonomous Zero-Trust Machine Identity Provisioning for <span class="nowrap">Microsoft Entra ID</span></p>

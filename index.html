@@ -48,28 +48,26 @@
 
         /* ================= HERO HEADER ================= */
         .hero { padding: 140px 20px 80px; text-align: center; border-bottom: 1px solid var(--border-base); margin-bottom: 4rem; }
-        .hero-title-container { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 15px; flex-wrap: wrap; }
-        .hero-title { font-size: 3.5rem; font-weight: 400; letter-spacing: 2px; color: var(--text-main); }
-        .hero-logo { font-family: "Georgia", serif; font-style: italic; font-size: 4.5rem; color: var(--color-blue); font-weight: bold; line-height: 1; }
+        
+        /* Updated Logo Class */
+        .main-logo { max-width: 100%; height: auto; max-height: 120px; margin-bottom: 20px; }
+        
         .hero-subtitle { font-size: 1.5rem; color: var(--color-cyan); font-weight: 500; max-width: 800px; margin: 0 auto; }
+        
+        /* New Badge Class */
+        .badge-container { margin-top: 30px; display: flex; justify-content: center; }
+        .ms-badge { height: 120px; width: auto; object-fit: contain; }
 
         /* ================= MODULE 1: EXECUTION ================= */
         .module-section { display: flex; flex-direction: column; align-items: center; padding: 0 20px 80px; }
         .architecture-container { width: 100%; max-width: 1200px; display: flex; flex-direction: column; align-items: center; }
         
-        /* THE MOBILE FIX: Scrollable Canvas Wrapper */
         .canvas-wrapper {
-            width: 100%;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            margin-bottom: 3rem;
-            padding-bottom: 15px;
+            width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 3rem; padding-bottom: 15px;
         }
 
         .diagram-canvas {
-            position: relative; 
-            min-width: 1150px; /* Locks the diagram size so it doesn't crush on phones */
-            height: 650px;
+            position: relative; min-width: 1150px; height: 650px;
             background-image: linear-gradient(to right, rgba(30, 41, 59, 0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(30, 41, 59, 0.5) 1px, transparent 1px);
             background-size: 40px 40px; border: 1px solid var(--border-base); border-radius: 12px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
@@ -101,12 +99,10 @@
         .summary-title { font-size: 1.5rem; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1.5rem; }
         .summary-text { font-size: 1rem; color: var(--text-muted); line-height: 1.8; }
         
-        /* Make mobile text readable */
         @media (max-width: 768px) {
-            .hero-title { font-size: 2.2rem; }
-            .hero-logo { font-size: 3rem; }
             .hero-subtitle { font-size: 1.1rem; }
             .nav-links { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+            .ms-badge { height: 90px; }
         }
     </style>
 </head>
@@ -124,18 +120,21 @@
 
     <!-- HERO HEADER -->
     <header class="hero">
-        <div class="hero-title-container">
-            <h1 class="hero-title">INTELLIGENT ARCHITECTURE</h1>
-            <span class="hero-logo">IA</span>
-        </div>
+        <!-- INJECTED CUSTOM LOGO -->
+        <img src="cropped-LOGO-IMPROVED.png" alt="Intelligent Architecture" class="main-logo">
+        
         <p class="hero-subtitle">Autonomous Zero-Trust Machine Identity Provisioning for Microsoft Entra ID</p>
+        
+        <!-- INJECTED SC-300 BADGE -->
+        <div class="badge-container">
+            <img src="BADGE-2.png" alt="Microsoft SC-300 Certification" class="ms-badge">
+        </div>
     </header>
 
     <!-- MODULE 1: DETERMINISTIC EXECUTION -->
     <section id="execution" class="module-section">
         <div class="architecture-container">
             
-            <!-- NEW WRAPPER FOR MOBILE SCROLLING -->
             <div class="canvas-wrapper">
                 <div class="diagram-canvas">
                     <!-- SVG ROUTING LINES -->

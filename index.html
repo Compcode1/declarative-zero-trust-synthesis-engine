@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -57,10 +57,21 @@
         .module-section { display: flex; flex-direction: column; align-items: center; padding: 0 20px 80px; }
         .architecture-container { width: 100%; max-width: 1200px; display: flex; flex-direction: column; align-items: center; }
         
+        /* THE MOBILE FIX: Scrollable Canvas Wrapper */
+        .canvas-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 3rem;
+            padding-bottom: 15px;
+        }
+
         .diagram-canvas {
-            position: relative; width: 100%; height: 650px;
+            position: relative; 
+            min-width: 1150px; /* Locks the diagram size so it doesn't crush on phones */
+            height: 650px;
             background-image: linear-gradient(to right, rgba(30, 41, 59, 0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(30, 41, 59, 0.5) 1px, transparent 1px);
-            background-size: 40px 40px; border: 1px solid var(--border-base); border-radius: 12px; margin-bottom: 3rem; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            background-size: 40px 40px; border: 1px solid var(--border-base); border-radius: 12px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
         .routing-lines { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
@@ -89,6 +100,14 @@
         .summary-section { max-width: 900px; text-align: center; }
         .summary-title { font-size: 1.5rem; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1.5rem; }
         .summary-text { font-size: 1rem; color: var(--text-muted); line-height: 1.8; }
+        
+        /* Make mobile text readable */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.2rem; }
+            .hero-logo { font-size: 3rem; }
+            .hero-subtitle { font-size: 1.1rem; }
+            .nav-links { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+        }
     </style>
 </head>
 <body>
@@ -115,33 +134,37 @@
     <!-- MODULE 1: DETERMINISTIC EXECUTION -->
     <section id="execution" class="module-section">
         <div class="architecture-container">
-            <div class="diagram-canvas">
-                <!-- SVG ROUTING LINES -->
-                <svg class="routing-lines" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6" /></marker>
-                        <marker id="arrow-cyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0ea5e9" /></marker>
-                        <marker id="arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#a855f7" /></marker>
-                        <marker id="arrow-grey" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b" /></marker>
-                        <marker id="arrow-teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#14b8a6" /></marker>
-                    </defs>
-                    <path d="M 280 120 L 310 120 L 310 210 L 330 210" fill="none" stroke="#3b82f6" stroke-width="3" marker-end="url(#arrow-blue)" />
-                    <path d="M 340 250 L 300 250 L 300 160 L 290 160" fill="none" stroke="#a855f7" stroke-width="2" stroke-dasharray="6, 6" marker-end="url(#arrow-purple)" />
-                    <path d="M 300 450 L 320 450 L 320 280 L 330 280" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="6, 6" marker-end="url(#arrow-cyan)" />
-                    <path d="M 600 260 L 630 260" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#arrow-grey)" />
-                    <path d="M 860 260 L 880 260 L 880 140 L 890 140" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#arrow-grey)" />
-                    <path d="M 1030 250 L 1030 330" fill="none" stroke="#10b981" stroke-width="2" />
-                    <path d="M 1030 330 L 850 330 L 850 390" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-teal)" />
-                    <path d="M 1030 330 L 1110 330 L 1110 390" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-teal)" />
-                </svg>
+            
+            <!-- NEW WRAPPER FOR MOBILE SCROLLING -->
+            <div class="canvas-wrapper">
+                <div class="diagram-canvas">
+                    <!-- SVG ROUTING LINES -->
+                    <svg class="routing-lines" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6" /></marker>
+                            <marker id="arrow-cyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0ea5e9" /></marker>
+                            <marker id="arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#a855f7" /></marker>
+                            <marker id="arrow-grey" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b" /></marker>
+                            <marker id="arrow-teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#14b8a6" /></marker>
+                        </defs>
+                        <path d="M 280 120 L 310 120 L 310 210 L 330 210" fill="none" stroke="#3b82f6" stroke-width="3" marker-end="url(#arrow-blue)" />
+                        <path d="M 340 250 L 300 250 L 300 160 L 290 160" fill="none" stroke="#a855f7" stroke-width="2" stroke-dasharray="6, 6" marker-end="url(#arrow-purple)" />
+                        <path d="M 300 450 L 320 450 L 320 280 L 330 280" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="6, 6" marker-end="url(#arrow-cyan)" />
+                        <path d="M 600 260 L 630 260" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#arrow-grey)" />
+                        <path d="M 860 260 L 880 260 L 880 140 L 890 140" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#arrow-grey)" />
+                        <path d="M 1030 250 L 1030 330" fill="none" stroke="#10b981" stroke-width="2" />
+                        <path d="M 1030 330 L 850 330 L 850 390" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-teal)" />
+                        <path d="M 1030 330 L 1110 330 L 1110 390" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-teal)" />
+                    </svg>
 
-                <div class="node node-engineer"><div class="tag">[ROLE: CLOUD ARCHITECT]</div><div class="node-title">Security Engineer</div><div class="node-text">Inputs target coordinates (Tenant ID, Sub ID, KV Name) and strict GitHub Subject Claims.<span class="highlight">Validates execution gates.</span></div></div>
-                <div class="node node-engine"><div class="tag">[CORE SOFTWARE PRODUCT]</div><div class="node-title">Declarative Zero-Trust Synthesis Engine</div><div class="tag">[DIRECTIVE: DETERMINISTIC]</div><div class="node-text">Proprietary intellectual property. A strict system directive governing the AI to enforce a mathematically certain Entra ID zero-trust baseline.</div></div>
-                <div class="node node-compiler"><div class="tag">[STATE: HITL ACTIVE LOOP]</div><div class="node-title">AI Compiler<br><span style="font-size: 0.8rem; font-weight: 500; color: #a855f7;">(INTERACTIVE STATE MACHINE)</span></div><div class="node-text">Operates as a guided interactive loop. Validates inputs with the engineer at strict gates to prevent drift and logic hallucination.</div></div>
-                <div class="node node-iac"><div class="tag">[PAYLOAD: main.tf]</div><div class="node-title">IaC Generation</div><div class="node-text">Environment-agnostic Terraform payload (main.tf) synthesized upon coordinate lock.</div></div>
-                <div class="node node-core"><div class="tag">[STATE: CRYPTOGRAPHIC OIDC]</div><div class="node-title">Zero-Trust Machine Identity Core</div><div class="node-text">The hardened foundation.<span class="highlight">Passwordless OIDC workload federation established.</span></div></div>
-                <div class="node node-ial"><div class="tag">[ARTIFACT: IAL_RECORD.md]</div><div class="node-title">Identity Architecture Ledger (IAL)</div><div class="node-text">Records and validates the immutable target state infrastructure configuration.</div></div>
-                <div class="node node-arl"><div class="tag">[TELEMETRY: KQL & METRICS]</div><div class="node-title">Audit Results Ledger (ARL)</div><div class="node-text">Mathematically confirms zero-trust operational governance via Azure telemetry.</div></div>
+                    <div class="node node-engineer"><div class="tag">[ROLE: CLOUD ARCHITECT]</div><div class="node-title">Security Engineer</div><div class="node-text">Inputs target coordinates (Tenant ID, Sub ID, KV Name) and strict GitHub Subject Claims.<span class="highlight">Validates execution gates.</span></div></div>
+                    <div class="node node-engine"><div class="tag">[CORE SOFTWARE PRODUCT]</div><div class="node-title">Declarative Zero-Trust Synthesis Engine</div><div class="tag">[DIRECTIVE: DETERMINISTIC]</div><div class="node-text">Proprietary intellectual property. A strict system directive governing the AI to enforce a mathematically certain Entra ID zero-trust baseline.</div></div>
+                    <div class="node node-compiler"><div class="tag">[STATE: HITL ACTIVE LOOP]</div><div class="node-title">AI Compiler<br><span style="font-size: 0.8rem; font-weight: 500; color: #a855f7;">(INTERACTIVE STATE MACHINE)</span></div><div class="node-text">Operates as a guided interactive loop. Validates inputs with the engineer at strict gates to prevent drift and logic hallucination.</div></div>
+                    <div class="node node-iac"><div class="tag">[PAYLOAD: main.tf]</div><div class="node-title">IaC Generation</div><div class="node-text">Environment-agnostic Terraform payload (main.tf) synthesized upon coordinate lock.</div></div>
+                    <div class="node node-core"><div class="tag">[STATE: CRYPTOGRAPHIC OIDC]</div><div class="node-title">Zero-Trust Machine Identity Core</div><div class="node-text">The hardened foundation.<span class="highlight">Passwordless OIDC workload federation established.</span></div></div>
+                    <div class="node node-ial"><div class="tag">[ARTIFACT: IAL_RECORD.md]</div><div class="node-title">Identity Architecture Ledger (IAL)</div><div class="node-text">Records and validates the immutable target state infrastructure configuration.</div></div>
+                    <div class="node node-arl"><div class="tag">[TELEMETRY: KQL & METRICS]</div><div class="node-title">Audit Results Ledger (ARL)</div><div class="node-text">Mathematically confirms zero-trust operational governance via Azure telemetry.</div></div>
+                </div>
             </div>
 
             <div class="summary-section">

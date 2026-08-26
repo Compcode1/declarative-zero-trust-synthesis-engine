@@ -40,8 +40,8 @@
             border-bottom: 1px solid var(--border-base); z-index: 100;
             padding: 1.2rem 2rem; display: flex; justify-content: center;
         }
-        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 1rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; justify-content: center; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; }
         .nav-links a:hover { color: var(--color-cyan); }
 
         /* ================= HERO HEADER ================= */
@@ -76,7 +76,6 @@
         .node-text { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
         .tag { font-family: monospace; font-size: 0.75rem; font-weight: 700; padding: 4px 8px; border: 1px solid; border-radius: 4px; display: inline-block; margin-bottom: 0.75rem; letter-spacing: 0.5px; }
 
-        /* RECALCULATED POSITIONS FOR ZERO OVERLAP */
         .node-engineer { left: 40px; top: 50px; width: 240px; border-left: 4px solid var(--color-blue); }
         .node-engineer .tag { color: var(--color-blue); border-color: rgba(59, 130, 246, 0.3); }
         .node-engineer .highlight { color: var(--color-purple); font-weight: 600; margin-top: 10px; display: block; }
@@ -143,6 +142,7 @@
         .feature-card.blue { border-color: var(--color-blue); }
         .feature-card.cyan { border-color: var(--color-cyan); }
         .feature-card.green { border-color: var(--color-green); }
+        .feature-card.teal { border-color: var(--color-teal); }
         .feature-card.purple { border-color: var(--color-purple); }
         .feature-card.red { border-color: var(--color-red); }
         
@@ -200,6 +200,30 @@
         .w-n3 { bottom: 85px; left: 50%; transform: translateX(-50%); border-color: var(--color-red); }
         .w-n4 { top: 50%; left: calc(50% - 240px); transform: translate(-50%, -50%); border-color: var(--color-blue); }
 
+        /* ================= MODULE 4 SPECIFICS ================= */
+        .federation-diagram { height: 500px; }
+        
+        .f-node { position: absolute; background: var(--bg-page); border: 1px solid var(--color-blue); border-radius: 6px; z-index: 2; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.5); }
+        
+        .f-engine { width: 240px; top: 190px; left: 300px; text-align: center; border-width: 2px; padding: 2rem 1.5rem; }
+        .f-engine .icon { font-family: monospace; font-size: 1.8rem; color: var(--color-red); margin-bottom: 8px; font-weight: 700; }
+        .f-engine .logic { font-size: 0.85rem; color: var(--color-cyan); font-weight: 700; letter-spacing: 1px; margin-bottom: 8px; }
+        .f-engine .title { font-weight: 700; font-size: 1.15rem; color: var(--text-main); }
+        
+        .f-target { width: 320px; left: 750px; display: flex; align-items: center; padding: 1.25rem; }
+        .f-tf { top: 100px; }
+        .f-az { top: 210px; }
+        .f-api { top: 320px; }
+        
+        .f-target-icon { 
+            font-family: monospace; font-weight: 700; font-size: 1.1rem; 
+            color: var(--color-red); border-right: 1px solid var(--border-base); 
+            padding-right: 15px; margin-right: 15px; width: 60px; text-align: center;
+        }
+        .f-target-text { display: flex; flex-direction: column; }
+        .f-target-title { font-weight: 700; font-size: 1.1rem; color: var(--text-main); }
+        .f-target-sub { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 3px; }
+
         @media (max-width: 992px) {
             .feature-grid-3, .feature-grid-2x2 { grid-template-columns: 1fr; }
             .hero-title { font-size: 2.8rem; }
@@ -220,6 +244,7 @@
             <li><a href="#execution">Pipeline Architecture</a></li>
             <li><a href="#anatomy">Synthesis Engine</a></li>
             <li><a href="#workflow">Workflow</a></li>
+            <li><a href="#federation">Identity Federation</a></li>
         </ul>
     </nav>
 
@@ -255,38 +280,22 @@
                             <marker id="arrow-grey" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b" /></marker>
                             <marker id="arrow-teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#14b8a6" /></marker>
                         </defs>
-                        <!-- Engineer to Compiler -->
                         <path d="M 280 120 L 305 120 L 305 210 L 320 210" fill="none" stroke="#3b82f6" stroke-width="3" marker-end="url(#arrow-blue)" />
-                        <!-- Compiler to Engineer (HITL) -->
                         <path d="M 330 250 L 310 250 L 310 160 L 290 160" fill="none" stroke="#a855f7" stroke-width="2" stroke-dasharray="6, 6" marker-end="url(#arrow-purple)" />
-                        <!-- Engine to Compiler -->
                         <path d="M 300 400 L 315 400 L 315 280 L 320 280" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="6, 6" marker-end="url(#arrow-cyan)" />
-                        <!-- Compiler to IaC -->
                         <path d="M 580 230 L 610 230" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#arrow-grey)" />
-                        <!-- IaC to Core -->
                         <path d="M 830 230 L 880 230 L 880 140 L 940 140" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#arrow-grey)" />
-                        
-                        <!-- Core vertical drop -->
                         <path d="M 1080 250 L 1080 350" fill="none" stroke="#10b981" stroke-width="2" />
-                        <!-- Branch to IAL -->
                         <path d="M 1080 350 L 935 350 L 935 423" fill="none" stroke="#14b8a6" stroke-width="2" marker-end="url(#arrow-teal)" />
-                        <!-- Branch to ARL -->
                         <path d="M 1080 350 L 1165 350 L 1165 423" fill="none" stroke="#14b8a6" stroke-width="2" marker-end="url(#arrow-teal)" />
                     </svg>
 
-                    <!-- TEXT SHORTENED & POSITIONS SHIFTED FOR ZERO OVERLAP -->
                     <div class="node node-engineer"><div class="tag">[ROLE: CLOUD ARCHITECT]</div><div class="node-title">Security Engineer</div><div class="node-text">Inputs target coordinates and strict GitHub Subject Claims.<span class="highlight">Validates execution gates.</span></div></div>
-                    
                     <div class="node node-engine"><div class="tag">[CORE SOFTWARE PRODUCT]</div><div class="node-title">Declarative Zero-Trust Synthesis Engine</div><div class="tag">[DIRECTIVE: DETERMINISTIC]</div><div class="node-text">Proprietary intellectual property. A strict system directive governing the AI to enforce a mathematically certain Entra ID zero-trust baseline.</div></div>
-                    
                     <div class="node node-compiler"><div class="tag">[STATE: HITL ACTIVE LOOP]</div><div class="node-title">AI Compiler<br><span style="font-size: 0.85rem; font-weight: 500; color: #a855f7;">(INTERACTIVE STATE MACHINE)</span></div><div class="node-text">Operates as a guided interactive loop. Validates inputs with the engineer at strict gates to prevent drift and logic hallucination.</div></div>
-                    
                     <div class="node node-iac"><div class="tag">[PAYLOAD: main.tf]</div><div class="node-title">IaC Generation</div><div class="node-text">Environment-agnostic Terraform payload (main.tf) synthesized upon coordinate lock.</div></div>
-                    
                     <div class="node node-core"><div class="tag">[STATE: CRYPTOGRAPHIC OIDC]</div><div class="node-title">Zero-Trust Machine Identity Core</div><div class="node-text">The hardened foundation.<span class="highlight">Passwordless OIDC workload federation established.</span></div></div>
-                    
                     <div class="node node-ial"><div class="tag">[ARTIFACT: IAL_RECORD.md]</div><div class="node-title">Identity Architecture Ledger (IAL)</div><div class="node-text">Records and validates the immutable target state infrastructure configuration.</div></div>
-                    
                     <div class="node node-arl"><div class="tag">[TELEMETRY: KQL & METRICS]</div><div class="node-title">Audit Results Ledger (ARL)</div><div class="node-text">Mathematically confirms zero-trust operational governance via Azure telemetry.</div></div>
                 </div>
             </div>
@@ -415,6 +424,97 @@
         </div>
         
         <p class="diagram-caption">The continuous prompt-driven feedback loop. The framework acts as a rigid anchor, allowing the architect to patch tangential errors without losing focus on the zero-trust baseline.</p>
+
+    </section>
+
+    <!-- TRANSITION BRIDGE 3 -->
+    <div class="transition-wrapper">
+        <div class="section-divider-line"></div>
+        <h2 class="deep-dive-header" style="color: var(--color-blue);">Federation & IaC Generation</h2>
+    </div>
+
+    <!-- MODULE 4: FEDERATION EXECUTION -->
+    <section id="federation" class="stacked-section">
+        
+        <div class="section-intro">
+            <span class="section-kicker">Establishing Passwordless Identities</span>
+            <h2 class="section-title">Zero-Trust Federation Execution</h2>
+        </div>
+        
+        <div class="feature-grid-2x2">
+            <div class="feature-card blue">
+                <h3 class="feature-title">Eradicating Long-Lived Secrets</h3>
+                <p class="feature-text">The primary execution objective of the Engine is the elimination of static, symmetric keys. The generated payloads strictly enforce passwordless authentication models, removing the highest-risk attack vectors associated with machine credentialing.</p>
+            </div>
+            
+            <div class="feature-card cyan">
+                <h3 class="feature-title">Workload Identity Federation</h3>
+                <p class="feature-text">The framework programmatically establishes OpenID Connect (OIDC) trust relationships within Microsoft Entra ID. This allows external workloads to request short-lived access tokens dynamically, completely bypassing the need for stored credentials.</p>
+            </div>
+
+            <div class="feature-card purple">
+                <h3 class="feature-title">Platform-Agnostic IaC Synthesis</h3>
+                <p class="feature-text">Because the AI is governed by underlying architectural logic rather than syntax memorization, the Engine is inherently flexible. It outputs precise Infrastructure as Code (IaC)—seamlessly translating the zero-trust baseline into Terraform, Azure Bicep, or Graph API payloads depending on the environment's required capability.</p>
+            </div>
+            
+            <div class="feature-card teal">
+                <h3 class="feature-title">Non-Destructive Data-Plane Binding</h3>
+                <p class="feature-text">Beyond establishing the identity, the execution securely maps the federated machine to highly restrictive, least-privilege data-plane controls. The engineering ensures these new configurations bind cleanly to existing infrastructure without disrupting production states.</p>
+            </div>
+        </div>
+
+        <div class="diagram-wrapper-wide federation-diagram">
+            
+            <!-- SVG Lines matching the branching logic -->
+            <svg class="routing-lines" xmlns="http://www.w3.org/2000/svg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
+                <defs>
+                    <marker id="arr-blue-f" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6" /></marker>
+                </defs>
+                <!-- Engine (X:540, Y:250) to Terraform (X:750, Y:140) -->
+                <path d="M 540 250 L 645 250 L 645 140 L 750 140" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="6, 6" marker-end="url(#arr-blue-f)" />
+                <!-- Engine to Azure Bicep (X:750, Y:250) -->
+                <path d="M 540 250 L 750 250" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="6, 6" marker-end="url(#arr-blue-f)" />
+                <!-- Engine to Graph API (X:750, Y:360) -->
+                <path d="M 540 250 L 645 250 L 645 360 L 750 360" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="6, 6" marker-end="url(#arr-blue-f)" />
+            </svg>
+
+            <!-- Main Engine Node -->
+            <div class="f-node f-engine">
+                <div class="icon">{ }</div>
+                <div class="logic">OIDC LOGIC</div>
+                <div class="title">Synthesis<br>Engine</div>
+            </div>
+
+            <!-- Branch 1: Terraform -->
+            <div class="f-node f-target f-tf">
+                <div class="f-target-icon">.tf</div>
+                <div class="f-target-text">
+                    <span class="f-target-title">Terraform</span>
+                    <span class="f-target-sub">State Execution</span>
+                </div>
+            </div>
+
+            <!-- Branch 2: Bicep -->
+            <div class="f-node f-target f-az">
+                <div class="f-target-icon">.az</div>
+                <div class="f-target-text">
+                    <span class="f-target-title">Azure Bicep</span>
+                    <span class="f-target-sub">Native Template</span>
+                </div>
+            </div>
+
+            <!-- Branch 3: Graph API -->
+            <div class="f-node f-target f-api">
+                <div class="f-target-icon">API</div>
+                <div class="f-target-text">
+                    <span class="f-target-title">Microsoft Graph</span>
+                    <span class="f-target-sub">Direct Payload</span>
+                </div>
+            </div>
+
+        </div>
+        
+        <p class="diagram-caption">The Engine operates as an agnostic logic layer, compiling strict zero-trust parameters into flawlessly formatted code for any required deployment capability.</p>
 
     </section>
 

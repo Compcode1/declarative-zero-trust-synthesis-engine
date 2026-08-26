@@ -26,6 +26,10 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
+        html {
+            scroll-behavior: smooth; /* Elegant gliding animation */
+        }
+
         body {
             background-color: var(--bg-page);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -54,7 +58,10 @@
         .ms-badge { height: 160px; width: auto; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5)); }
 
         /* ================= MODULE 1: EXECUTION ENVIRONMENT ================= */
-        .module-section { display: flex; flex-direction: column; align-items: center; padding: 5rem 20px 0; }
+        .module-section { 
+            display: flex; flex-direction: column; align-items: center; padding: 5rem 20px 0; 
+            scroll-margin-top: 100px; /* Accounts for fixed nav */
+        }
         .architecture-container { width: 100%; max-width: 1300px; display: flex; flex-direction: column; align-items: center; }
         
         .summary-section { max-width: 1000px; text-align: center; margin-bottom: 4rem; }
@@ -103,6 +110,7 @@
         .transition-wrapper {
             width: 100%; max-width: 1300px; margin: 7rem auto 6rem;
             text-align: center; position: relative;
+            scroll-margin-top: 100px; /* Accounts for fixed nav during anchor jumps */
         }
         .section-divider-line {
             position: absolute; top: 50%; left: 0; width: 100%; height: 2px;
@@ -307,13 +315,13 @@
     </section>
 
     <!-- TRANSITION BRIDGE 1 -->
-    <div class="transition-wrapper">
+    <div id="anatomy" class="transition-wrapper">
         <div class="section-divider-line"></div>
         <h2 class="deep-dive-header">System Components Breakdown</h2>
     </div>
 
     <!-- MODULE 2: ANATOMY OF THE ENGINE -->
-    <section id="anatomy" class="stacked-section">
+    <section class="stacked-section">
         
         <div class="section-intro">
             <span class="section-kicker">Defining The Framework</span>
@@ -376,13 +384,13 @@
     </section>
 
     <!-- TRANSITION BRIDGE 2 -->
-    <div class="transition-wrapper">
+    <div id="workflow" class="transition-wrapper">
         <div class="section-divider-line"></div>
         <h2 class="deep-dive-header" style="color: var(--color-cyan);">Workflow & Continuous Synthesis</h2>
     </div>
 
     <!-- MODULE 3: ARCHITECTURAL WORKFLOW -->
-    <section id="workflow" class="stacked-section">
+    <section class="stacked-section">
         
         <div class="section-intro">
             <span class="section-kicker">Prompt-Driven Infrastructure Synthesis</span>
@@ -432,13 +440,13 @@
     </section>
 
     <!-- TRANSITION BRIDGE 3 -->
-    <div class="transition-wrapper">
+    <div id="federation" class="transition-wrapper">
         <div class="section-divider-line"></div>
         <h2 class="deep-dive-header" style="color: var(--color-blue);">Federation & IaC Generation</h2>
     </div>
 
     <!-- MODULE 4: FEDERATION EXECUTION -->
-    <section id="federation" class="stacked-section">
+    <section class="stacked-section">
         
         <div class="section-intro">
             <span class="section-kicker">Establishing Passwordless Identities</span>
@@ -515,13 +523,13 @@
     </section>
 
     <!-- TRANSITION BRIDGE 4 -->
-    <div class="transition-wrapper">
+    <div id="ledger" class="transition-wrapper">
         <div class="section-divider-line"></div>
         <h2 class="deep-dive-header" style="color: var(--color-teal);">Immutable Baseline Generation</h2>
     </div>
 
     <!-- MODULE 5: IDENTITY ARCHITECTURE LEDGER -->
-    <section id="ledger" class="stacked-section">
+    <section class="stacked-section">
         
         <div class="section-intro">
             <span class="section-kicker">Automated Proof-of-Governance</span>
@@ -627,13 +635,13 @@ Has KQL logging confirmed a successful authentication mapping directly against t
     </section>
 
     <!-- TRANSITION BRIDGE 5 -->
-    <div class="transition-wrapper">
+    <div id="arl" class="transition-wrapper">
         <div class="section-divider-line"></div>
         <h2 class="deep-dive-header" style="color: var(--color-purple);">Forensic Audit & Verification</h2>
     </div>
 
     <!-- MODULE 6: AUDIT RESULTS LEDGER -->
-    <section id="arl" class="stacked-section">
+    <section class="stacked-section">
         
         <div class="section-intro">
             <span class="section-kicker">Forensic Governance & Sign-Off</span>
@@ -737,13 +745,13 @@ Next Scheduled Review: 2026-11-10
     </section>
 
     <!-- TRANSITION BRIDGE 6 -->
-    <div class="transition-wrapper">
+    <div id="index" class="transition-wrapper">
         <div class="section-divider-line"></div>
         <h2 class="deep-dive-header" style="color: var(--color-blue);">Enterprise Capability Scaling</h2>
     </div>
 
     <!-- MODULE 7: CAPABILITY INDEX -->
-    <section id="index" class="stacked-section">
+    <section class="stacked-section">
         
         <div class="section-intro">
             <span class="section-kicker">Continuous Enterprise Integration</span>
@@ -882,13 +890,13 @@ Next Scheduled Review: 2026-11-10
     </section>
 
     <!-- TRANSITION BRIDGE 7 -->
-    <div class="transition-wrapper">
+    <div id="certs" class="transition-wrapper">
         <div class="section-divider-line"></div>
         <h2 class="deep-dive-header" style="color: var(--color-blue);">Credentials & Expertise</h2>
     </div>
 
     <!-- MODULE 8: PROFESSIONAL CERTIFICATIONS -->
-    <section id="certs" class="stacked-section">
+    <section class="stacked-section">
         
         <div class="section-intro">
             <span class="section-kicker">Verified Engineering Competency</span>

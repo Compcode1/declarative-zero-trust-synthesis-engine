@@ -126,10 +126,7 @@
         .feature-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; width: 100%; max-width: 1300px; margin-bottom: 4rem; }
         .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; width: 100%; max-width: 1100px; margin-bottom: 4rem; margin-left: auto; margin-right: auto; }
         
-        .feature-card { 
-            background: rgba(15, 23, 42, 0.4); border-top: 4px solid; padding: 2rem; 
-            border-radius: 8px; text-align: left; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); 
-        }
+        .feature-card { background: rgba(15, 23, 42, 0.4); border-top: 4px solid; padding: 2rem; border-radius: 8px; text-align: left; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); }
         .feature-card.blue { border-color: var(--color-blue); }
         .feature-card.cyan { border-color: var(--color-cyan); }
         .feature-card.green { border-color: var(--color-green); }
@@ -191,51 +188,39 @@
         .f-target-sub { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 3px; }
 
         /* ================= TERMINAL UI (MODULE 5 & 6) ================= */
-        .terminal-window {
-            background: #0d1117; border: 1px solid var(--border-base); border-radius: 10px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); width: 100%; max-width: 1100px;
-            margin: 0 auto; text-align: left; overflow: hidden;
-        }
+        .terminal-window { background: #0d1117; border: 1px solid var(--border-base); border-radius: 10px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); width: 100%; max-width: 1100px; margin: 0 auto; text-align: left; overflow: hidden; }
         .terminal-header { background: #161b22; padding: 12px 20px; display: flex; align-items: center; border-bottom: 1px solid var(--border-base); position: relative; }
         .terminal-dots { display: flex; gap: 8px; position: absolute; left: 20px; }
         .dot { width: 12px; height: 12px; border-radius: 50%; }
         .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
         .terminal-title { margin: 0 auto; color: var(--text-muted); font-size: 0.85rem; font-family: monospace; letter-spacing: 1px; }
         .terminal-body { padding: 2.5rem; font-family: 'Consolas', 'Courier New', monospace; font-size: 1rem; line-height: 1.8; color: var(--text-main); overflow-y: auto; max-height: 700px; white-space: pre-wrap; word-wrap: break-word; background: linear-gradient(rgba(13, 17, 23, 1) 0%, rgba(13, 17, 23, 0.95) 100%); }
-        .t-cyan { color: var(--color-cyan); font-weight: 700; }
-        .t-green { color: var(--color-green); font-weight: 700; }
-        .t-blue { color: var(--color-blue); }
-        .t-purple { color: var(--color-purple); }
-        .t-muted { color: var(--text-muted); }
-        .t-comment { color: var(--color-grey); font-style: italic; }
+        .t-cyan { color: var(--color-cyan); font-weight: 700; } .t-green { color: var(--color-green); font-weight: 700; } .t-blue { color: var(--color-blue); } .t-purple { color: var(--color-purple); } .t-muted { color: var(--text-muted); } .t-comment { color: var(--color-grey); font-style: italic; }
 
         /* ================= MODULE 7 SPECIFICS: CAPABILITY INDEX ================= */
         .capability-diagram { height: auto; padding-bottom: 2rem; }
-        .capability-grid {
-            display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: 3rem; width: 100%;
-        }
-        .cap-card {
-            background: rgba(10, 15, 29, 0.7); border: 1px solid rgba(59, 130, 246, 0.4);
-            border-radius: 8px; padding: 1.5rem; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(8px);
-        }
+        .capability-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: 3rem; width: 100%; }
+        .cap-card { background: rgba(10, 15, 29, 0.7); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 8px; padding: 1.5rem; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3); backdrop-filter: blur(8px); }
         .cap-card-full { grid-column: 1 / -1; }
-        
-        .cap-header {
-            display: flex; align-items: center; gap: 12px; margin-bottom: 1.25rem;
-            border-bottom: 1px solid rgba(59, 130, 246, 0.2); padding-bottom: 0.75rem;
-        }
+        .cap-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1.25rem; border-bottom: 1px solid rgba(59, 130, 246, 0.2); padding-bottom: 0.75rem; }
         .cap-num { color: var(--color-cyan); font-weight: 900; font-size: 1.3rem; }
         .cap-title { color: var(--text-main); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; font-size: 1.05rem; }
-        
         .cap-list { list-style: none; padding: 0; margin: 0; }
-        .cap-list li {
-            font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.5rem;
-            display: flex; align-items: flex-start; gap: 8px; line-height: 1.4;
-        }
+        .cap-list li { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.5rem; display: flex; align-items: flex-start; gap: 8px; line-height: 1.4; }
         .cap-list li::before { content: '>'; color: var(--color-blue); font-weight: 900; }
-        
         .cap-2-col-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2rem; }
+
+        /* ================= MODULE 8 SPECIFICS: CERTIFICATIONS ================= */
+        .cert-card { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; text-align: left; }
+        .cert-org { font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; font-weight: 700; }
+        
+        .cert-blue .cert-org { color: var(--color-blue); }
+        .cert-red .cert-org { color: var(--color-red); }
+        .cert-green .cert-org { color: var(--color-green); }
+        .cert-cyan .cert-org { color: var(--color-cyan); }
+        .cert-teal .cert-org { color: var(--color-teal); }
+
+        .cert-name { font-size: 1.2rem; font-weight: 700; color: var(--text-main); line-height: 1.4; }
 
         @media (max-width: 992px) {
             .feature-grid-3, .feature-grid-2x2, .capability-grid, .cap-2-col-list { grid-template-columns: 1fr; }
@@ -252,7 +237,7 @@
 </head>
 <body>
 
-    <!-- GLOBAL NAVIGATION (UPDATED TITLES) -->
+    <!-- GLOBAL NAVIGATION -->
     <nav>
         <ul class="nav-links">
             <li><a href="#">Home</a></li>
@@ -263,6 +248,7 @@
             <li><a href="#ledger">Immutable Baseline</a></li>
             <li><a href="#arl">Forensic Audit</a></li>
             <li><a href="#index">Capability Index</a></li>
+            <li><a href="#certs">Certifications</a></li>
         </ul>
     </nav>
 
@@ -785,7 +771,6 @@ Next Scheduled Review: 2026-11-10
             
             <div class="capability-grid">
                 
-                <!-- Box 01 -->
                 <div class="cap-card">
                     <div class="cap-header">
                         <span class="cap-num">01</span>
@@ -801,7 +786,6 @@ Next Scheduled Review: 2026-11-10
                     </ul>
                 </div>
 
-                <!-- Box 03 -->
                 <div class="cap-card">
                     <div class="cap-header">
                         <span class="cap-num">03</span>
@@ -817,7 +801,6 @@ Next Scheduled Review: 2026-11-10
                     </ul>
                 </div>
 
-                <!-- Box 05 -->
                 <div class="cap-card">
                     <div class="cap-header">
                         <span class="cap-num">05</span>
@@ -832,7 +815,6 @@ Next Scheduled Review: 2026-11-10
                     </ul>
                 </div>
 
-                <!-- Box 02 -->
                 <div class="cap-card">
                     <div class="cap-header">
                         <span class="cap-num">02</span>
@@ -847,7 +829,6 @@ Next Scheduled Review: 2026-11-10
                     </ul>
                 </div>
 
-                <!-- Box 06 -->
                 <div class="cap-card">
                     <div class="cap-header">
                         <span class="cap-num">06</span>
@@ -862,7 +843,6 @@ Next Scheduled Review: 2026-11-10
                     </ul>
                 </div>
 
-                <!-- Box 04 -->
                 <div class="cap-card">
                     <div class="cap-header">
                         <span class="cap-num">04</span>
@@ -876,7 +856,6 @@ Next Scheduled Review: 2026-11-10
                     </ul>
                 </div>
 
-                <!-- Box 07 (Spans both columns) -->
                 <div class="cap-card cap-card-full">
                     <div class="cap-header">
                         <span class="cap-num">07</span>
@@ -899,6 +878,56 @@ Next Scheduled Review: 2026-11-10
         </div>
         
         <p class="diagram-caption">The full Capability Index architecture. It guarantees an immutable, heavily audited zero-trust core seamlessly combined with the precise modular security toolsets required for the deployment.</p>
+
+    </section>
+
+    <!-- TRANSITION BRIDGE 7 -->
+    <div class="transition-wrapper">
+        <div class="section-divider-line"></div>
+        <h2 class="deep-dive-header" style="color: var(--color-blue);">Credentials & Expertise</h2>
+    </div>
+
+    <!-- MODULE 8: PROFESSIONAL CERTIFICATIONS -->
+    <section id="certs" class="stacked-section">
+        
+        <div class="section-intro">
+            <span class="section-kicker">Verified Engineering Competency</span>
+            <h2 class="section-title">Professional Certifications</h2>
+        </div>
+        
+        <div class="feature-grid-3">
+            
+            <!-- SC-300 -->
+            <div class="feature-card cert-card cert-blue blue">
+                <div class="cert-org">Microsoft Certified</div>
+                <div class="cert-name">Identity and Access Administrator Associate (SC-300)</div>
+            </div>
+            
+            <!-- CompTIA -->
+            <div class="feature-card cert-card cert-red red">
+                <div class="cert-org">CompTIA</div>
+                <div class="cert-name">Cybersecurity Analyst (CySA+) & Security+ ce</div>
+            </div>
+
+            <!-- Python PCAP -->
+            <div class="feature-card cert-card cert-green green">
+                <div class="cert-org">Python Institute</div>
+                <div class="cert-name">PCAP – Certified Associate Python Programmer</div>
+            </div>
+            
+            <!-- SC-900 -->
+            <div class="feature-card cert-card cert-cyan cyan">
+                <div class="cert-org">Microsoft Certified</div>
+                <div class="cert-name">Security, Compliance, and Identity Fundamentals (SC-900)</div>
+            </div>
+
+            <!-- Dataquest -->
+            <div class="feature-card cert-card cert-teal teal">
+                <div class="cert-org">Dataquest</div>
+                <div class="cert-name">Data Engineering Professional</div>
+            </div>
+
+        </div>
 
     </section>
 

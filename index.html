@@ -20,6 +20,7 @@
             --color-grey: #64748b;
             --color-green: #10b981;
             --color-teal: #14b8a6;
+            --color-red: #f43f5e;
             --logo-blue: #2563eb;
         }
 
@@ -124,58 +125,88 @@
             letter-spacing: 4px; text-transform: uppercase; color: var(--color-purple);
         }
 
-        /* ================= MODULE 2: ANATOMY OF THE ENGINE ================= */
-        .anatomy-section { padding: 0 20px 80px; width: 100%; display: flex; flex-direction: column; align-items: center; }
-        .anatomy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1300px; width: 100%; align-items: center; }
+        /* ================= SHARED GRID STRUCTURE ================= */
+        .grid-section { padding: 0 20px 80px; width: 100%; display: flex; flex-direction: column; align-items: center; }
+        .content-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1300px; width: 100%; align-items: center; }
         
-        /* Left Column Text */
-        .anatomy-kicker { color: var(--color-cyan); font-weight: 700; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; display: block; }
-        .anatomy-title { font-family: 'Montserrat', sans-serif; font-size: 2.8rem; font-weight: 900; line-height: 1.2; margin-bottom: 3rem; color: var(--text-main); }
+        /* Shared Text Block Styles */
+        .section-kicker { color: var(--color-cyan); font-weight: 700; font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; display: block; }
+        .section-title { font-family: 'Montserrat', sans-serif; font-size: 2.8rem; font-weight: 900; line-height: 1.2; margin-bottom: 3rem; color: var(--text-main); }
         
         .feature-block { margin-bottom: 2.5rem; padding-left: 1.5rem; border-left: 3px solid; }
         .feature-block.blue { border-color: var(--color-blue); }
         .feature-block.cyan { border-color: var(--color-cyan); }
         .feature-block.green { border-color: var(--color-green); }
+        .feature-block.purple { border-color: var(--color-purple); }
         
         .feature-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--text-main); }
         .feature-text { color: var(--text-muted); font-size: 1rem; line-height: 1.7; }
         
-        /* Right Column Diagram */
-        .anatomy-diagram-wrapper {
+        /* Shared Diagram Wrapper Styles */
+        .diagram-wrapper-small {
             position: relative; width: 100%; max-width: 600px; height: 500px; margin: 0 auto;
             background-image: linear-gradient(to right, rgba(30, 41, 59, 0.3) 1px, transparent 1px), linear-gradient(to bottom, rgba(30, 41, 59, 0.3) 1px, transparent 1px);
             background-size: 30px 30px; border: 1px solid var(--border-base); border-radius: 12px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
         
+        .diagram-caption { margin-top: 2rem; text-align: center; font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; padding: 0 20px; }
+
+        /* ================= MODULE 2 SPECIFICS: ANATOMY ================= */
         .a-node { position: absolute; background: var(--bg-page); border: 1px solid var(--border-base); border-radius: 6px; padding: 1rem; text-align: center; z-index: 2; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.5); }
         .a-node .tag { border-color: rgba(255,255,255,0.2); color: var(--text-muted); font-size: 0.6rem; padding: 2px 5px; margin-bottom: 8px; }
         .a-node .title { font-weight: 700; font-size: 0.95rem; text-transform: uppercase; margin-bottom: 4px; }
         .a-node .sub { font-size: 0.75rem; color: var(--text-muted); }
         
-        /* Fixed Node Positions within the 600x500 box */
         .a-input { width: 260px; top: 40px; left: 170px; border-color: rgba(59, 130, 246, 0.5); }
-        
         .a-engine { 
             width: 320px; top: 180px; left: 140px; padding: 1.5rem 1rem;
             border: 1px solid var(--color-cyan);
             box-shadow: 0 0 20px rgba(14, 165, 233, 0.15);
         }
-        
         .a-out-1 { width: 220px; top: 350px; left: 40px; border-color: rgba(59, 130, 246, 0.5); }
         .a-out-2 { width: 220px; top: 350px; left: 340px; border-color: rgba(16, 185, 129, 0.5); }
+
+        /* ================= MODULE 3 SPECIFICS: WORKFLOW (CIRCULAR) ================= */
+        .workflow-diagram { display: flex; justify-content: center; align-items: center; }
         
-        .anatomy-caption { margin-top: 2rem; text-align: center; font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; padding: 0 20px; }
+        .w-center {
+            position: relative; z-index: 2; width: 150px; height: 150px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(14,165,233,0.15) 0%, var(--bg-page) 70%);
+            border: 2px solid var(--color-cyan); display: flex; flex-direction: column; justify-content: center; align-items: center;
+            box-shadow: 0 0 25px rgba(14, 165, 233, 0.3); text-align: center;
+        }
+        .w-center-title { font-size: 0.7rem; color: var(--color-cyan); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2px; }
+        .w-center-main { font-weight: 900; font-size: 1rem; color: var(--text-main); }
+
+        .w-ring {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 380px; height: 380px; border-radius: 50%;
+            border: 3px dashed rgba(14, 165, 233, 0.3); z-index: 1;
+        }
+
+        .w-node {
+            position: absolute; background: var(--bg-page); border: 2px solid; border-radius: 6px; 
+            padding: 0.75rem 1.25rem; text-align: center; font-weight: 700; font-size: 0.9rem; 
+            z-index: 3; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.5); color: var(--text-main);
+        }
+        
+        /* Node positioning around the ring */
+        .w-n1 { top: 60px; left: 50%; transform: translateX(-50%); border-color: var(--color-blue); }
+        .w-n2 { top: 50%; right: 30px; transform: translateY(-50%); border-color: var(--color-blue); }
+        .w-n3 { bottom: 60px; left: 50%; transform: translateX(-50%); border-color: var(--color-red); }
+        .w-n4 { top: 50%; left: 30px; transform: translateY(-50%); border-color: var(--color-blue); }
 
         @media (max-width: 992px) {
-            .anatomy-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .content-grid { grid-template-columns: 1fr; gap: 2rem; }
             .hero-title { font-size: 2.2rem; }
-            .anatomy-title { font-size: 2.2rem; }
+            .section-title { font-size: 2.2rem; }
             .summary-title { font-size: 1.4rem; }
             .deep-dive-header { font-size: 1.6rem; padding: 0 15px; }
         }
         @media (max-width: 650px) {
-            .anatomy-diagram-wrapper { transform: scale(0.85); transform-origin: center top; margin-bottom: -50px; }
+            .diagram-wrapper-small { transform: scale(0.85); transform-origin: center top; margin-bottom: -50px; }
+            .w-node { padding: 0.5rem 0.75rem; font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -187,7 +218,7 @@
             <li><a href="#">Home</a></li>
             <li><a href="#execution">Pipeline Architecture</a></li>
             <li><a href="#anatomy">Synthesis Engine</a></li>
-            <li><a href="#governance">Zero-Trust Governance</a></li>
+            <li><a href="#workflow">Workflow</a></li>
         </ul>
     </nav>
 
@@ -233,6 +264,7 @@
                         <path d="M 1090 340 L 1150 340 L 1150 393" fill="none" stroke="#14b8a6" stroke-width="2" marker-end="url(#arrow-teal)" />
                     </svg>
 
+                    <!-- Nodes -->
                     <div class="node node-engineer"><div class="tag">[ROLE: CLOUD ARCHITECT]</div><div class="node-title">Security Engineer</div><div class="node-text">Inputs target coordinates (Tenant ID, Sub ID, KV Name) and strict GitHub Subject Claims.<span class="highlight">Validates execution gates.</span></div></div>
                     <div class="node node-engine"><div class="tag">[CORE SOFTWARE PRODUCT]</div><div class="node-title">Declarative Zero-Trust Synthesis Engine</div><div class="tag">[DIRECTIVE: DETERMINISTIC]</div><div class="node-text">Proprietary intellectual property. A strict system directive governing the AI to enforce a mathematically certain Entra ID zero-trust baseline.</div></div>
                     <div class="node node-compiler"><div class="tag">[STATE: HITL ACTIVE LOOP]</div><div class="node-title">AI Compiler<br><span style="font-size: 0.8rem; font-weight: 500; color: #a855f7;">(INTERACTIVE STATE MACHINE)</span></div><div class="node-text">Operates as a guided interactive loop. Validates inputs with the engineer at strict gates to prevent drift and logic hallucination.</div></div>
@@ -245,20 +277,20 @@
         </div>
     </section>
 
-    <!-- MASSIVE TRANSITION BRIDGE -->
+    <!-- TRANSITION BRIDGE 1 -->
     <div class="transition-wrapper">
         <div class="section-divider-line"></div>
         <h2 class="deep-dive-header">System Components Breakdown</h2>
     </div>
 
     <!-- MODULE 2: ANATOMY OF THE ENGINE -->
-    <section id="anatomy" class="anatomy-section">
-        <div class="anatomy-grid">
+    <section id="anatomy" class="grid-section">
+        <div class="content-grid">
             
-            <!-- LEFT COLUMN: TEXT BLOCKS -->
+            <!-- LEFT COLUMN: TEXT -->
             <div class="anatomy-text-content">
-                <span class="anatomy-kicker">Defining The Framework</span>
-                <h2 class="anatomy-title">The Anatomy of the Declarative Zero-Trust Synthesis Engine</h2>
+                <span class="section-kicker">Defining The Framework</span>
+                <h2 class="section-title">The Anatomy of the Declarative Zero-Trust Synthesis Engine</h2>
                 
                 <div class="feature-block blue">
                     <h3 class="feature-title">The AI Compiler Protocol</h3>
@@ -277,19 +309,16 @@
             </div>
 
             <!-- RIGHT COLUMN: DIAGRAM -->
-            <div class="anatomy-diagram-column">
-                <div class="anatomy-diagram-wrapper">
+            <div class="diagram-column">
+                <div class="diagram-wrapper-small">
                     <!-- Anatomy SVG Lines -->
                     <svg class="anatomy-svg" xmlns="http://www.w3.org/2000/svg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
                         <defs>
-                            <marker id="arr-cyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0ea5e9" /></marker>
+                            <marker id="arr-cyan-2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0ea5e9" /></marker>
                         </defs>
-                        <!-- Top to Engine (Dashed) -->
-                        <path d="M 300 120 L 300 173" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="6, 6" marker-end="url(#arr-cyan)" />
-                        <!-- Engine to Left Output -->
-                        <path d="M 300 275 L 300 310 L 150 310 L 150 343" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arr-cyan)" />
-                        <!-- Engine to Right Output -->
-                        <path d="M 300 275 L 300 310 L 450 310 L 450 343" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arr-cyan)" />
+                        <path d="M 300 120 L 300 173" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="6, 6" marker-end="url(#arr-cyan-2)" />
+                        <path d="M 300 275 L 300 310 L 150 310 L 150 343" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arr-cyan-2)" />
+                        <path d="M 300 275 L 300 310 L 450 310 L 450 343" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arr-cyan-2)" />
                     </svg>
 
                     <!-- Anatomy Nodes -->
@@ -317,7 +346,70 @@
                     </div>
                 </div>
                 
-                <p class="anatomy-caption">The framework mathematically compiles human inputs into secure infrastructure execution while simultaneously generating immutable audit artifacts.</p>
+                <p class="diagram-caption">The framework mathematically compiles human inputs into secure infrastructure execution while simultaneously generating immutable audit artifacts.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- TRANSITION BRIDGE 2 -->
+    <div class="transition-wrapper">
+        <div class="section-divider-line"></div>
+        <h2 class="deep-dive-header" style="color: var(--color-cyan);">Workflow & Continuous Synthesis</h2>
+    </div>
+
+    <!-- MODULE 3: ARCHITECTURAL WORKFLOW -->
+    <section id="workflow" class="grid-section">
+        <div class="content-grid">
+            
+            <!-- LEFT COLUMN: TEXT -->
+            <div class="workflow-text-content">
+                <span class="section-kicker">Prompt-Driven Infrastructure Synthesis</span>
+                <h2 class="section-title">The Architectural Workflow</h2>
+                
+                <div class="feature-block blue">
+                    <h3 class="feature-title">Strategic Command</h3>
+                    <p class="feature-text">The workflow begins with the human architect. Rather than executing manual, step-by-step configurations, the engineer focuses entirely on higher-level strategy—defining the target coordinates, scope, and strict security constraints required for the environment.</p>
+                </div>
+                
+                <div class="feature-block purple">
+                    <h3 class="feature-title">A Common Architectural Language</h3>
+                    <p class="feature-text">By feeding governed system directives into the Engine, the framework creates a shared, structured lexicon between the engineer and the AI. This controls the model, ensuring both human and machine operate under the exact same zero-trust parameters.</p>
+                </div>
+
+                <div class="feature-block" style="border-color: var(--color-red);">
+                    <h3 class="feature-title">Anchoring Tangential Drift</h3>
+                    <p class="feature-text">Real-world engineering inevitably involves troubleshooting, patching code errors, and navigating tangential issues. The framework acts as a rigid anchor. When the AI assists in patching these errors, the directives force it to continually return to the overarching architectural goals, preventing logic drift.</p>
+                </div>
+                
+                <div class="feature-block cyan">
+                    <h3 class="feature-title">The Validation Loop</h3>
+                    <p class="feature-text">Before final deployment, the architect reviews the AI-generated state files and audit ledgers, ensuring the output is mathematically certain. The human governs the strategy; the AI scales the execution.</p>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN: CIRCULAR DIAGRAM -->
+            <div class="diagram-column">
+                <div class="diagram-wrapper-small workflow-diagram">
+                    
+                    <!-- Orbital Ring -->
+                    <div class="w-ring"></div>
+                    
+                    <!-- Center Anchor -->
+                    <div class="w-center">
+                        <div class="w-center-title">GOVERNANCE</div>
+                        <div class="w-center-main">Anchor</div>
+                    </div>
+
+                    <!-- Orbital Nodes -->
+                    <div class="w-node w-n1">1. Human Strategy</div>
+                    <div class="w-node w-n2">2. AI Synthesis</div>
+                    <div class="w-node w-n3">3. Drift Correction</div>
+                    <div class="w-node w-n4">4. Validation</div>
+
+                </div>
+                
+                <p class="diagram-caption">The continuous prompt-driven feedback loop. The framework acts as a rigid anchor, allowing the architect to patch tangential errors without losing focus on the zero-trust baseline.</p>
             </div>
 
         </div>

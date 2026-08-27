@@ -163,7 +163,7 @@
         
         .section-intro { max-width: 1000px; text-align: center; margin-bottom: 4rem; }
         .section-kicker { color: var(--color-cyan); font-weight: 700; font-size: 1.1rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; display: block; }
-        .section-title { font-family: 'Montserrat', sans-serif; font-size: 3rem; font-weight: 900; line-height: 1.2; margin-bottom: 3rem; color: var(--text-main); }
+        .section-title { font-family: 'Montserrat', sans-serif; font-size: 3rem; font-weight: 900; line-height: 1.2; margin-bottom: 2rem; color: var(--text-main); }
         
         .feature-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; width: 100%; max-width: 1300px; margin-bottom: 4rem; }
         .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; width: 100%; max-width: 1100px; margin-bottom: 4rem; margin-left: auto; margin-right: auto; }
@@ -280,6 +280,7 @@
 </head>
 <body>
 
+    <!-- GLOBAL NAVIGATION -->
     <nav>
         <ul class="nav-links">
             <li><a href="#">Home</a></li>
@@ -294,6 +295,7 @@
         </ul>
     </nav>
 
+    <!-- HERO HEADER -->
     <header class="hero">
         <div class="hero-title-container">
             <h1 class="hero-title">INTELLIGENT ARCHITECTURE</h1>
@@ -304,6 +306,7 @@
         </div>
     </header>
 
+    <!-- MODULE 1: EXECUTION ENVIRONMENT -->
     <section id="execution" class="module-section">
         <div class="architecture-container">
             
@@ -313,6 +316,7 @@
                     This architecture maps the complete end-to-end provisioning ecosystem developed by Intelligent Architecture. While the active AI compiler, engineer inputs, and automated ledgers act as critical chassis components, the proprietary Declarative Zero-Trust Synthesis Engine is the prime mover that drives the entire system. By injecting strict directives and Human-in-the-Loop (HITL) validation protocols, the Engine is the unique power core that transforms generative AI into a deterministic cloud security architect. Once this mathematically certain, passwordless identity foundation is provisioned, the enterprise can safely scale all 35 Microsoft Entra capabilities.
                 </p>
 
+                <!-- ARCHITECTURAL INSIGHT 1 -->
                 <div class="insight-box">
                     <div class="insight-header">Architectural Insight</div>
                     <div class="insight-text">
@@ -353,16 +357,26 @@
         </div>
     </section>
 
+    <!-- TRANSITION BRIDGE 1 -->
     <div id="anatomy" class="transition-wrapper">
         <div class="section-divider-line"></div>
         <h2 class="deep-dive-header">System Components Breakdown</h2>
     </div>
 
+    <!-- MODULE 2: ANATOMY OF THE ENGINE -->
     <section class="stacked-section">
         
         <div class="section-intro">
             <span class="section-kicker">Defining The Framework</span>
             <h2 class="section-title">The Anatomy of the Declarative Zero-Trust Synthesis Engine</h2>
+            
+            <!-- ARCHITECTURAL INSIGHT 2 -->
+            <div class="insight-box">
+                <div class="insight-header">Architectural Insight</div>
+                <div class="insight-text">
+                    "In legacy cloud engineering, infrastructure is deployed first and audited second, creating a persistent and dangerous compliance gap. The structural advantage of this engine is that it physically hardwires execution to governance. Because the baseline enforcer and the proof generator share the exact same processing pipeline, it is mathematically impossible to provision a machine identity without simultaneously generating the cryptographic proof required to audit it."
+                </div>
+            </div>
         </div>
         
         <div class="feature-grid-3">
@@ -420,16 +434,26 @@
 
     </section>
 
+    <!-- TRANSITION BRIDGE 2 -->
     <div id="workflow" class="transition-wrapper">
         <div class="section-divider-line"></div>
         <h2 class="deep-dive-header" style="color: var(--color-cyan);">Workflow & Continuous Synthesis</h2>
     </div>
 
+    <!-- MODULE 3: ARCHITECTURAL WORKFLOW -->
     <section class="stacked-section">
         
         <div class="section-intro">
             <span class="section-kicker">Prompt-Driven Infrastructure Synthesis</span>
             <h2 class="section-title">The Architectural Workflow</h2>
+            
+            <!-- ARCHITECTURAL INSIGHT 3 -->
+            <div class="insight-box">
+                <div class="insight-header">Architectural Insight</div>
+                <div class="insight-text">
+                    "The greatest risk of integrating AI into cloud engineering is configuration drift—where a model loses architectural context during complex troubleshooting and inadvertently hallucinates insecure code. The breakthrough of this workflow is the Governance Anchor. By acting as an unbreakable cognitive tether, it forces the AI to constantly return to the mandated zero-trust baseline, guaranteeing that the enterprise can exponentially scale its execution without ever surrendering strategic control to a machine."
+                </div>
+            </div>
         </div>
         
         <div class="feature-grid-2x2">
@@ -470,4 +494,509 @@
 
         </div>
         
-        <p class
+        <p class="diagram-caption">The continuous prompt-driven feedback loop. The framework acts as a rigid anchor, allowing the architect to patch tangential errors without losing focus on the zero-trust baseline.</p>
+
+    </section>
+
+    <!-- TRANSITION BRIDGE 3 -->
+    <div id="federation" class="transition-wrapper">
+        <div class="section-divider-line"></div>
+        <h2 class="deep-dive-header" style="color: var(--color-blue);">Federation & IaC Generation</h2>
+    </div>
+
+    <!-- MODULE 4: FEDERATION EXECUTION -->
+    <section class="stacked-section">
+        
+        <div class="section-intro">
+            <span class="section-kicker">Establishing Passwordless Identities</span>
+            <h2 class="section-title">Zero-Trust Federation Execution</h2>
+        </div>
+        
+        <div class="feature-grid-2x2">
+            <div class="feature-card blue">
+                <h3 class="feature-title">Eradicating Long-Lived Secrets</h3>
+                <p class="feature-text">The primary execution objective of the Engine is the elimination of static, symmetric keys. The generated payloads strictly enforce passwordless authentication models, removing the highest-risk attack vectors associated with machine credentialing.</p>
+            </div>
+            
+            <div class="feature-card cyan">
+                <h3 class="feature-title">Workload Identity Federation</h3>
+                <p class="feature-text">The framework programmatically establishes OpenID Connect (OIDC) trust relationships within Microsoft Entra ID. This allows external workloads to request short-lived access tokens dynamically, completely bypassing the need for stored credentials.</p>
+            </div>
+
+            <div class="feature-card purple">
+                <h3 class="feature-title">Platform-Agnostic IaC Synthesis</h3>
+                <p class="feature-text">Because the AI is governed by underlying architectural logic rather than syntax memorization, the Engine is inherently flexible. It outputs precise Infrastructure as Code (IaC)—seamlessly translating the zero-trust baseline into Terraform, Azure Bicep, or Graph API payloads depending on the environment's required capability.</p>
+            </div>
+            
+            <div class="feature-card teal">
+                <h3 class="feature-title">Non-Destructive Data-Plane Binding</h3>
+                <p class="feature-text">Beyond establishing the identity, the execution securely maps the federated machine to highly restrictive, least-privilege data-plane controls. The engineering ensures these new configurations bind cleanly to existing infrastructure without disrupting production states.</p>
+            </div>
+        </div>
+
+        <div class="diagram-wrapper-wide federation-diagram">
+            
+            <svg class="routing-lines" xmlns="http://www.w3.org/2000/svg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
+                <defs>
+                    <marker id="arr-blue-f" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6" /></marker>
+                </defs>
+                <path d="M 540 250 L 645 250 L 645 140 L 750 140" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="6, 6" marker-end="url(#arr-blue-f)" />
+                <path d="M 540 250 L 750 250" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="6, 6" marker-end="url(#arr-blue-f)" />
+                <path d="M 540 250 L 645 250 L 645 360 L 750 360" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="6, 6" marker-end="url(#arr-blue-f)" />
+            </svg>
+
+            <div class="f-node f-engine">
+                <div class="icon">{ }</div>
+                <div class="logic">OIDC LOGIC</div>
+                <div class="title">Synthesis<br>Engine</div>
+            </div>
+
+            <div class="f-node f-target f-tf">
+                <div class="f-target-icon">.tf</div>
+                <div class="f-target-text">
+                    <span class="f-target-title">Terraform</span>
+                    <span class="f-target-sub">State Execution</span>
+                </div>
+            </div>
+
+            <div class="f-node f-target f-az">
+                <div class="f-target-icon">.az</div>
+                <div class="f-target-text">
+                    <span class="f-target-title">Azure Bicep</span>
+                    <span class="f-target-sub">Native Template</span>
+                </div>
+            </div>
+
+            <div class="f-node f-target f-api">
+                <div class="f-target-icon">API</div>
+                <div class="f-target-text">
+                    <span class="f-target-title">Microsoft Graph</span>
+                    <span class="f-target-sub">Direct Payload</span>
+                </div>
+            </div>
+
+        </div>
+        
+        <p class="diagram-caption">The Engine operates as an agnostic logic layer, compiling strict zero-trust parameters into flawlessly formatted code for any required deployment capability.</p>
+
+    </section>
+
+    <!-- TRANSITION BRIDGE 4 -->
+    <div id="ledger" class="transition-wrapper">
+        <div class="section-divider-line"></div>
+        <h2 class="deep-dive-header" style="color: var(--color-teal);">Immutable Baseline Generation</h2>
+    </div>
+
+    <!-- MODULE 5: IDENTITY ARCHITECTURE LEDGER -->
+    <section class="stacked-section">
+        
+        <div class="section-intro">
+            <span class="section-kicker">Automated Proof-of-Governance</span>
+            <h2 class="section-title">The Identity Architecture Ledger (IAL)</h2>
+        </div>
+        
+        <div class="feature-grid-2x2">
+            <div class="feature-card blue">
+                <h3 class="feature-title">Immutable Execution Artifacts</h3>
+                <p class="feature-text">Traditional deployment logs often lack explicit security context. The IAL automatically captures exact, case-sensitive deployment variables into a permanent record, cryptographically proving the target state matches the zero-trust baseline.</p>
+            </div>
+            
+            <div class="feature-card cyan">
+                <h3 class="feature-title">Total Architectural Visibility</h3>
+                <p class="feature-text">Unmonitored ghost identities maximize the blast radius of a breach. The IAL guarantees explicit visibility by documenting exact repository controls and hardcoding the data-plane boundaries before execution.</p>
+            </div>
+
+            <div class="feature-card purple">
+                <h3 class="feature-title">Human-Governed Validation</h3>
+                <p class="feature-text">Fully autonomous infrastructure is a compliance risk. The IAL acts as the ultimate Human-in-the-Loop (HITL) gate, proving the AI engine executed deterministic logic and providing a clean baseline for authorization.</p>
+            </div>
+            
+            <div class="feature-card green">
+                <h3 class="feature-title">Audit-Ready by Default</h3>
+                <p class="feature-text">Gathering evidence takes weeks of manual log hunting. The synthesis engine automatically translates complex, multi-phase infrastructure deployments into a standardized compliance artifact the moment provisioning completes.</p>
+            </div>
+        </div>
+
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-dots">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                </div>
+                <div class="terminal-title">identity_architecture_ledger.md</div>
+            </div>
+            
+            <pre class="terminal-body"><span class="t-cyan">IDENTITY ARCHITECTURE LEDGER (IAL)</span>
+<span class="t-muted">Immutable cryptographic baseline recording for the AI and Cloud Pipeline Hardening Framework (ACPHF).</span>
+Deployment Target: <span class="t-blue">GitHub Actions CI/CD</span> | Target Cloud: <span class="t-blue">Microsoft Azure</span>
+Execution Date: <span class="t-purple">2026-08-10</span> | Ledger State: <span class="t-green">[VERIFIED AUDIT READY]</span>
+
+<span class="t-cyan">[SECTION 1: CORE CLOUD BOUNDARY IDENTIFICATION]</span>
+<span class="t-muted">1.1 Deterministic Routing Coordinates</span>
+<span class="t-comment">Anchoring the globally unique root coordinates via active CLI discovery commands.</span>
+Tenant ID (Identity Root)     : 8a1b2c3d-4e5f-6g7h-8i9j-0k112m3n4o5p
+Subscription ID (Asset Root)  : c2b1a3d4-e5f6-7g8h-9i0j-1k213m4n506p
+Provisioned Resource Name     : kv-acphf-prod-eus-01
+Resource Group Perimeter      : rg-identity-security-prod
+
+<span class="t-muted">HARD BOOLEAN Workspace Path Cryptography</span>
+Are both the target subscription asset and the identity directory actively nested under the identical root tenant domain structure?
+<span class="t-green">&gt; [SUCCESS] Workspace paths align. CLI context locked.</span>
+
+<span class="t-cyan">[SECTION 2: NON-HUMAN IDENTITY PROVISIONING]</span>
+<span class="t-muted">2.1 Identity Object Profile</span>
+<span class="t-comment">Automated instantiation of the machine account and local execution context.</span>
+Application Name              : acphf-agent-01
+Application (Client) ID       : d7e8f9a0-b1c2-d3e4-f5g6-h7i8j9k011m2
+
+<span class="t-muted">2.2 Architectural Attack Surface Minimization</span>
+Single-Tenant Enforced        : (AzureADMyOrg) Blocks external credential instantiation.
+Headless Execution            : (Blank Redirect URI) Denies interactive browser callback vectors.
+
+<span class="t-muted">HARD BOOLEAN Object Instantiation State</span>
+Has the programmatic execution successfully initialized both the central Application Object and the local enterprise Service Principal?
+<span class="t-green">&gt; [SUCCESS] Blueprint and local security context created.</span>
+
+<span class="t-cyan">[SECTION 3: PASSWORDLESS CRYPTOGRAPHIC FEDERATION]</span>
+<span class="t-muted">3.1 Federated Trust Parameters</span>
+Issuer URL                    : https://token.actions.githubusercontent.com
+Audience Mapping              : api://AzureADTokenExchange
+
+<span class="t-muted">3.2 Immutable Subject Claim Mapping</span>
+<span class="t-comment">Explicit, case-sensitive string configuration for inbound OIDC handshakes.</span>
+Subject (sub)                 : repo:[Target_Org]/[Target_Repo]:ref:refs/heads/[Target_Branch]
+Applied State                 : repo:Compcode1/machine-identity-1:ref:refs/heads/main
+<span class="t-comment">Subject claim contains zero production wildcards (*).</span>
+<span class="t-comment">Exact string casing verified to prevent AADSTS700213 drops.</span>
+
+<span class="t-muted">HARD BOOLEAN Policy Enforcement</span>
+Has the cryptographic JSON payload been successfully written into the federated identity collection?
+<span class="t-green">&gt; [SUCCESS] Trust policy active. Token endpoint listening.</span>
+
+<span class="t-cyan">[SECTION 4: DATA-PLANE ACCESS & PIPELINE ENFORCEMENT]</span>
+<span class="t-muted">4.1 Role-Based Access Control (RBAC) Entitlements</span>
+<span class="t-comment">Bypassing infrastructure control planes in favor of strict data-plane isolation.</span>
+Assigned Data-Plane Role      : Key Vault Secrets User
+Target Asset ID Scope         : /subscriptions/c2b1a3d4.../resourceGroups/rg-identity-security-prod/providers/Microsoft.KeyVault/vaults/kv-acphf-prod-eus-01
+
+<span class="t-muted">4.2 Token Volatility & Secret Masking</span>
+Access Token ceiling restricted to 60-minutes.
+Script-level runtime masking (::add-mask::) actively intercepting memory variables.
+
+<span class="t-muted">HARD BOOLEAN Telemetry Verification</span>
+Has KQL logging confirmed a successful authentication mapping directly against the assigned data-plane asset?
+<span class="t-green">&gt; [SUCCESS] HTTP 200 recorded. Zero Silent 403 drops detected.</span></pre>
+        </div>
+        
+        <p class="diagram-caption">The Identity Architecture Ledger (IAL) is a comprehensive, multi-section compliance artifact. By documenting execution state in real-time, it guarantees the enterprise retains a mathematically certain blueprint of the identity perimeter.</p>
+
+    </section>
+
+    <!-- TRANSITION BRIDGE 5 -->
+    <div id="arl" class="transition-wrapper">
+        <div class="section-divider-line"></div>
+        <h2 class="deep-dive-header" style="color: var(--color-purple);">Forensic Audit & Verification</h2>
+    </div>
+
+    <!-- MODULE 6: AUDIT RESULTS LEDGER -->
+    <section class="stacked-section">
+        
+        <div class="section-intro">
+            <span class="section-kicker">Forensic Governance & Sign-Off</span>
+            <h2 class="section-title">The Audit Results Ledger (ARL)</h2>
+        </div>
+        
+        <div class="feature-grid-2x2">
+            <div class="feature-card blue">
+                <h3 class="feature-title">Cryptographic Gate Verification</h3>
+                <p class="feature-text">The ARL systematically audits four critical security gates—Coordinates, Characters, Clock, and Plane. It verifies that the deployed identity strictly adheres to the mandated zero-trust baseline without logic drift.</p>
+            </div>
+            
+            <div class="feature-card cyan">
+                <h3 class="feature-title">Data-Plane Telemetry Tracing</h3>
+                <p class="feature-text">Beyond structural checks, the ledger mathematically correlates OpenID Connect (OIDC) token issuance directly with target asset access logs. This cryptographic tracing proves zero unauthorized reads and no "Silent 403" denials.</p>
+            </div>
+
+            <div class="feature-card purple">
+                <h3 class="feature-title">Defect Isolation & Remediation</h3>
+                <p class="feature-text">If an execution gate fails, the ARL immediately functions as a precise defect log. It isolates the exact root cause—such as a character mismatch or runtime clock skew—and mandates a corrective action plan before sign-off.</p>
+            </div>
+            
+            <div class="feature-card green">
+                <h3 class="feature-title">SOC 2 & ISO Compliance Readiness</h3>
+                <p class="feature-text">The engine outputs hardened Kusto Query Language (KQL) diagnostic blocks alongside the ledger. This provides security operations and auditors with the exact diagnostic telemetry required for formal, enterprise-grade compliance sign-off.</p>
+            </div>
+        </div>
+
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-dots">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                </div>
+                <div class="terminal-title">audit_results_ledger.md</div>
+            </div>
+            
+            <pre class="terminal-body"><span class="t-cyan">ENTERPRISE SECURITY ENGINEERING: AUDIT RESULTS LEDGER (ARL)</span>
+<span class="t-muted">Framework Baseline: ACPHF IAL V2.1</span>
+Audit Document Class: <span class="t-blue">Standard Telemetry & Gate Verification Report</span>
+
+<span class="t-cyan">[SECTION 1: AUDIT EXECUTION METADATA]</span>
+Audit Tracking ID             : ARL-2026-0810-WORKLOAD-01
+Execution Timestamp (UTC)     : <span class="t-purple">2026-08-10 19:55:27 UTC</span>
+Evaluating Auditor / AI Agent : Steven Gary Tuschman / ACPHF-Agent-Core
+Target Application (Client) ID: d7e8f9a0-b1c2-d3e4-f5g6-h7i8j9k011m2
+Target Tenant (Directory) ID  : 8a1b2c3d-4e5f-6g7h-8i9j-0k112m3n4o5p
+Target Asset Scope            : kv-acphf-prod-eus-01
+Evaluated Subject Claim (sub) : repo:Compcode1/machine-identity-1:ref:refs/heads/main
+Overall Compliance Outcome    : <span class="t-green">[PASS]</span>
+
+<span class="t-cyan">[SECTION 2: SYSTEM VALIDATOR & GATE AUDIT MATRIX]</span>
+<span class="t-blue">[AUDIT GATE 1]</span> <span class="t-muted">Coordinate Check</span>
+Telemetry Target              : Inbound Tenant ID & Application (Client) ID mapping
+Evaluated Log Source          : Entra ID Non-Interactive Sign-In Logs
+Gate Verification Status      : <span class="t-green">[PASS]</span>
+<span class="t-comment">&gt; Directory coordinates and Application ID match active tenant objects. No unmapped AppID routing errors detected.</span>
+
+<span class="t-blue">[AUDIT GATE 2]</span> <span class="t-muted">Character Check</span>
+Telemetry Target              : Subject Claim string casing & OIDC trust handshake
+Evaluated Log Source          : Sign-In Status & Error Codes (AADSTS70021 / AADSTS70022 / 500121)
+Gate Verification Status      : <span class="t-green">[PASS]</span>
+<span class="t-comment">&gt; Federated credential subject claim matches repository path character-for-character. OIDC handshake completed with Status: Success.</span>
+
+<span class="t-blue">[AUDIT GATE 3]</span> <span class="t-muted">Clock Check</span>
+Telemetry Target              : Token volatility lifetime & re-authentication cadence (60-minute ceiling)
+Evaluated Log Source          : Sign-In Timestamp Spacing & Session Lifecycles
+Gate Verification Status      : <span class="t-green">[PASS]</span>
+<span class="t-comment">&gt; Runner successfully initiates a fresh OIDC handshake upon execution. No script crashes or expired token faults observed during execution loops.</span>
+
+<span class="t-blue">[AUDIT GATE 4]</span> <span class="t-muted">Plane Check</span>
+Telemetry Target              : Control-Plane vs. Data-Plane RBAC authorization ("Silent 403" audit)
+Evaluated Log Source          : Log Analytics Workspace (AuditEvent / KeyVaultRequests)
+Gate Verification Status      : <span class="t-green">[PASS]</span>
+<span class="t-comment">&gt; Machine identity successfully authenticated and executed data-plane operations against target vault with 0 HTTP 403 Forbidden drops.</span>
+
+<span class="t-cyan">[SECTION 3: DATA-PLANE TRACING & AI INTENT DIRECTIVE LOG]</span>
+<span class="t-muted">Audit Circumstance: Correlating OIDC federated token issuance with Key Vault data-plane access to detect unauthorized reads or clock skew outside execution windows.</span>
+<span class="t-purple">AI Prompt Directive Executed:</span>
+<span class="t-comment">&gt; "Inspect active Log Analytics workspace. Join ServicePrincipalSignInLogs for App ID d7e8f9a0... with Key Vault data-plane access logs (AuditEvent) for target vault kv-acphf-prod-eus-01 within a 5-minute time window. Group by 60-minute buckets to highlight any clock skew or HTTP 403 access denials."</span>
+<span class="t-purple">Dynamic Query Result Summary:</span>
+<span class="t-comment">&gt; Query executed against active schema; confirmed 100% correlation between token issuance and data-plane operations. Zero orphan events.</span>
+
+<span class="t-cyan">[SECTION 4: DEFECT LOG & REMEDIATION ACTION PLAN]</span>
+Evaluated Gate       | Defect Detected | Root Cause Analysis | Corrective Action Required
+-----------------------------------------------------------------------------------------
+Gate 1 (Coordinates) | None            | [N/A]               | [N/A]
+Gate 2 (Characters)  | None            | [N/A]               | [N/A]
+Gate 3 (Clock)       | None            | [N/A]               | [N/A]
+Gate 4 (Plane)       | None            | [N/A]               | [N/A]
+
+Final Sign-Off       : Steven Gary Tuschman
+Audit State Locked   : <span class="t-green">[YES]</span>
+Next Scheduled Review: 2026-11-10
+</pre>
+        </div>
+        
+        <p class="diagram-caption">The Audit Results Ledger functions as a final operational validation gate, mathematically confirming the target identity configuration aligns with live Azure diagnostic telemetry before architectural sign-off.</p>
+
+    </section>
+
+    <!-- TRANSITION BRIDGE 6 -->
+    <div id="index" class="transition-wrapper">
+        <div class="section-divider-line"></div>
+        <h2 class="deep-dive-header" style="color: var(--color-blue);">Enterprise Capability Scaling</h2>
+    </div>
+
+    <!-- MODULE 7: CAPABILITY INDEX -->
+    <section class="stacked-section">
+        
+        <div class="section-intro">
+            <span class="section-kicker">Continuous Enterprise Integration</span>
+            <h2 class="section-title">The Control Plane Capability Index</h2>
+        </div>
+        
+        <div class="feature-grid-3">
+            <div class="feature-card blue">
+                <h3 class="feature-title">Scaling the Hardened Foundation</h3>
+                <p class="feature-text">Once the zero-trust machine identity baseline is mathematically locked in via infrastructure-as-code, the architecture is ready to safely scale. It integrates broader enterprise capabilities without inheriting legacy credential vulnerabilities.</p>
+            </div>
+            
+            <div class="feature-card purple">
+                <h3 class="feature-title">The 35-Service Taxonomy</h3>
+                <p class="feature-text">The index categorizes 35 core Microsoft Entra capabilities across 7 functional domains. This structured taxonomy serves as a definitive architectural menu, mapping native control plane features directly to complex business requirements.</p>
+            </div>
+
+            <div class="feature-card cyan">
+                <h3 class="feature-title">The Final Configuration Package</h3>
+                <p class="feature-text">Rather than treating security as an afterthought, this framework allows cloud architects to modularly map advanced access controls, governance pipelines, and telemetry engines directly on top of the immutable identity core.</p>
+            </div>
+        </div>
+
+        <div class="diagram-wrapper-wide capability-diagram">
+            
+            <div class="capability-grid">
+                
+                <div class="cap-card">
+                    <div class="cap-header">
+                        <span class="cap-num">01</span>
+                        <span class="cap-title">Directory Foundations</span>
+                    </div>
+                    <ul class="cap-list">
+                        <li>Tenant Configuration & Global Settings</li>
+                        <li>Built-In & Custom Roles (RBAC)</li>
+                        <li>Administrative Units (AUs)</li>
+                        <li>Directory Objects</li>
+                        <li>Custom Security Attributes (CSAs)</li>
+                        <li>Device Management</li>
+                    </ul>
+                </div>
+
+                <div class="cap-card">
+                    <div class="cap-header">
+                        <span class="cap-num">03</span>
+                        <span class="cap-title">Credential Security & Auth</span>
+                    </div>
+                    <ul class="cap-list">
+                        <li>Authentication Methods</li>
+                        <li>MFA Settings & Registration Campaigns</li>
+                        <li>Self-Service Password Reset (SSPR)</li>
+                        <li>Entra Password Protection</li>
+                        <li>Windows Hello for Business (WHfB)</li>
+                        <li>Microsoft Entra Kerberos</li>
+                    </ul>
+                </div>
+
+                <div class="cap-card">
+                    <div class="cap-header">
+                        <span class="cap-num">05</span>
+                        <span class="cap-title">App & Workload Control</span>
+                    </div>
+                    <ul class="cap-list">
+                        <li>App Registrations & Service Principals</li>
+                        <li>Managed Identities for Azure Resources</li>
+                        <li>Enterprise Applications Management</li>
+                        <li>Microsoft Entra Application Proxy</li>
+                        <li>Defender for Cloud Apps (MDCA) Proxy</li>
+                    </ul>
+                </div>
+
+                <div class="cap-card">
+                    <div class="cap-header">
+                        <span class="cap-num">02</span>
+                        <span class="cap-title">Zero Trust Access Control</span>
+                    </div>
+                    <ul class="cap-list">
+                        <li>Conditional Access (CA) Engine</li>
+                        <li>CA Authentication Context</li>
+                        <li>Protected Actions</li>
+                        <li>Microsoft Entra ID Protection</li>
+                        <li>Global Secure Access (GSA / SSE)</li>
+                    </ul>
+                </div>
+
+                <div class="cap-card">
+                    <div class="cap-header">
+                        <span class="cap-num">06</span>
+                        <span class="cap-title">Identity Governance</span>
+                    </div>
+                    <ul class="cap-list">
+                        <li>Privileged Identity Management (PIM)</li>
+                        <li>Entra Entitlement Management</li>
+                        <li>Access Reviews</li>
+                        <li>Lifecycle Workflows (LCW)</li>
+                        <li>Terms of Use (ToU)</li>
+                    </ul>
+                </div>
+
+                <div class="cap-card">
+                    <div class="cap-header">
+                        <span class="cap-num">04</span>
+                        <span class="cap-title">External Identities</span>
+                    </div>
+                    <ul class="cap-list">
+                        <li>External Collaboration Settings (B2B)</li>
+                        <li>Cross-Tenant Access Settings (XTAS)</li>
+                        <li>Cross-Tenant Synchronization (CTS)</li>
+                        <li>External IdP Federation</li>
+                    </ul>
+                </div>
+
+                <div class="cap-card cap-card-full">
+                    <div class="cap-header">
+                        <span class="cap-num">07</span>
+                        <span class="cap-title">Hybrid Identity & Telemetry Engines</span>
+                    </div>
+                    <div class="cap-2-col-list">
+                        <ul class="cap-list">
+                            <li>Hybrid Identity Engines (Connect Sync, Cloud Sync, PTA)</li>
+                            <li>Seamless Single Sign-On (SSO)</li>
+                        </ul>
+                        <ul class="cap-list">
+                            <li>Microsoft Entra Connect Health</li>
+                            <li>Monitoring & Log Analytics</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        
+        <p class="diagram-caption">The full Capability Index architecture. It guarantees an immutable, heavily audited zero-trust core seamlessly combined with the precise modular security toolsets required for the deployment.</p>
+
+    </section>
+
+    <!-- TRANSITION BRIDGE 7 -->
+    <div id="certs" class="transition-wrapper">
+        <div class="section-divider-line"></div>
+        <h2 class="deep-dive-header" style="color: var(--color-blue);">Credentials & Expertise</h2>
+    </div>
+
+    <!-- MODULE 8: PROFESSIONAL CERTIFICATIONS -->
+    <section class="stacked-section">
+        
+        <div class="section-intro">
+            <span class="section-kicker">Verified Engineering Competency</span>
+            <h2 class="section-title">Professional Certifications</h2>
+        </div>
+        
+        <div class="feature-grid-3">
+            
+            <!-- SC-300 -->
+            <div class="feature-card cert-card cert-blue blue">
+                <div class="cert-org">Microsoft Certified</div>
+                <div class="cert-name">Identity and Access Administrator Associate (SC-300)</div>
+            </div>
+            
+            <!-- CompTIA -->
+            <div class="feature-card cert-card cert-red red">
+                <div class="cert-org">CompTIA</div>
+                <div class="cert-name">Cybersecurity Analyst (CySA+) & Security+ ce</div>
+            </div>
+
+            <!-- Python PCAP -->
+            <div class="feature-card cert-card cert-green green">
+                <div class="cert-org">Python Institute</div>
+                <div class="cert-name">PCAP – Certified Associate Python Programmer</div>
+            </div>
+            
+            <!-- SC-900 -->
+            <div class="feature-card cert-card cert-cyan cyan">
+                <div class="cert-org">Microsoft Certified</div>
+                <div class="cert-name">Security, Compliance, and Identity Fundamentals (SC-900)</div>
+            </div>
+
+            <!-- Dataquest -->
+            <div class="feature-card cert-card cert-teal teal">
+                <div class="cert-org">Dataquest</div>
+                <div class="cert-name">Data Engineering Professional</div>
+            </div>
+
+        </div>
+
+    </section>
+
+</body>
+</html>

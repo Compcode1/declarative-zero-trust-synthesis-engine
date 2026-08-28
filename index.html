@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -253,7 +253,7 @@
         .cap-list li::before { content: '>'; color: var(--color-blue); font-weight: 900; }
         .cap-2-col-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2rem; }
 
-        /* ================= MODULE 8 SPECIFICS: CERTIFICATIONS ================= */
+        /* ================= MODULE 8 SPECIFICS: CERTIFICATIONS & RESUME ================= */
         .cert-card { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; text-align: left; }
         .cert-org { font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; font-weight: 700; }
         
@@ -264,6 +264,21 @@
         .cert-teal .cert-org { color: var(--color-teal); }
 
         .cert-name { font-size: 1.2rem; font-weight: 700; color: var(--text-main); line-height: 1.4; }
+
+        /* RESUME BUTTON */
+        .resume-btn-container { margin-top: 2rem; text-align: center; width: 100%; }
+        .resume-btn {
+            display: inline-block; padding: 1rem 2.5rem;
+            font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 700;
+            color: #ffffff; background: var(--color-blue); text-decoration: none;
+            border-radius: 6px; letter-spacing: 1px; text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.4); border: 1px solid rgba(255,255,255,0.1);
+        }
+        .resume-btn:hover {
+            background: #2563eb; transform: translateY(-2px);
+            box-shadow: 0 15px 25px -5px rgba(59, 130, 246, 0.5);
+        }
 
         @media (max-width: 992px) {
             .feature-grid-3, .feature-grid-2x2, .capability-grid, .cap-2-col-list { grid-template-columns: 1fr; }
@@ -984,16 +999,11 @@ Next Scheduled Review: 2026-11-10
     <!-- TRANSITION BRIDGE 7 -->
     <div id="certs" class="transition-wrapper">
         <div class="section-divider-line"></div>
-        <h2 class="deep-dive-header" style="color: var(--color-blue);">Credentials & Expertise</h2>
+        <h2 class="deep-dive-header" style="color: var(--color-blue);">Professional Certifications</h2>
     </div>
 
     <!-- MODULE 8: PROFESSIONAL CERTIFICATIONS -->
     <section class="stacked-section">
-        
-        <div class="section-intro">
-            <span class="section-kicker">Verified Engineering Competency</span>
-            <h2 class="section-title">Professional Certifications</h2>
-        </div>
         
         <div class="feature-grid-3">
             
@@ -1027,6 +1037,10 @@ Next Scheduled Review: 2026-11-10
                 <div class="cert-name">Data Engineering Professional</div>
             </div>
 
+        </div>
+
+        <div class="resume-btn-container">
+            <a href="Steven_Tuschman_Resume.pdf" target="_blank" class="resume-btn">View Full Resume</a>
         </div>
 
     </section>

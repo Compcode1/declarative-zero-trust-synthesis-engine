@@ -45,24 +45,9 @@
             border-bottom: 1px solid var(--border-base); z-index: 100;
             padding: 1.2rem 2rem; display: flex; justify-content: center;
         }
-        .nav-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; justify-content: center; align-items: center; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; justify-content: center; }
         .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; }
         .nav-links a:hover { color: var(--color-cyan); }
-        
-        /* NEW PORTFOLIO BUTTON */
-        .nav-links a.portfolio-btn {
-            color: var(--color-cyan);
-            border: 1px solid var(--color-cyan);
-            padding: 0.4rem 1.2rem;
-            border-radius: 6px;
-            background: rgba(14, 165, 233, 0.1);
-            transition: all 0.3s ease;
-        }
-        .nav-links a.portfolio-btn:hover {
-            background: var(--color-cyan);
-            color: #ffffff;
-            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
-        }
 
         /* ================= HERO HEADER ================= */
         .hero { padding: 160px 20px 100px; text-align: center; border-bottom: 1px solid var(--border-base); }
@@ -315,7 +300,6 @@
     <nav>
         <ul class="nav-links">
             <li><a href="#">Home</a></li>
-            <li><a href="workflow-portfolio.html" class="portfolio-btn">Workflow Portfolio</a></li>
             <li><a href="#execution">Pipeline Architecture</a></li>
             <li><a href="#anatomy">Synthesis Engine</a></li>
             <li><a href="#workflow">Workflow</a></li>

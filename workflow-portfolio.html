@@ -59,14 +59,26 @@
         .insight-title { color: var(--color-purple); font-weight: 700; font-size: 0.9rem; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 1rem; }
         .insight-text { font-size: 1.1rem; font-style: italic; color: var(--text-main); line-height: 1.7; }
 
-        /* ================= TERMINAL STYLING ================= */
+        /* ================= HITL EXPLAINER ================= */
+        .hitl-explainer { text-align: center; max-width: 900px; margin: 0 auto 4rem; }
+        .hitl-explainer h3 { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; color: var(--text-main); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+        .hitl-explainer p { font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; }
+        .hitl-highlight { color: var(--color-cyan); font-weight: 600; }
+
+        /* ================= ARCHITECT COMMAND MODULE (HIGH CONTRAST) ================= */
+        .architect-command { background: #f8fafc; border-left: 6px solid var(--color-blue); border-radius: 8px; padding: 1.5rem 2.5rem; margin: 0 auto 2.5rem; max-width: 950px; box-shadow: 0 15px 30px rgba(0,0,0,0.6); color: #0f172a; position: relative; }
+        .architect-badge { display: inline-block; background: var(--color-blue); color: #ffffff; font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 800; letter-spacing: 1.5px; padding: 6px 12px; border-radius: 4px; margin-bottom: 12px; text-transform: uppercase; box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3); }
+        .architect-text { font-size: 1.15rem; font-weight: 600; line-height: 1.6; }
+        .architect-code { background: #e2e8f0; padding: 12px 15px; border-radius: 6px; font-family: 'Consolas', monospace; font-size: 0.95rem; display: block; margin-top: 12px; color: #334155; border: 1px solid #cbd5e1; white-space: pre-wrap; }
+
+        /* ================= TERMINAL STYLING (ENGINE OUTPUT) ================= */
         .terminal-window { background: #0d1117; border: 1px solid var(--border-base); border-radius: 10px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); width: 100%; max-width: 1100px; margin: 0 auto 4rem; text-align: left; overflow: hidden; }
         .terminal-header { background: #161b22; padding: 12px 20px; display: flex; align-items: center; border-bottom: 1px solid var(--border-base); position: relative; }
         .terminal-dots { display: flex; gap: 8px; position: absolute; left: 20px; }
         .dot { width: 12px; height: 12px; border-radius: 50%; }
         .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
         .terminal-title { margin: 0 auto; color: var(--text-muted); font-size: 0.85rem; font-family: monospace; letter-spacing: 1px; }
-        .terminal-body { padding: 2rem; font-family: 'Consolas', 'Courier New', monospace; font-size: 0.95rem; line-height: 1.7; color: var(--text-main); overflow-x: auto; white-space: pre-wrap; word-wrap: break-word; background: linear-gradient(rgba(13, 17, 23, 1) 0%, rgba(13, 17, 23, 0.95) 100%); }
+        .terminal-body { padding: 2.5rem; font-family: 'Consolas', 'Courier New', monospace; font-size: 0.95rem; line-height: 1.8; color: var(--text-main); overflow-x: auto; white-space: pre-wrap; word-wrap: break-word; background: linear-gradient(rgba(13, 17, 23, 1) 0%, rgba(13, 17, 23, 0.95) 100%); }
         
         .t-cyan { color: var(--color-cyan); font-weight: 700; } 
         .t-green { color: var(--color-green); font-weight: 700; } 
@@ -74,9 +86,8 @@
         .t-purple { color: var(--color-purple); } 
         .t-muted { color: var(--text-muted); } 
         .t-comment { color: var(--color-grey); font-style: italic; }
-        .t-user { color: #f8fafc; font-weight: bold; background: rgba(59, 130, 246, 0.2); padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(59, 130, 246, 0.4); }
 
-        .divider { height: 1px; background: var(--border-base); margin: 2rem 0; width: 100%; }
+        .divider { height: 1px; background: var(--border-base); margin: 4rem 0; width: 100%; }
     </style>
 </head>
 <body>
@@ -148,7 +159,14 @@
         </div>
 
         <div class="divider"></div>
-        <h2 class="section-title" style="margin-top: 4rem;">Step 1: The HITL Protocol & IaC Synthesis</h2>
+
+        <!-- NEW HITL EXPLAINER -->
+        <div class="hitl-explainer">
+            <h3>The Human-in-the-Loop (HITL) Protocol</h3>
+            <p>The following execution log demonstrates the core dynamic of the Declarative Zero-Trust Synthesis Engine. The Architect acts strictly as the <span class="hitl-highlight">strategic commander</span>, issuing minimal, high-level coordinates and validation approvals. The Engine acts as the <span class="hitl-highlight">autonomous executor</span>, instantly handling all syntax generation, strict baseline enforcement, and the synthesis of immutable cryptographic ledgers. Notice the immense leverage: brief human commands produce mathematically certain, audit-ready enterprise infrastructure.</p>
+        </div>
+
+        <h2 class="section-title">Step 1: Initiation & IaC Synthesis</h2>
 
         <div class="terminal-window">
             <div class="terminal-header">
@@ -171,13 +189,31 @@ Secret Name      : bridge-validation-secret
 Platform         : GitHub Actions
 Terminal Shell   : PowerShell
 
-<span class="t-purple">[PIPELINE HALTED]</span>
+<span class="t-cyan">Proceeding to GitHub Compliance Check.</span>
+Because we are operating in a zero-trust enterprise environment, we will utilize the official GitHub Terraform Provider to programmatically extract your immutable numeric repository IDs.
+
 <span class="t-muted">Action Required: Secure GitHub Authentication</span>
-Please provide the exact GitHub Username and Repository Name (e.g., User/Repo) that will execute this workload. Are these target repository details correct (Compcode1/iteration-3), and is your temporary PAT securely loaded into your active session?
+To allow Terraform to read your target repository's metadata, please generate a temporary Personal Access Token (PAT) with repo scope.
+Expose it to your current terminal session by running: $env:GITHUB_TOKEN="<PASTE_YOUR_TOKEN_HERE>"
 
-<span class="t-user">ENGINEER INPUT ></span> GitHub Target: Compcode1/iteration-3, PAT loaded
+<span class="t-purple">[PIPELINE HALTED]</span>
+Please provide the exact GitHub Username and Repository Name (e.g., User/Repo) that will execute this workload. Are these target repository details correct (Compcode1/iteration-3), and is your temporary PAT securely loaded into your active session?</pre>
+        </div>
 
-<span class="t-cyan">Coordinates locked and verified. I have synthesized your strict, single-tenant Terraform payload.</span>
+        <!-- HIGH CONTRAST ARCHITECT COMMAND -->
+        <div class="architect-command">
+            <div class="architect-badge">[ARCHITECT DIRECTIVE]</div>
+            <div class="architect-text">
+                GitHub Target: Compcode1/iteration-3, PAT loaded.
+            </div>
+        </div>
+
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-dots"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                <div class="terminal-title">engine_console.exe // Synthesizing</div>
+            </div>
+            <pre class="terminal-body"><span class="t-cyan">Coordinates locked and verified. I have synthesized your strict, single-tenant Terraform payload.</span> 
 Please save the following code as main.tf, execute the runbook in your terminal, and paste the final Apply complete! output here.</pre>
         </div>
 
@@ -275,7 +311,19 @@ resource "azurerm_monitor_diagnostic_setting" "audit_trap" {
         </div>
 
         <div class="divider"></div>
-        <h2 class="section-title" style="margin-top: 4rem;">Step 2: Immutable Baseline Generation</h2>
+        <h2 class="section-title">Step 2: Execution & Immutable Baseline</h2>
+
+        <!-- HIGH CONTRAST ARCHITECT COMMAND -->
+        <div class="architect-command">
+            <div class="architect-badge">[ARCHITECT DIRECTIVE]</div>
+            <div class="architect-text">
+                Executing deployment via CLI runner.
+            </div>
+            <div class="architect-code">az login
+az account set --subscription "d5ffd8a5-d994-4eb5-b87c-4442054d233e"
+terraform init
+terraform apply -auto-approve</div>
+        </div>
 
         <div class="terminal-window">
             <div class="terminal-header">
@@ -348,9 +396,9 @@ Has KQL logging confirmed a successful authentication mapping directly against t
         </div>
 
         <div class="divider"></div>
-        <h2 class="section-title" style="margin-top: 4rem;">Step 3: Telemetry Validation & Forensic Audit</h2>
+        <h2 class="section-title">Step 3: Telemetry Validation & Forensic Audit</h2>
 
-        <div class="terminal-window">
+        <div class="terminal-window" style="margin-bottom: 2.5rem;">
             <div class="terminal-header">
                 <div class="terminal-dots"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
                 <div class="terminal-title">engine_console.exe // HITL_Active</div>
@@ -359,11 +407,23 @@ Has KQL logging confirmed a successful authentication mapping directly against t
 Verification Instructions: Navigate to Azure Monitor > Metrics for kv-efm-test-lab-04. Set Metric to Total Service API Hits and Aggregation to Count. CRITICAL: Set the Time filter to the Last 30 minutes to isolate the exact validation window.
 
 <span class="t-purple">[PIPELINE HALTED]</span>
-Please confirm when you have successfully executed the GitHub Actions workflow and can see the API spike visible in your Azure Metrics.
+Please confirm when you have successfully executed the GitHub Actions workflow and can see the API spike visible in your Azure Metrics.</pre>
+        </div>
 
-<span class="t-user">ENGINEER INPUT ></span> The visual telemetry confirms a localized data-plane execution spike precisely within our validation window, effectively proving the end-to-end cryptographic bridge is successfully established.
+        <!-- HIGH CONTRAST ARCHITECT COMMAND -->
+        <div class="architect-command">
+            <div class="architect-badge">[ARCHITECT DIRECTIVE]</div>
+            <div class="architect-text">
+                The visual telemetry confirms a localized data-plane execution spike precisely within our validation window, effectively proving the end-to-end cryptographic bridge is successfully established. I have put the ARL write-up into my project write-up.
+            </div>
+        </div>
 
-<span class="t-cyan">I have generated your Audit Results Ledger (ARL) using the verified deployment metrics.</span></pre>
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-dots"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                <div class="terminal-title">engine_console.exe // Synthesizing</div>
+            </div>
+            <pre class="terminal-body"><span class="t-cyan">I have generated your Audit Results Ledger (ARL) using the verified deployment metrics.</span></pre>
         </div>
 
         <div class="terminal-window">
@@ -432,16 +492,22 @@ Next Scheduled Review: 2026-11-28</pre>
         </div>
 
         <div class="divider"></div>
-        <h2 class="section-title" style="margin-top: 4rem;">Step 4: KQL Generation & Executive Sign-off</h2>
+        <h2 class="section-title">Step 4: KQL Generation & Executive Sign-off</h2>
+
+        <!-- HIGH CONTRAST ARCHITECT COMMAND -->
+        <div class="architect-command">
+            <div class="architect-badge">[ARCHITECT DIRECTIVE]</div>
+            <div class="architect-text">
+                Please generate the required KQL telemetry compliance artifact.
+            </div>
+        </div>
 
         <div class="terminal-window">
             <div class="terminal-header">
                 <div class="terminal-dots"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
                 <div class="terminal-title">kql_diagnostic.kql // executive_summary.log</div>
             </div>
-            <pre class="terminal-body"><span class="t-user">ENGINEER INPUT ></span> Please generate the required KQL telemetry compliance artifact.
-
-<span class="t-cyan">Because Azure Log Analytics backend indexing has a natural time delay, we cannot synchronously pull the raw cryptographic logs right now. However, these logs are mandatory for formal SOC 2/ISO audits. Please save this query in your workspace to execute once Azure's indexing catches up.</span>
+            <pre class="terminal-body"><span class="t-cyan">Because Azure Log Analytics backend indexing has a natural time delay, we cannot synchronously pull the raw cryptographic logs right now. However, these logs are mandatory for formal SOC 2/ISO audits. Please save this query in your workspace to execute once Azure's indexing catches up.</span>
 
 <span class="t-blue">AzureDiagnostics</span>
 | <span class="t-purple">where</span> ResourceProvider == <span class="t-green">"MICROSOFT.KEYVAULT"</span>

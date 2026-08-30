@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligent Architecture - Workflow Portfolio</title>
+    <link rel="icon" type="image/png" href="cropped-LOGO-IMPROVED.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-page: #020617; 
+            --bg-node: rgba(10, 15, 29, 0.95);
+            --border-base: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+            --color-blue: #3b82f6;
+            --color-cyan: #0ea5e9;
+            --color-purple: #a855f7;
+            --color-grey: #64748b;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: var(--bg-page); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--text-main); line-height: 1.6; }
+
+        /* ================= NAVIGATION ================= */
+        nav { position: fixed; top: 0; width: 100%; background: rgba(2, 6, 23, 0.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-base); z-index: 100; padding: 1.2rem 2rem; display: flex; justify-content: center; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; align-items: center; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--color-cyan); }
+        .nav-links a.portfolio-btn { color: #ffffff; border: 1px solid var(--color-cyan); padding: 0.4rem 1.2rem; border-radius: 6px; background: var(--color-cyan); box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); }
+
+        /* ================= HERO MINIMAL ================= */
+        .hero-minimal { padding: 140px 20px 60px; text-align: center; border-bottom: 1px solid var(--border-base); }
+        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 3rem; font-weight: 900; letter-spacing: 2px; color: var(--text-main); text-transform: uppercase; margin-bottom: 15px; }
+        .hero-subtitle { font-size: 1.2rem; color: var(--color-cyan); max-width: 800px; margin: 0 auto 30px; font-weight: 500; }
+        .badge-container img { max-width: 130px; }
+
+        /* ================= MAIN CONTAINER ================= */
+        .container { max-width: 1200px; margin: 0 auto; padding: 4rem 20px; }
+        .section-title { font-family: 'Montserrat', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--color-blue); text-transform: uppercase; margin-bottom: 2rem; text-align: center; }
+
+        /* ================= CAPABILITY MATRIX ================= */
+        .matrix-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 4rem; }
+        .matrix-card { background: rgba(15, 23, 42, 0.4); border: 1px solid var(--border-base); border-top: 3px solid var(--color-blue); padding: 1.5rem; border-radius: 8px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); }
+        .matrix-card h3 { font-size: 1.1rem; color: var(--text-main); margin-bottom: 1rem; border-bottom: 1px solid var(--border-base); padding-bottom: 0.5rem; font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
+        .matrix-list { list-style: none; }
+        .matrix-list li { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0.7rem; display: flex; align-items: center; }
+        .matrix-list li.active { color: var(--color-cyan); font-weight: 600; }
+        
+        .checkbox { display: inline-block; width: 16px; height: 16px; border: 1px solid var(--color-grey); border-radius: 3px; margin-right: 10px; position: relative; }
+        .active .checkbox { border-color: var(--color-cyan); background-color: rgba(14, 165, 233, 0.2); }
+        .active .checkbox::after { content: '✔'; position: absolute; top: -3px; left: 2px; color: var(--color-cyan); font-size: 12px; }
+
+        /* ================= INSIGHT BOX ================= */
+        .insight-box { background: rgba(168, 85, 247, 0.05); border-left: 4px solid var(--color-purple); padding: 2rem; margin: 0 auto 4rem; max-width: 900px; }
+        .insight-title { color: var(--color-purple); font-weight: 700; font-size: 0.9rem; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 1rem; }
+        .insight-text { font-size: 1.1rem; font-style: italic; color: var(--text-main); line-height: 1.7; }
+
+        /* ================= TERMINAL PLACEHOLDER ================= */
+        .terminal-placeholder { text-align: center; color: var(--color-grey); padding: 4rem; border: 1px dashed var(--border-base); border-radius: 8px; margin-bottom: 2rem; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="workflow-portfolio.html" class="portfolio-btn">Workflow Portfolio</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero-minimal">
+        <h1 class="hero-title">Workflow Portfolio</h1>
+        <p class="hero-subtitle">Demonstrating the deterministic adaptability of the Declarative Zero-Trust Synthesis Engine across variable enterprise configurations.</p>
+        <div class="badge-container">
+            <!-- Using Microsoft's official badge image link -->
+            <img src="https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-associate-badge.svg" alt="Microsoft Certified: Identity and Access Administrator Associate">
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <h2 class="section-title">Deployment Capability Matrix</h2>
+        <div class="matrix-grid">
+            <div class="matrix-card">
+                <h3>Identity Core</h3>
+                <ul class="matrix-list">
+                    <li class="active"><span class="checkbox"></span>Microsoft Entra ID</li>
+                </ul>
+            </div>
+            <div class="matrix-card">
+                <h3>Execution Agent</h3>
+                <ul class="matrix-list">
+                    <li class="active"><span class="checkbox"></span>GitHub Actions</li>
+                    <li><span class="checkbox"></span>Azure DevOps</li>
+                    <li><span class="checkbox"></span>GitLab CI</li>
+                </ul>
+            </div>
+            <div class="matrix-card">
+                <h3>Infrastructure State</h3>
+                <ul class="matrix-list">
+                    <li class="active"><span class="checkbox"></span>Brownfield (Existing)</li>
+                    <li><span class="checkbox"></span>Greenfield (Net-New)</li>
+                </ul>
+            </div>
+            <div class="matrix-card">
+                <h3>Data-Plane Asset</h3>
+                <ul class="matrix-list">
+                    <li class="active"><span class="checkbox"></span>Azure Key Vault</li>
+                    <li><span class="checkbox"></span>Storage Account</li>
+                    <li><span class="checkbox"></span>SQL / Cosmos DB</li>
+                </ul>
+            </div>
+            <div class="matrix-card">
+                <h3>IaC Payload</h3>
+                <ul class="matrix-list">
+                    <li class="active"><span class="checkbox"></span>Terraform (HCL)</li>
+                    <li><span class="checkbox"></span>Azure Bicep</li>
+                    <li><span class="checkbox"></span>Graph API</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2 class="section-title">Active Execution: OIDC Federation & Key Vault Retrieval</h2>
+        <div class="insight-box">
+            <div class="insight-title">> Architectural Insight</div>
+            <div class="insight-text">
+                "This execution demonstrates the application of the Synthesis Engine to systematically eradicate long-lived, symmetric credentials in automated pipelines. By anchoring to Microsoft Entra ID and utilizing GitHub Actions, the Engine provisions a mathematically certain, passwordless OpenID Connect (OIDC) trust matrix mapped strictly to a brownfield Azure Key Vault."
+            </div>
+        </div>
+
+        <!-- STAGE 2 GOES HERE -->
+        <div class="terminal-placeholder">
+            [ Stage 2: Interactive Terminal Log, IAL, KQL Query, and ARL will be injected here ]
+        </div>
+
+    </div>
+
+</body>
+</html>

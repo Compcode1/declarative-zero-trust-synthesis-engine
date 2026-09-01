@@ -10,91 +10,260 @@
     <style>
         :root {
             --bg-page: #020617; 
+            --bg-node: rgba(10, 15, 29, 0.95);
             --border-base: #1e293b;
             --text-main: #f8fafc;
             --text-muted: #cbd5e1;
             --color-blue: #3b82f6;
             --color-cyan: #0ea5e9;
             --color-purple: #a855f7;
+            --color-grey: #64748b;
+            --color-green: #10b981;
+            --color-teal: #14b8a6;
+            --color-red: #f43f5e;
+            --logo-blue: #2563eb;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body { background-color: var(--bg-page); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--text-main); line-height: 1.7; }
+        body { background-color: var(--bg-page); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--text-main); line-height: 1.6; }
 
         /* ================= NAVIGATION ================= */
-        nav { position: fixed; top: 0; width: 100%; background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-base); z-index: 100; padding: 1.2rem 2rem; display: flex; justify-content: center; }
-        .nav-links { display: flex; gap: 2.5rem; list-style: none; flex-wrap: wrap; align-items: center; }
-        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 1rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.3s; }
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-base); z-index: 100;
+            padding: 1.2rem 2rem; display: flex; justify-content: center;
+        }
+        .nav-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; justify-content: center; align-items: center; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; }
         .nav-links a:hover { color: var(--color-cyan); }
         .nav-links a.active-link { color: #ffffff; border-bottom: 2px solid var(--color-cyan); padding-bottom: 4px; }
+        
+        .nav-links a.portfolio-btn {
+            color: var(--color-cyan); border: 1px solid var(--color-cyan);
+            padding: 0.4rem 1.2rem; border-radius: 6px;
+            background: rgba(14, 165, 233, 0.1); transition: all 0.3s ease;
+        }
+        .nav-links a.portfolio-btn:hover { background: var(--color-cyan); color: #ffffff; box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); }
 
-        /* ================= HERO SECTION ================= */
-        .hero { padding: 180px 20px 80px; text-align: center; }
-        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 3.2rem; font-weight: 900; letter-spacing: 2px; color: var(--text-main); text-transform: uppercase; margin-bottom: 20px; }
-        .hero-subtitle { font-size: 1.4rem; color: var(--color-cyan); max-width: 900px; margin: 0 auto 35px; font-weight: 500; line-height: 1.6; }
-        .badge-container img { max-width: 140px; margin-top: 10px; }
+        /* ================= HERO HEADER ================= */
+        .hero { padding: 180px 20px 80px; text-align: center; border-bottom: 1px solid var(--border-base); }
+        .hero-title-container { display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 4rem; font-weight: 900; letter-spacing: 3px; color: var(--text-main); text-transform: uppercase; }
+        .hero-subtitle { font-size: 1.5rem; color: var(--color-cyan); font-weight: 500; max-width: 1000px; margin: 0 auto 30px; line-height: 1.5; }
+        .nowrap { white-space: nowrap; }
+        .badge-container { margin-top: 30px; display: flex; justify-content: center; }
+        .ms-badge { height: 160px; width: auto; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5)); }
 
-        /* ================= PRELUDE CONTAINER ================= */
-        .container { max-width: 1100px; margin: 0 auto; padding: 2rem 20px 6rem; }
+        /* ================= INSIGHT CALLOUT ================= */
+        .insight-box { border-left: 4px solid var(--color-purple); padding: 1.5rem 2rem; margin: 2.5rem auto; max-width: 1000px; border-radius: 0 8px 8px 0; text-align: left; }
+        .insight-header { font-family: 'Montserrat', sans-serif; font-size: 1.15rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 8px; }
+        .insight-header::before { content: '>'; font-weight: 900; }
+        .insight-text { font-size: 1.15rem; color: var(--text-main); font-style: italic; line-height: 1.7; font-weight: 500; }
+
+        /* ================= ENVIRONMENT & PROXY ================= */
+        .module-section { display: flex; flex-direction: column; align-items: center; padding: 5rem 20px 2rem; }
+        .architecture-container { width: 100%; max-width: 1300px; display: flex; flex-direction: column; align-items: center; }
+        
+        .summary-section { max-width: 1050px; text-align: center; margin-bottom: 3rem; }
+        .summary-title { font-size: 2.2rem; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1.8rem; color: var(--logo-blue); }
+        .summary-text { font-size: 1.2rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.5rem; text-align: left; }
+        .summary-text strong { color: var(--text-main); font-weight: 700; }
+        
+        .canvas-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 15px; }
+        .diagram-canvas {
+            position: relative; min-width: 1300px; height: 750px;
+            background-image: linear-gradient(to right, rgba(30, 41, 59, 0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(30, 41, 59, 0.5) 1px, transparent 1px);
+            background-size: 40px 40px; border: 1px solid var(--border-base); border-radius: 12px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .routing-lines { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+        .node { position: absolute; background: var(--bg-node); border: 1px solid var(--border-base); border-radius: 8px; padding: 1.5rem; z-index: 2; backdrop-filter: blur(8px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3); }
+        .node-title { font-size: 1.15rem; font-weight: 900; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 1rem; line-height: 1.2; }
+        .node-text { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+        .tag { font-family: monospace; font-size: 0.75rem; font-weight: 700; padding: 4px 8px; border: 1px solid; border-radius: 4px; display: inline-block; margin-bottom: 0.75rem; letter-spacing: 0.5px; }
+
+        .node-engineer { left: 40px; top: 50px; width: 240px; border-left: 4px solid var(--color-blue); }
+        .node-engineer .tag { color: var(--color-blue); border-color: rgba(59, 130, 246, 0.3); }
+        .node-engineer .highlight { color: var(--color-purple); font-weight: 600; margin-top: 10px; display: block; }
+        
+        .node-engine { 
+            left: 40px; top: 320px; width: 260px; 
+            border: 2px solid var(--color-cyan); border-left: 6px solid var(--color-cyan); 
+            background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(14, 165, 233, 0.18) 4px, rgba(14, 165, 233, 0.18) 8px), linear-gradient(135deg, rgba(14, 165, 233, 0.25) 0%, rgba(10, 15, 29, 0.95) 100%), var(--bg-node); 
+            box-shadow: 0 0 25px rgba(14, 165, 233, 0.45), inset 0 0 15px rgba(14, 165, 233, 0.25); 
+        }
+        .node-engine .tag { color: var(--color-cyan); border-color: rgba(14, 165, 233, 0.3); margin-right: 5px; }
+        
+        .node-compiler { left: 330px; top: 60px; width: 250px; border-left: 4px solid var(--color-purple); }
+        .node-compiler .tag { color: var(--color-purple); border-color: rgba(168, 85, 247, 0.3); }
+
+        .node-dpl { 
+            left: 340px; top: 430px; width: 450px; 
+            border: 2px solid var(--color-red); border-left: 6px solid var(--color-red); 
+            background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(244, 63, 94, 0.15) 4px, rgba(244, 63, 94, 0.15) 8px), linear-gradient(135deg, rgba(244, 63, 94, 0.15) 0%, rgba(10, 15, 29, 0.95) 100%), var(--bg-node); 
+            box-shadow: 0 0 25px rgba(244, 63, 94, 0.35), inset 0 0 15px rgba(244, 63, 94, 0.15); 
+        }
+        .node-dpl .tag { color: var(--color-red); border-color: rgba(244, 63, 94, 0.3); }
+        
+        .node-iac { left: 620px; top: 80px; width: 210px; border-left: 4px solid var(--color-grey); }
+        .node-iac .tag { color: var(--color-grey); border-color: rgba(100, 116, 139, 0.3); }
+        
+        .node-core { left: 950px; top: 60px; width: 260px; border: 1px solid rgba(16, 185, 129, 0.3); border-left: 4px solid var(--color-green); }
+        .node-core .tag { color: var(--color-green); border-color: rgba(16, 185, 129, 0.3); }
+        .node-core .highlight { color: var(--color-green); font-weight: 600; margin-top: 10px; display: block; }
+        
+        .node-ial { left: 830px; top: 410px; width: 210px; border-left: 4px solid var(--color-teal); }
+        .node-ial .tag { color: var(--color-teal); border-color: rgba(20, 184, 166, 0.3); }
+        
+        .node-arl { left: 1070px; top: 410px; width: 250px; border-left: 4px solid var(--color-teal); }
+        .node-arl .tag { color: var(--color-teal); border-color: rgba(20, 184, 166, 0.3); }
+
+        /* ================= ENTERPRISE GUARDRAILS ================= */
+        .guardrail-container { max-width: 1300px; margin: 0 auto; padding: 4rem 20px 8rem; }
         
         .prelude-box { background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-base); border-top: 4px solid var(--color-blue); border-radius: 12px; padding: 3.5rem; box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
-        .section-title { font-family: 'Montserrat', sans-serif; font-size: 2rem; font-weight: 800; color: var(--text-main); text-transform: uppercase; margin-bottom: 2rem; letter-spacing: 1px; text-align: center; }
+        .section-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: var(--text-main); text-transform: uppercase; margin-bottom: 2rem; letter-spacing: 1px; text-align: center; }
         
-        .intro-text { font-size: 1.25rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.5rem; text-align: center; max-width: 900px; margin-left: auto; margin-right: auto; }
-        .intro-text:last-of-type { margin-bottom: 3.5rem; }
+        .intro-text { font-size: 1.25rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 3.5rem; text-align: center; max-width: 1000px; margin-left: auto; margin-right: auto; }
         .intro-text strong { color: var(--color-cyan); font-weight: 700; }
 
-        /* ================= 2-COLUMN GRID ================= */
         .vulnerability-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem; }
         .vuln-card { background: rgba(2, 6, 23, 0.9); border: 1px solid var(--border-base); padding: 2.2rem; border-radius: 10px; border-left: 4px solid var(--color-purple); box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
         .vuln-title { font-family: 'Montserrat', sans-serif; font-size: 1.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem; letter-spacing: 0.5px; }
         .vuln-text { font-size: 1.15rem; color: var(--text-muted); line-height: 1.7; }
         .vuln-highlight { color: var(--color-cyan); font-weight: 600; }
 
-        /* Make the 5th card span both columns if on a wide screen */
+        /* Center the 5th card */
         .vuln-card:nth-child(5) { grid-column: 1 / -1; }
 
         .cta-container { text-align: center; margin-top: 4.5rem; }
         .cta-btn { display: inline-block; background: var(--color-blue); color: #fff; text-decoration: none; font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; padding: 1.2rem 3rem; border-radius: 6px; box-shadow: 0 10px 20px -5px rgba(59, 130, 246, 0.5); transition: all 0.3s ease; }
         .cta-btn:hover { background: var(--color-cyan); box-shadow: 0 15px 25px -5px rgba(14, 165, 233, 0.6); transform: translateY(-2px); }
 
+        @media (max-width: 992px) {
+            .hero-title { font-size: 2.8rem; }
+            .summary-title, .section-title { font-size: 1.8rem; }
+            .insight-box { padding: 1.5rem; margin: 2rem 15px 3rem; }
+            .vulnerability-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
 
+    <!-- MASTER NAVIGATION -->
     <nav>
         <ul class="nav-links">
             <li><a href="index.html" class="active-link">Home</a></li>
-            <li><a href="architectural.html">Architecture</a></li>
-            <li><a href="workflowportfolio.html">Execution Showcase</a></li>
+            <li><a href="architectural.html">Pipeline Architecture</a></li>
+            <li><a href="workflowportfolio.html" class="portfolio-btn">Technical Execution Showcase</a></li>
         </ul>
     </nav>
 
+    <!-- HERO HEADER -->
     <header class="hero">
-        <h1 class="hero-title">Intelligent Architecture</h1>
-        <p class="hero-subtitle">Software-Accelerated Zero Trust Machine Identity Provisioning for Microsoft Entra ID</p>
+        <div class="hero-title-container">
+            <h1 class="hero-title">INTELLIGENT ARCHITECTURE</h1>
+        </div>
+        <p class="hero-subtitle">Software-Accelerated Zero-Trust Machine Identity Provisioning for <span class="nowrap">Microsoft Entra ID</span></p>
         <div class="badge-container">
-            <img src="MS Badge.png" alt="Microsoft Certified: Identity and Access Administrator Associate">
+            <img src="MS Badge.png" alt="Microsoft SC-300 Certification" class="ms-badge">
         </div>
     </header>
 
-    <div class="container">
+    <!-- MODULE 1: EXECUTION ENVIRONMENT & AI PROXY -->
+    <section class="module-section">
+        <div class="architecture-container">
+            
+            <div class="summary-section">
+                <h2 class="summary-title">Zero Trust Infrastructure as Code Software Environment</h2>
+                
+                <p class="summary-text">
+                    This framework does not use generative AI for isolated tasks or simple code completion. It operates as a continuous, governed state machine. By integrating the AI into a strict operational loop, it actively develops full architectural configurations, synthesizes zero-trust security policies, and generates immutable audit outputs step-by-step.
+                </p>
+                <p class="summary-text">
+                    Every deployment execution captures architectural friction and identifies new operational patterns. These patterns are systematically recorded and fed directly back into the framework's core directives. Because the software recursively learns and integrates these established patterns, <strong>the AI becomes a direct proxy for the cloud architect</strong>—an autonomous extension of the engineer’s own expertise that forces mathematically certain execution and scales operational capability at an exponential rate.
+                </p>
+
+                <!-- ARCHITECTURAL INSIGHT -->
+                <div class="insight-box" style="background: linear-gradient(90deg, rgba(168, 85, 247, 0.1) 0%, transparent 100%);">
+                    <div class="insight-header" style="color: var(--color-purple);">Architectural Insight</div>
+                    <div class="insight-text">
+                        "Generative AI is inherently probabilistic, making unconstrained models a critical liability for enterprise cybersecurity. The foundational breakthrough of this framework is its capacity to force a probabilistic model to execute deterministically. By tethering the AI to strict architectural directives and hard validation gates, this software transforms unpredictable generative workflows into a mathematically certain, tightly governed infrastructure pipeline."
+                    </div>
+                </div>
+            </div>
+
+            <!-- THE GRAPHIC (Preserved perfectly) -->
+            <div class="canvas-wrapper">
+                <div class="diagram-canvas">
+                    <svg class="routing-lines" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6" /></marker>
+                            <marker id="arrow-cyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0ea5e9" /></marker>
+                            <marker id="arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#a855f7" /></marker>
+                            <marker id="arrow-grey" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b" /></marker>
+                            <marker id="arrow-teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#14b8a6" /></marker>
+                            <marker id="arrow-red-end" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#f43f5e" /></marker>
+                            <marker id="arrow-red-start" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 10 0 L 0 5 L 10 10 z" fill="#f43f5e" /></marker>
+                        </defs>
+                        <!-- Eng to Compiler -->
+                        <path d="M 280 110 L 305 110 L 305 130 L 320 130" fill="none" stroke="#3b82f6" stroke-width="3" marker-end="url(#arrow-blue)" />
+                        <!-- Compiler to Eng -->
+                        <path d="M 330 160 L 310 160 L 310 140 L 290 140" fill="none" stroke="#a855f7" stroke-width="2" stroke-dasharray="6, 6" marker-end="url(#arrow-purple)" />
+                        <!-- Engine to Compiler -->
+                        <path d="M 300 370 L 315 370 L 315 220 L 320 220" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="6, 6" marker-end="url(#arrow-cyan)" />
+                        <!-- Compiler to IaC -->
+                        <path d="M 580 170 L 610 170" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#arrow-grey)" />
+                        <!-- IaC to Core -->
+                        <path d="M 830 170 L 880 170 L 880 140 L 940 140" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#arrow-grey)" />
+                        
+                        <!-- Core to Split -->
+                        <path d="M 1080 250 L 1080 350" fill="none" stroke="#10b981" stroke-width="2" />
+                        <!-- Split to IAL -->
+                        <path d="M 1080 350 L 935 350 L 935 405" fill="none" stroke="#14b8a6" stroke-width="2" marker-end="url(#arrow-teal)" />
+                        <!-- Split to ARL -->
+                        <path d="M 1080 350 L 1195 350 L 1195 405" fill="none" stroke="#14b8a6" stroke-width="2" marker-end="url(#arrow-teal)" />
+                        
+                        <!-- Engine to DPL (Bidirectional) -->
+                        <path d="M 300 460 L 340 460" fill="none" stroke="#f43f5e" stroke-width="2" stroke-dasharray="4, 4" marker-start="url(#arrow-red-start)" marker-end="url(#arrow-red-end)" />
+                    </svg>
+
+                    <div class="node node-engineer"><div class="tag">[ROLE: CLOUD ARCHITECT]</div><div class="node-title">Security Engineer</div><div class="node-text">Inputs target coordinates and strict GitHub Subject Claims.<span class="highlight">Validates execution gates.</span></div></div>
+                    
+                    <div class="node node-engine"><div class="tag">[CORE SOFTWARE PRODUCT]</div><div class="node-title">Zero Trust Infrastructure as Code Software</div><div class="tag">[DIRECTIVE: DETERMINISTIC]</div><div class="node-text">Proprietary intellectual property. A strict system directive governing the AI to enforce a mathematically certain Entra ID zero-trust baseline.</div></div>
+                    
+                    <div class="node node-compiler"><div class="tag">[STATE: HITL ACTIVE LOOP]</div><div class="node-title">AI Compiler<br><span style="font-size: 0.85rem; font-weight: 500; color: #a855f7;">(INTERACTIVE STATE MACHINE)</span></div><div class="node-text">Operates as a guided interactive loop. Validates inputs with the engineer at strict gates to prevent drift and logic hallucination.</div></div>
+                    
+                    <div class="node node-dpl"><div class="tag">[ARTIFACT: PATCH_LEDGER.md]</div><div class="node-title">Continuous Protocol Refinement</div><div class="node-text">Captures architectural friction and engineered fixes, feeding them back into the core software to permanently upgrade the execution pipeline.</div></div>
+                    
+                    <div class="node node-iac"><div class="tag">[PAYLOAD: main.tf]</div><div class="node-title">IaC Generation</div><div class="node-text">Environment-agnostic Terraform payload (main.tf) synthesized upon coordinate lock.</div></div>
+                    
+                    <div class="node node-core"><div class="tag">[STATE: CRYPTOGRAPHIC OIDC]</div><div class="node-title">Zero-Trust Machine Identity Core</div><div class="node-text">The hardened foundation.<span class="highlight">Passwordless OIDC workload federation established.</span></div></div>
+                    
+                    <div class="node node-ial"><div class="tag">[ARTIFACT: IAL_RECORD.md]</div><div class="node-title">Identity Architecture Ledger (IAL)</div><div class="node-text">Records and validates the immutable target state infrastructure configuration.</div></div>
+                    
+                    <div class="node node-arl"><div class="tag">[TELEMETRY: ARL & KQL]</div><div class="node-title">Audit Ledgers & KQL Telemetry</div><div class="node-text">Mathematically confirms zero-trust operational governance and SOC 2 compliance via Azure telemetry and asynchronous diagnostic proofs.</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODULE 2: ENTERPRISE GUARDRAILS -->
+    <div class="guardrail-container">
         <div class="prelude-box">
-            <h2 class="section-title">Architectural Prelude: The Decoupled Logic Engine</h2>
+            <h2 class="section-title">Enterprise Guardrails: The Decoupled Logic Engine</h2>
             
             <p class="intro-text">
-                The Zero Trust Infrastructure as Code Software is not a traditional compiled application. It operates as an advanced <strong>declarative LLM orchestrator</strong> and <strong>deterministic state machine</strong>. Its primary objective is to bridge the critical gap between probabilistic AI code generation and the strict, mathematically certain execution required for enterprise-grade infrastructure.
-            </p>
-            <p class="intro-text">
-                While generative AI accelerates engineering, unconstrained models introduce massive liabilities in production environments. This framework was engineered with a strict immutable rationale to explicitly neutralize the five critical vulnerabilities of AI-assisted cloud deployment:
+                While generative AI accelerates engineering, unconstrained models introduce massive liabilities in production environments. This framework enforces a strict immutable rationale to explicitly neutralize the five critical vulnerabilities of AI-assisted cloud deployment:
             </p>
 
             <div class="vulnerability-grid">
                 
                 <div class="vuln-card">
                     <h3 class="vuln-title">1. Data Loss Prevention (DLP) & Context Leakage</h3>
-                    <p class="vuln-text">Generative models often require proprietary network details to output accurate code. This software acts as a decoupled logic engine; it relies exclusively on explicit, plain-language parameters. <span class="vuln-highlight">No proprietary tenant IDs, exact asset names, or corporate repository coordinates are ever hardcoded or exposed.</span></p>
+                    <p class="vuln-text">Generative models often require proprietary network details to output accurate code. This software relies exclusively on explicit, plain-language parameters. <span class="vuln-highlight">No proprietary tenant IDs, exact asset names, or corporate repository coordinates are ever hardcoded or exposed.</span></p>
                 </div>
 
                 <div class="vuln-card">
@@ -120,7 +289,7 @@
             </div>
             
             <div class="cta-container">
-                <a href="architectural.html" class="cta-btn">Explore the Engine Architecture</a>
+                <a href="architectural.html" class="cta-btn">Explore System Components Breakdown</a>
             </div>
         </div>
     </div>

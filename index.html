@@ -57,7 +57,7 @@
         .ms-badge { height: 160px; width: auto; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5)); }
 
         /* ================= INSIGHT CALLOUT ================= */
-        .insight-box { border-left: 4px solid var(--color-purple); padding: 1.5rem 2rem; margin: 2.5rem auto; max-width: 1000px; border-radius: 0 8px 8px 0; text-align: left; }
+        .insight-box { border-left: 4px solid var(--color-purple); padding: 1.5rem 2rem; margin: 2.5rem auto; max-width: 1050px; border-radius: 0 8px 8px 0; text-align: left; }
         .insight-header { font-family: 'Montserrat', sans-serif; font-size: 1.15rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 8px; }
         .insight-header::before { content: '>'; font-weight: 900; }
         .insight-text { font-size: 1.15rem; color: var(--text-main); font-style: italic; line-height: 1.7; font-weight: 500; }
@@ -107,18 +107,32 @@
         }
         .node-dpl .tag { color: var(--color-red); border-color: rgba(244, 63, 94, 0.3); }
         
-        .node-iac { left: 620px; top: 80px; width: 210px; border-left: 4px solid var(--color-grey); }
-        .node-iac .tag { color: var(--color-grey); border-color: rgba(100, 116, 139, 0.3); }
+        .node-iac { left: 620px; top: 80px; width: 210px; border-left: 4px solid var(--color-cyan); }
+        .node-iac .tag { color: var(--color-cyan); border-color: rgba(14, 165, 233, 0.3); }
         
         .node-core { left: 950px; top: 60px; width: 260px; border: 1px solid rgba(16, 185, 129, 0.3); border-left: 4px solid var(--color-green); }
         .node-core .tag { color: var(--color-green); border-color: rgba(16, 185, 129, 0.3); }
         .node-core .highlight { color: var(--color-green); font-weight: 600; margin-top: 10px; display: block; }
         
-        .node-ial { left: 830px; top: 410px; width: 210px; border-left: 4px solid var(--color-teal); }
-        .node-ial .tag { color: var(--color-teal); border-color: rgba(20, 184, 166, 0.3); }
+        .node-ial { left: 830px; top: 410px; width: 210px; border-left: 4px solid var(--color-green); }
+        .node-ial .tag { color: var(--color-green); border-color: rgba(16, 185, 129, 0.3); }
         
-        .node-arl { left: 1070px; top: 410px; width: 250px; border-left: 4px solid var(--color-teal); }
-        .node-arl .tag { color: var(--color-teal); border-color: rgba(20, 184, 166, 0.3); }
+        .node-arl { left: 1070px; top: 410px; width: 250px; border-left: 4px solid var(--color-green); }
+        .node-arl .tag { color: var(--color-green); border-color: rgba(16, 185, 129, 0.3); }
+
+        /* ================= PROCESS GRID (MAP KEY) ================= */
+        .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; width: 100%; max-width: 1300px; }
+        .process-step { background: rgba(15, 23, 42, 0.4); border-top: 3px solid; padding: 1.5rem; border-radius: 8px; text-align: left; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+        .step-num { font-weight: 900; font-size: 1.8rem; margin-bottom: 0.5rem; font-family: 'Montserrat', sans-serif; }
+        .step-title { font-size: 1.05rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.75rem; line-height: 1.4; letter-spacing: 0.5px; }
+        .step-text { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+        
+        /* Match Process Steps to Node Colors */
+        .step-1 { border-color: var(--color-blue); } .step-1 .step-num { color: var(--color-blue); }
+        .step-2 { border-color: var(--color-purple); } .step-2 .step-num { color: var(--color-purple); }
+        .step-3 { border-color: var(--color-cyan); } .step-3 .step-num { color: var(--color-cyan); }
+        .step-4 { border-color: var(--color-green); } .step-4 .step-num { color: var(--color-green); }
+        .step-5 { border-color: var(--color-red); } .step-5 .step-num { color: var(--color-red); }
 
         /* ================= ENTERPRISE GUARDRAILS ================= */
         .guardrail-container { max-width: 1300px; margin: 0 auto; padding: 4rem 20px 8rem; }
@@ -195,7 +209,7 @@
                 </div>
             </div>
 
-            <!-- THE GRAPHIC (Preserved perfectly) -->
+            <!-- THE GRAPHIC -->
             <div class="canvas-wrapper">
                 <div class="diagram-canvas">
                     <svg class="routing-lines" xmlns="http://www.w3.org/2000/svg">
@@ -215,16 +229,16 @@
                         <!-- Engine to Compiler -->
                         <path d="M 300 370 L 315 370 L 315 220 L 320 220" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="6, 6" marker-end="url(#arrow-cyan)" />
                         <!-- Compiler to IaC -->
-                        <path d="M 580 170 L 610 170" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#arrow-grey)" />
+                        <path d="M 580 170 L 610 170" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
                         <!-- IaC to Core -->
-                        <path d="M 830 170 L 880 170 L 880 140 L 940 140" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#arrow-grey)" />
+                        <path d="M 830 170 L 880 170 L 880 140 L 940 140" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
                         
                         <!-- Core to Split -->
                         <path d="M 1080 250 L 1080 350" fill="none" stroke="#10b981" stroke-width="2" />
                         <!-- Split to IAL -->
-                        <path d="M 1080 350 L 935 350 L 935 405" fill="none" stroke="#14b8a6" stroke-width="2" marker-end="url(#arrow-teal)" />
+                        <path d="M 1080 350 L 935 350 L 935 405" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
                         <!-- Split to ARL -->
-                        <path d="M 1080 350 L 1195 350 L 1195 405" fill="none" stroke="#14b8a6" stroke-width="2" marker-end="url(#arrow-teal)" />
+                        <path d="M 1080 350 L 1195 350 L 1195 405" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
                         
                         <!-- Engine to DPL (Bidirectional) -->
                         <path d="M 300 460 L 340 460" fill="none" stroke="#f43f5e" stroke-width="2" stroke-dasharray="4, 4" marker-start="url(#arrow-red-start)" marker-end="url(#arrow-red-end)" />
@@ -247,6 +261,40 @@
                     <div class="node node-arl"><div class="tag">[TELEMETRY: ARL & KQL]</div><div class="node-title">Audit Ledgers & KQL Telemetry</div><div class="node-text">Mathematically confirms zero-trust operational governance and SOC 2 compliance via Azure telemetry and asynchronous diagnostic proofs.</div></div>
                 </div>
             </div>
+
+            <!-- PROCESS GRID (MAP KEY) -->
+            <div class="process-grid">
+                <div class="process-step step-1">
+                    <div class="step-num">1</div>
+                    <div class="step-title">Strategic Input & Governance Anchor</div>
+                    <div class="step-text">The Security Engineer defines the target coordinates and scope. The engineer tethers the AI to the Zero Trust IaC Software, establishing the deterministic baseline that governs all subsequent behavior.</div>
+                </div>
+                
+                <div class="process-step step-2">
+                    <div class="step-num">2</div>
+                    <div class="step-title">The AI Compiler (Interactive State)</div>
+                    <div class="step-text">The engine initiates a strict HITL process. The Compiler actively validates the engineer's inputs and forces a hard stop at specific security gates, waiting for the engineer to authorize the logic.</div>
+                </div>
+
+                <div class="process-step step-3">
+                    <div class="step-num">3</div>
+                    <div class="step-title">Infrastructure as Code Generation</div>
+                    <div class="step-text">Only after the engineer explicitly verifies the coordinate lock does the engine synthesize the environment-agnostic payload (e.g., main.tf), safely translating strategic intent into executable code.</div>
+                </div>
+
+                <div class="process-step step-4">
+                    <div class="step-num">4</div>
+                    <div class="step-title">Execution & Cryptographic Proof</div>
+                    <div class="step-text">As the payload deploys the Identity Core, the engine simultaneously generates the Identity Architecture Ledger (IAL) and Audit Ledgers, providing exact cryptographic artifacts for compliance sign-off.</div>
+                </div>
+
+                <div class="process-step step-5">
+                    <div class="step-num">5</div>
+                    <div class="step-title">Continuous Protocol Refinement</div>
+                    <div class="step-text">The system captures architectural friction and proposes fixes via the Patch Ledger. The Security Engineer explicitly authorizes and applies these updates back into the core software to evolve the pipeline.</div>
+                </div>
+            </div>
+
         </div>
     </section>
 

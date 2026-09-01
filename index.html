@@ -143,18 +143,18 @@
         }
         .node-engine .tag { color: var(--color-cyan); border-color: rgba(14, 165, 233, 0.3); margin-right: 5px; }
         
-        .node-compiler { left: 330px; top: 180px; width: 250px; border-left: 4px solid var(--color-purple); }
+        .node-compiler { left: 330px; top: 60px; width: 250px; border-left: 4px solid var(--color-purple); }
         .node-compiler .tag { color: var(--color-purple); border-color: rgba(168, 85, 247, 0.3); }
 
         .node-dpl { 
-            left: 340px; top: 450px; width: 450px; 
+            left: 340px; top: 360px; width: 450px; 
             border: 2px solid var(--color-red); border-left: 6px solid var(--color-red); 
             background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(244, 63, 94, 0.15) 4px, rgba(244, 63, 94, 0.15) 8px), linear-gradient(135deg, rgba(244, 63, 94, 0.15) 0%, rgba(10, 15, 29, 0.95) 100%), var(--bg-node); 
             box-shadow: 0 0 25px rgba(244, 63, 94, 0.35), inset 0 0 15px rgba(244, 63, 94, 0.15); 
         }
         .node-dpl .tag { color: var(--color-red); border-color: rgba(244, 63, 94, 0.3); }
         
-        .node-iac { left: 620px; top: 190px; width: 210px; border-left: 4px solid var(--color-grey); }
+        .node-iac { left: 620px; top: 80px; width: 210px; border-left: 4px solid var(--color-grey); }
         .node-iac .tag { color: var(--color-grey); border-color: rgba(100, 116, 139, 0.3); }
         
         .node-core { left: 950px; top: 60px; width: 260px; border: 1px solid rgba(16, 185, 129, 0.3); border-left: 4px solid var(--color-green); }
@@ -382,19 +382,26 @@
                             <marker id="arrow-red-end" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#f43f5e" /></marker>
                             <marker id="arrow-red-start" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 10 0 L 0 5 L 10 10 z" fill="#f43f5e" /></marker>
                         </defs>
-                        <path d="M 280 120 L 305 120 L 305 210 L 320 210" fill="none" stroke="#3b82f6" stroke-width="3" marker-end="url(#arrow-blue)" />
-                        <path d="M 330 250 L 310 250 L 310 160 L 290 160" fill="none" stroke="#a855f7" stroke-width="2" stroke-dasharray="6, 6" marker-end="url(#arrow-purple)" />
-                        <path d="M 300 400 L 315 400 L 315 280 L 320 280" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="6, 6" marker-end="url(#arrow-cyan)" />
-                        <path d="M 580 230 L 610 230" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#arrow-grey)" />
-                        <path d="M 830 230 L 880 230 L 880 140 L 940 140" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#arrow-grey)" />
-                        <path d="M 1080 250 L 1080 350" fill="none" stroke="#10b981" stroke-width="2" />
+                        <!-- Eng to Compiler -->
+                        <path d="M 280 110 L 305 110 L 305 130 L 320 130" fill="none" stroke="#3b82f6" stroke-width="3" marker-end="url(#arrow-blue)" />
+                        <!-- Compiler to Eng -->
+                        <path d="M 330 160 L 310 160 L 310 140 L 290 140" fill="none" stroke="#a855f7" stroke-width="2" stroke-dasharray="6, 6" marker-end="url(#arrow-purple)" />
+                        <!-- Engine to Compiler -->
+                        <path d="M 300 370 L 315 370 L 315 220 L 320 220" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="6, 6" marker-end="url(#arrow-cyan)" />
+                        <!-- Compiler to IaC -->
+                        <path d="M 580 170 L 610 170" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#arrow-grey)" />
+                        <!-- IaC to Core -->
+                        <path d="M 830 170 L 880 170 L 880 140 L 940 140" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#arrow-grey)" />
                         
-                        <!-- Shortened ARL Paths -->
+                        <!-- Core to Split -->
+                        <path d="M 1080 250 L 1080 350" fill="none" stroke="#10b981" stroke-width="2" />
+                        <!-- Split to IAL -->
                         <path d="M 1080 350 L 935 350 L 935 405" fill="none" stroke="#14b8a6" stroke-width="2" marker-end="url(#arrow-teal)" />
+                        <!-- Split to ARL -->
                         <path d="M 1080 350 L 1195 350 L 1195 405" fill="none" stroke="#14b8a6" stroke-width="2" marker-end="url(#arrow-teal)" />
                         
-                        <!-- Bidirectional DPL Loop Path -->
-                        <path d="M 300 500 L 340 500" fill="none" stroke="#f43f5e" stroke-width="2" stroke-dasharray="4, 4" marker-start="url(#arrow-red-start)" marker-end="url(#arrow-red-end)" />
+                        <!-- Engine to DPL (Bidirectional) -->
+                        <path d="M 300 450 L 330 450" fill="none" stroke="#f43f5e" stroke-width="2" stroke-dasharray="4, 4" marker-start="url(#arrow-red-start)" marker-end="url(#arrow-red-end)" />
                     </svg>
 
                     <div class="node node-engineer"><div class="tag">[ROLE: CLOUD ARCHITECT]</div><div class="node-title">Security Engineer</div><div class="node-text">Inputs target coordinates and strict GitHub Subject Claims.<span class="highlight">Validates execution gates.</span></div></div>
@@ -403,7 +410,7 @@
                     
                     <div class="node node-compiler"><div class="tag">[STATE: HITL ACTIVE LOOP]</div><div class="node-title">AI Compiler<br><span style="font-size: 0.85rem; font-weight: 500; color: #a855f7;">(INTERACTIVE STATE MACHINE)</span></div><div class="node-text">Operates as a guided interactive loop. Validates inputs with the engineer at strict gates to prevent drift and logic hallucination.</div></div>
                     
-                    <!-- DPL Node safely positioned -->
+                    <!-- DPL Node safely positioned beneath Compiler -->
                     <div class="node node-dpl"><div class="tag">[ARTIFACT: PATCH_LEDGER.md]</div><div class="node-title">Continuous Protocol Refinement</div><div class="node-text">Captures architectural friction and engineered fixes, feeding them back into the core software to permanently upgrade the execution pipeline.</div></div>
                     
                     <div class="node node-iac"><div class="tag">[PAYLOAD: main.tf]</div><div class="node-title">IaC Generation</div><div class="node-text">Environment-agnostic Terraform payload (main.tf) synthesized upon coordinate lock.</div></div>
@@ -902,22 +909,331 @@ Next Scheduled Review: 2026-11-10
             <h2 class="section-title">Log Analytics Workspace Telemetry</h2>
 
             <!-- ARCHITECTURAL INSIGHT -->
-            <div class="insight-The file `image_d30f6f.png` outlines a deterministic workflow architecture for deploying zero-trust infrastructure, specifically targeting Microsoft Entra ID and passwordless OpenID Connect (OIDC) workload federation. 
+            <div class="insight-box" style="background: linear-gradient(90deg, rgba(168, 85, 247, 0.1) 0%, transparent 100%);">
+                <div class="insight-header" style="color: var(--color-purple);">Architectural Insight</div>
+                <div class="insight-text">
+                    "Because Azure Log Analytics backend indexing has a natural time delay, raw cryptographic logs cannot always be pulled synchronously during deployment. Generating a hardened KQL artifact ensures that once schema sync completes, the engineer possesses the exact query needed to mathematically prove data-plane access and validate the OIDC trust matrix for strict SOC 2 or ISO audits."
+                </div>
+            </div>
+        </div>
 
-Here is a breakdown of the architectural pipeline detailed in the diagram:
+        <div class="feature-grid-3">
+            <div class="feature-card cyan">
+                <h3 class="feature-title">Asynchronous Validation</h3>
+                <p class="feature-text">Accounts for native cloud indexing delays by generating a precise, ready-to-execute KQL payload that can be run independently of the deployment pipeline once Azure's backend schema syncs.</p>
+            </div>
+            <div class="feature-card blue">
+                <h3 class="feature-title">Mathematical Proof</h3>
+                <p class="feature-text">Explicitly projects critical audit fields—like SafeCallerIpAddress and SafeIdentityClaim—to mathematically correlate the OIDC token issuance with actual data-plane read operations.</p>
+            </div>
+            <div class="feature-card green">
+                <h3 class="feature-title">Audit Portability</h3>
+                <p class="feature-text">By outputting this query as a standalone artifact, the framework empowers compliance teams to execute objective, unalterable verifications long after the initial provisioning session concludes.</p>
+            </div>
+        </div>
 
-### Input and Governance
-*   **Security Engineer:** Acting as the Cloud Architect, this role inputs target coordinates and strict GitHub Subject Claims. The engineer is responsible for validating execution gates.
-*   **Zero Trust Infrastructure as Code Software:** This proprietary core software enforces a strict, deterministic directive. It governs the AI to ensure the output aligns with a mathematically certain Entra ID zero-trust baseline.
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-dots">
+                    <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                </div>
+                <div class="terminal-title">kql_telemetry.md</div>
+            </div>
+            <pre class="terminal-body"><span class="t-cyan"># KQL TELEMETRY AUDIT ARTIFACT</span>
+<span class="t-blue">**Target Vault:**</span> kv-efm-test-lab-04
+<span class="t-blue">**Execution Context:**</span> Asynchronous Audit Validation
 
-### Execution and Synthesis
-*   **AI Compiler:** Functioning as an interactive state machine, this component utilizes a Human-in-the-Loop (HITL) active loop. It validates inputs with the engineer at explicit gates to prevent architectural drift or logic hallucination.
-*   **IaC Generation:** Once coordinates are locked, the pipeline synthesizes the environment-agnostic infrastructure as code payload (`main.tf` via Terraform).
-*   **Continuous Protocol Refinement:** Running parallel to the active loop, this mechanism logs architectural friction and engineered fixes into an artifact (`PATCH_LEDGER.md`). This feeds back into the core software to permanently upgrade the execution pipeline.
+<span class="t-muted">Execute the following Kusto Query Language (KQL) payload in your Log Analytics Workspace to mathematically prove data-plane access and validate the OIDC trust matrix.</span>
 
-### Target State and Telemetry
-*   **Zero-Trust Machine Identity Core:** The resulting hardened foundation. It establishes the cryptographic OIDC state for passwordless workload federation.
-*   **Identity Architecture Ledger (IAL):** An artifact (`IAL_RECORD.md`) that records and validates the immutable target state infrastructure configuration.
-*   **Audit Ledgers & KQL Telemetry:** Utilizing Azure telemetry (ARL & KQL), this branch mathematically confirms operational governance and SOC 2 compliance through asynchronous diagnostics.
+<span class="t-purple">```kql</span>
+AzureDiagnostics
+| where ResourceProvider == "MICROSOFT.KEYVAULT"
+| where Resource == "kv-efm-test-lab-04"
+| extend SafeCallerIpAddress = column_ifexists("CallerIpAddress", "Pending Schema Sync")
+| extend SafeIdentityClaim = column_ifexists("identity_claim_sub_s", "Pending Schema Sync")
+| project TimeGenerated, VaultName = Resource, OperationName, ResultSignature, SafeCallerIpAddress, SafeIdentityClaim
+| sort by TimeGenerated desc
+<span class="t-purple">```</span></pre>
+        </div>
+        
+        <p class="diagram-caption">The KQL Telemetry artifact bridges the gap between infrastructure deployment and asynchronous log indexing, guaranteeing audit continuity.</p>
 
-Would you like to drill down into the specific GitHub Subject Claims required at the engineer's input gate, or focus on the exact KQL telemetry configurations for the audit ledger?
+    </section>
+
+    <!-- TRANSITION BRIDGE DPL (NEW) -->
+    <div id="dpl" class="transition-wrapper">
+        <div class="section-divider-line"></div>
+        <h2 class="deep-dive-header" style="color: var(--color-red);">Experience-Driven Knowledge Capture</h2>
+    </div>
+
+    <!-- MODULE DPL: PATCH LEDGER (NEW) -->
+    <section class="stacked-section">
+        <div class="section-intro">
+            <span class="section-kicker">Iterative Architecture Improvement</span>
+            <h2 class="section-title">Continuous Protocol Refinement (Defect & Patch Ledger)</h2>
+
+            <!-- ARCHITECTURAL INSIGHT -->
+            <div class="insight-box" style="background: linear-gradient(90deg, rgba(168, 85, 247, 0.1) 0%, transparent 100%);">
+                <div class="insight-header" style="color: var(--color-purple);">Architectural Insight</div>
+                <div class="insight-text">
+                    "Standard infrastructure tools fail quietly or rely entirely on human memory to prevent repeated mistakes. This software utilizes a closed-loop automated memory system. By meticulously documenting architectural friction—symptoms, root causes, and engineered fixes—it mathematically captures engineering experience and hard-codes those lessons learned directly back into the execution baseline, permanently upgrading the pipeline."
+                </div>
+            </div>
+        </div>
+
+        <div class="feature-grid-3">
+            <div class="feature-card red">
+                <h3 class="feature-title">Autonomous Exception Handling</h3>
+                <p class="feature-text">When terminal errors are detected (e.g., state conflicts or token drops), the software immediately suspends execution, entering a diagnostic loop to isolate the fault and generate a targeted codebase patch.</p>
+            </div>
+            <div class="feature-card teal">
+                <h3 class="feature-title">The Architectural Hold</h3>
+                <p class="feature-text">Enforces strict Rule 5 compliance: the software is mathematically forbidden from patching structural logic without explicit human authorization, preventing unguided AI hallucination or workflow hijacking.</p>
+            </div>
+            <div class="feature-card blue">
+                <h3 class="feature-title">Immutable Knowledge Capture</h3>
+                <p class="feature-text">Every resolved defect is appended to the ledger. This translates ephemeral troubleshooting efforts into permanent, executable logic, ensuring the framework continuously evolves from real-world friction.</p>
+            </div>
+        </div>
+
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-dots">
+                    <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                </div>
+                <div class="terminal-title">patch_ledger.md</div>
+            </div>
+            <pre class="terminal-body"><span class="t-cyan"># DEFECT & PATCH LEDGER (DPL)</span>
+<span class="t-blue">**Framework Engine:**</span> Zero Trust Infrastructure as Code Software (v4.1)
+<span class="t-blue">**Purpose:**</span> Cryptographic tracking of architectural friction and engine updates.
+
+<span class="t-purple">## [ENTRY 001] ARM State Conflict (Diagnostic Settings)</span>
+* <span class="t-cyan">**Error / Symptom:**</span> ARM deployment failed with `Conflict` due to duplicate data sinks.
+* <span class="t-cyan">**Root Cause:**</span> The Bicep payload auto-generated a unique diagnostic setting name (`diag-kv-audit-${uniqueString}`), which collided with an existing logging sink (`diag-kv-audit-tkav`) on the target Key Vault.
+* <span class="t-cyan">**Engineered Fix:**</span> Parameterized the diagnostic setting name within the template, allowing the engineer to declare the existing sink name at runtime. This forces ARM to execute an idempotent update rather than attempting a duplicate creation.
+
+<span class="t-purple">## [ENTRY 002] AADSTS700213 Subject Claim Mismatch (Legacy String Mapping)</span>
+* <span class="t-cyan">**Error / Symptom:**</span> OIDC GitHub Actions validation bridge failed with Entra ID dropping the token exchange.
+* <span class="t-cyan">**Root Cause:**</span> GitHub Actions presented a subject claim containing immutable numeric IDs, but the template provisioned standard string-based repository paths, failing Entra ID's strict character-for-character evaluation.
+* <span class="t-cyan">**Engineered Fix:**</span> Shifted the OIDC subject claim parameter in the payload to explicitly map the exact numeric ID string presented by the GitHub authentication runner.
+
+<span class="t-purple">## [ENTRY 003] AI Generative Dump & HITL Bypass (Rule 5 Violation)</span>
+* <span class="t-cyan">**Error / Symptom:**</span> The engine unilaterally generated a full-payload system directive update, breaking the "slow down" protocol and hijacking the architect's workflow.
+* <span class="t-cyan">**Root Cause:**</span> Lack of an explicit gating mechanism preventing the AI from drafting and executing a structural codebase update simultaneously without waiting for user consensus.
+* <span class="t-cyan">**Engineered Fix:**</span> Rewrote System Directive Rule 5 to mandate a strict "Architectural Hold," mathematically forbidding structural patches without explicit human authorization and collaborative discussion prior to generation (Engine version updated to v3.7).
+
+<span class="t-purple">## [ENTRY 004] AADSTS700213 Regression (Azure Bicep Pre-Flight Pipeline)</span>
+* <span class="t-cyan">**Error / Symptom:**</span> GitHub Actions validation bridge failed with AADSTS700213 for the Bicep deployment pipeline.
+* <span class="t-cyan">**Root Cause:**</span> While Entry 002 established numeric IDs as mandatory, the v3.6 Bicep initialization phase lacked a mechanism to fetch these IDs dynamically, resorting to legacy strings that doomed the deployment.
+* <span class="t-cyan">**Engineered Fix:**</span> Validated native PowerShell API retrieval locally and updated the system directive to v3.8, injecting explicit `Invoke-RestMethod` commands into the pre-flight checklist. This arms the Bicep payload with immutable numeric IDs upfront, permanently preventing token exchange drops.
+
+<span class="t-muted">*No deployment defects encountered during this session run.*</span></pre>
+        </div>
+        
+        <p class="diagram-caption">The Defect & Patch Ledger transforms real-world engineering friction into permanent pipeline upgrades, establishing a closed-loop system of continuous improvement.</p>
+    </section>
+
+    <!-- TRANSITION BRIDGE 6 -->
+    <div id="index" class="transition-wrapper">
+        <div class="section-divider-line"></div>
+        <h2 class="deep-dive-header" style="color: var(--color-blue);">Enterprise Capability Scaling</h2>
+    </div>
+
+    <!-- MODULE 7: CAPABILITY INDEX -->
+    <section class="stacked-section">
+        
+        <div class="section-intro">
+            <span class="section-kicker">Continuous Enterprise Integration</span>
+            <h2 class="section-title">The Control Plane Capability Index</h2>
+
+            <!-- ARCHITECTURAL INSIGHT 7 -->
+            <div class="insight-box" style="background: linear-gradient(90deg, rgba(168, 85, 247, 0.1) 0%, transparent 100%);">
+                <div class="insight-header" style="color: var(--color-purple);">Architectural Insight</div>
+                <div class="insight-text">
+                    "Expanding enterprise cloud capabilities typically introduces new attack vectors when security is applied retroactively. The Control Plane Capability Index addresses this by enforcing a modular architecture where advanced access controls and governance pipelines are deployed strictly on top of an already hardened, passwordless foundation. This structure ensures that an organization can scale to meet complex business demands without expanding its credential blast radius."
+                </div>
+            </div>
+        </div>
+        
+        <div class="feature-grid-3">
+            <div class="feature-card blue">
+                <h3 class="feature-title">Scaling the Hardened Foundation</h3>
+                <p class="feature-text">Once the zero-trust machine identity baseline is mathematically locked in via infrastructure-as-code, the architecture is ready to safely scale. It integrates broader enterprise capabilities without inheriting legacy credential vulnerabilities.</p>
+            </div>
+            
+            <div class="feature-card purple">
+                <h3 class="feature-title">The 35-Service Taxonomy</h3>
+                <p class="feature-text">The index categorizes 35 core Microsoft Entra capabilities across 7 functional domains. This structured taxonomy serves as a definitive architectural menu, mapping native control plane features directly to complex business requirements.</p>
+            </div>
+
+            <div class="feature-card cyan">
+                <h3 class="feature-title">The Final Configuration Package</h3>
+                <p class="feature-text">Rather than treating security as an afterthought, this framework allows cloud architects to modularly map advanced access controls, governance pipelines, and telemetry engines directly on top of the immutable identity core.</p>
+            </div>
+        </div>
+
+        <div class="diagram-wrapper-wide capability-diagram">
+            
+            <div class="capability-grid">
+                
+                <div class="cap-card">
+                    <div class="cap-header">
+                        <span class="cap-num">01</span>
+                        <span class="cap-title">Directory Foundations</span>
+                    </div>
+                    <ul class="cap-list">
+                        <li>Tenant Configuration & Global Settings</li>
+                        <li>Built-In & Custom Roles (RBAC)</li>
+                        <li>Administrative Units (AUs)</li>
+                        <li>Directory Objects</li>
+                        <li>Custom Security Attributes (CSAs)</li>
+                        <li>Device Management</li>
+                    </ul>
+                </div>
+
+                <div class="cap-card">
+                    <div class="cap-header">
+                        <span class="cap-num">03</span>
+                        <span class="cap-title">Credential Security & Auth</span>
+                    </div>
+                    <ul class="cap-list">
+                        <li>Authentication Methods</li>
+                        <li>MFA Settings & Registration Campaigns</li>
+                        <li>Self-Service Password Reset (SSPR)</li>
+                        <li>Entra Password Protection</li>
+                        <li>Windows Hello for Business (WHfB)</li>
+                        <li>Microsoft Entra Kerberos</li>
+                    </ul>
+                </div>
+
+                <div class="cap-card">
+                    <div class="cap-header">
+                        <span class="cap-num">05</span>
+                        <span class="cap-title">App & Workload Control</span>
+                    </div>
+                    <ul class="cap-list">
+                        <li>App Registrations & Service Principals</li>
+                        <li>Managed Identities for Azure Resources</li>
+                        <li>Enterprise Applications Management</li>
+                        <li>Microsoft Entra Application Proxy</li>
+                        <li>Defender for Cloud Apps (MDCA) Proxy</li>
+                    </ul>
+                </div>
+
+                <div class="cap-card">
+                    <div class="cap-header">
+                        <span class="cap-num">02</span>
+                        <span class="cap-title">Zero Trust Access Control</span>
+                    </div>
+                    <ul class="cap-list">
+                        <li>Conditional Access (CA) Engine</li>
+                        <li>CA Authentication Context</li>
+                        <li>Protected Actions</li>
+                        <li>Microsoft Entra ID Protection</li>
+                        <li>Global Secure Access (GSA / SSE)</li>
+                    </ul>
+                </div>
+
+                <div class="cap-card">
+                    <div class="cap-header">
+                        <span class="cap-num">06</span>
+                        <span class="cap-title">Identity Governance</span>
+                    </div>
+                    <ul class="cap-list">
+                        <li>Privileged Identity Management (PIM)</li>
+                        <li>Entra Entitlement Management</li>
+                        <li>Access Reviews</li>
+                        <li>Lifecycle Workflows (LCW)</li>
+                        <li>Terms of Use (ToU)</li>
+                    </ul>
+                </div>
+
+                <div class="cap-card">
+                    <div class="cap-header">
+                        <span class="cap-num">04</span>
+                        <span class="cap-title">External Identities</span>
+                    </div>
+                    <ul class="cap-list">
+                        <li>External Collaboration Settings (B2B)</li>
+                        <li>Cross-Tenant Access Settings (XTAS)</li>
+                        <li>Cross-Tenant Synchronization (CTS)</li>
+                        <li>External IdP Federation</li>
+                    </ul>
+                </div>
+
+                <div class="cap-card cap-card-full">
+                    <div class="cap-header">
+                        <span class="cap-num">07</span>
+                        <span class="cap-title">Hybrid Identity & Telemetry Engines</span>
+                    </div>
+                    <div class="cap-2-col-list">
+                        <ul class="cap-list">
+                            <li>Hybrid Identity Engines (Connect Sync, Cloud Sync, PTA)</li>
+                            <li>Seamless Single Sign-On (SSO)</li>
+                        </ul>
+                        <ul class="cap-list">
+                            <li>Microsoft Entra Connect Health</li>
+                            <li>Monitoring & Log Analytics</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        
+        <p class="diagram-caption">The full Capability Index architecture. It guarantees an immutable, heavily audited zero-trust core seamlessly combined with the precise modular security toolsets required for the deployment.</p>
+
+    </section>
+
+    <!-- TRANSITION BRIDGE 7 -->
+    <div id="certs" class="transition-wrapper">
+        <div class="section-divider-line"></div>
+        <h2 class="deep-dive-header" style="color: var(--color-blue);">Professional Certifications</h2>
+    </div>
+
+    <!-- MODULE 8: PROFESSIONAL CERTIFICATIONS -->
+    <section class="stacked-section">
+        
+        <div class="feature-grid-3">
+            
+            <!-- SC-300 -->
+            <div class="feature-card cert-card cert-blue blue">
+                <div class="cert-org">Microsoft Certified</div>
+                <div class="cert-name">Identity and Access Administrator Associate (SC-300)</div>
+            </div>
+            
+            <!-- CompTIA -->
+            <div class="feature-card cert-card cert-red red">
+                <div class="cert-org">CompTIA</div>
+                <div class="cert-name">Cybersecurity Analyst (CySA+) & Security+ ce</div>
+            </div>
+
+            <!-- Python PCAP -->
+            <div class="feature-card cert-card cert-green green">
+                <div class="cert-org">Python Institute</div>
+                <div class="cert-name">PCAP – Certified Associate Python Programmer</div>
+            </div>
+            
+            <!-- SC-900 -->
+            <div class="feature-card cert-card cert-cyan cyan">
+                <div class="cert-org">Microsoft Certified</div>
+                <div class="cert-name">Security, Compliance, and Identity Fundamentals (SC-900)</div>
+            </div>
+
+            <!-- Dataquest -->
+            <div class="feature-card cert-card cert-teal teal">
+                <div class="cert-org">Dataquest</div>
+                <div class="cert-name">Data Engineering Professional</div>
+            </div>
+
+        </div>
+
+        <div class="resume-btn-container">
+            <a href="Steven_Tuschman_Resume.pdf" target="_blank" class="resume-btn">View Full Resume</a>
+        </div>
+
+    </section>
+
+</body>
+</html>

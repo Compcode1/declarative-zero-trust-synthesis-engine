@@ -1,10 +1,9 @@
-<!DOCTYPE html>  
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intelligent Architecture - Zero Trust IaC Software</title>
-    <link rel="icon" type="image/png" href="cropped-LOGO-IMPROVED.png">
+    <title>Intelligent Architecture - Pipeline Architecture</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     
@@ -41,15 +40,15 @@
         /* ================= NAVIGATION ================= */
         nav {
             position: fixed; top: 0; width: 100%;
-            background: rgba(2, 6, 23, 0.85); backdrop-filter: blur(10px);
+            background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-base); z-index: 100;
             padding: 1.2rem 2rem; display: flex; justify-content: center;
         }
         .nav-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; justify-content: center; align-items: center; }
-        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; }
         .nav-links a:hover { color: var(--color-cyan); }
+        .nav-links a.active-link { color: #ffffff; border-bottom: 2px solid var(--color-cyan); padding-bottom: 4px; }
         
-        /* NEW PORTFOLIO BUTTON */
         .nav-links a.portfolio-btn {
             color: var(--color-cyan);
             border: 1px solid var(--color-cyan);
@@ -65,13 +64,10 @@
         }
 
         /* ================= HERO HEADER ================= */
-        .hero { padding: 160px 20px 100px; text-align: center; border-bottom: 1px solid var(--border-base); }
+        .hero { padding: 180px 20px 80px; text-align: center; border-bottom: 1px solid var(--border-base); }
         .hero-title-container { display: flex; align-items: center; justify-content: center; margin-bottom: 25px; }
-        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 4rem; font-weight: 600; letter-spacing: 3px; color: var(--text-main); text-transform: uppercase; }
-        .hero-subtitle { font-size: 1.7rem; color: var(--color-cyan); font-weight: 500; max-width: 1000px; margin: 0 auto; }
-        .nowrap { white-space: nowrap; }
-        .badge-container { margin-top: 45px; display: flex; justify-content: center; }
-        .ms-badge { height: 160px; width: auto; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5)); }
+        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 4rem; font-weight: 900; letter-spacing: 3px; color: var(--color-purple); text-transform: uppercase; }
+        .hero-subtitle { font-size: 1.5rem; color: var(--text-muted); font-weight: 500; max-width: 1000px; margin: 0 auto; letter-spacing: 1px; }
 
         /* ================= INSIGHT CALLOUT ================= */
         .insight-box {
@@ -105,68 +101,6 @@
             font-weight: 500;
         }
 
-        /* ================= MODULE 1: EXECUTION ENVIRONMENT ================= */
-        .module-section { 
-            display: flex; flex-direction: column; align-items: center; padding: 5rem 20px 0; 
-            scroll-margin-top: 100px; 
-        }
-        .architecture-container { width: 100%; max-width: 1300px; display: flex; flex-direction: column; align-items: center; }
-        
-        .summary-section { max-width: 1000px; text-align: center; margin-bottom: 2rem; }
-        .summary-title { font-size: 2.2rem; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1.5rem; color: var(--logo-blue); }
-        .summary-text { font-size: 1.25rem; color: var(--text-muted); line-height: 1.9; }
-        
-        .canvas-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 15px; }
-
-        .diagram-canvas {
-            position: relative; min-width: 1300px; height: 750px;
-            background-image: linear-gradient(to right, rgba(30, 41, 59, 0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(30, 41, 59, 0.5) 1px, transparent 1px);
-            background-size: 40px 40px; border: 1px solid var(--border-base); border-radius: 12px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
-
-        .routing-lines { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
-        
-        .node { position: absolute; background: var(--bg-node); border: 1px solid var(--border-base); border-radius: 8px; padding: 1.5rem; z-index: 2; backdrop-filter: blur(8px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3); }
-        .node-title { font-size: 1.15rem; font-weight: 900; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 1rem; line-height: 1.2; }
-        .node-text { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
-        .tag { font-family: monospace; font-size: 0.75rem; font-weight: 700; padding: 4px 8px; border: 1px solid; border-radius: 4px; display: inline-block; margin-bottom: 0.75rem; letter-spacing: 0.5px; }
-
-        .node-engineer { left: 40px; top: 50px; width: 240px; border-left: 4px solid var(--color-blue); }
-        .node-engineer .tag { color: var(--color-blue); border-color: rgba(59, 130, 246, 0.3); }
-        .node-engineer .highlight { color: var(--color-purple); font-weight: 600; margin-top: 10px; display: block; }
-        
-        .node-engine { 
-            left: 40px; top: 320px; width: 260px; 
-            border: 2px solid var(--color-cyan); border-left: 6px solid var(--color-cyan); 
-            background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(14, 165, 233, 0.18) 4px, rgba(14, 165, 233, 0.18) 8px), linear-gradient(135deg, rgba(14, 165, 233, 0.25) 0%, rgba(10, 15, 29, 0.95) 100%), var(--bg-node); 
-            box-shadow: 0 0 25px rgba(14, 165, 233, 0.45), inset 0 0 15px rgba(14, 165, 233, 0.25); 
-        }
-        .node-engine .tag { color: var(--color-cyan); border-color: rgba(14, 165, 233, 0.3); margin-right: 5px; }
-        
-        .node-compiler { left: 330px; top: 60px; width: 250px; border-left: 4px solid var(--color-purple); }
-        .node-compiler .tag { color: var(--color-purple); border-color: rgba(168, 85, 247, 0.3); }
-
-        .node-dpl { 
-            left: 340px; top: 430px; width: 450px; 
-            border: 2px solid var(--color-red); border-left: 6px solid var(--color-red); 
-            background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(244, 63, 94, 0.15) 4px, rgba(244, 63, 94, 0.15) 8px), linear-gradient(135deg, rgba(244, 63, 94, 0.15) 0%, rgba(10, 15, 29, 0.95) 100%), var(--bg-node); 
-            box-shadow: 0 0 25px rgba(244, 63, 94, 0.35), inset 0 0 15px rgba(244, 63, 94, 0.15); 
-        }
-        .node-dpl .tag { color: var(--color-red); border-color: rgba(244, 63, 94, 0.3); }
-        
-        .node-iac { left: 620px; top: 80px; width: 210px; border-left: 4px solid var(--color-grey); }
-        .node-iac .tag { color: var(--color-grey); border-color: rgba(100, 116, 139, 0.3); }
-        
-        .node-core { left: 950px; top: 60px; width: 260px; border: 1px solid rgba(16, 185, 129, 0.3); border-left: 4px solid var(--color-green); }
-        .node-core .tag { color: var(--color-green); border-color: rgba(16, 185, 129, 0.3); }
-        .node-core .highlight { color: var(--color-green); font-weight: 600; margin-top: 10px; display: block; }
-        
-        .node-ial { left: 830px; top: 410px; width: 210px; border-left: 4px solid var(--color-teal); }
-        .node-ial .tag { color: var(--color-teal); border-color: rgba(20, 184, 166, 0.3); }
-        
-        .node-arl { left: 1070px; top: 410px; width: 250px; border-left: 4px solid var(--color-teal); }
-        .node-arl .tag { color: var(--color-teal); border-color: rgba(20, 184, 166, 0.3); }
-
         /* ================= MASSIVE TRANSITION BRIDGE ================= */
         .transition-wrapper {
             width: 100%; max-width: 1300px; margin: 7rem auto 6rem;
@@ -186,7 +120,7 @@
         }
 
         /* ================= SHARED STACKED LAYOUT ================= */
-        .stacked-section { padding: 0 20px 80px; width: 100%; display: flex; flex-direction: column; align-items: center; }
+        .stacked-section { padding: 40px 20px 80px; width: 100%; display: flex; flex-direction: column; align-items: center; }
         
         .section-intro { max-width: 1000px; text-align: center; margin-bottom: 4rem; }
         .section-kicker { color: var(--color-cyan); font-weight: 700; font-size: 1.1rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; display: block; }
@@ -215,7 +149,7 @@
         
         .diagram-caption { margin-top: 2.5rem; text-align: center; font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; padding: 0 20px; max-width: 900px; margin-left: auto; margin-right: auto; }
 
-        /* ================= MODULE 2 SPECIFICS ================= */
+        /* ================= ANATOMY DIAGRAM SPECIFICS ================= */
         .anatomy-diagram { height: 500px; }
         .a-node { position: absolute; background: var(--bg-page); border: 1px solid var(--border-base); border-radius: 6px; padding: 1.5rem; text-align: center; z-index: 2; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.5); }
         .a-node .tag { border-color: rgba(255,255,255,0.2); color: var(--text-muted); font-size: 0.75rem; padding: 4px 8px; margin-bottom: 10px; }
@@ -227,7 +161,7 @@
         .a-out-1 { width: 280px; top: 350px; left: 210px; border-color: rgba(59, 130, 246, 0.5); }
         .a-out-2 { width: 280px; top: 350px; left: 810px; border-color: rgba(16, 185, 129, 0.5); }
 
-        /* ================= MODULE 3 SPECIFICS ================= */
+        /* ================= WORKFLOW DIAGRAM SPECIFICS ================= */
         .workflow-diagram { height: 650px; display: flex; justify-content: center; align-items: center; }
         .w-center { position: relative; z-index: 2; width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle, rgba(14,165,233,0.15) 0%, var(--bg-page) 70%); border: 2px solid var(--color-cyan); display: flex; flex-direction: column; justify-content: center; align-items: center; box-shadow: 0 0 35px rgba(14, 165, 233, 0.3); text-align: center; }
         .w-center-title { font-size: 0.8rem; color: var(--color-cyan); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
@@ -240,7 +174,7 @@
         .w-n3 { bottom: 85px; left: 50%; transform: translateX(-50%); border-color: var(--color-red); }
         .w-n4 { top: 50%; left: calc(50% - 240px); transform: translate(-50%, -50%); border-color: var(--color-blue); }
 
-        /* ================= MODULE 4 SPECIFICS ================= */
+        /* ================= FEDERATION DIAGRAM SPECIFICS ================= */
         .federation-diagram { height: 500px; }
         .f-node { position: absolute; background: var(--bg-page); border: 1px solid var(--color-blue); border-radius: 6px; z-index: 2; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.5); }
         .f-engine { width: 240px; top: 190px; left: 300px; text-align: center; border-width: 2px; padding: 2rem 1.5rem; }
@@ -256,7 +190,7 @@
         .f-target-title { font-weight: 700; font-size: 1.1rem; color: var(--text-main); }
         .f-target-sub { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 3px; }
 
-        /* ================= TERMINAL UI (MODULE 5 & 6) ================= */
+        /* ================= TERMINAL UI (LEDGERS) ================= */
         .terminal-window { background: #0d1117; border: 1px solid var(--border-base); border-radius: 10px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); width: 100%; max-width: 1100px; margin: 0 auto; text-align: left; overflow: hidden; }
         .terminal-header { background: #161b22; padding: 12px 20px; display: flex; align-items: center; border-bottom: 1px solid var(--border-base); position: relative; }
         .terminal-dots { display: flex; gap: 8px; position: absolute; left: 20px; }
@@ -266,7 +200,7 @@
         .terminal-body { padding: 2.5rem; font-family: 'Consolas', 'Courier New', monospace; font-size: 1rem; line-height: 1.8; color: var(--text-main); overflow-y: auto; max-height: 700px; white-space: pre-wrap; word-wrap: break-word; background: linear-gradient(rgba(13, 17, 23, 1) 0%, rgba(13, 17, 23, 0.95) 100%); }
         .t-cyan { color: var(--color-cyan); font-weight: 700; } .t-green { color: var(--color-green); font-weight: 700; } .t-blue { color: var(--color-blue); } .t-purple { color: var(--color-purple); } .t-muted { color: var(--text-muted); } .t-comment { color: var(--color-grey); font-style: italic; }
 
-        /* ================= MODULE 7 SPECIFICS: CAPABILITY INDEX ================= */
+        /* ================= CAPABILITY INDEX ================= */
         .capability-diagram { height: auto; padding-bottom: 2rem; }
         .capability-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: 3rem; width: 100%; }
         .cap-card { background: rgba(10, 15, 29, 0.7); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 8px; padding: 1.5rem; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3); backdrop-filter: blur(8px); }
@@ -279,7 +213,7 @@
         .cap-list li::before { content: '>'; color: var(--color-blue); font-weight: 900; }
         .cap-2-col-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2rem; }
 
-        /* ================= MODULE 8 SPECIFICS: CERTIFICATIONS & RESUME ================= */
+        /* ================= CERTIFICATIONS & RESUME ================= */
         .cert-card { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; text-align: left; }
         .cert-org { font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; font-weight: 700; }
         
@@ -291,7 +225,6 @@
 
         .cert-name { font-size: 1.2rem; font-weight: 700; color: var(--text-main); line-height: 1.4; }
 
-        /* RESUME BUTTON */
         .resume-btn-container { margin-top: 2rem; text-align: center; width: 100%; }
         .resume-btn {
             display: inline-block; padding: 1rem 2.5rem;
@@ -325,121 +258,28 @@
     <!-- GLOBAL NAVIGATION -->
     <nav>
         <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="workflow-portfolio.html" class="portfolio-btn">Technical Execution Showcase</a></li>
-            <li><a href="#execution">Pipeline Architecture</a></li>
-            <li><a href="#anatomy">Core Software</a></li>
-            <li><a href="#workflow">Workflow</a></li>
-            <li><a href="#federation">Identity Federation</a></li>
-            <li><a href="#ledger">Immutable Baseline</a></li>
-            <li><a href="#arl">Forensic Audit</a></li>
-            <li><a href="#kql">KQL Telemetry</a></li>
-            <li><a href="#dpl">Patch Ledger</a></li>
-            <li><a href="#index">Capability Index</a></li>
-            <li><a href="#certs">Certifications</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="architectural.html" class="active-link">Pipeline Architecture</a></li>
+            <li><a href="workflowportfolio.html" class="portfolio-btn">Technical Execution Showcase</a></li>
         </ul>
     </nav>
 
     <!-- HERO HEADER -->
     <header class="hero">
         <div class="hero-title-container">
-            <h1 class="hero-title">INTELLIGENT ARCHITECTURE</h1>
+            <h1 class="hero-title">PIPELINE ARCHITECTURE</h1>
         </div>
-        <p class="hero-subtitle">Software-Accelerated Zero-Trust Machine Identity Provisioning for <span class="nowrap">Microsoft Entra ID</span></p>
-        <div class="badge-container">
-            <img src="MS Badge.png" alt="Microsoft SC-300 Certification" class="ms-badge">
-        </div>
+        <p class="hero-subtitle">System Components & Technical Workflow Execution</p>
     </header>
 
-    <!-- MODULE 1: EXECUTION ENVIRONMENT -->
-    <section id="execution" class="module-section">
-        <div class="architecture-container">
-            
-            <div class="summary-section">
-                <h2 class="summary-title">Zero Trust Infrastructure as Code Software Environment</h2>
-                <p class="summary-text">
-                    This architecture maps the complete end-to-end provisioning ecosystem developed by Intelligent Architecture. While the active AI compiler, engineer inputs, and automated ledgers act as critical chassis components, the proprietary Zero Trust Infrastructure as Code Software is the prime mover that drives the entire system. By injecting strict directives and Human-in-the-Loop (HITL) validation protocols, the software is the unique power core that transforms generative AI into a deterministic cloud security architect. Once this mathematically certain, passwordless identity foundation is provisioned, the enterprise can safely scale all 35 Microsoft Entra capabilities.
-                </p>
-
-                <!-- ARCHITECTURAL INSIGHT 1 -->
-                <div class="insight-box" style="background: linear-gradient(90deg, rgba(168, 85, 247, 0.1) 0%, transparent 100%);">
-                    <div class="insight-header" style="color: var(--color-purple);">Architectural Insight</div>
-                    <div class="insight-text">
-                        "Generative AI is inherently probabilistic, making unconstrained models a critical liability for enterprise cybersecurity. The foundational breakthrough of this framework is its capacity to force a probabilistic model to execute deterministically. By tethering the AI to strict architectural directives and hard validation gates, this software transforms unpredictable generative workflows into a mathematically certain, tightly governed infrastructure pipeline."
-                    </div>
-                </div>
-            </div>
-
-            <div class="canvas-wrapper">
-                <div class="diagram-canvas">
-                    <svg class="routing-lines" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6" /></marker>
-                            <marker id="arrow-cyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0ea5e9" /></marker>
-                            <marker id="arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#a855f7" /></marker>
-                            <marker id="arrow-grey" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b" /></marker>
-                            <marker id="arrow-teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#14b8a6" /></marker>
-                            <marker id="arrow-red-end" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#f43f5e" /></marker>
-                            <marker id="arrow-red-start" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 10 0 L 0 5 L 10 10 z" fill="#f43f5e" /></marker>
-                        </defs>
-                        <!-- Eng to Compiler -->
-                        <path d="M 280 110 L 305 110 L 305 130 L 320 130" fill="none" stroke="#3b82f6" stroke-width="3" marker-end="url(#arrow-blue)" />
-                        <!-- Compiler to Eng -->
-                        <path d="M 330 160 L 310 160 L 310 140 L 290 140" fill="none" stroke="#a855f7" stroke-width="2" stroke-dasharray="6, 6" marker-end="url(#arrow-purple)" />
-                        <!-- Engine to Compiler -->
-                        <path d="M 300 370 L 315 370 L 315 220 L 320 220" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="6, 6" marker-end="url(#arrow-cyan)" />
-                        <!-- Compiler to IaC -->
-                        <path d="M 580 170 L 610 170" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#arrow-grey)" />
-                        <!-- IaC to Core -->
-                        <path d="M 830 170 L 880 170 L 880 140 L 940 140" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#arrow-grey)" />
-                        
-                        <!-- Core to Split -->
-                        <path d="M 1080 250 L 1080 350" fill="none" stroke="#10b981" stroke-width="2" />
-                        <!-- Split to IAL -->
-                        <path d="M 1080 350 L 935 350 L 935 405" fill="none" stroke="#14b8a6" stroke-width="2" marker-end="url(#arrow-teal)" />
-                        <!-- Split to ARL -->
-                        <path d="M 1080 350 L 1195 350 L 1195 405" fill="none" stroke="#14b8a6" stroke-width="2" marker-end="url(#arrow-teal)" />
-                        
-                        <!-- Engine to DPL (Bidirectional) -->
-                        <path d="M 300 460 L 340 460" fill="none" stroke="#f43f5e" stroke-width="2" stroke-dasharray="4, 4" marker-start="url(#arrow-red-start)" marker-end="url(#arrow-red-end)" />
-                    </svg>
-
-                    <div class="node node-engineer"><div class="tag">[ROLE: CLOUD ARCHITECT]</div><div class="node-title">Security Engineer</div><div class="node-text">Inputs target coordinates and strict GitHub Subject Claims.<span class="highlight">Validates execution gates.</span></div></div>
-                    
-                    <div class="node node-engine"><div class="tag">[CORE SOFTWARE PRODUCT]</div><div class="node-title">Zero Trust Infrastructure as Code Software</div><div class="tag">[DIRECTIVE: DETERMINISTIC]</div><div class="node-text">Proprietary intellectual property. A strict system directive governing the AI to enforce a mathematically certain Entra ID zero-trust baseline.</div></div>
-                    
-                    <div class="node node-compiler"><div class="tag">[STATE: HITL ACTIVE LOOP]</div><div class="node-title">AI Compiler<br><span style="font-size: 0.85rem; font-weight: 500; color: #a855f7;">(INTERACTIVE STATE MACHINE)</span></div><div class="node-text">Operates as a guided interactive loop. Validates inputs with the engineer at strict gates to prevent drift and logic hallucination.</div></div>
-                    
-                    <!-- DPL Node safely positioned on the bottom baseline -->
-                    <div class="node node-dpl"><div class="tag">[ARTIFACT: PATCH_LEDGER.md]</div><div class="node-title">Continuous Protocol Refinement</div><div class="node-text">Captures architectural friction and engineered fixes, feeding them back into the core software to permanently upgrade the execution pipeline.</div></div>
-                    
-                    <div class="node node-iac"><div class="tag">[PAYLOAD: main.tf]</div><div class="node-title">IaC Generation</div><div class="node-text">Environment-agnostic Terraform payload (main.tf) synthesized upon coordinate lock.</div></div>
-                    
-                    <div class="node node-core"><div class="tag">[STATE: CRYPTOGRAPHIC OIDC]</div><div class="node-title">Zero-Trust Machine Identity Core</div><div class="node-text">The hardened foundation.<span class="highlight">Passwordless OIDC workload federation established.</span></div></div>
-                    
-                    <div class="node node-ial"><div class="tag">[ARTIFACT: IAL_RECORD.md]</div><div class="node-title">Identity Architecture Ledger (IAL)</div><div class="node-text">Records and validates the immutable target state infrastructure configuration.</div></div>
-                    
-                    <!-- Combined ARL & KQL Node -->
-                    <div class="node node-arl"><div class="tag">[TELEMETRY: ARL & KQL]</div><div class="node-title">Audit Ledgers & KQL Telemetry</div><div class="node-text">Mathematically confirms zero-trust operational governance and SOC 2 compliance via Azure telemetry and asynchronous diagnostic proofs.</div></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- TRANSITION BRIDGE 1 -->
-    <div id="anatomy" class="transition-wrapper">
-        <div class="section-divider-line"></div>
-        <h2 class="deep-dive-header">System Components Breakdown</h2>
-    </div>
-
-    <!-- MODULE 2: ANATOMY OF THE SOFTWARE -->
-    <section class="stacked-section">
+    <!-- MODULE 1: ANATOMY OF THE SOFTWARE -->
+    <section class="stacked-section" style="padding-top: 2rem;">
         
         <div class="section-intro">
             <span class="section-kicker">Defining The Framework</span>
             <h2 class="section-title">The Anatomy of the Zero Trust Infrastructure as Code Software</h2>
             
-            <!-- ARCHITECTURAL INSIGHT 2 -->
+            <!-- ARCHITECTURAL INSIGHT -->
             <div class="insight-box" style="background: linear-gradient(90deg, rgba(168, 85, 247, 0.1) 0%, transparent 100%);">
                 <div class="insight-header" style="color: var(--color-purple);">Architectural Insight</div>
                 <div class="insight-text">
@@ -503,20 +343,20 @@
 
     </section>
 
-    <!-- TRANSITION BRIDGE 2 -->
+    <!-- TRANSITION BRIDGE -->
     <div id="workflow" class="transition-wrapper">
         <div class="section-divider-line"></div>
         <h2 class="deep-dive-header" style="color: var(--color-cyan);">Workflow & Continuous Synthesis</h2>
     </div>
 
-    <!-- MODULE 3: ARCHITECTURAL WORKFLOW -->
+    <!-- MODULE 2: ARCHITECTURAL WORKFLOW -->
     <section class="stacked-section">
         
         <div class="section-intro">
             <span class="section-kicker">Prompt-Driven Infrastructure Synthesis</span>
             <h2 class="section-title">The Architectural Workflow</h2>
             
-            <!-- ARCHITECTURAL INSIGHT 3 -->
+            <!-- ARCHITECTURAL INSIGHT -->
             <div class="insight-box" style="background: linear-gradient(90deg, rgba(168, 85, 247, 0.1) 0%, transparent 100%);">
                 <div class="insight-header" style="color: var(--color-purple);">Architectural Insight</div>
                 <div class="insight-text">
@@ -567,20 +407,20 @@
 
     </section>
 
-    <!-- TRANSITION BRIDGE 3 -->
+    <!-- TRANSITION BRIDGE -->
     <div id="federation" class="transition-wrapper">
         <div class="section-divider-line"></div>
         <h2 class="deep-dive-header" style="color: var(--color-blue);">Federation & IaC Generation</h2>
     </div>
 
-    <!-- MODULE 4: FEDERATION EXECUTION -->
+    <!-- MODULE 3: FEDERATION EXECUTION -->
     <section class="stacked-section">
         
         <div class="section-intro">
             <span class="section-kicker">Establishing Passwordless Identities</span>
             <h2 class="section-title">Zero-Trust Federation Execution</h2>
 
-            <!-- ARCHITECTURAL INSIGHT 4 -->
+            <!-- ARCHITECTURAL INSIGHT -->
             <div class="insight-box" style="background: linear-gradient(90deg, rgba(168, 85, 247, 0.1) 0%, transparent 100%);">
                 <div class="insight-header" style="color: var(--color-purple);">Architectural Insight</div>
                 <div class="insight-text">
@@ -658,20 +498,20 @@
 
     </section>
 
-    <!-- TRANSITION BRIDGE 4 -->
+    <!-- TRANSITION BRIDGE -->
     <div id="ledger" class="transition-wrapper">
         <div class="section-divider-line"></div>
         <h2 class="deep-dive-header" style="color: var(--color-teal);">Immutable Baseline Generation</h2>
     </div>
 
-    <!-- MODULE 5: IDENTITY ARCHITECTURE LEDGER -->
+    <!-- MODULE 4: IDENTITY ARCHITECTURE LEDGER -->
     <section class="stacked-section">
         
         <div class="section-intro">
             <span class="section-kicker">Automated Proof-of-Governance</span>
             <h2 class="section-title">The Identity Architecture Ledger (IAL)</h2>
 
-            <!-- ARCHITECTURAL INSIGHT 5 -->
+            <!-- ARCHITECTURAL INSIGHT -->
             <div class="insight-box" style="background: linear-gradient(90deg, rgba(168, 85, 247, 0.1) 0%, transparent 100%);">
                 <div class="insight-header" style="color: var(--color-purple);">Architectural Insight</div>
                 <div class="insight-text">
@@ -778,20 +618,20 @@ Has KQL logging confirmed a successful authentication mapping directly against t
 
     </section>
 
-    <!-- TRANSITION BRIDGE 5 -->
+    <!-- TRANSITION BRIDGE -->
     <div id="arl" class="transition-wrapper">
         <div class="section-divider-line"></div>
         <h2 class="deep-dive-header" style="color: var(--color-purple);">Forensic Audit & Verification</h2>
     </div>
 
-    <!-- MODULE 6: AUDIT RESULTS LEDGER -->
+    <!-- MODULE 5: AUDIT RESULTS LEDGER -->
     <section class="stacked-section">
         
         <div class="section-intro">
             <span class="section-kicker">Forensic Governance & Sign-Off</span>
             <h2 class="section-title">The Audit Results Ledger (ARL)</h2>
 
-            <!-- ARCHITECTURAL INSIGHT 6 -->
+            <!-- ARCHITECTURAL INSIGHT -->
             <div class="insight-box" style="background: linear-gradient(90deg, rgba(168, 85, 247, 0.1) 0%, transparent 100%);">
                 <div class="insight-header" style="color: var(--color-purple);">Architectural Insight</div>
                 <div class="insight-text">
@@ -896,13 +736,13 @@ Next Scheduled Review: 2026-11-10
 
     </section>
 
-    <!-- TRANSITION BRIDGE KQL (NEW) -->
+    <!-- TRANSITION BRIDGE -->
     <div id="kql" class="transition-wrapper">
         <div class="section-divider-line"></div>
         <h2 class="deep-dive-header" style="color: var(--color-cyan);">Asynchronous Audit Artifacts</h2>
     </div>
 
-    <!-- MODULE KQL: TELEMETRY (NEW) -->
+    <!-- MODULE 6: KQL TELEMETRY -->
     <section class="stacked-section">
         <div class="section-intro">
             <span class="section-kicker">SOC 2 & ISO Compliance Proof</span>
@@ -960,13 +800,13 @@ AzureDiagnostics
 
     </section>
 
-    <!-- TRANSITION BRIDGE DPL (NEW) -->
+    <!-- TRANSITION BRIDGE -->
     <div id="dpl" class="transition-wrapper">
         <div class="section-divider-line"></div>
         <h2 class="deep-dive-header" style="color: var(--color-red);">Experience-Driven Knowledge Capture</h2>
     </div>
 
-    <!-- MODULE DPL: PATCH LEDGER (NEW) -->
+    <!-- MODULE 7: PATCH LEDGER -->
     <section class="stacked-section">
         <div class="section-intro">
             <span class="section-kicker">Iterative Architecture Improvement</span>
@@ -1033,20 +873,20 @@ AzureDiagnostics
         <p class="diagram-caption">The Defect & Patch Ledger transforms real-world engineering friction into permanent pipeline upgrades, establishing a closed-loop system of continuous improvement.</p>
     </section>
 
-    <!-- TRANSITION BRIDGE 6 -->
+    <!-- TRANSITION BRIDGE -->
     <div id="index" class="transition-wrapper">
         <div class="section-divider-line"></div>
         <h2 class="deep-dive-header" style="color: var(--color-blue);">Enterprise Capability Scaling</h2>
     </div>
 
-    <!-- MODULE 7: CAPABILITY INDEX -->
+    <!-- MODULE 8: CAPABILITY INDEX -->
     <section class="stacked-section">
         
         <div class="section-intro">
             <span class="section-kicker">Continuous Enterprise Integration</span>
             <h2 class="section-title">The Control Plane Capability Index</h2>
 
-            <!-- ARCHITECTURAL INSIGHT 7 -->
+            <!-- ARCHITECTURAL INSIGHT -->
             <div class="insight-box" style="background: linear-gradient(90deg, rgba(168, 85, 247, 0.1) 0%, transparent 100%);">
                 <div class="insight-header" style="color: var(--color-purple);">Architectural Insight</div>
                 <div class="insight-text">
@@ -1186,13 +1026,13 @@ AzureDiagnostics
 
     </section>
 
-    <!-- TRANSITION BRIDGE 7 -->
+    <!-- TRANSITION BRIDGE -->
     <div id="certs" class="transition-wrapper">
         <div class="section-divider-line"></div>
         <h2 class="deep-dive-header" style="color: var(--color-blue);">Professional Certifications</h2>
     </div>
 
-    <!-- MODULE 8: PROFESSIONAL CERTIFICATIONS -->
+    <!-- MODULE 9: PROFESSIONAL CERTIFICATIONS -->
     <section class="stacked-section">
         
         <div class="feature-grid-3">

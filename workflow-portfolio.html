@@ -23,6 +23,7 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
         body { background-color: var(--bg-page); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--text-main); line-height: 1.6; }
 
         /* ================= NAVIGATION ================= */
@@ -38,9 +39,14 @@
         .hero-subtitle { font-size: 1.2rem; color: var(--color-cyan); max-width: 800px; margin: 0 auto 30px; font-weight: 500; }
         .badge-container img { max-width: 130px; }
 
-        /* ================= MAIN CONTAINER ================= */
+        /* ================= MAIN CONTAINER & IN-PAGE NAV ================= */
         .container { max-width: 1200px; margin: 0 auto; padding: 4rem 20px; }
-        .section-title { font-family: 'Montserrat', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--color-blue); text-transform: uppercase; margin-bottom: 2rem; text-align: center; }
+        
+        .project-nav { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 4rem; flex-wrap: wrap; }
+        .nav-btn { background: rgba(59, 130, 246, 0.05); color: var(--color-cyan); border: 1px solid var(--color-cyan); padding: 0.8rem 1.8rem; border-radius: 6px; text-decoration: none; font-weight: 700; font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; }
+        .nav-btn:hover { background: var(--color-cyan); color: #fff; box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); }
+
+        .section-title { font-family: 'Montserrat', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--color-blue); text-transform: uppercase; margin-bottom: 2rem; text-align: center; scroll-margin-top: 100px; }
 
         /* ================= CAPABILITY MATRIX ================= */
         .matrix-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-bottom: 4rem; }
@@ -65,13 +71,13 @@
         .hitl-explainer p { font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; }
         .hitl-highlight { color: var(--color-cyan); font-weight: 600; }
 
-        /* ================= ARCHITECT COMMAND MODULE (HIGH CONTRAST) ================= */
+        /* ================= ARCHITECT COMMAND MODULE ================= */
         .architect-command { background: #f8fafc; border-left: 6px solid var(--color-blue); border-radius: 8px; padding: 1.5rem 2.5rem; margin: 0 auto 2.5rem; max-width: 950px; box-shadow: 0 15px 30px rgba(0,0,0,0.6); color: #0f172a; position: relative; }
         .architect-badge { display: inline-block; background: var(--color-blue); color: #ffffff; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; font-weight: 800; letter-spacing: 1.5px; padding: 6px 14px; border-radius: 4px; margin-bottom: 12px; text-transform: uppercase; box-shadow: 0 4px 6px rgba(59, 130, 246, 0.3); }
         .architect-text { font-size: 1.15rem; font-weight: 600; line-height: 1.6; }
         .architect-code { background: #e2e8f0; padding: 12px 15px; border-radius: 6px; font-family: 'Consolas', monospace; font-size: 0.95rem; display: block; margin-top: 12px; color: #334155; border: 1px solid #cbd5e1; white-space: pre-wrap; }
 
-        /* ================= TERMINAL STYLING (ENGINE OUTPUT) ================= */
+        /* ================= TERMINAL STYLING ================= */
         .terminal-window { background: #0d1117; border: 1px solid var(--border-base); border-radius: 10px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); width: 100%; max-width: 1100px; margin: 0 auto 4rem; text-align: left; overflow: hidden; }
         .terminal-header { background: #161b22; padding: 12px 20px; display: flex; align-items: center; border-bottom: 1px solid var(--border-base); position: relative; }
         .terminal-dots { display: flex; gap: 8px; position: absolute; left: 20px; }
@@ -101,15 +107,23 @@
 
     <header class="hero-minimal">
         <h1 class="hero-title">Technical Execution Showcase</h1>
-        <p class="hero-subtitle">Demonstrating the deterministic adaptability of the Declarative Zero-Trust Synthesis Engine across variable enterprise configurations.</p>
+        <p class="hero-subtitle">Demonstrating the deterministic adaptability of the Zero Trust Infrastructure as Code Software across variable enterprise configurations.</p>
         <div class="badge-container">
-            <img src="https://learn.microsoft.com/en-us/media/learn/certification/badges/microsoft-certified-associate-badge.svg" alt="Microsoft Certified: Identity and Access Administrator Associate">
+            <img src="MS Badge.png" alt="Microsoft Certified: Identity and Access Administrator Associate">
         </div>
     </header>
 
     <div class="container">
         
-        <h2 class="section-title">Project 01: Deployment Capability Matrix</h2>
+        <!-- IN-PAGE NAVIGATION -->
+        <div class="project-nav">
+            <a href="#project-01" class="nav-btn">Project 01: Terraform-Driven Federation</a>
+            <a href="#project-02" class="nav-btn">Project 02: Native Azure Bicep Federation</a>
+        </div>
+        
+        <!-- ================= PROJECT 01 ================= -->
+        <h2 id="project-01" class="section-title">Project 01: Terraform-Driven Workload Federation</h2>
+        
         <div class="matrix-grid">
             <div class="matrix-card">
                 <h3>Identity Core</h3>
@@ -150,20 +164,19 @@
             </div>
         </div>
 
-        <h2 class="section-title">Project 01: OIDC Federation & Key Vault Retrieval</h2>
         <div class="insight-box">
             <div class="insight-title">> Architectural Insight</div>
             <div class="insight-text">
-                "This execution demonstrates the application of the Synthesis Engine to systematically eradicate long-lived, symmetric credentials in automated pipelines. By anchoring to Microsoft Entra ID and utilizing GitHub Actions, the Engine provisions a mathematically certain, passwordless OpenID Connect (OIDC) trust matrix mapped strictly to a brownfield Azure Key Vault."
+                "This execution demonstrates the application of the software to systematically eradicate long-lived, symmetric credentials in automated pipelines. By anchoring to Microsoft Entra ID and utilizing GitHub Actions, the engine provisions a mathematically certain, passwordless OpenID Connect (OIDC) trust matrix mapped strictly to a brownfield Azure Key Vault."
             </div>
         </div>
 
         <div class="divider"></div>
 
-        <!-- NEW HITL EXPLAINER -->
+        <!-- HITL EXPLAINER -->
         <div class="hitl-explainer">
             <h3>The Human-in-the-Loop (HITL) Protocol</h3>
-            <p>The following execution log demonstrates the core dynamic of the Declarative Zero-Trust Synthesis Engine. The Architect acts strictly as the <span class="hitl-highlight">strategic commander</span>, issuing minimal, high-level coordinates and validation approvals. The Engine acts as the <span class="hitl-highlight">autonomous executor</span>, instantly handling all syntax generation, strict baseline enforcement, and the synthesis of immutable cryptographic ledgers. Notice the immense leverage: brief human commands produce mathematically certain, audit-ready enterprise infrastructure.</p>
+            <p>The following execution log demonstrates the core dynamic of the Zero Trust Infrastructure as Code Software. The Architect acts strictly as the <span class="hitl-highlight">strategic commander</span>, issuing minimal, high-level coordinates and validation approvals. The software acts as the <span class="hitl-highlight">autonomous executor</span>, instantly handling all syntax generation, strict baseline enforcement, and the synthesis of immutable cryptographic ledgers. Notice the immense leverage: brief human commands produce mathematically certain, audit-ready enterprise infrastructure.</p>
         </div>
 
         <h2 class="section-title">Step 1: Initiation & IaC Synthesis</h2>
@@ -535,21 +548,44 @@ Furthermore, your live Azure telemetry has mathematically proven the successful 
         <!-- ================= PROJECT 02 ================= -->
         <div class="divider"></div>
 
-        <h2 class="section-title">Project 02: Native Azure Bicep & Immutable OIDC Mapping</h2>
+        <h2 id="project-02" class="section-title">Project 02: Native Azure Bicep & Immutable OIDC Mapping</h2>
         
         <div class="matrix-grid">
             <div class="matrix-card">
-                <h3>IaC Payload Switch</h3>
+                <h3>Identity Core</h3>
                 <ul class="matrix-list">
-                    <li><span class="checkbox"></span>Terraform (HCL)</li>
-                    <li class="active"><span class="checkbox"></span>Azure Bicep</li>
-                    <li class="active"><span class="checkbox"></span>Microsoft Graph API</li>
+                    <li class="active"><span class="checkbox"></span>Microsoft Entra ID</li>
                 </ul>
             </div>
             <div class="matrix-card">
                 <h3>Execution Agent</h3>
                 <ul class="matrix-list">
-                    <li class="active"><span class="checkbox"></span>GitHub Actions (Iteration-9)</li>
+                    <li class="active"><span class="checkbox"></span>GitHub Actions</li>
+                    <li><span class="checkbox"></span>Azure DevOps</li>
+                    <li><span class="checkbox"></span>GitLab CI</li>
+                </ul>
+            </div>
+            <div class="matrix-card">
+                <h3>Infrastructure State</h3>
+                <ul class="matrix-list">
+                    <li><span class="checkbox"></span>Brownfield (Existing)</li>
+                    <li class="active"><span class="checkbox"></span>Greenfield (Net-New)</li>
+                </ul>
+            </div>
+            <div class="matrix-card">
+                <h3>Data-Plane Asset</h3>
+                <ul class="matrix-list">
+                    <li class="active"><span class="checkbox"></span>Azure Key Vault</li>
+                    <li><span class="checkbox"></span>Storage Account</li>
+                    <li><span class="checkbox"></span>SQL / Cosmos DB</li>
+                </ul>
+            </div>
+            <div class="matrix-card">
+                <h3>IaC Payload</h3>
+                <ul class="matrix-list">
+                    <li><span class="checkbox"></span>Terraform (HCL)</li>
+                    <li class="active"><span class="checkbox"></span>Azure Bicep</li>
+                    <li class="active"><span class="checkbox"></span>Microsoft Graph API</li>
                 </ul>
             </div>
         </div>
@@ -776,7 +812,42 @@ Gate Verification Status      : <span class="t-green">[PASS]</span>
         </div>
 
         <div class="divider"></div>
-        <h2 class="section-title">Step 4: KQL Generation & Executive Sign-off</h2>
+        <h2 class="section-title">Step 4: Continuous Protocol Refinement</h2>
+
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-dots"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                <div class="terminal-title">patch_ledger.md // Experience Capture</div>
+            </div>
+            <pre class="terminal-body"><span class="t-cyan"># DEFECT & PATCH LEDGER (DPL)</span>
+<span class="t-blue">**Framework Engine:**</span> Zero Trust Infrastructure as Code Software (v4.1)
+<span class="t-blue">**Purpose:**</span> Cryptographic tracking of architectural friction and engine updates.
+
+<span class="t-purple">## [ENTRY 001] ARM State Conflict (Diagnostic Settings)</span>
+* <span class="t-cyan">**Error / Symptom:**</span> ARM deployment failed with `Conflict` due to duplicate data sinks.
+* <span class="t-cyan">**Root Cause:**</span> The Bicep payload auto-generated a unique diagnostic setting name (`diag-kv-audit-${uniqueString}`), which collided with an existing logging sink (`diag-kv-audit-tkav`) on the target Key Vault.
+* <span class="t-cyan">**Engineered Fix:**</span> Parameterized the diagnostic setting name within the template, allowing the engineer to declare the existing sink name at runtime. This forces ARM to execute an idempotent update rather than attempting a duplicate creation.
+
+<span class="t-purple">## [ENTRY 002] AADSTS700213 Subject Claim Mismatch (Legacy String Mapping)</span>
+* <span class="t-cyan">**Error / Symptom:**</span> OIDC GitHub Actions validation bridge failed with Entra ID dropping the token exchange.
+* <span class="t-cyan">**Root Cause:**</span> GitHub Actions presented a subject claim containing immutable numeric IDs, but the template provisioned standard string-based repository paths, failing Entra ID's strict character-for-character evaluation.
+* <span class="t-cyan">**Engineered Fix:**</span> Shifted the OIDC subject claim parameter in the payload to explicitly map the exact numeric ID string presented by the GitHub authentication runner.
+
+<span class="t-purple">## [ENTRY 003] AI Generative Dump & HITL Bypass (Rule 5 Violation)</span>
+* <span class="t-cyan">**Error / Symptom:**</span> The engine unilaterally generated a full-payload system directive update, breaking the "slow down" protocol and hijacking the architect's workflow.
+* <span class="t-cyan">**Root Cause:**</span> Lack of an explicit gating mechanism preventing the AI from drafting and executing a structural codebase update simultaneously without waiting for user consensus.
+* <span class="t-cyan">**Engineered Fix:**</span> Rewrote System Directive Rule 5 to mandate a strict "Architectural Hold," mathematically forbidding structural patches without explicit human authorization and collaborative discussion prior to generation (Engine version updated to v3.7).
+
+<span class="t-purple">## [ENTRY 004] AADSTS700213 Regression (Azure Bicep Pre-Flight Pipeline)</span>
+* <span class="t-cyan">**Error / Symptom:**</span> GitHub Actions validation bridge failed with AADSTS700213 for the Bicep deployment pipeline.
+* <span class="t-cyan">**Root Cause:**</span> While Entry 002 established numeric IDs as mandatory, the v3.6 Bicep initialization phase lacked a mechanism to fetch these IDs dynamically, resorting to legacy strings that doomed the deployment.
+* <span class="t-cyan">**Engineered Fix:**</span> Validated native PowerShell API retrieval locally and updated the system directive to v3.8, injecting explicit `Invoke-RestMethod` commands into the pre-flight checklist. This arms the Bicep payload with immutable numeric IDs upfront, permanently preventing token exchange drops.
+
+<span class="t-muted">*No deployment defects encountered during this session run.*</span></pre>
+        </div>
+
+        <div class="divider"></div>
+        <h2 class="section-title">Step 5: KQL Generation & Executive Sign-off</h2>
 
         <div class="terminal-window">
             <div class="terminal-header">

@@ -121,7 +121,7 @@
             <a href="#project-01" class="nav-btn">Project 01: Terraform</a>
             <a href="#project-02" class="nav-btn">Project 02: Bicep</a>
             <a href="#project-03" class="nav-btn">Project 03: REST API</a>
-            <a href="#project-04" class="nav-btn">Project 04: ADO + Bicep</a>
+            <a href="#project-04" class="nav-btn">Project 04: Azure DevOps &amp; Bicep</a>
         </div>
         
         <!-- ================= PROJECT 01 ================= -->
@@ -1277,7 +1277,7 @@ By bypassing third-party modules and generating the trust matrix natively via RE
         <div class="insight-box">
             <div class="insight-title">> Architectural Insight</div>
             <div class="insight-text">
-                "This execution transitions the Execution Agent from GitHub Actions to Azure DevOps (ADO). Because ADO utilizes opaque, dynamically generated Workload Identity Federation identifiers, the AI power tool orchestrates a bypass of the Azure web UI. It programmatically intercepts the required OIDC credentials via REST API and synthesizes them directly into a native Azure Bicep payload. It additionally showcases the framework's interactive collaborative troubleshooting mode when encountering pipeline collisions and indexing delays."
+                "This execution transitions the Execution Agent from GitHub Actions to Azure DevOps (ADO). Because Azure DevOps utilizes opaque, dynamically generated Workload Identity Federation identifiers, the AI power tool orchestrates a bypass of the Azure web UI. It programmatically intercepts the required OIDC credentials via REST API and synthesizes them directly into a native Azure Bicep payload. It additionally showcases the framework's interactive collaborative troubleshooting mode when navigating pipeline collisions and enforcing strict server-side audit requirements despite indexing delays."
             </div>
         </div>
 
@@ -1491,13 +1491,33 @@ To pinpoint exactly what happened, let's look at the runner's perspective. Pleas
             </div>
         </div>
 
+        <div class="terminal-window" style="margin-bottom: 2.5rem;">
+            <div class="terminal-header">
+                <div class="terminal-dots"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                <div class="terminal-title">engine_console.exe // COLLABORATIVE TROUBLESHOOTING</div>
+            </div>
+            <pre class="terminal-body"><span class="t-cyan">Excellent. The client-side logs mathematically prove the runner authenticated and extracted the payload. The cryptographic bridge is functional.</span>
+
+Now that we have client-side confirmation, let's check back on the server-side telemetry. Azure Monitor indexing should have caught up by now. 
+
+<span class="t-purple">[PIPELINE HALTED]</span>
+Please refresh the Azure Key Vault Metrics blade. Can you now confirm the delayed server-side API spike is visible?</pre>
+        </div>
+
+        <div class="architect-command">
+            <div class="architect-badge">[ARCHITECT DIRECTIVE 06]</div>
+            <div class="architect-text">
+                Confirmed. The server-side API spike has now populated in Azure Monitor Metrics.
+            </div>
+        </div>
+
         <div class="terminal-window" style="margin-bottom: 2rem;">
             <div class="terminal-header">
                 <div class="terminal-dots"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
                 <div class="terminal-title">arl.md // Audit Artifact Synthesized</div>
             </div>
             <pre class="terminal-body"><span class="t-cyan">ENTERPRISE SECURITY ENGINEERING: AUDIT RESULTS LEDGER (ARL)</span>
-<span class="t-muted">Framework Baseline: ACPHF IAL V5.17</span>
+<span class="t-muted">Framework Baseline: ACPHF IAL V5.18</span>
 Audit Document Class: <span class="t-blue">Standard Telemetry & Gate Verification Report</span>
 
 <span class="t-cyan">[SECTION 1: AUDIT EXECUTION METADATA]</span>
@@ -1512,7 +1532,7 @@ Audit Document Class: <span class="t-blue">Standard Telemetry & Gate Verificatio
 <span class="t-cyan">[SECTION 2: SYSTEM VALIDATOR & GATE AUDIT MATRIX]</span>
 <span class="t-blue">[AUDIT GATE 4] Plane Check</span>
 * Gate Verification Status: <span class="t-green">[PASS]</span>
-<span class="t-comment">&gt; Diagnostic Summary: Machine identity successfully authenticated and executed data-plane operations against target vault with 0 HTTP 403 Forbidden drops. Client-side extraction verified pending server-side metric indexing.</span></pre>
+<span class="t-comment">&gt; Diagnostic Summary: Machine identity successfully authenticated and executed data-plane operations against target vault with 0 HTTP 403 Forbidden drops. Client-side extraction immediately verified; immutable server-side metrics successfully verified post-indexing delay.</span></pre>
         </div>
 
         <div class="divider"></div>
@@ -1524,7 +1544,7 @@ Audit Document Class: <span class="t-blue">Standard Telemetry & Gate Verificatio
                 <div class="terminal-title">patch_ledger.md // Experience Capture</div>
             </div>
             <pre class="terminal-body"><span class="t-cyan"># DEFECT & PATCH LEDGER (DPL)</span>
-<span class="t-blue">**Framework Engine:**</span> Declarative Zero-Trust Synthesis Engine (v5.17)
+<span class="t-blue">**Framework Engine:**</span> Declarative Zero-Trust Synthesis Engine (v5.18)
 <span class="t-blue">**Purpose:**</span> Cryptographic tracking of architectural friction and engine updates.
 
 <span class="t-purple">## [ENTRY 001] PIPELINE_CREATION_COLLISION</span>
@@ -1535,7 +1555,7 @@ Audit Document Class: <span class="t-blue">Standard Telemetry & Gate Verificatio
 <span class="t-purple">## [ENTRY 002] AZURE_MONITOR_INDEXING_DELAY</span>
 * <span class="t-cyan">**Error / Symptom:**</span> Key Vault data-plane read metrics ("Overall Vault Requests") did not immediately spike in the Azure Portal despite successful execution.
 * <span class="t-cyan">**Root Cause:**</span> Azure Monitor backend indexing delay; server-side telemetry naturally requires 5-15 minutes to aggregate and display visually.
-* <span class="t-cyan">**Engineered Fix:**</span> Shifted to Client-Side validation by extracting raw task logs directly from the ADO `AzureCLI` runner step to prove extraction.</pre>
+* <span class="t-cyan">**Engineered Fix:**</span> Shifted to Client-Side validation by extracting raw task logs directly from the ADO `AzureCLI` runner step to prove extraction, then mathematically verified the immutable server-side telemetry once indexing caught up.</pre>
         </div>
 
         <div class="divider"></div>
@@ -1561,7 +1581,7 @@ EXECUTIVE SUMMARY
 ====================================================</span>
 The OIDC workload federation pipeline has been successfully provisioned and mathematically verified. The <span class="t-blue">Azure DevOps</span> identity is now strictly bound to the target data-plane.
 
-By extracting dynamic ADO credentials via native REST interactions, we successfully engineered a Bicep zero-trust mapping. The successful navigation of pipeline collisions and indexing delays further proves the agility of the AI power tool in live architectural environments. Your infrastructure payload, Identity Architecture Ledger, Audit Results Ledger, and Defect & Patch Ledger are finalized and audit-ready.
+By extracting dynamic ADO credentials via native REST interactions, we successfully engineered a Bicep zero-trust mapping. The successful navigation of pipeline collisions and indexing delays—culminating in verified server-side telemetry—further proves the agility of the AI power tool in live architectural environments. Your infrastructure payload, Identity Architecture Ledger, Audit Results Ledger, and Defect & Patch Ledger are finalized and audit-ready.
 
 <span class="t-green">The zero-trust pipeline is secure, hardened, and fully operational.</span></pre>
         </div>

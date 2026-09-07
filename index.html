@@ -84,6 +84,7 @@
         .triad-card.ai .triad-role { color: var(--color-purple); }
         .triad-text { font-size: 1.05rem; color: var(--text-muted); line-height: 1.7; }
         
+        /* THE GRAPHIC */
         .canvas-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 15px; }
         .diagram-canvas {
             position: relative; min-width: 1300px; height: 750px;
@@ -132,6 +133,12 @@
         
         .node-arl { left: 1070px; top: 410px; width: 250px; border-left: 4px solid var(--color-green); }
         .node-arl .tag { color: var(--color-green); border-color: rgba(16, 185, 129, 0.3); }
+
+        /* ================= ARCHITECTURAL FLOW ================= */
+        .flow-explanation { max-width: 1050px; margin: 4rem auto 0; padding: 0 20px; text-align: left; }
+        .flow-title { font-family: 'Montserrat', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px; border-bottom: 2px solid var(--border-base); padding-bottom: 10px; }
+        .flow-text { font-size: 1.15rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.5rem; }
+        .flow-text strong { color: var(--text-main); font-weight: 700; }
 
         /* ================= ENTERPRISE GUARDRAILS ================= */
         .guardrail-container { max-width: 1300px; margin: 0 auto; padding: 4rem 20px 8rem; }
@@ -279,6 +286,25 @@
                 </div>
             </div>
 
+            <!-- ARCHITECTURAL EXECUTION FLOW -->
+            <div class="flow-explanation">
+                <h3 class="flow-title">The Architectural Execution Flow</h3>
+                
+                <p class="flow-text">The execution lifecycle is anchored by strategic governance. The security engineer initiates the pipeline by defining the exact enterprise coordinates and zero-trust parameters required for the deployment, injecting this intent directly into the core framework.</p>
+                
+                <p class="flow-text">Once engaged, the infrastructure-as-code software operates as a strict deterministic harness. It tasks the tethered AI engine with dynamically synthesizing the complex, environment-agnostic payloads needed for execution. Crucially, the software itself is engineered to intrinsically neutralize hallucination and configuration drift. By forcing the AI's probabilistic generation through rigid, predefined mathematical boundaries, the framework ensures the output remains structurally sound before it ever reaches a human reviewer.</p>
+                
+                <p class="flow-text">At critical execution gates, the software pauses the automated process to enforce a Human-in-the-Loop (HITL) validation. Because the software has already constrained the AI's logic, the architect is not forced to manually debug probabilistic code. Instead, the engineer simply validates the proposed state against the original strategic intent and authorizes the pipeline to proceed.</p>
+                
+                <p class="flow-text">Upon authorization, the system autonomously deploys the payload. It provisions the secure, passwordless machine identity in the cloud while simultaneously outputting the required cryptographic receipts—the Identity Architecture Ledger (IAL) and the Audit Results Ledger (ARL)—to mathematically prove compliance.</p>
+                
+                <p class="flow-text">To close the loop, the software actively monitors the deployment for architectural friction, automatically logging operational edge-cases into a Defect & Patch Ledger. As the architect reviews and integrates these system-generated insights back into the core directives, <strong>the software framework grows intrinsically more capable with every executed project. This compounding intelligence allows the engineer to continuously expand their architectural footprint, optimizing their workflow and scaling their enterprise capabilities at an accelerating rate.</strong></p>
+                
+                <div class="cta-container" style="margin-top: 2.5rem; text-align: left;">
+                    <a href="architectural.html" class="cta-btn">Explore the Complete Pipeline Architecture Breakdown ➔</a>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -320,9 +346,6 @@
 
             </div>
             
-            <div class="cta-container">
-                <a href="architectural.html" class="cta-btn">Explore System Components Breakdown</a>
-            </div>
         </div>
     </div>
 

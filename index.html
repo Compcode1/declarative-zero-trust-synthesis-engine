@@ -66,10 +66,23 @@
         .module-section { display: flex; flex-direction: column; align-items: center; padding: 5rem 20px 2rem; }
         .architecture-container { width: 100%; max-width: 1300px; display: flex; flex-direction: column; align-items: center; }
         
-        .summary-section { max-width: 1050px; text-align: center; margin-bottom: 3rem; }
+        .summary-section { max-width: 1100px; text-align: center; margin-bottom: 3rem; }
         .summary-title { font-size: 2.2rem; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1.8rem; color: var(--logo-blue); }
-        .summary-text { font-size: 1.2rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.5rem; text-align: left; }
-        .summary-text strong { color: var(--text-main); font-weight: 700; }
+        .summary-text { font-size: 1.2rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 3rem; text-align: center; }
+        
+        /* THE TRIAD GRID */
+        .triad-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 2rem; text-align: left; }
+        .triad-card { background: rgba(15, 23, 42, 0.6); border-top: 4px solid; padding: 2rem; border-radius: 8px; box-shadow: 0 10px 20px -5px rgba(0,0,0,0.3); }
+        .triad-card.architect { border-color: var(--color-blue); }
+        .triad-card.software { border-color: var(--color-cyan); }
+        .triad-card.ai { border-color: var(--color-purple); }
+        
+        .triad-header { font-family: 'Montserrat', sans-serif; font-size: 1.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+        .triad-role { font-size: 0.85rem; font-family: monospace; letter-spacing: 1px; margin-bottom: 0.5rem; text-transform: uppercase; }
+        .triad-card.architect .triad-role { color: var(--color-blue); }
+        .triad-card.software .triad-role { color: var(--color-cyan); }
+        .triad-card.ai .triad-role { color: var(--color-purple); }
+        .triad-text { font-size: 1.05rem; color: var(--text-muted); line-height: 1.7; }
         
         .canvas-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 15px; }
         .diagram-canvas {
@@ -120,20 +133,6 @@
         .node-arl { left: 1070px; top: 410px; width: 250px; border-left: 4px solid var(--color-green); }
         .node-arl .tag { color: var(--color-green); border-color: rgba(16, 185, 129, 0.3); }
 
-        /* ================= PROCESS GRID (MAP KEY) ================= */
-        .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; width: 100%; max-width: 1300px; }
-        .process-step { background: rgba(15, 23, 42, 0.4); border-top: 3px solid; padding: 1.5rem; border-radius: 8px; text-align: left; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
-        .step-num { font-weight: 900; font-size: 1.8rem; margin-bottom: 0.5rem; font-family: 'Montserrat', sans-serif; }
-        .step-title { font-size: 1.05rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.75rem; line-height: 1.4; letter-spacing: 0.5px; }
-        .step-text { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
-        
-        /* Match Process Steps to Node Colors */
-        .step-1 { border-color: var(--color-blue); } .step-1 .step-num { color: var(--color-blue); }
-        .step-2 { border-color: var(--color-purple); } .step-2 .step-num { color: var(--color-purple); }
-        .step-3 { border-color: var(--color-cyan); } .step-3 .step-num { color: var(--color-cyan); }
-        .step-4 { border-color: var(--color-green); } .step-4 .step-num { color: var(--color-green); }
-        .step-5 { border-color: var(--color-red); } .step-5 .step-num { color: var(--color-red); }
-
         /* ================= ENTERPRISE GUARDRAILS ================= */
         .guardrail-container { max-width: 1300px; margin: 0 auto; padding: 4rem 20px 8rem; }
         
@@ -159,6 +158,7 @@
         @media (max-width: 992px) {
             .hero-title { font-size: 2.8rem; }
             .summary-title, .section-title { font-size: 1.8rem; }
+            .triad-grid { grid-template-columns: 1fr; }
             .insight-box { padding: 1.5rem; margin: 2rem 15px 3rem; }
             .vulnerability-grid { grid-template-columns: 1fr; }
         }
@@ -180,7 +180,7 @@
         <div class="hero-title-container">
             <h1 class="hero-title">INTELLIGENT ARCHITECTURE</h1>
         </div>
-        <p class="hero-subtitle">The Architect's Framework for Governed AI and Zero-Trust Machine Identity Provisioning in <span class="nowrap">Microsoft Entra ID</span></p>
+        <p class="hero-subtitle">Leveraging artificial intelligence through a software-mediated framework for zero-trust machine identity provisioning in <span class="nowrap">Microsoft Entra ID</span>.</p>
         <div class="badge-container">
             <img src="MS Badge.png" alt="Microsoft SC-300 Certification" class="ms-badge">
         </div>
@@ -191,20 +191,38 @@
         <div class="architecture-container">
             
             <div class="summary-section">
-                <h2 class="summary-title">Zero Trust Infrastructure as Code Software Environment</h2>
+                <h2 class="summary-title">The Execution Triad: Governed AI Architecture</h2>
                 
                 <p class="summary-text">
-                    In this methodology, generative AI is not used for isolated tasks or simple code completion. Instead, the cloud architect operates this framework as a continuous, governed state machine. By tethering the AI to a strict operational loop, the engineer actively directs it to synthesize full architectural configurations, enforce zero-trust security policies, and generate immutable audit outputs step-by-step.
+                    True enterprise value is not found in unconstrained AI generation, nor in purely static manual scripting. To safely scale zero-trust cloud provisioning, this methodology operates on a continuous, governed state machine—<strong>The Execution Triad</strong>. By explicitly separating strategic command, structural mediation, and dynamic synthesis, the architecture guarantees that the immense power of artificial intelligence is harnessed, constrained, and mathematically bound to a secure baseline.
                 </p>
-                <p class="summary-text">
-                    Every deployment execution captures architectural friction and identifies new operational patterns. The engineer systematically records these patterns and feeds them directly back into the framework's core directives. By actively managing this recursive learning, <strong>the architect transforms the AI into a highly governed proxy</strong>—an extension of their own expertise that scales operational capability at an exponential rate while forcing mathematically certain execution.
-                </p>
+
+                <!-- THE TRIAD GRID -->
+                <div class="triad-grid">
+                    <div class="triad-card architect">
+                        <div class="triad-role">[ROLE: STRATEGIC GOVERNANCE]</div>
+                        <h3 class="triad-header">1. The Architect</h3>
+                        <p class="triad-text">The security engineer acts as the strategic commander. The architect initiates the execution, defines the precise target coordinates, establishes the zero-trust constraints, and retains absolute authorization authority at hard validation gates to prevent logic drift.</p>
+                    </div>
+                    
+                    <div class="triad-card software">
+                        <div class="triad-role">[ROLE: DETERMINISTIC HARNESS]</div>
+                        <h3 class="triad-header">2. The Software Framework</h3>
+                        <p class="triad-text">The custom infrastructure-as-code software acts as the immutable mediator. It systematically enforces the Entra ID zero-trust baseline, automatically records architectural friction into the Defect & Patch Ledger, and provides the rigid boundaries that constrain the AI.</p>
+                    </div>
+
+                    <div class="triad-card ai">
+                        <div class="triad-role">[ROLE: DYNAMIC SYNTHESIS]</div>
+                        <h3 class="triad-header">3. The AI Engine</h3>
+                        <p class="triad-text">Safely tethered strictly to the software's directives, the artificial intelligence provides the execution horsepower. It rapidly synthesizes environment-agnostic payloads, dynamically resolves syntax friction, and generates complex, audit-ready configurations on command.</p>
+                    </div>
+                </div>
 
                 <!-- ARCHITECTURAL INSIGHT -->
                 <div class="insight-box" style="background: linear-gradient(90deg, rgba(168, 85, 247, 0.1) 0%, transparent 100%);">
                     <div class="insight-header" style="color: var(--color-purple);">Architectural Insight</div>
                     <div class="insight-text">
-                        "Generative AI is inherently probabilistic, making unconstrained models a critical liability for enterprise cybersecurity. The foundational breakthrough of this framework is its capacity to force a probabilistic model to execute deterministically. By tethering the AI to strict architectural directives and hard validation gates, this software transforms unpredictable generative workflows into a mathematically certain, tightly governed infrastructure pipeline."
+                        "Generative AI is inherently probabilistic, making unconstrained models a critical liability for enterprise cybersecurity. By filtering the AI's dynamic capabilities exclusively through the rigid constraints of a software-mediated framework, this architecture transforms unpredictable generative workflows into a mathematically certain, tightly governed infrastructure pipeline."
                     </div>
                 </div>
             </div>
@@ -217,8 +235,7 @@
                             <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6" /></marker>
                             <marker id="arrow-cyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0ea5e9" /></marker>
                             <marker id="arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#a855f7" /></marker>
-                            <marker id="arrow-grey" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b" /></marker>
-                            <marker id="arrow-teal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#14b8a6" /></marker>
+                            <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#10b981" /></marker>
                             <marker id="arrow-red-end" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#f43f5e" /></marker>
                             <marker id="arrow-red-start" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 10 0 L 0 5 L 10 10 z" fill="#f43f5e" /></marker>
                         </defs>
@@ -244,54 +261,21 @@
                         <path d="M 300 490 L 340 490" fill="none" stroke="#f43f5e" stroke-width="2" stroke-dasharray="4, 4" marker-start="url(#arrow-red-start)" marker-end="url(#arrow-red-end)" />
                     </svg>
 
-                    <div class="node node-engineer"><div class="tag">[ROLE: CLOUD ARCHITECT]</div><div class="node-title">Security Engineer</div><div class="node-text">Inputs target coordinates and strict OIDC federation parameters.<span class="highlight">Validates execution gates.</span></div></div>
+                    <div class="node node-engineer"><div class="tag">[THE ARCHITECT]</div><div class="node-title">Security Engineer</div><div class="node-text">Defines strategic coordinates, initiates the pipeline, and retains absolute authorization authority at all execution gates.</div></div>
                     
-                    <div class="node node-engine"><div class="tag">[CORE SOFTWARE PRODUCT]</div><div class="node-title">Zero Trust Infrastructure as Code Software</div><div class="tag">[DIRECTIVE: DETERMINISTIC]</div><div class="node-text">A strict system directive governing the AI to enforce a mathematically certain Entra ID zero-trust baseline.</div></div>
+                    <div class="node node-engine"><div class="tag">[THE SOFTWARE]</div><div class="node-title">Zero Trust Framework</div><div class="tag" style="margin-top: 5px;">[THE MEDIATOR]</div><div class="node-text">The deterministic harness. Mathematically enforces the Entra ID zero-trust baseline and constrains the AI's boundaries.</div></div>
                     
-                    <div class="node node-compiler"><div class="tag">[STATE: HUMAN-IN-THE-LOOP]</div><div class="node-title">AI Compiler<br><span style="font-size: 0.85rem; font-weight: 500; color: #a855f7;">(INTERACTIVE STATE MACHINE)</span></div><div class="node-text">Operates as a guided interactive loop. The AI proposes configurations, but the engineer retains absolute execution authority, explicitly authorizing all logic at strict validation gates to prevent drift and hallucination.</div></div>
+                    <div class="node node-compiler"><div class="tag">[THE AI]</div><div class="node-title">Synthesis Engine<br><span style="font-size: 0.85rem; font-weight: 500; color: #a855f7;">(INTERACTIVE STATE)</span></div><div class="node-text">The tethered intelligence. Dynamically generates configurations and resolves tangential friction within the framework's strict rules.</div></div>
                     
-                    <div class="node node-dpl"><div class="tag">[ARTIFACT: PATCH_LEDGER.md]</div><div class="node-title">Continuous Protocol Refinement</div><div class="node-text">Captures project friction and lessons learned. Acting as a direct proxy for the engineer, it integrates new skills back into the core software to permanently scale architectural execution.</div></div>
+                    <div class="node node-dpl"><div class="tag">[AUTOMATED MEMORY]</div><div class="node-title">Continuous Protocol Refinement</div><div class="node-text">The software systematically captures execution friction. The architect approves these updates, integrating lessons learned directly back into the framework's baseline to permanently scale capability.</div></div>
                     
-                    <div class="node node-iac"><div class="tag">[DYNAMIC IaC PAYLOAD]</div><div class="node-title">IaC Generation</div><div class="node-text">Environment-agnostic infrastructure and automation payloads—dynamically synthesized across Terraform, Azure Bicep, Microsoft Graph API, and native scripting upon coordinate lock.</div></div>
+                    <div class="node node-iac"><div class="tag">[DYNAMIC IaC PAYLOAD]</div><div class="node-title">IaC Generation</div><div class="node-text">Environment-agnostic infrastructure and automation payloads—dynamically synthesized across Terraform, Azure Bicep, Microsoft Graph API, and native scripting.</div></div>
                     
                     <div class="node node-core"><div class="tag">[STATE: CRYPTOGRAPHIC OIDC]</div><div class="node-title">Zero-Trust Machine Identity Core</div><div class="node-text">The hardened foundation.<span class="highlight">Passwordless OIDC workload federation established.</span></div></div>
                     
                     <div class="node node-ial"><div class="tag">[ARTIFACT: IAL_RECORD.md]</div><div class="node-title">Identity Architecture Ledger (IAL)</div><div class="node-text">Records and validates the immutable target state infrastructure configuration.</div></div>
                     
                     <div class="node node-arl"><div class="tag">[TELEMETRY: ARL & KQL]</div><div class="node-title">Audit Ledgers & KQL Telemetry</div><div class="node-text">Mathematically confirms zero-trust operational governance and SOC 2 compliance via Azure telemetry and asynchronous diagnostic proofs.</div></div>
-                </div>
-            </div>
-
-            <!-- PROCESS GRID (MAP KEY) -->
-            <div class="process-grid">
-                <div class="process-step step-1">
-                    <div class="step-num">1</div>
-                    <div class="step-title">Strategic Input & Governance Anchor</div>
-                    <div class="step-text">The Security Engineer defines the target coordinates and scope. The engineer tethers the AI to the Zero Trust IaC Software, establishing the deterministic baseline that governs all subsequent behavior.</div>
-                </div>
-                
-                <div class="process-step step-2">
-                    <div class="step-num">2</div>
-                    <div class="step-title">The AI Compiler (Interactive State)</div>
-                    <div class="step-text">The engine initiates a strict human-in-the-loop process. The Compiler actively validates the engineer's inputs and forces a hard stop at specific security gates, waiting for the engineer to authorize the logic.</div>
-                </div>
-
-                <div class="process-step step-3">
-                    <div class="step-num">3</div>
-                    <div class="step-title">Infrastructure as Code Generation</div>
-                    <div class="step-text">Only after the engineer explicitly verifies the coordinate lock does the engine synthesize the environment-agnostic payload (e.g., main.tf), safely translating strategic intent into executable code.</div>
-                </div>
-
-                <div class="process-step step-4">
-                    <div class="step-num">4</div>
-                    <div class="step-title">Execution & Cryptographic Proof</div>
-                    <div class="step-text">As the payload deploys the Identity Core, the engine simultaneously generates the Identity Architecture Ledger (IAL) and Audit Ledgers, providing exact cryptographic artifacts for compliance sign-off.</div>
-                </div>
-
-                <div class="process-step step-5">
-                    <div class="step-num">5</div>
-                    <div class="step-title">Continuous Protocol Refinement</div>
-                    <div class="step-text">The system captures architectural friction and proposes fixes via the Patch Ledger. The Security Engineer explicitly authorizes and applies these updates back into the core software to evolve the pipeline.</div>
                 </div>
             </div>
 
@@ -304,7 +288,7 @@
             <h2 class="section-title">Enterprise Guardrails: The Decoupled Logic Engine</h2>
             
             <p class="intro-text">
-                While generative AI accelerates engineering, unconstrained models introduce massive liabilities in production environments. The architect utilizes this framework to enforce a strict immutable rationale, explicitly neutralizing the five critical vulnerabilities of AI-assisted cloud deployment:
+                While generative AI accelerates engineering, unconstrained models introduce massive liabilities in production environments. The architect utilizes this software framework to enforce a strict immutable rationale, explicitly neutralizing the five critical vulnerabilities of AI-assisted cloud deployment:
             </p>
 
             <div class="vulnerability-grid">

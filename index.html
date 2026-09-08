@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intelligent Architecture - Home</title>
+    <title>Intelligent Architecture - Home (TEST)</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     
@@ -51,7 +51,7 @@
         .hero { padding: 180px 20px 80px; text-align: center; border-bottom: 1px solid var(--border-base); }
         .hero-title-container { display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
         .hero-title { font-family: 'Montserrat', sans-serif; font-size: 4rem; font-weight: 900; letter-spacing: 3px; color: var(--text-main); text-transform: uppercase; }
-        .hero-subtitle { font-size: 1.5rem; color: var(--color-cyan); font-weight: 500; max-width: 1000px; margin: 0 auto 30px; line-height: 1.5; }
+        .hero-subtitle { font-size: 1.45rem; color: var(--color-cyan); font-weight: 500; max-width: 1100px; margin: 0 auto 30px; line-height: 1.6; }
         .nowrap { white-space: nowrap; }
         .badge-container { margin-top: 30px; display: flex; justify-content: center; }
         .ms-badge { height: 160px; width: auto; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5)); }
@@ -89,61 +89,64 @@
         
         .canvas-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 15px; }
         .diagram-canvas {
-            position: relative; min-width: 1300px; height: 750px; margin: 0 auto;
+            position: relative; max-width: 1220px; height: 680px; margin: 0 auto;
             background-image: linear-gradient(to right, rgba(30, 41, 59, 0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(30, 41, 59, 0.5) 1px, transparent 1px);
             background-size: 40px 40px; border: 1px solid var(--border-base); border-radius: 12px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
         .routing-lines { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
-        .node { position: absolute; background: var(--bg-node); border: 1px solid var(--border-base); border-radius: 8px; padding: 1.5rem; z-index: 2; backdrop-filter: blur(8px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3); }
-        .node-title { font-size: 1.15rem; font-weight: 900; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 1rem; line-height: 1.2; }
-        .node-text { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
-        .tag { font-family: monospace; font-size: 0.75rem; font-weight: 700; padding: 4px 8px; border: 1px solid; border-radius: 4px; display: inline-block; margin-bottom: 0.75rem; letter-spacing: 0.5px; }
+        .node { position: absolute; background: var(--bg-node); border: 1px solid var(--border-base); border-radius: 8px; padding: 1.1rem; z-index: 2; backdrop-filter: blur(8px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3); }
+        .node-title { font-size: 1rem; font-weight: 900; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.75rem; line-height: 1.2; }
+        .node-text { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+        .tag { font-family: monospace; font-size: 0.7rem; font-weight: 700; padding: 3px 6px; border: 1px solid; border-radius: 4px; display: inline-block; margin-bottom: 0.75rem; letter-spacing: 0.5px; }
 
-        .node-engineer { left: 40px; top: 50px; width: 240px; border-left: 4px solid var(--color-blue); }
+        /* Compressed 1200px Grid Coordinates */
+        .node-engineer { left: 20px; top: 40px; width: 200px; border-left: 4px solid var(--color-blue); }
         .node-engineer .tag { color: var(--color-blue); border-color: rgba(59, 130, 246, 0.3); }
-        .node-engineer .highlight { color: var(--color-purple); font-weight: 600; margin-top: 10px; display: block; }
+        .node-engineer .highlight { color: var(--color-purple); font-weight: 600; margin-top: 8px; display: block; }
+        
+        .node-compiler { left: 250px; top: 40px; width: 220px; border-left: 4px solid var(--color-purple); }
+        .node-compiler .tag { color: var(--color-purple); border-color: rgba(168, 85, 247, 0.3); }
+
+        .node-iac { left: 500px; top: 40px; width: 180px; border-left: 4px solid var(--color-cyan); }
+        .node-iac .tag { color: var(--color-cyan); border-color: rgba(14, 165, 233, 0.3); }
+        
+        .node-core { left: 710px; top: 40px; width: 220px; border: 1px solid rgba(16, 185, 129, 0.3); border-left: 4px solid var(--color-green); }
+        .node-core .tag { color: var(--color-green); border-color: rgba(16, 185, 129, 0.3); }
+        .node-core .highlight { color: var(--color-green); font-weight: 600; margin-top: 8px; display: block; }
+
+        .node-scale { left: 960px; top: 40px; width: 220px; border: 1px dashed var(--color-purple); border-left: 4px solid var(--color-purple); }
+        .node-scale .tag { color: var(--color-purple); border-color: rgba(168, 85, 247, 0.3); }
+        .node-scale .highlight { color: var(--color-purple); font-weight: 600; margin-top: 8px; display: block; }
         
         .node-engine { 
-            left: 40px; top: 320px; width: 260px; 
+            left: 20px; top: 300px; width: 200px; 
             border: 2px solid var(--color-cyan); border-left: 6px solid var(--color-cyan); 
             background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(14, 165, 233, 0.18) 4px, rgba(14, 165, 233, 0.18) 8px), linear-gradient(135deg, rgba(14, 165, 233, 0.25) 0%, rgba(10, 15, 29, 0.95) 100%), var(--bg-node); 
             box-shadow: 0 0 25px rgba(14, 165, 233, 0.45), inset 0 0 15px rgba(14, 165, 233, 0.25); 
         }
         .node-engine .tag { color: var(--color-cyan); border-color: rgba(14, 165, 233, 0.3); margin-right: 5px; }
-        
-        .node-compiler { left: 330px; top: 60px; width: 250px; border-left: 4px solid var(--color-purple); }
-        .node-compiler .tag { color: var(--color-purple); border-color: rgba(168, 85, 247, 0.3); }
 
         .node-dpl { 
-            left: 340px; top: 500px; width: 450px; 
+            left: 250px; top: 420px; width: 380px; 
             border: 2px solid var(--color-red); border-left: 6px solid var(--color-red); 
             background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(244, 63, 94, 0.15) 4px, rgba(244, 63, 94, 0.15) 8px), linear-gradient(135deg, rgba(244, 63, 94, 0.15) 0%, rgba(10, 15, 29, 0.95) 100%), var(--bg-node); 
             box-shadow: 0 0 25px rgba(244, 63, 94, 0.35), inset 0 0 15px rgba(244, 63, 94, 0.15); 
         }
         .node-dpl .tag { color: var(--color-red); border-color: rgba(244, 63, 94, 0.3); }
-        
-        .node-iac { left: 620px; top: 80px; width: 210px; border-left: 4px solid var(--color-cyan); }
-        .node-iac .tag { color: var(--color-cyan); border-color: rgba(14, 165, 233, 0.3); }
-        
-        .node-core { left: 950px; top: 60px; width: 260px; border: 1px solid rgba(16, 185, 129, 0.3); border-left: 4px solid var(--color-green); }
-        .node-core .tag { color: var(--color-green); border-color: rgba(16, 185, 129, 0.3); }
-        .node-core .highlight { color: var(--color-green); font-weight: 600; margin-top: 10px; display: block; }
-        
-        .node-ial { left: 830px; top: 410px; width: 210px; border-left: 4px solid var(--color-green); }
+
+        .node-ial { left: 670px; top: 420px; width: 200px; border-left: 4px solid var(--color-green); }
         .node-ial .tag { color: var(--color-green); border-color: rgba(16, 185, 129, 0.3); }
         
-        .node-arl { left: 1070px; top: 410px; width: 250px; border-left: 4px solid var(--color-green); }
+        .node-arl { left: 900px; top: 420px; width: 230px; border-left: 4px solid var(--color-green); }
         .node-arl .tag { color: var(--color-green); border-color: rgba(16, 185, 129, 0.3); }
 
         /* ================= ARCHITECTURAL FLOW EXPLANATION ================= */
         .flow-explanation { max-width: 1050px; margin: 2.5rem auto 0; padding: 0 20px; text-align: left; }
         .flow-subheader { font-family: 'Montserrat', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--text-main); margin-bottom: 1.2rem; text-transform: uppercase; letter-spacing: 1px; }
         
-        /* Updated: High-contrast bold white text */
         .flow-text { font-size: 1.15rem; color: var(--text-main); font-weight: 600; line-height: 1.8; margin-bottom: 1.5rem; }
         
-        /* Updated: Inline Link Styling */
         .inline-link { color: var(--color-cyan); text-decoration: none; border-bottom: 1px solid var(--color-cyan); transition: color 0.3s ease, border-color 0.3s ease; }
         .inline-link:hover { color: #ffffff; border-color: #ffffff; }
 
@@ -162,7 +165,6 @@
         .vuln-text { font-size: 1.15rem; color: var(--text-muted); line-height: 1.7; }
         .vuln-highlight { color: var(--color-cyan); font-weight: 600; }
 
-        /* Center the 5th card */
         .vuln-card:nth-child(5) { grid-column: 1 / -1; }
 
         @media (max-width: 992px) {
@@ -190,7 +192,7 @@
         <div class="hero-title-container">
             <h1 class="hero-title">INTELLIGENT ARCHITECTURE</h1>
         </div>
-        <p class="hero-subtitle">Leveraging artificial intelligence through a software-mediated framework for zero-trust machine identity provisioning in <span class="nowrap">Microsoft Entra ID</span>.</p>
+        <p class="hero-subtitle">Leveraging artificial intelligence through a deterministic state machine to engineer an immutable zero-trust core—establishing the optimal machine identity foundation allowing for additional secure, modular scaling of <span class="nowrap">Microsoft Entra ID</span> capabilities.</p>
         <div class="badge-container">
             <img src="MS Badge.png" alt="Microsoft SC-300 Certification" class="ms-badge">
         </div>
@@ -245,25 +247,27 @@
                             <marker id="arrow-red-start" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 10 0 L 0 5 L 10 10 z" fill="#f43f5e" /></marker>
                         </defs>
                         <!-- Eng to Compiler -->
-                        <path d="M 280 110 L 305 110 L 305 130 L 320 130" fill="none" stroke="#3b82f6" stroke-width="3" marker-end="url(#arrow-blue)" />
+                        <path d="M 220 100 L 250 100" fill="none" stroke="#3b82f6" stroke-width="3" marker-end="url(#arrow-blue)" />
                         <!-- Compiler to Eng -->
-                        <path d="M 330 160 L 310 160 L 310 140 L 290 140" fill="none" stroke="#a855f7" stroke-width="2" stroke-dasharray="6, 6" marker-end="url(#arrow-purple)" />
+                        <path d="M 250 130 L 220 130" fill="none" stroke="#a855f7" stroke-width="2" stroke-dasharray="6, 6" marker-end="url(#arrow-purple)" />
                         <!-- Engine to Compiler -->
-                        <path d="M 300 370 L 315 370 L 315 220 L 320 220" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="6, 6" marker-end="url(#arrow-cyan)" />
+                        <path d="M 220 340 L 360 340 L 360 190" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="6, 6" marker-end="url(#arrow-cyan)" />
                         <!-- Compiler to IaC -->
-                        <path d="M 580 170 L 610 170" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
+                        <path d="M 470 100 L 500 100" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
                         <!-- IaC to Core -->
-                        <path d="M 830 170 L 880 170 L 880 140 L 940 140" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
-                        
+                        <path d="M 680 100 L 710 100" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
+                        <!-- Core to Modular Scaling -->
+                        <path d="M 930 100 L 960 100" fill="none" stroke="#a855f7" stroke-width="3" stroke-dasharray="6, 6" marker-end="url(#arrow-purple)" />
+
                         <!-- Core to Split -->
-                        <path d="M 1080 250 L 1080 350" fill="none" stroke="#10b981" stroke-width="2" />
+                        <path d="M 820 220 L 820 320" fill="none" stroke="#10b981" stroke-width="2" />
                         <!-- Split to IAL -->
-                        <path d="M 1080 350 L 935 350 L 935 405" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
+                        <path d="M 820 320 L 770 320 L 770 410" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
                         <!-- Split to ARL -->
-                        <path d="M 1080 350 L 1195 350 L 1195 405" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
+                        <path d="M 820 320 L 1015 320 L 1015 410" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
                         
                         <!-- Engine to DPL (Bidirectional) -->
-                        <path d="M 300 490 L 340 490" fill="none" stroke="#f43f5e" stroke-width="2" stroke-dasharray="4, 4" marker-start="url(#arrow-red-start)" marker-end="url(#arrow-red-end)" />
+                        <path d="M 220 450 L 250 450" fill="none" stroke="#f43f5e" stroke-width="2" stroke-dasharray="4, 4" marker-start="url(#arrow-red-start)" marker-end="url(#arrow-red-end)" />
                     </svg>
 
                     <div class="node node-engineer"><div class="tag">[THE ARCHITECT]</div><div class="node-title">Security Engineer</div><div class="node-text">Defines strategic coordinates, initiates the pipeline, and retains absolute authorization authority at all execution gates.</div></div>
@@ -278,6 +282,8 @@
                     
                     <div class="node node-core"><div class="tag">[STATE: CRYPTOGRAPHIC OIDC]</div><div class="node-title">Zero-Trust Machine Identity Core</div><div class="node-text">The hardened foundation.<span class="highlight">Passwordless OIDC workload federation established.</span></div></div>
                     
+                    <div class="node node-scale"><div class="tag">[MODULAR SCALING]</div><div class="node-title">Capability Integration</div><div class="node-text">The foundational pipeline securely serves as the launchpad for rapidly deploying 35 advanced Microsoft Entra ID enterprise modules.<span class="highlight">Expanding the architecture.</span></div></div>
+
                     <div class="node node-ial"><div class="tag">[ARTIFACT: IAL_RECORD.md]</div><div class="node-title">Identity Architecture Ledger (IAL)</div><div class="node-text">Records and validates the immutable target state infrastructure configuration.</div></div>
                     
                     <div class="node node-arl"><div class="tag">[TELEMETRY: ARL & KQL]</div><div class="node-title">Audit Ledgers & KQL Telemetry</div><div class="node-text">Mathematically confirms zero-trust operational governance and SOC 2 compliance via Azure telemetry and asynchronous diagnostic proofs.</div></div>
@@ -296,13 +302,13 @@
                 
                 <p class="flow-text">Upon authorization, the system autonomously deploys the payload. It provisions the secure, passwordless machine identity in the cloud while simultaneously outputting the required cryptographic receipts—the Identity Architecture Ledger (IAL) and the Audit Results Ledger (ARL)—to mathematically prove compliance.</p>
                 
-                <p class="flow-text">To close the loop, the software actively monitors the deployment for architectural friction, automatically logging operational edge-cases into a Defect & Patch Ledger. As the architect reviews and integrates these system-generated insights back into the core directives, the software framework grows intrinsically more capable with every executed project. This compounding intelligence allows the engineer to continuously expand their architectural footprint, optimizing their workflow and scaling their enterprise capabilities at an accelerating rate. To explore the granular, node-by-node mechanics of this system, review the complete <a href="architectural.html" class="inline-link">Pipeline Architecture Breakdown</a>.</p>
+                <p class="flow-text">To close the loop, the software actively monitors the deployment for architectural friction, automatically logging operational edge-cases into a Defect & Patch Ledger. As the architect reviews and integrates these system-generated insights back into the core directives, the software framework grows intrinsically more capable with every executed project. Once the immutable zero-trust baseline is locked, the framework serves as the secure foundation to build and scale the remaining advanced Microsoft Entra ID capabilities—expanding the enterprise architecture without expanding the credential blast radius. To explore the granular, node-by-node mechanics of this system, review the complete <a href="architectural.html" class="inline-link">Pipeline Architecture Breakdown</a>.</p>
                 
                 <!-- ARCHITECTURAL INSIGHT -->
                 <div class="insight-box" style="background: linear-gradient(90deg, rgba(168, 85, 247, 0.1) 0%, transparent 100%);">
                     <div class="insight-header" style="color: var(--color-purple);">Architectural Insight</div>
                     <div class="insight-text">
-                        "Generative AI is inherently probabilistic, making unconstrained models a critical liability for enterprise cybersecurity. By filtering the AI's dynamic capabilities exclusively through the rigid constraints of a software-mediated framework, this architecture transforms unpredictable generative workflows into a mathematically certain, tightly governed infrastructure pipeline."
+                        "Generative AI is inherently probabilistic, making unconstrained models a critical liability for enterprise cybersecurity. By filtering the AI's dynamic capabilities exclusively through the rigid constraints of a deterministic state machine, this architecture transforms unpredictable generative workflows into a mathematically certain, tightly governed infrastructure pipeline."
                     </div>
                 </div>
             </div>

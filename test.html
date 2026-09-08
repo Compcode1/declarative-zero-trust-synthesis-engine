@@ -89,38 +89,38 @@
         
         .canvas-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 15px; }
         .diagram-canvas {
-            position: relative; max-width: 1420px; height: 680px; margin: 0 auto;
+            position: relative; max-width: 1220px; height: 680px; margin: 0 auto;
             background-image: linear-gradient(to right, rgba(30, 41, 59, 0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(30, 41, 59, 0.5) 1px, transparent 1px);
             background-size: 40px 40px; border: 1px solid var(--border-base); border-radius: 12px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
         .routing-lines { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
-        .node { position: absolute; background: var(--bg-node); border: 1px solid var(--border-base); border-radius: 8px; padding: 1.25rem; z-index: 2; backdrop-filter: blur(8px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3); }
-        .node-title { font-size: 1.05rem; font-weight: 900; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.75rem; line-height: 1.2; }
-        .node-text { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
-        .tag { font-family: monospace; font-size: 0.75rem; font-weight: 700; padding: 3px 6px; border: 1px solid; border-radius: 4px; display: inline-block; margin-bottom: 0.75rem; letter-spacing: 0.5px; }
+        .node { position: absolute; background: var(--bg-node); border: 1px solid var(--border-base); border-radius: 8px; padding: 1.1rem; z-index: 2; backdrop-filter: blur(8px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3); }
+        .node-title { font-size: 1rem; font-weight: 900; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.75rem; line-height: 1.2; }
+        .node-text { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+        .tag { font-family: monospace; font-size: 0.7rem; font-weight: 700; padding: 3px 6px; border: 1px solid; border-radius: 4px; display: inline-block; margin-bottom: 0.75rem; letter-spacing: 0.5px; }
 
-        /* Perfected Grid Coordinates */
-        .node-engineer { left: 30px; top: 40px; width: 220px; border-left: 4px solid var(--color-blue); }
+        /* Compressed 1200px Grid Coordinates */
+        .node-engineer { left: 20px; top: 40px; width: 200px; border-left: 4px solid var(--color-blue); }
         .node-engineer .tag { color: var(--color-blue); border-color: rgba(59, 130, 246, 0.3); }
         .node-engineer .highlight { color: var(--color-purple); font-weight: 600; margin-top: 8px; display: block; }
         
-        .node-compiler { left: 300px; top: 40px; width: 240px; border-left: 4px solid var(--color-purple); }
+        .node-compiler { left: 250px; top: 40px; width: 220px; border-left: 4px solid var(--color-purple); }
         .node-compiler .tag { color: var(--color-purple); border-color: rgba(168, 85, 247, 0.3); }
 
-        .node-iac { left: 590px; top: 40px; width: 200px; border-left: 4px solid var(--color-cyan); }
+        .node-iac { left: 500px; top: 40px; width: 180px; border-left: 4px solid var(--color-cyan); }
         .node-iac .tag { color: var(--color-cyan); border-color: rgba(14, 165, 233, 0.3); }
         
-        .node-core { left: 840px; top: 40px; width: 240px; border: 1px solid rgba(16, 185, 129, 0.3); border-left: 4px solid var(--color-green); }
+        .node-core { left: 710px; top: 40px; width: 220px; border: 1px solid rgba(16, 185, 129, 0.3); border-left: 4px solid var(--color-green); }
         .node-core .tag { color: var(--color-green); border-color: rgba(16, 185, 129, 0.3); }
         .node-core .highlight { color: var(--color-green); font-weight: 600; margin-top: 8px; display: block; }
 
-        .node-scale { left: 1130px; top: 40px; width: 240px; border: 1px dashed var(--color-purple); border-left: 4px solid var(--color-purple); }
+        .node-scale { left: 960px; top: 40px; width: 220px; border: 1px dashed var(--color-purple); border-left: 4px solid var(--color-purple); }
         .node-scale .tag { color: var(--color-purple); border-color: rgba(168, 85, 247, 0.3); }
         .node-scale .highlight { color: var(--color-purple); font-weight: 600; margin-top: 8px; display: block; }
         
         .node-engine { 
-            left: 30px; top: 300px; width: 240px; 
+            left: 20px; top: 300px; width: 200px; 
             border: 2px solid var(--color-cyan); border-left: 6px solid var(--color-cyan); 
             background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(14, 165, 233, 0.18) 4px, rgba(14, 165, 233, 0.18) 8px), linear-gradient(135deg, rgba(14, 165, 233, 0.25) 0%, rgba(10, 15, 29, 0.95) 100%), var(--bg-node); 
             box-shadow: 0 0 25px rgba(14, 165, 233, 0.45), inset 0 0 15px rgba(14, 165, 233, 0.25); 
@@ -128,17 +128,17 @@
         .node-engine .tag { color: var(--color-cyan); border-color: rgba(14, 165, 233, 0.3); margin-right: 5px; }
 
         .node-dpl { 
-            left: 300px; top: 420px; width: 420px; 
+            left: 250px; top: 420px; width: 380px; 
             border: 2px solid var(--color-red); border-left: 6px solid var(--color-red); 
             background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(244, 63, 94, 0.15) 4px, rgba(244, 63, 94, 0.15) 8px), linear-gradient(135deg, rgba(244, 63, 94, 0.15) 0%, rgba(10, 15, 29, 0.95) 100%), var(--bg-node); 
             box-shadow: 0 0 25px rgba(244, 63, 94, 0.35), inset 0 0 15px rgba(244, 63, 94, 0.15); 
         }
         .node-dpl .tag { color: var(--color-red); border-color: rgba(244, 63, 94, 0.3); }
 
-        .node-ial { left: 780px; top: 420px; width: 220px; border-left: 4px solid var(--color-green); }
+        .node-ial { left: 670px; top: 420px; width: 200px; border-left: 4px solid var(--color-green); }
         .node-ial .tag { color: var(--color-green); border-color: rgba(16, 185, 129, 0.3); }
         
-        .node-arl { left: 1050px; top: 420px; width: 250px; border-left: 4px solid var(--color-green); }
+        .node-arl { left: 900px; top: 420px; width: 230px; border-left: 4px solid var(--color-green); }
         .node-arl .tag { color: var(--color-green); border-color: rgba(16, 185, 129, 0.3); }
 
         /* ================= ARCHITECTURAL FLOW EXPLANATION ================= */
@@ -192,7 +192,7 @@
         <div class="hero-title-container">
             <h1 class="hero-title">INTELLIGENT ARCHITECTURE</h1>
         </div>
-        <p class="hero-subtitle">Leveraging artificial intelligence through a deterministic state machine to engineer an immutable zero-trust core—establishing the optimal machine identity foundation required for the secure, modular scaling of <span class="nowrap">Microsoft Entra ID</span> capabilities.</p>
+        <p class="hero-subtitle">Leveraging artificial intelligence through a deterministic state machine to engineer an immutable zero-trust core—establishing the optimal machine identity foundation allowing for additional secure, modular scaling of <span class="nowrap">Microsoft Entra ID</span> capabilities.</p>
         <div class="badge-container">
             <img src="MS Badge.png" alt="Microsoft SC-300 Certification" class="ms-badge">
         </div>
@@ -247,27 +247,27 @@
                             <marker id="arrow-red-start" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 10 0 L 0 5 L 10 10 z" fill="#f43f5e" /></marker>
                         </defs>
                         <!-- Eng to Compiler -->
-                        <path d="M 250 100 L 290 100" fill="none" stroke="#3b82f6" stroke-width="3" marker-end="url(#arrow-blue)" />
+                        <path d="M 220 100 L 250 100" fill="none" stroke="#3b82f6" stroke-width="3" marker-end="url(#arrow-blue)" />
                         <!-- Compiler to Eng -->
-                        <path d="M 300 140 L 260 140" fill="none" stroke="#a855f7" stroke-width="2" stroke-dasharray="6, 6" marker-end="url(#arrow-purple)" />
+                        <path d="M 250 130 L 220 130" fill="none" stroke="#a855f7" stroke-width="2" stroke-dasharray="6, 6" marker-end="url(#arrow-purple)" />
                         <!-- Engine to Compiler -->
-                        <path d="M 270 340 L 420 340 L 420 190" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="6, 6" marker-end="url(#arrow-cyan)" />
+                        <path d="M 220 340 L 360 340 L 360 190" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="6, 6" marker-end="url(#arrow-cyan)" />
                         <!-- Compiler to IaC -->
-                        <path d="M 540 100 L 580 100" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
+                        <path d="M 470 100 L 500 100" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
                         <!-- IaC to Core -->
-                        <path d="M 790 100 L 830 100" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
+                        <path d="M 680 100 L 710 100" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
                         <!-- Core to Modular Scaling -->
-                        <path d="M 1080 100 L 1120 100" fill="none" stroke="#a855f7" stroke-width="3" stroke-dasharray="6, 6" marker-end="url(#arrow-purple)" />
+                        <path d="M 930 100 L 960 100" fill="none" stroke="#a855f7" stroke-width="3" stroke-dasharray="6, 6" marker-end="url(#arrow-purple)" />
 
                         <!-- Core to Split -->
-                        <path d="M 960 250 L 960 360" fill="none" stroke="#10b981" stroke-width="2" />
+                        <path d="M 820 220 L 820 320" fill="none" stroke="#10b981" stroke-width="2" />
                         <!-- Split to IAL -->
-                        <path d="M 960 360 L 890 360 L 890 410" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
+                        <path d="M 820 320 L 770 320 L 770 410" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
                         <!-- Split to ARL -->
-                        <path d="M 960 360 L 1175 360 L 1175 410" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
+                        <path d="M 820 320 L 1015 320 L 1015 410" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
                         
                         <!-- Engine to DPL (Bidirectional) -->
-                        <path d="M 270 450 L 290 450" fill="none" stroke="#f43f5e" stroke-width="2" stroke-dasharray="4, 4" marker-start="url(#arrow-red-start)" marker-end="url(#arrow-red-end)" />
+                        <path d="M 220 450 L 250 450" fill="none" stroke="#f43f5e" stroke-width="2" stroke-dasharray="4, 4" marker-start="url(#arrow-red-start)" marker-end="url(#arrow-red-end)" />
                     </svg>
 
                     <div class="node node-engineer"><div class="tag">[THE ARCHITECT]</div><div class="node-title">Security Engineer</div><div class="node-text">Defines strategic coordinates, initiates the pipeline, and retains absolute authorization authority at all execution gates.</div></div>

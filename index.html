@@ -35,17 +35,33 @@
             border-bottom: 1px solid var(--border-base); z-index: 100;
             padding: 1.2rem 2rem; display: flex; justify-content: center;
         }
-        .nav-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; justify-content: center; align-items: center; }
-        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; }
-        .nav-links a:hover { color: var(--color-cyan); }
-        .nav-links a.active-link { color: #ffffff; border-bottom: 2px solid var(--color-cyan); padding-bottom: 4px; }
-        
-        .nav-links a.portfolio-btn {
-            color: var(--color-cyan); border: 1px solid var(--color-cyan);
-            padding: 0.4rem 1.2rem; border-radius: 6px;
-            background: rgba(14, 165, 233, 0.1); transition: all 0.3s ease;
+        .nav-links { 
+            display: flex; gap: 1.2rem; list-style: none; flex-wrap: wrap; 
+            justify-content: center; align-items: center; 
         }
-        .nav-links a.portfolio-btn:hover { background: var(--color-cyan); color: #ffffff; box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); }
+        
+        /* Universal Button Styling for all links */
+        .nav-links a { 
+            color: var(--color-cyan); 
+            border: 1px solid var(--color-cyan);
+            background: rgba(14, 165, 233, 0.1); 
+            padding: 0.5rem 1.2rem; 
+            border-radius: 6px;
+            text-decoration: none; 
+            font-size: 0.9rem; 
+            font-weight: 700; 
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+            transition: all 0.3s ease; 
+        }
+        
+        /* Hover state and Active Page state are filled solid */
+        .nav-links a:hover, 
+        .nav-links a.active-link { 
+            background: var(--color-cyan); 
+            color: #ffffff; 
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
+        }
 
         /* ================= HERO HEADER ================= */
         .hero { padding: 180px 20px 80px; text-align: center; border-bottom: 1px solid var(--border-base); }
@@ -185,7 +201,7 @@
             <li><a href="index.html" class="active-link">Home</a></li>
             <li><a href="architectural.html">Pipeline Architecture</a></li>
             <li><a href="workflow-portfolio.html">Machine Identity Execution Showcase</a></li>
-            <li><a href="add-capabilities.html" class="portfolio-btn">Additional Capability Integration Showcase</a></li>
+            <li><a href="add-capabilities.html">Additional Capability Integration Showcase</a></li>
         </ul>
     </nav>
 

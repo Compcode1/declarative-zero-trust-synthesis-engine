@@ -1,33 +1,316 @@
-
-<div class="summary-card">
-    <h3>Project 01: Brownfield GitLab CI & Cosmos DB Federation</h3>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligent Architecture - Capability Integration Showcase</title>
+    <link rel="icon" type="image/png" href="cropped-LOGO-IMPROVED.png">
     
-    <!-- Enterprise Challenge -->
-    <div style="margin-bottom: 1.2rem;">
-        <div style="color: var(--color-purple); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; margin-bottom: 0.5rem;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-            The Enterprise Challenge
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-page: #020617; 
+            --bg-node: rgba(10, 15, 29, 0.95);
+            --border-base: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+            --color-blue: #3b82f6;
+            --color-cyan: #0ea5e9;
+            --color-purple: #a855f7;
+            --color-grey: #64748b;
+            --color-green: #10b981;
+            --color-red: #f43f5e;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--bg-page); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--text-main); line-height: 1.6; }
+
+        /* ================= NAVIGATION ================= */
+        nav { position: fixed; top: 0; width: 100%; background: rgba(2, 6, 23, 0.85); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-base); z-index: 100; padding: 1.2rem 2rem; display: flex; justify-content: center; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; align-items: center; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--color-cyan); }
+        .nav-links a.portfolio-btn { color: #ffffff; border: 1px solid var(--color-purple); padding: 0.4rem 1.2rem; border-radius: 6px; background: rgba(168, 85, 247, 0.2); box-shadow: 0 0 15px rgba(168, 85, 247, 0.4); }
+
+        /* ================= HERO MINIMAL ================= */
+        .hero-minimal { padding: 140px 20px 60px; text-align: center; border-bottom: 1px solid var(--border-base); }
+        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 2.8rem; font-weight: 900; letter-spacing: 2px; color: var(--color-purple); text-transform: uppercase; margin-bottom: 15px; }
+        .hero-subtitle { font-size: 1.2rem; color: var(--text-muted); max-width: 1000px; margin: 0 auto 30px; font-weight: 500; line-height: 1.6; }
+        .hero-subtitle strong { color: var(--color-cyan); }
+        .badge-container img { max-width: 130px; }
+
+        /* ================= MAIN CONTAINER ================= */
+        .container { max-width: 1100px; margin: 0 auto; padding: 4rem 20px; }
+        .section-title { font-family: 'Montserrat', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--color-cyan); text-transform: uppercase; margin-bottom: 2rem; text-align: center; letter-spacing: 1px; }
+        .divider { height: 1px; background: var(--border-base); margin: 5rem 0; width: 100%; }
+
+        /* ================= 6-BOX CAPABILITY MATRIX ================= */
+        .matrix-grid-6 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-bottom: 4rem; }
+        @media (max-width: 850px) { .matrix-grid-6 { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .matrix-grid-6 { grid-template-columns: 1fr; } }
+
+        .matrix-card { background: rgba(15, 23, 42, 0.4); border: 1px solid var(--border-base); border-top: 3px solid var(--color-blue); padding: 1.5rem; border-radius: 8px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); }
+        .matrix-card.highlight-card { border-top-color: var(--color-purple); background: rgba(168, 85, 247, 0.05); }
+        .matrix-card h3 { font-size: 1.1rem; color: var(--text-main); margin-bottom: 1rem; border-bottom: 1px solid var(--border-base); padding-bottom: 0.5rem; font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
+        .matrix-card.highlight-card h3 { color: var(--color-purple); border-bottom-color: rgba(168, 85, 247, 0.3); }
+        .matrix-list { list-style: none; }
+        .matrix-list li { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0.7rem; display: flex; align-items: center; }
+        .matrix-list li.active { color: var(--color-cyan); font-weight: 600; }
+        .matrix-list li.active-purple { color: var(--color-purple); font-weight: 700; }
+        
+        .checkbox { display: inline-block; width: 16px; height: 16px; border: 1px solid var(--color-grey); border-radius: 3px; margin-right: 10px; position: relative; }
+        .active .checkbox { border-color: var(--color-cyan); background-color: rgba(14, 165, 233, 0.2); }
+        .active .checkbox::after { content: '✔'; position: absolute; top: -3px; left: 2px; color: var(--color-cyan); font-size: 12px; }
+        .active-purple .checkbox { border-color: var(--color-purple); background-color: rgba(168, 85, 247, 0.2); }
+        .active-purple .checkbox::after { content: '✔'; position: absolute; top: -3px; left: 2px; color: var(--color-purple); font-size: 12px; }
+
+        /* ================= NARRATIVE TEXT BLOCKS ================= */
+        .narrative-block { font-size: 1.15rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 2.5rem; text-align: left; }
+        .narrative-block strong { color: var(--text-main); font-weight: 700; }
+        .narrative-highlight { color: var(--color-cyan); font-weight: 600; }
+
+        /* ================= ARCHITECT COMMAND MODULE ================= */
+        .architect-command { background: #f8fafc; border-left: 6px solid var(--color-blue); border-radius: 8px; padding: 1.5rem 2.5rem; margin: 0 auto 2.5rem; width: 100%; box-shadow: 0 15px 30px rgba(0,0,0,0.4); color: #0f172a; position: relative; }
+        .architect-badge { display: inline-block; background: var(--color-blue); color: #ffffff; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; font-weight: 800; letter-spacing: 1.5px; padding: 6px 14px; border-radius: 4px; margin-bottom: 12px; text-transform: uppercase; }
+        .architect-text { font-size: 1.15rem; font-weight: 600; line-height: 1.6; }
+
+        /* ================= TERMINAL STYLING ================= */
+        .terminal-window { background: #0d1117; border: 1px solid var(--border-base); border-radius: 10px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); width: 100%; margin: 0 auto 4rem; text-align: left; overflow: hidden; }
+        .terminal-header { background: #161b22; padding: 12px 20px; display: flex; align-items: center; border-bottom: 1px solid var(--border-base); position: relative; }
+        .terminal-dots { display: flex; gap: 8px; position: absolute; left: 20px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
+        .terminal-title { margin: 0 auto; color: var(--text-muted); font-size: 0.85rem; font-family: monospace; letter-spacing: 1px; }
+        .terminal-body { padding: 2.5rem; font-family: 'Consolas', 'Courier New', monospace; font-size: 1.05rem; line-height: 1.8; color: var(--text-main); overflow-x: auto; white-space: pre-wrap; word-wrap: break-word; background: linear-gradient(rgba(13, 17, 23, 1) 0%, rgba(13, 17, 23, 0.95) 100%); }
+        
+        .t-cyan { color: var(--color-cyan); font-weight: 700; } 
+        .t-green { color: var(--color-green); font-weight: 700; } 
+        .t-blue { color: var(--color-blue); } 
+        .t-purple { color: var(--color-purple); font-weight: 700; } 
+        .t-muted { color: var(--text-muted); } 
+        .t-comment { color: var(--color-grey); font-style: italic; }
+        .t-red { color: #ff5f56; font-weight: 700; }
+
+        .insight-box { background: rgba(14, 165, 233, 0.05); border-left: 4px solid var(--color-cyan); padding: 1.5rem 2rem; margin: 0 auto 3rem; }
+        .insight-title { color: var(--color-cyan); font-weight: 800; font-size: 0.9rem; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 0.5rem; }
+        .insight-text { font-size: 1.1rem; color: var(--text-main); line-height: 1.7; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="architectural.html">Pipeline Architecture</a></li>
+            <li><a href="workflow-portfolio.html">Technical Execution</a></li>
+            <li><a href="capability-integration.html" class="portfolio-btn">Capability Integration</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero-minimal">
+        <h1 class="hero-title">Capability Integration Showcase</h1>
+        <p class="hero-subtitle">Demonstrating <strong>Day-2 Enterprise Operations</strong>: Shifting from a dry technical ledger to a collaborative user-experience. Watch how the engineer and the Interactive State Machine collaboratively layer advanced security controls (CAWI & Risk Policies) onto a Zero-Trust baseline.</p>
+        <div class="badge-container">
+            <img src="MS Badge.png" alt="Microsoft Certified: Identity and Access Administrator Associate">
         </div>
-        <p style="margin-bottom: 0;">Modernizing live, mission-critical databases (Brownfield environments) to accept automated pipelines without triggering <strong>Destructive State Modifications</strong> or falling into the <strong>"Contributor" Trap</strong> of over-permissioning.</p>
+    </header>
+
+    <div class="container">
+
+        <!-- ================= 6-BOX MATRIX ================= -->
+        <div class="matrix-grid-6">
+            <div class="matrix-card">
+                <h3>Identity Core</h3>
+                <ul class="matrix-list">
+                    <li class="active"><span class="checkbox"></span>Microsoft Entra ID</li>
+                </ul>
+            </div>
+            <div class="matrix-card">
+                <h3>Execution Agent</h3>
+                <ul class="matrix-list">
+                    <li class="active"><span class="checkbox"></span>GitHub Actions</li>
+                    <li><span class="checkbox"></span>Azure DevOps</li>
+                    <li><span class="checkbox"></span>GitLab CI</li>
+                </ul>
+            </div>
+            <div class="matrix-card">
+                <h3>Infrastructure State</h3>
+                <ul class="matrix-list">
+                    <li class="active"><span class="checkbox"></span>Brownfield (Existing)</li>
+                    <li><span class="checkbox"></span>Greenfield (Net-New)</li>
+                </ul>
+            </div>
+            <div class="matrix-card">
+                <h3>Data-Plane Asset</h3>
+                <ul class="matrix-list">
+                    <li class="active"><span class="checkbox"></span>Azure Key Vault</li>
+                    <li><span class="checkbox"></span>Storage Account</li>
+                    <li><span class="checkbox"></span>SQL / Cosmos DB</li>
+                </ul>
+            </div>
+            <div class="matrix-card">
+                <h3>IaC Payload</h3>
+                <ul class="matrix-list">
+                    <li><span class="checkbox"></span>Terraform (HCL)</li>
+                    <li><span class="checkbox"></span>Azure Bicep</li>
+                    <li class="active"><span class="checkbox"></span>PowerShell REST API</li>
+                </ul>
+            </div>
+            <!-- DAY 2 CAPABILITY BOX -->
+            <div class="matrix-card highlight-card">
+                <h3>Day-2 Configurations</h3>
+                <ul class="matrix-list">
+                    <li class="active-purple"><span class="checkbox"></span>Workload Identity CAWI</li>
+                    <li class="active-purple"><span class="checkbox"></span>Entra ID Protection (Risk)</li>
+                    <li><span class="checkbox"></span>Continuous Access Eval</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="insight-box">
+            <div class="insight-title">> The Method Behind the Machine</div>
+            <div class="insight-text">
+                "In real-world enterprise environments, deployments rarely go perfectly on the first try. By shifting the narrative from a dry technical ledger to a 'Collaborative Troubleshooting' showcase, this page demonstrates the true value of the Zero Trust Interactive State Machine: how it handles friction, catches API schema errors, and works seamlessly with the human engineer using plain-talk analogies to surgically patch the environment."
+            </div>
+        </div>
+
+        <!-- ================= PHASE 1 ================= -->
+        <h2 class="section-title">Phase 1: Establishing the Cryptographic Bedrock</h2>
+        <p class="narrative-block">Before we can layer on advanced behavioral controls, we must build the foundation. The Engineer engages the Interactive State Machine to replace a legacy, password-based connection with a secure, mathematically verified OpenID Connect (OIDC) tunnel.</p>
+
+        <div class="architect-command">
+            <div class="architect-badge">[ARCHITECT DIRECTIVE 01]</div>
+            <div class="architect-text">
+                Coordinates locked. Target: GitHub Actions to Azure Key Vault. Tooling: PowerShell REST API. Synthesize the OIDC trust baseline.
+            </div>
+        </div>
+
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-dots"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                <div class="terminal-title">engine_console.exe // The_Baseline</div>
+            </div>
+            <pre class="terminal-body"><span class="t-cyan">[PLAIN TALK TRANSLATION]</span>
+At its core, this baseline project is about building a highly secure, keyless bridge between your automated assembly line (GitHub) and a locked digital vault (Azure). 
+
+Instead of using static passwords that could easily be stolen or leaked, we set up a system where the GitHub assembly line presents a highly specific, temporary digital ID badge. The Azure vault inspects this badge, mathematically verifies exactly where it came from, and then opens the door for just 60 minutes. It grants the system exactly enough access to read the secrets it needs, and then the badge self-destructs.
+
+<span class="t-green">Outputting baseline deployment runbook...</span>
+<span class="t-muted">Identity provisioned. Data-plane scoped. Cryptographic baseline established.</span></pre>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- ================= PHASE 2 ================= -->
+        <h2 class="section-title">Phase 2: Day-2 Capability Integration</h2>
+        <p class="narrative-block">Enterprise zero-trust is not a static destination; it is an evolving posture. With the foundation built, the Engineer directs the State Machine to initiate a <strong>Day-2 Expansion</strong>, layering on dynamic Conditional Access policies.</p>
+
+        <div class="architect-command">
+            <div class="architect-badge">[ARCHITECT DIRECTIVE 02]</div>
+            <div class="architect-text">
+                The baseline is secure. Now, I want to expand the architecture. Let's layer on Conditional Access for Workload Identities (CAWI) and Entra ID Protection Risk policies using native REST API payloads.
+            </div>
+        </div>
+
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-dots"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                <div class="terminal-title">engine_console.exe // Day_2_Expansion</div>
+            </div>
+            <pre class="terminal-body"><span class="t-purple">[MODE: DAY-2 CAPABILITY EXPANSION]</span>
+I am dynamically synthesizing the CAWI and Entra ID Protection payloads.
+
+Per Framework Rules, I am chunking the massive array of GitHub IPv4 addresses into 80-subnet blocks to respect Entra ID size limits. I am building the Network Fence, and I am building the High-Risk block policy.
+
+<span class="t-cyan">[PLAIN TALK TRANSLATION]</span>
+Think of this expansion as upgrading our keyless vault from a standard electronic lock to a bio-metric smart vault. Before, if someone managed to copy the exact cryptographic ID badge, the door would open. 
+
+Now, we're installing GPS tracking (The Network Fence) and a biometric anomaly sensor (Identity Protection Risk). Even if a thief steals the ID badge, if they try to swipe it from outside the designated factory floor (GitHub's IPs), or if the system detects the badge behaving erratically, the vault shuts down and refuses to open, no matter how perfect the badge looks.
+
+<span class="t-muted">Action Required: Execute Expansion Payload</span>
+I am locking the brakes. Please execute the generated `deploy_cawi_expansion.ps1` script in your terminal.</pre>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- ================= PHASE 3 ================= -->
+        <h2 class="section-title">Phase 3: Collaborative Troubleshooting</h2>
+        <p class="narrative-block">When deploying advanced infrastructure as code, translating logic across different platforms often creates friction. When the Engineer executed the script, the Microsoft Graph API immediately rejected the payload with a `(400) Bad Request`. The State Machine instantly halts the pipeline to enter a diagnostic loop.</p>
+
+        <div class="architect-command">
+            <div class="architect-badge">[ARCHITECT DIRECTIVE 03]</div>
+            <div class="architect-text">
+                Execution failed. The terminal threw a "(400) Bad Request" exactly when pushing the two Conditional Access policies to Graph API.
+            </div>
+        </div>
+
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-dots"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                <div class="terminal-title">engine_console.exe // COLLABORATIVE TROUBLESHOOTING</div>
+            </div>
+            <pre class="terminal-body"><span class="t-purple">[ACTIVE DIAGNOSTIC: Graph API Schema Translation Error] | Iteration: 1</span>
+
+<span class="t-cyan">Root Cause Hypothesis:</span>
+The script successfully fetched the IPs and created the Named Location, but threw a 400 Bad Request on the policy generation. This was an error on my part.
+
+I hallucinated Terraform syntax into a raw Graph API REST call. 
+1. I used `"includedApplications"` (Terraform syntax) instead of `"includeApplications"` (Graph API JSON schema).
+2. I used the root property `"servicePrincipals"`, but Graph API specifically requires Service Principals to be nested under a `"clientApplications"` condition block.
+3. Graph API strictly mandates that `"users"` must be explicitly set to `"None"` when targeting a Service Principal.
+
+<span class="t-muted">Action Required: Execute Patched Payload</span>
+I have completely rewritten the payload to map exactly to the Microsoft Graph API REST JSON schema. I also added a `try/catch` block so if the API rejects us again, it will output the exact Microsoft error string instead of failing silently.
+
+<span class="t-purple">[PIPELINE HALTED]</span>
+Please replace the payload and execute again.</pre>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- ================= PHASE 4 ================= -->
+        <h2 class="section-title">Phase 4: Validation & The Limits of ML Testing</h2>
+        <p class="narrative-block">With the JSON schema corrected, the policies successfully deploy to Azure. The Engineer triggers the GitHub Actions pipeline to verify the connection is still functional. The pipeline turns green, but a critical architectural question remains about how we test Machine Learning-based security.</p>
+
+        <div class="architect-command">
+            <div class="architect-badge">[ARCHITECT DIRECTIVE 04]</div>
+            <div class="architect-text">
+                The pipeline executed successfully. The data-plane read is green. But did that one test satisfy both the CAWI network fence AND the Entra ID Protection risk policy? I wasn't sure if we really tested the risk block.
+            </div>
+        </div>
+
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-dots"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                <div class="terminal-title">engine_console.exe // Validation_Analysis</div>
+            </div>
+            <pre class="terminal-body"><span class="t-cyan">You are 100% correct to call that out, and your engineering instinct is razor-sharp. We did NOT test the "true positive" blocking capability of the Entra ID Protection risk policy.</span>
+
+Here is the exact architectural reality of what that final green pipeline run actually proved:
+
+<span class="t-blue">What we proved (The False Positive Test):</span>
+By running the pipeline with the Risk Policy active, we proved that the policy is successfully evaluating traffic and correctly assessing your GitHub runner as "Low/No Risk." We proved that our new security system won't accidentally lock out your legitimate pipeline. 
+
+<span class="t-blue">What we did NOT prove (The True Positive Test):</span>
+We did not prove that the system will successfully block a hacker, because we didn't simulate a "High Risk" event. 
+
+<span class="t-muted">The Limits of ML Testing:</span>
+Testing a true positive for Workload Identity Risk is notoriously difficult to simulate on demand. Workload Identity Risk is calculated by Microsoft's backend machine learning algorithms based on anomalous token usage, leaked credentials, or highly unusual API behavioral patterns over time. You cannot simply push a button in GitHub Actions to force Microsoft to immediately categorize your Service Principal as "High Risk." 
+
+Because we mathematically verified via the Graph API that the policy is deployed, enabled, and strictly scoped to your specific Object ID, we have to rely on Microsoft's backend telemetry engine to execute the block if the risk threshold is ever crossed. 
+
+<span class="t-green">You caught the exact limitation of validating dynamic, ML-based security policies. We validated the operational baseline, but the risk guillotine itself remains untested until an actual anomaly occurs.</span></pre>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="narrative-block" style="text-align: center; margin-bottom: 4rem;">
+            <p>By forcing the AI into a deterministic, conversational framework, the <strong>Zero Trust Interactive State Machine</strong> ensures that enterprise cloud deployments are not black boxes. Every error is caught, every schema is corrected, and every architectural decision is fully transparent and governed by the human engineer.</p>
+        </div>
+
     </div>
 
-    <!-- Zero Trust Framework Execution -->
-    <div style="margin-bottom: 1.2rem;">
-        <div style="color: var(--color-cyan); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; margin-bottom: 0.5rem;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
-            Zero Trust Framework Execution
-        </div>
-        <p style="margin-bottom: 0;">Directed to orchestrate a native Azure Bicep deployment, the Zero Trust Framework neutralizes AI hallucinations by enforcing strict idempotency. It injects 'existing' asset referencing to guarantee the live Cosmos DB configuration is never overwritten. Furthermore, the framework mathematically enforces the Principle of Least Privilege (PoLP) by restricting the automated GitLab agent strictly to granular data-plane roles, entirely blocking control-plane access.</p>
-    </div>
-
-    <!-- Architectural Value -->
-    <div style="margin-bottom: 1.5rem;">
-        <div style="color: var(--color-green); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 8px; margin-bottom: 0.5rem;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-            Architectural Value
-        </div>
-        <p style="margin-bottom: 0;">Proves the ability to surgically modernize legacy infrastructure. The framework successfully establishes a passwordless Workload Identity Federation bridge while acting as an absolute guardrail against AI-driven data loss and over-permissioning, verifying execution integrity via live telemetry.</p>
-    </div>
-
-    <a href="#project-01" class="summary-link">View Technical Execution <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-</div>
+</body>
+</html>

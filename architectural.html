@@ -222,32 +222,6 @@
         .cap-list li::before { content: '>'; color: var(--color-blue); font-weight: 900; }
         .cap-2-col-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2rem; }
 
-        /* ================= CERTIFICATIONS & RESUME ================= */
-        .cert-card { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; text-align: left; }
-        .cert-org { font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; font-weight: 700; }
-        
-        .cert-blue .cert-org { color: var(--color-blue); }
-        .cert-red .cert-org { color: var(--color-red); }
-        .cert-green .cert-org { color: var(--color-green); }
-        .cert-cyan .cert-org { color: var(--color-cyan); }
-        .cert-teal .cert-org { color: var(--color-teal); }
-
-        .cert-name { font-size: 1.2rem; font-weight: 700; color: var(--text-main); line-height: 1.4; }
-
-        .resume-btn-container { margin-top: 2rem; text-align: center; width: 100%; }
-        .resume-btn {
-            display: inline-block; padding: 1rem 2.5rem;
-            font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 700;
-            color: #ffffff; background: var(--color-blue); text-decoration: none;
-            border-radius: 6px; letter-spacing: 1px; text-transform: uppercase;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.4); border: 1px solid rgba(255,255,255,0.1);
-        }
-        .resume-btn:hover {
-            background: #2563eb; transform: translateY(-2px);
-            box-shadow: 0 15px 25px -5px rgba(59, 130, 246, 0.5);
-        }
-
         @media (max-width: 992px) {
             .feature-grid-3, .feature-grid-2x2, .capability-grid, .cap-2-col-list { grid-template-columns: 1fr; }
             .hero-title { font-size: 2.8rem; }
@@ -271,6 +245,7 @@
             <li><a href="architectural.html" class="active-link">Pipeline Architecture</a></li>
             <li><a href="workflow-portfolio.html">Machine Identity Execution Showcase</a></li>
             <li><a href="add-capabilities.html">Additional Capability Integration Showcase</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
 
@@ -1035,55 +1010,6 @@ AzureDiagnostics
         </div>
         
         <p class="diagram-caption">The full Capability Index architecture. It guarantees an immutable, heavily audited zero-trust core seamlessly combined with the precise modular security toolsets required for the deployment.</p>
-
-    </section>
-
-    <!-- TRANSITION BRIDGE -->
-    <div id="certs" class="transition-wrapper">
-        <div class="section-divider-line"></div>
-        <h2 class="deep-dive-header" style="color: var(--color-blue);">Professional Certifications</h2>
-    </div>
-
-    <!-- MODULE 9: PROFESSIONAL CERTIFICATIONS -->
-    <section class="stacked-section">
-        
-        <div class="feature-grid-3">
-            
-            <!-- SC-300 -->
-            <div class="feature-card cert-card cert-blue blue">
-                <div class="cert-org">Microsoft Certified</div>
-                <div class="cert-name">Identity and Access Administrator Associate (SC-300)</div>
-            </div>
-            
-            <!-- CompTIA -->
-            <div class="feature-card cert-card cert-red red">
-                <div class="cert-org">CompTIA</div>
-                <div class="cert-name">Cybersecurity Analyst (CySA+) & Security+ ce</div>
-            </div>
-
-            <!-- Python PCAP -->
-            <div class="feature-card cert-card cert-green green">
-                <div class="cert-org">Python Institute</div>
-                <div class="cert-name">PCAP – Certified Associate Python Programmer</div>
-            </div>
-            
-            <!-- SC-900 -->
-            <div class="feature-card cert-card cert-cyan cyan">
-                <div class="cert-org">Microsoft Certified</div>
-                <div class="cert-name">Security, Compliance, and Identity Fundamentals (SC-900)</div>
-            </div>
-
-            <!-- Dataquest -->
-            <div class="feature-card cert-card cert-teal teal">
-                <div class="cert-org">Dataquest</div>
-                <div class="cert-name">Data Engineering Professional</div>
-            </div>
-
-        </div>
-
-        <div class="resume-btn-container">
-            <a href="Steven_Tuschman_Resume.pdf" target="_blank" class="resume-btn">View Full Resume</a>
-        </div>
 
     </section>
 

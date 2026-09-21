@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligent Architecture - Contact & Credentials</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-page: #020617; 
+            --bg-node: rgba(10, 15, 29, 0.95);
+            --border-base: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+            --color-blue: #3b82f6;
+            --color-cyan: #0ea5e9;
+            --color-purple: #a855f7;
+            --color-grey: #64748b;
+            --color-green: #10b981;
+            --color-teal: #14b8a6;
+            --color-red: #f43f5e;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-page);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* ================= NAVIGATION ================= */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-base); z-index: 100;
+            padding: 1.2rem 2rem; display: flex; justify-content: center;
+        }
+        .nav-links { 
+            display: flex; gap: 1.2rem; list-style: none; flex-wrap: wrap; 
+            justify-content: center; align-items: center; 
+        }
+        
+        .nav-links a { 
+            color: var(--color-cyan); 
+            border: 1px solid var(--color-cyan);
+            background: rgba(14, 165, 233, 0.1); 
+            padding: 0.5rem 1.2rem; 
+            border-radius: 6px;
+            text-decoration: none; 
+            font-size: 0.9rem; 
+            font-weight: 700; 
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+            transition: all 0.3s ease; 
+        }
+        
+        .nav-links a:hover, 
+        .nav-links a.active-link { 
+            background: var(--color-cyan); 
+            color: #ffffff; 
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
+        }
+
+        /* ================= HERO HEADER ================= */
+        .hero { padding: 180px 20px 80px; text-align: center; border-bottom: 1px solid var(--border-base); }
+        .hero-title-container { display: flex; align-items: center; justify-content: center; margin-bottom: 25px; }
+        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 4rem; font-weight: 900; letter-spacing: 3px; color: var(--color-blue); text-transform: uppercase; }
+        .hero-subtitle { font-size: 1.5rem; color: var(--text-muted); font-weight: 500; max-width: 1000px; margin: 0 auto; letter-spacing: 1px; }
+
+        /* ================= SHARED STACKED LAYOUT ================= */
+        .stacked-section { padding: 60px 20px; width: 100%; display: flex; flex-direction: column; align-items: center; }
+        
+        .section-intro { max-width: 1000px; text-align: center; margin-bottom: 3rem; }
+        .section-kicker { color: var(--color-cyan); font-weight: 700; font-size: 1.1rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; display: block; }
+        .section-title { font-family: 'Montserrat', sans-serif; font-size: 3rem; font-weight: 900; line-height: 1.2; margin-bottom: 2rem; color: var(--text-main); }
+        
+        .feature-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; width: 100%; max-width: 1300px; margin-bottom: 2rem; }
+        
+        .feature-card { background: rgba(15, 23, 42, 0.4); border-top: 4px solid; padding: 2.5rem 2rem; border-radius: 8px; text-align: left; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); }
+        .feature-card.blue { border-color: var(--color-blue); }
+        .feature-card.cyan { border-color: var(--color-cyan); }
+        .feature-card.green { border-color: var(--color-green); }
+        .feature-card.teal { border-color: var(--color-teal); }
+        .feature-card.purple { border-color: var(--color-purple); }
+        .feature-card.red { border-color: var(--color-red); }
+
+        /* ================= CERTIFICATIONS & CONTACT CARDS ================= */
+        .cert-card { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; text-align: left; text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        a.cert-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px -5px rgba(0,0,0,0.4); background: rgba(15, 23, 42, 0.7); }
+        
+        .cert-org { font-size: 0.9rem; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; font-weight: 800; }
+        
+        .cert-blue .cert-org { color: var(--color-blue); }
+        .cert-red .cert-org { color: var(--color-red); }
+        .cert-green .cert-org { color: var(--color-green); }
+        .cert-cyan .cert-org { color: var(--color-cyan); }
+        .cert-teal .cert-org { color: var(--color-teal); }
+        .cert-purple .cert-org { color: var(--color-purple); }
+
+        .cert-name { font-size: 1.25rem; font-weight: 700; color: var(--text-main); line-height: 1.4; }
+        .contact-value { color: var(--text-muted); font-family: monospace; font-size: 1rem; margin-top: 12px; word-break: break-all; transition: color 0.3s ease; }
+        a.cert-card:hover .contact-value { color: var(--text-main); }
+
+        /* ================= MASSIVE TRANSITION BRIDGE ================= */
+        .transition-wrapper {
+            width: 100%; max-width: 1300px; margin: 4rem auto;
+            text-align: center; position: relative;
+        }
+        .section-divider-line {
+            position: absolute; top: 50%; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.5), transparent);
+            z-index: 1; transform: translateY(-50%);
+        }
+        .deep-dive-header {
+            position: relative; z-index: 2; display: inline-block;
+            background: var(--bg-page); padding: 0 30px;
+            font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 900;
+            letter-spacing: 4px; text-transform: uppercase; color: var(--color-blue);
+        }
+
+        /* ================= RESUME BUTTON ================= */
+        .resume-btn-container { margin-top: 4rem; text-align: center; width: 100%; margin-bottom: 2rem; }
+        .resume-btn {
+            display: inline-block; padding: 1.2rem 3rem;
+            font-family: 'Montserrat', sans-serif; font-size: 1.2rem; font-weight: 800;
+            color: #ffffff; background: var(--color-blue); text-decoration: none;
+            border-radius: 6px; letter-spacing: 1.5px; text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px -5px rgba(59, 130, 246, 0.4); border: 1px solid rgba(255,255,255,0.1);
+        }
+        .resume-btn:hover {
+            background: #2563eb; transform: translateY(-3px);
+            box-shadow: 0 15px 30px -5px rgba(59, 130, 246, 0.6);
+        }
+
+        @media (max-width: 992px) {
+            .feature-grid-3 { grid-template-columns: 1fr; }
+            .hero-title { font-size: 2.8rem; }
+            .section-title { font-size: 2.2rem; }
+            .deep-dive-header { font-size: 1.6rem; padding: 0 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- GLOBAL NAVIGATION -->
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="architectural.html">Pipeline Architecture</a></li>
+            <li><a href="workflow-portfolio.html">Machine Identity Execution Showcase</a></li>
+            <li><a href="add-capabilities.html">Additional Capability Integration Showcase</a></li>
+            <li><a href="contact.html" class="active-link">Contact & Credentials</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO HEADER -->
+    <header class="hero">
+        <div class="hero-title-container">
+            <h1 class="hero-title">CONTACT & CREDENTIALS</h1>
+        </div>
+        <p class="hero-subtitle">Professional Outreach, Repositories & Validated Capabilities</p>
+    </header>
+
+    <!-- MODULE 1: DIRECT CONTACT -->
+    <section class="stacked-section">
+        <div class="section-intro">
+            <span class="section-kicker">Connect & Review</span>
+            <h2 class="section-title">Direct Outreach</h2>
+        </div>
+        
+        <div class="feature-grid-3">
+            <!-- Email -->
+            <a href="mailto:steventuschman2@gmail.com" class="feature-card cert-card cert-cyan cyan">
+                <div class="cert-org">Email</div>
+                <div class="cert-name">Direct Communication</div>
+                <div class="contact-value">steventuschman2@gmail.com</div>
+            </a>
+            
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/steventuschman" target="_blank" class="feature-card cert-card cert-blue blue">
+                <div class="cert-org">LinkedIn</div>
+                <div class="cert-name">Professional Network</div>
+                <div class="contact-value">linkedin.com/in/steventuschman</div>
+            </a>
+            
+            <!-- GitHub -->
+            <a href="https://github.com/Compcode1" target="_blank" class="feature-card cert-card cert-purple purple">
+                <div class="cert-org">GitHub</div>
+                <div class="cert-name">Code Repositories</div>
+                <div class="contact-value">github.com/Compcode1</div>
+            </a>
+        </div>
+    </section>
+
+    <!-- TRANSITION BRIDGE -->
+    <div class="transition-wrapper">
+        <div class="section-divider-line"></div>
+        <h2 class="deep-dive-header" style="color: var(--color-blue);">Professional Certifications</h2>
+    </div>
+
+    <!-- MODULE 2: PROFESSIONAL CERTIFICATIONS -->
+    <section class="stacked-section" style="padding-top: 2rem;">
+        
+        <div class="feature-grid-3">
+            <!-- SC-300 -->
+            <div class="feature-card cert-card cert-blue blue">
+                <div class="cert-org">Microsoft Certified</div>
+                <div class="cert-name">Identity and Access Administrator Associate (SC-300)</div>
+            </div>
+            
+            <!-- CompTIA -->
+            <div class="feature-card cert-card cert-red red">
+                <div class="cert-org">CompTIA</div>
+                <div class="cert-name">Cybersecurity Analyst (CySA+) & Security+ ce</div>
+            </div>
+
+            <!-- Python PCAP -->
+            <div class="feature-card cert-card cert-green green">
+                <div class="cert-org">Python Institute</div>
+                <div class="cert-name">PCAP – Certified Associate Python Programmer</div>
+            </div>
+            
+            <!-- SC-900 -->
+            <div class="feature-card cert-card cert-cyan cyan">
+                <div class="cert-org">Microsoft Certified</div>
+                <div class="cert-name">Security, Compliance, and Identity Fundamentals (SC-900)</div>
+            </div>
+
+            <!-- Dataquest -->
+            <div class="feature-card cert-card cert-teal teal">
+                <div class="cert-org">Dataquest</div>
+                <div class="cert-name">Data Engineering Professional</div>
+            </div>
+        </div>
+
+        <div class="resume-btn-container">
+            <a href="Steven_Tuschman_Resume.pdf" target="_blank" class="resume-btn">View Full Resume</a>
+        </div>
+
+    </section>
+
+</body>
+</html>

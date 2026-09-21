@@ -1,9 +1,9 @@
-<!DOCTYPE html>  
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intelligent Architecture - Contact & Credentials</title>
+    <title>Intelligent Architecture - Contact</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     
@@ -76,10 +76,6 @@
         /* ================= SHARED STACKED LAYOUT ================= */
         .stacked-section { padding: 60px 20px; width: 100%; display: flex; flex-direction: column; align-items: center; }
         
-        .section-intro { max-width: 1000px; text-align: center; margin-bottom: 3rem; }
-        .section-kicker { color: var(--color-cyan); font-weight: 700; font-size: 1.1rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; display: block; }
-        .section-title { font-family: 'Montserrat', sans-serif; font-size: 3rem; font-weight: 900; line-height: 1.2; margin-bottom: 2rem; color: var(--text-main); }
-        
         .feature-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; width: 100%; max-width: 1300px; margin-bottom: 2rem; }
         
         .feature-card { background: rgba(15, 23, 42, 0.4); border-top: 4px solid; padding: 2.5rem 2rem; border-radius: 8px; text-align: left; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); }
@@ -92,7 +88,7 @@
 
         /* ================= CERTIFICATIONS & CONTACT CARDS ================= */
         .cert-card { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; text-align: left; text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        a.cert-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px -5px rgba(0,0,0,0.4); background: rgba(15, 23, 42, 0.7); }
+        .cert-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px -5px rgba(0,0,0,0.4); background: rgba(15, 23, 42, 0.7); }
         
         .cert-org { font-size: 0.9rem; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; font-weight: 800; }
         
@@ -105,7 +101,7 @@
 
         .cert-name { font-size: 1.25rem; font-weight: 700; color: var(--text-main); line-height: 1.4; }
         .contact-value { color: var(--text-muted); font-family: monospace; font-size: 1rem; margin-top: 12px; word-break: break-all; transition: color 0.3s ease; }
-        a.cert-card:hover .contact-value { color: var(--text-main); }
+        .cert-card:hover .contact-value { color: var(--text-main); }
 
         /* ================= MASSIVE TRANSITION BRIDGE ================= */
         .transition-wrapper {
@@ -142,7 +138,6 @@
         @media (max-width: 992px) {
             .feature-grid-3 { grid-template-columns: 1fr; }
             .hero-title { font-size: 2.8rem; }
-            .section-title { font-size: 2.2rem; }
             .deep-dive-header { font-size: 1.6rem; padding: 0 15px; }
         }
     </style>
@@ -156,32 +151,28 @@
             <li><a href="architectural.html">Pipeline Architecture</a></li>
             <li><a href="workflow-portfolio.html">Machine Identity Execution Showcase</a></li>
             <li><a href="add-capabilities.html">Additional Capability Integration Showcase</a></li>
-            <li><a href="contact.html" class="active-link">Contact & Credentials</a></li>
+            <li><a href="contact.html" class="active-link">Contact</a></li>
         </ul>
     </nav>
 
     <!-- HERO HEADER -->
     <header class="hero">
         <div class="hero-title-container">
-            <h1 class="hero-title">CONTACT & CREDENTIALS</h1>
+            <h1 class="hero-title">CONTACT</h1>
         </div>
         <p class="hero-subtitle">Professional Outreach, Repositories & Validated Capabilities</p>
     </header>
 
-    <!-- MODULE 1: DIRECT CONTACT -->
+    <!-- MODULE 1: DIRECT CONTACT (No Section Headers) -->
     <section class="stacked-section" style="padding-bottom: 20px;">
-        <div class="section-intro">
-            <span class="section-kicker">Connect & Review</span>
-            <h2 class="section-title">Direct Outreach</h2>
-        </div>
-        
         <div class="feature-grid-3">
-            <!-- Email -->
-            <a href="mailto:steventuschman2@gmail.com" class="feature-card cert-card cert-cyan cyan">
+            
+            <!-- Email (Static Card, No mailto: link) -->
+            <div class="feature-card cert-card cert-cyan cyan">
                 <div class="cert-org">Email</div>
                 <div class="cert-name">Direct Communication</div>
                 <div class="contact-value">steventuschman2@gmail.com</div>
-            </a>
+            </div>
             
             <!-- LinkedIn -->
             <a href="https://www.linkedin.com/in/steven-tuschman/" target="_blank" class="feature-card cert-card cert-blue blue">

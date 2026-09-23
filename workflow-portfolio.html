@@ -40,6 +40,7 @@
         
         /* Universal Button Styling for all links */
         .nav-links a { 
+            display: inline-block; /* FIX: Prevents vertical padding overlap on mobile wrap */
             color: var(--color-cyan); 
             border: 1px solid var(--color-cyan);
             background: rgba(14, 165, 233, 0.1); 
@@ -77,7 +78,7 @@
         /* ================= EXECUTIVE SUMMARY NAV MATRIX ================= */
         .nav-matrix-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* FIX: Dropped min width slightly to prevent horizontal bleed on very narrow phones */
             gap: 1.2rem;
             margin-bottom: 4rem;
         }
@@ -271,6 +272,26 @@
         .t-red { color: #ff5f56; font-weight: 700; }
 
         .divider { height: 1px; background: var(--border-base); margin: 4rem 0; width: 100%; }
+
+        /* FIX: Title sizing, Nav adjustments, and component scaling for vertical phone screens */
+        @media (max-width: 600px) {
+            .hero-title { font-size: 2.1rem; letter-spacing: 1px; }
+            .hero-minimal { padding-top: 200px; padding-bottom: 40px; }
+            
+            nav { padding: 1rem; }
+            .nav-links { gap: 0.6rem; }
+            .nav-links a { font-size: 0.75rem; padding: 0.4rem 0.8rem; letter-spacing: 0.5px; }
+
+            .section-title { font-size: 1.5rem; }
+            .project-links-header { font-size: 1.5rem; }
+            
+            /* Shrinking padding on mobile so text doesn't get squished */
+            .terminal-body { font-size: 0.85rem; padding: 1.5rem; }
+            .summary-card { padding: 1.5rem; }
+            .micro-card { padding: 1.2rem; margin-left: 0; }
+            .architect-command { padding: 1.2rem 1.5rem; }
+            .insight-box { padding: 1.5rem; }
+        }
     </style>
 </head>
 <body>
@@ -1658,7 +1679,7 @@ By executing an idempotent Azure Bicep configuration against a brownfield Cosmos
         <!-- ================= PROJECT 05 (Legacy 04) ================= -->
         <div class="divider"></div>
 
-        <h2 id="project-05" class="section-title">Project 05: Greenfield GitLab CI &amp; Terraform Federation</h2>
+        <h2 id="project-04" class="section-title">Project 04: Greenfield GitLab CI &amp; Terraform Federation</h2>
         
         <div class="matrix-grid">
             <div class="matrix-card">
@@ -2056,7 +2077,7 @@ By engaging the state machine's Collaborative Troubleshooting mode, we successfu
         <!-- ================= PROJECT 06 (Legacy 05) ================= -->
         <div class="divider"></div>
 
-        <h2 id="project-06" class="section-title">Project 06: Azure DevOps Native Bicep Federation</h2>
+        <h2 id="project-05" class="section-title">Project 05: Azure DevOps Native Bicep Federation</h2>
         
         <div class="matrix-grid">
             <div class="matrix-card">
@@ -2421,7 +2442,7 @@ By extracting dynamic ADO credentials via native REST interactions, we successfu
             <a href="#executive-summaries" class="return-link">[ &uarr; Return to Executive Summaries ]</a>
         </div>
 
-        <!-- ================= PROJECT 08 (Legacy 07) ================= -->
+        <!-- ================= PROJECT 07 (Legacy 06) ================= -->
         <div class="divider"></div>
 
         <h2 id="project-07" class="section-title">Project 07: Native PowerShell REST API Federation</h2>

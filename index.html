@@ -106,7 +106,7 @@
         
         .canvas-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 15px; }
         .diagram-canvas {
-            position: relative; max-width: 1220px; height: 680px; margin: 0 auto;
+            position: relative; max-width: 1220px; min-width: 1220px; height: 680px; margin: 0 auto;
             background-image: linear-gradient(to right, rgba(30, 41, 59, 0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(30, 41, 59, 0.5) 1px, transparent 1px);
             background-size: 40px 40px; border: 1px solid var(--border-base); border-radius: 12px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
@@ -190,6 +190,11 @@
             .triad-grid { grid-template-columns: 1fr; }
             .insight-box { padding: 1.5rem; margin: 2rem 15px 3rem; }
             .vulnerability-grid { grid-template-columns: 1fr; }
+        }
+        
+        @media (max-width: 600px) {
+            .hero-title { font-size: 2.1rem; letter-spacing: 1px; }
+            .hero { padding-top: 140px; }
         }
     </style>
 </head>

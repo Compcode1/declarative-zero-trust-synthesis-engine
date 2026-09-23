@@ -47,6 +47,7 @@
         }
         
         .nav-links a { 
+            display: inline-block; /* FIX: Prevents vertical padding overlap on mobile wrap */
             color: var(--color-cyan); 
             border: 1px solid var(--color-cyan);
             background: rgba(14, 165, 233, 0.1); 
@@ -139,6 +140,22 @@
             .feature-grid-3 { grid-template-columns: 1fr; }
             .hero-title { font-size: 2.8rem; }
             .deep-dive-header { font-size: 1.6rem; padding: 0 15px; }
+        }
+
+        /* FIX: Mobile optimization for vertical viewports */
+        @media (max-width: 600px) {
+            .hero-title { font-size: 2.1rem; letter-spacing: 1px; }
+            .hero { padding-top: 140px; padding-bottom: 40px; }
+            
+            nav { padding: 1rem; }
+            .nav-links { gap: 0.6rem; }
+            .nav-links a { font-size: 0.75rem; padding: 0.4rem 0.8rem; letter-spacing: 0.5px; }
+
+            .deep-dive-header { font-size: 1.4rem; padding: 0 10px; }
+            
+            /* Give text more room by shrinking card padding */
+            .feature-card { padding: 1.5rem; }
+            .resume-btn { padding: 1rem 2rem; font-size: 1.1rem; }
         }
     </style>
 </head>

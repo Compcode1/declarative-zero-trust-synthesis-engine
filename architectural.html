@@ -51,6 +51,7 @@
         
         /* Universal Button Styling for all links */
         .nav-links a { 
+            display: inline-block; /* FIX: Prevents vertical padding overlap on mobile wrap */
             color: var(--color-cyan); 
             border: 1px solid var(--color-cyan);
             background: rgba(14, 165, 233, 0.1); 
@@ -149,12 +150,18 @@
         .feature-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-main); }
         .feature-text { color: var(--text-muted); font-size: 1.15rem; line-height: 1.8; }
         
+        /* FIX: Added canvas wrapper for mobile swipe */
+        .canvas-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 15px; }
+
         .diagram-wrapper-wide {
             position: relative; width: 100%; max-width: 1300px; margin: 0 auto;
             background-image: linear-gradient(to right, rgba(30, 41, 59, 0.3) 1px, transparent 1px), linear-gradient(to bottom, rgba(30, 41, 59, 0.3) 1px, transparent 1px);
             background-size: 40px 40px; border: 1px solid var(--border-base); border-radius: 12px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); overflow: hidden;
         }
+
+        /* FIX: Prevents diagram collapse on narrow phones */
+        .scrollable-diagram { min-width: 1150px; }
         
         .diagram-caption { margin-top: 2.5rem; text-align: center; font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; padding: 0 20px; max-width: 900px; margin-left: auto; margin-right: auto; }
 
@@ -206,7 +213,7 @@
         .dot { width: 12px; height: 12px; border-radius: 50%; }
         .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
         .terminal-title { margin: 0 auto; color: var(--text-muted); font-size: 0.85rem; font-family: monospace; letter-spacing: 1px; }
-        .terminal-body { padding: 2.5rem; font-family: 'Consolas', 'Courier New', monospace; font-size: 1rem; line-height: 1.8; color: var(--text-main); overflow-y: auto; max-height: 700px; white-space: pre-wrap; word-wrap: break-word; background: linear-gradient(rgba(13, 17, 23, 1) 0%, rgba(13, 17, 23, 0.95) 100%); }
+        .terminal-body { padding: 2.5rem; font-family: 'Consolas', 'Courier New', monospace; font-size: 1rem; line-height: 1.8; color: var(--text-main); overflow-y: auto; overflow-x: auto; max-height: 700px; white-space: pre-wrap; word-wrap: break-word; background: linear-gradient(rgba(13, 17, 23, 1) 0%, rgba(13, 17, 23, 0.95) 100%); }
         .t-cyan { color: var(--color-cyan); font-weight: 700; } .t-green { color: var(--color-green); font-weight: 700; } .t-blue { color: var(--color-blue); } .t-purple { color: var(--color-purple); } .t-muted { color: var(--text-muted); } .t-comment { color: var(--color-grey); font-style: italic; }
 
         /* ================= CAPABILITY INDEX ================= */
@@ -229,10 +236,20 @@
             .deep-dive-header { font-size: 1.8rem; padding: 0 15px; }
             .insight-box { padding: 1.5rem; margin: 2rem 15px 3rem; }
         }
+        
         @media (max-width: 650px) {
-            .diagram-wrapper-wide { transform: scale(0.85); transform-origin: center top; margin-bottom: -50px; }
+            /* Removed the scale(0.85) hack that was breaking layout */
             .terminal-body { font-size: 0.85rem; padding: 1.5rem; }
             .capability-grid { padding: 1.5rem; gap: 1rem; }
+        }
+
+        /* FIX: Title sizing and Nav adjustments for vertical phone screens */
+        @media (max-width: 600px) {
+            .hero-title { font-size: 2.1rem; letter-spacing: 1px; }
+            .hero { padding-top: 200px; }
+            nav { padding: 1rem; }
+            .nav-links { gap: 0.6rem; }
+            .nav-links a { font-size: 0.75rem; padding: 0.4rem 0.8rem; letter-spacing: 0.5px; }
         }
     </style>
 </head>
@@ -290,38 +307,41 @@
             </div>
         </div>
 
-        <div class="diagram-wrapper-wide anatomy-diagram">
-            <svg class="anatomy-svg" xmlns="http://www.w3.org/2000/svg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
-                <defs>
-                    <marker id="arr-cyan-2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0ea5e9" /></marker>
-                </defs>
-                <path d="M 650 120 L 650 173" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="6, 6" marker-end="url(#arr-cyan-2)" />
-                <path d="M 650 275 L 650 310 L 350 310 L 350 343" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arr-cyan-2)" />
-                <path d="M 650 275 L 650 310 L 950 310 L 950 343" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arr-cyan-2)" />
-            </svg>
+        <!-- FIX: Added canvas-wrapper to enable mobile scrolling -->
+        <div class="canvas-wrapper">
+            <div class="diagram-wrapper-wide anatomy-diagram scrollable-diagram">
+                <svg class="anatomy-svg" xmlns="http://www.w3.org/2000/svg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
+                    <defs>
+                        <marker id="arr-cyan-2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0ea5e9" /></marker>
+                    </defs>
+                    <path d="M 650 120 L 650 173" fill="none" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="6, 6" marker-end="url(#arr-cyan-2)" />
+                    <path d="M 650 275 L 650 310 L 350 310 L 350 343" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arr-cyan-2)" />
+                    <path d="M 650 275 L 650 310 L 950 310 L 950 343" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arr-cyan-2)" />
+                </svg>
 
-            <div class="a-node a-input">
-                <div class="tag">[PHASE 1: INPUT]</div>
-                <div class="title">DEPLOYMENT COORDINATES</div>
-                <div class="sub">Scope, Tenant, Target Assets</div>
-            </div>
-            
-            <div class="a-node a-engine">
-                <div class="tag" style="color: var(--color-cyan); border-color: rgba(14,165,233,0.3);">[PHASE 2: CORE PROCESSING]</div>
-                <div class="title" style="font-size: 1.05rem;">ZERO TRUST INTERACTIVE<br>STATE MACHINE</div>
-                <div class="sub" style="color: var(--color-cyan); font-weight: 700; margin-top: 4px; letter-spacing: 0.5px;">(PROMPT-BASED INFRASTRUCTURE CONTROLLER)</div>
-            </div>
-            
-            <div class="a-node a-out-1">
-                <div class="tag">[EXECUTION OUTPUT]</div>
-                <div class="title">OIDC FEDERATION</div>
-                <div class="sub">Secure Payload via AI Compiler</div>
-            </div>
-            
-            <div class="a-node a-out-2">
-                <div class="tag" style="color: var(--color-green); border-color: rgba(16,185,129,0.3);">[GOVERNANCE OUTPUT]</div>
-                <div class="title">IMMUTABLE LEDGERS</div>
-                <div class="sub" style="color: var(--color-green);">(IAL, ARL, KQL)</div>
+                <div class="a-node a-input">
+                    <div class="tag">[PHASE 1: INPUT]</div>
+                    <div class="title">DEPLOYMENT COORDINATES</div>
+                    <div class="sub">Scope, Tenant, Target Assets</div>
+                </div>
+                
+                <div class="a-node a-engine">
+                    <div class="tag" style="color: var(--color-cyan); border-color: rgba(14,165,233,0.3);">[PHASE 2: CORE PROCESSING]</div>
+                    <div class="title" style="font-size: 1.05rem;">ZERO TRUST INTERACTIVE<br>STATE MACHINE</div>
+                    <div class="sub" style="color: var(--color-cyan); font-weight: 700; margin-top: 4px; letter-spacing: 0.5px;">(PROMPT-BASED INFRASTRUCTURE CONTROLLER)</div>
+                </div>
+                
+                <div class="a-node a-out-1">
+                    <div class="tag">[EXECUTION OUTPUT]</div>
+                    <div class="title">OIDC FEDERATION</div>
+                    <div class="sub">Secure Payload via AI Compiler</div>
+                </div>
+                
+                <div class="a-node a-out-2">
+                    <div class="tag" style="color: var(--color-green); border-color: rgba(16,185,129,0.3);">[GOVERNANCE OUTPUT]</div>
+                    <div class="title">IMMUTABLE LEDGERS</div>
+                    <div class="sub" style="color: var(--color-green);">(IAL, ARL, KQL)</div>
+                </div>
             </div>
         </div>
         
@@ -373,20 +393,23 @@
             </div>
         </div>
 
-        <div class="diagram-wrapper-wide workflow-diagram">
-            
-            <div class="w-ring"></div>
-            
-            <div class="w-center">
-                <div class="w-center-title">GOVERNANCE</div>
-                <div class="w-center-main">Anchor</div>
+        <!-- FIX: Added canvas-wrapper to enable mobile scrolling -->
+        <div class="canvas-wrapper">
+            <div class="diagram-wrapper-wide workflow-diagram scrollable-diagram">
+                
+                <div class="w-ring"></div>
+                
+                <div class="w-center">
+                    <div class="w-center-title">GOVERNANCE</div>
+                    <div class="w-center-main">Anchor</div>
+                </div>
+
+                <div class="w-node w-n1">1. Human Strategy</div>
+                <div class="w-node w-n2">2. AI Synthesis</div>
+                <div class="w-node w-n3">3. Drift Correction</div>
+                <div class="w-node w-n4">4. Validation</div>
+
             </div>
-
-            <div class="w-node w-n1">1. Human Strategy</div>
-            <div class="w-node w-n2">2. AI Synthesis</div>
-            <div class="w-node w-n3">3. Drift Correction</div>
-            <div class="w-node w-n4">4. Validation</div>
-
         </div>
         
         <p class="diagram-caption">The continuous prompt-driven feedback loop. The framework acts as a rigid anchor, allowing the architect to patch tangential errors without losing focus on the zero-trust baseline.</p>
@@ -437,48 +460,51 @@
             </div>
         </div>
 
-        <div class="diagram-wrapper-wide federation-diagram">
-            
-            <svg class="routing-lines" xmlns="http://www.w3.org/2000/svg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
-                <defs>
-                    <marker id="arr-blue-f" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6" /></marker>
-                </defs>
-                <path d="M 540 250 L 645 250 L 645 140 L 750 140" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="6, 6" marker-end="url(#arr-blue-f)" />
-                <path d="M 540 250 L 750 250" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="6, 6" marker-end="url(#arr-blue-f)" />
-                <path d="M 540 250 L 645 250 L 645 360 L 750 360" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="6, 6" marker-end="url(#arr-blue-f)" />
-            </svg>
+        <!-- FIX: Added canvas-wrapper to enable mobile scrolling -->
+        <div class="canvas-wrapper">
+            <div class="diagram-wrapper-wide federation-diagram scrollable-diagram">
+                
+                <svg class="routing-lines" xmlns="http://www.w3.org/2000/svg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
+                    <defs>
+                        <marker id="arr-blue-f" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6" /></marker>
+                    </defs>
+                    <path d="M 540 250 L 645 250 L 645 140 L 750 140" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="6, 6" marker-end="url(#arr-blue-f)" />
+                    <path d="M 540 250 L 750 250" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="6, 6" marker-end="url(#arr-blue-f)" />
+                    <path d="M 540 250 L 645 250 L 645 360 L 750 360" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="6, 6" marker-end="url(#arr-blue-f)" />
+                </svg>
 
-            <div class="f-node f-engine">
-                <div class="icon">{ }</div>
-                <div class="logic">OIDC LOGIC</div>
-                <div class="title" style="font-size: 1rem;">Interactive<br>State Machine</div>
-                <div style="font-size: 0.7rem; color: var(--color-cyan); margin-top: 4px; font-weight: 700;">PROMPT-BASED CONTROLLER</div>
-            </div>
-
-            <div class="f-node f-target f-tf">
-                <div class="f-target-icon">.tf</div>
-                <div class="f-target-text">
-                    <span class="f-target-title">Terraform</span>
-                    <span class="f-target-sub">State Execution</span>
+                <div class="f-node f-engine">
+                    <div class="icon">{ }</div>
+                    <div class="logic">OIDC LOGIC</div>
+                    <div class="title" style="font-size: 1rem;">Interactive<br>State Machine</div>
+                    <div style="font-size: 0.7rem; color: var(--color-cyan); margin-top: 4px; font-weight: 700;">PROMPT-BASED CONTROLLER</div>
                 </div>
-            </div>
 
-            <div class="f-node f-target f-az">
-                <div class="f-target-icon">.az</div>
-                <div class="f-target-text">
-                    <span class="f-target-title">Azure Bicep</span>
-                    <span class="f-target-sub">Native Template</span>
+                <div class="f-node f-target f-tf">
+                    <div class="f-target-icon">.tf</div>
+                    <div class="f-target-text">
+                        <span class="f-target-title">Terraform</span>
+                        <span class="f-target-sub">State Execution</span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="f-node f-target f-api">
-                <div class="f-target-icon">API</div>
-                <div class="f-target-text">
-                    <span class="f-target-title">Microsoft Graph</span>
-                    <span class="f-target-sub">Direct Payload</span>
+                <div class="f-node f-target f-az">
+                    <div class="f-target-icon">.az</div>
+                    <div class="f-target-text">
+                        <span class="f-target-title">Azure Bicep</span>
+                        <span class="f-target-sub">Native Template</span>
+                    </div>
                 </div>
-            </div>
 
+                <div class="f-node f-target f-api">
+                    <div class="f-target-icon">API</div>
+                    <div class="f-target-text">
+                        <span class="f-target-title">Microsoft Graph</span>
+                        <span class="f-target-sub">Direct Payload</span>
+                    </div>
+                </div>
+
+            </div>
         </div>
         
         <p class="diagram-caption">The Interactive State Machine operates as an agnostic logic layer, compiling strict zero-trust parameters into flawlessly formatted code for any required deployment capability.</p>
@@ -899,6 +925,7 @@ AzureDiagnostics
             </div>
         </div>
 
+        <!-- FIX: Removed the canvas wrapper here and let the CSS grid naturally stack the cards on a phone -->
         <div class="diagram-wrapper-wide capability-diagram">
             
             <div class="capability-grid">

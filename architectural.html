@@ -259,6 +259,7 @@
     <nav>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
+            <li><a href="ai-systems-engineering.html">AI Systems Engineering</a></li>
             <li><a href="architectural.html" class="active-link">Pipeline Architecture</a></li>
             <li><a href="workflow-portfolio.html">Machine Identity Execution Showcase</a></li>
             <li><a href="add-capabilities.html">Additional Capability Integration Showcase</a></li>
@@ -861,24 +862,24 @@ AzureDiagnostics
 <span class="t-blue">**Purpose:**</span> Cryptographic tracking of architectural friction and engine updates.
 
 <span class="t-purple">## [ENTRY 001] ARM State Conflict (Diagnostic Settings)</span>
-* <span class="t-cyan">**Error / Symptom:**</span> ARM deployment failed with `Conflict` due to duplicate data sinks.
-* <span class="t-cyan">**Root Cause:**</span> The Bicep payload auto-generated a unique diagnostic setting name (`diag-kv-audit-${uniqueString}`), which collided with an existing logging sink (`diag-kv-audit-tkav`) on the target Key Vault.
-* <span class="t-cyan">**Engineered Fix:**</span> Parameterized the diagnostic setting name within the template, allowing the engineer to declare the existing sink name at runtime. This forces ARM to execute an idempotent update rather than attempting a duplicate creation.
+- <span class="t-cyan">**Error / Symptom:**</span> ARM deployment failed with `Conflict` due to duplicate data sinks.
+- <span class="t-cyan">**Root Cause:**</span> The Bicep payload auto-generated a unique diagnostic setting name (`diag-kv-audit-${uniqueString}`), which collided with an existing logging sink (`diag-kv-audit-tkav`) on the target Key Vault.
+- <span class="t-cyan">**Engineered Fix:**</span> Parameterized the diagnostic setting name within the template, allowing the engineer to declare the existing sink name at runtime. This forces ARM to execute an idempotent update rather than attempting a duplicate creation.
 
 <span class="t-purple">## [ENTRY 002] AADSTS700213 Subject Claim Mismatch (Legacy String Mapping)</span>
-* <span class="t-cyan">**Error / Symptom:**</span> OIDC GitHub Actions validation bridge failed with Entra ID dropping the token exchange.
-* <span class="t-cyan">**Root Cause:**</span> GitHub Actions presented a subject claim containing immutable numeric IDs, but the template provisioned standard string-based repository paths, failing Entra ID's strict character-for-character evaluation.
-* <span class="t-cyan">**Engineered Fix:**</span> Shifted the OIDC subject claim parameter in the payload to explicitly map the exact numeric ID string presented by the GitHub authentication runner.
+- <span class="t-cyan">**Error / Symptom:**</span> OIDC GitHub Actions validation bridge failed with Entra ID dropping the token exchange.
+- <span class="t-cyan">**Root Cause:**</span> GitHub Actions presented a subject claim containing immutable numeric IDs, but the template provisioned standard string-based repository paths, failing Entra ID's strict character-for-character evaluation.
+- <span class="t-cyan">**Engineered Fix:**</span> Shifted the OIDC subject claim parameter in the payload to explicitly map the exact numeric ID string presented by the GitHub authentication runner.
 
 <span class="t-purple">## [ENTRY 003] AI Generative Dump & HITL Bypass (Rule 5 Violation)</span>
-* <span class="t-cyan">**Error / Symptom:**</span> The engine unilaterally generated a full-payload system directive update, breaking the "slow down" protocol and hijacking the architect's workflow.
-* <span class="t-cyan">**Root Cause:**</span> Lack of an explicit gating mechanism preventing the AI from drafting and executing a structural codebase update simultaneously without waiting for user consensus.
-* <span class="t-cyan">**Engineered Fix:**</span> Rewrote System Directive Rule 5 to mandate a strict "Architectural Hold," mathematically forbidding structural patches without explicit human authorization and collaborative discussion prior to generation (Engine version updated to v3.7).
+- <span class="t-cyan">**Error / Symptom:**</span> The engine unilaterally generated a full-payload system directive update, breaking the "slow down" protocol and hijacking the architect's workflow.
+- <span class="t-cyan">**Root Cause:**</span> Lack of an explicit gating mechanism preventing the AI from drafting and executing a structural codebase update simultaneously without waiting for user consensus.
+- <span class="t-cyan">**Engineered Fix:**</span> Rewrote System Directive Rule 5 to mandate a strict "Architectural Hold," mathematically forbidding structural patches without explicit human authorization and collaborative discussion prior to generation (Engine version updated to v3.7).
 
 <span class="t-purple">## [ENTRY 004] AADSTS700213 Regression (Azure Bicep Pre-Flight Pipeline)</span>
-* <span class="t-cyan">**Error / Symptom:**</span> GitHub Actions validation bridge failed with AADSTS700213 for the Bicep deployment pipeline.
-* <span class="t-cyan">**Root Cause:**</span> While Entry 002 established numeric IDs as mandatory, the v3.6 Bicep initialization phase lacked a mechanism to fetch these IDs dynamically, resorting to legacy strings that doomed the deployment.
-* <span class="t-cyan">**Engineered Fix:**</span> Validated native PowerShell API retrieval locally and updated the system directive to v3.8, injecting explicit `Invoke-RestMethod` commands into the pre-flight checklist. This arms the Bicep payload with immutable numeric IDs upfront, permanently preventing token exchange drops.
+- <span class="t-cyan">**Error / Symptom:**</span> GitHub Actions validation bridge failed with AADSTS700213 for the Bicep deployment pipeline.
+- <span class="t-cyan">**Root Cause:**</span> While Entry 002 established numeric IDs as mandatory, the v3.6 Bicep initialization phase lacked a mechanism to fetch these IDs dynamically, resorting to legacy strings that doomed the deployment.
+- <span class="t-cyan">**Engineered Fix:**</span> Validated native PowerShell API retrieval locally and updated the system directive to v3.8, injecting explicit `Invoke-RestMethod` commands into the pre-flight checklist. This arms the Bicep payload with immutable numeric IDs upfront, permanently preventing token exchange drops.
 
 <span class="t-muted">*No deployment defects encountered during this session run.*</span></pre>
         </div>

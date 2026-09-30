@@ -299,6 +299,7 @@
     <nav>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
+            <li><a href="ai-systems-engineering.html">AI Systems Engineering</a></li>
             <li><a href="architectural.html">Pipeline Architecture</a></li>
             <li><a href="workflow-portfolio.html" class="active-link">Machine Identity Execution Showcase</a></li>
             <li><a href="add-capabilities.html">Additional Capability Integration Showcase</a></li>
@@ -836,10 +837,10 @@
             </div>
             <pre class="terminal-body"><span class="t-cyan">Welcome to the Zero Trust Interactive State Machine.</span>
 I have successfully ingested your architectural parameters:
-* Target Cloud Boundary: Subscription d5ffd8a5... / Resource Group rg-aks-zt-08
-* Target Data-Plane Asset: kv-aks-zt-08 (Greenfield)
-* Execution Agent: AKS (Kubernetes Runtime)
-* IaC Tooling: Terraform
+- Target Cloud Boundary: Subscription d5ffd8a5... / Resource Group rg-aks-zt-08
+- Target Data-Plane Asset: kv-aks-zt-08 (Greenfield)
+- Execution Agent: AKS (Kubernetes Runtime)
+- IaC Tooling: Terraform
 
 <span class="t-cyan">Architectural Context: </span>
 Because this is a 100% Greenfield topology, the cluster's OIDC Issuer URL cannot be extracted pre-deployment via Azure CLI. I am bypassing the manual extraction phase entirely. The Terraform payload has been engineered to dynamically provision the AKS cluster, Key Vault, and User-Assigned Managed Identity simultaneously, natively mapping the newly generated OIDC Issuer URL directly within the state file.
@@ -864,8 +865,8 @@ Please save the unified payload to your target main.tf file and execute your dep
                 <div class="terminal-title">engine_console.exe // COLLABORATIVE TROUBLESHOOTING</div>
             </div>
             <pre class="terminal-body"><span class="t-purple">[STATE INTERRUPT INITIATED]</span>
-* **Current Framework Position:** Phase 3 (Payload Synthesis & Execution)
-* **Deviation Detected:** Severe Local Environment & MFA Friction. 
+- **Current Framework Position:** Phase 3 (Payload Synthesis & Execution)
+- **Deviation Detected:** Severe Local Environment & MFA Friction. 
 
 We have hit the exact MFA claims challenge that disrupted your previous run. Because your admin account lacks a fresh MFA claim in its current token, Entra ID blocked your attempt to grant the control-plane roles to the Service Principal. Since the role assignments failed, the Terraform deployment predictably failed with the 403 Forbidden error.
 
@@ -952,21 +953,21 @@ Deployment Target: <span class="t-blue">Azure Kubernetes Service (AKS)</span> | 
 Environment Topography: <span class="t-purple">Greenfield</span>
 
 <span class="t-cyan">[SECTION 1: CORE CLOUD BOUNDARY IDENTIFICATION]</span>
-* Target Sub: d5ffd8a5-d994-4eb5-b87c-4442054d233e
-* Target RG: rg-aks-zt-08
-* Region: westus2
+- Target Sub: d5ffd8a5-d994-4eb5-b87c-4442054d233e
+- Target RG: rg-aks-zt-08
+- Region: westus2
 
 <span class="t-cyan">[SECTION 2: INFRASTRUCTURE & IDENTITY MAPPING]</span>
-* AKS Cluster Name: aks-zt-08-westus2
-* Target Data-Plane Asset: kv-aks-zt-08 (Azure Key Vault)
-* Identity Name: id-aks-zt-08-workload (User-Assigned Managed Identity)
-* Data-Plane Role Bound: Key Vault Secrets User
+- AKS Cluster Name: aks-zt-08-westus2
+- Target Data-Plane Asset: kv-aks-zt-08 (Azure Key Vault)
+- Identity Name: id-aks-zt-08-workload (User-Assigned Managed Identity)
+- Data-Plane Role Bound: Key Vault Secrets User
 
 <span class="t-cyan">[SECTION 3: OPENID CONNECT (OIDC) CRYPTOGRAPHIC BASELINE]</span>
-* Federated Credential Name: fic-aks-zt-08-workload
-* Token Audience: api://AzureADTokenExchange
-* OIDC Issuer (Dynamic Extraction): Mapped dynamically in Terraform State
-* OIDC Subject (Strict Binding): system:serviceaccount:workload-ns:workload-sa
+- Federated Credential Name: fic-aks-zt-08-workload
+- Token Audience: api://AzureADTokenExchange
+- OIDC Issuer (Dynamic Extraction): Mapped dynamically in Terraform State
+- OIDC Subject (Strict Binding): system:serviceaccount:workload-ns:workload-sa
 
 ----------------------------------------------------
 
@@ -1008,9 +1009,9 @@ kubectl logs zt-validation-pod -n workload-ns</pre>
 <span class="t-cyan">ENTERPRISE SECURITY ENGINEERING: AUDIT RESULTS LEDGER (ARL)</span>
 
 <span class="t-cyan">[SECTION 1: GATE VERIFICATION METRICS]</span>
-* **OIDC Trust Bridge:** Verified Active (0 HTTP 403 Drops during pipeline read)
-* **Workload Identity Binding:** Verified Active (id-aks-zt-08-workload successfully mapped to workload-sa)
-* **Data-Plane Access Scope:** Verified Active (Key Vault Secrets User executed exclusively against kv-aks-zt-08)
+- **OIDC Trust Bridge:** Verified Active (0 HTTP 403 Drops during pipeline read)
+- **Workload Identity Binding:** Verified Active (id-aks-zt-08-workload successfully mapped to workload-sa)
+- **Data-Plane Access Scope:** Verified Active (Key Vault Secrets User executed exclusively against kv-aks-zt-08)
 
 <span class="t-cyan">[SECTION 2: DECOUPLED LOGIC VERIFICATION (The 5 Guardrails)]</span>
 <span class="t-blue">1. Data Loss Prevention & Context Leakage:</span> <span class="t-green">[PASS]</span>. All enterprise topology coordinates were successfully injected without reliance on external public LLM endpoints. 
@@ -1108,13 +1109,13 @@ Furthermore, this architecture is designed for seamless enterprise integration. 
 Engineering requires iteration. When we encounter friction, I will propose patches and generate code, but I am strictly mandated to operate within the boundaries of this framework. We will iteratively test these solutions together until the deployment aligns with our zero-trust baseline.
 
 Before we initialize the workspace, we must establish our operational roles:
-* You are the **Engineer**. You provide the strategic coordinates, test the outputs, and hold absolute authority at all validation gates.
-* I am the **State Machine**. I provide the zero-trust framework, the immutable structural baseline, and the AI horsepower.
+- You are the **Engineer**. You provide the strategic coordinates, test the outputs, and hold absolute authority at all validation gates.
+- I am the **State Machine**. I provide the zero-trust framework, the immutable structural baseline, and the AI horsepower.
 
 <span class="t-muted">Action Required: Workspace Initialization</span>
 Please create these blank files in your IDE (e.g., VS Code) now so your environment is ready to receive the generated payloads:
 1. main.tf
-2. identity_architecture_ledger.md (The IAL baseline)
+​2. identity_architecture_ledger.md (The IAL baseline)
 3. audit_results_ledger.md (The final Audit Results Ledger)
 4. kql_telemetry.md (The asynchronous audit query artifact)
 5. patch_ledger.md (The Defect & Patch Ledger)
@@ -1203,16 +1204,16 @@ resource "azurerm_role_assignment" "dataplane_access" {
                 <div class="terminal-title">engine_console.exe // COLLABORATIVE TROUBLESHOOTING</div>
             </div>
             <pre class="terminal-body"><span class="t-purple">[STATE INTERRUPT INITIATED]</span>
-* **Current Framework Position:** Phase 3 (Payload Synthesis & Execution)
-* **Deviation Detected:** The Terraform infrastructure payload was initially saved to the wrong file type, resulting in a null deployment ("0 added, 0 changed"). Relocating the payload post-initialization has caused a local workspace desync, triggering IDE linting errors.
-* **Active Engineering Patch:** Halting pipeline progression. Shifting to collaborative diagnostic mode.
+- **Current Framework Position:** Phase 3 (Payload Synthesis & Execution)
+- **Deviation Detected:** The Terraform infrastructure payload was initially saved to the wrong file type, resulting in a null deployment ("0 added, 0 changed"). Relocating the payload post-initialization has caused a local workspace desync, triggering IDE linting errors.
+- **Active Engineering Patch:** Halting pipeline progression. Shifting to collaborative diagnostic mode.
 
 This is a very common engineering friction point. When you ran `terraform init` earlier, Terraform scanned your directory and built its local `.terraform` cache based on the `.tf` files present at that exact second. Because the code was sitting in the `.md` file, Terraform completely ignored it. 
 
 <span class="t-muted">Action Required: Execute Clean-Up Patch</span>
 Please perform the following steps in your workspace:
 1. Delete the Terraform code from the Markdown file. 
-2. Ensure `main.tf` contains the exact payload I provided.
+​2. Ensure `main.tf` contains the exact payload I provided.
 3. In your VS Code file explorer, delete the hidden `.terraform` folder and the `.terraform.lock.hcl` file.
 4. Run `terraform init` in your terminal to force a clean download of the providers.
 
@@ -1274,9 +1275,9 @@ jobs:
                 <div class="terminal-title">engine_console.exe // COLLABORATIVE TROUBLESHOOTING</div>
             </div>
             <pre class="terminal-body"><span class="t-purple">[STATE INTERRUPT INITIATED]</span>
-* **Current Framework Position:** Phase 4 (Cryptographic Baseline & Pipeline Validation)
-* **Deviation Detected:** OIDC Token Exchange Failure (AADSTS700213). Entra ID rejected the token from the GitHub execution agent due to a subject claim mismatch.
-* **Active Engineering Patch:** Halting validation. Shifting to collaborative diagnostic mode.
+- **Current Framework Position:** Phase 4 (Cryptographic Baseline & Pipeline Validation)
+- **Deviation Detected:** OIDC Token Exchange Failure (AADSTS700213). Entra ID rejected the token from the GitHub execution agent due to a subject claim mismatch.
+- **Active Engineering Patch:** Halting validation. Shifting to collaborative diagnostic mode.
 
 This is a classic Zero Trust explicit verification failure. Your GitHub environment is appending unique underlying owner and repository numeric IDs to the string. The runner is explicitly presenting this subject claim to Azure: 
 `repo:Compcode1@171821203/iteration-24a@1364542263:ref:refs/heads/main`
@@ -1330,29 +1331,29 @@ Please apply the clean validation bridge `.yml` and confirm the successful telem
 Audit Document Class: <span class="t-blue">Standard Telemetry & Gate Verification Report</span>
 
 <span class="t-cyan">[SECTION 1: AUDIT EXECUTION METADATA]</span>
-* Execution Date: 2026-09-10
-* Target Asset: kv-efm-test-lab-04
-* Execution Agent: GitHub Actions (Compcode1/iteration-24a)
+- Execution Date: 2026-09-10
+- Target Asset: kv-efm-test-lab-04
+- Execution Agent: GitHub Actions (Compcode1/iteration-24a)
 
 <span class="t-cyan">[SECTION 2: DECOUPLED LOGIC VERIFICATION (ENTERPRISE GUARDRAILS)]</span>
 <span class="t-blue">1. Data Loss Prevention & Context Leakage</span>
-* Verification: <span class="t-green">[PASS]</span>. No proprietary tenant IDs or secret tokens were hardcoded into the workflow or IaC payload. Fine-grained PATs were handled strictly via GitHub UI and masked repository secrets.
+- Verification: <span class="t-green">[PASS]</span>. No proprietary tenant IDs or secret tokens were hardcoded into the workflow or IaC payload. Fine-grained PATs were handled strictly via GitHub UI and masked repository secrets.
 
 <span class="t-blue">2. Destructive State Modification</span>
-* Verification: <span class="t-green">[PASS]</span>. Operating in a brownfield environment, the framework utilized Terraform `data` blocks for the existing Resource Group and Key Vault, natively guaranteeing idempotency and preventing accidental deletion.
+- Verification: <span class="t-green">[PASS]</span>. Operating in a brownfield environment, the framework utilized Terraform `data` blocks for the existing Resource Group and Key Vault, natively guaranteeing idempotency and preventing accidental deletion.
 
 <span class="t-blue">3. The 'Contributor' Trap</span>
-* Verification: <span class="t-green">[PASS]</span>. Broad control-plane roles (Contributor/Owner) were explicitly forbidden. The identity was strictly bound mathematically to the exact required data-plane role (`Key Vault Secrets User`) scoped exclusively to the target asset ID.
+- Verification: <span class="t-green">[PASS]</span>. Broad control-plane roles (Contributor/Owner) were explicitly forbidden. The identity was strictly bound mathematically to the exact required data-plane role (`Key Vault Secrets User`) scoped exclusively to the target asset ID.
 
 <span class="t-blue">4. Supply Chain Injection</span>
-* Verification: <span class="t-green">[PASS]</span>. All IaC providers and pipeline actions were hard-pinned to specific, verified version numbers (e.g., `hashicorp/azurerm ~> 3.116.0`, `actions/checkout@v4.1.7`).
+- Verification: <span class="t-green">[PASS]</span>. All IaC providers and pipeline actions were hard-pinned to specific, verified version numbers (e.g., `hashicorp/azurerm ~> 3.116.0`, `actions/checkout@v4.1.7`).
 
 <span class="t-blue">5. Terminal Exposure</span>
-* Verification: <span class="t-green">[PASS]</span>. The pipeline payload successfully utilized strict string masking (`::add-mask::kv-efm-test-lab-04`) to prevent sensitive environmental data from bleeding into the plaintext GitHub Actions terminal logs.
+- Verification: <span class="t-green">[PASS]</span>. The pipeline payload successfully utilized strict string masking (`::add-mask::kv-efm-test-lab-04`) to prevent sensitive environmental data from bleeding into the plaintext GitHub Actions terminal logs.
 
 <span class="t-cyan">[SECTION 3: SYSTEM VALIDATOR & GATE AUDIT MATRIX]</span>
 <span class="t-blue">[AUDIT GATE 4] Plane Check</span>
-* Gate Verification Status: <span class="t-green">[PASS]</span>
+- Gate Verification Status: <span class="t-green">[PASS]</span>
 <span class="t-comment">&gt; Diagnostic Summary: 'Total Service API Hits' metric spiked correlating with exact GitHub Actions workflow execution timestamp.</span></pre>
         </div>
 
@@ -1368,20 +1369,20 @@ Audit Document Class: <span class="t-blue">Standard Telemetry & Gate Verificatio
 <span class="t-blue">**Framework Engine:**</span> Zero Trust Interactive State Machine / Prompt-Based Infrastructure Controller (v5.35)
 
 <span class="t-purple">## [ENTRY 001] Local State Cache Desync</span>
-* <span class="t-cyan">**Error:**</span> Null deployment followed by IDE linting errors.
-* <span class="t-cyan">**Fix:**</span> Purged corrupted `.terraform` directory and forced clean `terraform init` to rebuild provider cache against corrected `main.tf`.
+- <span class="t-cyan">**Error:**</span> Null deployment followed by IDE linting errors.
+- <span class="t-cyan">**Fix:**</span> Purged corrupted `.terraform` directory and forced clean `terraform init` to rebuild provider cache against corrected `main.tf`.
 
 <span class="t-purple">## [ENTRY 002] OIDC Subject Claim Mismatch (AADSTS700213)</span>
-* <span class="t-cyan">**Error:**</span> Entra ID rejected token due to runner presenting hidden numeric IDs in the subject claim.
-* <span class="t-cyan">**Fix:**</span> Mathematically aligned the Terraform IaC payload to match the exact runtime string: `repo:Compcode1@171821203/iteration-24a@1364542263:ref:refs/heads/main`.
+- <span class="t-cyan">**Error:**</span> Entra ID rejected token due to runner presenting hidden numeric IDs in the subject claim.
+- <span class="t-cyan">**Fix:**</span> Mathematically aligned the Terraform IaC payload to match the exact runtime string: `repo:Compcode1@171821203/iteration-24a@1364542263:ref:refs/heads/main`.
 
 <span class="t-purple">## [ENTRY 003] Azure CLI & Metric Targeting Error</span>
-* <span class="t-cyan">**Error:**</span> Pipeline failed on data-plane read step due to `unrecognized arguments: --max-results 1`. Telemetry instructions hallucinated "Overall Vault Requests".
-* <span class="t-cyan">**Fix:**</span> Stripped the invalid argument to execute a clean `az keyvault secret list`. Permanently updated the framework to explicitly mandate querying the "Total Service API Hits" metric.
+- <span class="t-cyan">**Error:**</span> Pipeline failed on data-plane read step due to `unrecognized arguments: --max-results 1`. Telemetry instructions hallucinated "Overall Vault Requests".
+- <span class="t-cyan">**Fix:**</span> Stripped the invalid argument to execute a clean `az keyvault secret list`. Permanently updated the framework to explicitly mandate querying the "Total Service API Hits" metric.
 
 <span class="t-purple">## [ENTRY 004] Repository Sync Script Overhaul</span>
-* <span class="t-cyan">**Error:**</span> Phase 7 generated a hardcoded, Bash-specific sync script (`cat <<EOF>`) that failed in PowerShell, produced unformatted text, and failed to account for remote-first file creation.
-* <span class="t-cyan">**Fix:**</span> Overhauled Phase 7. The machine must now query the engineer for their specific terminal environment (Bash vs. PowerShell), generate formatted code blocks, and hardcode `git pull origin main` to guarantee remote synchronization prior to staging.
+- <span class="t-cyan">**Error:**</span> Phase 7 generated a hardcoded, Bash-specific sync script (`cat <<EOF>`) that failed in PowerShell, produced unformatted text, and failed to account for remote-first file creation.
+- <span class="t-cyan">**Fix:**</span> Overhauled Phase 7. The machine must now query the engineer for their specific terminal environment (Bash vs. PowerShell), generate formatted code blocks, and hardcode `git pull origin main` to guarantee remote synchronization prior to staging.
 
 ----------------------------------------------------
 
@@ -1548,20 +1549,20 @@ Deployment Target: <span class="t-blue">GitLab CI/CD (Using Shared Runners)</spa
 Execution Date: <span class="t-purple">2026-09-08</span> | Ledger State: <span class="t-green">[VERIFIED AUDIT READY]</span>
 
 <span class="t-cyan">[SECTION 1: CORE CLOUD BOUNDARY IDENTIFICATION]</span>
-* Tenant ID (Identity Root): 9439dd25-f3b5-4829-a76f-5ede8cd54c3c
-* Subscription ID (Asset Root): d5ffd8a5-d994-4eb5-b87c-4442054d233e
-* Provisioned Resource Name: cdb-zt-engine-test-01
-* Resource Group Perimeter: rg-zt-engine-test
+- Tenant ID (Identity Root): 9439dd25-f3b5-4829-a76f-5ede8cd54c3c
+- Subscription ID (Asset Root): d5ffd8a5-d994-4eb5-b87c-4442054d233e
+- Provisioned Resource Name: cdb-zt-engine-test-01
+- Resource Group Perimeter: rg-zt-engine-test
 <span class="t-green">&gt; [SUCCESS] Workspace paths align. CLI context locked.</span>
 
 <span class="t-cyan">[SECTION 2: NON-HUMAN IDENTITY PROVISIONING]</span>
-* Application Name: gitlab-runner-cosmos-zt-01
-* Application (Client) ID: cf168772-5306-4728-99bd-470c66a658ff
+- Application Name: gitlab-runner-cosmos-zt-01
+- Application (Client) ID: cf168772-5306-4728-99bd-470c66a658ff
 <span class="t-green">&gt; [SUCCESS] Blueprint and local security context created.</span>
 
 <span class="t-cyan">[SECTION 3: PASSWORDLESS CRYPTOGRAPHIC FEDERATION]</span>
-* Issuer URL: https://gitlab.com
-* Subject (sub): project_path:StevenTuschman/cosmos-zt-engine-test-01:ref_type:branch:ref:main
+- Issuer URL: https://gitlab.com
+- Subject (sub): project_path:StevenTuschman/cosmos-zt-engine-test-01:ref_type:branch:ref:main
 <span class="t-green">&gt; [SUCCESS] Trust policy active. Token endpoint listening.</span>
 
 ----------------------------------------------------
@@ -1598,7 +1599,7 @@ azure-oidc-data-plane-test:
             <pre class="terminal-body"><span class="t-muted">Action Required: Verify Data-Plane Access Metrics</span>
 Please verify the authorization mathematically via Azure Portal telemetry. Follow this exact path:
 1. Navigate to your target resource group (`rg-zt-engine-test`) and open target asset: `cdb-zt-engine-test-01`.
-2. Open the Metrics blade and filter by Data Plane Requests.
+​2. Open the Metrics blade and filter by Data Plane Requests.
 3. Adjust the time range to the last 30 minutes.
 
 <span class="t-purple">[PIPELINE HALTED]</span>
@@ -1622,18 +1623,18 @@ Please confirm when you see the API spike indicating successful authentication a
 Audit Document Class: <span class="t-blue">Standard Telemetry & Gate Verification Report</span>
 
 <span class="t-cyan">[SECTION 1: AUDIT EXECUTION METADATA]</span>
-* Audit Tracking ID: ARL-2026-09-08-WORKLOAD-01
-* Execution Timestamp (UTC): <span class="t-purple">2026-09-08T21:38:04Z</span>
-* Evaluating Auditor / AI Agent: Steven Tuschman / State-Machine-Core
-* Target Application (Client) ID: cf168772-5306-4728-99bd-470c66a658ff
-* Target Tenant (Directory) ID  : 8a1b2c3d-4e5f-6g7h-8i9j-0k112m3n4o5p
-* Target Asset Scope          : cdb-zt-engine-test-01
-* Evaluated Subject Claim (sub) : project_path:StevenTuschman/cosmos-zt-engine-test-01:ref_type:branch:ref:main
-* Overall Compliance Outcome    : <span class="t-green">[PASS]</span>
+- Audit Tracking ID: ARL-2026-09-08-WORKLOAD-01
+- Execution Timestamp (UTC): <span class="t-purple">2026-09-08T21:38:04Z</span>
+- Evaluating Auditor / AI Agent: Steven Tuschman / State-Machine-Core
+- Target Application (Client) ID: cf168772-5306-4728-99bd-470c66a658ff
+- Target Tenant (Directory) ID  : 8a1b2c3d-4e5f-6g7h-8i9j-0k112m3n4o5p
+- Target Asset Scope          : cdb-zt-engine-test-01
+- Evaluated Subject Claim (sub) : project_path:StevenTuschman/cosmos-zt-engine-test-01:ref_type:branch:ref:main
+- Overall Compliance Outcome    : <span class="t-green">[PASS]</span>
 
 <span class="t-cyan">[SECTION 2: SYSTEM VALIDATOR & GATE AUDIT MATRIX]</span>
 <span class="t-blue">[AUDIT GATE 4] Plane Check</span>
-* Gate Verification Status: <span class="t-green">[PASS]</span>
+- Gate Verification Status: <span class="t-green">[PASS]</span>
 <span class="t-comment">&gt; Diagnostic Summary: Machine identity successfully authenticated and executed data-plane operations against target asset with 0 HTTP 403 Forbidden drops. Live Cosmos DB metrics validated.</span></pre>
         </div>
 
@@ -1883,20 +1884,20 @@ Deployment Target: <span class="t-blue">GitLab CI</span> | Target Cloud: <span c
 Execution Date: <span class="t-purple">2026-09-05</span> | Ledger State: <span class="t-green">[VERIFIED AUDIT READY]</span>
 
 <span class="t-cyan">[SECTION 1: CORE CLOUD BOUNDARY IDENTIFICATION]</span>
-* Tenant ID (Identity Root): 9439dd25-f3b5-4829-a76f-5ede8cd54c3c
-* Subscription ID (Asset Root): d5ffd8a5-d994-4eb5-b87c-4442054d233e
-* Provisioned Resource Name: stgreenfield20st
-* Resource Group Perimeter: rg-greenfield-test-20
+- Tenant ID (Identity Root): 9439dd25-f3b5-4829-a76f-5ede8cd54c3c
+- Subscription ID (Asset Root): d5ffd8a5-d994-4eb5-b87c-4442054d233e
+- Provisioned Resource Name: stgreenfield20st
+- Resource Group Perimeter: rg-greenfield-test-20
 <span class="t-green">&gt; [SUCCESS] Workspace paths align. CLI context locked.</span>
 
 <span class="t-cyan">[SECTION 2: NON-HUMAN IDENTITY PROVISIONING]</span>
-* Application Name: app-reg-gitlab-20
-* Application (Client) ID: 7c913efb-9126-4310-8a1b-a7e296545d87
+- Application Name: app-reg-gitlab-20
+- Application (Client) ID: 7c913efb-9126-4310-8a1b-a7e296545d87
 <span class="t-green">&gt; [SUCCESS] Blueprint and local security context created.</span>
 
 <span class="t-cyan">[SECTION 3: PASSWORDLESS CRYPTOGRAPHIC FEDERATION]</span>
-* Issuer URL: https://gitlab.com
-* Subject (sub): project_path:Intelligent Architecture-group/iteration-20:ref_type:branch:ref:main
+- Issuer URL: https://gitlab.com
+- Subject (sub): project_path:Intelligent Architecture-group/iteration-20:ref_type:branch:ref:main
 <span class="t-green">&gt; [SUCCESS] Trust policy active. Token endpoint listening.</span>
 
 ----------------------------------------------------
@@ -1975,7 +1976,7 @@ Since we just performed and exited a sub-routine, I am generating a dedicated st
 
 <span class="t-muted">Action Required: State Synchronization & Pipeline Retry</span>
 1. Run `terraform apply -auto-approve` in your terminal to patch the federated identity credential in Azure.
-2. Return to GitLab and click **Retry** on your failed CI pipeline job.
+​2. Return to GitLab and click **Retry** on your failed CI pipeline job.
 
 <span class="t-purple">[PIPELINE HALTED]</span>
 Please confirm once the pipeline passes successfully.</pre>
@@ -2002,18 +2003,18 @@ Please confirm once the pipeline passes successfully.</pre>
 Audit Document Class: <span class="t-blue">Standard Telemetry & Gate Verification Report</span>
 
 <span class="t-cyan">[SECTION 1: AUDIT EXECUTION METADATA]</span>
-* Audit Tracking ID: ARL-2026-09-05-WORKLOAD-01
-* Execution Timestamp (UTC): <span class="t-purple">2026-09-05T21:29:14Z</span>
-* Evaluating Auditor / AI Agent: Steven Tuschman / State-Machine-Core
-* Target Application (Client) ID: 7c913efb-9126-4310-8a1b-a7e296545d87
-* Target Tenant (Directory) ID: 9439dd25-f3b5-4829-a76f-5ede8cd54c3c
-* Target Asset Scope: stgreenfield20st
-* Evaluated Subject Claim (sub): project_path:intelligent-architecture-group/iteration-20:ref_type:branch:ref:main
-* Overall Compliance Outcome: <span class="t-green">[PASS]</span>
+- Audit Tracking ID: ARL-2026-09-05-WORKLOAD-01
+- Execution Timestamp (UTC): <span class="t-purple">2026-09-05T21:29:14Z</span>
+- Evaluating Auditor / AI Agent: Steven Tuschman / State-Machine-Core
+- Target Application (Client) ID: 7c913efb-9126-4310-8a1b-a7e296545d87
+- Target Tenant (Directory) ID: 9439dd25-f3b5-4829-a76f-5ede8cd54c3c
+- Target Asset Scope: stgreenfield20st
+- Evaluated Subject Claim (sub): project_path:intelligent-architecture-group/iteration-20:ref_type:branch:ref:main
+- Overall Compliance Outcome: <span class="t-green">[PASS]</span>
 
 <span class="t-cyan">[SECTION 2: SYSTEM VALIDATOR & GATE AUDIT MATRIX]</span>
 <span class="t-blue">[AUDIT GATE 4] Plane Check</span>
-* Gate Verification Status: <span class="t-green">[PASS]</span>
+- Gate Verification Status: <span class="t-green">[PASS]</span>
 <span class="t-comment">&gt; Diagnostic Summary: Machine identity successfully authenticated and executed data-plane operations against target asset with 0 HTTP 403 Forbidden drops. Live metrics validated.</span></pre>
         </div>
 
@@ -2030,9 +2031,9 @@ Audit Document Class: <span class="t-blue">Standard Telemetry & Gate Verificatio
 <span class="t-blue">**Purpose:**</span> Cryptographic tracking of architectural friction and engine updates.
 
 <span class="t-purple">## [ENTRY 001] AADSTS700213 OIDC Subject Claim Character Mismatch</span>
-* <span class="t-cyan">**Error / Symptom:**</span> GitLab CI pipeline failed during OIDC token exchange with error `AADSTS700213: No matching federated identity record found for presented assertion subject 'project_path:intelligent-architecture-group/iteration-20:ref_type:branch:ref:main'`.
-* <span class="t-cyan">**Root Cause:**</span> The OIDC federation credential subject claim was initially synthesized using the GitLab UI display name ("Intelligent Architecture-group") rather than the lowercase, hyphenated URL slug ("intelligent-architecture-group") intrinsically generated by the GitLab runner. Azure's Zero-Trust federation enforces a 100% case-sensitive character match, causing the connection to immediately drop.
-* <span class="t-cyan">**Engineered Fix:**</span> Halted execution and patched `main.tf` to update the `azuread_application_federated_identity_credential.oidc` resource. Replaced the `subject` claim value with the exact lowercase URL slug mapping. Executed a State Re-Sync via `terraform apply` to patch the identity lock in Azure, resulting in a mathematically verified OIDC handshake.</pre>
+- <span class="t-cyan">**Error / Symptom:**</span> GitLab CI pipeline failed during OIDC token exchange with error `AADSTS700213: No matching federated identity record found for presented assertion subject 'project_path:intelligent-architecture-group/iteration-20:ref_type:branch:ref:main'`.
+- <span class="t-cyan">**Root Cause:**</span> The OIDC federation credential subject claim was initially synthesized using the GitLab UI display name ("Intelligent Architecture-group") rather than the lowercase, hyphenated URL slug ("intelligent-architecture-group") intrinsically generated by the GitLab runner. Azure's Zero-Trust federation enforces a 100% case-sensitive character match, causing the connection to immediately drop.
+- <span class="t-cyan">**Engineered Fix:**</span> Halted execution and patched `main.tf` to update the `azuread_application_federated_identity_credential.oidc` resource. Replaced the `subject` claim value with the exact lowercase URL slug mapping. Executed a State Re-Sync via `terraform apply` to patch the identity lock in Azure, resulting in a mathematically verified OIDC handshake.</pre>
         </div>
 
         <div class="divider"></div>
@@ -2241,28 +2242,28 @@ Deployment Target: <span class="t-blue">Azure DevOps</span> | Target Cloud: <spa
 Execution Date: <span class="t-purple">2026-09-04</span> | Ledger State: <span class="t-green">[VERIFIED AUDIT READY]</span>
 
 <span class="t-cyan">[SECTION 1: CORE CLOUD BOUNDARY IDENTIFICATION]</span>
-* Tenant ID (Identity Root): 9439dd25-f3b5-4829-a76f-5ede8cd54c3c
-* Subscription ID (Asset Root): d5ffd8a5-d994-4eb5-b87c-4442054d233e
-* Provisioned Resource Name: kv-efm-test-lab-04
-* Resource Group Perimeter: rg-efm-test-lab-04
+- Tenant ID (Identity Root): 9439dd25-f3b5-4829-a76f-5ede8cd54c3c
+- Subscription ID (Asset Root): d5ffd8a5-d994-4eb5-b87c-4442054d233e
+- Provisioned Resource Name: kv-efm-test-lab-04
+- Resource Group Perimeter: rg-efm-test-lab-04
 <span class="t-green">&gt; [SUCCESS] Workspace paths align. CLI context locked.</span>
 
 <span class="t-cyan">[SECTION 2: NON-HUMAN IDENTITY PROVISIONING]</span>
-* Application Name: app-reg-ado
-* Application (Client) ID: a9a6a320-c1db-44a9-9695-d669c81cb145
-* Single-Tenant Enforced: (AzureADMyOrg) Blocks external credential instantiation.
+- Application Name: app-reg-ado
+- Application (Client) ID: a9a6a320-c1db-44a9-9695-d669c81cb145
+- Single-Tenant Enforced: (AzureADMyOrg) Blocks external credential instantiation.
 <span class="t-green">&gt; [SUCCESS] Blueprint and local security context created.</span>
 
 <span class="t-cyan">[SECTION 3: PASSWORDLESS CRYPTOGRAPHIC FEDERATION]</span>
-* Issuer URL: https://login.microsoftonline.com/9439dd25-f3b5-4829-a76f-5ede8cd54c3c/v2.0
-* Subject (sub): /eid1/c/pub/t/Jd05lLXzKUinb17ejNVMPA...
-* Exact string casing verified to prevent AADSTS700213 drops.
+- Issuer URL: https://login.microsoftonline.com/9439dd25-f3b5-4829-a76f-5ede8cd54c3c/v2.0
+- Subject (sub): /eid1/c/pub/t/Jd05lLXzKUinb17ejNVMPA...
+- Exact string casing verified to prevent AADSTS700213 drops.
 <span class="t-green">&gt; [SUCCESS] Trust policy active. Token endpoint listening.</span>
 
 <span class="t-cyan">[SECTION 4: DATA-PLANE ACCESS & PIPELINE ENFORCEMENT]</span>
-* Assigned Data-Plane Role: Key Vault Secrets User
-* Target Asset ID Scope: /subscriptions/d5ffd8a5-d994-4eb5-b87c-4442054d233e/resourceGroups/rg-efm-test-lab-04/providers/Microsoft.KeyVault/vaults/kv-efm-test-lab-04
-* Access Token ceiling restricted to 60-minutes.
+- Assigned Data-Plane Role: Key Vault Secrets User
+- Target Asset ID Scope: /subscriptions/d5ffd8a5-d994-4eb5-b87c-4442054d233e/resourceGroups/rg-efm-test-lab-04/providers/Microsoft.KeyVault/vaults/kv-efm-test-lab-04
+- Access Token ceiling restricted to 60-minutes.
 <span class="t-green">&gt; [SUCCESS] HTTP 200 recorded. Zero Silent 403 drops detected.</span></pre>
         </div>
 
@@ -2295,9 +2296,9 @@ Please confirm when you see the API spike indicating successful authentication a
                 <div class="terminal-title">engine_console.exe // COLLABORATIVE TROUBLESHOOTING</div>
             </div>
             <pre class="terminal-body"><span class="t-purple">[STATE INTERRUPT INITIATED]</span>
-* **Current Framework Position:** Section 7 - Pipeline Execution
-* **Deviation Detected:** Pipeline name already exists, preventing creation command from triggering.
-* **Active Engineering Patch:** Shifting to manual pipeline trigger.
+- **Current Framework Position:** Section 7 - Pipeline Execution
+- **Deviation Detected:** Pipeline name already exists, preventing creation command from triggering.
+- **Active Engineering Patch:** Shifting to manual pipeline trigger.
 
 Hey Steven, it looks like the pipeline name is already taken in your ADO project. Since the YAML file is committed, we can just trigger it directly. 
 Could you run this command instead?
@@ -2366,17 +2367,17 @@ Please refresh the Azure Key Vault Metrics blade. Can you now confirm the delaye
 Audit Document Class: <span class="t-blue">Standard Telemetry & Gate Verification Report</span>
 
 <span class="t-cyan">[SECTION 1: AUDIT EXECUTION METADATA]</span>
-* Audit Tracking ID: ARL-2026-09-04-WORKLOAD-01
-* Execution Timestamp (UTC): <span class="t-purple">2026-09-04 15:25:47</span>
-* Evaluating Auditor / AI Agent: Steven Tuschman / State-Machine-Core
-* Target Application (Client) ID: a9a6a320-c1db-44a9-9695-d669c81cb145
-* Target Tenant (Directory) ID: 9439dd25-f3b5-4829-a76f-5ede8cd54c3c
-* Target Asset Scope: kv-efm-test-lab-04
-* Overall Compliance Outcome: <span class="t-green">[PASS]</span>
+- Audit Tracking ID: ARL-2026-09-04-WORKLOAD-01
+- Execution Timestamp (UTC): <span class="t-purple">2026-09-04 15:25:47</span>
+- Evaluating Auditor / AI Agent: Steven Tuschman / State-Machine-Core
+- Target Application (Client) ID: a9a6a320-c1db-44a9-9695-d669c81cb145
+- Target Tenant (Directory) ID: 9439dd25-f3b5-4829-a76f-5ede8cd54c3c
+- Target Asset Scope: kv-efm-test-lab-04
+- Overall Compliance Outcome: <span class="t-green">[PASS]</span>
 
 <span class="t-cyan">[SECTION 2: SYSTEM VALIDATOR & GATE AUDIT MATRIX]</span>
 <span class="t-blue">[AUDIT GATE 4] Plane Check</span>
-* Gate Verification Status: <span class="t-green">[PASS]</span>
+- Gate Verification Status: <span class="t-green">[PASS]</span>
 <span class="t-comment">&gt; Diagnostic Summary: Machine identity successfully authenticated and executed data-plane operations against target vault with 0 HTTP 403 Forbidden drops. Client-side extraction immediately verified; immutable server-side metrics successfully verified post-indexing delay.</span></pre>
         </div>
 
@@ -2393,14 +2394,14 @@ Audit Document Class: <span class="t-blue">Standard Telemetry & Gate Verificatio
 <span class="t-blue">**Purpose:**</span> Cryptographic tracking of architectural friction and engine updates.
 
 <span class="t-purple">## [ENTRY 001] PIPELINE_CREATION_COLLISION</span>
-* <span class="t-cyan">**Error / Symptom:**</span> The command `az pipelines create` failed with the message: "Pipeline with name zero-trust-validation-bridge already exists."
-* <span class="t-cyan">**Root Cause:**</span> The pipeline name was already registered in the ADO project repository from a previous iteration, preventing creation.
-* <span class="t-cyan">**Engineered Fix:**</span> Bypassed the creation module and shifted to a manual pipeline execution using `az pipelines run` to successfully trigger the runner.
+- <span class="t-cyan">**Error / Symptom:**</span> The command `az pipelines create` failed with the message: "Pipeline with name zero-trust-validation-bridge already exists."
+- <span class="t-cyan">**Root Cause:**</span> The pipeline name was already registered in the ADO project repository from a previous iteration, preventing creation.
+- <span class="t-cyan">**Engineered Fix:**</span> Bypassed the creation module and shifted to a manual pipeline execution using `az pipelines run` to successfully trigger the runner.
 
 <span class="t-purple">## [ENTRY 002] AZURE_MONITOR_INDEXING_DELAY</span>
-* <span class="t-cyan">**Error / Symptom:**</span> Key Vault data-plane read metrics ("Overall Vault Requests") did not immediately spike in the Azure Portal despite successful execution.
-* <span class="t-cyan">**Root Cause:**</span> Azure Monitor backend indexing delay; server-side telemetry naturally requires 5-15 minutes to aggregate and display visually.
-* <span class="t-cyan">**Engineered Fix:**</span> Shifted to Client-Side validation by extracting raw task logs directly from the ADO `AzureCLI` runner step to prove extraction, then mathematically verified the immutable server-side telemetry once indexing caught up.</pre>
+- <span class="t-cyan">**Error / Symptom:**</span> Key Vault data-plane read metrics ("Overall Vault Requests") did not immediately spike in the Azure Portal despite successful execution.
+- <span class="t-cyan">**Root Cause:**</span> Azure Monitor backend indexing delay; server-side telemetry naturally requires 5-15 minutes to aggregate and display visually.
+- <span class="t-cyan">**Engineered Fix:**</span> Shifted to Client-Side validation by extracting raw task logs directly from the ADO `AzureCLI` runner step to prove extraction, then mathematically verified the immutable server-side telemetry once indexing caught up.</pre>
         </div>
 
         <div class="divider"></div>
@@ -2657,28 +2658,28 @@ Deployment Target: <span class="t-blue">Compcode1/iteration-12</span> | Target C
 Execution Date: <span class="t-purple">2026-09-02</span> | Ledger State: <span class="t-green">[VERIFIED AUDIT READY]</span>
 
 <span class="t-cyan">[SECTION 1: CORE CLOUD BOUNDARY IDENTIFICATION]</span>
-* Tenant ID (Identity Root): 9439dd25-f3b5-4829-a76f-5ede8cd54c3c
-* Subscription ID (Asset Root): d5ffd8a5-d994-4eb5-b87c-4442054d233e
-* Provisioned Resource Name: kv-efm-test-lab-04
-* Resource Group Perimeter: rg-efm-test-lab-04
+- Tenant ID (Identity Root): 9439dd25-f3b5-4829-a76f-5ede8cd54c3c
+- Subscription ID (Asset Root): d5ffd8a5-d994-4eb5-b87c-4442054d233e
+- Provisioned Resource Name: kv-efm-test-lab-04
+- Resource Group Perimeter: rg-efm-test-lab-04
 <span class="t-green">&gt; [SUCCESS] Workspace paths align. CLI context locked.</span>
 
 <span class="t-cyan">[SECTION 2: NON-HUMAN IDENTITY PROVISIONING]</span>
-* Application Name: acphf-rest-agent-01
-* Application (Client) ID: cfb0eb5e-cde1-47f3-9eea-3ac1eba2525f
-* Single-Tenant Enforced: (AzureADMyOrg) Blocks external credential instantiation.
+- Application Name: acphf-rest-agent-01
+- Application (Client) ID: cfb0eb5e-cde1-47f3-9eea-3ac1eba2525f
+- Single-Tenant Enforced: (AzureADMyOrg) Blocks external credential instantiation.
 <span class="t-green">&gt; [SUCCESS] Blueprint and local security context created.</span>
 
 <span class="t-cyan">[SECTION 3: PASSWORDLESS CRYPTOGRAPHIC FEDERATION]</span>
-* Issuer URL: https://token.actions.githubusercontent.com
-* Subject (sub): repo:Compcode1@171821203/iteration-12@1355072866:ref:refs/heads/main
-* Exact string casing verified to prevent AADSTS700213 drops.
+- Issuer URL: https://token.actions.githubusercontent.com
+- Subject (sub): repo:Compcode1@171821203/iteration-12@1355072866:ref:refs/heads/main
+- Exact string casing verified to prevent AADSTS700213 drops.
 <span class="t-green">&gt; [SUCCESS] Trust policy active. Token endpoint listening.</span>
 
 <span class="t-cyan">[SECTION 4: DATA-PLANE ACCESS & PIPELINE ENFORCEMENT]</span>
-* Assigned Data-Plane Role: Key Vault Secrets User
-* Target Asset ID Scope: /subscriptions/d5ffd8a5-d994-4eb5-b87c-4442054d233e/resourceGroups/rg-efm-test-lab-04/providers/Microsoft.KeyVault/vaults/kv-efm-test-lab-04
-* Access Token ceiling restricted to 60-minutes.
+- Assigned Data-Plane Role: Key Vault Secrets User
+- Target Asset ID Scope: /subscriptions/d5ffd8a5-d994-4eb5-b87c-4442054d233e/resourceGroups/rg-efm-test-lab-04/providers/Microsoft.KeyVault/vaults/kv-efm-test-lab-04
+- Access Token ceiling restricted to 60-minutes.
 <span class="t-green">&gt; [SUCCESS] HTTP 200 recorded. Zero Silent 403 drops detected.</span></pre>
         </div>
 
@@ -2714,30 +2715,30 @@ Please execute the GitHub Action, review the Azure Key Vault Metrics with the 30
 Audit Document Class: <span class="t-blue">Standard Telemetry & Gate Verification Report</span>
 
 <span class="t-cyan">[SECTION 1: AUDIT EXECUTION METADATA]</span>
-* Audit Tracking ID: ARL-2026-09-02-WORKLOAD-01
-* Execution Timestamp (UTC): <span class="t-purple">2026-09-02T18:14:02Z</span>
-* Evaluating Auditor / AI Agent: Steve / State-Machine-Core
-* Target Application (Client) ID: cfb0eb5e-cde1-47f3-9eea-3ac1eba2525f
-* Target Tenant (Directory) ID: 9439dd25-f3b5-4829-a76f-5ede8cd54c3c
-* Target Asset Scope: kv-efm-test-lab-04
-* Evaluated Subject Claim (sub): repo:Compcode1@171821203/iteration-12@1355072866:ref:refs/heads/main
-* Overall Compliance Outcome: <span class="t-green">[PASS]</span>
+- Audit Tracking ID: ARL-2026-09-02-WORKLOAD-01
+- Execution Timestamp (UTC): <span class="t-purple">2026-09-02T18:14:02Z</span>
+- Evaluating Auditor / AI Agent: Steve / State-Machine-Core
+- Target Application (Client) ID: cfb0eb5e-cde1-47f3-9eea-3ac1eba2525f
+- Target Tenant (Directory) ID: 9439dd25-f3b5-4829-a76f-5ede8cd54c3c
+- Target Asset Scope: kv-efm-test-lab-04
+- Evaluated Subject Claim (sub): repo:Compcode1@171821203/iteration-12@1355072866:ref:refs/heads/main
+- Overall Compliance Outcome: <span class="t-green">[PASS]</span>
 
 <span class="t-cyan">[SECTION 2: SYSTEM VALIDATOR & GATE AUDIT MATRIX]</span>
 <span class="t-blue">[AUDIT GATE 1] Coordinate Check</span>
-* Gate Verification Status: <span class="t-green">[PASS]</span>
+- Gate Verification Status: <span class="t-green">[PASS]</span>
 <span class="t-comment">&gt; Diagnostic Summary: Directory coordinates and Application ID match active tenant objects. No unmapped AppID routing errors detected.</span>
 
 <span class="t-blue">[AUDIT GATE 2] Character Check</span>
-* Gate Verification Status: <span class="t-green">[PASS]</span>
+- Gate Verification Status: <span class="t-green">[PASS]</span>
 <span class="t-comment">&gt; Diagnostic Summary: Federated credential subject claim matches repository path character-for-character. OIDC handshake completed with Status: Success.</span>
 
 <span class="t-blue">[AUDIT GATE 3] Clock Check</span>
-* Gate Verification Status: <span class="t-green">[PASS]</span>
+- Gate Verification Status: <span class="t-green">[PASS]</span>
 <span class="t-comment">&gt; Diagnostic Summary: Runner successfully initiates a fresh OIDC handshake upon execution. No script crashes or expired token faults observed during execution loops.</span>
 
 <span class="t-blue">[AUDIT GATE 4] Plane Check</span>
-* Gate Verification Status: <span class="t-green">[PASS]</span>
+- Gate Verification Status: <span class="t-green">[PASS]</span>
 <span class="t-comment">&gt; Diagnostic Summary: Machine identity successfully authenticated and executed data-plane operations against target vault with 0 HTTP 403 Forbidden drops.</span></pre>
         </div>
 
@@ -2967,9 +2968,9 @@ resource "azuread_named_location" "gh_actions_ipv4" {
                 <div class="terminal-title">engine_console.exe // COLLABORATIVE TROUBLESHOOTING</div>
             </div>
             <pre class="terminal-body"><span class="t-purple">[STATE INTERRUPT INITIATED]</span>
-* **Current Framework Position:** Phase 3 / CAWI Policy Synthesis
-* **Deviation Detected:** The Terraform `azuread` provider schema does not export an `object_id` attribute for named locations, and the engine hallucinated the keyword "Any" instead of the required provider-specific keyword "All" for global IP targeting.
-* **Active Engineering Patch:** Halting pipeline progression. Shifting to collaborative diagnostic mode.
+- **Current Framework Position:** Phase 3 / CAWI Policy Synthesis
+- **Deviation Detected:** The Terraform `azuread` provider schema does not export an `object_id` attribute for named locations, and the engine hallucinated the keyword "Any" instead of the required provider-specific keyword "All" for global IP targeting.
+- **Active Engineering Patch:** Halting pipeline progression. Shifting to collaborative diagnostic mode.
 
 <span class="t-muted">Action Required: The "Slow Down" Protocol</span>
 Per Rule 9 (Mandatory State Re-Sync), I am exiting the piecemeal troubleshooting loop and logging these undocumented schema quirks to the DPL. I have regenerated the entire `main.tf` payload. 
@@ -2997,8 +2998,8 @@ Please execute `terraform apply` with the synchronized payload and confirm the i
             <pre class="terminal-body"><span class="t-cyan">Live telemetry verified. The Entra ID objects and CAWI policies are live. Initiating Validation Bridge.</span>
 
 <span class="t-purple">[STATE INTERRUPT INITIATED]</span>
-* **Current Framework Position:** Phase 4 / Pipeline Validation
-* **Deviation Detected:** AADSTS700213: No matching federated identity record found for presented assertion subject 'repo:Compcode1@171821203/iteration-34@1373623510:ref:refs/heads/main'.
+- **Current Framework Position:** Phase 4 / Pipeline Validation
+- **Deviation Detected:** AADSTS700213: No matching federated identity record found for presented assertion subject 'repo:Compcode1@171821203/iteration-34@1373623510:ref:refs/heads/main'.
 
 This is exactly why Rule 24 includes the Node-ID Volatility constraint. Your specific GitHub runner is injecting strict `@<node-id>` identifiers into the execution environment. Because Entra ID requires an exact, case-sensitive string match for token exchange, it dropped the connection.
 
@@ -3031,7 +3032,7 @@ The previous AADSTS700213 mismatch error is gone. The Node-ID mapped perfectly, 
 <span class="t-muted">Action Required: Declarative Teardown & Eventual Consistency</span>
 To complete the data-plane test, we must temporarily remove the policy.
 1. Run `terraform destroy -target=azuread_conditional_access_policy.cawi_gh_actions`.
-2. Wait 3 to 5 minutes. Even after declarative teardowns, the global Entra ID token issuance endpoints will cache and enforce the old policy rules.
+​2. Wait 3 to 5 minutes. Even after declarative teardowns, the global Entra ID token issuance endpoints will cache and enforce the old policy rules.
 
 <span class="t-purple">[PIPELINE HALTED]</span>
 Please confirm when the pipeline succeeds and you see the API spike in Azure Monitor.</pre>
@@ -3054,19 +3055,19 @@ Please confirm when the pipeline succeeds and you see the API spike in Azure Mon
             </div>
             <pre class="terminal-body"><span class="t-cyan"># DEFECT & PATCH LEDGER (DPL)</span>
 <span class="t-purple">## [DEFECT 001]: Unsupported attribute "object_id"</span>
-* <span class="t-cyan">**Root Cause:**</span> Terraform provider schema strictly exports `.id` for named locations.
-* <span class="t-cyan">**Fix:**</span> Overrode Rule 23 exclusively for `azuread_named_location`; reverted block syntax to `.id`.
+- <span class="t-cyan">**Root Cause:**</span> Terraform provider schema strictly exports `.id` for named locations.
+- <span class="t-cyan">**Fix:**</span> Overrode Rule 23 exclusively for `azuread_named_location`; reverted block syntax to `.id`.
 
 <span class="t-purple">## [DEFECT 002]: NamedLocation "Any" does not exist</span>
-* <span class="t-cyan">**Root Cause:**</span> Engine hallucinated the keyword "Any" instead of the required provider-specific "All".
-* <span class="t-cyan">**Fix:**</span> Updated `included_locations` strictly to `["All"]`.
+- <span class="t-cyan">**Root Cause:**</span> Engine hallucinated the keyword "Any" instead of the required provider-specific "All".
+- <span class="t-cyan">**Fix:**</span> Updated `included_locations` strictly to `["All"]`.
 
 <span class="t-purple">## [DEFECT 003]: AADSTS700213 Token Drop</span>
-* <span class="t-cyan">**Root Cause:**</span> GitHub injected strict Node-ID metadata into the OIDC assertion subject.
-* <span class="t-cyan">**Fix:**</span> Dynamically mapped precise Node-ID format (`@171821203`/`@1373623510`) into the credential payload.
+- <span class="t-cyan">**Root Cause:**</span> GitHub injected strict Node-ID metadata into the OIDC assertion subject.
+- <span class="t-cyan">**Fix:**</span> Dynamically mapped precise Node-ID format (`@171821203`/`@1373623510`) into the credential payload.
 
 <span class="t-purple">## [OBSERVATION 004]: CAWI Implementation & Caching</span>
-* <span class="t-cyan">**Behavior:**</span> AADSTS53003 block occurred as engineered. Surgical removal of the policy triggered a 3-5 minute caching delay before Entra ID permitted OIDC token issuance, verifying Rule 28.
+- <span class="t-cyan">**Behavior:**</span> AADSTS53003 block occurred as engineered. Surgical removal of the policy triggered a 3-5 minute caching delay before Entra ID permitted OIDC token issuance, verifying Rule 28.
 
 ----------------------------------------------------
 
@@ -3082,7 +3083,7 @@ I have successfully integrated all patches from the Defect & Patch Ledger direct
 
 <span class="t-blue">Codified Upgrades in v7.3:</span>
 1. **Rule 23:** Corrected the Terraform provider mapping to enforce `.id` and explicitly banned the hallucinated "Any" keyword.
-2. **Rule 24:** Upgraded the OIDC Subject Claim logic to permanently anticipate and enforce strict GitHub `@<node-id>` assertions.
+​2. **Rule 24:** Upgraded the OIDC Subject Claim logic to permanently anticipate and enforce strict GitHub `@<node-id>` assertions.
 3. **Rule 28:** Appended the 3-5 minute Entra ID eventual consistency propagation delay warning.
 
 The newly versioned, exhaustive framework has been outputted to your repository.

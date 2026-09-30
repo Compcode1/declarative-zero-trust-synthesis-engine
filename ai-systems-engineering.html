@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligent Architecture - AI Systems Engineering Best Practices</title>
+    <link rel="icon" type="image/png" href="cropped-LOGO-IMPROVED.png">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-page: #020617; 
+            --bg-node: rgba(10, 15, 29, 0.95);
+            --border-base: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+            --color-blue: #3b82f6;
+            --color-cyan: #0ea5e9;
+            --color-purple: #a855f7;
+            --color-grey: #64748b;
+            --color-green: #10b981;
+            --color-teal: #14b8a6;
+            --color-red: #f43f5e;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--bg-page); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--text-main); line-height: 1.6; }
+
+        /* ================= NAVIGATION ================= */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-base); z-index: 100;
+            padding: 1.2rem 2rem; display: flex; justify-content: center;
+        }
+        .nav-links { 
+            display: flex; gap: 1.2rem; list-style: none; flex-wrap: wrap; 
+            justify-content: center; align-items: center; 
+        }
+        .nav-links a { 
+            display: inline-block;
+            color: var(--color-cyan); 
+            border: 1px solid var(--color-cyan);
+            background: rgba(14, 165, 233, 0.1); 
+            padding: 0.5rem 1.2rem; 
+            border-radius: 6px;
+            text-decoration: none; 
+            font-size: 0.9rem; 
+            font-weight: 700; 
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+            transition: all 0.3s ease; 
+        }
+        .nav-links a:hover, 
+        .nav-links a.active-link { 
+            background: var(--color-cyan); 
+            color: #ffffff; 
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
+        }
+
+        /* ================= HERO HEADER ================= */
+        .hero { padding: 180px 20px 80px; text-align: center; border-bottom: 1px solid var(--border-base); }
+        .hero-title-container { display: flex; align-items: center; justify-content: center; margin-bottom: 25px; }
+        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 3.2rem; font-weight: 900; letter-spacing: 3px; color: var(--color-cyan); text-transform: uppercase; }
+        
+        /* ================= SHARED STACKED LAYOUT ================= */
+        .stacked-section { padding: 80px 20px; width: 100%; display: flex; flex-direction: column; align-items: center; }
+        .section-intro { max-width: 1050px; text-align: left; margin-bottom: 4rem; background: rgba(15, 23, 42, 0.4); padding: 3rem; border-radius: 8px; border: 1px solid var(--border-base); border-left: 4px solid var(--color-blue); }
+        .section-text { font-size: 1.2rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.5rem; }
+        .section-text:last-child { margin-bottom: 0; }
+        
+        .principles-lead { max-width: 1050px; text-align: center; margin-bottom: 3rem; font-size: 1.3rem; color: var(--text-main); font-weight: 600; }
+
+        /* ================= 4-PILLAR GRID ================= */
+        .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; width: 100%; max-width: 1300px; margin-bottom: 4rem; }
+        .feature-card { background: rgba(15, 23, 42, 0.4); border-top: 4px solid; padding: 2.5rem; border-radius: 8px; text-align: left; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); display: flex; flex-direction: column; }
+        
+        .feature-card.cyan { border-color: var(--color-cyan); }
+        .feature-card.red { border-color: var(--color-red); }
+        .feature-card.blue { border-color: var(--color-blue); }
+        .feature-card.purple { border-color: var(--color-purple); }
+        
+        .feature-title { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 800; margin-bottom: 1.5rem; color: var(--text-main); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border-base); padding-bottom: 1rem; }
+        .feature-concept { color: var(--text-muted); font-size: 1.1rem; line-height: 1.7; margin-bottom: 2rem; flex-grow: 1; }
+        .feature-concept strong { color: var(--text-main); }
+
+        /* ================= CITATION BLOCK ================= */
+        .citation-block { background: rgba(2, 6, 23, 0.8); border: 1px solid var(--border-base); padding: 1.5rem; border-radius: 6px; }
+        .citation-header { font-size: 0.85rem; text-transform: uppercase; font-weight: 800; letter-spacing: 1px; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; }
+        .cyan .citation-header { color: var(--color-cyan); }
+        .red .citation-header { color: var(--color-red); }
+        .blue .citation-header { color: var(--color-blue); }
+        .purple .citation-header { color: var(--color-purple); }
+        
+        .citation-title { font-style: italic; font-weight: 600; color: var(--text-main); margin-bottom: 0.5rem; display: block; font-size: 1rem; }
+        .citation-abstract { font-size: 0.95rem; color: var(--color-grey); line-height: 1.6; margin-bottom: 1rem; }
+        
+        .citation-link { display: inline-block; font-family: monospace; font-size: 0.9rem; color: var(--text-main); text-decoration: none; border-bottom: 1px solid transparent; transition: all 0.3s ease; }
+        .citation-link:hover { border-bottom-color: var(--text-main); }
+        .cyan .citation-link:hover { color: var(--color-cyan); border-bottom-color: var(--color-cyan); }
+        .red .citation-link:hover { color: var(--color-red); border-bottom-color: var(--color-red); }
+        .blue .citation-link:hover { color: var(--color-blue); border-bottom-color: var(--color-blue); }
+        .purple .citation-link:hover { color: var(--color-purple); border-bottom-color: var(--color-purple); }
+
+        @media (max-width: 992px) {
+            .hero-title { font-size: 2.5rem; }
+            .feature-grid-2x2 { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            .hero-title { font-size: 1.8rem; }
+            .hero { padding-top: 150px; padding-bottom: 40px; }
+            nav { padding: 1rem; }
+            .nav-links { gap: 0.6rem; }
+            .nav-links a { font-size: 0.75rem; padding: 0.4rem 0.8rem; }
+            .section-intro { padding: 1.5rem; }
+            .feature-card { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MASTER NAVIGATION -->
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="ai-systems-engineering.html" class="active-link">AI Systems Engineering</a></li>
+            <li><a href="architectural.html">Pipeline Architecture</a></li>
+            <li><a href="workflow-portfolio.html">Machine Identity Execution Showcase</a></li>
+            <li><a href="add-capabilities.html">Additional Capability Integration Showcase</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO HEADER -->
+    <header class="hero">
+        <div class="hero-title-container">
+            <h1 class="hero-title">AI Systems Engineering Best Practices</h1>
+        </div>
+    </header>
+
+    <!-- METHODOLOGY INTRODUCTION -->
+    <section class="stacked-section" style="padding-top: 0;">
+        <div class="section-intro">
+            <p class="section-text">
+                The Intelligent Architecture methodology details the application of governed artificial intelligence to Microsoft Entra ID Identity and Access Management. To safely operationalize generative models within mission-critical zero-trust environments, probabilistic intelligence is explicitly subordinated to deterministic architectural boundaries.
+            </p>
+            <p class="section-text">
+                By strictly implementing Agentic Workflows, Bounded Autonomy, and NIST-aligned Human-in-the-Loop (HITL) authorization protocols, this framework transforms unconstrained AI into a tightly governed infrastructure orchestration engine. The empirical manifestation of this engineering—the Zero Trust Interactive State Machine—and its resulting cryptographic execution ledgers serve as the objective, deployable proof of this methodology in action.
+            </p>
+        </div>
+
+        <p class="principles-lead">
+            This methodology is anchored entirely in the most advanced AI engineering research and federal risk-management standards currently recognized in the industry.
+        </p>
+
+        <!-- 4-PILLAR GRID -->
+        <div class="feature-grid-2x2">
+            
+            <!-- PILLAR 1: ReAct -->
+            <div class="feature-card cyan">
+                <h3 class="feature-title">1. Agentic Design Patterns</h3>
+                <div class="feature-concept">
+                    Standard AI workflows rely on fragile "zero-shot" prompting, where a model attempts to generate a flawless configuration on the first try. Aligned with current industry consensus on Agentic Workflows, this architecture forces the AI into a strict <strong>Generate-Validate-Fix</strong> loop. It utilizes the resulting execution friction (terminal error codes and telemetry) to iteratively self-correct, dramatically outperforming static generation.
+                </div>
+                <div class="citation-block">
+                    <div class="citation-header">Reference Standard</div>
+                    <span class="citation-title">ReAct: Synergizing Reasoning and Acting in Language Models (Yao et al.)</span>
+                    <p class="citation-abstract">This foundational research from Princeton and Google Brain proves that language models become significantly more reliable when forced to alternate between reasoning about a problem and taking observable actions in an environment, forming the academic basis for our iterative execution loop.</p>
+                    <a href="https://arxiv.org/abs/2210.03629" target="_blank" class="citation-link">[View Research] ↗</a>
+                </div>
+            </div>
+            
+            <!-- PILLAR 2: OWASP -->
+            <div class="feature-card red">
+                <h3 class="feature-title">2. Bounded Autonomy</h3>
+                <div class="feature-concept">
+                    Unconstrained language models prioritize making code "work," often hallucinating syntax or taking destructive shortcuts to bypass errors. This framework resolves vulnerability by trapping the AI inside a deterministic state machine. It mathematically forbids destructive state modifications, enforcing strict idempotency and granular data-plane scoping to neutralize blast radius.
+                </div>
+                <div class="citation-block">
+                    <div class="citation-header">Reference Standard</div>
+                    <span class="citation-title">OWASP Top 10 for LLM Applications (LLM08: Excessive Agency)</span>
+                    <p class="citation-abstract">The global standard for application security explicitly warns against granting AI unconstrained ability to interface with external systems. Our architectural boundary serves as the definitive mitigation for Excessive Agency, stripping the AI of rogue permissions.</p>
+                    <a href="https://genai.owasp.org/llmrisk2023-24/llm08-excessive-agency/" target="_blank" class="citation-link">[View Framework] ↗</a>
+                </div>
+            </div>
+            
+            <!-- PILLAR 3: NIST -->
+            <div class="feature-card blue">
+                <h3 class="feature-title">3. HITL Governance</h3>
+                <div class="feature-concept">
+                    Fully autonomous infrastructure generation is a massive compliance liability. This architecture enforces hard, un-bypassable authorization gates. The human architect retains absolute strategic command over the zero-trust baseline; the AI is strictly relegated to syntax synthesis and execution scale, unable to alter state without explicit human authorization.
+                </div>
+                <div class="citation-block">
+                    <div class="citation-header">Reference Standard</div>
+                    <span class="citation-title">NIST Artificial Intelligence Risk Management Framework (AI RMF 1.0)</span>
+                    <p class="citation-abstract">The definitive federal guideline for AI safety mandates explicit human oversight (the "Govern" function) for high-stakes systems, ensuring the framework is structurally prepared for strict SOC 2 compliance audits.</p>
+                    <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" class="citation-link">[View Standard] ↗</a>
+                </div>
+            </div>
+
+            <!-- PILLAR 4: Circuit Breaking -->
+            <div class="feature-card purple">
+                <h3 class="feature-title">4. Cognitive Circuit Breaking</h3>
+                <div class="feature-concept">
+                    Generative models naturally degrade during complex, multi-step troubleshooting, often entering "hallucination spirals" where they drift further from the baseline. This architecture implements a mathematically triggered kill-switch (an <strong>Iteration 4 Halt</strong>) that automatically suspends AI execution to force a human-led Risk Management Assessment before context is lost.
+                </div>
+                <div class="citation-block">
+                    <div class="citation-header">Reference Standard</div>
+                    <span class="citation-title">A Survey on Hallucination in Large Language Models (Huang et al.)</span>
+                    <p class="citation-abstract">Extensive industry research documents how LLMs suffer from probabilistic drift as context windows degrade. This hardcoded circuit breaker provides a clinical engineering defense against context loss and hallucination spirals.</p>
+                    <a href="https://arxiv.org/abs/2311.05232" target="_blank" class="citation-link">[View Research] ↗</a>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+</body>
+</html>

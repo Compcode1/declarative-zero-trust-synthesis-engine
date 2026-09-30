@@ -151,6 +151,7 @@
     <nav>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
+            <li><a href="ai-systems-engineering.html">AI Systems Engineering</a></li>
             <li><a href="architectural.html">Pipeline Architecture</a></li>
             <li><a href="workflow-portfolio.html">Machine Identity Execution Showcase</a></li>
             <li><a href="add-capabilities.html" class="active-link">Additional Capability Integration Showcase</a></li>
@@ -305,7 +306,7 @@ The REST API successfully generated the network fence, but the 400 Bad Request o
 
 I attempted to bleed Terraform structural logic into a raw Graph API REST call:
 1. I utilized `"includedApplications"` (Terraform syntax) instead of `"includeApplications"` (Native Graph JSON).
-2. Graph API strictly mandates that `"users"` must be explicitly defined and set to `"None"` when a policy targets a `servicePrincipal` condition.
+​2. Graph API strictly mandates that `"users"` must be explicitly defined and set to `"None"` when a policy targets a `servicePrincipal` condition.
 
 <span class="t-muted">Action Required: Execute Patched Payload</span>
 I have completely rewritten the payload, dropping the abstracted syntax and mapping the parameters exactly to the Microsoft Graph API REST JSON schema required for CAWI.

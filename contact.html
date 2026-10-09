@@ -75,7 +75,7 @@
         .hero-subtitle { font-size: 1.5rem; color: var(--text-muted); font-weight: 500; max-width: 1000px; margin: 0 auto; letter-spacing: 1px; }
 
         /* ================= SHARED STACKED LAYOUT ================= */
-        .stacked-section { padding: 60px 20px; width: 100%; display: flex; flex-direction: column; align-items: center; }
+        .stacked-section { padding: 40px 20px; width: 100%; display: flex; flex-direction: column; align-items: center; }
         
         /* 3-Column Grid for Certifications */
         .feature-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; width: 100%; max-width: 1300px; margin-bottom: 2rem; }
@@ -90,6 +90,84 @@
         .feature-card.teal { border-color: var(--color-teal); }
         .feature-card.purple { border-color: var(--color-purple); }
         .feature-card.red { border-color: var(--color-red); }
+
+        /* ================= CONTACT FORM ================= */
+        .contact-form-container {
+            width: 100%;
+            max-width: 900px;
+            background: rgba(15, 23, 42, 0.4);
+            border-top: 4px solid var(--color-cyan);
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2);
+            margin-bottom: 2rem;
+        }
+
+        .form-header {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .form-group { margin-bottom: 1.5rem; }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            color: var(--color-cyan);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+        }
+
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(2, 6, 23, 0.8);
+            border: 1px solid var(--border-base);
+            color: var(--text-main);
+            border-radius: 6px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--color-cyan);
+            box-shadow: 0 0 10px rgba(14, 165, 233, 0.2);
+        }
+
+        .form-textarea { resize: vertical; min-height: 150px; }
+
+        .submit-btn {
+            background: var(--color-cyan);
+            color: #ffffff;
+            border: none;
+            padding: 1.2rem;
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-family: 'Montserrat', sans-serif;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background: #0284c7;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(14, 165, 233, 0.4);
+        }
 
         /* ================= CERTIFICATIONS & CONTACT CARDS ================= */
         .cert-card { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; text-align: left; text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease; }
@@ -156,7 +234,7 @@
 
             .deep-dive-header { font-size: 1.4rem; padding: 0 10px; }
             
-            .feature-card { padding: 1.5rem; }
+            .feature-card, .contact-form-container { padding: 1.5rem; }
             .resume-btn { padding: 1rem 2rem; font-size: 1.1rem; }
         }
     </style>
@@ -183,14 +261,42 @@
         <p class="hero-subtitle">Professional Outreach & Validated Capabilities</p>
     </header>
 
-    <!-- MODULE 1: DIRECT CONTACT -->
-    <section class="stacked-section" style="padding-bottom: 20px;">
+    <!-- MODULE 1: DIRECT CONTACT FORMS & LINKS -->
+    <section class="stacked-section">
+        
+        <!-- SECURE MESSAGE FORM -->
+        <div class="contact-form-container">
+            <h2 class="form-header">Direct Secure Message</h2>
+            <form action="https://formsubmit.co/steventuschman2@gmail.com" method="POST">
+                <!-- Hidden fields to clean up the email you receive -->
+                <input type="hidden" name="_subject" value="New Inquiry via Intelligent-Architecture.com">
+                <input type="hidden" name="_template" value="box">
+                
+                <div class="form-group">
+                    <label class="form-label">Full Name / Title</label>
+                    <input type="text" name="name" class="form-input" required placeholder="e.g., Jane Doe, Director of IAM">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Return Email Address</label>
+                    <input type="email" name="email" class="form-input" required placeholder="name@enterprise.com">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Message Payload</label>
+                    <textarea name="message" class="form-textarea" required placeholder="Enter communication details here..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Transmit Secure Message</button>
+            </form>
+        </div>
+
+        <!-- SECONDARY CONTACT METHODS -->
         <div class="feature-grid-2">
-            
             <!-- Email -->
             <div class="feature-card cert-card cert-cyan cyan">
-                <div class="cert-org">Email</div>
-                <div class="cert-name">Direct Communication</div>
+                <div class="cert-org">Direct Email</div>
+                <div class="cert-name">Standard Routing</div>
                 <div class="contact-value">steventuschman2@gmail.com</div>
             </div>
             
@@ -200,13 +306,11 @@
                 <div class="cert-name">Professional Network</div>
                 <div class="contact-value">linkedin.com/in/steven-tuschman</div>
             </a>
-            
         </div>
     </section>
 
     <!-- VIEW RESUME BUTTON -->
-    <div class="resume-btn-container">
-        <!-- Exact URL string with the encoded space -->
+    <div class="resume-btn-container" style="margin-top: 0;">
         <a href="Resume_ST_109%20(3).pdf" target="_blank" class="resume-btn">View Resume</a>
     </div>
 

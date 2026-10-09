@@ -47,7 +47,7 @@
         }
         
         .nav-links a { 
-            display: inline-block; /* FIX: Prevents vertical padding overlap on mobile wrap */
+            display: inline-block; 
             color: var(--color-cyan); 
             border: 1px solid var(--color-cyan);
             background: rgba(14, 165, 233, 0.1); 
@@ -77,7 +77,11 @@
         /* ================= SHARED STACKED LAYOUT ================= */
         .stacked-section { padding: 60px 20px; width: 100%; display: flex; flex-direction: column; align-items: center; }
         
+        /* 3-Column Grid for Certifications */
         .feature-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; width: 100%; max-width: 1300px; margin-bottom: 2rem; }
+        
+        /* 2-Column Grid for Contact Cards (perfect balance) */
+        .feature-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; width: 100%; max-width: 900px; margin-bottom: 2rem; }
         
         .feature-card { background: rgba(15, 23, 42, 0.4); border-top: 4px solid; padding: 2.5rem 2rem; border-radius: 8px; text-align: left; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); }
         .feature-card.blue { border-color: var(--color-blue); }
@@ -137,12 +141,11 @@
         }
 
         @media (max-width: 992px) {
-            .feature-grid-3 { grid-template-columns: 1fr; }
+            .feature-grid-3, .feature-grid-2 { grid-template-columns: 1fr; }
             .hero-title { font-size: 2.8rem; }
             .deep-dive-header { font-size: 1.6rem; padding: 0 15px; }
         }
 
-        /* FIX: Mobile optimization for vertical viewports */
         @media (max-width: 600px) {
             .hero-title { font-size: 2.1rem; letter-spacing: 1px; }
             .hero { padding-top: 140px; padding-bottom: 40px; }
@@ -153,7 +156,6 @@
 
             .deep-dive-header { font-size: 1.4rem; padding: 0 10px; }
             
-            /* Give text more room by shrinking card padding */
             .feature-card { padding: 1.5rem; }
             .resume-btn { padding: 1rem 2rem; font-size: 1.1rem; }
         }
@@ -178,14 +180,14 @@
         <div class="hero-title-container">
             <h1 class="hero-title">CONTACT</h1>
         </div>
-        <p class="hero-subtitle">Professional Outreach, Repositories & Validated Capabilities</p>
+        <p class="hero-subtitle">Professional Outreach & Validated Capabilities</p>
     </header>
 
-    <!-- MODULE 1: DIRECT CONTACT (No Section Headers) -->
+    <!-- MODULE 1: DIRECT CONTACT -->
     <section class="stacked-section" style="padding-bottom: 20px;">
-        <div class="feature-grid-3">
+        <div class="feature-grid-2">
             
-            <!-- Email (Static Card, No mailto: link) -->
+            <!-- Email -->
             <div class="feature-card cert-card cert-cyan cyan">
                 <div class="cert-org">Email</div>
                 <div class="cert-name">Direct Communication</div>
@@ -199,18 +201,11 @@
                 <div class="contact-value">linkedin.com/in/steven-tuschman</div>
             </a>
             
-            <!-- GitHub -->
-            <a href="https://github.com/Compcode1" target="_blank" class="feature-card cert-card cert-purple purple">
-                <div class="cert-org">GitHub</div>
-                <div class="cert-name">Code Repositories</div>
-                <div class="contact-value">github.com/Compcode1</div>
-            </a>
         </div>
     </section>
 
-    <!-- VIEW RESUME BUTTON (Directly under contact cards) -->
+    <!-- VIEW RESUME BUTTON -->
     <div class="resume-btn-container">
-        <!-- FIX: Updated href to match new uploaded filename -->
         <a href="Resume_ST_923.pdf" target="_blank" class="resume-btn">View Resume</a>
     </div>
 

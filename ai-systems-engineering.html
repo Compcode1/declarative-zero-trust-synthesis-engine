@@ -3,401 +3,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Study Guide - Page 4: Master Architectural Outline</title>
+    <title>Intelligent Architecture - AI Systems Engineering Best Practices</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23020617' rx='20'/><text y='70' x='50' font-family='Arial, sans-serif' font-size='55' font-weight='bold' fill='%230ea5e9' text-anchor='middle'>IA</text></svg>">
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --bg-page: #020617; 
-            --bg-card: rgba(15, 23, 42, 0.6);
+            --bg-node: rgba(10, 15, 29, 0.95);
             --border-base: #1e293b;
             --text-main: #f8fafc;
             --text-muted: #cbd5e1;
             --color-blue: #3b82f6;
             --color-cyan: #0ea5e9;
             --color-purple: #a855f7;
+            --color-grey: #64748b;
             --color-green: #10b981;
+            --color-teal: #14b8a6;
             --color-red: #f43f5e;
-            --color-orange: #f97316;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { 
-            background-color: var(--bg-page); 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
-            color: var(--text-main); 
-            line-height: 1.6; 
-            padding: 0 0 8rem;
-        }
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--bg-page); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--text-main); line-height: 1.6; }
 
         /* ================= NAVIGATION ================= */
         nav {
-            background: rgba(2, 6, 23, 0.95);
-            border-bottom: 1px solid var(--border-base);
-            padding: 1rem 20px;
-            display: flex;
-            justify-content: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(10px);
+            position: fixed; top: 0; width: 100%;
+            background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-base); z-index: 100;
+            padding: 1.2rem 2rem; display: flex; justify-content: center;
         }
-        .nav-links { display: flex; gap: 1rem; list-style: none; flex-wrap: wrap; justify-content: center; }
-        .nav-links a {
-            color: var(--text-muted); text-decoration: none; font-family: 'Montserrat', sans-serif;
-            font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;
-            padding: 0.5rem 1rem; border-radius: 4px; transition: all 0.3s ease;
+        .nav-links { 
+            display: flex; gap: 1.2rem; list-style: none; flex-wrap: wrap; 
+            justify-content: center; align-items: center; 
         }
-        .nav-links a:hover { color: var(--text-main); background: rgba(255,255,255,0.05); }
-        .nav-links a.active { color: var(--color-cyan); border-bottom: 2px solid var(--color-cyan); border-radius: 0; background: transparent; }
-
-        /* ================= PAGE HEADER ================= */
-        .header { padding: 80px 20px 40px; text-align: center; }
-        .header h1 { font-family: 'Montserrat', sans-serif; font-size: 2.5rem; font-weight: 900; letter-spacing: 2px; color: var(--text-main); text-transform: uppercase; margin-bottom: 15px; }
-        .header p { font-size: 1.2rem; color: var(--color-cyan); max-width: 800px; margin: 0 auto; font-weight: 500; }
-
-        /* ================= CONTENT CONTAINER ================= */
-        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
-
-        /* ================= TEXT OUTLINE CARDS ================= */
-        .phase-card {
-            background: var(--bg-card); border: 1px solid var(--border-base);
-            border-top: 5px solid; border-radius: 8px; padding: 3rem;
-            margin-bottom: 3rem; box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        .nav-links a { 
+            display: inline-block;
+            color: var(--color-cyan); 
+            border: 1px solid var(--color-cyan);
+            background: rgba(14, 165, 233, 0.1); 
+            padding: 0.5rem 1.2rem; 
+            border-radius: 6px;
+            text-decoration: none; 
+            font-size: 0.9rem; 
+            font-weight: 700; 
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+            transition: all 0.3s ease; 
+        }
+        .nav-links a:hover, 
+        .nav-links a.active-link { 
+            background: var(--color-cyan); 
+            color: #ffffff; 
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
         }
 
-        .phase-1 { border-top-color: var(--color-cyan); }
-        .phase-2 { border-top-color: var(--color-purple); }
-        .phase-3 { border-top-color: var(--color-green); }
-
-        .phase-header { margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-base); }
-        .phase-tag { font-family: monospace; font-size: 1rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
+        /* ================= HERO HEADER ================= */
+        .hero { padding: 180px 20px 80px; text-align: center; border-bottom: 1px solid var(--border-base); }
+        .hero-title-container { display: flex; align-items: center; justify-content: center; margin-bottom: 25px; }
+        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 3.2rem; font-weight: 900; letter-spacing: 3px; color: var(--color-cyan); text-transform: uppercase; }
         
-        .phase-1 .phase-tag { color: var(--color-cyan); }
-        .phase-2 .phase-tag { color: var(--color-purple); }
-        .phase-3 .phase-tag { color: var(--color-green); }
+        /* ================= SHARED STACKED LAYOUT ================= */
+        .stacked-section { padding: 80px 20px; width: 100%; display: flex; flex-direction: column; align-items: center; }
+        .section-intro { max-width: 1050px; text-align: left; margin-bottom: 4rem; background: rgba(15, 23, 42, 0.4); padding: 3rem; border-radius: 8px; border: 1px solid var(--border-base); border-left: 4px solid var(--color-blue); }
+        .section-text { font-size: 1.2rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.5rem; }
+        .section-text:last-child { margin-bottom: 0; }
 
-        .phase-title { font-family: 'Montserrat', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--text-main); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
-        .phase-subtitle { font-size: 1.1rem; color: var(--text-muted); font-style: italic; }
-
-        .outline-list { list-style: none; }
-        .outline-item { margin-bottom: 2rem; padding-left: 1.5rem; position: relative; }
-        .outline-item:last-child { margin-bottom: 0; }
-        .outline-item::before { content: '>'; position: absolute; left: 0; top: 2px; font-weight: 900; font-size: 1.2rem; }
+        /* ================= 4-PILLAR GRID ================= */
+        .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; width: 100%; max-width: 1300px; margin-bottom: 4rem; }
+        .feature-card { background: rgba(15, 23, 42, 0.4); border-top: 4px solid; padding: 2.5rem; border-radius: 8px; text-align: left; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); display: flex; flex-direction: column; }
         
-        .phase-1 .outline-item::before { color: var(--color-cyan); }
-        .phase-2 .outline-item::before { color: var(--color-purple); }
-        .phase-3 .outline-item::before { color: var(--color-green); }
-
-        .item-title { font-size: 1.25rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.5rem; display: block; }
-        .item-desc { font-size: 1.1rem; color: var(--text-muted); line-height: 1.6; }
-
-        /* ================= EXPANDED MASTER BLUEPRINT GRAPHIC ================= */
-        .blueprint-section {
-            margin-top: 5rem; padding: 4rem 2rem;
-            background: rgba(15, 23, 42, 0.4); border: 1px solid var(--border-base);
-            border-radius: 8px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
-
-        .blueprint-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 900; color: var(--text-main); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 3.5rem; }
-
-        .blueprint-funnel { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
-
-        .bp-layer {
-            border: 1px solid var(--border-base); border-radius: 8px; padding: 2.5rem;
-            width: 100%; background: rgba(2, 6, 23, 0.8); box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            display: flex; flex-direction: column; align-items: center;
-        }
-
-        .bp-layer.top { max-width: 100%; border-top: 4px solid var(--color-cyan); box-shadow: 0 0 20px rgba(14, 165, 233, 0.15); }
-        .bp-layer.mid { max-width: 850px; border-top: 4px solid var(--color-purple); box-shadow: 0 0 20px rgba(168, 85, 247, 0.15); }
-        .bp-layer.bot { max-width: 950px; border-top: 4px solid var(--color-green); box-shadow: 0 0 20px rgba(16, 185, 129, 0.15); }
-
-        .bp-tag { font-family: monospace; font-size: 0.95rem; font-weight: 700; letter-spacing: 2px; margin-bottom: 0.8rem; text-transform: uppercase; }
-        .bp-layer.top .bp-tag { color: var(--color-cyan); }
-        .bp-layer.mid .bp-tag { color: var(--color-purple); }
-        .bp-layer.bot .bp-tag { color: var(--color-green); }
-
-        .bp-heading { font-family: 'Montserrat', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--text-main); text-transform: uppercase; margin-bottom: 2rem; letter-spacing: 1px; }
-
-        /* Split Definition Nodes (For Top Layer) */
-        .bp-grid-split { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; width: 100%; }
+        .feature-card.cyan { border-color: var(--color-cyan); }
+        .feature-card.red { border-color: var(--color-red); }
+        .feature-card.blue { border-color: var(--color-blue); }
+        .feature-card.purple { border-color: var(--color-purple); }
         
-        .bp-node-split {
-            background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-base);
-            border-top: 3px solid var(--color-cyan); padding: 1.5rem; border-radius: 6px;
-            text-align: left; display: flex; flex-direction: column; gap: 1rem;
-        }
+        .feature-title { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 800; margin-bottom: 1.5rem; color: var(--text-main); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border-base); padding-bottom: 1rem; }
+        .feature-concept { color: var(--text-muted); font-size: 1.1rem; line-height: 1.7; margin-bottom: 2rem; flex-grow: 1; }
+        .feature-concept strong { color: var(--text-main); }
 
-        .bp-node-title { font-weight: 800; font-size: 1.2rem; color: var(--color-cyan); text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--border-base); padding-bottom: 0.8rem; }
-
-        .def-block { font-size: 0.95rem; line-height: 1.6; }
-        .def-label { font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.3rem; display: block; }
+        /* ================= CITATION BLOCK ================= */
+        .citation-block { background: rgba(2, 6, 23, 0.8); border: 1px solid var(--border-base); padding: 1.5rem; border-radius: 6px; }
+        .citation-header { font-size: 0.85rem; text-transform: uppercase; font-weight: 800; letter-spacing: 1px; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; }
+        .cyan .citation-header { color: var(--color-cyan); }
+        .red .citation-header { color: var(--color-red); }
+        .blue .citation-header { color: var(--color-blue); }
+        .purple .citation-header { color: var(--color-purple); }
         
-        .def-standard .def-label { color: var(--text-muted); }
-        .def-standard .def-text { color: var(--text-main); }
+        .citation-title { font-style: italic; font-weight: 600; color: var(--text-main); margin-bottom: 0.5rem; display: block; font-size: 1rem; }
+        .citation-abstract { font-size: 0.95rem; color: #ffffff; font-weight: 600; line-height: 1.6; margin-bottom: 1rem; }
         
-        .def-translation .def-label { color: var(--color-green); }
-        .def-translation .def-text { color: var(--text-muted); font-style: italic; }
+        .citation-link { display: inline-block; font-family: monospace; font-size: 0.9rem; color: var(--text-main); text-decoration: none; border-bottom: 1px solid transparent; transition: all 0.3s ease; }
+        .citation-link:hover { border-bottom-color: var(--text-main); }
+        .cyan .citation-link:hover { color: var(--color-cyan); border-bottom-color: var(--color-cyan); }
+        .red .citation-link:hover { color: var(--color-red); border-bottom-color: var(--color-red); }
+        .blue .citation-link:hover { color: var(--color-blue); border-bottom-color: var(--color-blue); }
+        .purple .citation-link:hover { color: var(--color-purple); border-bottom-color: var(--color-purple); }
 
-        /* Standard Grid Nodes (For Mid and Bot Layers) */
-        .bp-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; width: 100%; }
-        .bp-flow-horizontal { display: flex; justify-content: center; align-items: stretch; gap: 0.5rem; width: 100%; flex-wrap: wrap; }
-
-        .bp-node {
-            background: rgba(15, 23, 42, 0.9); border: 1px solid var(--border-base);
-            padding: 1.2rem; border-radius: 6px; text-align: left;
-            display: flex; flex-direction: column; justify-content: flex-start;
-        }
-
-        .bp-node-purple { border-top: 3px solid var(--color-purple); }
-        .bp-node-green { border-top: 3px solid var(--color-green); flex: 1; min-width: 180px; }
-
-        .bp-node-purple .bp-node-title { color: var(--color-purple); font-size: 1rem; border: none; padding: 0; margin-bottom: 0.5rem; }
-        .bp-node-green .bp-node-title { color: var(--color-green); font-size: 1rem; border: none; padding: 0; margin-bottom: 0.5rem; }
-
-        .bp-node-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; font-weight: 500; }
-
-        /* Guardrails Spanning Bar */
-        .bp-guardrails-bar {
-            background: rgba(244, 63, 94, 0.05); border: 1px dashed var(--color-red);
-            border-radius: 6px; margin-top: 1.5rem; padding: 1rem; width: 100%; text-align: center;
-        }
-        .bp-guardrails-title { font-weight: 800; color: var(--color-red); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.5rem; display: block; }
-        .bp-guardrails-list { font-family: monospace; font-size: 0.85rem; color: var(--text-muted); letter-spacing: 0.5px; }
-        .bp-guardrails-list span { color: var(--color-red); opacity: 0.5; margin: 0 5px; }
-
-        /* Funnel Arrows */
-        .bp-arrow { color: var(--color-cyan); font-size: 2.5rem; font-weight: 900; line-height: 1; opacity: 0.7; }
-        .bp-flow-arrow { display: flex; align-items: center; color: var(--color-green); font-weight: 900; font-size: 1.5rem; opacity: 0.7; }
-
-        @media (max-width: 900px) {
-            .bp-grid-split { grid-template-columns: 1fr; }
-            .bp-grid-3 { grid-template-columns: repeat(2, 1fr); }
-            .bp-flow-horizontal { flex-direction: column; }
-            .bp-flow-arrow { transform: rotate(90deg); margin: 0.5rem 0; }
+        @media (max-width: 992px) {
+            .hero-title { font-size: 2.5rem; }
+            .feature-grid-2x2 { grid-template-columns: 1fr; }
         }
         @media (max-width: 600px) {
-            .header h1 { font-size: 1.8rem; }
-            .phase-card { padding: 1.5rem; }
-            .blueprint-section { padding: 2rem 1rem; }
-            .bp-heading { font-size: 1.3rem; }
-            .bp-grid-3 { grid-template-columns: 1fr; }
-            .bp-guardrails-list { font-size: 0.75rem; line-height: 1.8; }
+            .hero-title { font-size: 1.8rem; }
+            .hero { padding-top: 150px; padding-bottom: 40px; }
+            nav { padding: 1rem; }
+            .nav-links { gap: 0.6rem; }
+            .nav-links a { font-size: 0.75rem; padding: 0.4rem 0.8rem; }
+            .section-intro { padding: 1.5rem; }
+            .feature-card { padding: 1.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- STUDY GUIDE NAVIGATION -->
+    <!-- MASTER NAVIGATION -->
     <nav>
         <ul class="nav-links">
-            <li><a href="index.html">Page 1: Overview</a></li>
-            <li><a href="page2.html">Page 2: Core Concepts</a></li>
-            <li><a href="page3.html">Page 3: Plain Talk</a></li>
-            <li><a href="page4.html" class="active">Page 4: Master Outline</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="ai-systems-engineering.html" class="active-link">AI Systems Engineering</a></li>
+            <li><a href="architectural.html">Pipeline Architecture</a></li>
+            <li><a href="workflow-portfolio.html">Machine Identity Execution Showcase</a></li>
+            <li><a href="add-capabilities.html">Additional Capability Integration Showcase</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
 
-    <!-- HEADER -->
-    <header class="header">
-        <h1>Master Architectural Outline</h1>
-        <p>The Unified Conceptual Framework of Intelligent Architecture</p>
+    <!-- HERO HEADER -->
+    <header class="hero">
+        <div class="hero-title-container">
+            <h1 class="hero-title">AI Systems Engineering Best Practices</h1>
+        </div>
     </header>
 
-    <!-- CONTENT -->
-    <div class="container">
-        
-        <!-- PHASE I -->
-        <div class="phase-card phase-1">
-            <div class="phase-header">
-                <span class="phase-tag">[THE GOVERNANCE BASELINE]</span>
-                <h2 class="phase-title">I. AI Systems Engineering</h2>
-                <div class="phase-subtitle">The federal and academic rules of engagement that make AI safe for the enterprise.</div>
+    <!-- METHODOLOGY INTRODUCTION -->
+    <section class="stacked-section" style="padding-top: 0;">
+        <div class="section-intro">
+            <p class="section-text">
+                <strong>The Intelligent Architecture methodology is anchored directly in the most advanced AI engineering research and federal risk-management standards currently recognized in the cybersecurity industry.</strong>
+            </p>
+            <p class="section-text">
+                To safely operationalize generative models within mission-critical zero-trust environments, this framework explicitly subordinates probabilistic intelligence to deterministic architectural boundaries. By strictly implementing Agentic Workflows, Bounded Autonomy, NIST-aligned Human-in-the-Loop (HITL) authorization protocols, and Cognitive Circuit Breaking, unconstrained AI is transformed into a tightly governed infrastructure orchestration engine.
+            </p>
+            <p class="section-text">
+                The Zero Trust Interactive State Machine and its resulting cryptographic execution ledgers serve as the objective, deployable proof of these federal and academic standards in action.
+            </p>
+        </div>
+
+        <!-- 4-PILLAR GRID -->
+        <div class="feature-grid-2x2">
+            
+            <!-- PILLAR 1: ReAct -->
+            <div class="feature-card cyan">
+                <h3 class="feature-title">1. Agentic Design Patterns</h3>
+                <div class="feature-concept">
+                    Standard AI workflows rely on fragile "zero-shot" prompting, where a model attempts to generate a flawless configuration on the first try. Aligned with current industry consensus on Agentic Workflows, this architecture forces the AI into a strict <strong>Generate-Validate-Fix</strong> loop. It utilizes the resulting execution friction (terminal error codes and telemetry) to iteratively self-correct, dramatically outperforming static generation.
+                </div>
+                <div class="citation-block">
+                    <div class="citation-header">Reference Standard</div>
+                    <span class="citation-title">ReAct: Synergizing Reasoning and Acting in Language Models (Yao et al.)</span>
+                    <p class="citation-abstract">This foundational research from Princeton and Google Brain proves that language models become significantly more reliable when forced to alternate between reasoning about a problem and taking observable actions in an environment, forming the academic basis for our iterative execution loop.</p>
+                    <a href="https://arxiv.org/abs/2210.03629" target="_blank" class="citation-link">[View Research] ↗</a>
+                </div>
             </div>
             
-            <ul class="outline-list">
-                <li class="outline-item">
-                    <span class="item-title">Agentic Design Patterns (ReAct)</span>
-                    <div class="item-desc">Forces AI into a self-correcting Generate-Validate-Fix loop rather than relying on fragile, one-shot execution to prevent error propagation.</div>
-                </li>
-                <li class="outline-item">
-                    <span class="item-title">Bounded Autonomy (OWASP)</span>
-                    <div class="item-desc">Mathematically restricts the AI’s blast radius to strictly prevent destructive state overwrites and excessive agency.</div>
-                </li>
-                <li class="outline-item">
-                    <span class="item-title">HITL Governance (NIST)</span>
-                    <div class="item-desc">Enforces hard human-authorization gates, executing the federal "Govern" mandate to ensure explicit architectural accountability.</div>
-                </li>
-                <li class="outline-item">
-                    <span class="item-title">Cognitive Circuit Breaking</span>
-                    <div class="item-desc">Deploys hard-coded kill-switches to automatically halt execution and prevent the plausible yet nonfactual hallucination spirals inherent to LLMs.</div>
-                </li>
-            </ul>
-        </div>
-
-        <!-- PHASE II & III Text Outline omitted for brevity, keeping the exact same as previous iteration -->
-        <div class="phase-card phase-2">
-            <div class="phase-header">
-                <span class="phase-tag">[THE OPERATIONAL ENGINE]</span>
-                <h2 class="phase-title">II. The Execution Triad & Decoupled Logic</h2>
-                <div class="phase-subtitle">The structural separation of powers that securely extracts massive AI processing power.</div>
+            <!-- PILLAR 2: OWASP -->
+            <div class="feature-card red">
+                <h3 class="feature-title">2. Bounded Autonomy</h3>
+                <div class="feature-concept">
+                    Unconstrained language models prioritize making code "work," often hallucinating syntax or taking destructive shortcuts to bypass errors. This framework resolves vulnerability by trapping the AI inside a deterministic state machine. It mathematically forbids destructive state modifications, enforcing strict idempotency and granular data-plane scoping to neutralize blast radius.
+                </div>
+                <div class="citation-block">
+                    <div class="citation-header">Reference Standard</div>
+                    <span class="citation-title">OWASP Top 10 for LLM Applications (LLM08: Excessive Agency)</span>
+                    <p class="citation-abstract">The global standard for application security explicitly warns against granting AI unconstrained ability to interface with external systems. Our architectural boundary serves as the definitive mitigation for Excessive Agency, stripping the AI of rogue permissions.</p>
+                    <a href="https://genai.owasp.org/llmrisk2023-24/llm08-excessive-agency/" target="_blank" class="citation-link">[View Framework] ↗</a>
+                </div>
             </div>
-            <ul class="outline-list">
-                <li class="outline-item"><span class="item-title">The Architect</span><div class="item-desc">Initiates execution and retains strategic risk authority.</div></li>
-                <li class="outline-item"><span class="item-title">The State Machine</span><div class="item-desc">The immutable safety system that blocks unauthorized AI maneuvers.</div></li>
-                <li class="outline-item"><span class="item-title">The AI Engine</span><div class="item-desc">The decoupled processing core generating complex code in isolated memory.</div></li>
-                <li class="outline-item"><span class="item-title">Enterprise Guardrails</span><div class="item-desc">The clinical filters (Data Loss Prevention, Destructive State, The Contributor Trap, Supply Chain Injection, Terminal Exposure) that sterilize logic before cloud contact.</div></li>
-            </ul>
-        </div>
-
-        <div class="phase-card phase-3">
-            <div class="phase-header">
-                <span class="phase-tag">[THE DEPLOYMENT PIPELINE]</span>
-                <h2 class="phase-title">III. The Four Architectural Gates</h2>
-                <div class="phase-subtitle">The sequential, un-bypassable firing chain that safely deploys the logic.</div>
-            </div>
-            <ul class="outline-list">
-                <li class="outline-item"><span class="item-title">Gate 1: Boundary</span><div class="item-desc">Mathematically fencing the operational theater.</div></li>
-                <li class="outline-item"><span class="item-title">Gate 2: Identity</span><div class="item-desc">Establishing a secret-less machine identity.</div></li>
-                <li class="outline-item"><span class="item-title">Gate 3: Federation</span><div class="item-desc">Enforcing strict OIDC trust handshakes.</div></li>
-                <li class="outline-item"><span class="item-title">Gate 4: Access</span><div class="item-desc">Scoping the identity strictly to the granular data-plane.</div></li>
-            </ul>
-        </div>
-
-        <!-- THE EXPANDED MASTER BLUEPRINT GRAPHIC -->
-        <div class="blueprint-section">
-            <h2 class="blueprint-title">The Conceptual Blueprint</h2>
             
-            <div class="blueprint-funnel">
-                
-                <!-- TOP LAYER: GOVERNANCE (SPLIT DEFINITIONS) -->
-                <div class="bp-layer top">
-                    <span class="bp-tag">[THE GOVERNANCE UMBRELLA]</span>
-                    <div class="bp-heading">Systemic Mandates</div>
-                    
-                    <div class="bp-grid-split">
-                        
-                        <!-- Pattern 1 -->
-                        <div class="bp-node-split">
-                            <span class="bp-node-title">1. Agentic Patterns</span>
-                            <div class="def-block def-standard">
-                                <span class="def-label">The Global Standard (ReAct)</span>
-                                <span class="def-text">Interleaving reasoning and acting to interface with external environments and halt error propagation.</span>
-                            </div>
-                            <div class="def-block def-translation">
-                                <span class="def-label">Our Applied Engineering</span>
-                                <span class="def-text">Forcing the AI into strict Generate-Validate-Fix iteration loops that actively process live Azure terminal telemetry.</span>
-                            </div>
-                        </div>
-
-                        <!-- Pattern 2 -->
-                        <div class="bp-node-split">
-                            <span class="bp-node-title">2. Bounded Autonomy</span>
-                            <div class="def-block def-standard">
-                                <span class="def-label">The Global Standard (OWASP LLM08)</span>
-                                <span class="def-text">Neutralizing excessive functionality, unconstrained permissions, and dangerous downstream autonomy.</span>
-                            </div>
-                            <div class="def-block def-translation">
-                                <span class="def-label">Our Applied Engineering</span>
-                                <span class="def-text">Trapping logic within a deterministic state machine strictly bound by data-plane scoping and idempotency rules.</span>
-                            </div>
-                        </div>
-
-                        <!-- Pattern 3 -->
-                        <div class="bp-node-split">
-                            <span class="bp-node-title">3. HITL Governance</span>
-                            <div class="def-block def-standard">
-                                <span class="def-label">The Global Standard (NIST AI RMF)</span>
-                                <span class="def-text">Establishing the "Govern" function for transparent risk tolerance and explicit human accountability.</span>
-                            </div>
-                            <div class="def-block def-translation">
-                                <span class="def-label">Our Applied Engineering</span>
-                                <span class="def-text">Implementing hard, un-bypassable [STRICT HALT] authorization gates before any infrastructure code touches the cloud.</span>
-                            </div>
-                        </div>
-
-                        <!-- Pattern 4 -->
-                        <div class="bp-node-split">
-                            <span class="bp-node-title">4. Cognitive Circuit Breaking</span>
-                            <div class="def-block def-standard">
-                                <span class="def-label">The Global Standard (Hallucination Research)</span>
-                                <span class="def-text">Combating probabilistic drift and the generation of plausible yet nonfactual outputs over sustained context windows.</span>
-                            </div>
-                            <div class="def-block def-translation">
-                                <span class="def-label">Our Applied Engineering</span>
-                                <span class="def-text">Deploying a mathematically triggered 4-iteration kill switch to prevent cascading logic failures during complex troubleshooting.</span>
-                            </div>
-                        </div>
-
-                    </div>
+            <!-- PILLAR 3: NIST -->
+            <div class="feature-card blue">
+                <h3 class="feature-title">3. HITL Governance</h3>
+                <div class="feature-concept">
+                    Fully autonomous infrastructure generation is a massive compliance liability. This architecture enforces hard, un-bypassable authorization gates. The human architect retains absolute strategic command over the zero-trust baseline; the AI is strictly relegated to syntax synthesis and execution scale, unable to alter state without explicit human authorization.
                 </div>
-
-                <div class="bp-arrow">&darr;</div>
-
-                <!-- MIDDLE LAYER: THE TRIAD & GUARDRAILS -->
-                <div class="bp-layer mid">
-                    <span class="bp-tag">[THE ENGINE ROOM]</span>
-                    <div class="bp-heading">The Execution Triad</div>
-                    
-                    <div class="bp-grid-3">
-                        <div class="bp-node bp-node-purple">
-                            <span class="bp-node-title">The Architect</span>
-                            <span class="bp-node-desc">Initiates execution and retains strategic risk authority.</span>
-                        </div>
-                        <div class="bp-node bp-node-purple">
-                            <span class="bp-node-title">The State Machine</span>
-                            <span class="bp-node-desc">The deterministic safety harness enforcing zero-trust.</span>
-                        </div>
-                        <div class="bp-node bp-node-purple">
-                            <span class="bp-node-title">The AI Engine</span>
-                            <span class="bp-node-desc">Provides massive probabilistic processing horsepower.</span>
-                        </div>
-                    </div>
-
-                    <div class="bp-guardrails-bar">
-                        <span class="bp-guardrails-title">Enterprise Guardrails (Decoupled Logic)</span>
-                        <div class="bp-guardrails-list">
-                            Data Loss Prevention <span>|</span> Destructive State <span>|</span> The Contributor Trap <span>|</span> Supply Chain Injection <span>|</span> Terminal Exposure
-                        </div>
-                    </div>
+                <div class="citation-block">
+                    <div class="citation-header">Reference Standard</div>
+                    <span class="citation-title">NIST Artificial Intelligence Risk Management Framework (AI RMF 1.0)</span>
+                    <p class="citation-abstract">The definitive federal guideline for AI safety establishes the "Govern" function, mandating transparent risk tolerance, structural oversight, and explicit human accountability for high-stakes systems.</p>
+                    <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" class="citation-link">[View Standard] ↗</a>
                 </div>
-
-                <div class="bp-arrow">&darr;</div>
-
-                <!-- BOTTOM LAYER: THE TARGET PIPELINE -->
-                <div class="bp-layer bot">
-                    <span class="bp-tag">[THE CORE TARGET]</span>
-                    <div class="bp-heading">The Objective Gates</div>
-                    
-                    <div class="bp-flow-horizontal">
-                        <div class="bp-node bp-node-green">
-                            <span class="bp-node-title">1. Boundary</span>
-                            <span class="bp-node-desc">Geofencing the operational theater.</span>
-                        </div>
-                        <div class="bp-flow-arrow">&rarr;</div>
-                        <div class="bp-node bp-node-green">
-                            <span class="bp-node-title">2. Identity</span>
-                            <span class="bp-node-desc">Passwordless machine provisioning.</span>
-                        </div>
-                        <div class="bp-flow-arrow">&rarr;</div>
-                        <div class="bp-node bp-node-green">
-                            <span class="bp-node-title">3. Federation</span>
-                            <span class="bp-node-desc">Strict OIDC trust handshakes.</span>
-                        </div>
-                        <div class="bp-flow-arrow">&rarr;</div>
-                        <div class="bp-node bp-node-green">
-                            <span class="bp-node-title">4. Access</span>
-                            <span class="bp-node-desc">Granular data-plane scoping.</span>
-                        </div>
-                    </div>
-                </div>
-
             </div>
-        </div>
 
-    </div>
+            <!-- PILLAR 4: Circuit Breaking -->
+            <div class="feature-card purple">
+                <h3 class="feature-title">4. Cognitive Circuit Breaking</h3>
+                <div class="feature-concept">
+                    Generative models naturally degrade during complex, multi-step troubleshooting, often entering "hallucination spirals" where they drift further from the baseline. This architecture implements a mathematically triggered kill-switch that prevents <strong>cascading logic failures</strong> and <strong>infinite retry loops</strong>, automatically suspending AI execution to force a human-led Risk Management Assessment before context is lost.
+                </div>
+                <div class="citation-block">
+                    <div class="citation-header">Reference Standard</div>
+                    <span class="citation-title">A Survey on Hallucination in Large Language Models (Huang et al.)</span>
+                    <p class="citation-abstract">Extensive industry research documents how LLMs suffer from probabilistic drift as context windows degrade. This hardcoded circuit breaker provides a clinical engineering defense against context loss and hallucination spirals.</p>
+                    <a href="https://arxiv.org/abs/2311.05232" target="_blank" class="citation-link">[View Research] ↗</a>
+                </div>
+            </div>
+            
+        </div>
+    </section>
 
 </body>
 </html>

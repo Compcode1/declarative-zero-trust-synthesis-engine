@@ -24,7 +24,7 @@
             --bg-page: #020617; 
             --bg-node: rgba(10, 15, 29, 0.95);
             --border-base: #1e293b;
-            --text-main: #ffffff; /* Unified pure white for readability */
+            --text-main: #ffffff;
             --text-muted: #cbd5e1;
             
             --color-blue: #3b82f6;
@@ -253,7 +253,6 @@
         .bp-arrow-container { display: flex; justify-content: center; width: 100%; margin: 1rem 0; }
         .bp-arrow { color: var(--color-cyan); font-size: 4rem; font-weight: 900; line-height: 1; text-shadow: 0 0 20px var(--color-cyan); opacity: 0.9; }
 
-
         /* ================= KINETIC TELEMETRY CSS (Merged) ================= */
         .canvas-wrapper { width: 100%; overflow-x: auto; padding: 2rem 0; }
         
@@ -418,20 +417,25 @@
     <!-- CONTENT CONTAINER -->
     <div class="blueprint-page-container">
 
-        <!-- JUMP LINK NAVIGATION (NEW) -->
-        <div class="jump-nav">
-            <a href="#system-classification" class="jump-card">
-                <h4>1. System Classification</h4>
-                <p>The theoretical foundation and formal L4 autonomous architecture definition.</p>
-            </a>
-            <a href="#operational-blueprint" class="jump-card">
-                <h4>2. Operational Blueprint</h4>
-                <p>The structural schematic and static logic flow of the deterministic framework.</p>
-            </a>
-            <a href="#kinetic-telemetry" class="jump-card">
-                <h4>3. Kinetic Telemetry</h4>
-                <p>The live mechanical execution map demonstrating the state machine in motion.</p>
-            </a>
+        <!-- ARCHITECTURAL PERSPECTIVES (JUMP LINKS) -->
+        <div style="text-align: center; margin-bottom: 1rem;">
+            <h2 style="font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 900; color: var(--text-main); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem;">Architectural Perspectives</h2>
+            <p style="font-size: 1.15rem; color: var(--color-cyan); max-width: 900px; margin: 0 auto 3rem; line-height: 1.6; font-weight: 500;">Evaluating the Zero Trust Interactive State Machine through three distinct engineering vantage points—from theoretical control constraints down to live mechanical execution.</p>
+            
+            <div class="jump-nav">
+                <a href="#system-classification" class="jump-card" style="text-align: left;">
+                    <h4>1. System Classification</h4>
+                    <p>The theoretical control constraints and compliance mandates defining the L4 autonomous architecture.</p>
+                </a>
+                <a href="#operational-blueprint" class="jump-card" style="text-align: left;">
+                    <h4>2. Operational Blueprint</h4>
+                    <p>The static structural logic and deterministic routing that physically constrains the AI engine.</p>
+                </a>
+                <a href="#kinetic-telemetry" class="jump-card" style="text-align: left;">
+                    <h4>3. Kinetic Telemetry</h4>
+                    <p>The live mechanical execution map proving the state machine's mathematical compliance in motion.</p>
+                </a>
+            </div>
         </div>
 
         <!-- ================= SECTION 1: SYSTEM CLASSIFICATION ================= -->
@@ -692,7 +696,7 @@
                         State Machine
                     </div>
                     <div class="col-label lbl-ai">
-                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
                         AI Engine
                     </div>
 

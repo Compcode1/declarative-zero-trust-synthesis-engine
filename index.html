@@ -297,17 +297,12 @@
             align-items: flex-start;
             gap: 0.65rem;
             font-size: 0.92rem;
-            color: var(--text-muted);
+            color: var(--text-main);
             margin-bottom: 0.85rem;
             line-height: 1.35;
             font-weight: 500;
         }
         .matrix-option:last-child { margin-bottom: 0; }
-
-        .matrix-option.active-opt {
-            color: var(--color-cyan);
-            font-weight: 700;
-        }
 
         .matrix-check {
             display: inline-flex;
@@ -315,18 +310,12 @@
             justify-content: center;
             width: 16px;
             height: 16px;
-            border: 1px solid var(--color-grey);
+            border: 1px solid var(--color-cyan);
+            background: rgba(14, 165, 233, 0.08);
             border-radius: 3px;
             font-size: 11px;
             flex-shrink: 0;
             margin-top: 1px;
-        }
-
-        .matrix-option.active-opt .matrix-check {
-            border-color: var(--color-cyan);
-            background: rgba(14, 165, 233, 0.2);
-            color: var(--color-cyan);
-            box-shadow: 0 0 8px rgba(14, 165, 233, 0.4);
         }
 
         /* Combinatorial Telemetry Readout Bar */
@@ -619,21 +608,21 @@
             <h2 class="section-title" style="margin-bottom: 1.5rem;">Environment-Agnostic Flexibility &amp; Combinatorial Scale</h2>
             
             <p class="intro-text" style="margin-bottom: 3rem;">
-                Enterprise cloud environments are never monolithic. A static automation script built for one pipeline immediately breaks when applied to a different CI/CD platform, infrastructure state, or data-plane target. The Zero Trust Interactive State Machine solves this through <strong>Polymorphic Coordinate Intake</strong>: at boot, the Architect locks in five structural coordinates, and the engine dynamically rewires its cryptographic extraction rules, dependency graphs, and validation bridges across <strong>72 distinct baseline architectures</strong>—before scaling horizontally across <strong>35 Day-2 Microsoft Entra ID capabilities</strong>.
+                Enterprise cloud environments are never monolithic. A static automation script built for one pipeline immediately breaks when applied to a different CI/CD platform, infrastructure state, or data-plane target. The Zero Trust Interactive State Machine solves this through <strong>Polymorphic Coordinate Intake</strong>: at boot, the Architect selects five structural coordinates, and the engine dynamically rewires its cryptographic extraction rules, dependency graphs, and validation bridges across <strong>72 distinct baseline architectures</strong>—before scaling horizontally across <strong>35 Day-2 Microsoft Entra ID capabilities</strong>.
             </p>
 
-            <!-- EMBEDDED 5-COLUMN COORDINATE MATRIX GRAPHIC -->
+            <!-- EMBEDDED 5-COLUMN COORDINATE MATRIX GRAPHIC (ALL UNCHECKED) -->
             <div class="matrix-graphic-canvas">
                 <div class="matrix-5col-grid">
                     
                     <div class="matrix-node">
                         <div class="matrix-node-header">Identity Core</div>
-                        <div class="matrix-option active-opt"><span class="matrix-check">&#10003;</span> Microsoft Entra ID</div>
+                        <div class="matrix-option"><span class="matrix-check"></span> Microsoft Entra ID</div>
                     </div>
 
                     <div class="matrix-node">
                         <div class="matrix-node-header">Execution Agent</div>
-                        <div class="matrix-option active-opt"><span class="matrix-check">&#10003;</span> Azure Kubernetes Service (AKS)</div>
+                        <div class="matrix-option"><span class="matrix-check"></span> Azure Kubernetes Service (AKS)</div>
                         <div class="matrix-option"><span class="matrix-check"></span> GitHub Actions</div>
                         <div class="matrix-option"><span class="matrix-check"></span> Azure DevOps</div>
                         <div class="matrix-option"><span class="matrix-check"></span> GitLab CI</div>
@@ -642,19 +631,19 @@
                     <div class="matrix-node">
                         <div class="matrix-node-header">Infrastructure State</div>
                         <div class="matrix-option"><span class="matrix-check"></span> Brownfield (Existing)</div>
-                        <div class="matrix-option active-opt"><span class="matrix-check">&#10003;</span> Greenfield (Net-New)</div>
+                        <div class="matrix-option"><span class="matrix-check"></span> Greenfield (Net-New)</div>
                     </div>
 
                     <div class="matrix-node">
                         <div class="matrix-node-header">Data-Plane Asset</div>
-                        <div class="matrix-option active-opt"><span class="matrix-check">&#10003;</span> Azure Key Vault</div>
+                        <div class="matrix-option"><span class="matrix-check"></span> Azure Key Vault</div>
                         <div class="matrix-option"><span class="matrix-check"></span> Storage Account</div>
                         <div class="matrix-option"><span class="matrix-check"></span> SQL / Cosmos DB</div>
                     </div>
 
                     <div class="matrix-node">
                         <div class="matrix-node-header">IaC Payload</div>
-                        <div class="matrix-option active-opt"><span class="matrix-check">&#10003;</span> Terraform (HCL)</div>
+                        <div class="matrix-option"><span class="matrix-check"></span> Terraform (HCL)</div>
                         <div class="matrix-option"><span class="matrix-check"></span> Azure Bicep</div>
                         <div class="matrix-option"><span class="matrix-check"></span> PowerShell REST API</div>
                     </div>

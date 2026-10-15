@@ -62,7 +62,7 @@
         
         /* Universal Button Styling for all links */
         .nav-links a { 
-            display: inline-block; /* FIX: Prevents vertical padding overlap on mobile wrap */
+            display: inline-block; 
             color: var(--color-cyan); 
             border: 1px solid var(--color-cyan);
             background: rgba(14, 165, 233, 0.1); 
@@ -89,6 +89,39 @@
         .hero-title-container { display: flex; align-items: center; justify-content: center; margin-bottom: 25px; }
         .hero-title { font-family: 'Montserrat', sans-serif; font-size: 4rem; font-weight: 900; letter-spacing: 3px; color: var(--color-purple); text-transform: uppercase; }
         .hero-subtitle { font-size: 1.5rem; color: var(--text-muted); font-weight: 500; max-width: 1000px; margin: 0 auto; letter-spacing: 1px; }
+
+        /* ================= JUMP LINKS ================= */
+        .jump-links { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 1rem; 
+            margin-top: 2.5rem; 
+        }
+        .jump-links a { 
+            color: var(--color-cyan); 
+            border: 1px solid var(--color-cyan); 
+            background: rgba(14, 165, 233, 0.05); 
+            padding: 0.75rem 1.5rem; 
+            border-radius: 8px; 
+            text-decoration: none; 
+            font-size: 0.95rem; 
+            font-weight: 700; 
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+            transition: all 0.3s ease; 
+        }
+        .jump-links a:hover { 
+            background: var(--color-cyan); 
+            color: #ffffff; 
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
+            transform: translateY(-2px); 
+        }
+        
+        /* Added specific scroll margin for the first section without a transition wrapper */
+        #anatomy {
+            scroll-margin-top: 100px;
+        }
 
         /* ================= INSIGHT CALLOUT ================= */
         .insight-box {
@@ -161,7 +194,6 @@
         .feature-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-main); }
         .feature-text { color: var(--text-muted); font-size: 1.15rem; line-height: 1.8; }
         
-        /* FIX: Added canvas wrapper for mobile swipe */
         .canvas-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 15px; }
 
         .diagram-wrapper-wide {
@@ -171,7 +203,6 @@
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); overflow: hidden;
         }
 
-        /* FIX: Prevents diagram collapse on narrow phones */
         .scrollable-diagram { min-width: 1150px; }
         
         .diagram-caption { margin-top: 2.5rem; text-align: center; font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; padding: 0 20px; max-width: 900px; margin-left: auto; margin-right: auto; }
@@ -249,12 +280,10 @@
         }
         
         @media (max-width: 650px) {
-            /* Removed the scale(0.85) hack that was breaking layout */
             .terminal-body { font-size: 0.85rem; padding: 1.5rem; }
             .capability-grid { padding: 1.5rem; gap: 1rem; }
         }
 
-        /* FIX: Title sizing and Nav adjustments for vertical phone screens */
         @media (max-width: 600px) {
             .hero-title { font-size: 2.1rem; letter-spacing: 1px; }
             .hero { padding-top: 200px; }
@@ -285,10 +314,20 @@
             <h1 class="hero-title">PIPELINE ARCHITECTURE</h1>
         </div>
         <p class="hero-subtitle">System Components & Technical Workflow Execution</p>
+        
+        <!-- NEW JUMP LINKS -->
+        <div class="jump-links">
+            <a href="#anatomy">Explore State Machine Anatomy</a>
+            <a href="#workflow">Explore Workflow Synthesis</a>
+            <a href="#federation">Explore Federation Generation</a>
+            <a href="#ledger">Explore Audit Ledgers</a>
+            <a href="#dpl">Explore Protocol Refinement</a>
+            <a href="#index">Explore Capability Index</a>
+        </div>
     </header>
 
     <!-- MODULE 1: ANATOMY OF THE SOFTWARE -->
-    <section class="stacked-section" style="padding-top: 2rem;">
+    <section id="anatomy" class="stacked-section" style="padding-top: 2rem;">
         
         <div class="section-intro">
             <span class="section-kicker">Defining The Prompt-Based Infrastructure Controller</span>
@@ -320,7 +359,6 @@
             </div>
         </div>
 
-        <!-- FIX: Added canvas-wrapper to enable mobile scrolling -->
         <div class="canvas-wrapper">
             <div class="diagram-wrapper-wide anatomy-diagram scrollable-diagram">
                 <svg class="anatomy-svg" xmlns="http://www.w3.org/2000/svg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
@@ -406,7 +444,6 @@
             </div>
         </div>
 
-        <!-- FIX: Added canvas-wrapper to enable mobile scrolling -->
         <div class="canvas-wrapper">
             <div class="diagram-wrapper-wide workflow-diagram scrollable-diagram">
                 
@@ -473,7 +510,6 @@
             </div>
         </div>
 
-        <!-- FIX: Added canvas-wrapper to enable mobile scrolling -->
         <div class="canvas-wrapper">
             <div class="diagram-wrapper-wide federation-diagram scrollable-diagram">
                 
@@ -938,7 +974,6 @@ AzureDiagnostics
             </div>
         </div>
 
-        <!-- FIX: Removed the canvas wrapper here and let the CSS grid naturally stack the cards on a phone -->
         <div class="diagram-wrapper-wide capability-diagram">
             
             <div class="capability-grid">

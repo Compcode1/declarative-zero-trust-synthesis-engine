@@ -132,7 +132,7 @@
             transform: translateY(-2px); 
         }
 
-        #classification, #industry-gap, #agentic-patterns, #translation-matrix { scroll-margin-top: 100px; }
+        #classification, #operational-challenge, #agentic-patterns, #translation-matrix { scroll-margin-top: 100px; }
 
         /* ================= SHARED SECTION LAYOUT ================= */
         .stacked-section { padding: 70px 20px 30px; width: 100%; display: flex; flex-direction: column; align-items: center; }
@@ -180,63 +180,63 @@
         .anatomy-text { font-size: 1.05rem; color: var(--text-muted); line-height: 1.7; }
         .anatomy-text code { color: var(--color-cyan); background: rgba(14, 165, 233, 0.1); padding: 2px 6px; border-radius: 4px; font-size: 0.92rem; }
 
-        /* ================= SECTION 2: THE 3-TIER INDUSTRY REALITY ================= */
-        .tier-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+        /* ================= SECTION 2: OPERATIONAL SCALE & PRECISION CHALLENGE ================= */
+        .challenge-box {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-base);
+            border-top: 4px solid var(--color-blue);
+            border-radius: 12px;
+            padding: 3.5rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
             width: 100%;
             max-width: 1300px;
         }
 
-        .tier-card {
-            background: rgba(15, 23, 42, 0.5);
-            border: 1px solid var(--border-base);
-            border-top: 4px solid var(--color-grey);
-            border-radius: 10px;
-            padding: 2.5rem 2rem;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
-        .tier-card.danger { border-top-color: var(--color-red); }
-        .tier-card.apex { 
-            border: 2px solid var(--color-purple); 
-            border-top: 6px solid var(--color-purple); 
-            background: linear-gradient(180deg, rgba(168, 85, 247, 0.12) 0%, rgba(10, 15, 29, 0.95) 100%);
-            box-shadow: 0 0 30px rgba(168, 85, 247, 0.25);
+        .resolution-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2.5rem;
         }
 
-        .tier-badge {
+        .resolution-card {
+            background: rgba(2, 6, 23, 0.9);
+            border: 1px solid var(--border-base);
+            border-top: 3px solid var(--color-cyan);
+            border-radius: 8px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .resolution-card.purple { border-top-color: var(--color-purple); }
+        .resolution-card.green { border-top-color: var(--color-green); }
+
+        .resolution-tag {
             font-family: monospace;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
-            padding: 4px 10px;
-            border-radius: 4px;
-            display: inline-block;
-            align-self: flex-start;
-            margin-bottom: 1rem;
-            border: 1px solid var(--color-grey);
-            color: var(--text-muted);
+            color: var(--color-cyan);
+            margin-bottom: 0.6rem;
+            display: block;
         }
-        .tier-card.danger .tier-badge { color: var(--color-red); border-color: rgba(244, 63, 94, 0.4); background: rgba(244, 63, 94, 0.08); }
-        .tier-card.apex .tier-badge { color: var(--color-purple); border-color: rgba(168, 85, 247, 0.5); background: rgba(168, 85, 247, 0.15); }
+        .resolution-card.purple .resolution-tag { color: var(--color-purple); }
+        .resolution-card.green .resolution-tag { color: var(--color-green); }
 
-        .tier-title { font-family: 'Montserrat', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--text-main); text-transform: uppercase; margin-bottom: 1rem; }
-        .tier-desc { font-size: 1.05rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem; flex-grow: 1; }
-        .tier-verdict {
-            padding: 1rem 1.2rem;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            background: rgba(2, 6, 23, 0.85);
-            border-left: 3px solid var(--color-grey);
-            color: var(--text-muted);
+        .resolution-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-transform: uppercase;
+            margin-bottom: 0.85rem;
         }
-        .tier-card.danger .tier-verdict { border-left-color: var(--color-red); color: #fda4af; }
-        .tier-card.apex .tier-verdict { border-left-color: var(--color-green); color: #6ee7b7; }
+        .resolution-text {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
 
         /* ================= SECTION 3: 4 AGENTIC DESIGN PATTERNS (2x2 GRID) ================= */
         .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; width: 100%; max-width: 1300px; }
@@ -394,8 +394,8 @@
         .pedigree-text code { color: var(--color-cyan); }
 
         @media (max-width: 1050px) {
-            .anatomy-grid, .tier-grid, .feature-grid-2x2, .pedigree-grid { grid-template-columns: 1fr; }
-            .compiler-box, .matrix-section-box { padding: 2rem 1.5rem; }
+            .anatomy-grid, .resolution-grid, .feature-grid-2x2, .pedigree-grid { grid-template-columns: 1fr; }
+            .compiler-box, .challenge-box, .matrix-section-box { padding: 2rem 1.5rem; }
         }
         @media (max-width: 600px) {
             .hero-title { font-size: 2rem; }
@@ -444,7 +444,7 @@
         
         <div class="jump-links">
             <a href="#classification">1. Software Classification</a>
-            <a href="#industry-gap">2. The 3-Tier Industry Reality</a>
+            <a href="#operational-challenge">2. Scale &amp; Precision Challenge</a>
             <a href="#agentic-patterns">3. Core Agentic Design Patterns</a>
             <a href="#translation-matrix">4. The 5 Enterprise Guardrails Matrix</a>
         </div>
@@ -457,15 +457,15 @@
                 <span class="section-tag">[SECTION 01 :: SOFTWARE CLASSIFICATION]</span>
                 <h2 class="section-title" style="text-align: center;">Anatomy of the Deterministic Control Harness</h2>
                 <p class="section-lead" style="text-align: center; max-width: 1000px; margin: 0 auto;">
-                    The <strong>Zero Trust Interactive State Machine (v9.1)</strong> is engineered as declarative, natural-language control software. Rather than relying on open-ended "vibe coding," it enforces a hardware-like separation between the computational engine, the state-space control plane, and the presentation telemetry layer.
+                    The <strong>Zero Trust Interactive State Machine (v9.1)</strong> is engineered as declarative, natural-language control software. Rather than relying on open-ended generation, it enforces a hardware-like separation between the computational engine, the state-space control plane, and the presentation telemetry layer.
                 </p>
 
                 <div class="anatomy-grid">
                     <div class="anatomy-card">
                         <span class="anatomy-tag">[LAYER 01 : COMPUTATIONAL ENGINE]</span>
-                        <h3 class="anatomy-title">The Untrusted Synthesis Processor</h3>
+                        <h3 class="anatomy-title">The Governed Synthesis Processor</h3>
                         <p class="anatomy-text">
-                            The Large Language Model (LLM) is stripped of autonomous agency and treated strictly as a high-speed syntax generator. It is utilized exclusively to dynamically compile environment-agnostic payloads across Terraform (HCL), Azure Bicep, and Microsoft Graph REST APIs across 72 distinct infrastructure baselines.
+                            The Large Language Model (LLM) is stripped of autonomous agency and utilized strictly as a high-speed syntax generator. It dynamically compiles environment-agnostic payloads across Terraform (HCL), Azure Bicep, and Microsoft Graph REST APIs across 72 distinct infrastructure baselines.
                         </p>
                     </div>
 
@@ -489,50 +489,38 @@
         </div>
     </section>
 
-    <!-- SECTION 2: THE 3-TIER INDUSTRY REALITY -->
-    <section id="industry-gap" class="stacked-section">
-        <div class="section-header-block">
-            <span class="section-tag">[SECTION 02 :: THE OPERATIONAL LANDSCAPE]</span>
-            <h2 class="section-title">Closing the Asymmetric Engineering Gap</h2>
-            <p class="section-lead">
-                As CISA and NSA advisories warn that threat actors actively weaponize AI to orchestrate exploit vectors at machine speed, enterprise cloud security teams are divided into three distinct operational tiers—only one of which achieves both scale and mathematical safety.
+    <!-- SECTION 2: ADDRESSING THE OPERATIONAL SCALE & PRECISION CHALLENGE -->
+    <section id="operational-challenge" class="stacked-section">
+        <div class="challenge-box">
+            <span class="section-tag" style="text-align: center;">[SECTION 02 :: THE OPERATIONAL PROBLEM SPACE]</span>
+            <h2 class="section-title" style="text-align: center;">Addressing the Operational Scale &amp; Precision Challenge</h2>
+            <p class="section-lead" style="text-align: center; max-width: 1050px; margin: 0 auto;">
+                As ongoing CISA and NSA cybersecurity advisories highlight, adversarial actors now actively leverage artificial intelligence to analyze cloud architectures and orchestrate exploit vectors at machine speed. Maintaining defensive parity across modern enterprise environments requires matching that computational velocity, yet cloud identity management demands absolute, binary precision across dozens of shifting variables—including diverse CI/CD platforms, Kubernetes clusters, Brownfield and Greenfield states, and multiple Infrastructure-as-Code languages. <strong>Deterministic AI Systems Engineering</strong> resolves the fundamental tension between deployment speed and architectural safety. By tethering the computational power of generative AI to a Finite State Machine governed by formal Control Theory, the framework eliminates probabilistic drift and scales zero-trust identity architectures across 72 distinct infrastructure baselines with mathematical certainty and pre-compiled compliance.
             </p>
-        </div>
 
-        <div class="tier-grid">
-            <!-- TIER 1 -->
-            <div class="tier-card">
-                <span class="tier-badge">Practitioner Share: ~65% – 70%</span>
-                <h3 class="tier-title">1. Traditional Manual Purists</h3>
-                <p class="tier-desc">
-                    Senior IAM and cloud architects who rely strictly on manual coding. Having witnessed early LLMs hallucinate deprecated Azure AD Graph endpoints or insecure roles, they reject AI entirely and hand-write every line of Terraform, Bicep, or PowerShell.
-                </p>
-                <div class="tier-verdict">
-                    <strong>Fatal Flaw: Cannot Scale.</strong> Pivoting a zero-trust OIDC architecture across 4 CI/CD agents, 2 state topographies, 3 data-plane targets, and 3 IaC languages (72 baselines) bogs manual teams down in months of syntax translation and regression bugs.
+            <div class="resolution-grid">
+                <div class="resolution-card">
+                    <span class="resolution-tag">[OBJECTIVE 01 : VELOCITY PARITY]</span>
+                    <h3 class="resolution-title">Countering Machine-Speed Threats</h3>
+                    <p class="resolution-text">
+                        Harnesses the computational synthesis speed of artificial intelligence to rapidly engineer and deploy hardened, passwordless OpenID Connect (OIDC) workload federations and Conditional Access perimeters at the pace required by modern cloud operations.
+                    </p>
                 </div>
-            </div>
 
-            <!-- TIER 2 -->
-            <div class="tier-card danger">
-                <span class="tier-badge">Practitioner Share: ~29% – 34%</span>
-                <h3 class="tier-title">2. "Prompt-and-Pray" Adopters</h3>
-                <p class="tier-desc">
-                    Engineers utilizing unconstrained AI assistants as conversational autocomplete tools ("vibe coding") to generate IAM policies and infrastructure scripts from scratch, relying on manual visual inspection to catch errors before deployment.
-                </p>
-                <div class="tier-verdict">
-                    <strong>Fatal Flaw: Catastrophic Enterprise Risk.</strong> Unconstrained models optimize for "making code run"—routinely introducing <code>Contributor</code> over-permissioning, floating provider versions, and destructive state resets.
+                <div class="resolution-card purple">
+                    <span class="resolution-tag">[OBJECTIVE 02 : BINARY PRECISION]</span>
+                    <h3 class="resolution-title">Eliminating Probabilistic Drift</h3>
+                    <p class="resolution-text">
+                        Replaces open-ended token prediction with a deterministic state harness. Every generated configuration is mathematically constrained to enforce least-privilege data-plane scoping, pinned provider dependencies, and non-destructive state idempotency.
+                    </p>
                 </div>
-            </div>
 
-            <!-- TIER 3 -->
-            <div class="tier-card apex">
-                <span class="tier-badge">Practitioner Share: &lt; 1% (Intelligent Architecture)</span>
-                <h3 class="tier-title">3. Deterministic AI Systems Engineering</h3>
-                <p class="tier-desc">
-                    Platform engineering that treats generative AI as a mathematical synthesis engine inside a Finite State Machine governed by formal Control Theory, Human-in-the-Loop (HITL) authorization gates, and automated cryptographic verification.
-                </p>
-                <div class="tier-verdict">
-                    <strong>The Gold Standard:</strong> Matches adversarial machine velocity across all 72 polymorphic baselines while enforcing 100% deterministic compliance and zero-trust mathematical certainty.
+                <div class="resolution-card green">
+                    <span class="resolution-tag">[OBJECTIVE 03 : COMBINATORIAL SCALE]</span>
+                    <h3 class="resolution-title">72-Baseline Polymorphic Adaptation</h3>
+                    <p class="resolution-text">
+                        Dynamically recalculates cryptographic handshakes, RBAC scopes, and state constraints across 4 execution agents, 2 infrastructure states, 3 data-plane targets, and 3 IaC compilers—delivering uniform security governance across heterogeneous environments.
+                    </p>
                 </div>
             </div>
         </div>
@@ -544,7 +532,7 @@
             <span class="section-tag">[SECTION 03 :: CORE PRINCIPLES &amp; RUNTIME MECHANICS]</span>
             <h2 class="section-title">The Four Pillars of the State Machine</h2>
             <p class="section-lead">
-                To transform an unpredictable language model into a deterministic engineering instrument, the framework operationalizes four globally recognized AI safety and agentic research standards directly into its v9.1 source directives.
+                To transform a generative language model into a deterministic engineering instrument, the framework operationalizes four globally recognized AI safety and agentic research standards directly into its v9.1 source directives.
             </p>
         </div>
 
@@ -576,7 +564,7 @@
                 <span class="pillar-tag">[PILLAR 02 :: BLAST-RADIUS CONTAINMENT]</span>
                 <h3 class="feature-title">2. Bounded Autonomy &amp; MFA Decoupling</h3>
                 <div class="feature-concept">
-                    Unconstrained generative models prioritize task completion over security boundaries, routinely taking destructive shortcuts or escalating privileges to bypass deployment errors. This framework physically neutralizes <strong>Excessive Agency</strong> by subordinating the AI to strict state-space boundaries.
+                    Unconstrained generative models prioritize task completion over security boundaries, often taking shortcuts or escalating privileges to bypass deployment errors. This framework physically neutralizes <strong>Excessive Agency</strong> by subordinating the AI to strict state-space boundaries.
                 </div>
                 <div class="mechanics-box">
                     <span class="mechanics-label">v9.1 Runtime Implementation (Directive 01, Rule 3, Rule 4 &amp; Rule 29)</span>
@@ -597,7 +585,7 @@
                 <span class="pillar-tag">[PILLAR 03 :: STRUCTURAL OVERSIGHT]</span>
                 <h3 class="feature-title">3. Human-in-the-Loop (HITL) Governance</h3>
                 <div class="feature-concept">
-                    Autonomous infrastructure provisioning without human verification is an unacceptable enterprise compliance liability. This architecture hardwires every phase of the deployment lifecycle to explicit <strong>Strategic Governance</strong> gates controlled exclusively by the human security architect.
+                    Autonomous infrastructure provisioning without human verification is an enterprise compliance liability. This architecture hardwires every phase of the deployment lifecycle to explicit <strong>Strategic Governance</strong> gates controlled exclusively by the human security architect.
                 </div>
                 <div class="mechanics-box">
                     <span class="mechanics-label">v9.1 Runtime Implementation (Rule 1, Rule 8, Rule 12 &amp; Rule 28)</span>
@@ -618,7 +606,7 @@
                 <span class="pillar-tag">[PILLAR 04 :: ANTI-HALLUCINATION PHYSICS]</span>
                 <h3 class="feature-title">4. Cognitive Circuit Breaking &amp; Watchdog</h3>
                 <div class="feature-concept">
-                    Generative models naturally suffer from attention degradation during extended debugging sessions, entering "hallucination spirals" where they guess wildly and drift from security baselines. This architecture implements a deterministic kill-switch to halt execution before context degrades.
+                    Generative models naturally suffer from attention degradation during extended debugging sessions, entering "hallucination spirals" where they drift from security baselines. This architecture implements a deterministic kill-switch to halt execution before context degrades.
                 </div>
                 <div class="mechanics-box">
                     <span class="mechanics-label">v9.1 Runtime Implementation (Directive 02, Directive 05 &amp; Directive 07)</span>

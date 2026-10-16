@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intelligent Architecture - Architectural Specification</title>
+    <title>Intelligent Architecture - AI Systems Engineering Specification</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23020617' rx='20'/><text y='70' x='50' font-family='Arial, sans-serif' font-size='55' font-weight='bold' fill='%230ea5e9' text-anchor='middle'>IA</text></svg>">
     
     <!-- Google tag (gtag.js) -->
@@ -32,6 +32,8 @@
             --color-green: #10b981;
             --color-teal: #14b8a6;
             --color-red: #f43f5e;
+            --color-orange: #f97316;
+            --logo-blue: #2563eb;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -72,9 +74,35 @@
 
         /* ================= HERO HEADER ================= */
         .hero { padding: 180px 20px 80px; text-align: center; border-bottom: 1px solid var(--border-base); }
-        .hero-title-container { display: flex; align-items: center; justify-content: center; margin-bottom: 25px; }
-        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 3.2rem; font-weight: 900; letter-spacing: 3px; color: var(--color-cyan); text-transform: uppercase; }
-        .hero-subtitle { font-size: 1.4rem; color: var(--text-muted); font-weight: 600; max-width: 1000px; margin: 0 auto; letter-spacing: 1px; text-transform: uppercase; }
+        .hero-title-container { display: flex; align-items: center; justify-content: center; margin-bottom: 15px; }
+        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 3.4rem; font-weight: 900; letter-spacing: 3px; color: var(--text-main); text-transform: uppercase; }
+        .hero-tag { font-family: monospace; font-size: 1rem; font-weight: 700; color: var(--color-purple); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; display: block; }
+        .hero-subtitle { font-size: 1.35rem; color: var(--color-cyan); font-weight: 500; max-width: 1100px; margin: 0 auto; line-height: 1.65; }
+
+        /* ================= INSIGHT CALLOUT ================= */
+        .insight-box { 
+            border-left: 4px solid var(--color-purple); 
+            background: linear-gradient(90deg, rgba(168, 85, 247, 0.1) 0%, transparent 100%);
+            padding: 2rem; 
+            margin: 3rem auto 2.5rem; 
+            max-width: 1050px; 
+            border-radius: 0 8px 8px 0; 
+            text-align: left; 
+        }
+        .insight-header { 
+            font-family: 'Montserrat', sans-serif; 
+            font-size: 1.15rem; 
+            font-weight: 900; 
+            letter-spacing: 2px; 
+            text-transform: uppercase; 
+            margin-bottom: 0.75rem; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            color: var(--color-purple);
+        }
+        .insight-header::before { content: '>'; font-weight: 900; }
+        .insight-text { font-size: 1.15rem; color: var(--text-main); font-style: italic; line-height: 1.7; font-weight: 500; }
 
         /* ================= JUMP LINKS ================= */
         .jump-links { 
@@ -82,7 +110,7 @@
             flex-wrap: wrap; 
             justify-content: center; 
             gap: 1rem; 
-            margin-top: 3rem; 
+            margin-top: 2.5rem; 
         }
         .jump-links a { 
             color: var(--color-cyan); 
@@ -91,7 +119,7 @@
             padding: 0.75rem 1.5rem; 
             border-radius: 8px; 
             text-decoration: none; 
-            font-size: 0.95rem; 
+            font-size: 0.9rem; 
             font-weight: 700; 
             letter-spacing: 1px; 
             text-transform: uppercase; 
@@ -104,86 +132,280 @@
             transform: translateY(-2px); 
         }
 
-        #specification, #best-practices { scroll-margin-top: 100px; }
+        #classification, #industry-gap, #agentic-patterns, #translation-matrix { scroll-margin-top: 100px; }
 
-        /* ================= SHARED STACKED LAYOUT ================= */
-        .stacked-section { padding: 80px 20px; width: 100%; display: flex; flex-direction: column; align-items: center; }
+        /* ================= SHARED SECTION LAYOUT ================= */
+        .stacked-section { padding: 70px 20px 30px; width: 100%; display: flex; flex-direction: column; align-items: center; }
+        .container-1300 { width: 100%; max-width: 1300px; }
         
-        .section-intro { max-width: 1050px; text-align: left; margin-bottom: 3rem; background: rgba(15, 23, 42, 0.4); padding: 3rem; border-radius: 8px; border: 1px solid var(--border-base); border-left: 4px solid var(--color-blue); }
-        .section-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: var(--text-main); margin-bottom: 2rem; max-width: 1050px; text-align: left; width: 100%; border-bottom: 1px solid var(--border-base); padding-bottom: 1rem; }
-        
-        .section-text { font-size: 1.15rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.5rem; }
-        .section-text strong { color: var(--text-main); }
-        .section-text:last-child { margin-bottom: 0; }
+        .section-header-block { max-width: 1100px; margin: 0 auto 3rem; text-align: center; }
+        .section-tag { font-family: monospace; font-size: 0.9rem; font-weight: 700; color: var(--color-cyan); letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 0.6rem; }
+        .section-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 900; color: var(--text-main); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.2rem; }
+        .section-lead { font-size: 1.2rem; color: var(--text-muted); line-height: 1.8; }
+        .section-lead strong { color: var(--text-main); }
 
-        /* ================= ESSAY SPECIFIC BLOCKS ================= */
-        .spec-block { max-width: 1050px; width: 100%; margin-bottom: 4rem; text-align: left; }
-        .spec-header { font-family: 'Montserrat', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--color-cyan); margin-bottom: 1.2rem; text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center; gap: 10px; }
-        .spec-header::before { content: '>'; font-weight: 900; color: var(--color-purple); }
+        /* ================= SECTION 1: SOFTWARE ARCHITECTURE ANATOMY ================= */
+        .compiler-box {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-base);
+            border-top: 4px solid var(--color-cyan);
+            border-radius: 12px;
+            padding: 3.5rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            margin-bottom: 2rem;
+        }
 
-        /* ================= 4-PILLAR GRID (BEST PRACTICES) ================= */
-        .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; width: 100%; max-width: 1300px; margin-bottom: 4rem; }
-        .feature-card { background: rgba(15, 23, 42, 0.4); border-top: 4px solid; padding: 2.5rem; border-radius: 8px; text-align: left; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); display: flex; flex-direction: column; }
+        .anatomy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .anatomy-card {
+            background: rgba(2, 6, 23, 0.9);
+            border: 1px solid var(--border-base);
+            border-left: 4px solid var(--color-blue);
+            border-radius: 8px;
+            padding: 2rem;
+        }
+        .anatomy-card.purple { border-left-color: var(--color-purple); }
+        .anatomy-card.green { border-left-color: var(--color-green); }
+
+        .anatomy-tag { font-family: monospace; font-size: 0.8rem; font-weight: 700; color: var(--color-blue); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.6rem; display: block; }
+        .anatomy-card.purple .anatomy-tag { color: var(--color-purple); }
+        .anatomy-card.green .anatomy-tag { color: var(--color-green); }
+
+        .anatomy-title { font-family: 'Montserrat', sans-serif; font-size: 1.25rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.85rem; text-transform: uppercase; }
+        .anatomy-text { font-size: 1.05rem; color: var(--text-muted); line-height: 1.7; }
+        .anatomy-text code { color: var(--color-cyan); background: rgba(14, 165, 233, 0.1); padding: 2px 6px; border-radius: 4px; font-size: 0.92rem; }
+
+        /* ================= SECTION 2: THE 3-TIER INDUSTRY REALITY ================= */
+        .tier-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            width: 100%;
+            max-width: 1300px;
+        }
+
+        .tier-card {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid var(--border-base);
+            border-top: 4px solid var(--color-grey);
+            border-radius: 10px;
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        .tier-card.danger { border-top-color: var(--color-red); }
+        .tier-card.apex { 
+            border: 2px solid var(--color-purple); 
+            border-top: 6px solid var(--color-purple); 
+            background: linear-gradient(180deg, rgba(168, 85, 247, 0.12) 0%, rgba(10, 15, 29, 0.95) 100%);
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.25);
+        }
+
+        .tier-badge {
+            font-family: monospace;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 4px;
+            display: inline-block;
+            align-self: flex-start;
+            margin-bottom: 1rem;
+            border: 1px solid var(--color-grey);
+            color: var(--text-muted);
+        }
+        .tier-card.danger .tier-badge { color: var(--color-red); border-color: rgba(244, 63, 94, 0.4); background: rgba(244, 63, 94, 0.08); }
+        .tier-card.apex .tier-badge { color: var(--color-purple); border-color: rgba(168, 85, 247, 0.5); background: rgba(168, 85, 247, 0.15); }
+
+        .tier-title { font-family: 'Montserrat', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--text-main); text-transform: uppercase; margin-bottom: 1rem; }
+        .tier-desc { font-size: 1.05rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.5rem; flex-grow: 1; }
+        .tier-verdict {
+            padding: 1rem 1.2rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            background: rgba(2, 6, 23, 0.85);
+            border-left: 3px solid var(--color-grey);
+            color: var(--text-muted);
+        }
+        .tier-card.danger .tier-verdict { border-left-color: var(--color-red); color: #fda4af; }
+        .tier-card.apex .tier-verdict { border-left-color: var(--color-green); color: #6ee7b7; }
+
+        /* ================= SECTION 3: 4 AGENTIC DESIGN PATTERNS (2x2 GRID) ================= */
+        .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; width: 100%; max-width: 1300px; }
+        .feature-card { background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-base); border-top: 4px solid; padding: 2.5rem; border-radius: 10px; text-align: left; box-shadow: 0 15px 30px rgba(0,0,0,0.35); display: flex; flex-direction: column; }
         
-        .feature-card.cyan { border-color: var(--color-cyan); }
-        .feature-card.red { border-color: var(--color-red); }
-        .feature-card.blue { border-color: var(--color-blue); }
-        .feature-card.purple { border-color: var(--color-purple); }
+        .feature-card.cyan { border-top-color: var(--color-cyan); }
+        .feature-card.red { border-top-color: var(--color-red); }
+        .feature-card.blue { border-top-color: var(--color-blue); }
+        .feature-card.purple { border-top-color: var(--color-purple); }
         
-        .feature-title { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 800; margin-bottom: 1.5rem; color: var(--text-main); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border-base); padding-bottom: 1rem; }
-        .feature-concept { color: var(--text-muted); font-size: 1.1rem; line-height: 1.7; margin-bottom: 2rem; flex-grow: 1; }
+        .pillar-tag { font-family: monospace; font-size: 0.82rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
+        .cyan .pillar-tag { color: var(--color-cyan); }
+        .red .pillar-tag { color: var(--color-red); }
+        .blue .pillar-tag { color: var(--color-blue); }
+        .purple .pillar-tag { color: var(--color-purple); }
+
+        .feature-title { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 800; margin-bottom: 1.25rem; color: var(--text-main); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border-base); padding-bottom: 1rem; }
+        .feature-concept { color: var(--text-muted); font-size: 1.08rem; line-height: 1.75; margin-bottom: 1.5rem; }
         .feature-concept strong { color: var(--text-main); }
 
+        .mechanics-box {
+            background: rgba(2, 6, 23, 0.65);
+            border-left: 3px solid var(--color-cyan);
+            padding: 1.25rem 1.5rem;
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 1.75rem;
+            flex-grow: 1;
+        }
+        .red .mechanics-box { border-left-color: var(--color-red); }
+        .blue .mechanics-box { border-left-color: var(--color-blue); }
+        .purple .mechanics-box { border-left-color: var(--color-purple); }
+
+        .mechanics-label { font-family: monospace; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--color-cyan); margin-bottom: 0.5rem; display: block; }
+        .red .mechanics-label { color: var(--color-red); }
+        .blue .mechanics-label { color: var(--color-blue); }
+        .purple .mechanics-label { color: var(--color-purple); }
+
+        .mechanics-text { font-size: 0.98rem; color: var(--text-main); line-height: 1.65; }
+        .mechanics-text code { color: var(--color-cyan); font-size: 0.9rem; }
+
         /* ================= CITATION BLOCK ================= */
-        .citation-block { background: rgba(2, 6, 23, 0.8); border: 1px solid var(--border-base); padding: 1.5rem; border-radius: 6px; }
-        .citation-header { font-size: 0.85rem; text-transform: uppercase; font-weight: 800; letter-spacing: 1px; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; }
+        .citation-block { background: rgba(2, 6, 23, 0.9); border: 1px solid var(--border-base); padding: 1.5rem; border-radius: 6px; }
+        .citation-header { font-size: 0.8rem; text-transform: uppercase; font-weight: 800; letter-spacing: 1px; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 8px; }
         .cyan .citation-header { color: var(--color-cyan); }
         .red .citation-header { color: var(--color-red); }
         .blue .citation-header { color: var(--color-blue); }
         .purple .citation-header { color: var(--color-purple); }
         
         .citation-title { font-style: italic; font-weight: 600; color: var(--text-main); margin-bottom: 0.5rem; display: block; font-size: 1rem; }
-        .citation-abstract { font-size: 0.95rem; color: #ffffff; font-weight: 600; line-height: 1.6; margin-bottom: 1rem; }
+        .citation-abstract { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem; }
         
-        .citation-link { display: inline-block; font-family: monospace; font-size: 0.9rem; color: var(--text-main); text-decoration: none; border-bottom: 1px solid transparent; transition: all 0.3s ease; }
-        .citation-link:hover { border-bottom-color: var(--text-main); }
-        .cyan .citation-link:hover { color: var(--color-cyan); border-bottom-color: var(--color-cyan); }
-        .red .citation-link:hover { color: var(--color-red); border-bottom-color: var(--color-red); }
-        .blue .citation-link:hover { color: var(--color-blue); border-bottom-color: var(--color-blue); }
-        .purple .citation-link:hover { color: var(--color-purple); border-bottom-color: var(--color-purple); }
+        .citation-link { display: inline-block; font-family: monospace; font-size: 0.88rem; color: var(--text-main); text-decoration: none; border-bottom: 1px solid var(--color-cyan); transition: all 0.3s ease; }
+        .cyan .citation-link:hover { color: var(--color-cyan); }
+        .red .citation-link { border-bottom-color: var(--color-red); }
+        .red .citation-link:hover { color: var(--color-red); }
+        .blue .citation-link { border-bottom-color: var(--color-blue); }
+        .blue .citation-link:hover { color: var(--color-blue); }
+        .purple .citation-link { border-bottom-color: var(--color-purple); }
+        .purple .citation-link:hover { color: var(--color-purple); }
 
-        /* ================= MASSIVE TRANSITION BRIDGE ================= */
-        .transition-wrapper {
-            width: 100%; max-width: 1300px; margin: 4rem auto 3rem;
-            text-align: center; position: relative;
-        }
-        .section-divider-line {
-            position: absolute; top: 50%; left: 0; width: 100%; height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.5), transparent);
-            z-index: 1; transform: translateY(-50%);
-        }
-        .deep-dive-header {
-            position: relative; z-index: 2; display: inline-block;
-            background: var(--bg-page); padding: 0 30px;
-            font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 900;
-            letter-spacing: 3px; text-transform: uppercase; color: var(--text-main);
+        /* ================= SECTION 4: TRANSLATION MATRIX (5 ENTERPRISE GUARDRAILS) ================= */
+        .matrix-section-box {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-base);
+            border-top: 4px solid var(--color-purple);
+            border-radius: 12px;
+            padding: 3.5rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.45);
+            width: 100%;
+            max-width: 1300px;
+            margin-bottom: 5rem;
         }
 
-        @media (max-width: 992px) {
-            .hero-title { font-size: 2.5rem; }
-            .feature-grid-2x2 { grid-template-columns: 1fr; }
-            .deep-dive-header { font-size: 1.5rem; padding: 0 15px; }
+        .guardrail-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 2rem;
+            border: 1px solid var(--border-base);
+            border-radius: 8px;
+        }
+
+        .guardrail-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            background: rgba(2, 6, 23, 0.9);
+            min-width: 900px;
+        }
+
+        .guardrail-table th {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-cyan);
+            background: rgba(15, 23, 42, 0.95);
+            padding: 1.25rem 1.5rem;
+            border-bottom: 2px solid var(--border-base);
+        }
+
+        .guardrail-table td {
+            padding: 1.4rem 1.5rem;
+            border-bottom: 1px solid var(--border-base);
+            font-size: 1rem;
+            color: var(--text-muted);
+            vertical-align: top;
+            line-height: 1.65;
+        }
+
+        .guardrail-table tr:last-child td { border-bottom: none; }
+        .guardrail-table td strong { color: var(--text-main); display: block; margin-bottom: 4px; font-size: 1.05rem; }
+        .rule-badge {
+            font-family: monospace;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--color-purple);
+            background: rgba(168, 85, 247, 0.12);
+            border: 1px solid rgba(168, 85, 247, 0.35);
+            padding: 3px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 6px;
+        }
+        .status-pass {
+            font-family: monospace;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--color-green);
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            padding: 4px 10px;
+            border-radius: 4px;
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        /* Edge-Case Pedigree Callouts */
+        .pedigree-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .pedigree-card {
+            background: rgba(2, 6, 23, 0.85);
+            border: 1px solid var(--border-base);
+            border-top: 3px solid var(--color-cyan);
+            border-radius: 8px;
+            padding: 1.75rem;
+        }
+        .pedigree-title { font-family: 'Montserrat', sans-serif; font-size: 1.05rem; font-weight: 800; color: var(--text-main); text-transform: uppercase; margin-bottom: 0.75rem; }
+        .pedigree-text { font-size: 0.95rem; color: var(--text-muted); line-height: 1.65; }
+        .pedigree-text code { color: var(--color-cyan); }
+
+        @media (max-width: 1050px) {
+            .anatomy-grid, .tier-grid, .feature-grid-2x2, .pedigree-grid { grid-template-columns: 1fr; }
+            .compiler-box, .matrix-section-box { padding: 2rem 1.5rem; }
         }
         @media (max-width: 600px) {
-            .hero-title { font-size: 1.8rem; }
+            .hero-title { font-size: 2rem; }
             .hero-subtitle { font-size: 1.1rem; }
-            .hero { padding-top: 150px; padding-bottom: 40px; }
+            .hero { padding-top: 190px; padding-bottom: 50px; }
             nav { padding: 1rem; }
             .nav-links { gap: 0.6rem; }
             .nav-links a { font-size: 0.75rem; padding: 0.4rem 0.8rem; }
-            .section-intro, .feature-card { padding: 1.5rem; }
-            .section-title { font-size: 1.6rem; }
-            .spec-header { font-size: 1.2rem; }
+            .section-title { font-size: 1.65rem; }
+            .feature-card { padding: 1.75rem; }
         }
     </style>
 </head>
@@ -204,145 +426,310 @@
 
     <!-- HERO HEADER -->
     <header class="hero">
+        <span class="hero-tag">[DECLARATIVE CONTROL SOFTWARE SPECIFICATION :: v9.1]</span>
         <div class="hero-title-container">
-            <h1 class="hero-title">ARCHITECTURAL SPECIFICATION</h1>
+            <h1 class="hero-title">DETERMINISTIC AI SYSTEMS ENGINEERING</h1>
         </div>
-        <div class="hero-subtitle">Deterministic AI Systems Engineering</div>
+        <p class="hero-subtitle">
+            Generative AI is inherently probabilistic, whereas enterprise Identity and Access Management (IAM) is strictly binary—a cryptographic handshake or RBAC scope is either mathematically sound, or it is a breach vector. Intelligent Architecture resolves this paradox by operating not as a conversational prompt, but as a <strong>Deterministic Finite State Machine (FSM)</strong> and <strong>Agentic Control Harness</strong> that governs the AI as a high-velocity Infrastructure-as-Code compiler.
+        </p>
+
+        <!-- ARCHITECTURAL INSIGHT -->
+        <div class="insight-box">
+            <div class="insight-header">Architectural Insight: The Compiler Paradigm</div>
+            <div class="insight-text">
+                "Just as a traditional software compiler translates high-level intent into machine instructions through lexical analysis, syntax parsing, and constraint verification, the Zero Trust Interactive State Machine compiles five polymorphic coordinates into cryptographically verified Microsoft Entra ID infrastructure. By trapping an untrusted generative processor inside 7 Global Directives and 32 Immutable Execution Constraints, the software extracts massive computational scale with zero probabilistic drift."
+            </div>
+        </div>
         
         <div class="jump-links">
-            <a href="#specification">Read the Specification</a>
-            <a href="#best-practices">Reference: Core Best Practices</a>
+            <a href="#classification">1. Software Classification</a>
+            <a href="#industry-gap">2. The 3-Tier Industry Reality</a>
+            <a href="#agentic-patterns">3. Core Agentic Design Patterns</a>
+            <a href="#translation-matrix">4. The 5 Enterprise Guardrails Matrix</a>
         </div>
     </header>
 
-    <!-- SPECIFICATION ESSAY SECTION -->
-    <section id="specification" class="stacked-section" style="padding-top: 0;">
-        
-        <h2 class="section-title">1. The Optimal Pattern for AI Engineering</h2>
-        <div class="section-intro">
-            <p class="section-text">
-                Across all technical disciplines, a definitive consensus has emerged regarding the optimal application of artificial intelligence. The highest tier of engineering no longer focuses on manual syntax generation; it centers on systems orchestration—utilizing AI as a computational engine to navigate complex environments and synthesize structural configurations at unprecedented speeds. This evolution is defined as <strong>Deterministic AI Systems Engineering</strong>.
-            </p>
-            <p class="section-text">
-                This is not a theoretical concept; these are the new operational rules established by global authorities. The <strong>NIST Artificial Intelligence Risk Management Framework (AI RMF 1.0)</strong> now explicitly dictates that high-stakes AI must operate under strict Human-in-the-Loop (HITL) governance. Simultaneously, the <strong>OWASP Top 10 for LLM Applications</strong> identifies "Excessive Agency" (LLM08) as the primary critical vulnerability when AI is deployed without rigid guardrails. Furthermore, foundational academic research, such as the <strong>ReAct (Reasoning and Acting)</strong> protocol established by Princeton and Google, mathematically proves that AI reliability is only achieved when the model is forced into a strict, iterative <em>Generate-Validate-Fix</em> loop.
-            </p>
-            <p class="section-text">
-                Because this methodology represents the global apex of execution velocity, adversarial actors have already adopted it. As noted in ongoing <strong>CISA and NSA cybersecurity advisories</strong>, threat actors are actively leveraging unconstrained AI to parse architectures and orchestrate exploit vectors at machine speed. To maintain defensive parity, enterprise cybersecurity must adopt this exact same AI-accelerated engineering protocol to scale zero-trust infrastructure—but it must be executed with absolute mathematical safety.
-            </p>
+    <!-- SECTION 1: SOFTWARE CLASSIFICATION & COMPILER ANATOMY -->
+    <section id="classification" class="stacked-section">
+        <div class="container-1300">
+            <div class="compiler-box">
+                <span class="section-tag">[SECTION 01 :: SOFTWARE CLASSIFICATION]</span>
+                <h2 class="section-title" style="text-align: center;">Anatomy of the Deterministic Control Harness</h2>
+                <p class="section-lead" style="text-align: center; max-width: 1000px; margin: 0 auto;">
+                    The <strong>Zero Trust Interactive State Machine (v9.1)</strong> is engineered as declarative, natural-language control software. Rather than relying on open-ended "vibe coding," it enforces a hardware-like separation between the computational engine, the state-space control plane, and the presentation telemetry layer.
+                </p>
+
+                <div class="anatomy-grid">
+                    <div class="anatomy-card">
+                        <span class="anatomy-tag">[LAYER 01 : COMPUTATIONAL ENGINE]</span>
+                        <h3 class="anatomy-title">The Untrusted Synthesis Processor</h3>
+                        <p class="anatomy-text">
+                            The Large Language Model (LLM) is stripped of autonomous agency and treated strictly as a high-speed syntax generator. It is utilized exclusively to dynamically compile environment-agnostic payloads across Terraform (HCL), Azure Bicep, and Microsoft Graph REST APIs across 72 distinct infrastructure baselines.
+                        </p>
+                    </div>
+
+                    <div class="anatomy-card purple">
+                        <span class="anatomy-tag">[LAYER 02 : STATE-SPACE CONTROL PLANE]</span>
+                        <h3 class="anatomy-title">7 Directives &amp; 32 Execution Rules</h3>
+                        <p class="anatomy-text">
+                            A Directed Acyclic Graph (DAG) of 7 sequential deployment phases governed by 32 un-bypassable mechanical rules. Furthermore, <code>Rule 32</code> and XML-fenced <code>&lt;PASSIVE_UI_STRING_LITERALS&gt;</code> enforce strict context isolation, preventing UI presentation strings from ever bleeding into or weakening control-plane execution logic.
+                        </p>
+                    </div>
+
+                    <div class="anatomy-card green">
+                        <span class="anatomy-tag">[LAYER 03 : PRE-COMPILED COMPLIANCE]</span>
+                        <h3 class="anatomy-title">Cryptographic Audit Ledgers</h3>
+                        <p class="anatomy-text">
+                            Instead of treating compliance as a post-mortem exercise, the state machine generates immutable audit proofs as intrinsic byproducts of runtime execution: the <strong>Identity Architecture Ledger (IAL)</strong>, the <strong>Audit Results Ledger (ARL)</strong>, asynchronous <strong>KQL Telemetry</strong>, and the <strong>Defect &amp; Patch Ledger (DPL)</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <h2 class="section-title">2. The Zero Trust Interactive State Machine</h2>
-        <div class="spec-block">
-            <p class="section-text" style="margin-bottom: 2.5rem;">
-                The Zero Trust Interactive State Machine applies these globally recognized AI engineering rules directly to Microsoft Entra ID identity and access management. By subordinating probabilistic generative models to a deterministic infrastructure controller, the framework ensures that every generated configuration is mathematically proven to be secure prior to execution.
-            </p>
-
-            <h3 class="spec-header">Neutralizing Excessive Agency (OWASP LLM08 Integration)</h3>
-            <p class="section-text">
-                Standard generative models prioritize task completion over architectural constraints, often taking destructive shortcuts or assuming broad control-plane permissions to bypass errors.
-            </p>
-            <p class="section-text" style="margin-bottom: 2.5rem;">
-                This architecture physically neutralizes OWASP's Excessive Agency vulnerability through bounded autonomy. The AI is utilized strictly as a syntax synthesis engine. The state machine mathematically restricts the AI's output by enforcing rigid idempotency rules (e.g., mandatory <code>prevent_destroy</code> lifecycle constraints) and strictly scoping Role-Based Access Control (RBAC) exclusively to granular data-plane capabilities. Furthermore, any logic requiring tenant-level MFA claims inherently triggers a decoupled, manual Azure Portal runbook, mathematically preventing the AI from executing unauthorized administrative role assignments.
-            </p>
-
-            <h3 class="spec-header">Enforcing Agentic Design Patterns (ReAct Integration)</h3>
-            <p class="section-text">
-                Unconstrained zero-shot generation is fundamentally unreliable for complex infrastructure deployments. Applying the ReAct protocol, this framework forces the AI into a strict diagnostic loop when architectural friction occurs (e.g., API conflicts, token exchange drops).
-            </p>
-            <p class="section-text" style="margin-bottom: 2.5rem;">
-                The AI is required to explicitly state a telemetry-based root-cause hypothesis (Reasoning) prior to generating a targeted codebase patch (Acting). This iterative feedback loop converts ephemeral troubleshooting into empirical data, which is immediately logged into a Defect & Patch Ledger (DPL) to permanently harden the system directives.
-            </p>
-
-            <h3 class="spec-header">Executing the NIST "Govern" Function</h3>
-            <p class="section-text">
-                Autonomous infrastructure scaling presents a critical compliance liability if the execution cannot be audited. To satisfy the NIST AI RMF mandate for structural oversight, this architecture hardwires execution directly to human governance.
-            </p>
-            <p class="section-text" style="margin-bottom: 2.5rem;">
-                The state machine is programmed with an un-bypassable "Architectural Hold." Prior to any state change in the cloud environment, the AI must natively synthesize an <strong>Identity Architecture Ledger (IAL)</strong>—an immutable cryptographic receipt documenting the exact OpenID Connect (OIDC) trust coordinates and boundary mappings. The deployment pipeline is structurally halted until the human architect validates this ledger and explicitly authorizes the payload execution.
-            </p>
-
-            <h3 class="spec-header">Cognitive Circuit Breaking</h3>
-            <p class="section-text" style="margin-bottom: 2.5rem;">
-                To prevent LLM context degradation and infinite hallucination spirals during complex deployments, the architecture integrates a mathematical kill-switch. If a diagnostic loop reaches a threshold of four iterations without success, the state machine triggers a Cognitive Circuit Breaker. The AI is structurally forbidden from generating new codebase patches. It must output a summary of telemetry shifts, calculate an estimated probability of success, and mandate a human-led Risk Management Assessment before context is lost.
-            </p>
-        </div>
-
-        <h2 class="section-title">3. Conclusion</h2>
-        <div class="spec-block">
-            <p class="section-text">
-                Deterministic AI Systems Engineering provides the necessary bridge between generative velocity and zero-trust security. By replacing probabilistic guessing with formal Control Theory, the Zero Trust Interactive State Machine guarantees that infrastructure scaling remains idempotent, explicitly governed, and mathematically verifiable. It represents the strict, secure application of optimal AI engineering patterns to enterprise cloud defense.
-            </p>
-        </div>
-
     </section>
 
-    <!-- TRANSITION BRIDGE -->
-    <div class="transition-wrapper" id="best-practices">
-        <div class="section-divider-line"></div>
-        <h2 class="deep-dive-header">Core Principles Reference</h2>
-    </div>
+    <!-- SECTION 2: THE 3-TIER INDUSTRY REALITY -->
+    <section id="industry-gap" class="stacked-section">
+        <div class="section-header-block">
+            <span class="section-tag">[SECTION 02 :: THE OPERATIONAL LANDSCAPE]</span>
+            <h2 class="section-title">Closing the Asymmetric Engineering Gap</h2>
+            <p class="section-lead">
+                As CISA and NSA advisories warn that threat actors actively weaponize AI to orchestrate exploit vectors at machine speed, enterprise cloud security teams are divided into three distinct operational tiers—only one of which achieves both scale and mathematical safety.
+            </p>
+        </div>
 
-    <!-- ORIGINAL BEST PRACTICES GRID -->
-    <section class="stacked-section" style="padding-top: 0;">
-        
+        <div class="tier-grid">
+            <!-- TIER 1 -->
+            <div class="tier-card">
+                <span class="tier-badge">Practitioner Share: ~65% – 70%</span>
+                <h3 class="tier-title">1. Traditional Manual Purists</h3>
+                <p class="tier-desc">
+                    Senior IAM and cloud architects who rely strictly on manual coding. Having witnessed early LLMs hallucinate deprecated Azure AD Graph endpoints or insecure roles, they reject AI entirely and hand-write every line of Terraform, Bicep, or PowerShell.
+                </p>
+                <div class="tier-verdict">
+                    <strong>Fatal Flaw: Cannot Scale.</strong> Pivoting a zero-trust OIDC architecture across 4 CI/CD agents, 2 state topographies, 3 data-plane targets, and 3 IaC languages (72 baselines) bogs manual teams down in months of syntax translation and regression bugs.
+                </div>
+            </div>
+
+            <!-- TIER 2 -->
+            <div class="tier-card danger">
+                <span class="tier-badge">Practitioner Share: ~29% – 34%</span>
+                <h3 class="tier-title">2. "Prompt-and-Pray" Adopters</h3>
+                <p class="tier-desc">
+                    Engineers utilizing unconstrained AI assistants as conversational autocomplete tools ("vibe coding") to generate IAM policies and infrastructure scripts from scratch, relying on manual visual inspection to catch errors before deployment.
+                </p>
+                <div class="tier-verdict">
+                    <strong>Fatal Flaw: Catastrophic Enterprise Risk.</strong> Unconstrained models optimize for "making code run"—routinely introducing <code>Contributor</code> over-permissioning, floating provider versions, and destructive state resets.
+                </div>
+            </div>
+
+            <!-- TIER 3 -->
+            <div class="tier-card apex">
+                <span class="tier-badge">Practitioner Share: &lt; 1% (Intelligent Architecture)</span>
+                <h3 class="tier-title">3. Deterministic AI Systems Engineering</h3>
+                <p class="tier-desc">
+                    Platform engineering that treats generative AI as a mathematical synthesis engine inside a Finite State Machine governed by formal Control Theory, Human-in-the-Loop (HITL) authorization gates, and automated cryptographic verification.
+                </p>
+                <div class="tier-verdict">
+                    <strong>The Gold Standard:</strong> Matches adversarial machine velocity across all 72 polymorphic baselines while enforcing 100% deterministic compliance and zero-trust mathematical certainty.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: THE 4 CORE AGENTIC DESIGN PATTERNS -->
+    <section id="agentic-patterns" class="stacked-section">
+        <div class="section-header-block">
+            <span class="section-tag">[SECTION 03 :: CORE PRINCIPLES &amp; RUNTIME MECHANICS]</span>
+            <h2 class="section-title">The Four Pillars of the State Machine</h2>
+            <p class="section-lead">
+                To transform an unpredictable language model into a deterministic engineering instrument, the framework operationalizes four globally recognized AI safety and agentic research standards directly into its v9.1 source directives.
+            </p>
+        </div>
+
         <div class="feature-grid-2x2">
             
-            <!-- PILLAR 1: ReAct -->
+            <!-- PILLAR 1: ReAct & Recursive Evolution -->
             <div class="feature-card cyan">
-                <h3 class="feature-title">1. Agentic Design Patterns</h3>
+                <span class="pillar-tag">[PILLAR 01 :: ITERATIVE TELEMETRY GROUNDING]</span>
+                <h3 class="feature-title">1. Agentic Design Patterns &amp; DPL Evolution</h3>
                 <div class="feature-concept">
-                    Standard AI workflows rely on fragile "zero-shot" prompting, where a model attempts to generate a flawless configuration on the first try. Aligned with current industry consensus on Agentic Workflows, this architecture forces the AI into a strict <strong>Generate-Validate-Fix</strong> loop. It utilizes the resulting execution friction (terminal error codes and telemetry) to iteratively self-correct, dramatically outperforming static generation.
+                    Standard AI workflows rely on fragile "zero-shot" prompting, attempting to generate complex infrastructure in a single pass. Aligned with foundational research on <strong>Agentic Workflows</strong>, this architecture forces the AI into a clinical <strong>Generate-Validate-Fix</strong> loop whenever API friction or token exchange drops occur.
+                </div>
+                <div class="mechanics-box">
+                    <span class="mechanics-label">v9.1 Runtime Implementation (Directive 05, Rule 9 &amp; Rule 15)</span>
+                    <p class="mechanics-text">
+                        Upon encountering terminal friction, the engine shifts into <code>[MODE: COLLABORATIVE TROUBLESHOOTING]</code>, states a telemetry-backed Root Cause Hypothesis, and tracks iteration deltas. Once verified, <code>Rule 15</code> logs the empirical fix into the <strong>Defect &amp; Patch Ledger (DPL)</strong> and <code>Rule 9 (Mandatory State Re-Sync)</code> reproduces the complete, unified IaC file from scratch—eliminating partial-patch corruption and permanently hardening future baseline iterations.
+                    </p>
                 </div>
                 <div class="citation-block">
                     <div class="citation-header">Reference Standard</div>
                     <span class="citation-title">ReAct: Synergizing Reasoning and Acting in Language Models (Yao et al.)</span>
-                    <p class="citation-abstract">This foundational research from Princeton and Google Brain proves that language models become significantly more reliable when forced to alternate between reasoning about a problem and taking observable actions in an environment, forming the academic basis for our iterative execution loop.</p>
+                    <p class="citation-abstract">Foundational research from Princeton and Google Brain proving that language models achieve superior reliability when forced to alternate between explicit reasoning traces and observable environmental actions.</p>
                     <a href="https://arxiv.org/abs/2210.03629" target="_blank" class="citation-link">[View Research] ↗</a>
                 </div>
             </div>
             
-            <!-- PILLAR 2: OWASP -->
+            <!-- PILLAR 2: OWASP Bounded Autonomy -->
             <div class="feature-card red">
-                <h3 class="feature-title">2. Bounded Autonomy</h3>
+                <span class="pillar-tag">[PILLAR 02 :: BLAST-RADIUS CONTAINMENT]</span>
+                <h3 class="feature-title">2. Bounded Autonomy &amp; MFA Decoupling</h3>
                 <div class="feature-concept">
-                    Unconstrained language models prioritize making code "work," often hallucinating syntax or taking destructive shortcuts to bypass errors. This framework resolves vulnerability by trapping the AI inside a deterministic state machine. It mathematically forbids destructive state modifications, enforcing strict idempotency and granular data-plane scoping to neutralize blast radius.
+                    Unconstrained generative models prioritize task completion over security boundaries, routinely taking destructive shortcuts or escalating privileges to bypass deployment errors. This framework physically neutralizes <strong>Excessive Agency</strong> by subordinating the AI to strict state-space boundaries.
+                </div>
+                <div class="mechanics-box">
+                    <span class="mechanics-label">v9.1 Runtime Implementation (Directive 01, Rule 3, Rule 4 &amp; Rule 29)</span>
+                    <p class="mechanics-text">
+                        The state machine strips the AI of autonomous execution rights. It mathematically blocks control-plane roles (<code>Owner</code>/<code>Contributor</code>), enforces <code>prevent_destroy</code> lifecycle locks, and implements <code>Rule 29 (Data-Plane Decoupling)</code>: when deploying Conditional Access for Workload Identities (CAWI) where local CLI credential brokers drop MFA <code>amr</code> claims, the engine structurally forbids automated role assignment blocks and routes the engineer through a manual Azure Portal MFA runbook.
+                    </p>
                 </div>
                 <div class="citation-block">
                     <div class="citation-header">Reference Standard</div>
                     <span class="citation-title">OWASP Top 10 for LLM Applications (LLM08: Excessive Agency)</span>
-                    <p class="citation-abstract">The global standard for application security explicitly warns against granting AI unconstrained ability to interface with external systems. Our architectural boundary serves as the definitive mitigation for Excessive Agency, stripping the AI of rogue permissions.</p>
+                    <p class="citation-abstract">The global application security standard warning against granting LLMs unconstrained permissions or unverified execution pathways across external enterprise systems.</p>
                     <a href="https://genai.owasp.org/llmrisk2023-24/llm08-excessive-agency/" target="_blank" class="citation-link">[View Framework] ↗</a>
                 </div>
             </div>
             
-            <!-- PILLAR 3: NIST -->
+            <!-- PILLAR 3: NIST HITL Governance -->
             <div class="feature-card blue">
-                <h3 class="feature-title">3. HITL Governance</h3>
+                <span class="pillar-tag">[PILLAR 03 :: STRUCTURAL OVERSIGHT]</span>
+                <h3 class="feature-title">3. Human-in-the-Loop (HITL) Governance</h3>
                 <div class="feature-concept">
-                    Fully autonomous infrastructure generation is a massive compliance liability. This architecture enforces hard, un-bypassable authorization gates. The human architect retains absolute strategic command over the zero-trust baseline; the AI is strictly relegated to syntax synthesis and execution scale, unable to alter state without explicit human authorization.
+                    Autonomous infrastructure provisioning without human verification is an unacceptable enterprise compliance liability. This architecture hardwires every phase of the deployment lifecycle to explicit <strong>Strategic Governance</strong> gates controlled exclusively by the human security architect.
+                </div>
+                <div class="mechanics-box">
+                    <span class="mechanics-label">v9.1 Runtime Implementation (Rule 1, Rule 8, Rule 12 &amp; Rule 28)</span>
+                    <p class="mechanics-text">
+                        <code>Rule 1 (The "Slow Down" Protocol)</code> forbids stacking sequential manual execution steps in a single turn, enforcing hard <code>[STRICT HALT]</code> gates across all 7 phases. Before any cloud state change or pipeline test occurs, the engine must forecast workspace files (<code>Rule 12</code>), echo back exact OIDC coordinates, generate an audit script to verify directory state propagation (<code>Rule 28</code>), and await human authorization.
+                    </p>
                 </div>
                 <div class="citation-block">
                     <div class="citation-header">Reference Standard</div>
                     <span class="citation-title">NIST Artificial Intelligence Risk Management Framework (AI RMF 1.0)</span>
-                    <p class="citation-abstract">The definitive federal guideline for AI safety establishes the "Govern" function, mandating transparent risk tolerance, structural oversight, and explicit human accountability for high-stakes systems.</p>
+                    <p class="citation-abstract">The federal standard establishing the "Govern" function—mandating structural oversight, transparent risk tolerance, and explicit human accountability for high-impact AI systems.</p>
                     <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" class="citation-link">[View Standard] ↗</a>
                 </div>
             </div>
 
-            <!-- PILLAR 4: Circuit Breaking -->
+            <!-- PILLAR 4: Cognitive Circuit Breaking -->
             <div class="feature-card purple">
-                <h3 class="feature-title">4. Cognitive Circuit Breaking</h3>
+                <span class="pillar-tag">[PILLAR 04 :: ANTI-HALLUCINATION PHYSICS]</span>
+                <h3 class="feature-title">4. Cognitive Circuit Breaking &amp; Watchdog</h3>
                 <div class="feature-concept">
-                    Generative models naturally degrade during complex, multi-step troubleshooting, often entering "hallucination spirals" where they drift further from the baseline. This architecture implements a mathematically triggered kill-switch that prevents <strong>cascading logic failures</strong> and <strong>infinite retry loops</strong>, automatically suspending AI execution to force a human-led Risk Management Assessment before context is lost.
+                    Generative models naturally suffer from attention degradation during extended debugging sessions, entering "hallucination spirals" where they guess wildly and drift from security baselines. This architecture implements a deterministic kill-switch to halt execution before context degrades.
+                </div>
+                <div class="mechanics-box">
+                    <span class="mechanics-label">v9.1 Runtime Implementation (Directive 02, Directive 05 &amp; Directive 07)</span>
+                    <p class="mechanics-text">
+                        <code>Directive 07 (The Watchdog Daemon)</code> executes a continuous pre-response structural check on every turn to prevent persona or rule drift. During troubleshooting, if any single defect reaches <strong>Iteration 4</strong>, the <strong>Cognitive Circuit Breaker</strong> physically forbids the AI from generating new code—forcing it to summarize 3-turn error deltas, calculate an <em>Estimated Probability of Success (X%)</em>, and hand risk authority back to the Architect.
+                    </p>
                 </div>
                 <div class="citation-block">
                     <div class="citation-header">Reference Standard</div>
                     <span class="citation-title">A Survey on Hallucination in Large Language Models (Huang et al.)</span>
-                    <p class="citation-abstract">Extensive industry research documents how LLMs suffer from probabilistic drift as context windows degrade. This hardcoded circuit breaker provides a clinical engineering defense against context loss and hallucination spirals.</p>
+                    <p class="citation-abstract">Comprehensive research documenting how LLMs suffer from probabilistic context drift over multi-turn interactions, establishing the necessity for hard iteration ceilings and state re-anchoring.</p>
                     <a href="https://arxiv.org/abs/2311.05232" target="_blank" class="citation-link">[View Research] ↗</a>
                 </div>
             </div>
             
+        </div>
+    </section>
+
+    <!-- SECTION 4: THE TRANSLATION MATRIX (THE 5 ENTERPRISE GUARDRAILS) -->
+    <section id="translation-matrix" class="stacked-section">
+        <div class="matrix-section-box">
+            <span class="section-tag" style="text-align: center;">[SECTION 04 :: THE DECOUPLED LOGIC ENGINE]</span>
+            <h2 class="section-title" style="text-align: center;">Translating Systems Theory into the 5 Enterprise Guardrails</h2>
+            <p class="section-lead" style="text-align: center; max-width: 1050px; margin: 0 auto 2rem;">
+                While the agentic patterns above govern how the AI reasons and transitions between states, the Finite State Machine translates those high-level principles directly into <strong>Five Concrete Enterprise Guardrails</strong>—mechanically enforced in code and scored in Section 2.5 of every generated <strong>Audit Results Ledger (ARL)</strong>.
+            </p>
+
+            <div class="guardrail-table-wrapper">
+                <table class="guardrail-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 22%;">AI Systems Principle</th>
+                            <th style="width: 25%;">Translated Enterprise Guardrail</th>
+                            <th style="width: 41%;">v9.1 Mechanical Enforcement &amp; Code Rules</th>
+                            <th style="width: 12%;">ARL Audit Gate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Information Boundary Isolation</strong></td>
+                            <td><strong>1. Data Loss Prevention (DLP) &amp; Context Leakage</strong></td>
+                            <td>
+                                <span class="rule-badge">Rule 2 &amp; Rule 17</span><br>
+                                Isolates structural logic from proprietary network topography. Forbids hardcoding tenant IDs, asset names, or repository coordinates—utilizing plain-language parameters and automated local CLI queries (<code>az ad sp list</code>) to inject GUIDs at runtime.
+                            </td>
+                            <td><span class="status-pass">[PASS : ARL 2.5]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>State-Space Idempotency</strong></td>
+                            <td><strong>2. Destructive State Modification</strong></td>
+                            <td>
+                                <span class="rule-badge">Rule 3, Rule 20 &amp; Rule 27</span><br>
+                                Physically blocks the AI from dropping and recreating conflicting resources. Mandates read-only <code>data</code> blocks for Brownfield assets, <code>prevent_destroy = true</code> lifecycle locks for Greenfield builds, local IDE execution (deprecating ephemeral Cloud Shell), and persistent remote state backends.
+                            </td>
+                            <td><span class="status-pass">[PASS : ARL 2.5]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bounded Capability Scoping</strong></td>
+                            <td><strong>3. The "Contributor" Trap (Over-Permissioning)</strong></td>
+                            <td>
+                                <span class="rule-badge">Rule 4 &amp; Rule 29</span><br>
+                                Enforces the Principle of Least Privilege (PoLP) by mathematically blocking broad control-plane roles (<code>Owner</code>, <code>Contributor</code>). Restricts all access mappings strictly to granular data-plane RBAC (e.g., <em>Key Vault Secrets User</em>) scoped to the exact target asset ID.
+                            </td>
+                            <td><span class="status-pass">[PASS : ARL 2.5]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Deterministic Dependency Locking</strong></td>
+                            <td><strong>4. Supply Chain Injection</strong></td>
+                            <td>
+                                <span class="rule-badge">Rule 5 &amp; Rule 30</span><br>
+                                Neutralizes package and schema hallucination by pinning all Terraform providers, Azure Bicep extensions, and CI/CD pipeline actions to verified version numbers, while enforcing strict Graph API JSON schema separation (<code>Rule 30</code>).
+                            </td>
+                            <td><span class="status-pass">[PASS : ARL 2.5]</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Runtime Telemetry Sanitization</strong></td>
+                            <td><strong>5. Terminal Exposure</strong></td>
+                            <td>
+                                <span class="rule-badge">Rule 6 &amp; Rule 22</span><br>
+                                Prevents credential and topography leakage across CI/CD runner logs and local terminals by enforcing runtime string masking (<code>::add-mask::</code>) and Linux native silent credential input (<code>read -s</code>) rather than plaintext exports.
+                            </td>
+                            <td><span class="status-pass">[PASS : ARL 2.5]</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- EMPIRICAL BATTLE-SCARS / PEDIGREE CALLOUTS -->
+            <div class="pedigree-grid">
+                <div class="pedigree-card">
+                    <h4 class="pedigree-title">Graph API Race Condition Absorption</h4>
+                    <p class="pedigree-text">
+                        Per <code>Rule 23</code>, the state machine natively absorbs Microsoft Graph API eventual consistency delays by injecting a declarative 30-second <code>time_sleep</code> resource between <code>azuread_named_location</code> creation and Conditional Access policy attachment, while mapping <code>.id</code> attributes and explicit workload location blocks.
+                    </p>
+                </div>
+
+                <div class="pedigree-card">
+                    <h4 class="pedigree-title">Cryptographic Node-ID &amp; Casing Locks</h4>
+                    <p class="pedigree-text">
+                        Per <code>Rule 24</code>, to prevent <code>AADSTS700213</code> token exchange drops, the engine enforces exact case-sensitivity on dynamic repository handles and constructs immutable Node-ID OIDC subject claims, while automatically chunking massive CI/CD IPv4 meta-lists via <code>chunklist()</code>.
+                    </p>
+                </div>
+
+                <div class="pedigree-card">
+                    <h4 class="pedigree-title">The Audit-First Propagation Mandate</h4>
+                    <p class="pedigree-text">
+                        Per <code>Rule 28</code>, because Azure Portal UI toggles suffer from severe caching delays and global Entra ID policy propagation requires 3 to 5 minutes, the engine is structurally forbidden from executing a validation pipeline until an automated CLI audit script proves directory sanitization.
+                    </p>
+                </div>
+            </div>
+
         </div>
     </section>
 

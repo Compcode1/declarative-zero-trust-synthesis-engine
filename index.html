@@ -16,7 +16,7 @@
       gtag('config', 'G-80NYKHYN3R');
     </script>
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -38,7 +38,7 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body { background-color: var(--bg-page); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--text-main); line-height: 1.6; }
+        body { background-color: var(--bg-page); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--text-main); line-height: 1.6; padding-bottom: 4rem; }
 
         /* ================= NAVIGATION ================= */
         nav {
@@ -180,10 +180,10 @@
         
         .animated-path { stroke-dasharray: 8, 12; animation: flow 1s linear infinite; }
 
-        .node { position: absolute; background: var(--bg-node); border: 1px solid var(--border-base); border-radius: 8px; padding: 1.1rem; z-index: 2; backdrop-filter: blur(8px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3); }
-        .node-title { font-size: 1rem; font-weight: 900; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.75rem; line-height: 1.2; }
-        .node-text { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
-        .tag { font-family: monospace; font-size: 0.7rem; font-weight: 700; padding: 3px 6px; border: 1px solid; border-radius: 4px; display: inline-block; margin-bottom: 0.75rem; letter-spacing: 0.5px; }
+        .node { position: absolute; background: var(--bg-node); border: 1px solid var(--border-base); border-radius: 8px; padding: 1.05rem; z-index: 2; backdrop-filter: blur(8px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3); }
+        .node-title { font-size: 0.98rem; font-weight: 900; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.65rem; line-height: 1.2; }
+        .node-text { font-size: 0.8rem; color: var(--text-muted); line-height: 1.48; }
+        .tag { font-family: monospace; font-size: 0.68rem; font-weight: 700; padding: 3px 6px; border: 1px solid; border-radius: 4px; display: inline-block; margin-bottom: 0.65rem; letter-spacing: 0.5px; }
 
         /* Compressed 1200px Grid Coordinates */
         .node-engineer { left: 20px; top: 40px; width: 200px; border-left: 4px solid var(--color-blue); }
@@ -238,7 +238,8 @@
         .flow-explanation { max-width: 1050px; margin: 2.5rem auto 0; padding: 0 20px; text-align: left; }
         .flow-subheader { font-family: 'Montserrat', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--text-main); margin-bottom: 1.2rem; text-transform: uppercase; letter-spacing: 1px; }
         
-        .flow-text { font-size: 1.15rem; color: var(--text-main); font-weight: 600; line-height: 1.8; margin-bottom: 1.5rem; }
+        .flow-text { font-size: 1.15rem; color: var(--text-main); font-weight: 500; line-height: 1.8; margin-bottom: 1.5rem; }
+        .flow-text strong { color: var(--color-cyan); font-weight: 700; }
         
         .inline-link { color: var(--color-cyan); text-decoration: none; border-bottom: 1px solid var(--color-cyan); transition: color 0.3s ease, border-color 0.3s ease; }
         .inline-link:hover { color: #ffffff; border-color: #ffffff; }
@@ -261,7 +262,7 @@
         .vuln-card:nth-child(5) { grid-column: 1 / -1; }
 
         /* ================= MODULE 3: POLYMORPHIC COMBINATORIAL MATRIX ================= */
-        .polymorphic-container { max-width: 1300px; margin: 0 auto; padding: 2rem 20px 8rem; }
+        .polymorphic-container { max-width: 1300px; margin: 0 auto; padding: 2rem 20px 4rem; }
         
         .polymorphic-box {
             background: rgba(15, 23, 42, 0.6);
@@ -424,6 +425,25 @@
         .adapt-card.green .adapt-tag { color: var(--color-green); }
         .adapt-card.orange .adapt-tag { color: var(--color-orange); }
 
+        /* ================= PROPRIETARY IP FOOTER ================= */
+        .ip-footer {
+            max-width: 1300px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            border-top: 1px solid var(--border-base);
+            background: rgba(10, 15, 29, 0.6);
+            border-radius: 8px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+            line-height: 1.8;
+        }
+        .ip-footer strong {
+            color: var(--color-cyan);
+            font-weight: 700;
+        }
+
         @media (max-width: 1100px) {
             .matrix-5col-grid { grid-template-columns: repeat(3, 1fr); }
             .combinatorial-bar { flex-direction: column; text-align: center; }
@@ -472,22 +492,22 @@
         <div class="hero-title-container">
             <h1 class="hero-title">INTELLIGENT ARCHITECTURE</h1>
         </div>
-        <p class="hero-subtitle">Adversaries actively optimize artificial intelligence to orchestrate highly complex exploits. Countering this asymmetric threat requires matching the adversary's computational sophistication with an AI-equipped defense. However, deploying unconstrained generative models introduces unacceptable enterprise risk. Intelligent Architecture resolves this through engineer-guided Zero Trust Infrastructure as Code software. By safely tethering immense computational power to a deterministic core, the framework navigates deep architectural complexity while enforcing absolute mathematical certainty—engineering configurations that are cryptographically proven to be secure.</p>
+        <p class="hero-subtitle">In modern cloud security, engineers use AI to write deployment code faster—but relying on raw, untethered AI ("vibe coding") is a massive security risk. Untethered AI guesses missing IDs, invents broken syntax, and grants overly broad permissions just to make errors go away. To solve this problem using formal <strong>AI Systems Engineering best practices</strong>, I built the <strong>Zero Trust Interactive State Machine</strong>: a 7-step assembly line governed by a master <strong>System Directive</strong> that stops AI guessing, verifies every cloud ID in the terminal, and outputs 100% finished passwordless OIDC code alongside live Azure audit proof.</p>
         
         <!-- HERO ARCHITECTURAL INSIGHT -->
         <div class="insight-box" style="background: linear-gradient(90deg, rgba(168, 85, 247, 0.1) 0%, transparent 100%);">
-            <div class="insight-header" style="color: var(--color-purple);">Architectural Insight: Applied Deterministic Systems Engineering</div>
+            <div class="insight-header" style="color: var(--color-purple);">Architectural Insight: Why AI Systems Engineering Is Mandatory in Cybersecurity</div>
             <div class="insight-text">
-                "To achieve this mathematical certainty, the framework applies the global best practices of AI Systems Engineering directly to identity management. By tethering generative AI to a Finite State Machine governed by formal Control Theory, the architecture physically neutralizes excessive agency. The result is an immutable zero-trust core that generates its own cryptographic audit ledgers—proving the infrastructure is flawless while delivering the environment-agnostic flexibility and combinatorial scale required to safely expand Microsoft Entra ID capabilities."
+                "If we are going to use artificial intelligence in a field built on security, we have to apply rigorous AI Systems Engineering best practices. By tethering the AI to a strict State Machine governed by NIST human-in-the-loop approvals, OWASP permission locks, ReAct terminal verification, and a 3-strike Circuit Breaker, the AI is never allowed to guess or run wild. The result is a repeatable, passwordless Microsoft Entra ID foundation proven by both 'Before' blueprint ledgers and 'After' live Azure API and KQL checks."
             </div>
         </div>
 
-        <!-- NEW JUMP LINKS HERE -->
+        <!-- JUMP LINKS -->
         <div class="jump-links">
-            <a href="#execution-triad">Explore the Execution Triad</a>
-            <a href="#execution-flow">Explore the Architectural Execution Flow</a>
-            <a href="#enterprise-guardrails">Explore Enterprise Guardrails</a>
-            <a href="#environment-agnostic">Explore Environment Agnostic Flexibility</a>
+            <a href="#execution-triad">1. The Execution Triad</a>
+            <a href="#execution-flow">2. The 7-Step Assembly Line</a>
+            <a href="#enterprise-guardrails">3. The 5 Safety Guardrails</a>
+            <a href="#environment-agnostic">4. 72 Build Combinations</a>
         </div>
     </header>
 
@@ -499,27 +519,27 @@
                 <h2 class="summary-title">The Execution Triad: The Zero Trust Interactive State Machine</h2>
                 
                 <p class="summary-text">
-                    True enterprise value is not found in unconstrained AI generation, nor in purely static manual scripting. To safely scale zero-trust cloud provisioning, this methodology applies <strong>Control Theory</strong> and <strong>Deterministic State Orchestration</strong> to operate as a continuous, governed infrastructure controller—The Execution Triad. By explicitly separating strategic command, structural mediation, and dynamic synthesis, the architecture guarantees that the immense power of artificial intelligence is harnessed, constrained, and mathematically bound to a secure baseline.
+                    Writing complex cloud identity code by hand is slow, but letting an untethered AI generate a whole deployment script at once leads to broken code and security holes. To get the speed of AI without giving up control, the <strong>Zero Trust Interactive State Machine</strong> divides the work across three distinct roles—<strong>The Execution Triad</strong>. By separating the human decision-maker from the rulebook and the code generator, the AI can never skip steps or invent unverified settings.
                 </p>
 
                 <!-- THE TRIAD GRID -->
                 <div class="triad-grid">
                     <div class="triad-card architect">
-                        <div class="triad-role">[ROLE: STRATEGIC GOVERNANCE]</div>
+                        <div class="triad-role">[ROLE: HUMAN OPERATOR &amp; DECISION MAKER]</div>
                         <h3 class="triad-header">1. The Architect</h3>
-                        <p class="triad-text">The security engineer acts as the strategic commander. The architect initiates the execution, defines the precise target coordinates, establishes the zero-trust constraints, and retains absolute authorization authority at hard validation gates to prevent logic drift.</p>
+                        <p class="triad-text"><strong>The Engineer at the Keyboard.</strong> Selects the 5 build options in Step 1, runs lookup commands in the local terminal during Steps 2–5, pastes verified non-secret routing IDs into the chat, approves every gate, and executes the finished code in Azure.</p>
                     </div>
                     
                     <div class="triad-card machine">
-                        <div class="triad-role">[ROLE: DETERMINISTIC HARNESS]</div>
+                        <div class="triad-role">[ROLE: THE SYSTEM DIRECTIVE RULEBOOK]</div>
                         <h3 class="triad-header">2. The Interactive State Machine</h3>
-                        <p class="triad-text">The Zero Trust Interactive State Machine acts as the immutable mediator. It systematically enforces the Entra ID zero-trust baseline, automatically records architectural friction into the Defect & Patch Ledger, and provides the rigid boundaries that constrain the AI.</p>
+                        <p class="triad-text"><strong>The Hard Guardrails Inside the Prompt.</strong> Locks the AI into one step at a time. Forces read-only lookups for existing Brownfield resources, blocks passwords and wildcards, forbids broad <code>Owner/Contributor</code> roles, and pulls the 3-strike Circuit Breaker on Attempt #4 if an error occurs.</p>
                     </div>
 
                     <div class="triad-card ai">
-                        <div class="triad-role">[ROLE: DYNAMIC SYNTHESIS]</div>
+                        <div class="triad-role">[ROLE: TETHERED CODE GENERATOR]</div>
                         <h3 class="triad-header">3. The AI Engine</h3>
-                        <p class="triad-text">Safely tethered strictly to the state machine's deterministic directives, the artificial intelligence provides the execution horsepower. It rapidly synthesizes environment-agnostic payloads, dynamically resolves tangential friction, and generates complex, audit-ready configurations on command.</p>
+                        <p class="triad-text"><strong>The Controlled Builder.</strong> Instead of spitting out half-baked code prematurely, the AI provides terminal lookup commands during Steps 1–5, locks verified IDs and safety rules into memory, and outputs 100% finished IaC scripts, ledgers, and KQL queries in Step 6.</p>
                     </div>
                 </div>
             </div>
@@ -563,45 +583,43 @@
                         <path class="animated-path" d="M 220 450 L 250 450" fill="none" stroke="#f43f5e" stroke-width="3" marker-start="url(#arrow-red-start)" marker-end="url(#arrow-red-end)" />
                     </svg>
 
-                    <div class="node node-engineer"><div class="tag">[THE ARCHITECT]</div><div class="node-title">Security Engineer</div><div class="node-text">Defines strategic coordinates, initiates the pipeline, and retains absolute authorization authority at all execution gates.</div></div>
+                    <div class="node node-engineer"><div class="tag">[THE ARCHITECT]</div><div class="node-title">Security Engineer</div><div class="node-text">Selects the 5 build options, runs terminal ID lookups in Steps 1–5, and approves each step before any code is generated.</div></div>
                     
-                    <div class="node node-engine"><div class="tag">[THE MACHINE]</div><div class="node-title">Zero Trust Interactive State Machine<br><span style="font-size: 0.85rem; font-weight: 500; color: var(--color-cyan);">(INFRASTRUCTURE CONTROLLER)</span></div><div class="tag" style="margin-top: 5px;">[THE MEDIATOR]</div><div class="node-text">The deterministic harness. Mathematically enforces the Entra ID zero-trust baseline and constrains the AI's boundaries.</div></div>
+                    <div class="node node-engine"><div class="tag">[THE STATE MACHINE]</div><div class="node-title">Zero Trust Interactive State Machine<br><span style="font-size: 0.8rem; font-weight: 500; color: var(--color-cyan);">(SYSTEM DIRECTIVE RULES)</span></div><div class="tag" style="margin-top: 5px;">[THE GUARDRAILS]</div><div class="node-text">Enforces Single-Tenant login, exact OIDC branch matching, Brownfield read-only locks, and single-vault roles.</div></div>
                     
-                    <div class="node node-compiler"><div class="tag">[THE AI]</div><div class="node-title">Synthesis Engine<br><span style="font-size: 0.85rem; font-weight: 500; color: #a855f7;">(INTERACTIVE STATE)</span></div><div class="node-text">The tethered intelligence. Dynamically generates configurations and resolves tangential friction within the framework's strict rules.</div></div>
+                    <div class="node node-compiler"><div class="tag">[THE AI ENGINE]</div><div class="node-title">Tethered Code Builder<br><span style="font-size: 0.8rem; font-weight: 500; color: #a855f7;">(STEPS 1–5 MEMORY LOCK)</span></div><div class="node-text">Guides the interactive chat back-and-forth, locks verified IDs and wait timers into memory, and holds off on code until Step 6.</div></div>
                     
-                    <div class="node node-dpl"><div class="tag">[AUTOMATED MEMORY]</div><div class="node-title">Continuous Protocol Refinement</div><div class="node-text">The state machine systematically captures execution friction. The architect approves these updates, integrating lessons learned directly back into the core baseline to permanently scale capability.</div></div>
+                    <div class="node node-dpl"><div class="tag">[STEP 7: 3-STRIKE CIRCUIT BREAKER]</div><div class="node-title">Defect &amp; Patch Ledger (DPL)</div><div class="node-text">If a terminal command fails 3 times, Attempt #4 halts code generation. The Architect diagnoses the root cause, tests the fix locally, logs it in the DPL, and updates the master System Directive forever.</div></div>
                     
-                    <div class="node node-iac"><div class="tag">[DYNAMIC IaC PAYLOAD]</div><div class="node-title">IaC Generation</div><div class="node-text">Environment-agnostic infrastructure and automation payloads—dynamically synthesized across Terraform, Azure Bicep, Microsoft Graph API, and native scripting.</div></div>
+                    <div class="node node-iac"><div class="tag">[STEP 6 CODE OUTPUT]</div><div class="node-title">Finished IaC Scripts</div><div class="node-text">Outputs 100% complete Terraform, Azure Bicep, or PowerShell REST API scripts plus pipeline YAML—with zero blank placeholders.</div></div>
                     
-                    <div class="node node-core"><div class="tag">[STATE: CRYPTOGRAPHIC OIDC]</div><div class="node-title">Zero-Trust Machine Identity Core</div><div class="node-text">The hardened foundation.<span class="highlight">Passwordless OIDC workload federation established.</span></div></div>
+                    <div class="node node-core"><div class="tag">[DEPLOYED CLOUD STATE]</div><div class="node-title">Zero-Trust Machine Identity Core</div><div class="node-text">The live Entra ID &amp; Azure foundation.<span class="highlight">Passwordless 60-min OIDC login locked to one single vault.</span></div></div>
                     
-                    <div class="node node-scale"><div class="tag">[MODULAR SCALING]</div><div class="node-title">Capability Integration</div><div class="node-text">The foundational pipeline securely serves as the launchpad for rapidly deploying 35 advanced Microsoft Entra ID enterprise modules.<span class="highlight">Expanding the architecture.</span></div></div>
+                    <div class="node node-scale"><div class="tag">[DAY-2 EXPANSION]</div><div class="node-title">Capability Integration</div><div class="node-text">Once the passwordless identity core is verified, it serves as the clean foundation for adding 35 advanced Entra ID security modules.<span class="highlight">Ready for enterprise scale.</span></div></div>
 
-                    <div class="node node-ial"><div class="tag">[ARTIFACT: IAL_RECORD.md]</div><div class="node-title">Identity Architecture Ledger (IAL)</div><div class="node-text">Records and validates the immutable target state infrastructure configuration.</div></div>
+                    <div class="node node-ial"><div class="tag">[THE "BEFORE" BLUEPRINT]</div><div class="node-title">Identity Architecture Ledger (IAL)</div><div class="node-text">Clean Markdown table recording every verified ID, OIDC branch string, and single-vault permission built into the code.</div></div>
                     
-                    <div class="node node-arl"><div class="tag">[TELEMETRY: ARL & KQL]</div><div class="node-title">Audit Ledgers & KQL Telemetry</div><div class="node-text">Mathematically confirms zero-trust operational governance and SOC 2 compliance via Azure telemetry and asynchronous diagnostic proofs.</div></div>
+                    <div class="node node-arl"><div class="tag">[THE "AFTER" LIVE PROOF]</div><div class="node-title">Audit Ledger &amp; KQL Log Proof</div><div class="node-text">Queries live Azure APIs and Log Analytics after deployment to prove the 60-min OIDC token unlocked the vault with zero <code>403</code> errors.</div></div>
                 </div>
             </div>
 
             <!-- ARCHITECTURAL FLOW EXPLANATION -->
             <div class="flow-explanation">
-                <h3 class="flow-subheader">Execution Flow Mechanics</h3>
+                <h3 class="flow-subheader">How the Assembly Line Actually Works (From Intake to Live Proof)</h3>
                 
-                <p class="flow-text">The execution lifecycle is anchored by strategic governance. The security engineer initiates the pipeline by defining the exact enterprise coordinates and zero-trust parameters required for the deployment, injecting this intent directly into the core framework.</p>
+                <p class="flow-text"><strong>1. Starting the Build &amp; Interactive Back-and-Forth (Steps 1–5 — No Files Output Yet):</strong> Every build starts with <strong>The Architect</strong> pasting the master System Directive into the AI, setting up a clean local folder, and selecting the 5 core build options (Cloud Target, Execution Agent, Brownfield vs. Greenfield State, Target Vault/Database, and IaC Language). Instead of letting the AI immediately spit out a half-baked script full of <code>&lt;INSERT_HERE&gt;</code> placeholders, <strong>The State Machine</strong> forces an interactive back-and-forth across four verification gates: Cloud Boundary (Step 2), Machine Identity (Step 3), Passwordless OIDC Trust (Step 4), and Single-Vault Permissions (Step 5).</p>
                 
-                <p class="flow-text">Once engaged, the Zero Trust Interactive State Machine applies formal <strong>Control Theory</strong> to govern the deployment lifecycle. Rather than allowing open-ended script generation, it forces the AI’s probabilistic logic through a strict <strong>Directed Acyclic Graph (DAG)</strong> of execution nodes. The tethered AI engine dynamically synthesizes complex, environment-agnostic payloads, but it remains physically trapped within these predefined mathematical boundaries. This deterministic harness intrinsically neutralizes AI hallucination and configuration drift.</p>
+                <p class="flow-text"><strong>2. Real Terminal Lookups &amp; Built-In Crash Prevention:</strong> At each gate, if <strong>The Architect</strong> doesn't already have the exact Azure or pipeline IDs pasted in, <strong>The AI Engine</strong> provides the exact terminal lookup commands (<code>az</code> CLI or <code>curl</code>) to pull the real non-secret routing IDs directly from the cloud. Along the way, the System Directive locks in rules that prevent the classic crashes that break normal deployments: using read-only lookups (<code>data</code> / <code>existing</code>) so existing Brownfield vaults are never overwritten, building an automatic 30-second pause timer (<code>time_sleep</code>) into the plan so Microsoft's servers finish syncing new identities before attaching OIDC rules, and separating role assignments if a local terminal drops interactive Azure MFA popups.</p>
                 
-                <p class="flow-text">At critical execution gates, the framework acts as a <strong>"circuit breaker,"</strong> halting the automated process to enforce a Human-in-the-Loop (HITL) validation. Because the deterministic engine has already constrained the AI's logic, the architect is not forced to manually debug probabilistic code. Instead, the engineer simply validates the proposed state against the original strategic intent and authorizes the pipeline to proceed.</p>
+                <p class="flow-text"><strong>3. Generating the Finished Code, Blueprint &amp; Live Cloud Proof (Step 6):</strong> Only after all gates in Steps 1–5 are verified does the interactive back-and-forth end. In Step 6, <strong>The AI Engine</strong> outputs the 100% finished Terraform, Bicep, or PowerShell script alongside the "Before" blueprint table—the <strong>Identity Architecture Ledger (<code>Identity_Access_Ledger.md</code>)</strong>. <strong>The Architect</strong> then runs the code from the local terminal. Because a green checkmark in a terminal doesn't prove the cloud is actually secure, the workflow immediately runs the "After" checks: generating the <strong>Audit Results Ledger (<code>Audit_Results_Ledger.md</code>)</strong> from live Azure APIs and running a <strong>KQL Log Query</strong> to prove the pipeline logged in with its 60-minute OIDC token and unlocked the target vault with zero <code>HTTP 403 Forbidden</code> errors.</p>
                 
-                <p class="flow-text">Upon authorization, the system autonomously deploys the payload. It provisions the secure, passwordless machine identity in the cloud while simultaneously outputting the required cryptographic receipts—the Identity Architecture Ledger (IAL) and the Audit Results Ledger (ARL). This rigorous gating directly executes the <strong>NIST AI Risk Management Framework (AI RMF)</strong> mandate for strict structural governance, mathematically proving compliance before state changes occur.</p>
-                
-                <p class="flow-text">To close the loop, the interactive state machine applies the <strong>ReAct (Reasoning and Acting)</strong> protocol to navigate architectural friction. It forces the AI into a strict Generate-Validate-Fix loop, systematically logging edge-cases into a Defect & Patch Ledger. To prevent context degradation, a <strong>Cognitive Circuit Breaker</strong> natively halts the engine after four iterations, neutralizing hallucination spirals. Once this immutable baseline is locked, the framework serves as the secure foundation to scale advanced Microsoft Entra ID capabilities. To explore the granular mechanics, review the complete <a href="architectural.html" class="inline-link">Pipeline Architecture Breakdown</a>.</p>
+                <p class="flow-text"><strong>4. The 3-Strike Circuit Breaker &amp; Permanent Prompt Upgrades (Step 7):</strong> If a command hits an unexpected error during deployment, the system applies the <strong>ReAct (Reasoning and Acting)</strong> troubleshooting loop with a hard limit. The AI gets up to <strong>3 attempts</strong> to fix a terminal error. On <strong>Attempt #4</strong>, the <strong>Circuit Breaker</strong> trips automatically and forbids the AI from generating any more code—stopping endless AI guessing spirals. <strong>The Architect</strong> and AI isolate the root cause, verify the fix locally, record it in the <strong>Defect &amp; Patch Ledger (DPL)</strong>, and compile that rule permanently into the master System Directive so the machine never repeats the same mistake. For the full row-by-row walkthrough, see the <a href="blueprint.html" class="inline-link">Operational Blueprint &amp; Telemetry</a> and the <a href="architectural.html" class="inline-link">Pipeline Architecture Breakdown</a>.</p>
                 
                 <!-- ARCHITECTURAL INSIGHT -->
                 <div class="insight-box" style="background: linear-gradient(90deg, rgba(168, 85, 247, 0.1) 0%, transparent 100%);">
-                    <div class="insight-header" style="color: var(--color-purple);">Architectural Insight: Neutralizing Excessive Agency (OWASP LLM08)</div>
+                    <div class="insight-header" style="color: var(--color-purple);">Architectural Insight: Stopping "Excessive Agency" (OWASP LLM08)</div>
                     <div class="insight-text">
-                        "Unconstrained generative models prioritize task completion over security, introducing <strong>Excessive Agency (OWASP LLM08)</strong>—a critical enterprise liability. By subordinating the AI's dynamic synthesis to the rigid constraints of a deterministic state machine, this architecture physically neutralizes rogue permissions and destructive state modifications. This rigorous application of <strong>Deterministic AI Systems Engineering</strong> transforms unpredictable generative workflows into mathematically certain pipelines—delivering massive computational velocity with absolute zero-trust certainty."
+                        "When an untethered AI hits an 'Access Denied' or 'Resource Already Exists' error in Azure, it only cares about making the error go away—often by telling you to grant broad 'Contributor' admin rights or by deleting and recreating a live resource. In AI security standards, this is called <strong>Excessive Agency (OWASP LLM08)</strong>. By locking the AI inside the System Directive's ruleset—where it has zero direct access to the cloud and is forbidden from using management roles or destructive commands—we get the speed of AI code generation with zero risk of a rogue script damaging live infrastructure."
                     </div>
                 </div>
             </div>
@@ -612,37 +630,37 @@
     <!-- MODULE 2: ENTERPRISE GUARDRAILS -->
     <div class="guardrail-container" id="enterprise-guardrails">
         <div class="prelude-box">
-            <h2 class="section-title">Enterprise Guardrails: The Decoupled Logic Engine</h2>
+            <h2 class="section-title">Enterprise Guardrails: The 5 Built-In Safety Locks</h2>
             
             <p class="intro-text">
-                Global cybersecurity authorities—including NIST and OWASP—have clearly defined the systemic liabilities of unconstrained artificial intelligence. To safely provision Microsoft Entra ID machine identities, this architecture translates those broad theoretical principles into rigid, operational constraints. By physically decoupling the AI's probabilistic generation from the deterministic deployment execution, the Finite State Machine creates a bespoke Decoupled Logic Engine engineered specifically to mathematically neutralize the five critical vulnerabilities of AI-assisted cloud deployment:
+                Global security standards like <strong>NIST AI RMF</strong> and <strong>OWASP Top 10 for LLMs</strong> warn against letting AI generate infrastructure code without strict boundaries. Inside the <strong>Zero Trust Interactive State Machine</strong>, those standards are turned into five concrete rules inside the master System Directive—stopping the five most common security mistakes in AI-assisted cloud deployments:
             </p>
 
             <div class="vulnerability-grid">
                 
                 <div class="vuln-card">
-                    <h3 class="vuln-title">1. Data Loss Prevention (DLP) & Context Leakage</h3>
-                    <p class="vuln-text">Generative models often require proprietary network details to output accurate code. This state machine relies exclusively on explicit, plain-language parameters. <span class="vuln-highlight">No proprietary tenant IDs, exact asset names, or corporate repository coordinates are ever hardcoded or exposed.</span></p>
+                    <h3 class="vuln-title">1. Secret &amp; Credential Protection (What Goes In vs. What Stays Private)</h3>
+                    <p class="vuln-text">To write 100% finished code without blank placeholders, non-secret routing addresses (Tenant ID, Subscription ID, Resource Group, and Repo names) are safely pasted into the chat during Steps 1–5. Meanwhile, <span class="vuln-highlight">actual secrets never touch the chat or GitHub</span>: OIDC eliminates client secrets completely, and any personal login token (like a GitHub PAT) is typed invisibly inside your local terminal (<code>read -s</code>).</p>
                 </div>
 
                 <div class="vuln-card">
-                    <h3 class="vuln-title">2. Destructive State Modification</h3>
-                    <p class="vuln-text">AI natively prioritizes making code "work," often opting to drop and recreate conflicting resources. The state machine physically rejects destructive state transitions, mathematically enforcing strict idempotency by injecting <span class="vuln-highlight">prevent_destroy</span> lifecycle constraints and utilizing data blocks to guarantee existing enterprise infrastructure is never overwritten.</p>
+                    <h3 class="vuln-title">2. Protecting Existing Infrastructure (Brownfield vs. Greenfield)</h3>
+                    <p class="vuln-text">When an untethered AI sees an existing Resource Group or Key Vault, it often writes code that overwrites or recreates it. The State Machine prevents this by forcing <span class="vuln-highlight">read-only lookup mode (<code>data</code> blocks in Terraform or <code>existing</code> in Bicep)</span> for Brownfield environments, and locking a <span class="vuln-highlight"><code>prevent_destroy</code> deletion block</span> onto brand-new Greenfield resources.</p>
                 </div>
 
                 <div class="vuln-card">
-                    <h3 class="vuln-title">3. The "Contributor" Trap (Over-Permissioning)</h3>
-                    <p class="vuln-text">To bypass access errors, unconstrained AI defaults to broad control-plane roles. This interactive state machine mathematically enforces the Principle of Least Privilege (PoLP), <span class="vuln-highlight">restricting all mapping exclusively to granular data-plane capabilities</span> (e.g., Key Vault Secrets User) scoped precisely to the target asset.</p>
+                    <h3 class="vuln-title">3. Stopping "The Contributor Trap" (Single-Vault Data Roles Only)</h3>
+                    <p class="vuln-text">Giving a pipeline <code>Owner</code> or <code>Contributor</code> permissions is like giving a delivery driver the master keys to knock down your entire building just to drop off one letter. The State Machine strictly blocks management roles and <span class="vuln-highlight">grants only a data-plane role (like <code>Key Vault Secrets User</code>) locked to that one specific vault or database ID</span>.</p>
                 </div>
 
                 <div class="vuln-card">
-                    <h3 class="vuln-title">4. Supply Chain Injection</h3>
-                    <p class="vuln-text">Language models frequently hallucinate non-existent provider versions. The governing engine is hardcoded to <span class="vuln-highlight">pin all Terraform providers, Azure Bicep extensions, and pipeline actions to specific, verified version numbers</span>, strictly rejecting floating dependencies.</p>
+                    <h3 class="vuln-title">4. Supply Chain Safety (Pinned Provider Versions)</h3>
+                    <p class="vuln-text">Untethered AI models frequently invent fake plugin versions or leave version numbers wide open to unverified updates. The System Directive requires every script to <span class="vuln-highlight">lock in exact, verified Microsoft provider version numbers</span> across Terraform, Azure Bicep, and pipeline actions so broken or malicious packages never enter the build.</p>
                 </div>
 
                 <div class="vuln-card">
-                    <h3 class="vuln-title">5. Terminal Exposure</h3>
-                    <p class="vuln-text">Even with passwordless federation, dynamic execution can expose sensitive GUIDs or topography in the console. The state machine aggressively enforces <span class="vuln-highlight">strict string masking (e.g., ::add-mask::)</span> for all runtime variables to prevent inadvertent logging.</p>
+                    <h3 class="vuln-title">5. Hiding Temporary Tokens in Pipeline Logs (Runtime Masking)</h3>
+                    <p class="vuln-text">Even when using passwordless 60-minute OIDC tokens, a poorly written script can accidentally print a temporary access token or secret value onto the pipeline log screen. The State Machine enforces <span class="vuln-highlight">automatic log masking (such as <code>::add-mask::</code> in GitHub Actions)</span> so sensitive runtime values are scrubbed before anything prints to the console.</p>
                 </div>
 
             </div>
@@ -653,11 +671,11 @@
     <!-- MODULE 3: POLYMORPHIC ARCHITECTURE & COMBINATORIAL SCALE -->
     <div class="polymorphic-container" id="environment-agnostic">
         <div class="polymorphic-box">
-            <span class="poly-tag">[POLYMORPHIC SYNTHESIS ENGINE]</span>
-            <h2 class="section-title" style="margin-bottom: 1.5rem;">Environment-Agnostic Flexibility &amp; Combinatorial Scale</h2>
+            <span class="poly-tag">[FLEXIBLE 5-CHOICE BUILD MATRIX]</span>
+            <h2 class="section-title" style="margin-bottom: 1.5rem;">Environment-Agnostic Flexibility &amp; 72 Build Combinations</h2>
             
             <p class="intro-text" style="margin-bottom: 3rem;">
-                Enterprise cloud environments are structurally distinct. A rigid automation script built for one platform will break when applied to a different CI/CD tool or infrastructure state. The Zero Trust Interactive State Machine resolves this through Polymorphic Coordinate Intake. The architect defines five structural coordinates, and the engine mathematically recalculates its security handshakes and code dependencies. It shifts across 72 distinct architectural baselines to establish the exact foundation required to securely deploy 35 advanced Microsoft Entra ID capabilities.
+                Every company's cloud setup is different—a script written for GitHub Actions and Terraform on a brand-new Key Vault will not work if a team uses Azure DevOps, Bicep, and an existing Storage Account. Instead of maintaining dozens of separate static templates, the <strong>Zero Trust Interactive State Machine</strong> starts in Step 1 by selecting one option from each of the five columns below. Based on those five choices, the System Directive adapts the terminal lookups, OIDC trust format, data-plane role, and code syntax across <strong>72 distinct build combinations</strong>:
             </p>
 
             <!-- EMBEDDED 5-COLUMN COORDINATE MATRIX GRAPHIC (ALL UNCHECKED) -->
@@ -665,12 +683,12 @@
                 <div class="matrix-5col-grid">
                     
                     <div class="matrix-node">
-                        <div class="matrix-node-header">Identity Core</div>
+                        <div class="matrix-node-header">1. Identity Core</div>
                         <div class="matrix-option"><span class="matrix-check"></span> Microsoft Entra ID</div>
                     </div>
 
                     <div class="matrix-node">
-                        <div class="matrix-node-header">Execution Agent</div>
+                        <div class="matrix-node-header">2. Execution Agent</div>
                         <div class="matrix-option"><span class="matrix-check"></span> Azure Kubernetes Service (AKS)</div>
                         <div class="matrix-option"><span class="matrix-check"></span> GitHub Actions</div>
                         <div class="matrix-option"><span class="matrix-check"></span> Azure DevOps</div>
@@ -678,20 +696,20 @@
                     </div>
 
                     <div class="matrix-node">
-                        <div class="matrix-node-header">Infrastructure State</div>
+                        <div class="matrix-node-header">3. Infrastructure State</div>
                         <div class="matrix-option"><span class="matrix-check"></span> Brownfield (Existing)</div>
                         <div class="matrix-option"><span class="matrix-check"></span> Greenfield (Net-New)</div>
                     </div>
 
                     <div class="matrix-node">
-                        <div class="matrix-node-header">Data-Plane Asset</div>
+                        <div class="matrix-node-header">4. Data-Plane Asset</div>
                         <div class="matrix-option"><span class="matrix-check"></span> Azure Key Vault</div>
                         <div class="matrix-option"><span class="matrix-check"></span> Storage Account</div>
                         <div class="matrix-option"><span class="matrix-check"></span> SQL / Cosmos DB</div>
                     </div>
 
                     <div class="matrix-node">
-                        <div class="matrix-node-header">IaC Payload</div>
+                        <div class="matrix-node-header">5. IaC Payload</div>
                         <div class="matrix-option"><span class="matrix-check"></span> Terraform (HCL)</div>
                         <div class="matrix-option"><span class="matrix-check"></span> Azure Bicep</div>
                         <div class="matrix-option"><span class="matrix-check"></span> PowerShell REST API</div>
@@ -702,10 +720,10 @@
                 <!-- COMBINATORIAL TELEMETRY BAR -->
                 <div class="combinatorial-bar">
                     <div class="combo-formula">
-                        <span>[1]</span> Identity Root &times; <span>[4]</span> Execution Agents &times; <span>[2]</span> State Topographies &times; <span>[3]</span> Data-Plane Targets &times; <span>[3]</span> IaC Compilers
+                        <span>[1]</span> Identity Core &times; <span>[4]</span> Execution Agents &times; <span>[2]</span> Infrastructure States &times; <span>[3]</span> Data-Plane Assets &times; <span>[3]</span> IaC Languages
                     </div>
                     <div class="combo-result">
-                        72 Deterministic Baselines &times; 35 Day-2 Entra Modules
+                        72 Verified Build Combinations + 35 Day-2 Entra Modules
                     </div>
                 </div>
             </div>
@@ -714,33 +732,39 @@
             <div class="adaptation-grid">
                 
                 <div class="adapt-card">
-                    <span class="adapt-tag">[VECTOR 01 : PLATFORM ADAPTABILITY]</span>
-                    <h3 class="vuln-title">Dynamic Platform Integration</h3>
-                    <p class="vuln-text">Different automation platforms require distinct cryptographic handshakes to interface with Azure. Whether the execution agent is GitHub Actions, Azure DevOps, GitLab CI, or a Kubernetes pod, the engine dynamically adjusts its identity federation logic. It extracts and enforces the precise OIDC credential format required by the specified platform, establishing a cryptographically verified connection.</p>
+                    <span class="adapt-tag">[ADAPTATION 01 : PIPELINE OIDC FORMAT]</span>
+                    <h3 class="vuln-title">Adapting to Any CI/CD or Kubernetes Platform</h3>
+                    <p class="vuln-text">Each pipeline platform presents a different OIDC return address (Subject Claim) to Microsoft Entra ID. Whether you choose GitHub Actions, Azure DevOps, GitLab CI, or an AKS Kubernetes pod, Step 4 provides the exact lookup commands and formats the exact letter-for-letter OIDC trust rule required by that platform—with zero wildcards allowed.</p>
                 </div>
 
                 <div class="adapt-card green">
-                    <span class="adapt-tag">[VECTOR 02 : INFRASTRUCTURE SAFETY]</span>
-                    <h3 class="vuln-title">Existing vs. New Environments</h3>
-                    <p class="vuln-text">The framework alters its deployment logic based on the target infrastructure state. For live, existing infrastructure (Brownfield), it enforces non-destructive, read-only data lookups to ensure production assets are not overwritten. For net-new infrastructure deployments (Greenfield), it structurally embeds lifecycle constraints to prevent accidental state destruction.</p>
+                    <span class="adapt-tag">[ADAPTATION 02 : BROWNFIELD VS. GREENFIELD]</span>
+                    <h3 class="vuln-title">Protecting Existing vs. Brand-New Resources</h3>
+                    <p class="vuln-text">In Step 2 and Step 3, the machine adapts to whether your cloud resources already exist. For existing <strong>Brownfield</strong> environments, it uses read-only lookups (<code>data</code> in Terraform or <code>existing</code> in Bicep) so live vaults are never overwritten. For brand-new <strong>Greenfield</strong> builds, it creates the resources with <code>prevent_destroy</code> deletion locks.</p>
                 </div>
 
                 <div class="adapt-card orange">
-                    <span class="adapt-tag">[VECTOR 03 : PINPOINT PERMISSIONS]</span>
-                    <h3 class="vuln-title">Strict Least-Privilege Access</h3>
-                    <p class="vuln-text">As the target asset changes—such as shifting from Azure Key Vault to Cosmos DB—the engine recalculates the exact security permissions required. It restricts access exclusively to the specific data-plane requirements of that asset, mathematically blocking the machine identity from inheriting broad control-plane administrative rights.</p>
+                    <span class="adapt-tag">[ADAPTATION 03 : SINGLE-ASSET DATA ROLES]</span>
+                    <h3 class="vuln-title">Matching the Exact Vault or Database Role</h3>
+                    <p class="vuln-text">When you switch the target asset between Azure Key Vault, a Storage Account, or Cosmos DB, Step 5 automatically switches to the exact data-plane role for that service (such as <code>Key Vault Secrets User</code> or <code>Storage Blob Data Contributor</code>) and locks the permission strictly to that single asset's Resource ID.</p>
                 </div>
 
                 <div class="adapt-card purple">
-                    <span class="adapt-tag">[VECTOR 04 : CODE FLEXIBILITY]</span>
-                    <h3 class="vuln-title">Multi-Language Code Compilation</h3>
-                    <p class="vuln-text">The core zero-trust architecture compiles directly into the required infrastructure language. The engine generates the deployment as Terraform, Azure Bicep, or native PowerShell scripts. If a specific execution path drops required Multi-Factor Authentication (MFA) claims, the engine structurally halts the automation and issues a manual runbook to satisfy the MFA gate via the Azure Portal.</p>
+                    <span class="adapt-tag">[ADAPTATION 04 : MULTI-LANGUAGE &amp; MFA SAFE]</span>
+                    <h3 class="vuln-title">Generating Terraform, Bicep, or PowerShell</h3>
+                    <p class="vuln-text">In Step 6, the verified architecture is output in your chosen language—Terraform (HCL), Azure Bicep, or PowerShell REST API—complete with a built-in server sync pause timer. And if your Azure policy requires an interactive MFA popup that blocks terminal role assignments, Step 5 cleanly separates the role step so you can finish it in the Azure web portal without the script crashing.</p>
                 </div>
 
             </div>
 
         </div>
     </div>
+
+    <!-- ================= PROPRIETARY IP FOOTER ================= -->
+    <footer class="ip-footer">
+        <strong>&copy; 2026 Steven Tuschman | Intelligent Architecture (intelligent-architecture.com). All Rights Reserved.</strong><br>
+        The Zero Trust Interactive State Machine, AI and Cloud Pipeline Hardening Framework (ACPHF), and associated deterministic governance protocols are proprietary intellectual property. Unauthorized reproduction, distribution, or commercial adaptation is strictly prohibited.
+    </footer>
 
 </body>
 </html>

@@ -16,7 +16,7 @@
       gtag('config', 'G-80NYKHYN3R');
     </script>
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -38,7 +38,7 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body { background-color: var(--bg-page); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--text-main); line-height: 1.6; }
+        body { background-color: var(--bg-page); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--text-main); line-height: 1.6; padding-bottom: 4rem; }
 
         /* ================= NAVIGATION ================= */
         nav {
@@ -238,7 +238,7 @@
             line-height: 1.7;
         }
 
-        /* ================= SECTION 3: 4 AGENTIC DESIGN PATTERNS (2x2 GRID) ================= */
+        /* ================= SECTION 3: 4 AGENTIC DESIGN PATTERNS ================= */
         .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; width: 100%; max-width: 1300px; }
         .feature-card { background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-base); border-top: 4px solid; padding: 2.5rem; border-radius: 10px; text-align: left; box-shadow: 0 15px 30px rgba(0,0,0,0.35); display: flex; flex-direction: column; }
         
@@ -297,7 +297,7 @@
         .purple .citation-link { border-bottom-color: var(--color-purple); }
         .purple .citation-link:hover { color: var(--color-purple); }
 
-        /* ================= SECTION 4: TRANSLATION MATRIX (5 ENTERPRISE GUARDRAILS) ================= */
+        /* ================= SECTION 4: TRANSLATION MATRIX ================= */
         .matrix-section-box {
             background: rgba(15, 23, 42, 0.6);
             border: 1px solid var(--border-base);
@@ -374,7 +374,6 @@
             white-space: nowrap;
         }
 
-        /* Edge-Case Pedigree Callouts */
         .pedigree-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -392,6 +391,25 @@
         .pedigree-title { font-family: 'Montserrat', sans-serif; font-size: 1.05rem; font-weight: 800; color: var(--text-main); text-transform: uppercase; margin-bottom: 0.75rem; }
         .pedigree-text { font-size: 0.95rem; color: var(--text-muted); line-height: 1.65; }
         .pedigree-text code { color: var(--color-cyan); }
+
+        /* ================= PROPRIETARY IP FOOTER ================= */
+        .ip-footer {
+            max-width: 1300px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            border-top: 1px solid var(--border-base);
+            background: rgba(10, 15, 29, 0.6);
+            border-radius: 8px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+            line-height: 1.8;
+        }
+        .ip-footer strong {
+            color: var(--color-cyan);
+            font-weight: 700;
+        }
 
         @media (max-width: 1050px) {
             .anatomy-grid, .resolution-grid, .feature-grid-2x2, .pedigree-grid { grid-template-columns: 1fr; }
@@ -431,14 +449,14 @@
             <h1 class="hero-title">DETERMINISTIC AI SYSTEMS ENGINEERING</h1>
         </div>
         <p class="hero-subtitle">
-            Generative AI is inherently probabilistic, whereas enterprise Identity and Access Management (IAM) is strictly binary—a cryptographic handshake or RBAC scope is either mathematically sound, or it is a breach vector. Intelligent Architecture resolves this paradox by operating not as a conversational prompt, but as a <strong>Deterministic Finite State Machine (FSM)</strong> and <strong>Agentic Control Harness</strong> that governs the AI as a high-velocity Infrastructure-as-Code compiler.
+            Generative AI operates as a probabilistic engine, whereas enterprise Identity and Access Management (IAM) requires strict, binary precision—a cryptographic token or RBAC scope is either completely correct or it fails. To reconcile this difference, I designed the <strong>Zero Trust Interactive State Machine</strong> as a deterministic control harness. By taking a probabilistic model and tethering it to a master <strong>System Directive</strong>, the architecture governs the AI as a high-speed Infrastructure-as-Code compiler, maintaining absolute precision and zero-trust integrity.
         </p>
 
         <!-- ARCHITECTURAL INSIGHT -->
         <div class="insight-box">
             <div class="insight-header">Architectural Insight: The Compiler Paradigm</div>
             <div class="insight-text">
-                "Just as a traditional software compiler translates high-level intent into machine instructions through lexical analysis, syntax parsing, and constraint verification, the Zero Trust Interactive State Machine compiles five polymorphic coordinates into cryptographically verified Microsoft Entra ID infrastructure. By trapping an untrusted generative processor inside 7 Global Directives and 32 Immutable Execution Constraints, the software extracts massive computational scale with zero probabilistic drift."
+                "Similar to how a software compiler translates human intent into machine execution through lexical analysis and validation checks, the Zero Trust Interactive State Machine compiles five polymorphic choices into cryptographically verified Microsoft Entra ID configurations. By binding an untethered language model within clear operational guidelines and execution constraints, we harness its speed without risking probabilistic drift."
             </div>
         </div>
         
@@ -457,7 +475,7 @@
                 <span class="section-tag">[SECTION 01 :: SOFTWARE CLASSIFICATION]</span>
                 <h2 class="section-title" style="text-align: center;">Anatomy of the Deterministic Control Harness</h2>
                 <p class="section-lead" style="text-align: center; max-width: 1000px; margin: 0 auto;">
-                    The <strong>Zero Trust Interactive State Machine (v9.1)</strong> is engineered as declarative, natural-language control software. Rather than relying on open-ended generation, it enforces a hardware-like separation between the computational engine, the state-space control plane, and the presentation telemetry layer.
+                    The <strong>Zero Trust Interactive State Machine (v9.1)</strong> functions as a natural-language control system. It separates execution responsibilities cleanly between the synthesis engine, the state-space rulebook, and the compliance logging layer.
                 </p>
 
                 <div class="anatomy-grid">
@@ -465,7 +483,7 @@
                         <span class="anatomy-tag">[LAYER 01 : COMPUTATIONAL ENGINE]</span>
                         <h3 class="anatomy-title">The Governed Synthesis Processor</h3>
                         <p class="anatomy-text">
-                            The Large Language Model (LLM) is stripped of autonomous agency and utilized strictly as a high-speed syntax generator. It dynamically compiles environment-agnostic payloads across Terraform (HCL), Azure Bicep, and Microsoft Graph REST APIs across 72 distinct infrastructure baselines.
+                            The Large Language Model (LLM) is utilized exclusively as a high-speed syntax generator. It compiles environment-agnostic deployment payloads across Terraform (HCL), Azure Bicep, and Microsoft Graph REST APIs across 72 unique infrastructure baselines.
                         </p>
                     </div>
 
@@ -473,7 +491,7 @@
                         <span class="anatomy-tag">[LAYER 02 : STATE-SPACE CONTROL PLANE]</span>
                         <h3 class="anatomy-title">7 Directives &amp; 32 Execution Rules</h3>
                         <p class="anatomy-text">
-                            A Directed Acyclic Graph (DAG) of 7 sequential deployment phases governed by 32 un-bypassable mechanical rules. Furthermore, <code>Rule 32</code> and XML-fenced <code>&lt;PASSIVE_UI_STRING_LITERALS&gt;</code> enforce strict context isolation, preventing UI presentation strings from ever bleeding into or weakening control-plane execution logic.
+                            A structured sequence of 7 deployment phases governed by 32 un-bypassable mechanical rules. Specific rules enforce context isolation, ensuring that display text or chat descriptions never interfere with core execution logic.
                         </p>
                     </div>
 
@@ -481,7 +499,7 @@
                         <span class="anatomy-tag">[LAYER 03 : PRE-COMPILED COMPLIANCE]</span>
                         <h3 class="anatomy-title">Cryptographic Audit Ledgers</h3>
                         <p class="anatomy-text">
-                            Instead of treating compliance as a post-mortem exercise, the state machine generates immutable audit proofs as intrinsic byproducts of runtime execution: the <strong>Identity Architecture Ledger (IAL)</strong>, the <strong>Audit Results Ledger (ARL)</strong>, asynchronous <strong>KQL Telemetry</strong>, and the <strong>Defect &amp; Patch Ledger (DPL)</strong>.
+                            Instead of performing compliance checks manually after deployment, the system generates immutable audit proofs as standard outputs: the <strong>Identity Architecture Ledger (IAL)</strong>, the <strong>Audit Results Ledger (ARL)</strong>, asynchronous <strong>KQL Telemetry</strong>, and the <strong>Defect &amp; Patch Ledger (DPL)</strong>.
                         </p>
                     </div>
                 </div>
@@ -495,31 +513,31 @@
             <span class="section-tag" style="text-align: center;">[SECTION 02 :: THE OPERATIONAL PROBLEM SPACE]</span>
             <h2 class="section-title" style="text-align: center;">Addressing the Operational Scale &amp; Precision Challenge</h2>
             <p class="section-lead" style="text-align: center; max-width: 1050px; margin: 0 auto;">
-                As ongoing CISA and NSA cybersecurity advisories highlight, adversarial actors now actively leverage artificial intelligence to analyze cloud architectures and orchestrate exploit vectors at machine speed. Maintaining defensive parity across modern enterprise environments requires matching that computational velocity, yet cloud identity management demands absolute, binary precision across dozens of shifting variables—including diverse CI/CD platforms, Kubernetes clusters, Brownfield and Greenfield states, and multiple Infrastructure-as-Code languages. <strong>Deterministic AI Systems Engineering</strong> resolves the fundamental tension between deployment speed and architectural safety. By tethering the computational power of generative AI to a Finite State Machine governed by formal Control Theory, the framework eliminates probabilistic drift and scales zero-trust identity architectures across 72 distinct infrastructure baselines with mathematical certainty and pre-compiled compliance.
+                Cloud environments demand speed, yet identity management requires absolute precision across multiple shifting variables—including diverse CI/CD platforms, infrastructure states, and code languages. By taking a probabilistic model and tethering it to a master System Directive, the framework bridges the gap between deployment velocity and structural security, scaling zero-trust architecture across 72 distinct operational baselines with complete repeatability.
             </p>
 
             <div class="resolution-grid">
                 <div class="resolution-card">
                     <span class="resolution-tag">[OBJECTIVE 01 : VELOCITY PARITY]</span>
-                    <h3 class="resolution-title">Countering Machine-Speed Threats</h3>
+                    <h3 class="resolution-title">Accelerating Secure Deployments</h3>
                     <p class="resolution-text">
-                        Harnesses the computational synthesis speed of artificial intelligence to rapidly engineer and deploy hardened, passwordless OpenID Connect (OIDC) workload federations and Conditional Access perimeters at the pace required by modern cloud operations.
+                        Leverages the synthesis speed of artificial intelligence to quickly construct hardened, passwordless OpenID Connect (OIDC) workload federations and access boundaries required for modern cloud pipelines.
                     </p>
                 </div>
 
                 <div class="resolution-card purple">
                     <span class="resolution-tag">[OBJECTIVE 02 : BINARY PRECISION]</span>
-                    <h3 class="resolution-title">Eliminating Probabilistic Drift</h3>
+                    <h3 class="resolution-title">Eliminating Guesswork</h3>
                     <p class="resolution-text">
-                        Replaces open-ended token prediction with a deterministic state harness. Every generated configuration is mathematically constrained to enforce least-privilege data-plane scoping, pinned provider dependencies, and non-destructive state idempotency.
+                        Replaces open-ended prediction with a deterministic state harness. Every generated configuration is bound by least-privilege scoping rules, pinned provider versions, and strict idempotency checks.
                     </p>
                 </div>
 
                 <div class="resolution-card green">
                     <span class="resolution-tag">[OBJECTIVE 03 : COMBINATORIAL SCALE]</span>
-                    <h3 class="resolution-title">72-Baseline Polymorphic Adaptation</h3>
+                    <h3 class="resolution-title">72-Baseline Flexibility</h3>
                     <p class="resolution-text">
-                        Dynamically recalculates cryptographic handshakes, RBAC scopes, and state constraints across 4 execution agents, 2 infrastructure states, 3 data-plane targets, and 3 IaC compilers—delivering uniform security governance across heterogeneous environments.
+                        Dynamically recalculates identity handshakes, RBAC permissions, and state parameters across 4 execution agents, 2 infrastructure states, 3 data-plane targets, and 3 IaC compilers to maintain consistent governance everywhere.
                     </p>
                 </div>
             </div>
@@ -532,7 +550,7 @@
             <span class="section-tag">[SECTION 03 :: CORE PRINCIPLES &amp; RUNTIME MECHANICS]</span>
             <h2 class="section-title">The Four Pillars of the State Machine</h2>
             <p class="section-lead">
-                To transform a generative language model into a deterministic engineering instrument, the framework operationalizes four globally recognized AI safety and agentic research standards directly into its v9.1 source directives.
+                To keep the AI working reliably, the framework incorporates four foundational AI safety and engineering standards directly into its operating rules.
             </p>
         </div>
 
@@ -543,18 +561,18 @@
                 <span class="pillar-tag">[PILLAR 01 :: ITERATIVE TELEMETRY GROUNDING]</span>
                 <h3 class="feature-title">1. Agentic Design Patterns &amp; DPL Evolution</h3>
                 <div class="feature-concept">
-                    Standard AI workflows rely on fragile "zero-shot" prompting, attempting to generate complex infrastructure in a single pass. Aligned with foundational research on <strong>Agentic Workflows</strong>, this architecture forces the AI into a clinical <strong>Generate-Validate-Fix</strong> loop whenever API friction or token exchange drops occur.
+                    Standard workflows often struggle with single-pass generation. Aligned with established research on <strong>Agentic Workflows</strong>, this architecture guides the AI through structured <strong>Generate-Validate-Fix</strong> loops whenever API friction occurs.
                 </div>
                 <div class="mechanics-box">
                     <span class="mechanics-label">v9.1 Runtime Implementation (Directive 05, Rule 9 &amp; Rule 15)</span>
                     <p class="mechanics-text">
-                        Upon encountering terminal friction, the engine shifts into <code>[MODE: COLLABORATIVE TROUBLESHOOTING]</code>, states a telemetry-backed Root Cause Hypothesis, and tracks iteration deltas. Once verified, <code>Rule 15</code> logs the empirical fix into the <strong>Defect &amp; Patch Ledger (DPL)</strong> and <code>Rule 9 (Mandatory State Re-Sync)</code> reproduces the complete, unified IaC file from scratch—eliminating partial-patch corruption and permanently hardening future baseline iterations.
+                        When terminal errors arise, the engine evaluates the issue, states a clear Root Cause Hypothesis, and tracks iteration steps. Once resolved, <code>Rule 15</code> logs the fix in the <strong>Defect &amp; Patch Ledger (DPL)</strong> and <code>Rule 9</code> regenerates the complete IaC file from scratch to prevent partial-patch errors and harden future runs.
                     </p>
                 </div>
                 <div class="citation-block">
                     <div class="citation-header">Reference Standard</div>
                     <span class="citation-title">ReAct: Synergizing Reasoning and Acting in Language Models (Yao et al.)</span>
-                    <p class="citation-abstract">Foundational research from Princeton and Google Brain proving that language models achieve superior reliability when forced to alternate between explicit reasoning traces and observable environmental actions.</p>
+                    <p class="citation-abstract">Research from Princeton and Google Brain demonstrating that language models perform more reliably when alternating between reasoning steps and concrete environmental actions.</p>
                     <a href="https://arxiv.org/abs/2210.03629" target="_blank" class="citation-link">[View Research] ↗</a>
                 </div>
             </div>
@@ -564,18 +582,18 @@
                 <span class="pillar-tag">[PILLAR 02 :: BLAST-RADIUS CONTAINMENT]</span>
                 <h3 class="feature-title">2. Bounded Autonomy &amp; MFA Decoupling</h3>
                 <div class="feature-concept">
-                    Unconstrained generative models prioritize task completion over security boundaries, often taking shortcuts or escalating privileges to bypass deployment errors. This framework physically neutralizes <strong>Excessive Agency</strong> by subordinating the AI to strict state-space boundaries.
+                    Unconstrained models can take unintended shortcuts when handling deployment errors. This framework protects against <strong>Excessive Agency</strong> by keeping the AI strictly bound within predefined state constraints.
                 </div>
                 <div class="mechanics-box">
                     <span class="mechanics-label">v9.1 Runtime Implementation (Directive 01, Rule 3, Rule 4 &amp; Rule 29)</span>
                     <p class="mechanics-text">
-                        The state machine strips the AI of autonomous execution rights. It mathematically blocks control-plane roles (<code>Owner</code>/<code>Contributor</code>), enforces <code>prevent_destroy</code> lifecycle locks, and implements <code>Rule 29 (Data-Plane Decoupling)</code>: when deploying Conditional Access for Workload Identities (CAWI) where local CLI credential brokers drop MFA <code>amr</code> claims, the engine structurally forbids automated role assignment blocks and routes the engineer through a manual Azure Portal MFA runbook.
+                        The state machine restricts autonomous actions by blocking broad management roles (<code>Owner</code>/<code>Contributor</code>), enforcing <code>prevent_destroy</code> locks, and implementing <code>Rule 29 (Data-Plane Decoupling)</code>: if local credential tools drop required MFA claims during role assignments, the engine pauses automation and directs the engineer through a manual Azure Portal workflow.
                     </p>
                 </div>
                 <div class="citation-block">
                     <div class="citation-header">Reference Standard</div>
                     <span class="citation-title">OWASP Top 10 for LLM Applications (LLM08: Excessive Agency)</span>
-                    <p class="citation-abstract">The global application security standard warning against granting LLMs unconstrained permissions or unverified execution pathways across external enterprise systems.</p>
+                    <p class="citation-abstract">Application security guidance advising against granting large language models unconstrained permissions or unverified execution capabilities across systems.</p>
                     <a href="https://genai.owasp.org/llmrisk2023-24/llm08-excessive-agency/" target="_blank" class="citation-link">[View Framework] ↗</a>
                 </div>
             </div>
@@ -585,18 +603,18 @@
                 <span class="pillar-tag">[PILLAR 03 :: STRUCTURAL OVERSIGHT]</span>
                 <h3 class="feature-title">3. Human-in-the-Loop (HITL) Governance</h3>
                 <div class="feature-concept">
-                    Autonomous infrastructure provisioning without human verification is an enterprise compliance liability. This architecture hardwires every phase of the deployment lifecycle to explicit <strong>Strategic Governance</strong> gates controlled exclusively by the human security architect.
+                    Automated provisioning without verification presents governance risks. This architecture ensures every phase of the pipeline includes explicit authorization gates controlled by the human architect.
                 </div>
                 <div class="mechanics-box">
                     <span class="mechanics-label">v9.1 Runtime Implementation (Rule 1, Rule 8, Rule 12 &amp; Rule 28)</span>
                     <p class="mechanics-text">
-                        <code>Rule 1 (The "Slow Down" Protocol)</code> forbids stacking sequential manual execution steps in a single turn, enforcing hard <code>[STRICT HALT]</code> gates across all 7 phases. Before any cloud state change or pipeline test occurs, the engine must forecast workspace files (<code>Rule 12</code>), echo back exact OIDC coordinates, generate an audit script to verify directory state propagation (<code>Rule 28</code>), and await human authorization.
+                        <code>Rule 1</code> prevents rushing through execution steps by enforcing mandatory pauses across all 7 phases. Before applying changes, the system previews workspace files (<code>Rule 12</code>), confirms OIDC parameters, runs directory audit scripts (<code>Rule 28</code>), and waits for human sign-off.
                     </p>
                 </div>
                 <div class="citation-block">
                     <div class="citation-header">Reference Standard</div>
                     <span class="citation-title">NIST Artificial Intelligence Risk Management Framework (AI RMF 1.0)</span>
-                    <p class="citation-abstract">The federal standard establishing the "Govern" function—mandating structural oversight, transparent risk tolerance, and explicit human accountability for high-impact AI systems.</p>
+                    <p class="citation-abstract">Federal standard establishing the "Govern" function—emphasizing transparent risk management and explicit human accountability for AI implementations.</p>
                     <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" class="citation-link">[View Standard] ↗</a>
                 </div>
             </div>
@@ -606,18 +624,18 @@
                 <span class="pillar-tag">[PILLAR 04 :: ANTI-HALLUCINATION PHYSICS]</span>
                 <h3 class="feature-title">4. Cognitive Circuit Breaking &amp; Watchdog</h3>
                 <div class="feature-concept">
-                    Generative models naturally suffer from attention degradation during extended debugging sessions, entering "hallucination spirals" where they drift from security baselines. This architecture implements a deterministic kill-switch to halt execution before context degrades.
+                    Models can experience context degradation during long troubleshooting sessions. This architecture uses a deterministic circuit breaker to pause execution before errors compound.
                 </div>
                 <div class="mechanics-box">
                     <span class="mechanics-label">v9.1 Runtime Implementation (Directive 02, Directive 05 &amp; Directive 07)</span>
                     <p class="mechanics-text">
-                        <code>Directive 07 (The Watchdog Daemon)</code> executes a continuous pre-response structural check on every turn to prevent persona or rule drift. During troubleshooting, if any single defect reaches <strong>Iteration 4</strong>, the <strong>Cognitive Circuit Breaker</strong> physically forbids the AI from generating new code—forcing it to summarize 3-turn error deltas, calculate an <em>Estimated Probability of Success (X%)</em>, and hand risk authority back to the Architect.
+                        <code>Directive 07</code> runs continuous checks to maintain operational rules. If any troubleshooting sequence reaches <strong>Iteration 4</strong>, the <strong>Cognitive Circuit Breaker</strong> halts code generation—requiring a summary of error history and returning risk control back to the human architect.
                     </p>
                 </div>
                 <div class="citation-block">
                     <div class="citation-header">Reference Standard</div>
                     <span class="citation-title">A Survey on Hallucination in Large Language Models (Huang et al.)</span>
-                    <p class="citation-abstract">Comprehensive research documenting how LLMs suffer from probabilistic context drift over multi-turn interactions, establishing the necessity for hard iteration ceilings and state re-anchoring.</p>
+                    <p class="citation-abstract">Research documenting how language models experience context drift over multi-turn interactions, highlighting the need for hard iteration limits.</p>
                     <a href="https://arxiv.org/abs/2311.05232" target="_blank" class="citation-link">[View Research] ↗</a>
                 </div>
             </div>
@@ -631,7 +649,7 @@
             <span class="section-tag" style="text-align: center;">[SECTION 04 :: THE DECOUPLED LOGIC ENGINE]</span>
             <h2 class="section-title" style="text-align: center;">Translating Systems Theory into the 5 Enterprise Guardrails</h2>
             <p class="section-lead" style="text-align: center; max-width: 1050px; margin: 0 auto 2rem;">
-                While the agentic patterns above govern how the AI reasons and transitions between states, the Finite State Machine translates those high-level principles directly into <strong>Five Concrete Enterprise Guardrails</strong>—mechanically enforced in code and scored in Section 2.5 of every generated <strong>Audit Results Ledger (ARL)</strong>.
+                While the patterns above govern how the AI reasons, the State Machine translates those principles into <strong>Five Concrete Enterprise Guardrails</strong>—enforced in code and verified in every <strong>Audit Results Ledger (ARL)</strong>.
             </p>
 
             <div class="guardrail-table-wrapper">
@@ -650,7 +668,7 @@
                             <td><strong>1. Data Loss Prevention (DLP) &amp; Context Leakage</strong></td>
                             <td>
                                 <span class="rule-badge">Rule 2 &amp; Rule 17</span><br>
-                                Isolates structural logic from proprietary network topography. Forbids hardcoding tenant IDs, asset names, or repository coordinates—utilizing plain-language parameters and automated local CLI queries (<code>az ad sp list</code>) to inject GUIDs at runtime.
+                                Separates logic from network topography. Avoids hardcoding tenant IDs or repository names by using plain-language parameters and local CLI queries (<code>az ad sp list</code>) to inject GUIDs dynamically at runtime.
                             </td>
                             <td><span class="status-pass">[PASS : ARL 2.5]</span></td>
                         </tr>
@@ -659,7 +677,7 @@
                             <td><strong>2. Destructive State Modification</strong></td>
                             <td>
                                 <span class="rule-badge">Rule 3, Rule 20 &amp; Rule 27</span><br>
-                                Physically blocks the AI from dropping and recreating conflicting resources. Mandates read-only <code>data</code> blocks for Brownfield assets, <code>prevent_destroy = true</code> lifecycle locks for Greenfield builds, local IDE execution (deprecating ephemeral Cloud Shell), and persistent remote state backends.
+                                Prevents unintended resource destruction. Mandates read-only <code>data</code> blocks for Brownfield assets, <code>prevent_destroy = true</code> lifecycle locks for Greenfield builds, local IDE execution, and remote state backends.
                             </td>
                             <td><span class="status-pass">[PASS : ARL 2.5]</span></td>
                         </tr>
@@ -668,7 +686,7 @@
                             <td><strong>3. The "Contributor" Trap (Over-Permissioning)</strong></td>
                             <td>
                                 <span class="rule-badge">Rule 4 &amp; Rule 29</span><br>
-                                Enforces the Principle of Least Privilege (PoLP) by mathematically blocking broad control-plane roles (<code>Owner</code>, <code>Contributor</code>). Restricts all access mappings strictly to granular data-plane RBAC (e.g., <em>Key Vault Secrets User</em>) scoped to the exact target asset ID.
+                                Enforces Least Privilege by blocking broad control-plane roles (<code>Owner</code>, <code>Contributor</code>). Restricts permissions strictly to granular data-plane RBAC (e.g., <em>Key Vault Secrets User</em>) scoped to the target asset ID.
                             </td>
                             <td><span class="status-pass">[PASS : ARL 2.5]</span></td>
                         </tr>
@@ -677,7 +695,7 @@
                             <td><strong>4. Supply Chain Injection</strong></td>
                             <td>
                                 <span class="rule-badge">Rule 5 &amp; Rule 30</span><br>
-                                Neutralizes package and schema hallucination by pinning all Terraform providers, Azure Bicep extensions, and CI/CD pipeline actions to verified version numbers, while enforcing strict Graph API JSON schema separation (<code>Rule 30</code>).
+                                Prevents unverified packages by pinning all Terraform providers, Azure Bicep extensions, and pipeline actions to verified version numbers while enforcing strict Graph API JSON schema separation (<code>Rule 30</code>).
                             </td>
                             <td><span class="status-pass">[PASS : ARL 2.5]</span></td>
                         </tr>
@@ -686,7 +704,7 @@
                             <td><strong>5. Terminal Exposure</strong></td>
                             <td>
                                 <span class="rule-badge">Rule 6 &amp; Rule 22</span><br>
-                                Prevents credential and topography leakage across CI/CD runner logs and local terminals by enforcing runtime string masking (<code>::add-mask::</code>) and Linux native silent credential input (<code>read -s</code>) rather than plaintext exports.
+                                Protects credentials across logs and terminals by enforcing runtime string masking (<code>::add-mask::</code>) and silent credential inputs (<code>read -s</code>) rather than plaintext variable exports.
                             </td>
                             <td><span class="status-pass">[PASS : ARL 2.5]</span></td>
                         </tr>
@@ -694,32 +712,37 @@
                 </table>
             </div>
 
-            <!-- EMPIRICAL BATTLE-SCARS / PEDIGREE CALLOUTS -->
             <div class="pedigree-grid">
                 <div class="pedigree-card">
                     <h4 class="pedigree-title">Graph API Race Condition Absorption</h4>
                     <p class="pedigree-text">
-                        Per <code>Rule 23</code>, the state machine natively absorbs Microsoft Graph API eventual consistency delays by injecting a declarative 30-second <code>time_sleep</code> resource between <code>azuread_named_location</code> creation and Conditional Access policy attachment, while mapping <code>.id</code> attributes and explicit workload location blocks.
+                        Per <code>Rule 23</code>, the state machine absorbs Microsoft Graph API eventual consistency delays by injecting a 30-second <code>time_sleep</code> resource between location creation and policy assignment.
                     </p>
                 </div>
 
                 <div class="pedigree-card">
                     <h4 class="pedigree-title">Cryptographic Node-ID &amp; Casing Locks</h4>
                     <p class="pedigree-text">
-                        Per <code>Rule 24</code>, to prevent <code>AADSTS700213</code> token exchange drops, the engine enforces exact case-sensitivity on dynamic repository handles and constructs immutable Node-ID OIDC subject claims, while automatically chunking massive CI/CD IPv4 meta-lists via <code>chunklist()</code>.
+                        Per <code>Rule 24</code>, to prevent token exchange errors, the engine enforces strict case-sensitivity on repository handles and constructs immutable Node-ID OIDC subject claims.
                     </p>
                 </div>
 
                 <div class="pedigree-card">
                     <h4 class="pedigree-title">The Audit-First Propagation Mandate</h4>
                     <p class="pedigree-text">
-                        Per <code>Rule 28</code>, because Azure Portal UI toggles suffer from severe caching delays and global Entra ID policy propagation requires 3 to 5 minutes, the engine is structurally forbidden from executing a validation pipeline until an automated CLI audit script proves directory sanitization.
+                        Per <code>Rule 28</code>, because portal toggles and global directory propagation involve caching delays, the engine requires automated CLI audit verification before running validation pipelines.
                     </p>
                 </div>
             </div>
 
         </div>
     </section>
+
+    <!-- ================= PROPRIETARY IP FOOTER ================= -->
+    <footer class="ip-footer">
+        <strong>&copy; 2026 Steven Tuschman | Intelligent Architecture (intelligent-architecture.com). All Rights Reserved.</strong><br>
+        The Zero Trust Interactive State Machine, AI and Cloud Pipeline Hardening Framework (ACPHF), and associated deterministic governance protocols are proprietary intellectual property. Unauthorized reproduction, distribution, or commercial adaptation is strictly prohibited.
+    </footer>
 
 </body>
 </html>

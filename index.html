@@ -168,7 +168,7 @@
             padding-left: 1.5rem;
             display: flex;
             flex-direction: column;
-            gap: 0.45rem;
+            gap: 0.65rem;
         }
         .step-sublist li {
             font-size: 1.08rem;
@@ -397,6 +397,20 @@
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
         }
 
+        .guardrails-sub-header {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.45rem;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            color: var(--color-cyan);
+            text-transform: uppercase;
+            max-width: 1050px;
+            margin: 0 auto 1.2rem;
+            padding-bottom: 0.85rem;
+            border-bottom: 2px solid var(--border-base);
+            text-align: left;
+        }
+
         .vulnerability-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 2rem; }
         .vuln-card { background: rgba(10, 15, 29, 0.95); border: 1px solid var(--border-base); padding: 2.3rem 2.2rem; border-radius: 10px; border-left: 4px solid var(--color-purple); box-shadow: 0 10px 25px rgba(0,0,0,0.35); text-align: left; }
         .vuln-title { font-family: 'Montserrat', sans-serif; font-size: 1.3rem; font-weight: 900; color: var(--text-main); margin-bottom: 0.9rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-base); letter-spacing: 0.5px; text-transform: uppercase; }
@@ -598,7 +612,7 @@
             .summary-title, .section-title, .flow-title { font-size: 1.8rem; }
             .triad-grid, .adaptation-grid { grid-template-columns: 1fr; }
             .insight-box, .hero-sequence-box, .flow-mechanics-box, .pillars-inset-box { padding: 1.5rem; margin: 2rem 15px; }
-            .hero-sequence-header, .hero-section-header { font-size: 1.2rem; }
+            .hero-sequence-header, .hero-section-header, .guardrails-sub-header { font-size: 1.2rem; }
             .vulnerability-grid { grid-template-columns: 1fr; }
             .polymorphic-box, .prelude-box { padding: 2.5rem 1.5rem; }
         }
@@ -981,55 +995,52 @@
                 </ul>
             </div>
 
-            <!-- PART B: TRANSITION INTO THE 5 ENTERPRISE GUARDRAILS -->
+            <!-- PART B: MATCHING HEADER & THE 5 ENTERPRISE GUARDRAILS -->
+            <div class="guardrails-sub-header">[TRANSLATING AI SYSTEMS ENGINEERING INTO CODE: THE 5 ENTERPRISE GUARDRAILS]</div>
+
             <p class="intro-text" style="margin-bottom: 3rem;">
-                While the four AI Systems Engineering pillars above govern how the AI behaves across the 7-phase conversation, I translated those principles into <span class="bullet-lead">five specific Enterprise Guardrails</span> to lock down the actual infrastructure code generated in Phase 3 and Phase 4. Enforced at runtime by the Execution Triad and formally scored in my Phase 5 Audit Results Ledger, these five built-in safety locks prevent the five most common security failures in automated cloud deployments:
+                While the four AI Systems Engineering pillars above govern how the AI behaves across the 7-phase conversation, I translated those standards—alongside specific controls from the OWASP Top 10 for LLMs and the NIST AI Risk Management Framework—into <span class="bullet-lead">five concrete Enterprise Guardrails</span> inside the generated code itself. Enforced at runtime by the Execution Triad and formally scored as [PASS] in my Phase 5 Audit Results Ledger, each guardrail translates a core AI engineering standard into a hard cloud security lock:
             </p>
 
             <div class="vulnerability-grid">
                 
                 <div class="vuln-card">
-                    <h3 class="vuln-title">1. Secret &amp; Credential Protection (Routing IDs Go In; Secrets Stay Out)</h3>
-                    <p class="vuln-lead">Translates Bounded Autonomy into strict credential isolation—separating non-secret cloud routing addresses from sensitive passwords and tokens so my credentials never touch the AI chat, terminal history, or GitHub.</p>
+                    <h3 class="vuln-title">1. Secret &amp; Credential Protection (Data Loss Prevention &amp; Context Leakage)</h3>
                     <ul class="step-sublist">
-                        <li><span class="bullet-lead">Non-Secret Routing IDs Are Safe to Use:</span> Just like a street address, non-secret routing identifiers—such as my Azure Tenant ID, Subscription ID, Resource Group name, and repository name—are pulled via terminal lookups and used during the session so the AI writes 100% finished code with zero blank placeholders.</li>
-                        <li><span class="bullet-lead">Zero Passwords &amp; Invisible Terminal Typing:</span> Passwordless 60-minute OIDC logins eliminate saved client secrets completely. Whenever I need to enter a personal access token in my local terminal during setup, my runbook mandates invisible password input mode so the characters never appear on screen or get saved in command history.</li>
+                        <li><span class="bullet-lead">The AI Engineering Principle (OWASP LLM06: Sensitive Information Disclosure &amp; NIST Privacy):</span> In AI systems engineering, feeding live passwords or private keys into a model's context window—or echoing them in plain text—creates an immediate credential leak risk.</li>
+                        <li><span class="bullet-lead">How My Guardrail Enforces It in Code (Phases 1, 2 &amp; 3):</span> I separate non-secret cloud routing addresses from private secrets. Using ReAct terminal lookups, I pull safe routing IDs—like my Tenant ID, Subscription ID, Resource Group, and repository name—so the AI writes 100% finished code with zero blank placeholders, while passwordless 60-minute OIDC eliminates client secrets and invisible terminal typing keeps personal tokens off the screen and out of GitHub.</li>
                     </ul>
                 </div>
 
                 <div class="vuln-card">
-                    <h3 class="vuln-title">2. Existing Asset Protection (Brownfield Read-Only vs. Greenfield Locks)</h3>
-                    <p class="vuln-lead">Physically prevents the AI from generating scripts that accidentally overwrite, recreate, or delete live cloud infrastructure.</p>
+                    <h3 class="vuln-title">2. Existing Asset Protection (Destructive State Prevention &amp; Idempotency)</h3>
                     <ul class="step-sublist">
-                        <li><span class="bullet-lead">Read-Only Lookups for Existing Brownfield Resources:</span> When I connect a pipeline to an existing Key Vault, Storage Account, or database, my System Directive forces the code into read-only lookup mode so the script connects to the existing resource without having permission to modify or replace it.</li>
-                        <li><span class="bullet-lead">Deletion Locks for Brand-New Greenfield Builds:</span> When I build brand-new cloud resources from scratch, the machine automatically attaches a deletion-prevention lock to the resource and requires permanent state storage so a closed terminal window can never wipe out my tracking file.</li>
+                        <li><span class="bullet-lead">The AI Engineering Principle (OWASP LLM08: Excessive Agency &amp; NIST Risk Control):</span> An unconstrained AI model asked to connect to a cloud resource will often generate creation commands that accidentally overwrite, recreate, or delete existing production infrastructure.</li>
+                        <li><span class="bullet-lead">How My Guardrail Enforces It in Code (Phases 2 &amp; 3):</span> My System Directive constrains the AI's action space based on my Infrastructure State. When I connect to existing Brownfield vaults or databases, it forces the code into read-only lookup mode so my live resources cannot be modified; when I build brand-new Greenfield resources, it attaches a deletion-prevention lock and permanent state storage.</li>
                     </ul>
                 </div>
 
                 <div class="vuln-card">
-                    <h3 class="vuln-title">3. Stopping "The Contributor Trap" (Single-Asset Data Roles Only)</h3>
-                    <p class="vuln-lead">Blocks the common AI shortcut of granting broad administrative roles like Owner or Contributor just to make a pipeline deployment succeed quickly.</p>
+                    <h3 class="vuln-title">3. Stopping "The Contributor Trap" (Single-Asset Data-Plane Scope)</h3>
                     <ul class="step-sublist">
-                        <li><span class="bullet-lead">Management Roles Strictly Blocked:</span> Giving an automation pipeline Contributor access is like giving a delivery driver the master keys to remodel the building just to drop off one package. My System Directive blocks all broad management-plane roles across the board.</li>
-                        <li><span class="bullet-lead">Locked to One Single Vault or Database:</span> I restrict permissions strictly to the specific data action required—such as reading secrets from one Key Vault or reading blobs from one Storage Account—and lock them to that single resource's exact ID number.</li>
+                        <li><span class="bullet-lead">The AI Engineering Principle (OWASP LLM08: Excessive Agency — Over-Permissioning):</span> Because probabilistic language models optimize for making code run without errors, an untethered AI will frequently grant broad administrative roles like Owner or Contributor as a shortcut.</li>
+                        <li><span class="bullet-lead">How My Guardrail Enforces It in Code (Phases 3 &amp; 5):</span> Giving an automation pipeline Contributor access is like giving a delivery driver the master keys to remodel the building just to drop off one package. My System Directive blocks all broad management-plane roles and locks permissions strictly to the exact data action required on one single Key Vault, Storage Account, or database ID.</li>
                     </ul>
                 </div>
 
                 <div class="vuln-card">
-                    <h3 class="vuln-title">4. Supply Chain Version Pinning &amp; Clean API Formatting</h3>
-                    <p class="vuln-lead">Protects my automated builds from breaking or pulling unverified third-party code when cloud providers push unexpected package updates.</p>
+                    <h3 class="vuln-title">4. Supply Chain Version Pinning &amp; Schema Integrity</h3>
                     <ul class="step-sublist">
-                        <li><span class="bullet-lead">Locked-In Provider &amp; Pipeline Versions:</span> I reject open-ended version tags (like "latest") because an overnight software update can break a pipeline or introduce a vulnerability. Every Terraform provider, Bicep resource definition, and pipeline login action in my code is pinned to an exact, verified version number.</li>
-                        <li><span class="bullet-lead">Pure Language Formatting:</span> When I generate native PowerShell REST API scripts, the machine enforces Microsoft's exact REST formatting rules and prevents the AI from mixing in Terraform-style code words that would cause a direct API call to fail.</li>
+                        <li><span class="bullet-lead">The AI Engineering Principle (OWASP LLM05: Supply Chain Vulnerabilities &amp; Anti-Hallucination):</span> Left unchecked, generative AI models will use floating version tags (like "latest") that pull unverified third-party updates, or hallucinate invalid API properties by mixing different code languages together.</li>
+                        <li><span class="bullet-lead">How My Guardrail Enforces It in Code (Phase 3):</span> My System Directive pins every Terraform provider, Azure Bicep resource API, and CI/CD pipeline login action to an exact, verified version number—and enforces strict native Microsoft Graph JSON formatting on PowerShell REST API builds so Terraform code words never bleed into direct API calls.</li>
                     </ul>
                 </div>
 
                 <div class="vuln-card">
-                    <h3 class="vuln-title">5. Pipeline Log Token Masking (Scrubbing Tokens from Console Screens)</h3>
-                    <p class="vuln-lead">Ensures that even temporary 60-minute OIDC tokens and retrieved vault secrets are scrubbed in memory before a single line can print into shared CI/CD console logs.</p>
+                    <h3 class="vuln-title">5. Pipeline Log Token Masking (Runtime Output Scrubbing)</h3>
                     <ul class="step-sublist">
-                        <li><span class="bullet-lead">Automatic Asterisk Scrubbing in Memory:</span> Before my Phase 4 test pipeline reads a secret or token into memory, the workflow automatically turns on runtime log masking so the pipeline server replaces any sensitive text with asterisks (***) before a single line prints to the screen.</li>
-                        <li><span class="bullet-lead">Verified in My Final Audit Results Ledger:</span> During Phase 5, my Audit Results Ledger explicitly checks that both invisible terminal typing and automatic pipeline log masking are active before marking this guardrail as passed.</li>
+                        <li><span class="bullet-lead">The AI Engineering Principle (OWASP LLM02: Insecure Output Handling &amp; LLM06):</span> Even when a system uses short-lived tokens, allowing an AI-generated pipeline script to print runtime variables directly to a shared console screen exposes sensitive tokens and vault secrets in plain text.</li>
+                        <li><span class="bullet-lead">How My Guardrail Enforces It in Code (Phases 4 &amp; 5):</span> Before my Phase 4 validation pipeline reads a secret or 60-minute OIDC token into memory, my System Directive injects active runtime log masking into the workflow so the runner scrubs any sensitive string with asterisks (***) before a single line prints to the console—a control I explicitly verify in my Phase 5 Audit Results Ledger.</li>
                     </ul>
                 </div>
 

@@ -78,7 +78,33 @@
         .hero { padding: 180px 20px 80px; text-align: center; border-bottom: 1px solid var(--border-base); }
         .hero-title-container { display: flex; align-items: center; justify-content: center; margin-bottom: 28px; }
         .hero-title { font-family: 'Montserrat', sans-serif; font-size: 4rem; font-weight: 900; letter-spacing: 3px; color: var(--text-main); text-transform: uppercase; }
-        .hero-subtitle { font-size: 1.28rem; color: var(--text-main); font-weight: 600; max-width: 1050px; margin: 0 auto 2.2rem; line-height: 1.8; text-align: left; }
+        .hero-subtitle { font-size: 1.28rem; color: var(--text-main); font-weight: 600; max-width: 1050px; margin: 0 auto 1.5rem; line-height: 1.8; text-align: left; }
+
+        /* ================= HERO CORE ATTRIBUTE BULLETS ================= */
+        .hero-highlights-list {
+            max-width: 1050px;
+            margin: 0 auto 2.4rem;
+            padding-left: 1.5rem;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .hero-highlights-list li {
+            font-size: 1.2rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.7;
+            padding-left: 0.4rem;
+        }
+        .hero-highlights-list li::marker {
+            color: var(--color-cyan);
+            font-size: 1.25rem;
+        }
+        .bullet-lead {
+            color: var(--color-cyan);
+            font-weight: 800;
+        }
 
         /* ================= 7-STEP HERO INSET BOX ================= */
         .hero-sequence-box {
@@ -88,26 +114,26 @@
             border: 1px solid var(--border-base);
             border-left: 4px solid var(--color-cyan);
             border-radius: 0 10px 10px 0;
-            padding: 2.4rem 2.6rem;
+            padding: 2.5rem 2.6rem;
             text-align: left;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
         }
         .hero-sequence-header {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.05rem;
-            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.45rem;
+            font-weight: 900;
             letter-spacing: 1.5px;
             color: var(--color-cyan);
             text-transform: uppercase;
-            margin-bottom: 1.6rem;
-            padding-bottom: 0.85rem;
-            border-bottom: 1px solid var(--border-base);
+            margin-bottom: 1.75rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border-base);
         }
         .hero-step-list {
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 1.35rem;
+            gap: 1.4rem;
         }
         .hero-step-item {
             font-size: 1.15rem;
@@ -504,6 +530,7 @@
             .summary-title, .section-title, .flow-title { font-size: 1.8rem; }
             .triad-grid, .adaptation-grid { grid-template-columns: 1fr; }
             .insight-box, .hero-sequence-box { padding: 1.5rem; margin: 2rem 15px; }
+            .hero-sequence-header { font-size: 1.2rem; }
             .vulnerability-grid { grid-template-columns: 1fr; }
             .polymorphic-box { padding: 2.5rem 1.5rem; }
         }
@@ -544,39 +571,55 @@
         </div>
 
         <p class="hero-subtitle">
-            Out of the box, generative AI functions as a probabilistic engine—fast and capable, yet prone to guessing cloud resource IDs, inventing settings, or granting overly broad permissions when asked to generate a deployment script all at once. To solve this for Microsoft Entra ID and Azure security deployments, I built a cutting-edge execution architecture grounded in AI systems engineering best practices—tethering that probabilistic AI engine to a master System Directive governed by state-machine gates, live terminal verification, and hard permission locks to make its output deterministic. The result is the Zero Trust Interactive State Machine: a 7-step engineering workflow that guides the build one step at a time, replaces saved pipeline passwords with temporary 60-minute OpenID Connect (OIDC) tokens, and produces mathematically verified Zero Trust configurations alongside the formal audit and compliance records required to prove the live cloud deployment is secure.
+            Out of the box, generative AI functions as a probabilistic engine—fast and capable, yet prone to guessing cloud resource IDs, inventing settings, or granting overly broad permissions when asked to generate a deployment script all at once. To solve this for Microsoft Entra ID and Azure security deployments, I built a cutting-edge execution architecture grounded in AI systems engineering best practices—tethering that probabilistic AI engine to a master System Directive governed by state-machine gates, live terminal verification, and hard permission locks to make its output deterministic. The result is the Zero Trust Interactive State Machine:
         </p>
+
+        <!-- BULLETED CORE ATTRIBUTES OF THE MACHINE -->
+        <ul class="hero-highlights-list">
+            <li>
+                <span class="bullet-lead">Strict Step-by-Step Human Control:</span> Guides the build one phase at a time with mandatory human-in-the-loop halts, preventing the AI from skipping steps or generating unverified code prematurely.
+            </li>
+            <li>
+                <span class="bullet-lead">Passwordless 60-Minute OIDC Federation:</span> Eliminates saved pipeline passwords and static secrets completely, replacing them with temporary 60-minute OpenID Connect (OIDC) tokens locked to your exact repository, branch, and single target vault.
+            </li>
+            <li>
+                <span class="bullet-lead">Mathematically Verified Zero Trust &amp; Audit Proof:</span> Validates live data-plane access through Azure Portal metrics and KQL log queries while automatically generating the formal pre-deployment and post-deployment compliance ledgers required for enterprise security audits.
+            </li>
+            <li>
+                <span class="bullet-lead">Anti-Hallucination Circuit Breaker &amp; Continuous Improvement:</span> Prevents AI guessing spirals during troubleshooting by halting code generation on Attempt #4 to evaluate success probability, logging verified fixes in a Defect &amp; Patch Ledger, and permanently upgrading the System Directive after every session.
+            </li>
+        </ul>
 
         <!-- 7-STEP DETERMINISTIC EXECUTION SEQUENCE INSET BOX -->
         <div class="hero-sequence-box">
             <div class="hero-sequence-header">[THE 7-STEP DETERMINISTIC EXECUTION SEQUENCE]</div>
             <ul class="hero-step-list">
                 <li class="hero-step-item">
-                    <span class="step-label">Step 1 — Selecting the 5 Build Options &amp; Known Environment Details (Interactive Chat — No Code Written Yet):</span> The engineer starts by choosing five core settings for the build: the identity system (Microsoft Entra ID), the automation pipeline (such as GitHub Actions or Azure DevOps), whether the cloud resources already exist or are brand new, the target vault or database, and the code language (Terraform, Azure Bicep, or PowerShell). If the engineer already has their non-secret Azure account IDs, resource group, or repository names on hand, they can provide them right up front in Step 1; if not, the system helps look them up in Step 2.
+                    <span class="step-label">Phase 1 — Boot, Clean Workspace &amp; 5-Coordinate Intake:</span> The engineer initializes an isolated local directory with the five blank deliverable files and locks in the 5 core deployment coordinates: Azure Subscription/Resource Group, Target Data-Plane Asset (Key Vault, Storage, or SQL/Cosmos DB), Execution Agent (AKS, GitHub Actions, Azure DevOps, or GitLab CI), Infrastructure State (Brownfield existing vs. Greenfield net-new), and Deployment Tool (Terraform, Azure Bicep, or PowerShell REST API), plus any of the 35 Day-2 Entra ID security expansions. If the engineer already has all coordinates on hand, the machine locks them in immediately; if any are missing, it provides terminal lookup queries before halting.
                 </li>
                 <li class="hero-step-item">
-                    <span class="step-label">Step 2 — Verifying the Cloud Boundary &amp; Missing IDs (Interactive Chat — No Code Written Yet):</span> Working hand-in-hand with Step 1, this step makes sure every cloud boundary is confirmed before moving forward. If the engineer needs help finding or verifying any missing Azure Tenant, Subscription, or Resource Group IDs, the AI provides simple read-only terminal lookup commands to pull the exact numbers directly from Azure. And if the cloud resources already exist (Brownfield), the system locks the upcoming code into read-only lookup mode so live company infrastructure can never be overwritten or deleted.
+                    <span class="step-label">Phase 2 — Coordinate Lock &amp; Cryptographic Extraction:</span> Working hand-in-hand with Phase 1, the system bridges the cloud boundary and the external pipeline. Instead of relying on fragile guesswork, the AI outputs native terminal scripts to extract the exact backend repository identifiers, canonical character casing, and OIDC Issuer URLs directly from the provider—ensuring the OpenID Connect subject claim is mathematically precise with zero wildcards.
                 </li>
                 <li class="hero-step-item">
-                    <span class="step-label">Step 3 — Locking Down the Machine Identity (Interactive Chat — No Code Written Yet):</span> Configures the workload identity in Microsoft Entra ID so it only accepts logins from inside your own organization. Because an automation pipeline runs in the background without a web browser, web browser logins are turned off completely, and password creation is blocked so there is never a saved secret to leak.
+                    <span class="step-label">Phase 3 — Payload Synthesis &amp; Local Execution:</span> Once the extracted IDs are verified, the AI synthesizes the unified infrastructure-as-code payload and terminal runbook. The generated code enforces a Single-Tenant headless identity with zero client secrets, uses read-only lookups for existing Brownfield resources (or deletion locks for Greenfield), injects a 30-second wait timer to absorb Microsoft Graph sync delays, and restricts permissions strictly to the single target vault's data plane—automatically separating the role assignment into an Azure Portal step if local terminal MFA claims drop.
                 </li>
                 <li class="hero-step-item">
-                    <span class="step-label">Step 4 — Setting Up the Passwordless Trust Rule &amp; Sync Timer (Interactive Chat — No Code Written Yet):</span> Replaces static passwords with a temporary 60-minute OpenID Connect (OIDC) token locked to your exact code repository and branch, blocking wildcards so no other project can sneak in. It also builds an automatic 30-second pause timer into the script so Microsoft's servers finish syncing the new identity before attaching the trust rule, preventing deployment crashes.
+                    <span class="step-label">Phase 4 — Cryptographic Baseline (IAL) &amp; Live Pipeline Validation Bridge:</span> After the infrastructure deploys, the system outputs the Identity Architecture Ledger (identity_architecture_ledger.md) to record the exact deployed coordinates and generates a live validation pipeline or pod manifest. The engineer runs the pipeline to a green checkmark and verifies live data-plane access mathematically in the Azure Portal by confirming the Total Service API Hits metric spike over the last 30 minutes.
                 </li>
                 <li class="hero-step-item">
-                    <span class="step-label">Step 5 — Locking Permissions to a Single Vault (Interactive Chat — No Code Written Yet):</span> Blocks broad administrative roles like Owner or Contributor. Instead, the pipeline is only granted permission to read data inside the one specific vault or database it actually needs to do its job.
+                    <span class="step-label">Phase 5 — Enterprise Compliance Audit (ARL, KQL &amp; DPL):</span> Once the live API spike is confirmed with zero HTTP 403 Forbidden drops, the system generates the formal compliance package: the Audit Results Ledger (audit_results_ledger.md) scoring all four audit gates and the five enterprise guardrails, the asynchronous KQL Telemetry query (kql_telemetry.md) for Log Analytics verification, and the session's Defect &amp; Patch Ledger (patch_ledger.md).
                 </li>
                 <li class="hero-step-item">
-                    <span class="step-label">Step 6 — Generating the Code, Mathematically Verifying Zero Trust &amp; Producing Compliance Evidence (Files &amp; Proof Produced):</span> Only after Steps 1 through 5 are confirmed does the AI generate the finished deployment script alongside the pre-deployment Identity Access Ledger. Once the engineer deploys the code and gets a green checkmark in the terminal and pipeline, an automated verification script queries live Azure APIs to generate the Audit Results Ledger and runs a KQL log query. Together, these verify mathematically that the live cloud configuration is properly locked down (zero passwords, exact 1-to-1 OIDC branch trust, single-vault permissions, and zero access errors) while supplying ready-made documentation for enterprise security audits and compliance checks.
+                    <span class="step-label">Phase 6 — Secure Repository Synchronization:</span> To close out the workspace safely, the machine generates a terminal synchronization script that pulls remote changes first, writes a protective .gitignore file so local state files and credentials never leak to the public repo, and pushes the verified code and audit ledgers to the remote repository.
                 </li>
                 <li class="hero-step-item">
-                    <span class="step-label">Step 7 — The 3-Strike Circuit Breaker &amp; Continuous Improvement (Troubleshooting Loop):</span> If any terminal command hits an unexpected error during deployment, the AI is allowed three attempts to fix it. On the fourth attempt, the Circuit Breaker automatically stops the AI from guessing so the engineer can find the real root cause locally, record the fix in the Defect &amp; Patch Ledger, and permanently update the master System Directive so both the system and the engineer improve with every build.
+                    <span class="step-label">Phase 7 — Session Scorecard, 4-Iteration Circuit Breaker &amp; Continuous Improvement:</span> If any error occurs during deployment, Directive 05 allows up to 3 patch iterations; on Iteration 4, the Circuit Breaker halts code generation completely to prevent the AI from slipping into probabilistic guessing. The AI summarizes the error shifts across the last 3 attempts, calculates an Estimated Probability of Success percentage, and recommends whether to continue or pivot to an alternative architectural pathway so the engineer can make a strategic decision. At session end, Phase 7 outputs an AI Performance Scorecard, extracts every lesson learned from the Defect &amp; Patch Ledger, and compiles the newly upgraded System Directive so both the machine and the engineer grow sharper with each iteration.
                 </li>
             </ul>
         </div>
 
         <p class="hero-subtitle" style="margin-bottom: 0;">
-            By breaking the build into these seven clear steps, nothing is left to guesswork. Every build produces a mathematically verified Zero Trust configuration in the live cloud, backed by a complete, audit-ready compliance trail—the Identity Access Ledger before deployment, the live Audit Results Ledger and KQL log proof after deployment, and the Defect &amp; Patch Ledger to capture lessons learned so both the system and the engineer grow sharper with every iteration.
+            By governing every build through these seven explicit phases, nothing is left to guesswork. Every execution produces a mathematically verified Zero Trust configuration in the live cloud, backed by a complete, audit-ready compliance trail—the Identity Architecture Ledger, the Audit Results Ledger, asynchronous KQL log queries, and the Defect &amp; Patch Ledger—turning every deployment into a repeatable, self-improving engineering asset.
         </p>
         
         <!-- HERO ARCHITECTURAL INSIGHT -->

@@ -348,7 +348,7 @@
         .node-dpl { 
             left: 250px; top: 420px; width: 380px; 
             border: 2px solid var(--color-red); border-left: 6px solid var(--color-red); 
-            background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(244, 63, 94, 0.15) 4px, rgba(244, 63, 94, 0.15) 8px), linear-gradient(135deg, rgba(244, 63, 94, 0.15) 0%, rgba(10, 15, 29, 0.95) 0%), var(--bg-node); 
+            background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(244, 63, 94, 0.15) 4px, rgba(244, 63, 94, 0.15) 8px), linear-gradient(135deg, rgba(244, 63, 94, 0.15) 0%, rgba(10, 15, 29, 0.95) 100%), var(--bg-node); 
             box-shadow: 0 0 25px rgba(244, 63, 94, 0.35), inset 0 0 15px rgba(244, 63, 94, 0.15); 
             animation: ai-scanlines 2.5s linear infinite, pulse-red 4s ease-in-out infinite;
         }
@@ -377,33 +377,24 @@
         .inline-link { color: var(--color-cyan); text-decoration: none; border-bottom: 1px solid var(--color-cyan); font-weight: 800; transition: color 0.3s ease, border-color 0.3s ease; }
         .inline-link:hover { color: #ffffff; border-color: #ffffff; }
 
-        /* ================= SECTION 4: ENTERPRISE GUARDRAILS ================= */
+        /* ================= SECTION 4: ENTERPRISE GUARDRAILS & 4 PILLARS ================= */
         .guardrail-container { max-width: 1300px; margin: 0 auto; padding: 4rem 20px 3rem; }
         
         .prelude-box { background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-base); border-top: 4px solid var(--color-blue); border-radius: 12px; padding: 3.5rem; box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
         .section-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 900; color: var(--color-cyan); text-transform: uppercase; margin-bottom: 1.8rem; letter-spacing: 1px; text-align: center; }
         
-        .intro-text { font-size: 1.25rem; color: var(--text-main); font-weight: 600; line-height: 1.8; margin-bottom: 1.5rem; text-align: left; max-width: 1050px; margin-left: auto; margin-right: auto; }
+        .intro-text { font-size: 1.25rem; color: var(--text-main); font-weight: 600; line-height: 1.8; margin-bottom: 2rem; text-align: left; max-width: 1050px; margin-left: auto; margin-right: auto; }
 
-        .guardrail-core-rules-list {
+        .pillars-inset-box {
             max-width: 1050px;
-            margin: 0 auto 2rem;
-            padding-left: 1.5rem;
+            margin: 0 auto 2.8rem;
+            background: rgba(10, 15, 29, 0.95);
+            border: 1px solid var(--border-base);
+            border-left: 4px solid var(--color-cyan);
+            border-radius: 0 10px 10px 0;
+            padding: 2.4rem 2.5rem;
             text-align: left;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-        .guardrail-core-rules-list li {
-            font-size: 1.15rem;
-            color: var(--text-main);
-            font-weight: 600;
-            line-height: 1.7;
-            padding-left: 0.4rem;
-        }
-        .guardrail-core-rules-list li::marker {
-            color: var(--color-cyan);
-            font-size: 1.2rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
         }
 
         .vulnerability-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 2rem; }
@@ -606,7 +597,7 @@
             .hero-title { font-size: 2.8rem; }
             .summary-title, .section-title, .flow-title { font-size: 1.8rem; }
             .triad-grid, .adaptation-grid { grid-template-columns: 1fr; }
-            .insight-box, .hero-sequence-box, .flow-mechanics-box { padding: 1.5rem; margin: 2rem 15px; }
+            .insight-box, .hero-sequence-box, .flow-mechanics-box, .pillars-inset-box { padding: 1.5rem; margin: 2rem 15px; }
             .hero-sequence-header, .hero-section-header { font-size: 1.2rem; }
             .vulnerability-grid { grid-template-columns: 1fr; }
             .polymorphic-box, .prelude-box { padding: 2.5rem 1.5rem; }
@@ -769,7 +760,7 @@
             <div class="jump-links">
                 <a href="#execution-triad">1. The Execution Triad</a>
                 <a href="#execution-flow">2. System Topology &amp; Runtime Mechanics</a>
-                <a href="#enterprise-guardrails">3. The 5 Safety Guardrails</a>
+                <a href="#enterprise-guardrails">3. The 4 AI Pillars &amp; 5 Safety Guardrails</a>
                 <a href="#environment-agnostic">4. 72 Build Combinations</a>
             </div>
         </div>
@@ -946,57 +937,78 @@
         </div>
     </section>
 
-    <!-- ================= SECTION 4: ENTERPRISE GUARDRAILS (BULLETED HIERARCHY ALIGNED WITH BLUEPRINT.HTML) ================= -->
+    <!-- ================= SECTION 4: THE 4 AI ENGINEERING PILLARS & THE 5 ENTERPRISE GUARDRAILS ================= -->
     <div class="guardrail-container" id="enterprise-guardrails">
         <div class="prelude-box">
-            <h2 class="section-title">Enterprise Guardrails: The 5 Built-In Safety Locks</h2>
+            <h2 class="section-title">From AI Systems Engineering to Code: The 4 Pillars &amp; The 5 Enterprise Guardrails</h2>
             
             <p class="intro-text">
-                To govern generative AI safely in cloud security deployments, I engineered my master System Directive around four core AI Systems Engineering rules:
+                Before an AI model can safely write cloud security code, the system governing the AI must be engineered properly. To build the master System Directive for the Zero Trust Interactive State Machine, I grounded the architecture in <span class="bullet-lead">four globally recognized AI Systems Engineering standards</span>—separating what each standard defines in the broader AI industry from how I wired it into my workflow at the keyboard:
             </p>
 
-            <ul class="guardrail-core-rules-list">
-                <li>
-                    <span class="bullet-lead">Agentic Patterns (ReAct Framework):</span> Forces live terminal lookups to pull verified cloud IDs instead of letting the AI guess in a vacuum.
-                </li>
-                <li>
-                    <span class="bullet-lead">Bounded Autonomy (OWASP LLM08):</span> Prevents the AI from holding direct cloud permissions or running destructive actions on its own.
-                </li>
-                <li>
-                    <span class="bullet-lead">Human-in-the-Loop Governance (NIST AI RMF):</span> Requires my explicit verification and sign-off at every architectural gate before advancing.
-                </li>
-                <li>
-                    <span class="bullet-lead">Cognitive Circuit Breaking:</span> Halts endless troubleshooting loops on Attempt #4 and forces an AI self-audit before any new code can be written.
-                </li>
-            </ul>
+            <!-- PART A: THE 4 PILLARS OF THE SYSTEM DIRECTIVE -->
+            <div class="pillars-inset-box">
+                <div class="hero-sequence-header">[THE 4 AI SYSTEMS ENGINEERING PILLARS OF MY SYSTEM DIRECTIVE]</div>
+                <ul class="hero-step-list">
+                    <li class="hero-step-item">
+                        <span class="step-label">Pillar 1 — Agentic Patterns (The ReAct Framework):</span>
+                        <ul class="step-sublist">
+                            <li><span class="bullet-lead">The AI Systems Engineering Standard:</span> Developed by researchers at Princeton and Google Brain (Yao et al.), the ReAct (Reasoning and Acting) methodology prevents language models from guessing in a vacuum by forcing them to alternate between reasoning steps and checking real external data sources.</li>
+                            <li><span class="bullet-lead">How I Applied It in My System Directive:</span> Instead of letting the AI guess cloud resource names or write a deployment script in one shot, Phases 1 and 2 force the AI to pause, give me native terminal lookup commands, wait for me to paste back the real console output, and only generate code using verified live IDs.</li>
+                        </ul>
+                    </li>
+                    <li class="hero-step-item">
+                        <span class="step-label">Pillar 2 — Bounded Autonomy (OWASP Top 10 for LLMs — LLM08: Excessive Agency):</span>
+                        <ul class="step-sublist">
+                            <li><span class="bullet-lead">The AI Systems Engineering Standard:</span> The global OWASP application security standard for artificial intelligence, which mandates strict permission boundaries so an AI model cannot exercise unchecked agency or run destructive commands across enterprise systems.</li>
+                            <li><span class="bullet-lead">How I Applied It in My System Directive:</span> The AI Engine has zero direct access to my cloud account and is locked inside hard permission boundaries—requiring read-only lookups for existing resources, single-vault data permissions, and a clean handoff to the Azure web portal whenever a role assignment requires interactive multi-factor authentication.</li>
+                        </ul>
+                    </li>
+                    <li class="hero-step-item">
+                        <span class="step-label">Pillar 3 — Human-in-the-Loop Governance (NIST AI Risk Management Framework):</span>
+                        <ul class="step-sublist">
+                            <li><span class="bullet-lead">The AI Systems Engineering Standard:</span> The U.S. federal standard (NIST AI RMF 1.0) establishing the "Govern" function—requiring continuous human oversight, risk control, and clear human accountability at every critical decision point in a high-impact AI system.</li>
+                            <li><span class="bullet-lead">How I Applied It in My System Directive:</span> My System Directive forbids the AI from skipping ahead or stacking manual steps. The machine must halt at every single phase—from locking in coordinates and extracting OIDC strings to running the live pipeline test and checking Azure Portal metrics—waiting for my explicit verification and sign-off before moving forward.</li>
+                        </ul>
+                    </li>
+                    <li class="hero-step-item">
+                        <span class="step-label">Pillar 4 — Cognitive Circuit Breaking (LLM Hallucination &amp; Drift Prevention):</span>
+                        <ul class="step-sublist">
+                            <li><span class="bullet-lead">The AI Systems Engineering Standard:</span> Grounded in foundational AI reliability research (Huang et al.), cognitive circuit breaking stops language models from drifting off their instructions and repeating false guesses ("hallucination spirals") during long, multi-turn troubleshooting sessions.</li>
+                            <li><span class="bullet-lead">How I Applied It in My System Directive:</span> During troubleshooting, my machine tracks every fix attempt on a strict counter. If an error is not resolved after 3 tries, Attempt #4 trips a hard Circuit Breaker that forbids the AI from writing new code—forcing it to audit its own three prior attempts and calculate an Estimated Probability of Success percentage so I can decide whether to stay the course or pivot, before logging the proven fix in my Defect &amp; Patch Ledger.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
 
+            <!-- PART B: TRANSITION INTO THE 5 ENTERPRISE GUARDRAILS -->
             <p class="intro-text" style="margin-bottom: 3rem;">
-                To put those four AI engineering standards into practice for Microsoft Entra ID and Azure, I translated them into <span class="bullet-lead">five concrete Enterprise Guardrails</span> inside the System Directive. Implemented at runtime by the Execution Triad and formally scored in my post-deployment Audit Results Ledger, these five safety locks prevent the five most common failures in automated cloud builds:
+                While the four AI Systems Engineering pillars above govern how the AI behaves across the 7-phase conversation, I translated those principles into <span class="bullet-lead">five specific Enterprise Guardrails</span> to lock down the actual infrastructure code generated in Phase 3 and Phase 4. Enforced at runtime by the Execution Triad and formally scored in my Phase 5 Audit Results Ledger, these five built-in safety locks prevent the five most common security failures in automated cloud deployments:
             </p>
 
             <div class="vulnerability-grid">
                 
                 <div class="vuln-card">
                     <h3 class="vuln-title">1. Secret &amp; Credential Protection (Routing IDs Go In; Secrets Stay Out)</h3>
-                    <p class="vuln-lead">Enforces Bounded Autonomy and Data Loss Prevention by separating non-secret cloud routing addresses from actual sensitive passwords and tokens so my credentials never touch the AI chat, terminal history, or GitHub.</p>
+                    <p class="vuln-lead">Translates Bounded Autonomy into strict credential isolation—separating non-secret cloud routing addresses from sensitive passwords and tokens so my credentials never touch the AI chat, terminal history, or GitHub.</p>
                     <ul class="step-sublist">
-                        <li><span class="bullet-lead">Non-Secret Routing IDs Are Safe to Use:</span> Just like a street address, non-secret routing identifiers—such as my Azure Tenant ID, Subscription ID, Resource Group name, and repository name—are safely pulled via terminal lookups and used during the build so the AI can write 100% finished code without leaving blank placeholders.</li>
-                        <li><span class="bullet-lead">Zero Passwords &amp; Invisible Terminal Typing:</span> Passwordless 60-minute OIDC logins eliminate saved client secrets completely. And whenever I need to enter a personal access token in my local terminal during setup, my terminal instructions use invisible password input mode so the characters never appear on my screen or get saved in my command history.</li>
+                        <li><span class="bullet-lead">Non-Secret Routing IDs Are Safe to Use:</span> Just like a street address, non-secret routing identifiers—such as my Azure Tenant ID, Subscription ID, Resource Group name, and repository name—are pulled via terminal lookups and used during the session so the AI writes 100% finished code with zero blank placeholders.</li>
+                        <li><span class="bullet-lead">Zero Passwords &amp; Invisible Terminal Typing:</span> Passwordless 60-minute OIDC logins eliminate saved client secrets completely. Whenever I need to enter a personal access token in my local terminal during setup, my runbook mandates invisible password input mode so the characters never appear on screen or get saved in command history.</li>
                     </ul>
                 </div>
 
                 <div class="vuln-card">
                     <h3 class="vuln-title">2. Existing Asset Protection (Brownfield Read-Only vs. Greenfield Locks)</h3>
-                    <p class="vuln-lead">Physically prevents the AI from writing scripts that accidentally overwrite, recreate, or delete live cloud infrastructure.</p>
+                    <p class="vuln-lead">Physically prevents the AI from generating scripts that accidentally overwrite, recreate, or delete live cloud infrastructure.</p>
                     <ul class="step-sublist">
-                        <li><span class="bullet-lead">Read-Only Lookups for Existing Brownfield Resources:</span> When I connect a pipeline to an existing Key Vault, Storage Account, or database, my System Directive forces the code into read-only lookup mode so the script can connect to the existing resource without having permission to change or replace it.</li>
-                        <li><span class="bullet-lead">Deletion Locks for Brand-New Greenfield Builds:</span> When I create brand-new cloud resources from scratch, the machine automatically attaches a deletion-prevention lock to the resource and requires permanent state storage so a closed terminal window can never wipe out my tracking file.</li>
+                        <li><span class="bullet-lead">Read-Only Lookups for Existing Brownfield Resources:</span> When I connect a pipeline to an existing Key Vault, Storage Account, or database, my System Directive forces the code into read-only lookup mode so the script connects to the existing resource without having permission to modify or replace it.</li>
+                        <li><span class="bullet-lead">Deletion Locks for Brand-New Greenfield Builds:</span> When I build brand-new cloud resources from scratch, the machine automatically attaches a deletion-prevention lock to the resource and requires permanent state storage so a closed terminal window can never wipe out my tracking file.</li>
                     </ul>
                 </div>
 
                 <div class="vuln-card">
-                    <h3 class="vuln-title">3. Blocking "The Contributor Trap" (Single-Asset Data Roles Only)</h3>
-                    <p class="vuln-lead">Stops the common AI shortcut of granting broad administrative roles like Owner or Contributor just to make a pipeline deployment succeed quickly.</p>
+                    <h3 class="vuln-title">3. Stopping "The Contributor Trap" (Single-Asset Data Roles Only)</h3>
+                    <p class="vuln-lead">Blocks the common AI shortcut of granting broad administrative roles like Owner or Contributor just to make a pipeline deployment succeed quickly.</p>
                     <ul class="step-sublist">
                         <li><span class="bullet-lead">Management Roles Strictly Blocked:</span> Giving an automation pipeline Contributor access is like giving a delivery driver the master keys to remodel the building just to drop off one package. My System Directive blocks all broad management-plane roles across the board.</li>
                         <li><span class="bullet-lead">Locked to One Single Vault or Database:</span> I restrict permissions strictly to the specific data action required—such as reading secrets from one Key Vault or reading blobs from one Storage Account—and lock them to that single resource's exact ID number.</li>
@@ -1004,7 +1016,7 @@
                 </div>
 
                 <div class="vuln-card">
-                    <h3 class="vuln-title">4. Pinned Provider Versions &amp; Clean API Formatting (Supply Chain Safety)</h3>
+                    <h3 class="vuln-title">4. Supply Chain Version Pinning &amp; Clean API Formatting</h3>
                     <p class="vuln-lead">Protects my automated builds from breaking or pulling unverified third-party code when cloud providers push unexpected package updates.</p>
                     <ul class="step-sublist">
                         <li><span class="bullet-lead">Locked-In Provider &amp; Pipeline Versions:</span> I reject open-ended version tags (like "latest") because an overnight software update can break a pipeline or introduce a vulnerability. Every Terraform provider, Bicep resource definition, and pipeline login action in my code is pinned to an exact, verified version number.</li>
@@ -1013,11 +1025,11 @@
                 </div>
 
                 <div class="vuln-card">
-                    <h3 class="vuln-title">5. Log Token Masking (Hiding Temporary Tokens in Shared Pipeline Logs)</h3>
+                    <h3 class="vuln-title">5. Pipeline Log Token Masking (Scrubbing Tokens from Console Screens)</h3>
                     <p class="vuln-lead">Ensures that even temporary 60-minute OIDC tokens and retrieved vault secrets are scrubbed in memory before a single line can print into shared CI/CD console logs.</p>
                     <ul class="step-sublist">
-                        <li><span class="bullet-lead">Automatic Asterisk Scrubbing in Memory:</span> Before my Phase 4 test pipeline reads a secret or token into memory, the workflow automatically turns on log masking so the pipeline server replaces any sensitive text with asterisks (***) before a single line can print to the screen.</li>
-                        <li><span class="bullet-lead">Verified in My Final Audit Results Ledger:</span> During Phase 5, my Audit Results Ledger checks that both invisible terminal typing and automatic pipeline log masking are active before marking this guardrail as passed.</li>
+                        <li><span class="bullet-lead">Automatic Asterisk Scrubbing in Memory:</span> Before my Phase 4 test pipeline reads a secret or token into memory, the workflow automatically turns on runtime log masking so the pipeline server replaces any sensitive text with asterisks (***) before a single line prints to the screen.</li>
+                        <li><span class="bullet-lead">Verified in My Final Audit Results Ledger:</span> During Phase 5, my Audit Results Ledger explicitly checks that both invisible terminal typing and automatic pipeline log masking are active before marking this guardrail as passed.</li>
                     </ul>
                 </div>
 

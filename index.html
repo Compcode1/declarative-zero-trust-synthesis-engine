@@ -76,14 +76,29 @@
 
         /* ================= HERO HEADER ================= */
         .hero { padding: 180px 20px 80px; text-align: center; border-bottom: 1px solid var(--border-base); }
-        .hero-title-container { display: flex; align-items: center; justify-content: center; margin-bottom: 28px; }
+        .hero-title-container { display: flex; align-items: center; justify-content: center; margin-bottom: 36px; }
         .hero-title { font-family: 'Montserrat', sans-serif; font-size: 4rem; font-weight: 900; letter-spacing: 3px; color: var(--text-main); text-transform: uppercase; }
-        .hero-subtitle { font-size: 1.28rem; color: var(--text-main); font-weight: 600; max-width: 1050px; margin: 0 auto 1.5rem; line-height: 1.8; text-align: left; }
+        
+        .hero-section-header {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.45rem;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            color: var(--color-cyan);
+            text-transform: uppercase;
+            max-width: 1050px;
+            margin: 2.2rem auto 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--border-base);
+            text-align: left;
+        }
+
+        .hero-subtitle { font-size: 1.25rem; color: var(--text-main); font-weight: 600; max-width: 1050px; margin: 0 auto 1.5rem; line-height: 1.8; text-align: left; }
 
         /* ================= HERO CORE ATTRIBUTE BULLETS ================= */
         .hero-highlights-list {
             max-width: 1050px;
-            margin: 0 auto 2.4rem;
+            margin: 0 auto 2.6rem;
             padding-left: 1.5rem;
             text-align: left;
             display: flex;
@@ -91,7 +106,7 @@
             gap: 0.85rem;
         }
         .hero-highlights-list li {
-            font-size: 1.2rem;
+            font-size: 1.18rem;
             color: var(--text-main);
             font-weight: 600;
             line-height: 1.75;
@@ -109,7 +124,7 @@
         /* ================= 7-STEP HERO INSET BOX ================= */
         .hero-sequence-box {
             max-width: 1050px;
-            margin: 2.2rem auto;
+            margin: 2.4rem auto;
             background: rgba(10, 15, 29, 0.95);
             border: 1px solid var(--border-base);
             border-left: 4px solid var(--color-cyan);
@@ -571,7 +586,7 @@
             .summary-title, .section-title, .flow-title { font-size: 1.8rem; }
             .triad-grid, .adaptation-grid { grid-template-columns: 1fr; }
             .insight-box, .hero-sequence-box, .flow-mechanics-box { padding: 1.5rem; margin: 2rem 15px; }
-            .hero-sequence-header { font-size: 1.2rem; }
+            .hero-sequence-header, .hero-section-header { font-size: 1.2rem; }
             .vulnerability-grid { grid-template-columns: 1fr; }
             .polymorphic-box, .prelude-box { padding: 2.5rem 1.5rem; }
         }
@@ -605,14 +620,39 @@
         </ul>
     </nav>
 
-    <!-- ================= SECTION 1: HERO HEADER & 7-STEP SEQUENCE ================= -->
+    <!-- ================= SECTION 1: HERO HEADER, 4 GATES & 7-STEP SEQUENCE ================= -->
     <header class="hero">
         <div class="hero-title-container">
             <h1 class="hero-title">INTELLIGENT ARCHITECTURE</h1>
         </div>
 
+        <!-- PART 1: THE ARCHITECTURAL FOUNDATION (THE 4 GATES) -->
+        <div class="hero-section-header">[THE ARCHITECTURAL FOUNDATION: THE 4 GATES OF MACHINE IDENTITY]</div>
+        
         <p class="hero-subtitle">
-            Out of the box, generative AI functions as a probabilistic engine—fast and capable, yet prone to guessing cloud resource IDs, inventing settings, or granting overly broad permissions when asked to generate a deployment script all at once. To solve this for Microsoft Entra ID and Azure security deployments, I engineered a state-driven execution architecture grounded in AI systems engineering best practices—tethering that probabilistic AI engine to a master System Directive governed by state-machine gates, live terminal verification, and hard permission locks to make its output deterministic. The result is the <span class="bullet-lead">Zero Trust Interactive State Machine:</span>
+            At its core, securing any non-human workload or automation pipeline in Microsoft Entra ID and Azure—regardless of the CI/CD platform, database, or code language—comes down to configuring a predictable, four-part engineering foundation: <span class="bullet-lead">The Four Architectural Gates of Machine Identity.</span> While cloud tools and enterprise environments change constantly, every secure zero-trust workload deployment must lock down these four gates in sequence:
+        </p>
+
+        <ul class="hero-highlights-list">
+            <li>
+                <span class="bullet-lead">Gate 1 — Boundary (Where It Lives):</span> Locking the exact Azure Tenant ID, Subscription ID, and Resource Group perimeter—while enforcing read-only lookups on existing Brownfield infrastructure so live resources are never overwritten.
+            </li>
+            <li>
+                <span class="bullet-lead">Gate 2 — Identity (Who the Machine Is):</span> Provisioning a dedicated, Single-Tenant headless Application and Service Principal in Microsoft Entra ID with interactive browser logins disabled and zero saved passwords.
+            </li>
+            <li>
+                <span class="bullet-lead">Gate 3 — Federation (How It Authenticates):</span> Replacing static secrets with a passwordless, 60-minute OpenID Connect (OIDC) token exchange locked character-for-character to a single repository and branch with zero wildcards.
+            </li>
+            <li>
+                <span class="bullet-lead">Gate 4 — Access (What It Can Touch):</span> Blocking broad Owner or Contributor management roles and restricting permissions strictly to the data plane of the single target Key Vault, Storage Account, or database.
+            </li>
+        </ul>
+
+        <!-- PART 2: THE AI SYSTEMS ENGINEERING SOLUTION -->
+        <div class="hero-section-header">[THE AI SYSTEMS ENGINEERING SOLUTION: DETERMINISTIC EXECUTION]</div>
+
+        <p class="hero-subtitle">
+            Because these four architectural gates follow a strict, predictable logic, they can be engineered into a repeatable system—provided the automation engine never skips a gate. Out of the box, however, generative AI functions as a probabilistic engine—fast and capable, yet prone to guessing cloud resource IDs, inventing settings, or granting overly broad permissions when asked to generate a deployment script all at once. To solve this for Microsoft Entra ID and Azure security deployments, I engineered a state-driven execution architecture grounded in AI systems engineering best practices—tethering that probabilistic AI engine to a master System Directive governed by state-machine gates, live terminal verification, and hard permission locks to make its output deterministic. The result is the <span class="bullet-lead">Zero Trust Interactive State Machine:</span>
         </p>
 
         <!-- BULLETED CORE ATTRIBUTES OF THE MACHINE -->
@@ -631,7 +671,7 @@
             </li>
         </ul>
 
-        <!-- 7-STEP DETERMINISTIC EXECUTION SEQUENCE INSET BOX -->
+        <!-- PART 3: 7-STEP DETERMINISTIC EXECUTION SEQUENCE INSET BOX -->
         <div class="hero-sequence-box">
             <div class="hero-sequence-header">[THE 7-STEP DETERMINISTIC EXECUTION SEQUENCE]</div>
             <ul class="hero-step-list">
@@ -689,7 +729,7 @@
         </div>
 
         <p class="hero-subtitle" style="margin-bottom: 0;">
-            By governing every build through these seven explicit phases, nothing is left to guesswork. Every execution produces a mathematically verified Zero Trust configuration in the live cloud, backed by a complete, audit-ready compliance trail—the Identity Architecture Ledger, the Audit Results Ledger, asynchronous KQL log queries, and the Defect &amp; Patch Ledger—turning every deployment into a repeatable, self-improving engineering asset.
+            By governing the Four Architectural Gates through these seven explicit phases, nothing is left to guesswork. Every execution produces a mathematically verified Zero Trust configuration in the live cloud, backed by a complete, audit-ready compliance trail—the Identity Architecture Ledger, the Audit Results Ledger, asynchronous KQL log queries, and the Defect &amp; Patch Ledger—turning every deployment into a repeatable, self-improving engineering asset.
         </p>
         
         <!-- HERO ARCHITECTURAL INSIGHT -->

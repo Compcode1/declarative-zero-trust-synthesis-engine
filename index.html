@@ -76,9 +76,85 @@
 
         /* ================= HERO HEADER ================= */
         .hero { padding: 180px 20px 80px; text-align: center; border-bottom: 1px solid var(--border-base); }
-        .hero-title-container { display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+        .hero-title-container { display: flex; align-items: center; justify-content: center; margin-bottom: 24px; }
         .hero-title { font-family: 'Montserrat', sans-serif; font-size: 4rem; font-weight: 900; letter-spacing: 3px; color: var(--text-main); text-transform: uppercase; }
-        .hero-subtitle { font-size: 1.45rem; color: var(--color-cyan); font-weight: 500; max-width: 1100px; margin: 0 auto; line-height: 1.6; }
+        .hero-subtitle { font-size: 1.3rem; color: var(--color-cyan); font-weight: 500; max-width: 1050px; margin: 0 auto 2rem; line-height: 1.75; text-align: left; }
+        .hero-subtitle strong { color: #ffffff; font-weight: 700; }
+
+        /* ================= 7-STEP HERO INSET BOX ================= */
+        .hero-sequence-box {
+            max-width: 1050px;
+            margin: 2.2rem auto;
+            background: rgba(10, 15, 29, 0.92);
+            border: 1px solid var(--border-base);
+            border-left: 4px solid var(--color-cyan);
+            border-radius: 0 10px 10px 0;
+            padding: 2.2rem 2.5rem;
+            text-align: left;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+        }
+        .hero-sequence-header {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            color: var(--color-cyan);
+            text-transform: uppercase;
+            margin-bottom: 1.4rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-base);
+        }
+        .hero-step-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.05rem;
+        }
+        .hero-step-item {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            line-height: 1.65;
+            padding-left: 1rem;
+            border-left: 2px solid rgba(14, 165, 233, 0.35);
+        }
+        .hero-step-item strong {
+            color: var(--text-main);
+            font-weight: 700;
+        }
+        .hero-step-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 4px;
+            margin-left: 6px;
+            margin-right: 4px;
+            vertical-align: middle;
+            display: inline-block;
+        }
+        .badge-gate {
+            color: var(--color-cyan);
+            background: rgba(14, 165, 233, 0.12);
+            border: 1px solid rgba(14, 165, 233, 0.35);
+        }
+        .badge-output {
+            color: var(--color-green);
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+        }
+        .badge-breaker {
+            color: var(--color-red);
+            background: rgba(244, 63, 94, 0.12);
+            border: 1px solid rgba(244, 63, 94, 0.35);
+        }
+        .hero-step-item code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--color-cyan);
+            background: rgba(15, 23, 42, 0.8);
+            padding: 1px 5px;
+            border-radius: 4px;
+        }
 
         /* ================= JUMP LINKS ================= */
         .jump-links { 
@@ -113,10 +189,11 @@
         }
 
         /* ================= INSIGHT CALLOUT ================= */
-        .insight-box { border-left: 4px solid var(--color-purple); padding: 2rem; margin: 3rem auto 2.5rem; max-width: 1050px; border-radius: 0 8px 8px 0; text-align: left; }
+        .insight-box { border-left: 4px solid var(--color-purple); padding: 2rem; margin: 2.5rem auto 2.5rem; max-width: 1050px; border-radius: 0 8px 8px 0; text-align: left; }
         .insight-header { font-family: 'Montserrat', sans-serif; font-size: 1.15rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 8px; }
         .insight-header::before { content: '>'; font-weight: 900; }
         .insight-text { font-size: 1.15rem; color: var(--text-main); font-style: italic; line-height: 1.7; font-weight: 500; }
+        .insight-text strong { color: var(--color-cyan); font-style: normal; font-weight: 700; }
 
         /* ================= ENVIRONMENT & PROXY ================= */
         .module-section { display: flex; flex-direction: column; align-items: center; padding: 5rem 20px 2rem; }
@@ -447,7 +524,7 @@
             .hero-title { font-size: 2.8rem; }
             .summary-title, .section-title, .flow-title { font-size: 1.8rem; }
             .triad-grid, .adaptation-grid { grid-template-columns: 1fr; }
-            .insight-box { padding: 1.5rem; margin: 2rem 15px 3rem; }
+            .insight-box, .hero-sequence-box { padding: 1.5rem; margin: 2rem 15px; }
             .vulnerability-grid { grid-template-columns: 1fr; }
             .polymorphic-box { padding: 2.5rem 1.5rem; }
         }
@@ -486,13 +563,48 @@
         <div class="hero-title-container">
             <h1 class="hero-title">INTELLIGENT ARCHITECTURE</h1>
         </div>
-        <p class="hero-subtitle">In modern cloud engineering, artificial intelligence functions as a probabilistic engine—powerful and fast, but prone to guessing IDs or drifting off-spec. To solve this for Microsoft Entra ID and Azure security deployments, I took that probabilistic engine and tethered it to a master <strong>System Directive</strong> to make it deterministic. The result is the <strong>Zero Trust Interactive State Machine</strong>: a disciplined 7-step assembly line that guides the build from real terminal ID lookups through passwordless OIDC code generation and live Azure audit verification.</p>
+
+        <p class="hero-subtitle">
+            Out of the box, generative AI functions as a probabilistic engine—fast and capable, yet prone to guessing cloud resource IDs, hallucinating parameters, or granting overly broad permissions when asked to generate a deployment script all at once. To eliminate that guesswork for Microsoft Entra ID and Azure security deployments, I applied <strong>AI systems engineering best practices</strong> by tethering that probabilistic engine to a master <strong>System Directive</strong> to make its output deterministic. The result is the <strong>Zero Trust Interactive State Machine</strong>: a 7-step engineering power tool that enforces strict step-by-step verification, produces mathematically exact passwordless OpenID Connect (OIDC) configurations, and automatically generates the pre-deployment and post-deployment audit documentation required to prove the live cloud state matches the design.
+        </p>
+
+        <!-- 7-STEP DETERMINISTIC EXECUTION SEQUENCE INSET BOX -->
+        <div class="hero-sequence-box">
+            <div class="hero-sequence-header">[THE 7-STEP DETERMINISTIC EXECUTION SEQUENCE]</div>
+            <ul class="hero-step-list">
+                <li class="hero-step-item">
+                    <strong>Step 1 — Environment Coordinate Intake</strong> <span class="hero-step-badge badge-gate">[NO CODE GENERATED]</span> Locks in the 5 core build coordinates: Identity Core (Entra ID), Execution Agent (AKS, GitHub Actions, Azure DevOps, or GitLab CI), Infrastructure State (Brownfield existing vs. Greenfield net-new), Target Data-Plane Asset (Key Vault, Storage, or SQL/Cosmos DB), and IaC Language (Terraform, Bicep, or PowerShell REST API).
+                </li>
+                <li class="hero-step-item">
+                    <strong>Step 2 — Cloud &amp; Tenant Boundary Verification</strong> <span class="hero-step-badge badge-gate">[NO CODE GENERATED]</span> Provides local terminal CLI commands (<code>az account show</code> / <code>az group show</code>) to verify exact Tenant, Subscription, and Resource Group GUIDs. Enforces read-only lookup mode (<code>data</code> / <code>existing</code>) for Brownfield resources so live infrastructure cannot be overwritten, or <code>prevent_destroy</code> locks for Greenfield builds.
+                </li>
+                <li class="hero-step-item">
+                    <strong>Step 3 — Workload Identity Hardening</strong> <span class="hero-step-badge badge-gate">[NO CODE GENERATED]</span> Configures or looks up the Entra ID Application and Service Principal—explicitly locking <code>sign_in_audience</code> to Single-Tenant (<code>AzureADMyOrg</code>), disabling web browser redirect URIs (<code>redirect_uris = []</code>), and enforcing a strict zero-client-secret policy (<code>passwordCredentials = []</code>).
+                </li>
+                <li class="hero-step-item">
+                    <strong>Step 4 — Passwordless OIDC Trust &amp; Sync Timer</strong> <span class="hero-step-badge badge-gate">[NO CODE GENERATED]</span> Constructs the exact, wildcard-free OIDC federated subject claim matching the specific pipeline repository and branch (<code>issuer</code>, <code>subject</code>, and <code>audiences = ["api://AzureADTokenExchange"]</code>), paired with a mandatory 30-second propagation timer (<code>time_sleep</code>) so Microsoft Graph finishes syncing before federation attaches.
+                </li>
+                <li class="hero-step-item">
+                    <strong>Step 5 — Single-Asset Data-Plane RBAC Scope</strong> <span class="hero-step-badge badge-gate">[NO CODE GENERATED]</span> Blocks broad management roles (<code>Owner</code> / <code>Contributor</code>) and locks a least-privilege data-plane role (such as <code>Key Vault Secrets User</code>) strictly to the single verified target vault or database Resource ID.
+                </li>
+                <li class="hero-step-item">
+                    <strong>Step 6 — Code Generation, Deployment &amp; Mathematical Audit Proof</strong> <span class="hero-step-badge badge-output">[ARTIFACTS &amp; LIVE PROOF]</span> Outputs the 100% complete IaC deployment script alongside the pre-deployment blueprint (<code>Identity_Access_Ledger.md</code>). Once deployed to a green terminal/pipeline checkmark, an automated verification script queries live Microsoft Graph and Azure APIs to generate the post-deployment <code>Audit_Results_Ledger.md</code> and <strong>KQL Log Queries</strong>—proving mathematically that the live cloud configuration matches the blueprint (<code>passwordCredentials == 0</code>, exact OIDC match, zero <code>HTTP 403</code> errors).
+                </li>
+                <li class="hero-step-item">
+                    <strong>Step 7 — 3-Strike Circuit Breaker &amp; Continuous Improvement</strong> <span class="hero-step-badge badge-breaker">[BOUNDED REACT LOOP]</span> Governs troubleshooting via a bounded ReAct loop. If a terminal command fails 3 times, the Circuit Breaker trips on Attempt #4 and halts AI code generation—allowing the engineer to isolate the root cause locally, document the verified fix in the <code>Defect_Patch_Ledger.md</code>, and permanently upgrade the master System Directive.
+                </li>
+            </ul>
+        </div>
+
+        <p class="hero-subtitle" style="margin-bottom: 0;">
+            By breaking the build into these seven explicit gates, the system guarantees that nothing is assumed and every security boundary is verified before and after deployment. Instead of relying on a green terminal message as proof of security, every iteration produces a complete, auditable documentation trail—proving mathematically that the intended blueprint (<strong>Identity Access Ledger</strong>) matches the live Azure configuration (<strong>Audit Results Ledger</strong> and <strong>KQL telemetry</strong>), while capturing every troubleshooting lesson learned (<strong>Defect &amp; Patch Ledger</strong>) so both the State Machine and the engineer's diagnostic skill set improve with every build.
+        </p>
         
         <!-- HERO ARCHITECTURAL INSIGHT -->
         <div class="insight-box" style="background: linear-gradient(90deg, rgba(168, 85, 247, 0.1) 0%, transparent 100%);">
             <div class="insight-header" style="color: var(--color-purple);">Architectural Insight: Applied AI Systems Engineering</div>
             <div class="insight-text">
-                "By combining the speed of generative AI with the rigorous control of a Finite State Machine governed by NIST approvals, OWASP permission locks, ReAct terminal verification, and a 3-strike Circuit Breaker, we eliminate AI guesswork entirely. The architecture produces dependable, passwordless Microsoft Entra ID configurations proven by both 'Before' blueprint ledgers and 'After' live Azure API and KQL verification checks."
+                "Standard AI chat models are built to be helpful and fast—meaning if you ask for a cloud deployment script out of the box, the model will eagerly generate hundreds of lines of code in a single pass, guessing resource IDs and assigning broad permissions just to make the script run. In designing the System Directive, I drew from established industry guidance—including the <strong>NIST AI Risk Management Framework</strong>, the <strong>OWASP Top 10 for LLMs</strong>, and the <strong>ReAct (Reason + Act)</strong> methodology—and translated their principles into practical engineering controls: requiring human approval at every step, restricting permissions to a single target vault, and verifying real cloud IDs in the local terminal before any code is generated."
             </div>
         </div>
 

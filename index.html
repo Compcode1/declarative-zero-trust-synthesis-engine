@@ -925,20 +925,20 @@
         </div>
     </section>
 
-    <!-- ================= SECTION 4: ENTERPRISE GUARDRAILS ================= -->
+    <!-- ================= SECTION 4: ENTERPRISE GUARDRAILS (ALIGNED WITH BLUEPRINT.HTML) ================= -->
     <div class="guardrail-container" id="enterprise-guardrails">
         <div class="prelude-box">
             <h2 class="section-title">Enterprise Guardrails: The 5 Built-In Safety Locks</h2>
             
             <p class="intro-text">
-                Global security standards like the NIST AI Risk Management Framework and the OWASP Top 10 for Large Language Models define the high-level risks of using AI in production, but they do not write the actual safety locks for me. Inside the Zero Trust Interactive State Machine, I translated those principles into <span class="bullet-lead">five hard safety guardrails built directly into my System Directive</span>—and every single deployment I run is formally checked and scored against all five guardrails inside my post-deployment Audit Results Ledger:
+                To govern generative AI safely in cloud security deployments, I engineered my master System Directive around four core AI Systems Engineering rules: <span class="bullet-lead">Agentic Patterns (ReAct)</span> to force live terminal lookups instead of guessing, <span class="bullet-lead">Bounded Autonomy (OWASP LLM08)</span> to prevent destructive actions, <span class="bullet-lead">Human-in-the-Loop Governance (NIST AI RMF)</span> to require my approval at every gate, and <span class="bullet-lead">Cognitive Circuit Breaking</span> to halt endless troubleshooting loops on Attempt #4. To put those four AI engineering standards into practice for Microsoft Entra ID and Azure, I translated them into <span class="bullet-lead">five concrete Enterprise Guardrails</span> inside the System Directive. Implemented at runtime by the Execution Triad and formally scored in my post-deployment Audit Results Ledger, these five safety locks prevent the five most common failures in automated cloud builds:
             </p>
 
             <div class="vulnerability-grid">
                 
                 <div class="vuln-card">
-                    <h3 class="vuln-title">1. Credential Isolation &amp; Privacy (What Goes In vs. What Stays Private)</h3>
-                    <p class="vuln-lead">Separates non-secret cloud routing addresses from actual sensitive passwords and tokens so my credentials never touch the AI chat, terminal history, or GitHub.</p>
+                    <h3 class="vuln-title">1. Secret &amp; Credential Protection (Routing IDs Go In; Secrets Stay Out)</h3>
+                    <p class="vuln-lead">Enforces Bounded Autonomy and Data Loss Prevention by separating non-secret cloud routing addresses from actual sensitive passwords and tokens so my credentials never touch the AI chat, terminal history, or GitHub.</p>
                     <ul class="step-sublist">
                         <li><span class="bullet-lead">Non-Secret Routing IDs Are Safe to Use:</span> Just like a street address, non-secret routing identifiers—such as my Azure Tenant ID, Subscription ID, Resource Group name, and repository name—are safely pulled via terminal lookups and used during the build so the AI can write 100% finished code without leaving blank placeholders.</li>
                         <li><span class="bullet-lead">Zero Passwords &amp; Invisible Terminal Typing:</span> Passwordless 60-minute OIDC logins eliminate saved client secrets completely. And whenever I need to enter a personal access token in my local terminal during setup, my terminal instructions use invisible password input mode so the characters never appear on my screen or get saved in my command history.</li>
@@ -946,8 +946,8 @@
                 </div>
 
                 <div class="vuln-card">
-                    <h3 class="vuln-title">2. Protecting Live Infrastructure (Existing Brownfield vs. New Greenfield)</h3>
-                    <p class="vuln-lead">Physically prevents the AI from writing scripts that accidentally overwrite, recreate, or delete live cloud resources.</p>
+                    <h3 class="vuln-title">2. Existing Asset Protection (Brownfield Read-Only vs. Greenfield Locks)</h3>
+                    <p class="vuln-lead">Physically prevents the AI from writing scripts that accidentally overwrite, recreate, or delete live cloud infrastructure.</p>
                     <ul class="step-sublist">
                         <li><span class="bullet-lead">Read-Only Lookups for Existing Brownfield Resources:</span> When I connect a pipeline to an existing Key Vault, Storage Account, or database, my System Directive forces the code into read-only lookup mode so the script can connect to the existing resource without having permission to change or replace it.</li>
                         <li><span class="bullet-lead">Deletion Locks for Brand-New Greenfield Builds:</span> When I create brand-new cloud resources from scratch, the machine automatically attaches a deletion-prevention lock to the resource and requires permanent state storage so a closed terminal window can never wipe out my tracking file.</li>
@@ -955,8 +955,8 @@
                 </div>
 
                 <div class="vuln-card">
-                    <h3 class="vuln-title">3. Enforcing Least Privilege (Blocking the "Contributor" Shortcut)</h3>
-                    <p class="vuln-lead">Stops the common AI habit of granting broad administrative roles like Owner or Contributor just to make a deployment script succeed quickly.</p>
+                    <h3 class="vuln-title">3. Blocking "The Contributor Trap" (Single-Asset Data Roles Only)</h3>
+                    <p class="vuln-lead">Stops the common AI shortcut of granting broad administrative roles like Owner or Contributor just to make a pipeline deployment succeed quickly.</p>
                     <ul class="step-sublist">
                         <li><span class="bullet-lead">Management Roles Strictly Blocked:</span> Giving an automation pipeline Contributor access is like giving a delivery driver the master keys to remodel the building just to drop off one package. My System Directive blocks all broad management-plane roles across the board.</li>
                         <li><span class="bullet-lead">Locked to One Single Vault or Database:</span> I restrict permissions strictly to the specific data action required—such as reading secrets from one Key Vault or reading blobs from one Storage Account—and lock them to that single resource's exact ID number.</li>
@@ -964,8 +964,8 @@
                 </div>
 
                 <div class="vuln-card">
-                    <h3 class="vuln-title">4. Supply Chain Stability &amp; Clean API Formatting</h3>
-                    <p class="vuln-lead">Protects my automated builds from breaking or pulling unverified software when cloud providers push unexpected updates.</p>
+                    <h3 class="vuln-title">4. Pinned Provider Versions &amp; Clean API Formatting (Supply Chain Safety)</h3>
+                    <p class="vuln-lead">Protects my automated builds from breaking or pulling unverified third-party code when cloud providers push unexpected package updates.</p>
                     <ul class="step-sublist">
                         <li><span class="bullet-lead">Locked-In Provider &amp; Pipeline Versions:</span> I reject open-ended version tags (like "latest") because an overnight software update can break a pipeline or introduce a vulnerability. Every Terraform provider, Bicep resource definition, and pipeline login action in my code is pinned to an exact, verified version number.</li>
                         <li><span class="bullet-lead">Pure Language Formatting:</span> When I generate native PowerShell REST API scripts, the machine enforces Microsoft's exact REST formatting rules and prevents the AI from mixing in Terraform-style code words that would cause a direct API call to fail.</li>
@@ -973,11 +973,11 @@
                 </div>
 
                 <div class="vuln-card">
-                    <h3 class="vuln-title">5. Hiding Temporary Tokens in Shared Pipeline Logs (Runtime Masking)</h3>
-                    <p class="vuln-lead">Ensures that even temporary 60-minute OIDC tokens and retrieved vault secrets can never be accidentally printed into shared CI/CD console logs.</p>
+                    <h3 class="vuln-title">5. Log Token Masking (Hiding Temporary Tokens in Shared Pipeline Logs)</h3>
+                    <p class="vuln-lead">Ensures that even temporary 60-minute OIDC tokens and retrieved vault secrets are scrubbed in memory before a single line can print into shared CI/CD console logs.</p>
                     <ul class="step-sublist">
                         <li><span class="bullet-lead">Automatic Asterisk Scrubbing in Memory:</span> Before my Phase 4 test pipeline reads a secret or token into memory, the workflow automatically turns on log masking so the pipeline server replaces any sensitive text with asterisks (***) before a single line can print to the screen.</li>
-                        <li><span class="bullet-lead">Verified in My Final Audit Ledger:</span> During Phase 5, my Audit Results Ledger checks that both invisible terminal typing and automatic pipeline log masking are active before marking this guardrail as passed.</li>
+                        <li><span class="bullet-lead">Verified in My Final Audit Results Ledger:</span> During Phase 5, my Audit Results Ledger checks that both invisible terminal typing and automatic pipeline log masking are active before marking this guardrail as passed.</li>
                     </ul>
                 </div>
 

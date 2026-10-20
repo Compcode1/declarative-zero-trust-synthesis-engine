@@ -348,7 +348,7 @@
         .node-dpl { 
             left: 250px; top: 420px; width: 380px; 
             border: 2px solid var(--color-red); border-left: 6px solid var(--color-red); 
-            background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(244, 63, 94, 0.15) 4px, rgba(244, 63, 94, 0.15) 8px), linear-gradient(135deg, rgba(244, 63, 94, 0.15) 0%, rgba(10, 15, 29, 0.95) 100%), var(--bg-node); 
+            background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(244, 63, 94, 0.15) 4px, rgba(244, 63, 94, 0.15) 8px), linear-gradient(135deg, rgba(244, 63, 94, 0.15) 0%, rgba(10, 15, 29, 0.95) 0%), var(--bg-node); 
             box-shadow: 0 0 25px rgba(244, 63, 94, 0.35), inset 0 0 15px rgba(244, 63, 94, 0.15); 
             animation: ai-scanlines 2.5s linear infinite, pulse-red 4s ease-in-out infinite;
         }
@@ -383,7 +383,28 @@
         .prelude-box { background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-base); border-top: 4px solid var(--color-blue); border-radius: 12px; padding: 3.5rem; box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
         .section-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 900; color: var(--color-cyan); text-transform: uppercase; margin-bottom: 1.8rem; letter-spacing: 1px; text-align: center; }
         
-        .intro-text { font-size: 1.25rem; color: var(--text-main); font-weight: 600; line-height: 1.8; margin-bottom: 3rem; text-align: left; max-width: 1050px; margin-left: auto; margin-right: auto; }
+        .intro-text { font-size: 1.25rem; color: var(--text-main); font-weight: 600; line-height: 1.8; margin-bottom: 1.5rem; text-align: left; max-width: 1050px; margin-left: auto; margin-right: auto; }
+
+        .guardrail-core-rules-list {
+            max-width: 1050px;
+            margin: 0 auto 2rem;
+            padding-left: 1.5rem;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .guardrail-core-rules-list li {
+            font-size: 1.15rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.7;
+            padding-left: 0.4rem;
+        }
+        .guardrail-core-rules-list li::marker {
+            color: var(--color-cyan);
+            font-size: 1.2rem;
+        }
 
         .vulnerability-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 2rem; }
         .vuln-card { background: rgba(10, 15, 29, 0.95); border: 1px solid var(--border-base); padding: 2.3rem 2.2rem; border-radius: 10px; border-left: 4px solid var(--color-purple); box-shadow: 0 10px 25px rgba(0,0,0,0.35); text-align: left; }
@@ -925,13 +946,32 @@
         </div>
     </section>
 
-    <!-- ================= SECTION 4: ENTERPRISE GUARDRAILS (ALIGNED WITH BLUEPRINT.HTML) ================= -->
+    <!-- ================= SECTION 4: ENTERPRISE GUARDRAILS (BULLETED HIERARCHY ALIGNED WITH BLUEPRINT.HTML) ================= -->
     <div class="guardrail-container" id="enterprise-guardrails">
         <div class="prelude-box">
             <h2 class="section-title">Enterprise Guardrails: The 5 Built-In Safety Locks</h2>
             
             <p class="intro-text">
-                To govern generative AI safely in cloud security deployments, I engineered my master System Directive around four core AI Systems Engineering rules: <span class="bullet-lead">Agentic Patterns (ReAct)</span> to force live terminal lookups instead of guessing, <span class="bullet-lead">Bounded Autonomy (OWASP LLM08)</span> to prevent destructive actions, <span class="bullet-lead">Human-in-the-Loop Governance (NIST AI RMF)</span> to require my approval at every gate, and <span class="bullet-lead">Cognitive Circuit Breaking</span> to halt endless troubleshooting loops on Attempt #4. To put those four AI engineering standards into practice for Microsoft Entra ID and Azure, I translated them into <span class="bullet-lead">five concrete Enterprise Guardrails</span> inside the System Directive. Implemented at runtime by the Execution Triad and formally scored in my post-deployment Audit Results Ledger, these five safety locks prevent the five most common failures in automated cloud builds:
+                To govern generative AI safely in cloud security deployments, I engineered my master System Directive around four core AI Systems Engineering rules:
+            </p>
+
+            <ul class="guardrail-core-rules-list">
+                <li>
+                    <span class="bullet-lead">Agentic Patterns (ReAct Framework):</span> Forces live terminal lookups to pull verified cloud IDs instead of letting the AI guess in a vacuum.
+                </li>
+                <li>
+                    <span class="bullet-lead">Bounded Autonomy (OWASP LLM08):</span> Prevents the AI from holding direct cloud permissions or running destructive actions on its own.
+                </li>
+                <li>
+                    <span class="bullet-lead">Human-in-the-Loop Governance (NIST AI RMF):</span> Requires my explicit verification and sign-off at every architectural gate before advancing.
+                </li>
+                <li>
+                    <span class="bullet-lead">Cognitive Circuit Breaking:</span> Halts endless troubleshooting loops on Attempt #4 and forces an AI self-audit before any new code can be written.
+                </li>
+            </ul>
+
+            <p class="intro-text" style="margin-bottom: 3rem;">
+                To put those four AI engineering standards into practice for Microsoft Entra ID and Azure, I translated them into <span class="bullet-lead">five concrete Enterprise Guardrails</span> inside the System Directive. Implemented at runtime by the Execution Triad and formally scored in my post-deployment Audit Results Ledger, these five safety locks prevent the five most common failures in automated cloud builds:
             </p>
 
             <div class="vulnerability-grid">

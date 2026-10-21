@@ -47,24 +47,6 @@
             overflow-x: hidden;
         }
 
-        /* STRICT COLOR DISCIPLINE: ONLY FOR BULLET LEAD-IN LABELS BEFORE A COLON */
-        .bullet-lead {
-            color: var(--color-cyan);
-            font-weight: 800;
-        }
-
-        .inline-link {
-            color: var(--color-cyan);
-            text-decoration: none;
-            border-bottom: 1px solid var(--color-cyan);
-            font-weight: 800;
-            transition: color 0.3s ease, border-color 0.3s ease;
-        }
-        .inline-link:hover {
-            color: #ffffff;
-            border-color: #ffffff;
-        }
-
         /* ================= NAVIGATION ================= */
         nav {
             position: fixed; top: 0; width: 100%;
@@ -99,102 +81,11 @@
             box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
         }
 
-        /* ================= HERO HEADER & TOP SUB-NAVIGATION ================= */
-        .hero { padding: 145px 20px 60px; text-align: center; border-bottom: 1px solid var(--border-base); }
-
-        .jump-links-container {
-            max-width: 1120px;
-            margin: 0 auto 2.5rem;
-            padding: 1.25rem 1.8rem;
-            background: rgba(15, 23, 42, 0.55);
-            border: 1px solid var(--border-base);
-            border-radius: 10px;
-            text-align: center;
-        }
-        .jump-links-intro {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--text-main);
-            letter-spacing: 0.5px;
-            margin-bottom: 0.9rem;
-        }
-        .jump-links { 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: center; 
-            gap: 0.9rem; 
-        }
-        .jump-links a { 
-            color: var(--color-cyan); 
-            border: 1px solid var(--color-cyan); 
-            background: rgba(14, 165, 233, 0.08); 
-            padding: 0.65rem 1.3rem; 
-            border-radius: 8px; 
-            text-decoration: none; 
-            font-size: 0.88rem; 
-            font-weight: 700; 
-            letter-spacing: 1px; 
-            text-transform: uppercase; 
-            transition: all 0.3s ease; 
-        }
-        .jump-links a:hover { 
-            background: var(--color-cyan); 
-            color: #ffffff; 
-            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
-            transform: translateY(-2px); 
-        }
-
-        .hero-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; font-weight: 800; color: var(--color-cyan); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.75rem; display: block; }
-        .hero-title-container { display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
-        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 3.6rem; font-weight: 900; letter-spacing: 3px; color: var(--text-main); text-transform: uppercase; }
-
-        /* ================= BULLETED INTRO BOXES ================= */
-        .section-intro-box {
-            max-width: 1120px;
-            margin: 0 auto;
-            background: rgba(10, 15, 29, 0.95);
-            border: 1px solid var(--border-base);
-            border-left: 4px solid var(--color-cyan);
-            border-radius: 10px;
-            padding: 2rem 2.4rem;
-            text-align: left;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-        }
-
-        .intro-lead-sentence {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.15rem;
-            font-weight: 800;
-            color: var(--text-main);
-            line-height: 1.65;
-            margin-bottom: 1.15rem;
-            padding-bottom: 0.8rem;
-            border-bottom: 1px solid var(--border-base);
-        }
-
-        .clean-bullet-list {
-            list-style: disc;
-            padding-left: 1.45rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.95rem;
-            text-align: left;
-        }
-        .clean-bullet-list li {
-            font-size: 1.04rem;
-            color: var(--text-main);
-            font-weight: 600;
-            line-height: 1.72;
-            padding-left: 0.2rem;
-        }
-        .clean-bullet-list li::marker {
-            color: var(--color-cyan);
-        }
-
-        #direct-outreach, #resume-access, #certifications {
-            scroll-margin-top: 100px;
-        }
+        /* ================= HERO HEADER ================= */
+        .hero { padding: 170px 20px 60px; text-align: center; border-bottom: 1px solid var(--border-base); }
+        .hero-title-container { display: flex; align-items: center; justify-content: center; margin-bottom: 15px; }
+        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 4rem; font-weight: 900; letter-spacing: 3px; color: var(--color-blue); text-transform: uppercase; }
+        .hero-subtitle { font-size: 1.5rem; color: var(--text-muted); font-weight: 500; max-width: 1000px; margin: 0 auto; letter-spacing: 1px; }
 
         /* ================= SHARED STACKED LAYOUT ================= */
         .stacked-section { padding: 40px 20px; width: 100%; display: flex; flex-direction: column; align-items: center; }
@@ -324,7 +215,7 @@
             position: relative; z-index: 2; display: inline-block;
             background: var(--bg-page); padding: 0 30px;
             font-family: 'Montserrat', sans-serif; font-size: 2.1rem; font-weight: 900;
-            letter-spacing: 3px; text-transform: uppercase; color: var(--color-cyan);
+            letter-spacing: 3px; text-transform: uppercase; color: var(--color-blue);
         }
 
         /* ================= RESUME BUTTON ================= */
@@ -377,7 +268,7 @@
 
             .deep-dive-header { font-size: 1.4rem; padding: 0 10px; }
             
-            .feature-card, .contact-form-container, .section-intro-box { padding: 1.5rem; }
+            .feature-card, .contact-form-container { padding: 1.5rem; }
             .resume-btn { padding: 1rem 2rem; font-size: 1.1rem; }
         }
     </style>
@@ -398,50 +289,16 @@
         </ul>
     </nav>
 
-    <!-- HERO HEADER -->
+    <!-- HERO HEADER (CLEAN & DIRECT LIKE ORIGINAL PAGE) -->
     <header class="hero">
-
-        <!-- TOP ON-PAGE SUB-NAVIGATION BAR (ABOVE TITLE) -->
-        <div class="jump-links-container">
-            <div class="jump-links-intro">
-                Select any section below to jump directly to outreach channels, resume access, or professional credentials:
-            </div>
-            <div class="jump-links">
-                <a href="#direct-outreach">1. Direct Outreach &amp; Channels</a>
-                <a href="#resume-access">2. Executive Resume (PDF)</a>
-                <a href="#certifications">3. Professional Certifications</a>
-            </div>
-        </div>
-
-        <span class="hero-tag">[STEVEN TUSCHMAN :: PRINCIPAL CLOUD IAM ARCHITECT &amp; AI SYSTEMS ENGINEER]</span>
         <div class="hero-title-container">
-            <h1 class="hero-title">CONTACT &amp; CREDENTIALS</h1>
+            <h1 class="hero-title">CONTACT</h1>
         </div>
-
-        <!-- BULLETED HERO INTRO BOX (4-PART ARCHITECTURAL SUMMARY) -->
-        <div class="section-intro-box">
-            <div class="intro-lead-sentence">
-                Direct outreach and verified credentials for Principal Cloud IAM Architect, Cloud Security Architect, and AI Systems Engineering roles:
-            </div>
-            <ul class="clean-bullet-list">
-                <li>
-                    <span class="bullet-lead">1. First-Order Mathematical Prerequisite (26 Fixed System Variables):</span> A deterministic system cannot exist if its variables change names mid-execution. Before writing a single line of code, I established a strict bijective nomenclature in my <a href="glossary.html" class="inline-link">System Glossary</a>, locking every actor, build coordinate, security gate, and audit artifact across the architecture to 26 unchanging Title-Case system variables.
-                </li>
-                <li>
-                    <span class="bullet-lead">2. Applied AI Systems Engineering &amp; Deterministic Harness:</span> On top of those fixed variables, I engineered the Zero Trust Interactive State Machine, wrapping a probabilistic AI Engine inside a master System Directive built on four globally recognized AI Systems Engineering standards: ReAct terminal verification loops, OWASP LLM08 bounded autonomy, NIST AI RMF human-in-the-loop halts, and Cognitive Circuit Breaking (The 4-Iteration Circuit Breaker).
-                </li>
-                <li>
-                    <span class="bullet-lead">3. Scientific-Method Cloud IAM Execution &amp; Continuous Improvement:</span> Across all 72 baseline build combinations, which serve as a hardened Zero Trust foundation to layer on 35 native Microsoft Entra ID control-plane security strategies, this state-driven assembly line enforces The Four Architectural Gates of Machine Identity (Boundary, Identity, Federation, and Access) and Two-Stage Live Verification (Azure Portal Monitoring Metrics followed by the Identity Architecture Ledger, Audit Results Ledger, and KQL Telemetry), while logging real-time fixes in the Defect &amp; Patch Ledger and permanently compiling those upgrades into my System Directive in Phase 7.
-                </li>
-                <li>
-                    <span class="bullet-lead">4. Direct Communication:</span> Use the encrypted form or direct contact channels below to connect regarding Principal Cloud IAM Architect, Cloud Security Architect, or AI Systems Engineering opportunities.
-                </li>
-            </ul>
-        </div>
+        <p class="hero-subtitle">Professional Outreach &amp; Validated Capabilities</p>
     </header>
 
     <!-- MODULE 1: DIRECT CONTACT FORMS & LINKS -->
-    <section class="stacked-section" id="direct-outreach">
+    <section class="stacked-section">
         
         <!-- SECURE MESSAGE FORM -->
         <div class="contact-form-container">
@@ -475,7 +332,7 @@
             <!-- Email -->
             <a href="mailto:steven.tuchman2@gmail.com" class="feature-card cert-card cert-cyan cyan">
                 <div class="cert-org">Direct Email</div>
-                <div class="cert-name">Primary Contact Routing</div>
+                <div class="cert-name">Standard Routing</div>
                 <div class="contact-value">steven.tuchman2@gmail.com</div>
             </a>
             
@@ -489,12 +346,12 @@
     </section>
 
     <!-- VIEW RESUME BUTTON -->
-    <div class="resume-btn-container" id="resume-access">
-        <a href="Resume_ST_109%20(3).pdf" target="_blank" class="resume-btn">View Executive Resume (PDF)</a>
+    <div class="resume-btn-container">
+        <a href="Resume_ST_109%20(3).pdf" target="_blank" class="resume-btn">View Resume</a>
     </div>
 
     <!-- TRANSITION BRIDGE -->
-    <div class="transition-wrapper" id="certifications">
+    <div class="transition-wrapper">
         <div class="section-divider-line"></div>
         <h2 class="deep-dive-header">Professional Certifications</h2>
     </div>

@@ -38,7 +38,25 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body { background-color: var(--bg-page); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--text-main); line-height: 1.6; padding-bottom: 4rem; }
+        body { background-color: var(--bg-page); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--text-main); line-height: 1.6; padding-bottom: 4rem; overflow-x: hidden; }
+
+        /* STRICT COLOR DISCIPLINE: ONLY FOR BULLET LEAD-IN LABELS BEFORE A COLON */
+        .bullet-lead {
+            color: var(--color-cyan);
+            font-weight: 800;
+        }
+
+        .inline-link {
+            color: var(--color-cyan);
+            text-decoration: none;
+            border-bottom: 1px solid var(--color-cyan);
+            font-weight: 800;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+        .inline-link:hover {
+            color: #ffffff;
+            border-color: #ffffff;
+        }
 
         /* ================= NAVIGATION ================= */
         nav {
@@ -72,20 +90,61 @@
             box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
         }
 
-        /* ================= HERO HEADER ================= */
-        .hero { padding: 180px 20px 80px; text-align: center; border-bottom: 1px solid var(--border-base); }
-        .hero-title-container { display: flex; align-items: center; justify-content: center; margin-bottom: 15px; }
+        /* ================= HERO HEADER & BULLETED INTRO BOXES ================= */
+        .hero { padding: 155px 20px 60px; text-align: center; border-bottom: 1px solid var(--border-base); }
+        .hero-title-container { display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
         .hero-title { font-family: 'Montserrat', sans-serif; font-size: 3.4rem; font-weight: 900; letter-spacing: 3px; color: var(--text-main); text-transform: uppercase; }
-        .hero-tag { font-family: monospace; font-size: 1rem; font-weight: 700; color: var(--color-purple); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; display: block; }
-        .hero-subtitle { font-size: 1.35rem; color: var(--color-cyan); font-weight: 500; max-width: 1100px; margin: 0 auto; line-height: 1.65; }
+        .hero-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; font-weight: 800; color: var(--color-purple); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.8rem; display: block; }
+
+        .section-intro-box {
+            max-width: 1120px;
+            margin: 0 auto 2.5rem;
+            background: rgba(10, 15, 29, 0.95);
+            border: 1px solid var(--border-base);
+            border-left: 4px solid var(--color-cyan);
+            border-radius: 10px;
+            padding: 2rem 2.4rem;
+            text-align: left;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .intro-lead-sentence {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--text-main);
+            line-height: 1.65;
+            margin-bottom: 1.15rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--border-base);
+        }
+
+        .clean-bullet-list {
+            list-style: disc;
+            padding-left: 1.45rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            text-align: left;
+        }
+        .clean-bullet-list li {
+            font-size: 1.04rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.7;
+            padding-left: 0.2rem;
+        }
+        .clean-bullet-list li::marker {
+            color: var(--color-cyan);
+        }
 
         /* ================= INSIGHT CALLOUT ================= */
         .insight-box { 
             border-left: 4px solid var(--color-purple); 
             background: linear-gradient(90deg, rgba(168, 85, 247, 0.1) 0%, transparent 100%);
-            padding: 2rem; 
-            margin: 3rem auto 2.5rem; 
-            max-width: 1050px; 
+            padding: 2rem 2.4rem; 
+            margin: 2rem auto 2.5rem; 
+            max-width: 1120px; 
             border-radius: 0 8px 8px 0; 
             text-align: left; 
         }
@@ -95,14 +154,14 @@
             font-weight: 900; 
             letter-spacing: 2px; 
             text-transform: uppercase; 
-            margin-bottom: 0.75rem; 
+            margin-bottom: 0.85rem; 
             display: flex; 
             align-items: center; 
             gap: 8px; 
             color: var(--color-purple);
         }
         .insight-header::before { content: '>'; font-weight: 900; }
-        .insight-text { font-size: 1.15rem; color: var(--text-main); font-style: italic; line-height: 1.7; font-weight: 500; }
+        .insight-text { font-size: 1.12rem; color: var(--text-main); font-style: normal; line-height: 1.75; font-weight: 600; }
 
         /* ================= JUMP LINKS ================= */
         .jump-links { 
@@ -110,12 +169,12 @@
             flex-wrap: wrap; 
             justify-content: center; 
             gap: 1rem; 
-            margin-top: 2.5rem; 
+            margin-top: 2rem; 
         }
         .jump-links a { 
             color: var(--color-cyan); 
             border: 1px solid var(--color-cyan); 
-            background: rgba(14, 165, 233, 0.05); 
+            background: rgba(14, 165, 233, 0.08); 
             padding: 0.75rem 1.5rem; 
             border-radius: 8px; 
             text-decoration: none; 
@@ -135,14 +194,12 @@
         #classification, #operational-challenge, #agentic-patterns, #translation-matrix { scroll-margin-top: 100px; }
 
         /* ================= SHARED SECTION LAYOUT ================= */
-        .stacked-section { padding: 70px 20px 30px; width: 100%; display: flex; flex-direction: column; align-items: center; }
+        .stacked-section { padding: 60px 20px 25px; width: 100%; display: flex; flex-direction: column; align-items: center; }
         .container-1300 { width: 100%; max-width: 1300px; }
         
-        .section-header-block { max-width: 1100px; margin: 0 auto 3rem; text-align: center; }
-        .section-tag { font-family: monospace; font-size: 0.9rem; font-weight: 700; color: var(--color-cyan); letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 0.6rem; }
-        .section-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 900; color: var(--text-main); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.2rem; }
-        .section-lead { font-size: 1.2rem; color: var(--text-muted); line-height: 1.8; }
-        .section-lead strong { color: var(--text-main); }
+        .section-header-block { max-width: 1120px; margin: 0 auto 2.5rem; text-align: center; }
+        .section-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; font-weight: 800; color: var(--color-cyan); letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 0.6rem; }
+        .section-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 900; color: var(--text-main); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.5rem; }
 
         /* ================= SECTION 1: SYSTEM DIRECTIVE ANATOMY ================= */
         .compiler-box {
@@ -152,35 +209,35 @@
             border-radius: 12px;
             padding: 3.5rem;
             box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
         }
 
         .anatomy-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            margin-top: 2.5rem;
+            margin-top: 2rem;
         }
 
         .anatomy-card {
-            background: rgba(2, 6, 23, 0.9);
+            background: rgba(10, 15, 29, 0.95);
             border: 1px solid var(--border-base);
             border-left: 4px solid var(--color-blue);
             border-radius: 8px;
             padding: 2rem;
+            text-align: left;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.35);
         }
         .anatomy-card.purple { border-left-color: var(--color-purple); }
         .anatomy-card.green { border-left-color: var(--color-green); }
 
-        .anatomy-tag { font-family: monospace; font-size: 0.8rem; font-weight: 700; color: var(--color-blue); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.6rem; display: block; }
+        .anatomy-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; font-weight: 800; color: var(--color-blue); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.6rem; display: block; }
         .anatomy-card.purple .anatomy-tag { color: var(--color-purple); }
         .anatomy-card.green .anatomy-tag { color: var(--color-green); }
 
-        .anatomy-title { font-family: 'Montserrat', sans-serif; font-size: 1.25rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.85rem; text-transform: uppercase; }
-        .anatomy-text { font-size: 1.05rem; color: var(--text-muted); line-height: 1.7; }
-        .anatomy-text code { color: var(--color-cyan); background: rgba(14, 165, 233, 0.1); padding: 2px 6px; border-radius: 4px; font-size: 0.92rem; }
+        .anatomy-title { font-family: 'Montserrat', sans-serif; font-size: 1.25rem; font-weight: 900; color: var(--text-main); margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-base); text-transform: uppercase; }
 
-        /* ================= SECTION 2: OPERATIONAL SCALE & PRECISION CHALLENGE ================= */
+        /* ================= SECTION 2: MATHEMATICAL COMPLEXITY & PRECISION CHALLENGE ================= */
         .challenge-box {
             background: rgba(15, 23, 42, 0.6);
             border: 1px solid var(--border-base);
@@ -196,25 +253,27 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            margin-top: 2.5rem;
+            margin-top: 2rem;
         }
 
         .resolution-card {
-            background: rgba(2, 6, 23, 0.9);
+            background: rgba(10, 15, 29, 0.95);
             border: 1px solid var(--border-base);
             border-top: 3px solid var(--color-cyan);
             border-radius: 8px;
             padding: 2rem;
             display: flex;
             flex-direction: column;
+            text-align: left;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.35);
         }
         .resolution-card.purple { border-top-color: var(--color-purple); }
         .resolution-card.green { border-top-color: var(--color-green); }
 
         .resolution-tag {
-            font-family: monospace;
+            font-family: 'JetBrains Mono', monospace;
             font-size: 0.8rem;
-            font-weight: 700;
+            font-weight: 800;
             letter-spacing: 1px;
             text-transform: uppercase;
             color: var(--color-cyan);
@@ -227,15 +286,12 @@
         .resolution-title {
             font-family: 'Montserrat', sans-serif;
             font-size: 1.25rem;
-            font-weight: 800;
+            font-weight: 900;
             color: var(--text-main);
             text-transform: uppercase;
-            margin-bottom: 0.85rem;
-        }
-        .resolution-text {
-            font-size: 1.05rem;
-            color: var(--text-muted);
-            line-height: 1.7;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-base);
         }
 
         /* ================= SECTION 3: 4 AGENTIC DESIGN PATTERNS (2x2 GRID) ================= */
@@ -247,48 +303,52 @@
         .feature-card.blue { border-top-color: var(--color-blue); }
         .feature-card.purple { border-top-color: var(--color-purple); }
         
-        .pillar-tag { font-family: monospace; font-size: 0.82rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
+        .pillar-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
         .cyan .pillar-tag { color: var(--color-cyan); }
         .red .pillar-tag { color: var(--color-red); }
         .blue .pillar-tag { color: var(--color-blue); }
         .purple .pillar-tag { color: var(--color-purple); }
 
-        .feature-title { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 800; margin-bottom: 1.25rem; color: var(--text-main); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border-base); padding-bottom: 1rem; }
-        .feature-concept { color: var(--text-muted); font-size: 1.08rem; line-height: 1.75; margin-bottom: 1.5rem; }
-        .feature-concept strong { color: var(--text-main); }
+        .feature-title { font-family: 'Montserrat', sans-serif; font-size: 1.45rem; font-weight: 900; margin-bottom: 1.25rem; color: var(--text-main); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border-base); padding-bottom: 0.9rem; }
+        
+        .feature-concept-box {
+            background: rgba(10, 15, 29, 0.95);
+            border: 1px solid var(--border-base);
+            border-radius: 8px;
+            padding: 1.35rem 1.5rem;
+            margin-bottom: 1.4rem;
+        }
 
         .mechanics-box {
-            background: rgba(2, 6, 23, 0.65);
-            border-left: 3px solid var(--color-cyan);
-            padding: 1.25rem 1.5rem;
-            border-radius: 0 6px 6px 0;
-            margin-bottom: 1.75rem;
+            background: rgba(2, 6, 23, 0.85);
+            border: 1px solid var(--border-base);
+            border-left: 4px solid var(--color-cyan);
+            padding: 1.45rem 1.6rem;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 1.6rem;
             flex-grow: 1;
         }
         .red .mechanics-box { border-left-color: var(--color-red); }
         .blue .mechanics-box { border-left-color: var(--color-blue); }
         .purple .mechanics-box { border-left-color: var(--color-purple); }
 
-        .mechanics-label { font-family: monospace; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--color-cyan); margin-bottom: 0.5rem; display: block; }
+        .mechanics-label { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--color-cyan); margin-bottom: 0.75rem; display: block; }
         .red .mechanics-label { color: var(--color-red); }
         .blue .mechanics-label { color: var(--color-blue); }
         .purple .mechanics-label { color: var(--color-purple); }
 
-        .mechanics-text { font-size: 0.98rem; color: var(--text-main); line-height: 1.65; }
-        .mechanics-text code { color: var(--color-cyan); font-size: 0.9rem; }
-
         /* ================= CITATION BLOCK ================= */
-        .citation-block { background: rgba(2, 6, 23, 0.9); border: 1px solid var(--border-base); padding: 1.5rem; border-radius: 6px; }
-        .citation-header { font-size: 0.8rem; text-transform: uppercase; font-weight: 800; letter-spacing: 1px; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 8px; }
+        .citation-block { background: rgba(2, 6, 23, 0.95); border: 1px solid var(--border-base); padding: 1.5rem; border-radius: 8px; }
+        .citation-header { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; text-transform: uppercase; font-weight: 800; letter-spacing: 1px; margin-bottom: 0.45rem; display: flex; align-items: center; gap: 8px; }
         .cyan .citation-header { color: var(--color-cyan); }
         .red .citation-header { color: var(--color-red); }
         .blue .citation-header { color: var(--color-blue); }
         .purple .citation-header { color: var(--color-purple); }
         
-        .citation-title { font-style: italic; font-weight: 600; color: var(--text-main); margin-bottom: 0.5rem; display: block; font-size: 1rem; }
-        .citation-abstract { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem; }
+        .citation-title { font-style: normal; font-weight: 800; color: var(--text-main); margin-bottom: 0.5rem; display: block; font-size: 1.02rem; }
+        .citation-abstract { font-size: 0.95rem; color: var(--text-main); font-weight: 600; line-height: 1.65; margin-bottom: 1rem; }
         
-        .citation-link { display: inline-block; font-family: monospace; font-size: 0.88rem; color: var(--text-main); text-decoration: none; border-bottom: 1px solid var(--color-cyan); transition: all 0.3s ease; }
+        .citation-link { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; font-weight: 800; color: var(--text-main); text-decoration: none; border-bottom: 1px solid var(--color-cyan); transition: all 0.3s ease; }
         .cyan .citation-link:hover { color: var(--color-cyan); }
         .red .citation-link { border-bottom-color: var(--color-red); }
         .red .citation-link:hover { color: var(--color-red); }
@@ -307,7 +367,7 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.45);
             width: 100%;
             max-width: 1300px;
-            margin-bottom: 5rem;
+            margin-bottom: 4rem;
         }
 
         .guardrail-table-wrapper {
@@ -322,53 +382,56 @@
             width: 100%;
             border-collapse: collapse;
             text-align: left;
-            background: rgba(2, 6, 23, 0.9);
+            background: rgba(10, 15, 29, 0.95);
             min-width: 900px;
         }
 
         .guardrail-table th {
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.88rem;
-            font-weight: 800;
+            font-size: 0.9rem;
+            font-weight: 900;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--color-cyan);
             background: rgba(15, 23, 42, 0.95);
-            padding: 1.25rem 1.5rem;
+            padding: 1.3rem 1.5rem;
             border-bottom: 2px solid var(--border-base);
         }
 
         .guardrail-table td {
-            padding: 1.4rem 1.5rem;
+            padding: 1.5rem;
             border-bottom: 1px solid var(--border-base);
-            font-size: 1rem;
-            color: var(--text-muted);
+            font-size: 1.02rem;
+            color: var(--text-main);
+            font-weight: 600;
             vertical-align: top;
-            line-height: 1.65;
+            line-height: 1.7;
         }
 
         .guardrail-table tr:last-child td { border-bottom: none; }
-        .guardrail-table td strong { color: var(--text-main); display: block; margin-bottom: 4px; font-size: 1.05rem; }
+        .table-cell-title { font-family: 'Montserrat', sans-serif; color: var(--text-main); display: block; margin-bottom: 4px; font-size: 1.06rem; font-weight: 800; text-transform: uppercase; }
+        
         .rule-badge {
-            font-family: monospace;
+            font-family: 'JetBrains Mono', monospace;
             font-size: 0.78rem;
-            font-weight: 700;
+            font-weight: 800;
             color: var(--color-purple);
             background: rgba(168, 85, 247, 0.12);
             border: 1px solid rgba(168, 85, 247, 0.35);
             padding: 3px 8px;
             border-radius: 4px;
             display: inline-block;
-            margin-bottom: 6px;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
         }
         .status-pass {
-            font-family: monospace;
+            font-family: 'JetBrains Mono', monospace;
             font-size: 0.85rem;
-            font-weight: 700;
+            font-weight: 800;
             color: var(--color-green);
             background: rgba(16, 185, 129, 0.1);
             border: 1px solid rgba(16, 185, 129, 0.35);
-            padding: 4px 10px;
+            padding: 5px 10px;
             border-radius: 4px;
             display: inline-block;
             white-space: nowrap;
@@ -378,20 +441,20 @@
         .pedigree-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
+            gap: 1.75rem;
             margin-top: 2.5rem;
         }
 
         .pedigree-card {
-            background: rgba(2, 6, 23, 0.85);
+            background: rgba(10, 15, 29, 0.95);
             border: 1px solid var(--border-base);
             border-top: 3px solid var(--color-cyan);
             border-radius: 8px;
-            padding: 1.75rem;
+            padding: 2rem;
+            text-align: left;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.35);
         }
-        .pedigree-title { font-family: 'Montserrat', sans-serif; font-size: 1.05rem; font-weight: 800; color: var(--text-main); text-transform: uppercase; margin-bottom: 0.75rem; }
-        .pedigree-text { font-size: 0.95rem; color: var(--text-muted); line-height: 1.65; }
-        .pedigree-text code { color: var(--color-cyan); }
+        .pedigree-title { font-family: 'Montserrat', sans-serif; font-size: 1.15rem; font-weight: 900; color: var(--text-main); text-transform: uppercase; margin-bottom: 1rem; padding-bottom: 0.7rem; border-bottom: 1px solid var(--border-base); }
 
         /* ================= PROPRIETARY IP FOOTER ================= */
         .ip-footer {
@@ -418,7 +481,6 @@
         }
         @media (max-width: 600px) {
             .hero-title { font-size: 2rem; }
-            .hero-subtitle { font-size: 1.1rem; }
             .hero { padding-top: 190px; padding-bottom: 50px; }
             nav { padding: 1rem; }
             .nav-links { gap: 0.6rem; }
@@ -430,7 +492,7 @@
 </head>
 <body>
 
-    <!-- MASTER NAVIGATION -->
+    <!-- MASTER NAVIGATION (8-LINK SITE-WIDE BAR WITH SYSTEM GLOSSARY) -->
     <nav>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
@@ -439,33 +501,49 @@
             <li><a href="architectural.html">Pipeline Architecture</a></li>
             <li><a href="workflow-portfolio.html">Machine Identity Execution Showcase</a></li>
             <li><a href="add-capabilities.html">Additional Capability Integration Showcase</a></li>
+            <li><a href="glossary.html">System Glossary</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
 
     <!-- HERO HEADER -->
     <header class="hero">
-        <span class="hero-tag">[MASTER SYSTEM DIRECTIVE SPECIFICATION :: v9.1]</span>
+        <span class="hero-tag">[MASTER SYSTEM DIRECTIVE SPECIFICATION :: v9.2]</span>
         <div class="hero-title-container">
             <h1 class="hero-title">DETERMINISTIC AI SYSTEMS ENGINEERING</h1>
         </div>
-        <p class="hero-subtitle">
-            Generative AI is naturally a probabilistic engine—it predicts words based on patterns—whereas cloud Identity and Access Management (IAM) requires exact, binary precision: an OIDC subject string or vault permission either matches 100%, or the deployment fails. To bridge that gap, I took a probabilistic AI engine and tethered it to a master <strong>System Directive</strong> to make it deterministic. This page documents how the <strong>Zero Trust Interactive State Machine</strong> uses established AI Systems Engineering best practices to guide every build from Step 1 through Step 7.
-        </p>
+
+        <!-- BULLETED HERO INTRO BOX (ZERO MID-SENTENCE BLUE CLUTTER) -->
+        <div class="section-intro-box">
+            <div class="intro-lead-sentence">
+                How I applied formal AI Systems Engineering best practices and first-principles mathematical variable control (defined in my <a href="glossary.html" class="inline-link">System Glossary</a>) to tether a probabilistic AI Engine:
+            </div>
+            <ul class="clean-bullet-list">
+                <li>
+                    <span class="bullet-lead">Probabilistic AI vs. Binary Cloud IAM:</span> Out of the box, The AI Engine predicts words probabilistically, whereas cloud Identity and Access Management (IAM) requires exact mathematical precision: an OpenID Connect (OIDC) Subject Claim or Data-Plane Role on a Data-Plane Asset either matches 100%, or the deployment fails.
+                </li>
+                <li>
+                    <span class="bullet-lead">Building a Deterministic State Machine:</span> To bridge that gap for my Microsoft Entra ID and Azure deployments, I wrapped The AI Engine inside my master System Directive (v9.2) to build the Zero Trust Interactive State Machine, governing every build across Phases 1 through 7.
+                </li>
+                <li>
+                    <span class="bullet-lead">Continuous System Improvement:</span> Every execution produces live mathematical Zero Trust verification and audit-ready compliance ledgers while compiling all verified operational refinements permanently into my master System Directive at session close in Phase 7.
+                </li>
+            </ul>
+        </div>
 
         <!-- ARCHITECTURAL INSIGHT -->
         <div class="insight-box">
-            <div class="insight-header">Architectural Insight: Why We Treat the System Directive Like a Compiler</div>
+            <div class="insight-header">Architectural Insight: Why My System Directive Operates Like a Compiler</div>
             <div class="insight-text">
-                "A traditional code compiler takes human instructions, checks that every variable and rule is valid, and refuses to build the program if anything is missing. The Zero Trust Interactive State Machine works the exact same way: in Steps 1 through 5, the System Directive forces the AI to check every Azure ID, repository string, and security lock with the Architect in the chat before it is allowed to output a single line of deployment code in Step 6."
+                A traditional code compiler takes human instructions, verifies that every variable and boundary rule is valid, and refuses to build the program if a single dependency is missing. My Zero Trust Interactive State Machine works on that exact engineering principle: in Phases 1 and 2, my System Directive forces The AI Engine to verify my Entra ID Tenant ID, Azure Subscription ID, Resource Group, and exact Code Repository and Branch spelling with me in my local terminal before it is permitted to synthesize my IaC Payload and Terminal Runbook in Phase 3.
             </div>
         </div>
         
         <div class="jump-links">
-            <a href="#classification">1. Anatomy of the System Directive</a>
-            <a href="#operational-challenge">2. Solving Speed vs. Precision</a>
+            <a href="#classification">1. Anatomy of My System Directive</a>
+            <a href="#operational-challenge">2. Matching System Complexity &amp; Precision</a>
             <a href="#agentic-patterns">3. The 4 AI Engineering Standards</a>
-            <a href="#translation-matrix">4. The 5 Safety Guardrails Table</a>
+            <a href="#translation-matrix">4. The 5 Enterprise Guardrails Matrix</a>
         </div>
     </header>
 
@@ -473,73 +551,133 @@
     <section id="classification" class="stacked-section">
         <div class="container-1300">
             <div class="compiler-box">
-                <span class="section-tag">[SECTION 01 :: HOW THE SYSTEM DIRECTIVE IS STRUCTURED]</span>
+                <span class="section-tag" style="text-align: center;">[SECTION 01 :: HOW MY SYSTEM DIRECTIVE IS STRUCTURED]</span>
                 <h2 class="section-title" style="text-align: center;">Anatomy of the Zero Trust Interactive State Machine</h2>
-                <p class="section-lead" style="text-align: center; max-width: 1000px; margin: 0 auto;">
-                    Instead of using a short, open-ended prompt, the <strong>Zero Trust Interactive State Machine (v9.1)</strong> is driven by a structured master <strong>System Directive</strong> divided into three layers: the tethered AI code generator, the 7-step rulebook, and the "Before" and "After" verification ledgers.
-                </p>
+                
+                <!-- BULLETED SECTION 1 INTRO BOX -->
+                <div class="section-intro-box" style="margin-bottom: 2rem;">
+                    <div class="intro-lead-sentence">
+                        Instead of relying on an open-ended prompt, my Zero Trust Interactive State Machine (v9.2) is governed by a structured master System Directive divided into three architectural layers:
+                    </div>
+                    <ul class="clean-bullet-list">
+                        <li>
+                            <span class="bullet-lead">Layer 1 (The Tethered Compute Engine):</span> Subordinates The AI Engine to my human sign-off so it can only output terminal lookup queries in Phases 1 and 2 and synthesize my IaC Payload in Phase 3 after my coordinates are locked.
+                        </li>
+                        <li>
+                            <span class="bullet-lead">Layer 2 (The 7-Phase State Machine Harness):</span> Enforces mandatory phase halts, a continuous Watchdog turn check, and strict separation between hard execution constraints and passive UI presentation strings.
+                        </li>
+                        <li>
+                            <span class="bullet-lead">Layer 3 (Two-Stage Verification &amp; Continuous Improvement):</span> Enforces the Phase 4 Identity Architecture Ledger (IAL), Validation Bridge, and Azure Portal Monitoring Metrics (Total Service API Hits), followed by the Phase 5 Audit Results Ledger (ARL), KQL Telemetry, and Defect &amp; Patch Ledger (DPL), and Phase 7 System Directive Compilation.
+                        </li>
+                    </ul>
+                </div>
 
                 <div class="anatomy-grid">
                     <div class="anatomy-card">
                         <span class="anatomy-tag">[LAYER 01 : THE AI ENGINE]</span>
-                        <h3 class="anatomy-title">The Tethered Code Builder</h3>
-                        <p class="anatomy-text">
-                            <strong>The AI Engine</strong> has zero direct access to the cloud and cannot act on its own. During Steps 1–5, it provides terminal lookup commands and saves verified Azure and pipeline IDs into memory. Only in Step 6 does it generate the 100% finished Terraform, Azure Bicep, or PowerShell REST API code across any of the 72 build combinations.
-                        </p>
+                        <h3 class="anatomy-title">The Tethered Co-Pilot</h3>
+                        <ul class="clean-bullet-list">
+                            <li>
+                                <span class="bullet-lead">Zero Direct Cloud Access:</span> The AI Engine has zero direct network access to my Entra ID Tenant ID or Azure Subscription ID and cannot execute commands on its own.
+                            </li>
+                            <li>
+                                <span class="bullet-lead">Lookups Before Synthesis:</span> In Phases 1 and 2, it outputs read-only terminal lookup scripts so I can extract my real cloud and Execution Agent IDs. Only in Phase 3 does it synthesize the finished Terraform, Azure Bicep, or PowerShell REST API IaC Payload and Terminal Runbook.
+                            </li>
+                        </ul>
                     </div>
 
                     <div class="anatomy-card purple">
                         <span class="anatomy-tag">[LAYER 02 : THE STATE MACHINE]</span>
-                        <h3 class="anatomy-title">7 Steps &amp; 32 Hard Rules</h3>
-                        <p class="anatomy-text">
-                            <strong>The State Machine</strong> is the master rulebook inside the System Directive: 7 sequential steps governed by 32 strict rules. It forces the AI to pause at every gate for human approval and uses XML-fenced blocks (<code>&lt;PASSIVE_UI_STRING_LITERALS&gt;</code>) so menu labels and display text never confuse the AI's code generation rules.
-                        </p>
+                        <h3 class="anatomy-title">7 Phases &amp; Strict Rules</h3>
+                        <ul class="clean-bullet-list">
+                            <li>
+                                <span class="bullet-lead">Mandatory Halts &amp; Watchdog Check:</span> The State Machine paces my build across 7 sequential phases with strict human-in-the-loop halts and a continuous Watchdog self-check on every turn.
+                            </li>
+                            <li>
+                                <span class="bullet-lead">Presentation Subordination:</span> Isolates passive telemetry table headers inside fenced XML blocks so cosmetic display text can never override a mechanical security rule across Gate 1 through Gate 4.
+                            </li>
+                        </ul>
                     </div>
 
                     <div class="anatomy-card green">
                         <span class="anatomy-tag">[LAYER 03 : BUILT-IN VERIFICATION]</span>
-                        <h3 class="anatomy-title">Before &amp; After Audit Ledgers</h3>
-                        <p class="anatomy-text">
-                            Rather than treating security audits as an afterthought, Step 6 and Step 7 automatically generate four verification records: the "Before" blueprint (<strong>Identity Architecture Ledger</strong>), the "After" live cloud check (<strong>Audit Results Ledger</strong>), live <strong>KQL Log Queries</strong>, and the <strong>Defect &amp; Patch Ledger (DPL)</strong>.
-                        </p>
+                        <h3 class="anatomy-title">Two-Stage Proof &amp; Ledgers</h3>
+                        <ul class="clean-bullet-list">
+                            <li>
+                                <span class="bullet-lead">Phase 4 Baseline &amp; Metrics:</span> Generates the Identity Architecture Ledger (IAL), runs the Validation Bridge on my Execution Agent, and verifies live access via Azure Portal Monitoring Metrics (Total Service API Hits) on my Data-Plane Asset.
+                            </li>
+                            <li>
+                                <span class="bullet-lead">Phase 5 &amp; Phase 7 Evolution:</span> Generates the Audit Results Ledger (ARL), KQL Telemetry (kql_telemetry.md), and Defect &amp; Patch Ledger (DPL) in Phase 5, and compiles all upgrades into my System Directive in Phase 7.
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 2: ADDRESSING THE OPERATIONAL SCALE & PRECISION CHALLENGE -->
+    <!-- SECTION 2: ADDRESSING SYSTEM COMPLEXITY & MATHEMATICAL PRECISION -->
     <section id="operational-challenge" class="stacked-section">
         <div class="challenge-box">
             <span class="section-tag" style="text-align: center;">[SECTION 02 :: WHY THIS ARCHITECTURE EXISTS]</span>
-            <h2 class="section-title" style="text-align: center;">Solving the Speed vs. Precision Challenge in Cloud IAM</h2>
-            <p class="section-lead" style="text-align: center; max-width: 1050px; margin: 0 auto;">
-                In modern cloud security, engineers need to deploy passwordless identities quickly—but cloud identity configurations require exact precision across dozens of moving parts (4 CI/CD platforms, Brownfield vs. Greenfield states, 3 target vaults/databases, and 3 IaC languages). If a single repo capital letter, tenant ID, or role scope is off, the deployment either fails with a <code>403 Forbidden</code> error or leaves a security gap. By tethering the AI to a step-by-step State Machine, we get the speed of AI code generation while guaranteeing every setting is verified against the live cloud first.
-            </p>
+            <h2 class="section-title" style="text-align: center;">Matching System Complexity &amp; Mathematical Precision in Cloud IAM</h2>
+            
+            <!-- BULLETED SECTION 2 INTRO BOX -->
+            <div class="section-intro-box" style="margin-bottom: 2rem;">
+                <div class="intro-lead-sentence">
+                    The true engineering challenge in enterprise Cloud IAM is matching system complexity with 100% mathematical precision across every moving part:
+                </div>
+                <ul class="clean-bullet-list">
+                    <li>
+                        <span class="bullet-lead">Combinatorial Complexity Across 5 Coordinates:</span> Securing a non-human machine identity requires aligning 1 Identity Core (Microsoft Entra ID), 4 Execution Agents, 2 Infrastructure States, 3 Data-Plane Assets, and 3 IaC Payload languages (72 baseline build combinations plus 35 Day-2 Microsoft Entra ID security modules).
+                    </li>
+                    <li>
+                        <span class="bullet-lead">Zero Margin for Error Across Gates 1 to 4:</span> If a single capital letter in the Code Repository and Branch spelling inside the Gate 3 Subject Claim is off, or if a Gate 4 Data-Plane Role is mis-scoped, the deployment either fails with an access denial or leaves a security gap.
+                    </li>
+                    <li>
+                        <span class="bullet-lead">Tight, Mathematically Proper Configurations:</span> Tethering The AI Engine to my Zero Trust Interactive State Machine ensures that every coordinate, Subject Claim, 30-Second Server Sync Timer, and single-asset Data-Plane Role is verified against my live cloud environment before execution.
+                    </li>
+                </ul>
+            </div>
 
             <div class="resolution-grid">
                 <div class="resolution-card">
-                    <span class="resolution-tag">[OBJECTIVE 01 : FAST, REPEATABLE BUILDS]</span>
-                    <h3 class="resolution-title">Rapid Passwordless OIDC Setup</h3>
-                    <p class="resolution-text">
-                        Uses the speed of <strong>The AI Engine</strong> to quickly assemble complete OpenID Connect (OIDC) passwordless login pipelines and network-restricted Conditional Access policies without writing boilerplate syntax from scratch.
-                    </p>
+                    <span class="resolution-tag">[OBJECTIVE 01 : MATHEMATICAL PRECISION]</span>
+                    <h3 class="resolution-title">Exact OIDC &amp; Day-2 Synthesis</h3>
+                    <ul class="clean-bullet-list">
+                        <li>
+                            <span class="bullet-lead">Passwordless Gate 3 Federation:</span> Synthesizes complete OpenID Connect (OIDC) configurations where my Execution Agent trades its wildcard-free Subject Claim for a 60-Minute Login Token on my Service Principal.
+                        </li>
+                        <li>
+                            <span class="bullet-lead">35 Day-2 Entra ID Expansions:</span> Layers advanced capabilities (such as Conditional Access for Workload Identities with IPv4 chunking) onto my verified Application Registration and Service Principal.
+                        </li>
+                    </ul>
                 </div>
 
                 <div class="resolution-card purple">
                     <span class="resolution-tag">[OBJECTIVE 02 : ZERO AI GUESSWORK]</span>
                     <h3 class="resolution-title">100% Verified Cloud IDs</h3>
-                    <p class="resolution-text">
-                        Replaces AI guessing with real terminal lookups in Steps 1–5. Every generated script is locked to verified Azure IDs, single-vault data roles, pinned provider versions, and Brownfield/Greenfield protection rules.
-                    </p>
+                    <ul class="clean-bullet-list">
+                        <li>
+                            <span class="bullet-lead">Live Terminal Extraction:</span> Replaces AI guessing with read-only terminal lookups in Phases 1 and 2 to lock in my real Entra ID Tenant ID, Azure Subscription ID, Resource Group, and Code Repository and Branch spelling.
+                        </li>
+                        <li>
+                            <span class="bullet-lead">Hard Gate Enforcement:</span> Enforces Brownfield (Existing) read-only lookups, Greenfield (Net-New) deletion-prevention locks, pinned versions, and single-asset Data-Plane Roles.
+                        </li>
+                    </ul>
                 </div>
 
                 <div class="resolution-card green">
                     <span class="resolution-tag">[OBJECTIVE 03 : 72 BUILD COMBINATIONS]</span>
                     <h3 class="resolution-title">Adapting to Any Stack</h3>
-                    <p class="resolution-text">
-                        Automatically adjusts the OIDC subject claim format, single-asset RBAC role, and code syntax across 4 execution agents, 2 infrastructure states, 3 data-plane targets, and 3 IaC languages—keeping the exact same security standard across all 72 combinations.
-                    </p>
+                    <ul class="clean-bullet-list">
+                        <li>
+                            <span class="bullet-lead">Dynamic Coordinate Branching:</span> Automatically adjusts Phase 2 terminal lookups, the Gate 3 Subject Claim format, the Gate 4 Data-Plane Role, and the Phase 4 Validation Bridge to match my 5 Build Coordinates.
+                        </li>
+                        <li>
+                            <span class="bullet-lead">Uniform Zero Trust Baseline:</span> Maintains the exact same mathematical security standard across all 72 baseline build combinations.
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -549,95 +687,152 @@
     <section id="agentic-patterns" class="stacked-section">
         <div class="section-header-block">
             <span class="section-tag">[SECTION 03 :: AI SYSTEMS ENGINEERING STANDARDS IN ACTION]</span>
-            <h2 class="section-title">The Four Pillars of the System Directive</h2>
-            <p class="section-lead">
-                To turn a probabilistic language model into a reliable engineering tool, the master <strong>System Directive (v9.1)</strong> is built directly on four globally recognized AI Systems Engineering standards. Here is what each standard means, how it works at the keyboard, and the research behind it.
-            </p>
+            <h2 class="section-title">The Four Pillars of My System Directive</h2>
+            
+            <!-- BULLETED SECTION 3 INTRO BOX -->
+            <div class="section-intro-box" style="margin-bottom: 0;">
+                <div class="intro-lead-sentence">
+                    To turn a probabilistic language model into a deterministic engineering co-pilot, I built my master System Directive (v9.2) on four globally recognized AI Systems Engineering standards:
+                </div>
+                <ul class="clean-bullet-list">
+                    <li>
+                        <span class="bullet-lead">Industry Standard vs. My Implementation:</span> Each card below separates what the foundational AI Systems Engineering standard defines in the broader AI industry from how I wired it into my 7-phase workflow at the keyboard, followed by the primary research citation.
+                    </li>
+                </ul>
+            </div>
         </div>
 
         <div class="feature-grid-2x2">
             
             <!-- PILLAR 1: ReAct & Recursive Evolution -->
             <div class="feature-card cyan">
-                <span class="pillar-tag">[PILLAR 01 :: TERMINAL VERIFICATION &amp; BUG LOGGING]</span>
-                <h3 class="feature-title">1. ReAct Loops &amp; The Defect Ledger</h3>
-                <div class="feature-concept">
-                    Asking an AI to write a whole cloud script in one shot ("zero-shot prompting") forces the AI to guess missing environment details. Based on the <strong>ReAct (Reasoning and Acting)</strong> standard, our assembly line alternates between reasoning in the chat and running real lookup commands in the terminal.
+                <span class="pillar-tag">[PILLAR 01 :: TERMINAL VERIFICATION &amp; REAL-TIME DPL LOGGING]</span>
+                <h3 class="feature-title">1. Agentic Patterns (The ReAct Framework)</h3>
+                
+                <div class="feature-concept-box">
+                    <ul class="clean-bullet-list">
+                        <li>
+                            <span class="bullet-lead">The AI Systems Engineering Standard:</span> Asking a model to write a complex cloud deployment in one shot ("zero-shot prompting") forces it to guess missing environment details. Developed by researchers at Princeton and Google Brain, the ReAct (Reasoning and Acting) methodology prevents hallucination by forcing models to alternate between reasoning steps and checking real external data sources.
+                        </li>
+                    </ul>
                 </div>
+
                 <div class="mechanics-box">
-                    <span class="mechanics-label">How It Works in the System Directive (Steps 1–5 &amp; Step 7)</span>
-                    <p class="mechanics-text">
-                        In Steps 1–5, <strong>The AI Engine</strong> gives <strong>The Architect</strong> terminal commands to pull real IDs before writing any code. And in Step 7, if a script hits an error, the AI enters a focused <strong>Generate-Validate-Fix</strong> loop: once the fix is proven in the terminal, <code>Rule 15</code> logs the root cause in the <strong>Defect &amp; Patch Ledger (DPL)</strong> and <code>Rule 9</code> outputs the entire, complete IaC file from top to bottom so partial code snippets never corrupt the build.
-                    </p>
+                    <span class="mechanics-label">How I Applied It in My System Directive (Phases 1 to 2 &amp; All-Phase DPL)</span>
+                    <ul class="clean-bullet-list">
+                        <li>
+                            <span class="bullet-lead">Phase 1 &amp; 2 Terminal Lookups:</span> Before writing any code, The AI Engine pauses and gives me read-only terminal lookup commands so I can extract my real Entra ID Tenant ID, Azure Subscription ID, Resource Group, and exact Code Repository and Branch spelling from my Execution Agent.
+                        </li>
+                        <li>
+                            <span class="bullet-lead">Standard Patch Loop &amp; State Re-Sync (Iterations 1 to 3):</span> If an error occurs at any phase, The AI Engine enters clinical diagnostic mode for up to 3 attempts. Once I verify a fix in my local terminal, it logs the root cause and fix immediately in the Defect &amp; Patch Ledger (DPL) and performs a full-file State Re-Sync of my entire IaC Payload.
+                        </li>
+                    </ul>
                 </div>
+
                 <div class="citation-block">
                     <div class="citation-header">Reference Standard</div>
                     <span class="citation-title">ReAct: Synergizing Reasoning and Acting in Language Models (Yao et al.)</span>
-                    <p class="citation-abstract">Foundational research from Princeton and Google Brain showing that AI models stop hallucinating when forced to alternate between reasoning steps and checking real external data.</p>
-                    <a href="https://arxiv.org/abs/2210.03629" target="_blank" class="citation-link">[View Research] ↗</a>
+                    <p class="citation-abstract">Foundational research from Princeton and Google Brain demonstrating that language models stop hallucinating when forced to alternate between reasoning traces and external environment lookups.</p>
+                    <a href="https://arxiv.org/abs/2210.03629" target="_blank" class="citation-link">[View Research] &#8599;</a>
                 </div>
             </div>
             
             <!-- PILLAR 2: OWASP Bounded Autonomy -->
             <div class="feature-card red">
                 <span class="pillar-tag">[PILLAR 02 :: PERMISSION &amp; MFA SAFETY LOCKS]</span>
-                <h3 class="feature-title">2. Bounded Autonomy &amp; MFA Safe Execution</h3>
-                <div class="feature-concept">
-                    When an untethered AI hits an "Access Denied" or MFA error during a deployment, it often tries to bypass the error by granting broad admin roles or overwriting resources. We apply <strong>OWASP LLM08 (Excessive Agency)</strong> to lock the AI inside strict permission boundaries.
+                <h3 class="feature-title">2. Bounded Autonomy (OWASP LLM08)</h3>
+                
+                <div class="feature-concept-box">
+                    <ul class="clean-bullet-list">
+                        <li>
+                            <span class="bullet-lead">The AI Systems Engineering Standard:</span> When an untethered model hits an access denial or multi-factor authentication error, it frequently attempts to bypass the error by granting broad administrative roles or overwriting live resources. OWASP LLM08 (Excessive Agency) mandates strict permission boundaries so a model cannot exercise unchecked agency.
+                        </li>
+                    </ul>
                 </div>
+
                 <div class="mechanics-box">
-                    <span class="mechanics-label">How It Works in the System Directive (Step 2 &amp; Step 5)</span>
-                    <p class="mechanics-text">
-                        <strong>The State Machine</strong> forbids management roles (<code>Owner</code> / <code>Contributor</code>), enforces Brownfield read-only lookups (<code>data</code> / <code>existing</code>), and applies <code>Rule 29 (MFA Safe Execution)</code> in Step 5: when an Azure security policy requires an interactive MFA popup to assign a role—which causes local terminal scripts to fail—the AI separates the role step from the script so the Identity and OIDC trust deploy cleanly, and guides <strong>The Architect</strong> to finish the role click in the Azure web portal.
-                    </p>
+                    <span class="mechanics-label">How I Applied It in My System Directive (Phase 3 / Gates 1, 2 &amp; 4)</span>
+                    <ul class="clean-bullet-list">
+                        <li>
+                            <span class="bullet-lead">Asset &amp; Role Locks:</span> The State Machine enforces read-only lookups on Brownfield (Existing) Data-Plane Assets, deletion-prevention locks on Greenfield (Net-New) Data-Plane Assets, Single-Tenant Application Registrations and Service Principals, and single-asset Data-Plane Roles (blocking Owner and Contributor Roles).
+                        </li>
+                        <li>
+                            <span class="bullet-lead">Azure Portal MFA Handoff:</span> When a Conditional Access or PowerShell REST API build requires an interactive MFA popup to assign a Gate 4 Data-Plane Role (which local terminals drop), The State Machine separates the Data-Plane Role step from the IaC Payload and gives me a guided Azure Portal MFA Handoff checklist so the build never crashes.
+                        </li>
+                    </ul>
                 </div>
+
                 <div class="citation-block">
                     <div class="citation-header">Reference Standard</div>
                     <span class="citation-title">OWASP Top 10 for LLM Applications (LLM08: Excessive Agency)</span>
-                    <p class="citation-abstract">The global application security standard for preventing AI models from having unchecked permissions or running destructive commands across enterprise systems.</p>
-                    <a href="https://genai.owasp.org/llmrisk2023-24/llm08-excessive-agency/" target="_blank" class="citation-link">[View Framework] ↗</a>
+                    <p class="citation-abstract">The global application security standard for preventing artificial intelligence models from exercising unchecked permissions or executing destructive actions across enterprise infrastructure.</p>
+                    <a href="https://genai.owasp.org/llmrisk2023-24/llm08-excessive-agency/" target="_blank" class="citation-link">[View Framework] &#8599;</a>
                 </div>
             </div>
             
             <!-- PILLAR 3: NIST HITL Governance -->
             <div class="feature-card blue">
                 <span class="pillar-tag">[PILLAR 03 :: STEP-BY-STEP HUMAN APPROVAL]</span>
-                <h3 class="feature-title">3. Human-in-the-Loop (HITL) Governance</h3>
-                <div class="feature-concept">
-                    In enterprise security, a human engineer must remain accountable for every change made to the cloud directory. Following the <strong>NIST AI Risk Management Framework</strong>, the assembly line requires explicit approval from <strong>The Architect</strong> at every single step.
+                <h3 class="feature-title">3. Human-in-the-Loop Governance (NIST AI RMF)</h3>
+                
+                <div class="feature-concept-box">
+                    <ul class="clean-bullet-list">
+                        <li>
+                            <span class="bullet-lead">The AI Systems Engineering Standard:</span> In enterprise cloud security, a human architect must remain accountable for every change made to the directory. The NIST Artificial Intelligence Risk Management Framework (AI RMF 1.0) establishes the "Govern" function, requiring continuous human oversight and explicit sign-off at every critical decision gate.
+                        </li>
+                    </ul>
                 </div>
+
                 <div class="mechanics-box">
-                    <span class="mechanics-label">How It Works in the System Directive (Steps 1–6)</span>
-                    <p class="mechanics-text">
-                        <code>Rule 1 (The Step-by-Step Halt Rule)</code> forbids the AI from combining multiple steps or dumping code early. The AI must pause at each gate—Boundary (Step 2), Identity (Step 3), OIDC Trust (Step 4), and Vault Permissions (Step 5)—echo back the verified IDs, list the exact files it plans to generate in Step 6 (<code>Rule 12</code>), and wait for <strong>The Architect</strong> to approve before moving forward.
-                    </p>
+                    <span class="mechanics-label">How I Applied It in My System Directive (Phases 1 to 7)</span>
+                    <ul class="clean-bullet-list">
+                        <li>
+                            <span class="bullet-lead">Strict Phase Halts:</span> My System Directive forbids The AI Engine from skipping phases or stacking sequential manual tasks in a single prompt. Every phase ends with a mandatory halt awaiting my confirmation.
+                        </li>
+                        <li>
+                            <span class="bullet-lead">Workspace Forecast &amp; Coordinate Echo:</span> Before outputting my Phase 3 IaC Payload, The State Machine lists the exact five deliverable files to initialize in Phase 1 and echoes back my verified Application Registration Client ID and Subject Claim template in Phase 3 for my explicit approval.
+                        </li>
+                    </ul>
                 </div>
+
                 <div class="citation-block">
                     <div class="citation-header">Reference Standard</div>
                     <span class="citation-title">NIST Artificial Intelligence Risk Management Framework (AI RMF 1.0)</span>
-                    <p class="citation-abstract">The U.S. federal standard establishing the "Govern" function—requiring clear human oversight, risk control, and human accountability for high-impact AI systems.</p>
-                    <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" class="citation-link">[View Standard] ↗</a>
+                    <p class="citation-abstract">The U.S. federal standard establishing the "Govern" function, requiring structured human oversight, risk control, and clear human accountability across high-impact AI systems.</p>
+                    <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" class="citation-link">[View Standard] &#8599;</a>
                 </div>
             </div>
 
             <!-- PILLAR 4: Cognitive Circuit Breaking -->
             <div class="feature-card purple">
-                <span class="pillar-tag">[PILLAR 04 :: STOPPING ENDLESS AI GUESSING LOOPS]</span>
-                <h3 class="feature-title">4. The 3-Strike Circuit Breaker</h3>
-                <div class="feature-concept">
-                    When a script fails repeatedly in a long chat session, AI models naturally lose track of earlier rules and start guessing in circles ("hallucination spirals"). We built a hard <strong>3-Strike Circuit Breaker</strong> into Step 7 to stop the AI before it can dig a deeper hole.
+                <span class="pillar-tag">[PILLAR 04 :: EMERGENCY HALT ON ITERATION 4 &amp; PHASE 7 EVOLUTION]</span>
+                <h3 class="feature-title">4. Cognitive Circuit Breaking &amp; Evolution</h3>
+                
+                <div class="feature-concept-box">
+                    <ul class="clean-bullet-list">
+                        <li>
+                            <span class="bullet-lead">The AI Systems Engineering Standard:</span> When a deployment script fails repeatedly during a long troubleshooting session, language models naturally lose track of earlier constraints and begin guessing in circles ("hallucination spirals"). Foundational AI reliability research proves the need for hard iteration limits and cognitive circuit breaking.
+                        </li>
+                    </ul>
                 </div>
+
                 <div class="mechanics-box">
-                    <span class="mechanics-label">How It Works in the System Directive (Step 7)</span>
-                    <p class="mechanics-text">
-                        Before every reply, <code>Directive 07 (The Self-Check Rule)</code> forces the AI to verify it hasn't drifted off the System Directive. During troubleshooting in Step 7, the AI gets up to <strong>3 tries</strong> to fix a terminal error. If the error still isn't solved on <strong>Attempt #4</strong>, the <strong>Circuit Breaker</strong> trips automatically: it forbids the AI from writing any more code, forces a plain summary of what failed across the 3 tries, and hands control back to <strong>The Architect</strong>.
-                    </p>
+                    <span class="mechanics-label">How I Applied It in My System Directive (All-Phase Circuit Breaker &amp; Phase 7)</span>
+                    <ul class="clean-bullet-list">
+                        <li>
+                            <span class="bullet-lead">The 4-Iteration Circuit Breaker (Iteration 4 Halt):</span> Active across every phase (separate from routine DPL logging during Iterations 1 to 3). If a single isolated error fails 3 times in a row and reaches Iteration 4, The 4-Iteration Circuit Breaker trips automatically: forbidding new code generation, analyzing the 3 failed tries, calculating an Estimated Probability of Success (X%), and presenting alternative pathways for my decision.
+                        </li>
+                        <li>
+                            <span class="bullet-lead">Phase 7 Continuous Improvement:</span> At session close in Phase 7, The AI Engine outputs my statistical AI Performance Scorecard and compiles all verified DPL lessons permanently into my master System Directive.
+                        </li>
+                    </ul>
                 </div>
+
                 <div class="citation-block">
                     <div class="citation-header">Reference Standard</div>
                     <span class="citation-title">A Survey on Hallucination in Large Language Models (Huang et al.)</span>
-                    <p class="citation-abstract">Research documenting how language models drift and repeat false guesses during long troubleshooting conversations—proving the need for hard attempt limits.</p>
-                    <a href="https://arxiv.org/abs/2311.05232" target="_blank" class="citation-link">[View Research] ↗</a>
+                    <p class="citation-abstract">Comprehensive research documenting how language models drift from system instructions and repeat ungrounded guesses during multi-turn troubleshooting sessions.</p>
+                    <a href="https://arxiv.org/abs/2311.05232" target="_blank" class="citation-link">[View Research] &#8599;</a>
                 </div>
             </div>
             
@@ -647,68 +842,94 @@
     <!-- SECTION 4: THE TRANSLATION MATRIX (THE 5 ENTERPRISE GUARDRAILS) -->
     <section id="translation-matrix" class="stacked-section">
         <div class="matrix-section-box">
-            <span class="section-tag" style="text-align: center;">[SECTION 04 :: HOW THE 5 SAFETY GUARDRAILS WORK IN CODE]</span>
-            <h2 class="section-title" style="text-align: center;">Translating AI Engineering into the 5 Safety Guardrails</h2>
-            <p class="section-lead" style="text-align: center; max-width: 1050px; margin: 0 auto 2rem;">
-                While the four pillars above control how the AI steps through the conversation, the System Directive also enforces <strong>Five Concrete Safety Guardrails</strong> inside the generated code itself—each verified in Section 2.5 of the live <strong>Audit Results Ledger (ARL)</strong> in Step 6.
-            </p>
+            <span class="section-tag" style="text-align: center;">[SECTION 04 :: HOW THE 5 ENTERPRISE GUARDRAILS WORK IN CODE]</span>
+            <h2 class="section-title" style="text-align: center;">Translating AI Engineering into the 5 Enterprise Guardrails</h2>
+            
+            <!-- BULLETED SECTION 4 INTRO BOX -->
+            <div class="section-intro-box" style="margin-bottom: 2rem;">
+                <div class="intro-lead-sentence">
+                    How the four AI Systems Engineering pillars above are translated into five concrete security locks inside my generated code:
+                </div>
+                <ul class="clean-bullet-list">
+                    <li>
+                        <span class="bullet-lead">Runtime Code Enforcement:</span> Enforced inside my Phase 3 IaC Payload, Terminal Runbook, and Phase 4 Validation Bridge across all 72 build combinations.
+                    </li>
+                    <li>
+                        <span class="bullet-lead">Audited in Phase 5:</span> Formally verified and scored as [PASS] in my Phase 5 Audit Results Ledger (audit_results_ledger.md or ARL), alongside three built-in cloud bug preventions detailed below the table:
+                    </li>
+                </ul>
+            </div>
 
             <div class="guardrail-table-wrapper">
                 <table class="guardrail-table">
                     <thead>
                         <tr>
-                            <th style="width: 22%;">Engineering Goal</th>
-                            <th style="width: 25%;">Built-In Safety Guardrail</th>
-                            <th style="width: 41%;">How the System Directive Enforces It at the Keyboard</th>
-                            <th style="width: 12%;">Live Audit Check</th>
+                            <th style="width: 21%;">Engineering Goal</th>
+                            <th style="width: 23%;">Enterprise Guardrail</th>
+                            <th style="width: 44%;">How My System Directive Enforces It in Code</th>
+                            <th style="width: 12%;">Phase 5 ARL Check</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>Separating Routing IDs from Private Secrets</strong></td>
-                            <td><strong>1. Secret &amp; Credential Protection</strong></td>
+                            <td><span class="table-cell-title">Separating Routing IDs from Private Secrets</span></td>
+                            <td><span class="table-cell-title">1. Secret &amp; Credential Protection</span></td>
                             <td>
-                                <span class="rule-badge">Step 1 &amp; Step 4 Privacy Rules</span><br>
-                                <strong>Routing IDs Go In:</strong> Non-secret address numbers (Tenant ID, Subscription ID, Resource Group, and Repo names) are safely pasted into the chat during Steps 1–5 so the AI writes 100% finished code with zero blank placeholders.<br>
-                                <strong>Secrets Stay Private:</strong> OIDC eliminates client passwords completely, and any personal login token (like a GitHub PAT) is typed invisibly inside your local terminal (<code>read -s</code>) so secrets never touch the chat or GitHub.
+                                <span class="rule-badge">Phases 1, 2 &amp; 3 / Gates 1, 2 &amp; 3</span>
+                                <ul class="clean-bullet-list">
+                                    <li><span class="bullet-lead">Routing IDs Go In:</span> My Entra ID Tenant ID, Azure Subscription ID, Resource Group, and Code Repository and Branch are resolved via terminal lookups in Phases 1 and 2 so The AI Engine writes a 100% finished IaC Payload in Phase 3 with zero blank placeholders.</li>
+                                    <li><span class="bullet-lead">Secrets Stay Out:</span> OpenID Connect (OIDC) 60-Minute Login Tokens eliminate static passwords completely, and my Terminal Runbook uses invisible terminal input (read -s) so any setup token never appears on my screen or in my Code Repository and Branch.</li>
+                                </ul>
                             </td>
-                            <td><span class="status-pass">[PASS : ARL 2.5]</span></td>
+                            <td><span class="status-pass">[PASS : ARL]</span></td>
                         </tr>
                         <tr>
-                            <td><strong>Never Overwriting Existing Cloud Assets</strong></td>
-                            <td><strong>2. Brownfield &amp; Greenfield Protection</strong></td>
+                            <td><span class="table-cell-title">Protecting Live Cloud Infrastructure</span></td>
+                            <td><span class="table-cell-title">2. Existing Asset Protection</span></td>
                             <td>
-                                <span class="rule-badge">Step 2 Infrastructure Lock</span><br>
-                                Prevents scripts from wiping out live company resources. Forces <strong>read-only lookup mode</strong> (<code>data</code> blocks in Terraform or <code>existing</code> in Bicep) when connecting to existing Brownfield vaults, and locks a <code>prevent_destroy = true</code> deletion block onto brand-new Greenfield resources.
+                                <span class="rule-badge">Phases 2 &amp; 3 / Gate 1 Boundary</span>
+                                <ul class="clean-bullet-list">
+                                    <li><span class="bullet-lead">Brownfield (Existing) Infrastructure State:</span> Forces my Phase 3 IaC Payload into read-only lookup mode (Terraform data blocks or Azure Bicep existing keywords) and echoes back my existing Application Registration Client ID first so live Data-Plane Assets are never overwritten.</li>
+                                    <li><span class="bullet-lead">Greenfield (Net-New) Infrastructure State:</span> Attaches deletion-prevention locks and persistent state storage rules so new Data-Plane Assets cannot be accidentally wiped out.</li>
+                                </ul>
                             </td>
-                            <td><span class="status-pass">[PASS : ARL 2.5]</span></td>
+                            <td><span class="status-pass">[PASS : ARL]</span></td>
                         </tr>
                         <tr>
-                            <td><strong>Single-Vault Data Permissions Only</strong></td>
-                            <td><strong>3. Stopping "The Contributor Trap"</strong></td>
+                            <td><span class="table-cell-title">Single-Asset Data Permissions Only</span></td>
+                            <td><span class="table-cell-title">3. Stopping "The Contributor Trap"</span></td>
                             <td>
-                                <span class="rule-badge">Step 5 Least-Privilege Lock</span><br>
-                                Giving a pipeline <code>Owner</code> or <code>Contributor</code> rights lets it delete resources across Azure. The System Directive blocks management roles completely and grants only the exact data-plane role needed (such as <em>Key Vault Secrets User</em>) locked strictly to that one target vault or database ID.
+                                <span class="rule-badge">Phases 3 &amp; 5 / Gate 4 Access</span>
+                                <ul class="clean-bullet-list">
+                                    <li><span class="bullet-lead">Blocking Owner and Contributor Roles:</span> Giving an Execution Agent Owner or Contributor access is like giving a delivery driver the master keys to remodel the building. Broad Owner and Contributor Roles are strictly blocked.</li>
+                                    <li><span class="bullet-lead">Single-Asset Data-Plane Role:</span> Assigns one specific Data-Plane Role (such as Key Vault Secrets User) to my Service Principal, scoped strictly to the resource ID of my single Data-Plane Asset.</li>
+                                </ul>
                             </td>
-                            <td><span class="status-pass">[PASS : ARL 2.5]</span></td>
+                            <td><span class="status-pass">[PASS : ARL]</span></td>
                         </tr>
                         <tr>
-                            <td><strong>Locking In Verified Plugin Versions</strong></td>
-                            <td><strong>4. Supply Chain Version Pinning</strong></td>
+                            <td><span class="table-cell-title">Locking In Verified Provider Versions</span></td>
+                            <td><span class="table-cell-title">4. Supply Chain Version Pinning</span></td>
                             <td>
-                                <span class="rule-badge">Step 6 Code Generation Lock</span><br>
-                                Prevents the AI from inventing fake plugin versions or pulling unverified updates by pinning all Terraform providers (<code>azurerm</code>, <code>azuread</code>, <code>time</code>), Azure Bicep resource APIs, and CI/CD pipeline actions to exact, verified version numbers.
+                                <span class="rule-badge">Phases 3 &amp; 4 / IaC Payload &amp; Validation Bridge</span>
+                                <ul class="clean-bullet-list">
+                                    <li><span class="bullet-lead">Pinned Versions:</span> Rejects floating version tags (such as "latest") and pins every provider and API version in my Phase 3 IaC Payload and every login action in my Phase 4 Validation Bridge to an exact, verified version number.</li>
+                                    <li><span class="bullet-lead">Pure REST API Schemas:</span> Enforces pure Microsoft Graph JSON property names when my chosen IaC Payload is PowerShell REST API so Terraform terms never bleed into raw API calls.</li>
+                                </ul>
                             </td>
-                            <td><span class="status-pass">[PASS : ARL 2.5]</span></td>
+                            <td><span class="status-pass">[PASS : ARL]</span></td>
                         </tr>
                         <tr>
-                            <td><strong>Scrubbing Tokens from Console Screens</strong></td>
-                            <td><strong>5. Pipeline Log Token Masking</strong></td>
+                            <td><span class="table-cell-title">Scrubbing Tokens from Console Logs</span></td>
+                            <td><span class="table-cell-title">5. Validation Bridge Runtime Log Masking</span></td>
                             <td>
-                                <span class="rule-badge">Step 6 Runtime Masking Rule</span><br>
-                                Even with temporary 60-minute OIDC tokens, pipeline logs must never print a token or secret in plain text. Forces runtime log masking (such as <code>::add-mask::</code> in GitHub Actions) and invisible terminal input (<code>read -s</code>) so sensitive strings never appear on screen.
+                                <span class="rule-badge">Phases 4 &amp; 5 / Validation Bridge &amp; ARL</span>
+                                <ul class="clean-bullet-list">
+                                    <li><span class="bullet-lead">Active Output Scrubbing:</span> Before my Execution Agent runs the Phase 4 Validation Bridge to trade its Subject Claim for a 60-Minute Login Token and read my Data-Plane Asset, my System Directive injects active Runtime Log Masking into the Validation Bridge file.</li>
+                                    <li><span class="bullet-lead">Zero Plaintext Exposure:</span> Scrubs any sensitive 60-Minute Login Token or Data-Plane Asset value with asterisks (***) in memory before a single line prints to the console screen.</li>
+                                </ul>
                             </td>
-                            <td><span class="status-pass">[PASS : ARL 2.5]</span></td>
+                            <td><span class="status-pass">[PASS : ARL]</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -717,27 +938,39 @@
             <!-- REAL-WORLD CLOUD BUGS SOLVED BY THE SYSTEM DIRECTIVE -->
             <div class="pedigree-grid">
                 <div class="pedigree-card">
-                    <h4 class="pedigree-title">1. Preventing Microsoft Server Sync Crashes</h4>
-                    <p class="pedigree-text">
-                        <strong>The Bug:</strong> When a script creates a new identity or Named Location in Entra ID and immediately tries to attach an OIDC rule or Conditional Access policy a split-second later, Microsoft's servers haven't finished syncing yet and the script crashes.<br>
-                        <strong>The Built-In Fix:</strong> The System Directive automatically builds a 30-second pause timer (<code>time_sleep</code> in Terraform or <code>Start-Sleep</code> in PowerShell) between creation and attachment so Microsoft's directory catches up cleanly.
-                    </p>
+                    <h4 class="pedigree-title">1. Preventing Microsoft Entra ID Sync Crashes</h4>
+                    <ul class="clean-bullet-list">
+                        <li>
+                            <span class="bullet-lead">The Cloud Bug:</span> When an IaC Payload creates a new Application Registration and Service Principal in Microsoft Entra ID (Gate 2) and immediately tries to attach an OpenID Connect (OIDC) Subject Claim or Conditional Access policy a split-second later (Gate 3), Microsoft's global directory servers often haven't finished syncing yet and the deployment crashes.
+                        </li>
+                        <li>
+                            <span class="bullet-lead">My Built-In Fix:</span> My System Directive automatically injects a 30-Second Server Sync Timer into my Phase 3 IaC Payload between Gate 2 creation and Gate 3 attachment so Microsoft's directory servers catch up cleanly.
+                        </li>
+                    </ul>
                 </div>
 
                 <div class="pedigree-card">
-                    <h4 class="pedigree-title">2. Preventing Casing Bugs &amp; IP List Overflows</h4>
-                    <p class="pedigree-text">
-                        <strong>The Bug:</strong> Entra ID rejects OIDC logins (error <code>AADSTS700213</code>) if a single upper- or lower-case letter in the repo name doesn't match, and crashes if you feed thousands of GitHub runner IP addresses into one Conditional Access location block.<br>
-                        <strong>The Built-In Fix:</strong> Step 4 locks in exact letter-for-letter repo casing (e.g., <code>Compcode1</code>) via terminal lookup, and automatically splits large IPv4 lists into safe chunks using <code>chunklist()</code>.
-                    </p>
+                    <h4 class="pedigree-title">2. Preventing Subject Claim Casing Drops &amp; IP Overflows</h4>
+                    <ul class="clean-bullet-list">
+                        <li>
+                            <span class="bullet-lead">The Cloud Bug:</span> Microsoft Entra ID rejects OpenID Connect (OIDC) token exchanges if a single capital or lowercase letter in the Subject Claim does not match my Code Repository and Branch spelling, and crashes if thousands of Execution Agent IPv4 ranges are fed into one Conditional Access policy block.
+                        </li>
+                        <li>
+                            <span class="bullet-lead">My Built-In Fix:</span> Phase 2 extracts the exact capital-and-lowercase spelling of my Code Repository and Branch (such as CompCode1) via terminal lookup for the Subject Claim, and Phase 3 automatically chunks large IPv4 lists into safe blocks.
+                        </li>
+                    </ul>
                 </div>
 
                 <div class="pedigree-card">
-                    <h4 class="pedigree-title">3. Beating Azure Portal Caching Delays</h4>
-                    <p class="pedigree-text">
-                        <strong>The Bug:</strong> When you toggle a setting or Conditional Access policy in the Azure web portal, the browser screen often shows old cached data for several minutes—causing pipeline tests to fail if you run them too early.<br>
-                        <strong>The Built-In Fix:</strong> Before running a live pipeline test, the System Directive requires a quick terminal audit command that queries the live Microsoft Graph API directly to confirm the new setting is 100% active across the directory.
-                    </p>
+                    <h4 class="pedigree-title">3. Beating Azure Portal Caching &amp; Log Indexing Delays</h4>
+                    <ul class="clean-bullet-list">
+                        <li>
+                            <span class="bullet-lead">The Cloud Bug:</span> Azure Portal UI toggles suffer from browser caching delays, and Azure Log Analytics can take a long, unpredictable amount of time to index new sign-in logs.
+                        </li>
+                        <li>
+                            <span class="bullet-lead">My Built-In Fix:</span> My System Directive mandates terminal audit scripts to verify policy states directly in Microsoft Entra ID before testing, and uses Two-Stage Live Verification: checking Azure Portal Monitoring Metrics (Total Service API Hits) on my Data-Plane Asset in Phase 4 for immediate proof before running asynchronous KQL Telemetry (kql_telemetry.md) in Phase 5.
+                        </li>
+                    </ul>
                 </div>
             </div>
 

@@ -494,7 +494,7 @@
         
         .canvas-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 5px; }
         .diagram-canvas {
-            position: relative; max-width: 1200px; min-width: 1200px; height: 680px; margin: 0 auto;
+            position: relative; max-width: 1200px; min-width: 1200px; height: 730px; margin: 0 auto;
             background-color: rgba(2, 6, 23, 0.92);
             background-image: linear-gradient(to right, rgba(30, 41, 59, 0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(30, 41, 59, 0.5) 1px, transparent 1px);
             background-size: 40px 40px; border: 1px solid var(--border-base); border-radius: 12px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
@@ -526,15 +526,15 @@
         .animated-path { stroke-dasharray: 8, 12; animation: flow 1s linear infinite; }
 
         .node { position: absolute; background: var(--bg-node); border: 1px solid var(--border-base); border-radius: 8px; padding: 1.05rem; z-index: 2; backdrop-filter: blur(8px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3); }
-        .node-title { font-size: 0.96rem; font-weight: 900; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.55rem; line-height: 1.25; color: var(--text-main); }
-        .node-text { font-size: 0.8rem; color: var(--text-main); font-weight: 500; line-height: 1.45; }
+        .node-title { font-size: 0.94rem; font-weight: 900; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.55rem; line-height: 1.25; color: var(--text-main); }
+        .node-text { font-size: 0.8rem; color: var(--text-main); font-weight: 500; line-height: 1.48; }
         .tag { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; font-weight: 800; padding: 3px 6px; border: 1px solid; border-radius: 4px; display: inline-block; margin-bottom: 0.55rem; letter-spacing: 0.5px; }
 
-        .node-engineer { left: 20px; top: 40px; width: 200px; border-left: 4px solid var(--color-blue); }
+        .node-engineer { left: 20px; top: 30px; width: 205px; border-left: 4px solid var(--color-blue); }
         .node-engineer .tag { color: var(--color-blue); border-color: rgba(59, 130, 246, 0.3); }
         
         .node-compiler { 
-            left: 250px; top: 40px; width: 220px; 
+            left: 250px; top: 30px; width: 225px; 
             border: 2px solid var(--color-purple); border-left: 6px solid var(--color-purple); 
             background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(168, 85, 247, 0.15) 4px, rgba(168, 85, 247, 0.15) 8px), linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(10, 15, 29, 0.95) 100%), var(--bg-node);
             box-shadow: 0 0 25px rgba(168, 85, 247, 0.35), inset 0 0 15px rgba(168, 85, 247, 0.15);
@@ -542,19 +542,19 @@
         }
         .node-compiler .tag { color: var(--color-purple); border-color: rgba(168, 85, 247, 0.3); }
 
-        .node-iac { left: 500px; top: 40px; width: 180px; border-left: 4px solid var(--color-cyan); }
+        .node-iac { left: 500px; top: 30px; width: 195px; border-left: 4px solid var(--color-cyan); }
         .node-iac .tag { color: var(--color-cyan); border-color: rgba(14, 165, 233, 0.3); }
         
-        .node-core { left: 710px; top: 40px; width: 220px; border: 1px solid rgba(16, 185, 129, 0.3); border-left: 4px solid var(--color-green); }
+        .node-core { left: 720px; top: 30px; width: 220px; border: 1px solid rgba(16, 185, 129, 0.3); border-left: 4px solid var(--color-green); }
         .node-core .tag { color: var(--color-green); border-color: rgba(16, 185, 129, 0.3); }
         .node-core .highlight { color: var(--color-green); font-weight: 700; margin-top: 6px; display: block; }
 
-        .node-scale { left: 960px; top: 40px; width: 220px; border: 1px dashed var(--color-purple); border-left: 4px solid var(--color-purple); }
+        .node-scale { left: 965px; top: 30px; width: 215px; border: 1px dashed var(--color-purple); border-left: 4px solid var(--color-purple); }
         .node-scale .tag { color: var(--color-purple); border-color: rgba(168, 85, 247, 0.3); }
         .node-scale .highlight { color: var(--color-purple); font-weight: 700; margin-top: 6px; display: block; }
         
         .node-engine { 
-            left: 20px; top: 300px; width: 200px; 
+            left: 20px; top: 380px; width: 205px; 
             border: 2px solid var(--color-cyan); border-left: 6px solid var(--color-cyan); 
             background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(14, 165, 233, 0.18) 4px, rgba(14, 165, 233, 0.18) 8px), linear-gradient(135deg, rgba(14, 165, 233, 0.25) 0%, rgba(10, 15, 29, 0.95) 100%), var(--bg-node); 
             box-shadow: 0 0 25px rgba(14, 165, 233, 0.45), inset 0 0 15px rgba(14, 165, 233, 0.25); 
@@ -563,7 +563,7 @@
         .node-engine .tag { color: var(--color-cyan); border-color: rgba(14, 165, 233, 0.3); margin-right: 5px; }
 
         .node-dpl { 
-            left: 250px; top: 420px; width: 380px; 
+            left: 250px; top: 440px; width: 390px; 
             border: 2px solid var(--color-red); border-left: 6px solid var(--color-red); 
             background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(244, 63, 94, 0.15) 4px, rgba(244, 63, 94, 0.15) 8px), linear-gradient(135deg, rgba(244, 63, 94, 0.15) 0%, rgba(10, 15, 29, 0.95) 100%), var(--bg-node); 
             box-shadow: 0 0 25px rgba(244, 63, 94, 0.35), inset 0 0 15px rgba(244, 63, 94, 0.15); 
@@ -571,10 +571,10 @@
         }
         .node-dpl .tag { color: var(--color-red); border-color: rgba(244, 63, 94, 0.3); }
 
-        .node-ial { left: 670px; top: 420px; width: 200px; border-left: 4px solid var(--color-green); }
+        .node-ial { left: 665px; top: 440px; width: 240px; border-left: 4px solid var(--color-green); }
         .node-ial .tag { color: var(--color-green); border-color: rgba(16, 185, 129, 0.3); }
         
-        .node-arl { left: 900px; top: 420px; width: 230px; border-left: 4px solid var(--color-green); }
+        .node-arl { left: 930px; top: 440px; width: 250px; border-left: 4px solid var(--color-green); }
         .node-arl .tag { color: var(--color-green); border-color: rgba(16, 185, 129, 0.3); }
 
         /* ================= ARCHITECTURAL FLOW EXPLANATION (UNDER THE HOOD) ================= */
@@ -916,47 +916,83 @@
                             <marker id="arrow-red-end" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#f43f5e" /></marker>
                             <marker id="arrow-red-start" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 10 0 L 0 5 L 10 10 z" fill="#f43f5e" /></marker>
                         </defs>
-                        <!-- Eng to Compiler -->
-                        <path class="animated-path" d="M 220 100 L 250 100" fill="none" stroke="#3b82f6" stroke-width="3" marker-end="url(#arrow-blue)" />
-                        <!-- Compiler to Eng -->
-                        <path class="animated-path" d="M 250 130 L 220 130" fill="none" stroke="#a855f7" stroke-width="2" marker-end="url(#arrow-purple)" />
-                        <!-- Engine to Compiler -->
-                        <path class="animated-path" d="M 220 340 L 360 340 L 360 190" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
-                        <!-- Compiler to IaC -->
-                        <path class="animated-path" d="M 470 100 L 500 100" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
-                        <!-- IaC to Core -->
-                        <path class="animated-path" d="M 680 100 L 710 100" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
-                        <!-- Core to Modular Scaling -->
-                        <path class="animated-path" d="M 930 100 L 960 100" fill="none" stroke="#a855f7" stroke-width="3" marker-end="url(#arrow-purple)" />
+                        <!-- Architect to AI Engine -->
+                        <path class="animated-path" d="M 225 110 L 250 110" fill="none" stroke="#3b82f6" stroke-width="3" marker-end="url(#arrow-blue)" />
+                        <!-- AI Engine to Architect -->
+                        <path class="animated-path" d="M 250 140 L 225 140" fill="none" stroke="#a855f7" stroke-width="2" marker-end="url(#arrow-purple)" />
+                        <!-- State Machine to AI Engine -->
+                        <path class="animated-path" d="M 225 430 L 362 430 L 362 340" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
+                        <!-- AI Engine to IaC Payload -->
+                        <path class="animated-path" d="M 475 110 L 500 110" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
+                        <!-- IaC Payload to Core Machine Identity -->
+                        <path class="animated-path" d="M 695 110 L 720 110" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
+                        <!-- Core Machine Identity to 35 Core Entra ID Modules -->
+                        <path class="animated-path" d="M 940 110 L 965 110" fill="none" stroke="#a855f7" stroke-width="3" marker-end="url(#arrow-purple)" />
 
-                        <!-- Core to Split -->
-                        <path class="animated-path" d="M 820 220 L 820 320" fill="none" stroke="#10b981" stroke-width="2" />
-                        <!-- Split to IAL -->
-                        <path class="animated-path" d="M 820 320 L 770 320 L 770 410" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
-                        <!-- Split to ARL -->
-                        <path class="animated-path" d="M 820 320 L 1015 320 L 1015 410" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
+                        <!-- Core Machine Identity Down to Verification Split -->
+                        <path class="animated-path" d="M 830 330 L 830 390" fill="none" stroke="#10b981" stroke-width="2" />
+                        <!-- Split to Identity Architecture Ledger -->
+                        <path class="animated-path" d="M 830 390 L 785 390 L 785 435" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
+                        <!-- Split to Live Telemetry & Compliance Ledgers -->
+                        <path class="animated-path" d="M 830 390 L 1055 390 L 1055 435" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
                         
-                        <!-- Engine to Continuous Improvement (Bidirectional Feedback) -->
-                        <path class="animated-path" d="M 220 450 L 250 450" fill="none" stroke="#f43f5e" stroke-width="3" marker-start="url(#arrow-red-start)" marker-end="url(#arrow-red-end)" />
+                        <!-- State Machine to Continuous Improvement (Bidirectional Feedback) -->
+                        <path class="animated-path" d="M 225 540 L 250 540" fill="none" stroke="#f43f5e" stroke-width="3" marker-start="url(#arrow-red-start)" marker-end="url(#arrow-red-end)" />
                     </svg>
 
-                    <div class="node node-engineer"><div class="tag">[THE ARCHITECT (ME)]</div><div class="node-title">My Role at the Keyboard</div><div class="node-text">I set up the clean local workspace, select the 5 Build Coordinates, run terminal lookup scripts, execute the IaC Payload locally, and approve every phase.</div></div>
+                    <div class="node node-engineer">
+                        <div class="tag">[THE ARCHITECT]</div>
+                        <div class="node-title">Strategic Command &amp; Final Authority</div>
+                        <div class="node-text">As The Architect, I drive the entire build from the driver's seat. Guided step-by-step by The State Machine, I receive continuous progress updates, evaluate diagnostic reports from The AI Engine, make every strategic decision, and hold absolute approval authority before the system is permitted to advance a single step.</div>
+                    </div>
                     
-                    <div class="node node-engine"><div class="tag">[THE STATE MACHINE]</div><div class="node-title">Zero Trust Interactive State Machine<br><span style="font-size: 0.78rem; font-weight: 700; color: var(--color-cyan);">(MASTER SYSTEM DIRECTIVE)</span></div><div class="tag" style="margin-top: 5px;">[THE HARNESS]</div><div class="node-text">Enforces step-by-step halts, Single-Tenant Service Principals, read-only lookups on Brownfield Data-Plane Assets, and single-asset Data-Plane Roles.</div></div>
+                    <div class="node node-engine">
+                        <div class="tag">[THE STATE MACHINE]</div>
+                        <div class="node-title">Zero Trust Interactive State Machine<br><span style="font-size: 0.76rem; font-weight: 700; color: var(--color-cyan);">(THE CENTRAL CONTROLLER)</span></div>
+                        <div class="node-text">The un-bypassable structural intermediary standing between The Architect and The AI Engine. It governs both sides of the workflow: pacing The Architect through strict sequential gates while locking The AI Engine inside hard Zero Trust boundaries so neither Brownfield nor Greenfield environments can ever drift.</div>
+                    </div>
                     
-                    <div class="node node-compiler"><div class="tag">[THE AI ENGINE]</div><div class="node-title">Tethered Co-Pilot<br><span style="font-size: 0.78rem; font-weight: 700; color: #a855f7;">(CONTROLLED BUILDER)</span></div><div class="node-text">Provides my terminal lookup commands, synthesizes the complete IaC Payload, Terminal Runbook, and Validation Bridge, and writes the formal ledgers.</div></div>
+                    <div class="node node-compiler">
+                        <div class="tag">[THE AI ENGINE]</div>
+                        <div class="node-title">Tethered High-Performance Co-Pilot<br><span style="font-size: 0.76rem; font-weight: 700; color: #a855f7;">(CONTROLLED COMPUTE)</span></div>
+                        <div class="node-text">Operates through controlled state-switching under The Architect's oversight: it steps out of the harness only when authorized to synthesize code or diagnose errors, tracks execution progress and patch iterations in real time, and reports every finding back to The Architect before snapping back into The State Machine.</div>
+                    </div>
                     
-                    <div class="node node-dpl"><div class="tag">[CONTINUOUS IMPROVEMENT]</div><div class="node-title">Continuous Improvement &amp; Circuit Breaking</div><div class="node-text">Every build permanently refines and upgrades my System Directive in Phase 7 so The State Machine evolves after every execution, backed by runtime circuit breaking if an error persists.</div></div>
+                    <div class="node node-dpl">
+                        <div class="tag">[CONTINUOUS IMPROVEMENT]</div>
+                        <div class="node-title">Self-Hardening System Evolution</div>
+                        <div class="node-text">The architecture's compounding intelligence engine. Every time The Architect executes a build, the system captures verified operational lessons and compiles them directly back into the master System Directive, permanently upgrading The State Machine so it becomes smarter, tighter, and more resilient after every single run.</div>
+                    </div>
                     
-                    <div class="node node-iac"><div class="tag">[PHASE 3 OUTPUT]</div><div class="node-title">IaC Payload &amp; Runbook</div><div class="node-text">Outputs the finished Terraform, Azure Bicep, or PowerShell REST API IaC Payload with a 30-Second Server Sync Timer and Terminal Runbook.</div></div>
+                    <div class="node node-iac">
+                        <div class="tag">[SYNTHESIZED CODE]</div>
+                        <div class="node-title">Deterministic IaC Payload &amp; Runbook</div>
+                        <div class="node-text">Translates governed AI compute into production-ready deployment force, generating a unified, fully parameterized Terraform, Azure Bicep, or PowerShell REST API IaC Payload and exact local Terminal Runbook engineered with built-in server sync timing to execute cleanly.</div>
+                    </div>
                     
-                    <div class="node node-core"><div class="tag">[DEPLOYED CLOUD STATE]</div><div class="node-title">Gates 1 to 4 Live in Azure</div><div class="node-text">Live Application Registration, Service Principal, and OIDC Subject Claim.<span class="highlight">60-Minute Login Token locked to one Data-Plane Asset.</span></div></div>
+                    <div class="node node-core">
+                        <div class="tag">[CORE MACHINE IDENTITY]</div>
+                        <div class="node-title">Verified Zero Trust Foundation</div>
+                        <div class="node-text">Establishes the live, passwordless non-human identity core in Microsoft Entra ID and Azure, binding a Single-Tenant Service Principal to an exact OpenID Connect (OIDC) Subject Claim.<span class="highlight">60-Minute Login Token locked strictly to one Data-Plane Asset.</span></div>
+                    </div>
                     
-                    <div class="node node-scale"><div class="tag">[DAY-2 EXPANSION]</div><div class="node-title">35 Core Entra Modules</div><div class="node-text">Lets me layer advanced Microsoft Entra ID security services (like Conditional Access) onto my verified Application Registration and Service Principal.<span class="highlight">Non-destructive add-on modules.</span></div></div>
+                    <div class="node node-scale">
+                        <div class="tag">[HOLISTIC EXPANSION]</div>
+                        <div class="node-title">35 Core Entra ID Modules</div>
+                        <div class="node-text">Transforms a single machine identity into an extensible enterprise security platform, allowing The Architect to layer 35 advanced Microsoft Entra ID capabilities (such as Conditional Access for Workload Identities) non-destructively onto the verified identity core.<span class="highlight">Non-destructive modular expansion.</span></div>
+                    </div>
 
-                    <div class="node node-ial"><div class="tag">[PHASE 4 BASELINE]</div><div class="node-title">Identity Architecture Ledger (IAL)</div><div class="node-text">Pre-validation baseline recording my Entra ID Tenant ID, Azure Subscription ID, Service Principal, Subject Claim, and Data-Plane Role.</div></div>
+                    <div class="node node-ial">
+                        <div class="tag">[ARCHITECTURAL BASELINE]</div>
+                        <div class="node-title">Identity Architecture Ledger</div>
+                        <div class="node-text">Generates the formal Identity Architecture Ledger to capture the permanent structural blueprint of the deployment, recording the exact verified boundary coordinates, Service Principal identifiers, OpenID Connect (OIDC) Subject Claim, and Data-Plane Role mappings established in the live cloud.</div>
+                    </div>
                     
-                    <div class="node node-arl"><div class="tag">[PHASE 4 &amp; 5 OUTPUTS]</div><div class="node-title">Portal Metrics, ARL, KQL &amp; DPL</div><div class="node-text">My Stage 1 proof via Azure Portal Monitoring Metrics (Total Service API Hits), followed by the ARL, KQL Telemetry, and Defect &amp; Patch Ledger (DPL).</div></div>
+                    <div class="node node-arl">
+                        <div class="tag">[LIVE VERIFICATION &amp; AUDIT]</div>
+                        <div class="node-title">Live Telemetry &amp; Compliance Ledgers</div>
+                        <div class="node-text">Replaces assumptions with mathematical proof: confirming live Data-Plane Asset access via immediate Azure Portal Monitoring Metrics before generating the Audit Results Ledger, KQL Telemetry, and Defect &amp; Patch Ledger to complete the Identity Architecture Ledger audit package.</div>
+                    </div>
                 </div>
             </div>
         </div>

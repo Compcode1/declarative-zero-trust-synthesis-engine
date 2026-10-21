@@ -81,8 +81,9 @@
 
         /* ================= HERO HEADER ================= */
         .hero { padding: 155px 20px 50px; text-align: center; border-bottom: 1px solid var(--border-base); }
-        .hero-title-container { display: flex; align-items: center; justify-content: center; margin-bottom: 1.2rem; }
-        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 3.6rem; font-weight: 900; letter-spacing: 2px; color: var(--text-main); text-transform: uppercase; }
+        .hero-title-container { display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 2rem; }
+        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 3.8rem; font-weight: 900; letter-spacing: 3px; color: var(--text-main); text-transform: uppercase; margin-bottom: 0.4rem; }
+        .hero-sub-banner { font-family: 'Montserrat', sans-serif; font-size: 1.55rem; font-weight: 800; letter-spacing: 1.5px; color: var(--color-cyan); text-transform: uppercase; }
         .hero-tag {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.92rem;
@@ -91,7 +92,7 @@
             letter-spacing: 2px;
             text-transform: uppercase;
             display: block;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.65rem;
         }
 
         .hero-intro-box {
@@ -101,18 +102,48 @@
             border: 1px solid var(--border-base);
             border-top: 4px solid var(--color-cyan);
             border-radius: 12px;
-            padding: 2.5rem 3rem;
+            padding: 2.8rem 3.2rem;
             text-align: left;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
         }
+        .intro-block-header {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.85rem;
+            border-bottom: 2px solid var(--border-base);
+        }
         .hero-subtitle {
-            font-size: 1.2rem;
+            font-size: 1.18rem;
             color: var(--text-main);
             font-weight: 600;
             line-height: 1.8;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
         }
-        .hero-subtitle:last-child { margin-bottom: 0; }
+
+        /* BULLETED ENGINEERING PRINCIPLES LIST */
+        .hero-step-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .hero-step-item {
+            background: rgba(10, 15, 29, 0.95);
+            border: 1px solid var(--border-base);
+            border-left: 4px solid var(--color-cyan);
+            border-radius: 8px;
+            padding: 1.5rem 1.8rem;
+            font-size: 1.08rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.75;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
 
         /* MASTER EQUATION BANNER */
         .equation-banner {
@@ -122,26 +153,33 @@
             border: 1px solid rgba(16, 185, 129, 0.4);
             border-left: 5px solid var(--color-green);
             border-radius: 10px;
-            padding: 1.8rem 2.4rem;
+            padding: 2rem 2.4rem;
             text-align: left;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
         }
         .equation-label {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
+            font-size: 0.88rem;
             font-weight: 800;
             color: var(--color-green);
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            margin-bottom: 0.6rem;
+            margin-bottom: 1rem;
             display: block;
         }
-        .equation-chain {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.12rem;
-            font-weight: 700;
+        .equation-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+        .equation-list li {
+            font-size: 1.08rem;
+            font-weight: 600;
             color: var(--text-main);
-            line-height: 1.75;
+            line-height: 1.7;
+            padding-left: 1rem;
+            border-left: 3px solid var(--color-green);
         }
 
         /* JUMP LINKS BAR */
@@ -345,6 +383,7 @@
 
         @media (max-width: 992px) {
             .hero-title { font-size: 2.6rem; }
+            .hero-sub-banner { font-size: 1.2rem; }
             .category-title { font-size: 1.55rem; }
             .glossary-grid { grid-template-columns: 1fr; }
             .category-container, .hero-intro-box { padding: 2rem 1.5rem; }
@@ -375,31 +414,47 @@
         </ul>
     </nav>
 
-    <!-- ================= HERO HEADER & MASTER EQUATION ================= -->
+    <!-- ================= HERO HEADER & MATHEMATICAL FOUNDATION ================= -->
     <header class="hero">
-        <span class="hero-tag">[CANONICAL ENGINEERING LEXICON :: UBIQUITOUS LANGUAGE]</span>
+        <span class="hero-tag">[FORMAL SYSTEMS ENGINEERING &amp; MATHEMATICAL NOMENCLATURE]</span>
         <div class="hero-title-container">
-            <h1 class="hero-title">THE 26 SYSTEM VARIABLES</h1>
+            <h1 class="hero-title">SYSTEM GLOSSARY</h1>
+            <div class="hero-sub-banner">The 26 Fixed Variables of the Zero Trust Interactive State Machine</div>
         </div>
 
         <div class="hero-intro-box">
+            <h2 class="intro-block-header">First-Principles Engineering: Mathematical Variable Control &amp; Logistical Precision</h2>
+            
             <p class="hero-subtitle">
-                In software engineering and cloud cybersecurity, one of the largest sources of configuration errors is <span class="bullet-lead">terminology drift</span>: calling the exact same architectural component by five different nicknames across different tools, vendors, and pages. When a single mechanism is called an "automation pipeline" in one paragraph, a "CI/CD runner" in the next, and a "headless workload" in the third, the underlying mathematical logic gets buried under synonym overload.
+                In mathematics, physics, and formal systems engineering, an equation cannot be solved if its variables change names mid-proof. To engineer repeatable, verifiable cloud security configurations in Microsoft Entra ID and Azure, this architecture treats identity provisioning as a formal mathematical and logistical system governed by four core engineering principles:
             </p>
-            <p class="hero-subtitle">
-                To eliminate ambiguity across this entire portfolio, I enforce a strict <span class="bullet-lead">Canonical Engineering Lexicon</span> grounded in Domain-Driven Design's Ubiquitous Language standard. Every actor, build coordinate, security gate component, and compliance deliverable in my architecture has <span class="bullet-lead">one fixed Title-Case name</span> ("Sally is always Sally"). Below are the 26 fixed variables that make up the entire system, defining what each variable is, how it links to the variables before and after it, and which messy industry nicknames it replaces.
-            </p>
+
+            <ul class="hero-step-list">
+                <li class="hero-step-item">
+                    <span class="bullet-lead">1. Axiomatic Variable Definition (First-Principles Mathematical Control):</span> In formal logic and mathematics, every variable in a system ($X$, $Y$, $Z$) must be defined once with an exact, unambiguous boundary before it is used in an operation. Across this portfolio, the entire cloud identity lifecycle is reduced to <span class="bullet-lead">26 fixed architectural variables</span>, ensuring every component has one explicit physical definition and one operational role.
+                </li>
+                <li class="hero-step-item">
+                    <span class="bullet-lead">2. Bijective (One-to-One) Nomenclature Mapping (Zero Synonym Drift):</span> In set theory and systems engineering, a bijective mapping means every physical object corresponds to <span class="bullet-lead">one and only one name</span> ("Sally is always Sally"). If an external automation platform is defined as an <span class="bullet-lead">Execution Agent</span> in Phase 1, it is never referred to as a "background pipeline," "CI/CD runner," or "workload" in Phase 3. Eliminating synonyms keeps the cognitive model clean and prevents configuration errors.
+                </li>
+                <li class="hero-step-item">
+                    <span class="bullet-lead">3. Deterministic State-Space Logistics (Explicit A &rarr; B &rarr; C Chaining):</span> In control theory and logistics, a system is deterministic only when the output of Step $A$ feeds directly into the input of Step $B$ without gaps. Every variable below is defined not in isolation, but by its exact mathematical link in the chain: showing which variable feeds into it and which variable it acts upon next.
+                </li>
+                <li class="hero-step-item">
+                    <span class="bullet-lead">4. Ubiquitous Language &amp; Industry Translation (ISO/IEC/IEEE 15288 &amp; Domain-Driven Design):</span> Grounded in ISO/IEC/IEEE 15288 Systems Engineering standards and Eric Evans's Domain-Driven Design <span class="bullet-lead">Ubiquitous Language</span> principle, every entry below locks in my single canonical term first, followed by a bottom translation bar listing the informal industry nicknames it replaces.
+                </li>
+            </ul>
         </div>
 
-        <!-- MASTER END-TO-END MATHEMATICAL EQUATION -->
+        <!-- MASTER END-TO-END MATHEMATICAL EQUATION (BULLETED FOR READABILITY) -->
         <div class="equation-banner">
-            <span class="equation-label">[THE MASTER MATHEMATICAL CHAIN OF THE ARCHITECTURE :: A &rarr; B &rarr; C &rarr; D]</span>
-            <div class="equation-chain">
-                <span class="bullet-lead">1. Gate 1 (Boundary):</span> My Azure Subscription ID &amp; Resource Group (holding my Data-Plane Asset) sit inside my Entra ID Tenant ID (holding my Identity Core). &rarr; 
-                <span class="bullet-lead">2. Gate 2 (Identity):</span> Inside my Entra ID Tenant ID, my IaC Payload creates or references my Application Registration &amp; Service Principal in Single-Tenant mode with zero passwords. &rarr; 
-                <span class="bullet-lead">3. Gate 3 (Federation):</span> My external Execution Agent sends its Subject Claim (locked to my exact Code Repository and Branch spelling) via OpenID Connect (OIDC) to Microsoft Entra ID to receive a 60-Minute Login Token for that Service Principal, protected by a 30-Second Server Sync Timer. &rarr; 
-                <span class="bullet-lead">4. Gate 4 (Access):</span> I assign one Data-Plane Role on my single Data-Plane Asset to that Service Principal (blocking Owner and Contributor Roles) so my Execution Agent can run the Validation Bridge using its 60-Minute Login Token to read that single Data-Plane Asset, verified by Azure Portal Monitoring Metrics (Total Service API Hits), the Identity Architecture Ledger (IAL), the Audit Results Ledger (ARL), and KQL Telemetry.
-            </div>
+            <span class="equation-label">[THE MASTER MATHEMATICAL CHAIN OF THE 26 SYSTEM VARIABLES :: GATE 1 &rarr; GATE 2 &rarr; GATE 3 &rarr; GATE 4 &rarr; VERIFICATION]</span>
+            <ul class="equation-list">
+                <li><span class="bullet-lead">1. Gate 1 (Boundary Link):</span> My Azure Subscription ID and Resource Group (which hold my Data-Plane Asset) are verified to sit under my Entra ID Tenant ID (which holds my Identity Core), enforcing read-only lookups on Brownfield (Existing) Data-Plane Assets or deletion-prevention locks on Greenfield (Net-New) Data-Plane Assets.</li>
+                <li><span class="bullet-lead">2. Gate 2 (Identity Link):</span> Inside my Entra ID Tenant ID, my IaC Payload and Terminal Runbook create or reference my Application Registration and Service Principal in Single-Tenant mode with disabled browser redirect URLs and zero passwords.</li>
+                <li><span class="bullet-lead">3. Gate 3 (Federation Link):</span> My external Execution Agent sends its Subject Claim (locked to my exact Code Repository and Branch spelling) via OpenID Connect (OIDC) to Microsoft Entra ID to receive a 60-Minute Login Token for that Service Principal, protected by a 30-Second Server Sync Timer.</li>
+                <li><span class="bullet-lead">4. Gate 4 (Access Link):</span> I assign one Data-Plane Role on my single Data-Plane Asset to that Service Principal (blocking Owner and Contributor Roles and using an Azure Portal MFA Handoff if terminal MFA drops) so my Execution Agent can use its 60-Minute Login Token to read that single Data-Plane Asset and nothing else.</li>
+                <li><span class="bullet-lead">5. Verification &amp; Audit Link:</span> My Execution Agent runs the Validation Bridge (with Runtime Log Masking) to read my Data-Plane Asset, which I verify first via Azure Portal Monitoring Metrics (Total Service API Hits) and record across the Identity Architecture Ledger (IAL), the Audit Results Ledger (ARL), KQL Telemetry, and the Defect &amp; Patch Ledger (DPL).</li>
+            </ul>
         </div>
 
         <!-- CATEGORY JUMP LINKS -->

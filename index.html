@@ -489,12 +489,12 @@
             color: var(--color-cyan);
         }
         
-        /* ================= THE GRAPHIC & ARCHITECTURAL FLOW (ZERO SCROLLBAR ON DESKTOP, FULL HEIGHT) ================= */
+        /* ================= THE GRAPHIC & ARCHITECTURAL FLOW (920PX FULL CLEARANCE, ZERO SCROLLBAR) ================= */
         .flow-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 900; color: var(--color-cyan); margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 1px; text-align: center; width: 100%; }
         
         .canvas-wrapper { width: 100%; overflow: visible; }
         .diagram-canvas {
-            position: relative; width: 1180px; max-width: 100%; height: 860px; margin: 0 auto;
+            position: relative; width: 1180px; max-width: 100%; height: 920px; margin: 0 auto;
             background-color: rgba(2, 6, 23, 0.92);
             background-image: linear-gradient(to right, rgba(30, 41, 59, 0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(30, 41, 59, 0.5) 1px, transparent 1px);
             background-size: 40px 40px; border: 1px solid var(--border-base); border-radius: 12px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
@@ -552,9 +552,9 @@
         .node-scale { left: 955px; top: 25px; width: 210px; border: 1px dashed var(--color-purple); border-left: 4px solid var(--color-purple); }
         .node-scale .tag { color: var(--color-purple); border-color: rgba(168, 85, 247, 0.3); }
         
-        /* BOTTOM ROW NODES (y = 465px / 500px — ZERO OVERLAP WITH TOP ROW & ZERO BOTTOM CLIPPING) */
+        /* BOTTOM ROW NODES (y = 450px / 500px — AMPLE CLEARANCE ABOVE 920PX FLOOR) */
         .node-engine { 
-            left: 15px; top: 465px; width: 205px; 
+            left: 15px; top: 450px; width: 205px; 
             border: 2px solid var(--color-cyan); border-left: 6px solid var(--color-cyan); 
             background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(14, 165, 233, 0.18) 4px, rgba(14, 165, 233, 0.18) 8px), linear-gradient(135deg, rgba(14, 165, 233, 0.25) 0%, rgba(10, 15, 29, 0.95) 100%), var(--bg-node); 
             box-shadow: 0 0 25px rgba(14, 165, 233, 0.45), inset 0 0 15px rgba(14, 165, 233, 0.25); 
@@ -926,7 +926,7 @@
                         <!-- AI Engine to Architect -->
                         <path class="animated-path" d="M 245 145 L 220 145" fill="none" stroke="#a855f7" stroke-width="2" marker-end="url(#arrow-purple)" />
                         <!-- State Machine to AI Engine -->
-                        <path class="animated-path" d="M 220 480 L 357 480 L 357 380" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
+                        <path class="animated-path" d="M 220 470 L 357 470 L 357 380" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
                         <!-- AI Engine to IaC Payload -->
                         <path class="animated-path" d="M 470 115 L 495 115" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
                         <!-- IaC Payload to Core Machine Identity -->

@@ -38,7 +38,13 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body { background-color: var(--bg-page); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--text-main); line-height: 1.6; padding-bottom: 4rem; }
+        body { background-color: var(--bg-page); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--text-main); line-height: 1.6; padding-bottom: 4rem; overflow-x: hidden; }
+
+        /* STRICT COLOR DISCIPLINE: ONLY FOR BULLET LEAD-IN LABELS BEFORE A COLON */
+        .bullet-lead {
+            color: var(--color-cyan);
+            font-weight: 800;
+        }
 
         /* ================= NAVIGATION ================= */
         nav {
@@ -74,16 +80,56 @@
             box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
         }
 
-        .bullet-lead {
-            color: var(--color-cyan);
-            font-weight: 800;
+        /* ================= HERO HEADER & TOP SUB-NAVIGATION ================= */
+        .hero { padding: 145px 20px 50px; text-align: center; border-bottom: 1px solid var(--border-base); }
+        
+        /* TOP JUMP LINKS BAR (ABOVE TITLE) */
+        .jump-links-container {
+            max-width: 1300px;
+            margin: 0 auto 2.5rem;
+            padding: 1.3rem 2rem;
+            background: rgba(15, 23, 42, 0.55);
+            border: 1px solid var(--border-base);
+            border-radius: 10px;
+            text-align: center;
+        }
+        .jump-links-intro {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: 0.5px;
+            margin-bottom: 0.95rem;
+        }
+        .jump-links { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 0.9rem; 
+        }
+        .jump-links a { 
+            color: var(--color-cyan); 
+            border: 1px solid var(--color-cyan); 
+            background: rgba(14, 165, 233, 0.08); 
+            padding: 0.65rem 1.3rem; 
+            border-radius: 8px; 
+            text-decoration: none; 
+            font-size: 0.88rem; 
+            font-weight: 700; 
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+            transition: all 0.3s ease; 
+        }
+        .jump-links a:hover { 
+            background: var(--color-cyan); 
+            color: #ffffff; 
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
+            transform: translateY(-2px); 
         }
 
-        /* ================= HERO HEADER ================= */
-        .hero { padding: 155px 20px 50px; text-align: center; border-bottom: 1px solid var(--border-base); }
         .hero-title-container { display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 2.2rem; }
-        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 4rem; font-weight: 900; letter-spacing: 3px; color: var(--text-main); text-transform: uppercase; margin-bottom: 0.5rem; }
-        .hero-sub-banner { font-family: 'Montserrat', sans-serif; font-size: 1.65rem; font-weight: 800; letter-spacing: 1.5px; color: var(--color-cyan); text-transform: uppercase; }
+        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 3.8rem; font-weight: 900; letter-spacing: 3px; color: var(--text-main); text-transform: uppercase; margin-bottom: 0.5rem; }
+        .hero-sub-banner { font-family: 'Montserrat', sans-serif; font-size: 1.55rem; font-weight: 800; letter-spacing: 1.5px; color: var(--color-cyan); text-transform: uppercase; }
         .hero-tag {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.92rem;
@@ -127,7 +173,7 @@
             gap: 1.15rem;
         }
         .top-bullet-list li {
-            font-size: 1.12rem;
+            font-size: 1.08rem;
             color: var(--text-main);
             font-weight: 600;
             line-height: 1.75;
@@ -135,13 +181,13 @@
         }
         .top-bullet-list li::marker {
             color: var(--color-cyan);
-            font-size: 1.25rem;
+            font-size: 1.2rem;
         }
 
         /* TOP RECTANGLE 2: THE 26 SYSTEM VARIABLES MASTER EQUATION (BULLETED) */
         .equation-banner {
             max-width: 1300px;
-            margin: 0 auto 2.8rem;
+            margin: 0 auto 1rem;
             background: rgba(10, 15, 29, 0.95);
             border: 1px solid rgba(16, 185, 129, 0.4);
             border-top: 4px solid var(--color-green);
@@ -169,7 +215,7 @@
             gap: 1.15rem;
         }
         .equation-bullet-list li {
-            font-size: 1.12rem;
+            font-size: 1.08rem;
             font-weight: 600;
             color: var(--text-main);
             line-height: 1.75;
@@ -177,51 +223,7 @@
         }
         .equation-bullet-list li::marker {
             color: var(--color-green);
-            font-size: 1.25rem;
-        }
-
-        /* JUMP LINKS BAR */
-        .jump-links-container {
-            max-width: 1300px;
-            margin: 0 auto 1rem;
-            padding: 1.4rem 2rem;
-            background: rgba(15, 23, 42, 0.55);
-            border: 1px solid var(--border-base);
-            border-radius: 10px;
-            text-align: center;
-        }
-        .jump-links-intro {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--text-main);
-            letter-spacing: 0.5px;
-            margin-bottom: 1rem;
-        }
-        .jump-links { 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: center; 
-            gap: 0.9rem; 
-        }
-        .jump-links a { 
-            color: var(--color-cyan); 
-            border: 1px solid var(--color-cyan); 
-            background: rgba(14, 165, 233, 0.08); 
-            padding: 0.65rem 1.3rem; 
-            border-radius: 8px; 
-            text-decoration: none; 
-            font-size: 0.88rem; 
-            font-weight: 700; 
-            letter-spacing: 1px; 
-            text-transform: uppercase; 
-            transition: all 0.3s ease; 
-        }
-        .jump-links a:hover { 
-            background: var(--color-cyan); 
-            color: #ffffff; 
-            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
-            transform: translateY(-2px); 
+            font-size: 1.2rem;
         }
 
         #cat-actors, #cat-coordinates, #cat-gates, #cat-verification {
@@ -267,17 +269,24 @@
             color: var(--text-main);
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 1rem;
+            margin-bottom: 1.4rem;
             padding-bottom: 0.9rem;
             border-bottom: 2px solid var(--border-base);
         }
-        .category-desc {
-            font-size: 1.18rem;
-            color: var(--text-main);
-            font-weight: 600;
-            line-height: 1.8;
+
+        /* BULLETED CATEGORY INTRO BOX */
+        .category-intro-box {
+            background: rgba(10, 15, 29, 0.95);
+            border: 1px solid var(--border-base);
+            border-left: 4px solid var(--color-cyan);
+            border-radius: 8px;
+            padding: 1.5rem 2rem;
             margin-bottom: 2.2rem;
+            text-align: left;
         }
+        .actors-cat .category-intro-box { border-left-color: var(--color-blue); }
+        .gates-cat .category-intro-box { border-left-color: var(--color-green); }
+        .verify-cat .category-intro-box { border-left-color: var(--color-purple); }
 
         /* ================= GLOSSARY TERM CARDS ================= */
         .glossary-grid {
@@ -295,6 +304,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            text-align: left;
         }
         .actors-cat .glossary-card { border-left-color: var(--color-blue); }
         .coords-cat .glossary-card { border-left-color: var(--color-cyan); }
@@ -322,7 +332,7 @@
 
         .term-name {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.35rem;
+            font-size: 1.32rem;
             font-weight: 900;
             color: var(--text-main);
             text-transform: uppercase;
@@ -348,16 +358,36 @@
         .term-details li::marker {
             color: var(--color-cyan);
         }
+
+        /* NESTED SUB-BULLETS FOR MULTI-PART VARIABLES (CARDS 9, 10, 24) */
+        .term-sublist {
+            list-style: circle;
+            padding-left: 1.35rem;
+            margin-top: 0.55rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+        }
+        .term-sublist li {
+            font-size: 0.98rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.65;
+        }
+        .term-sublist li::marker {
+            color: var(--color-cyan);
+        }
+
         .aka-box {
-            margin-top: 1.1rem;
-            padding: 0.75rem 1rem;
-            background: rgba(2, 6, 23, 0.8);
+            margin-top: 1.25rem;
+            padding: 0.8rem 1rem;
+            background: rgba(2, 6, 23, 0.85);
             border: 1px solid var(--border-base);
             border-radius: 6px;
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.84rem;
             color: var(--text-muted);
-            line-height: 1.5;
+            line-height: 1.55;
         }
         .aka-box strong {
             color: var(--color-orange);
@@ -402,7 +432,7 @@
 </head>
 <body>
 
-    <!-- MASTER NAVIGATION -->
+    <!-- MASTER NAVIGATION (8-LINK SITE-WIDE BAR) -->
     <nav>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
@@ -418,6 +448,20 @@
 
     <!-- ================= HERO HEADER & BULLETED MATHEMATICAL FOUNDATION ================= -->
     <header class="hero">
+
+        <!-- TOP ON-PAGE SUB-NAVIGATION BAR (ABOVE TITLE) -->
+        <div class="jump-links-container">
+            <div class="jump-links-intro">
+                Select any of the 4 system variable categories below to jump directly to its formal definitions:
+            </div>
+            <div class="jump-links">
+                <a href="#cat-actors">1. The 3 Actors (Execution Triad)</a>
+                <a href="#cat-coordinates">2. The 5 Build Coordinates</a>
+                <a href="#cat-gates">3. The 10 Gate Mechanics (Gates 1 to 4)</a>
+                <a href="#cat-verification">4. The 8 Verification &amp; Troubleshooting Variables</a>
+            </div>
+        </div>
+
         <span class="hero-tag">[FORMAL SYSTEMS ENGINEERING &amp; MATHEMATICAL NOMENCLATURE]</span>
         <div class="hero-title-container">
             <h1 class="hero-title">SYSTEM GLOSSARY</h1>
@@ -462,22 +506,9 @@
                     <span class="bullet-lead">Gate 4 Link (Access):</span> I assign one Data-Plane Role on my single Data-Plane Asset to that Service Principal (blocking Owner and Contributor Roles and using an Azure Portal MFA Handoff if terminal MFA drops) so my Execution Agent can use its 60-Minute Login Token to read that single Data-Plane Asset and nothing else.
                 </li>
                 <li>
-                    <span class="bullet-lead">Verification &amp; Audit Link (Phases 4 to 7):</span> My Execution Agent runs the Validation Bridge (with Runtime Log Masking) to read my Data-Plane Asset, which I verify first via Azure Portal Monitoring Metrics (Total Service API Hits) and record across the Identity Architecture Ledger (IAL), Audit Results Ledger (ARL), KQL Telemetry, Defect &amp; Patch Ledger (DPL), and AI Performance Scorecard.
+                    <span class="bullet-lead">Verification &amp; Evolution Link (Phases 4 to 7):</span> My Execution Agent runs the Validation Bridge (with Runtime Log Masking) to read my Data-Plane Asset, which I verify first via Azure Portal Monitoring Metrics (Total Service API Hits) and record across the Identity Architecture Ledger (IAL), Audit Results Ledger (ARL), KQL Telemetry, Defect &amp; Patch Ledger (DPL), and Phase 7 AI Performance Scorecard and System Directive Compilation.
                 </li>
             </ul>
-        </div>
-
-        <!-- CATEGORY JUMP LINKS -->
-        <div class="jump-links-container">
-            <div class="jump-links-intro">
-                Select any of the 4 variable categories below to jump directly to its definitions:
-            </div>
-            <div class="jump-links">
-                <a href="#cat-actors">Category 1: The 3 Actors (Execution Triad)</a>
-                <a href="#cat-coordinates">Category 2: The 5 Build Coordinates</a>
-                <a href="#cat-gates">Category 3: The 10 Gate Mechanics (Gates 1 to 4)</a>
-                <a href="#cat-verification">Category 4: The 8 Verification &amp; Troubleshooting Variables</a>
-            </div>
         </div>
     </header>
 
@@ -486,35 +517,40 @@
         <div class="category-container actors-cat">
             <span class="category-tag">[CATEGORY 01 :: VARIABLES 01 TO 03]</span>
             <h2 class="category-title">The 3 Actors (The Execution Triad)</h2>
-            <p class="category-desc">
-                Every build separates my human authorization authority, the immutable security rulebook, and the generative compute engine into three fixed roles so no AI component ever acts autonomously against live cloud infrastructure.
-            </p>
+            
+            <div class="category-intro-box">
+                <ul class="term-details">
+                    <li>
+                        <span class="bullet-lead">Three-Party Command &amp; Control:</span> Every build separates my strategic human command authority, the central State Machine controller, and the tethered AI compute engine into three fixed roles so no AI component ever acts autonomously against live cloud infrastructure.
+                    </li>
+                </ul>
+            </div>
 
             <div class="glossary-grid">
                 
                 <!-- VARIABLE 01 -->
                 <div class="glossary-card">
                     <div>
-                        <span class="term-badge">[VARIABLE 01 :: HUMAN AUTHORITY]</span>
+                        <span class="term-badge">[VARIABLE 01 :: STRATEGIC COMMAND &amp; FINAL AUTHORITY]</span>
                         <h3 class="term-name">1. The Architect (I / Me / My)</h3>
                         <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> My role at the physical keyboard in Visual Studio Code or Git Bash. I hold sole authorization authority over every phase transition, terminal lookup command, local deployment execution, and Azure Portal verification step.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> I lock in the 5 Build Coordinates in Phase 1, run terminal extraction queries in Phase 2, execute the IaC Payload and Terminal Runbook in Phase 3, run the Validation Bridge and check Azure Portal Monitoring Metrics (Total Service API Hits) in Phase 4, and approve every phase halt enforced by The State Machine.</li>
+                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> My role in the driver's seat at the physical keyboard in Visual Studio Code or Git Bash. Guided step-by-step by The State Machine, I receive continuous progress updates, evaluate diagnostic reports from The AI Engine, make every strategic decision, and hold absolute approval authority over every phase transition, terminal command, and Azure Portal verification step.</li>
+                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> I lock in the 5 Build Coordinates in Phase 1, run terminal extraction queries in Phase 2, execute the IaC Payload, Terminal Runbook, and any Azure Portal MFA Handoff in Phase 3, run the Validation Bridge and check Azure Portal Monitoring Metrics (Total Service API Hits) in Phase 4, and make the final risk decision if an error reaches Iteration 4 under The 4-Iteration Circuit Breaker.</li>
                         </ul>
                     </div>
                     <div class="aka-box">
-                        <strong>REPLACES INDUSTRY NICKNAMES:</strong> "The human engineer," "the operator," "the user," "DevSecOps teams," "organizations," "administrators."
+                        <strong>REPLACES INDUSTRY NICKNAMES:</strong> "The human engineer," "the operator," "the user," "DevSecOps teams," "security teams," "organizations," "administrators."
                     </div>
                 </div>
 
                 <!-- VARIABLE 02 -->
                 <div class="glossary-card">
                     <div>
-                        <span class="term-badge">[VARIABLE 02 :: THE DETERMINISTIC HARNESS]</span>
+                        <span class="term-badge">[VARIABLE 02 :: THE CENTRAL CONTROLLER &amp; HARNESS]</span>
                         <h3 class="term-name">2. The State Machine (Zero Trust Interactive State Machine &amp; System Directive)</h3>
                         <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> My master System Directive rulebook that wraps around The AI Engine as an un-bypassable seven-phase harness. It enforces mandatory human-in-the-loop halts, a continuous Watchdog self-check on every turn, and hard security rules across Gate 1 through Gate 4.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Receives my 5 Build Coordinates in Phase 1 and constrains The AI Engine across Phases 1 through 7 so The AI Engine cannot skip gates, guess IDs, grant Owner and Contributor Roles, or generate new code if an error reaches Iteration 4 under The 4-Iteration Circuit Breaker.</li>
+                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The un-bypassable structural intermediary standing between The Architect and The AI Engine. Governed by my master System Directive (v9.2), it paces The Architect through 7 sequential phases while locking The AI Engine inside mandatory human-in-the-loop halts, a continuous Watchdog turn check, and hard Zero Trust rules across Gates 1 through 4.</li>
+                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Receives my 5 Build Coordinates in Phase 1 and constrains The AI Engine across Phases 1 through 7 so The AI Engine cannot skip gates, guess IDs, grant Owner and Contributor Roles, or generate new code if an error reaches Iteration 4 under The 4-Iteration Circuit Breaker, while permanently upgrading itself in Phase 7.</li>
                         </ul>
                     </div>
                     <div class="aka-box">
@@ -525,10 +561,10 @@
                 <!-- VARIABLE 03 -->
                 <div class="glossary-card full-width">
                     <div>
-                        <span class="term-badge">[VARIABLE 03 :: TETHERED COMPUTE ENGINE]</span>
+                        <span class="term-badge">[VARIABLE 03 :: TETHERED HIGH-PERFORMANCE CO-PILOT]</span>
                         <h3 class="term-name">3. The AI Engine</h3>
                         <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The generative artificial intelligence model whose probabilistic behavior is tethered to my System Directive inside The State Machine. It has zero direct network access to my Entra ID Tenant or Azure Subscription.</li>
+                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The generative compute engine whose probabilistic behavior is tethered to my System Directive inside The State Machine. It has zero direct network access to my Entra ID Tenant ID or Azure Subscription ID and operates through controlled state-switching under The Architect's oversight: stepping out of the harness only when authorized to synthesize code or diagnose errors, and reporting every finding back to The Architect before snapping back into The State Machine.</li>
                             <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Subordinated to The State Machine and my sign-off, The AI Engine outputs read-only terminal lookup commands in Phases 1 and 2, synthesizes the finished IaC Payload and Terminal Runbook in Phase 3, writes the Validation Bridge and Identity Architecture Ledger (IAL) in Phase 4, compiles the Audit Results Ledger (ARL), KQL Telemetry, and Defect &amp; Patch Ledger (DPL) in Phase 5, and outputs the AI Performance Scorecard and upgraded System Directive in Phase 7.</li>
                         </ul>
                     </div>
@@ -546,9 +582,14 @@
         <div class="category-container coords-cat">
             <span class="category-tag">[CATEGORY 02 :: VARIABLES 04 TO 08]</span>
             <h2 class="category-title">The 5 Build Coordinates (The Phase 1 Intake Matrix)</h2>
-            <p class="category-desc">
-                Every deployment begins in Phase 1 by selecting five core coordinates from the 5-Column Build Matrix. Multiplying these five choices (1 Identity Core &times; 4 Execution Agents &times; 2 Infrastructure States &times; 3 Data-Plane Assets &times; 3 IaC Payloads) produces the 72 baseline build combinations supported by my System Directive.
-            </p>
+            
+            <div class="category-intro-box">
+                <ul class="term-details">
+                    <li>
+                        <span class="bullet-lead">72 Baseline Build Combinations:</span> Every deployment begins in Phase 1 by locking in five core coordinates from the 5-Column Build Matrix. Multiplying these five choices (1 Identity Core &times; 4 Execution Agents &times; 2 Infrastructure States &times; 3 Data-Plane Assets &times; 3 IaC Payloads) produces 72 baseline build combinations, each ready to accept 35 Day-2 Microsoft Entra ID security modules.
+                    </li>
+                </ul>
+            </div>
 
             <div class="glossary-grid">
 
@@ -636,9 +677,14 @@
         <div class="category-container gates-cat">
             <span class="category-tag">[CATEGORY 03 :: VARIABLES 09 TO 18]</span>
             <h2 class="category-title">The 10 Gate Mechanics (Gates 1 through 4)</h2>
-            <p class="category-desc">
-                These ten mechanical variables form the internal anatomy of Gate 1 (Boundary), Gate 2 (Identity), Gate 3 (Federation), and Gate 4 (Access), locking together in sequence so an external Execution Agent can authenticate without a password and read a single Data-Plane Asset.
-            </p>
+            
+            <div class="category-intro-box">
+                <ul class="term-details">
+                    <li>
+                        <span class="bullet-lead">The Four Architectural Gates of Machine Identity:</span> These ten mechanical variables form the internal anatomy of Gate 1 (Boundary), Gate 2 (Identity), Gate 3 (Federation), and Gate 4 (Access), locking together in sequence so an external Execution Agent can authenticate without a password and read a single Data-Plane Asset.
+                    </li>
+                </ul>
+            </div>
 
             <div class="glossary-grid">
 
@@ -648,10 +694,13 @@
                         <span class="term-badge">[VARIABLE 09 :: GATE 1 BOUNDARY]</span>
                         <h3 class="term-name">9. Entra ID Tenant ID, Azure Subscription ID &amp; Resource Group</h3>
                         <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The three nested routing addresses that define my Gate 1 Boundary in Azure:
-                                <br>&bull; <strong>Entra ID Tenant ID:</strong> The top-level organization directory root that holds Microsoft Entra ID.
-                                <br>&bull; <strong>Azure Subscription ID:</strong> The billing and management container nested directly under that Entra ID Tenant ID.
-                                <br>&bull; <strong>Resource Group:</strong> The logical folder inside that Azure Subscription ID that holds my Data-Plane Asset.
+                            <li>
+                                <span class="bullet-lead">What It Is (Physical Anatomy):</span> The three nested routing addresses that define my Gate 1 Boundary in Azure:
+                                <ul class="term-sublist">
+                                    <li><span class="bullet-lead">Entra ID Tenant ID:</span> The top-level organization directory root that holds Microsoft Entra ID.</li>
+                                    <li><span class="bullet-lead">Azure Subscription ID:</span> The billing and management container nested directly under that Entra ID Tenant ID.</li>
+                                    <li><span class="bullet-lead">Resource Group:</span> The logical folder inside that Azure Subscription ID that holds my Data-Plane Asset.</li>
+                                </ul>
                             </li>
                             <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Locked in during Phase 1 and verified in the Phase 4 Identity Architecture Ledger (IAL). Because an Azure Subscription ID only trusts the Microsoft Entra ID directory it is nested under, Gate 1 verifies that my Azure Subscription ID and Resource Group sit under the exact same Entra ID Tenant ID where my Gate 2 Service Principal is created.</li>
                         </ul>
@@ -667,9 +716,12 @@
                         <span class="term-badge">[VARIABLE 10 :: GATE 2 IDENTITY]</span>
                         <h3 class="term-name">10. Application Registration &amp; Service Principal</h3>
                         <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The two linked objects inside Microsoft Entra ID that form a non-human machine identity in Gate 2:
-                                <br>&bull; <strong>Application Registration:</strong> The global identity definition and configuration blueprint (which holds the Application Client ID and the Gate 3 OpenID Connect trust rule).
-                                <br>&bull; <strong>Service Principal:</strong> The local directory badge (Enterprise Application Object ID) created from that blueprint inside my Entra ID Tenant ID that actually receives permissions in Gate 4.
+                            <li>
+                                <span class="bullet-lead">What It Is (Physical Anatomy):</span> The two linked objects inside Microsoft Entra ID that form a non-human machine identity in Gate 2:
+                                <ul class="term-sublist">
+                                    <li><span class="bullet-lead">Application Registration:</span> The global identity definition and configuration blueprint (which holds the Application Client ID and the Gate 3 OpenID Connect trust rule).</li>
+                                    <li><span class="bullet-lead">Service Principal:</span> The local directory badge (Enterprise Application Object ID) created from that blueprint inside my Entra ID Tenant ID that actually receives permissions in Gate 4.</li>
+                                </ul>
                             </li>
                             <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Created or referenced inside my Entra ID Tenant ID (Gate 1) with zero passwords. The Application Registration holds the Gate 3 OpenID Connect (OIDC) Subject Claim rule, while the Service Principal receives the Gate 4 Data-Plane Role on my Data-Plane Asset.</li>
                         </ul>
@@ -808,9 +860,14 @@
         <div class="category-container verify-cat">
             <span class="category-tag">[CATEGORY 04 :: VARIABLES 19 TO 26]</span>
             <h2 class="category-title">The 8 Verification, Audit &amp; Troubleshooting Variables</h2>
-            <p class="category-desc">
-                These eight variables govern how I record the cryptographic baseline, prove live data-plane access in two stages (instant metrics first, asynchronous log queries second), log real-time patches during Iterations 1 to 3, halt on Iteration 4 if an error persists, and upgrade my System Directive in Phase 7.
-            </p>
+            
+            <div class="category-intro-box">
+                <ul class="term-details">
+                    <li>
+                        <span class="bullet-lead">Two-Stage Proof &amp; Self-Hardening Evolution:</span> These eight variables govern how I record the cryptographic baseline, prove live data-plane access in two stages (instant metrics first, asynchronous log queries second), log real-time patches during Iterations 1 to 3, halt on Iteration 4 if an error persists, and permanently upgrade my System Directive in Phase 7.
+                    </li>
+                </ul>
+            </div>
 
             <div class="glossary-grid">
 
@@ -895,10 +952,13 @@
                         <span class="term-badge">[VARIABLE 24 :: ALL-PHASE TROUBLESHOOTING (ITERATIONS 1 TO 3)]</span>
                         <h3 class="term-name">24. Standard Patch Loop (Iterations 1 to 3), State Re-Sync &amp; Defect &amp; Patch Ledger (patch_ledger.md or DPL)</h3>
                         <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> My routine troubleshooting and bug-logging mechanism active across every phase of the build (Phases 1 through 6):
-                                <br>&bull; <strong>Standard Patch Loop (Iterations 1 to 3):</strong> Clinical diagnostic mode where The AI Engine drops all analogies and provides a targeted fix for any terminal or cloud error during attempts 1, 2, or 3.
-                                <br>&bull; <strong>State Re-Sync:</strong> Outputting the complete, top-to-bottom IaC Payload file after a fix (never partial code snippets).
-                                <br>&bull; <strong>Defect &amp; Patch Ledger (patch_ledger.md or DPL):</strong> The ledger that records the root cause and verified fix of every error solved during Iterations 1 to 3.
+                            <li>
+                                <span class="bullet-lead">What It Is (Physical Anatomy):</span> My routine troubleshooting and bug-logging mechanism active across every phase of the build (Phases 1 through 6):
+                                <ul class="term-sublist">
+                                    <li><span class="bullet-lead">Standard Patch Loop (Iterations 1 to 3):</span> Clinical diagnostic mode where The AI Engine drops all analogies and provides a targeted fix for any terminal or cloud error during attempts 1, 2, or 3.</li>
+                                    <li><span class="bullet-lead">State Re-Sync:</span> Outputting the complete, top-to-bottom IaC Payload file after a fix (never partial code snippets).</li>
+                                    <li><span class="bullet-lead">Defect &amp; Patch Ledger (patch_ledger.md or DPL):</span> The ledger that records the root cause and verified fix of every error solved during Iterations 1 to 3.</li>
+                                </ul>
                             </li>
                             <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Whenever I verify in my local terminal that a fix worked during the Standard Patch Loop (Iterations 1 to 3) at any phase, The State Machine immediately logs the entry in the Defect &amp; Patch Ledger (DPL) and performs a full-file State Re-Sync of my IaC Payload, without ever needing to trip The 4-Iteration Circuit Breaker. In Phase 5, all entries are compiled into patch_ledger.md, and in Phase 7 they are permanently compiled into my upgraded System Directive.</li>
                         </ul>
@@ -926,11 +986,11 @@
                 <!-- VARIABLE 26 -->
                 <div class="glossary-card full-width">
                     <div>
-                        <span class="term-badge">[VARIABLE 26 :: PHASE 7 SESSION CLOSE &amp; UPGRADE]</span>
+                        <span class="term-badge">[VARIABLE 26 :: PHASE 7 CONTINUOUS IMPROVEMENT &amp; UPGRADE]</span>
                         <h3 class="term-name">26. AI Performance Scorecard &amp; System Directive Compilation</h3>
                         <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The final close-out sequence in Phase 7 after my verified files are pushed to my Code Repository and Branch in Phase 6. The AI Performance Scorecard is a statistical table grading The AI Engine's execution accuracy across the session (First-Try Execution Rate, Total Patch Iterations, Circuit Breaker Events, and Watchdog Self-Corrections).</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> In Phase 7, The AI Engine outputs the AI Performance Scorecard, extracts every verified root cause and fix logged in the Defect &amp; Patch Ledger (DPL) during the session, weaves those new rules permanently into my master System Directive, and outputs the complete upgraded System Directive in a single copy-paste block so the exact same bug can never happen again on future builds.</li>
+                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The final continuous-improvement close-out sequence in Phase 7 after my verified files are pushed to my Code Repository and Branch in Phase 6. The AI Performance Scorecard is a statistical table grading The AI Engine's execution accuracy across the session (First-Try Execution Rate, Total Patch Iterations, Circuit Breaker Events, and Watchdog Self-Corrections).</li>
+                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> In Phase 7, The AI Engine outputs the AI Performance Scorecard, extracts every verified root cause and fix logged in the Defect &amp; Patch Ledger (DPL) during the session, weaves those new rules permanently into my master System Directive, and outputs the complete upgraded System Directive in a single copy-paste block so The State Machine becomes smarter, tighter, and more resilient after every single run.</li>
                         </ul>
                     </div>
                     <div class="aka-box">

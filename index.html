@@ -656,21 +656,21 @@
         <div class="hero-section-header">[THE ARCHITECTURAL FOUNDATION: THE 4 GATES OF MACHINE IDENTITY]</div>
         
         <p class="hero-subtitle">
-            At its core, securing any non-human workload or automation pipeline in Microsoft Entra ID and Azure—regardless of the CI/CD platform, database, or code language—comes down to configuring a predictable, four-part engineering foundation: <span class="bullet-lead">The Four Architectural Gates of Machine Identity.</span> While cloud tools and enterprise environments change constantly, I structure every zero-trust workload deployment around locking down these four gates in sequence:
+            At its core, securing any non-human workload or automation pipeline in Microsoft Entra ID and Azure, regardless of the CI/CD platform, database, or code language, comes down to configuring a predictable, four-part engineering foundation: <span class="bullet-lead">The Four Architectural Gates of Machine Identity.</span> While cloud tools and enterprise environments change constantly, I structure every zero-trust workload deployment around locking down these four gates in sequence:
         </p>
 
         <ul class="hero-highlights-list">
             <li>
-                <span class="bullet-lead">Gate 1 — Boundary (Where It Lives):</span> I lock in the exact Azure Tenant ID, Subscription ID, and Resource Group perimeter—while enforcing read-only lookups on existing Brownfield infrastructure so live resources are never overwritten.
+                <span class="bullet-lead">Gate 1: Boundary (Where It Lives):</span> I lock in the exact Azure Tenant ID, Subscription ID, and Resource Group perimeter, while enforcing read-only lookups on existing Brownfield infrastructure so live resources are never overwritten.
             </li>
             <li>
-                <span class="bullet-lead">Gate 2 — Identity (Who the Machine Is):</span> I provision a dedicated, Single-Tenant headless Application and Service Principal in Microsoft Entra ID with interactive browser logins disabled and zero saved passwords.
+                <span class="bullet-lead">Gate 2: Identity (Who the Machine Is):</span> I provision a dedicated, Single-Tenant headless Application and Service Principal in Microsoft Entra ID with interactive browser logins disabled and zero saved passwords.
             </li>
             <li>
-                <span class="bullet-lead">Gate 3 — Federation (How It Authenticates):</span> I replace static secrets with a passwordless, 60-minute OpenID Connect (OIDC) token exchange locked character-for-character to my exact repository and branch with zero wildcards.
+                <span class="bullet-lead">Gate 3: Federation (How It Authenticates):</span> I replace static secrets with a passwordless, 60-minute OpenID Connect (OIDC) token exchange locked character-for-character to my exact repository and branch with zero wildcards.
             </li>
             <li>
-                <span class="bullet-lead">Gate 4 — Access (What It Can Touch):</span> I block broad Owner or Contributor management roles and restrict permissions strictly to the data plane of the single target Key Vault, Storage Account, or database.
+                <span class="bullet-lead">Gate 4: Access (What It Can Touch):</span> I block broad Owner or Contributor management roles and restrict permissions strictly to the data plane of the single target Key Vault, Storage Account, or database.
             </li>
         </ul>
 
@@ -678,7 +678,7 @@
         <div class="hero-section-header">[THE AI SYSTEMS ENGINEERING SOLUTION: DETERMINISTIC EXECUTION]</div>
 
         <p class="hero-subtitle">
-            Because these four architectural gates follow a strict, predictable logic, they can be engineered into a repeatable system—provided the automation engine never skips a gate. Out of the box, however, generative AI functions as a probabilistic engine—fast and capable, yet prone to guessing cloud resource IDs, inventing settings, or granting overly broad permissions when asked to generate a deployment script all at once. To solve this for my Microsoft Entra ID and Azure security deployments, I engineered a state-driven execution architecture grounded in AI systems engineering best practices—tethering that probabilistic AI engine to a master System Directive governed by state-machine gates, live terminal verification, and hard permission locks to make its output deterministic. The result is my <span class="bullet-lead">Zero Trust Interactive State Machine:</span>
+            Because these four architectural gates follow a strict, predictable logic, they can be engineered into a repeatable system, provided the automation engine never skips a gate. Out of the box, however, generative AI functions as a probabilistic engine. It is fast and capable, yet prone to guessing cloud resource IDs, inventing settings, or granting overly broad permissions when asked to generate a deployment script all at once. To solve this for my Microsoft Entra ID and Azure security deployments, I engineered a state-driven execution architecture grounded in AI systems engineering best practices, tethering that probabilistic AI engine to a master System Directive governed by state-machine gates, live terminal verification, and hard permission locks to make its output deterministic. The result is my <span class="bullet-lead">Zero Trust Interactive State Machine:</span>
         </p>
 
         <!-- BULLETED CORE ATTRIBUTES OF THE MACHINE -->
@@ -693,7 +693,7 @@
                 <span class="bullet-lead">Mathematically Verified Zero Trust &amp; Audit Proof:</span> Validates live data-plane access through Azure Portal metrics and KQL log queries while automatically generating the formal pre-deployment and post-deployment compliance ledgers required for enterprise security audits.
             </li>
             <li>
-                <span class="bullet-lead">AI Self-Audit Circuit Breaker &amp; Continuous Improvement:</span> Prevents endless AI guessing loops during troubleshooting. If a fix fails three times, Attempt #4 forbids the AI from writing new code and forces it to audit its own three prior attempts—calculating a percentage likelihood (Estimated Probability of Success: X%) of whether I am on the right track or need to pivot to an alternative approach. Every verified fix I approve is then logged in a Defect &amp; Patch Ledger and compiled permanently into my System Directive.
+                <span class="bullet-lead">Real-Time Defect &amp; Patch Ledger &amp; The 4-Iteration Circuit Breaker:</span> Handles troubleshooting across any phase using two distinct mechanisms. First, whenever I verify a working fix during the Standard Patch Loop (Iterations 1 to 3), the root cause and solution are logged immediately in my Defect &amp; Patch Ledger with a full-file State Re-Sync, without needing to hit the circuit breaker. Second, if a single error fails 3 times and reaches Iteration 4, the 4-Iteration Circuit Breaker trips automatically, forbidding new code generation and forcing the AI to calculate an Estimated Probability of Success (X%) so I can decide whether to continue or pivot.
             </li>
         </ul>
 
@@ -702,74 +702,74 @@
             <div class="hero-sequence-header">[THE 7-STEP DETERMINISTIC EXECUTION SEQUENCE]</div>
             <ul class="hero-step-list">
                 <li class="hero-step-item">
-                    <span class="step-label">Phase 1 — Boot, Clean Workspace &amp; 5-Coordinate Intake:</span> I set up an isolated local directory with five blank deliverable files and lock in the five core deployment coordinates alongside any Day-2 Entra ID security expansions.
+                    <span class="step-label">Phase 1: Boot, Clean Workspace &amp; 5-Coordinate Intake:</span> I set up an isolated local directory with five blank deliverable files and lock in the five core deployment coordinates alongside any Day-2 Entra ID security expansions.
                     <ul class="step-sublist">
                         <li><span class="bullet-lead">Full Coordinates On Hand:</span> If I provide all five parameters up front, the machine locks them in immediately and advances straight to Phase 2 without prompting.</li>
                         <li><span class="bullet-lead">Missing Coordinates:</span> If I am missing any IDs, the machine outputs native read-only terminal lookup queries so I can extract the real Azure IDs before halting for my sign-off.</li>
                     </ul>
                 </li>
                 <li class="hero-step-item">
-                    <span class="step-label">Phase 2 — Coordinate Lock &amp; Cryptographic Extraction:</span> Bridges my cloud boundary and external pipeline before any deployment code is written.
+                    <span class="step-label">Phase 2: Coordinate Lock &amp; Cryptographic Extraction:</span> Bridges my cloud boundary and external pipeline before any deployment code is written.
                     <ul class="step-sublist">
                         <li><span class="bullet-lead">Backend ID Extraction:</span> I run local terminal scripts to pull exact repository identifiers, canonical character casing, and OIDC Issuer URLs directly from the provider.</li>
                         <li><span class="bullet-lead">Mathematical Subject Claim:</span> Constructs an exact, wildcard-free OpenID Connect trust string so my token exchanges never fail.</li>
                     </ul>
                 </li>
                 <li class="hero-step-item">
-                    <span class="step-label">Phase 3 — Payload Synthesis &amp; Local Execution:</span> Generates the unified infrastructure-as-code deployment payload and exact terminal execution runbook for me to run locally.
+                    <span class="step-label">Phase 3: Payload Synthesis &amp; Local Execution:</span> Generates the unified infrastructure-as-code deployment payload and exact terminal execution runbook for me to run locally.
                     <ul class="step-sublist">
                         <li><span class="bullet-lead">Hardened Identity &amp; Boundaries:</span> Enforces a Single-Tenant headless identity with zero passwords, read-only lookups for existing Brownfield resources (or deletion locks for Greenfield), and a 30-second wait timer for Microsoft Graph server sync.</li>
                         <li><span class="bullet-lead">Least-Privilege Data Role &amp; MFA Safety:</span> Locks permissions strictly to the single target asset's data plane, automatically separating the role assignment into an Azure Portal step if my local terminal session drops MFA claims.</li>
                     </ul>
                 </li>
                 <li class="hero-step-item">
-                    <span class="step-label">Phase 4 — Cryptographic Baseline (IAL) &amp; Live Validation Bridge:</span> Proves my deployed connection works in live cloud reality under the Zero Trust principle of "Verify Explicitly."
+                    <span class="step-label">Phase 4: Cryptographic Baseline (IAL) &amp; Live Validation Bridge:</span> Proves my deployed connection works in live cloud reality under the Zero Trust principle of "Verify Explicitly."
                     <ul class="step-sublist">
                         <li><span class="bullet-lead">Identity Architecture Ledger (identity_architecture_ledger.md):</span> Records the immutable baseline of every deployed ID, OIDC string, and permission scope in my workspace.</li>
                         <li><span class="bullet-lead">Live Pipeline &amp; Metric Verification:</span> I run the generated validation pipeline to a green checkmark, then verify the live data-plane read via Azure Portal Monitoring Metrics (Total Service API Hits over the last 30 minutes).</li>
                     </ul>
                 </li>
                 <li class="hero-step-item">
-                    <span class="step-label">Phase 5 — Enterprise Compliance Audit (ARL, KQL &amp; DPL):</span> Generates my formal audit and compliance evidence package once live access is confirmed with zero HTTP 403 Forbidden drops.
+                    <span class="step-label">Phase 5: Enterprise Compliance Audit (ARL, KQL &amp; DPL):</span> Generates my formal audit and compliance evidence package once live access is confirmed with zero HTTP 403 Forbidden drops.
                     <ul class="step-sublist">
                         <li><span class="bullet-lead">Audit Results Ledger (audit_results_ledger.md):</span> Scores all four verification gates and the five enterprise safety guardrails.</li>
                         <li><span class="bullet-lead">KQL Telemetry (kql_telemetry.md):</span> Provides the asynchronous Log Analytics query I run to prove token issuance matches vault access.</li>
-                        <li><span class="bullet-lead">Defect &amp; Patch Ledger (patch_ledger.md):</span> Records any architectural friction and verified fixes I engineered during the session.</li>
+                        <li><span class="bullet-lead">Defect &amp; Patch Ledger (patch_ledger.md):</span> Compiles all real-time DPL entries recorded during any phase of the session into a standalone audit file.</li>
                     </ul>
                 </li>
                 <li class="hero-step-item">
-                    <span class="step-label">Phase 6 — Secure Repository Synchronization:</span> Closes out my local workspace and syncs the verified deliverables to my remote repository.
+                    <span class="step-label">Phase 6: Secure Repository Synchronization:</span> Closes out my local workspace and syncs the verified deliverables to my remote repository.
                     <ul class="step-sublist">
                         <li><span class="bullet-lead">State &amp; Credential Protection:</span> Pulls remote changes first and writes a protective .gitignore file so my local state files never leak.</li>
                         <li><span class="bullet-lead">Automated Git Push:</span> Outputs a single copy-paste terminal script so I can commit and push the verified code and ledgers cleanly.</li>
                     </ul>
                 </li>
                 <li class="hero-step-item">
-                    <span class="step-label">Phase 7 — Session Scorecard, 4-Iteration Circuit Breaker &amp; Continuous Improvement:</span> Governs how I troubleshoot errors and permanently upgrade the system.
+                    <span class="step-label">Phase 7: Session Scorecard &amp; Continuous System Directive Upgrades (Backed by All-Phase Troubleshooting):</span> Closes out the build and permanently upgrades my master rulebook, supported by the troubleshooting protocols active across all phases.
                     <ul class="step-sublist">
-                        <li><span class="bullet-lead">Attempt #4 Self-Audit Circuit Breaker:</span> If a fix fails 3 times, Attempt #4 halts code generation and forces the AI to audit its own three prior attempts—calculating an Estimated Probability of Success (%) and recommending whether I should continue or pivot to an alternative approach.</li>
-                        <li><span class="bullet-lead">AI Performance Scorecard &amp; System Upgrade:</span> Outputs an exact statistical scorecard of the session, extracts every lesson learned from my Defect &amp; Patch Ledger, and compiles the newly upgraded System Directive into a single code block.</li>
+                        <li><span class="bullet-lead">Standard Patch Loop (Iterations 1 to 3) vs. The 4-Iteration Circuit Breaker:</span> During any phase of the build, routine errors solved within Iterations 1 to 3 are logged immediately in the Defect &amp; Patch Ledger with a full-file State Re-Sync. If an error fails 3 times and reaches Iteration 4, the 4-Iteration Circuit Breaker halts code generation and forces the AI to calculate an Estimated Probability of Success (X%) so I can decide whether to stay the course or pivot.</li>
+                        <li><span class="bullet-lead">Phase 7 AI Performance Scorecard &amp; System Upgrade:</span> At session close, outputs an exact statistical scorecard of the session, extracts every lesson learned from my Defect &amp; Patch Ledger, and compiles the newly upgraded System Directive into a single code block.</li>
                     </ul>
                 </li>
             </ul>
         </div>
 
         <p class="hero-subtitle" style="margin-bottom: 0;">
-            By governing the Four Architectural Gates through these seven explicit phases, I leave nothing to guesswork. Every build I execute produces a mathematically verified Zero Trust configuration in the live cloud, backed by a complete, audit-ready compliance trail—the Identity Architecture Ledger, the Audit Results Ledger, asynchronous KQL log queries, and the Defect &amp; Patch Ledger—turning every deployment into a repeatable, self-improving engineering asset.
+            By governing the Four Architectural Gates through these seven explicit phases, I leave nothing to guesswork. Every build I execute produces a mathematically verified Zero Trust configuration in the live cloud, backed by a complete, audit-ready compliance trail (the Identity Architecture Ledger, the Audit Results Ledger, asynchronous KQL log queries, and the Defect &amp; Patch Ledger), turning every deployment into a repeatable, self-improving engineering asset.
         </p>
         
         <!-- HERO ARCHITECTURAL INSIGHT -->
         <div class="insight-box" style="background: linear-gradient(90deg, rgba(168, 85, 247, 0.1) 0%, transparent 100%);">
             <div class="insight-header" style="color: var(--color-purple);">Architectural Insight: Applied AI Systems Engineering</div>
             <div class="insight-text">
-                The 7-phase workflow above is the direct product of applying AI systems engineering best practices to cloud identity security. Left untethered, any generative AI model will eventually drift into probabilistic behavior. By translating established industry frameworks—including the NIST AI Risk Management Framework, the OWASP Top 10 for Large Language Models, and the ReAct (Reason + Act) methodology—into a strict deterministic harness, I built this system to account for both the realities of how AI engines behave and the strict compliance and audit requirements of enterprise cloud security. Every gate, terminal check, audit ledger, and circuit breaker exists to ensure I configure Zero Trust identities safely, repeatably, and with verifiable proof.
+                The 7-phase workflow above is the direct product of applying AI systems engineering best practices to cloud identity security. Left untethered, any generative AI model will eventually drift into probabilistic behavior. By translating established industry frameworks, including the NIST AI Risk Management Framework, the OWASP Top 10 for Large Language Models, and the ReAct (Reason + Act) methodology, into a strict deterministic harness, I built this system to account for both the realities of how AI engines behave and the strict compliance and audit requirements of enterprise cloud security. Every gate, terminal check, audit ledger, and circuit breaker exists to ensure I configure Zero Trust identities safely, repeatably, and with verifiable proof.
             </div>
         </div>
 
         <!-- JUMP LINKS WITH INTRODUCTION -->
         <div class="jump-links-container">
             <div class="jump-links-intro">
-                Explore the Technical Architecture Below — Select any section to jump directly to the detailed breakdown:
+                Explore the Technical Architecture Below. Select any section to jump directly to the detailed breakdown:
             </div>
             <div class="jump-links">
                 <a href="#execution-triad">1. The Execution Triad</a>
@@ -789,7 +789,7 @@
                 <h2 class="summary-title">The Execution Triad: Three-Party Governance &amp; Tethering</h2>
                 
                 <p class="summary-text">
-                    To ensure a generative AI model never acts autonomously against live cloud infrastructure, my System Directive establishes a strict three-party operational model—<span class="bullet-lead">The Execution Triad.</span> Instead of a standard two-way chat with an unconstrained model, every phase of my build separates my human authorization authority, the immutable security rulebook, and the code-generation engine into three distinct roles:
+                    To ensure a generative AI model never acts autonomously against live cloud infrastructure, my System Directive establishes a strict three-party operational model: <span class="bullet-lead">The Execution Triad.</span> Instead of a standard two-way chat with an unconstrained model, every phase of my build separates my human authorization authority, the immutable security rulebook, and the code-generation engine into three distinct roles:
                 </p>
 
                 <!-- THE TRIAD GRID -->
@@ -798,13 +798,13 @@
                         <div class="triad-role">[ROLE: MY AUTHORITY &amp; STRATEGIC GOVERNANCE]</div>
                         <h3 class="triad-header">1. The Architect (Me)</h3>
                         <p class="triad-lead">
-                            My role at the keyboard—holding sole authorization authority over every state change, terminal command, and cloud deployment.
+                            My role at the keyboard, holding sole authorization authority over every state change, terminal command, and cloud deployment.
                         </p>
                         <ul class="triad-sublist">
-                            <li><span class="bullet-lead">Workspace &amp; Coordinate Lock (Phases 1–2):</span> I initialize the clean local directory, select the five deployment coordinates and any Day-2 Entra ID security expansions, and run local terminal extraction scripts to pull real backend IDs from Azure and my pipeline provider.</li>
+                            <li><span class="bullet-lead">Workspace &amp; Coordinate Lock (Phases 1 to 2):</span> I initialize the clean local directory, select the five deployment coordinates and any Day-2 Entra ID security expansions, and run local terminal extraction scripts to pull real backend IDs from Azure and my pipeline provider.</li>
                             <li><span class="bullet-lead">Local Execution &amp; Portal MFA Handoff (Phase 3):</span> I review and execute the synthesized infrastructure code from my local terminal using device-code authentication, and perform manual Azure Portal role bindings whenever local terminal MFA claims drop.</li>
-                            <li><span class="bullet-lead">Live Telemetry Verification (Phases 4–6):</span> I run the validation pipeline to a green checkmark, inspect Azure Portal Monitoring Metrics to confirm the live data-plane API hit spike, execute asynchronous KQL log queries, and push the verified deliverables to my remote repository.</li>
-                            <li><span class="bullet-lead">Circuit Breaker Risk Decisions (Phase 7):</span> I exercise strategic governance if a troubleshooting loop hits the Attempt #4 Circuit Breaker—reviewing the AI's success-probability audit to decide whether I should continue on the current path or pivot to an alternative architecture.</li>
+                            <li><span class="bullet-lead">Live Telemetry Verification (Phases 4 to 6):</span> I run the validation pipeline to a green checkmark, inspect Azure Portal Monitoring Metrics to confirm the live data-plane API hit spike, execute asynchronous KQL log queries, and push the verified deliverables to my remote repository.</li>
+                            <li><span class="bullet-lead">Patch Verification &amp; Circuit Breaker Decisions (All Phases):</span> I verify fixes in my local terminal so they can be logged in the Defect &amp; Patch Ledger during Iterations 1 to 3, and I make the final risk decision if an unresolved error reaches Iteration 4 and trips the 4-Iteration Circuit Breaker.</li>
                         </ul>
                     </div>
                     
@@ -818,7 +818,7 @@
                             <li><span class="bullet-lead">Mandatory Halts &amp; Watchdog Enforcement:</span> Forces the AI to execute one phase at a time behind strict human-in-the-loop halts and runs a continuous Watchdog check on every turn so the AI can never skip ahead or stack manual steps without my approval.</li>
                             <li><span class="bullet-lead">Zero-Trust Identity &amp; Boundary Locks:</span> Mandates read-only lookups for existing Brownfield resources, deletion locks for Greenfield builds, Single-Tenant headless identities with zero passwords, exact wildcard-free OIDC subject strings, and single-asset data-plane roles while blocking Owner and Contributor permissions.</li>
                             <li><span class="bullet-lead">Built-In Cloud Crash Prevention:</span> Enforces a 30-second wait timer to absorb Microsoft Graph sync delays, chunks massive external IP lists to prevent Conditional Access size errors, mandates invisible terminal input for tokens, and blocks ephemeral Azure Cloud Shell sessions.</li>
-                            <li><span class="bullet-lead">The Attempt #4 Circuit Breaker &amp; Audit Schemas:</span> Structurally forbids the AI from generating new code on Attempt #4 of any single defect loop, and locks Phases 4 and 5 to strict, unalterable Markdown schemas for the Identity Architecture Ledger and Audit Results Ledger.</li>
+                            <li><span class="bullet-lead">DPL State Re-Sync, The 4-Iteration Circuit Breaker &amp; Audit Schemas:</span> Mandates real-time Defect &amp; Patch Ledger logging and full-file State Re-Syncs whenever a fix succeeds in Iterations 1 to 3, structurally forbids new code generation if a patch reaches Iteration 4, and locks Phases 4 and 5 to strict Markdown schemas for the IAL and ARL.</li>
                         </ul>
                     </div>
 
@@ -829,10 +829,10 @@
                             The generative compute engine whose capabilities are strictly subordinated to the State Machine's rules and my sign-off.
                         </p>
                         <ul class="triad-sublist">
-                            <li><span class="bullet-lead">Explicit State-Switching &amp; Extraction Queries:</span> Openly narrates its operational state—providing native terminal lookup commands during Phases 1 and 2 so I can resolve missing IDs without the AI ever guessing or outputting manual placeholders.</li>
+                            <li><span class="bullet-lead">Explicit State-Switching &amp; Extraction Queries:</span> Openly narrates its operational state, providing native terminal lookup commands during Phases 1 and 2 so I can resolve missing IDs without the AI ever guessing or outputting manual placeholders.</li>
                             <li><span class="bullet-lead">Unified Code &amp; Runbook Synthesis:</span> Synthesizes the complete Terraform, Bicep, or PowerShell REST API deployment payload, exact terminal keystrokes, live validation pipeline YAML, and Plain Talk anatomical translations at each phase.</li>
-                            <li><span class="bullet-lead">Clinical Diagnostics &amp; Attempt #4 Self-Audit:</span> Drops all conversational analogies during troubleshooting to track isolated defect loops. If a patch reaches Attempt #4, it halts code generation, analyzes the error shifts across its last three attempts, outputs an Estimated Probability of Success percentage, and presents alternative pathways for my review.</li>
-                            <li><span class="bullet-lead">Self-Correction Scorecard &amp; Directive Compilation:</span> Logs any internal rule deviations in real time, generates the formal Defect &amp; Patch Ledger entries once I confirm a fix works, outputs the Phase 7 AI Performance Scorecard, and compiles my upgraded System Directive at session close.</li>
+                            <li><span class="bullet-lead">Clinical Diagnostics (Iterations 1 to 3) &amp; Iteration 4 Risk Assessment:</span> Drops all conversational analogies during troubleshooting to fix errors and stage real-time Defect &amp; Patch Ledger entries. If a patch fails 3 times and hits Iteration 4, it halts code generation, analyzes the error shifts across its 3 attempts, outputs an Estimated Probability of Success percentage, and presents alternative pathways for my review.</li>
+                            <li><span class="bullet-lead">Self-Correction Scorecard &amp; Directive Compilation:</span> Logs any internal rule deviations in real time, compiles the formal Defect &amp; Patch Ledger file in Phase 5, outputs the Phase 7 AI Performance Scorecard, and compiles my upgraded System Directive at session close.</li>
                         </ul>
                     </div>
                 </div>
@@ -883,7 +883,7 @@
                     
                     <div class="node node-compiler"><div class="tag">[THE AI ENGINE]</div><div class="node-title">Tethered Co-Pilot<br><span style="font-size: 0.78rem; font-weight: 700; color: #a855f7;">(CONTROLLED BUILDER)</span></div><div class="node-text">Provides my terminal lookup commands, generates complete deployment scripts and validation pipelines, and writes the formal audit ledgers.</div></div>
                     
-                    <div class="node node-dpl"><div class="tag">[PHASE 7 CIRCUIT BREAKER]</div><div class="node-title">Defect &amp; Patch Ledger (DPL)</div><div class="node-text">Tracks any fixes I engineer during the build. If an error fails 3 times, Attempt #4 halts code generation and forces the AI to calculate a success probability percentage before upgrading my System Directive.</div></div>
+                    <div class="node node-dpl"><div class="tag">[DPL &amp; CIRCUIT BREAKER]</div><div class="node-title">Defect &amp; Patch Ledger (DPL)</div><div class="node-text">Logs every verified fix in real time (Iterations 1 to 3) to upgrade my System Directive in Phase 7. Separately, if an error fails 3 times, the Iteration 4 Circuit Breaker halts code generation for a probability assessment.</div></div>
                     
                     <div class="node node-iac"><div class="tag">[PHASE 3 OUTPUT]</div><div class="node-title">Complete IaC &amp; Runbook</div><div class="node-text">Outputs finished Terraform, Bicep, or PowerShell scripts with built-in server sync timers and step-by-step terminal commands.</div></div>
                     
@@ -897,7 +897,7 @@
                 </div>
             </div>
 
-            <!-- ARCHITECTURAL FLOW EXPLANATION (UNDER THE HOOD MECHANICS — FIRST-PERSON PLAIN TALK) -->
+            <!-- ARCHITECTURAL FLOW EXPLANATION (UNDER THE HOOD MECHANICS: FIRST-PERSON PLAIN TALK) -->
             <div class="flow-explanation">
                 <h3 class="flow-subheader">Under the Hood: 4 Practical Engineering Controls Built Into My Flow</h3>
                 
@@ -908,7 +908,7 @@
                 <div class="flow-mechanics-box">
                     <ul class="hero-step-list">
                         <li class="hero-step-item">
-                            <span class="step-label">1. Running from a Clean Local Folder Instead of Browser Cloud Shells:</span> I deprecated browser-based terminals like Azure Cloud Shell in my workflow because temporary browser sessions time out after brief periods of inactivity—wiping out local deployment state files mid-build, dropping multi-factor login sessions, and cutting off large pasted scripts.
+                            <span class="step-label">1. Running from a Clean Local Folder Instead of Browser Cloud Shells:</span> I deprecated browser-based terminals like Azure Cloud Shell in my workflow because temporary browser sessions time out after brief periods of inactivity, wiping out local deployment state files mid-build, dropping multi-factor login sessions, and cutting off large pasted scripts.
                             <ul class="step-sublist">
                                 <li><span class="bullet-lead">Isolated Local Workspace:</span> I run every build inside a brand-new, empty folder on my local computer using Visual Studio Code or Git Bash, ensuring old files from previous projects never mix with my current deployment.</li>
                                 <li><span class="bullet-lead">Multi-Factor Terminal Sign-In:</span> My terminal runbook starts with a device-code sign-in command so my local terminal session carries full multi-factor authentication approval right from the beginning.</li>
@@ -923,14 +923,14 @@
                             </ul>
                         </li>
                         <li class="hero-step-item">
-                            <span class="step-label">3. Two-Stage Live Verification — Instant Portal Metrics Before Slow Log Analytics:</span> In the real world, Azure Log Analytics can take a very long, unpredictable amount of time to index new sign-in logs—making it frustrating and impractical for me to wait on KQL log queries just to find out if my deployment worked.
+                            <span class="step-label">3. Two-Stage Live Verification: Instant Portal Metrics Before Slow Log Analytics:</span> In the real world, Azure Log Analytics can take a very long, unpredictable amount of time to index new sign-in logs, making it frustrating and impractical for me to wait on KQL log queries just to find out if my deployment worked.
                             <ul class="step-sublist">
-                                <li><span class="bullet-lead">Stage 1 — My Immediate Verification in Azure Portal Metrics (Phase 4):</span> As soon as my test pipeline finishes with a green checkmark, I check the live Monitoring Metrics chart on my target vault in the Azure Portal (Total Service API Hits over the last 30 minutes). Seeing that immediate spike proves mathematically that my 60-minute OIDC token unlocked the vault with zero access errors—before I ever wait on Log Analytics.</li>
-                                <li><span class="bullet-lead">Stage 2 — Deep Audit Records &amp; Asynchronous KQL Queries (Phase 5):</span> Once the live metric spike confirms my connection works, the machine generates my formal Audit Results Ledger and provides a standalone KQL query file that I run later once Azure Log Analytics finishes indexing the background logs.</li>
+                                <li><span class="bullet-lead">Stage 1: My Immediate Verification in Azure Portal Metrics (Phase 4):</span> As soon as my test pipeline finishes with a green checkmark, I check the live Monitoring Metrics chart on my target vault in the Azure Portal (Total Service API Hits over the last 30 minutes). Seeing that immediate spike proves mathematically that my 60-minute OIDC token unlocked the vault with zero access errors, before I ever wait on Log Analytics.</li>
+                                <li><span class="bullet-lead">Stage 2: Deep Audit Records &amp; Asynchronous KQL Queries (Phase 5):</span> Once the live metric spike confirms my connection works, the machine generates my formal Audit Results Ledger and provides a standalone KQL query file that I run later once Azure Log Analytics finishes indexing the background logs.</li>
                             </ul>
                         </li>
                         <li class="hero-step-item">
-                            <span class="step-label">4. Day-2 Security Expansions &amp; Complete File Re-Syncing:</span> Cloud architectures aren't static—once my workload identity is live, I often need to add stricter security rules (like IP address restrictions) or apply a quick troubleshooting fix without breaking my original code.
+                            <span class="step-label">4. Day-2 Security Expansions &amp; Complete File Re-Syncing:</span> Cloud architectures aren't static. Once my workload identity is live, I often need to add stricter security rules (like IP address restrictions) or apply a quick troubleshooting fix without breaking my original code.
                             <ul class="step-sublist">
                                 <li><span class="bullet-lead">Adding Any of the 35 Entra Security Modules (Day-2 Expansion):</span> Once my core passwordless identity is verified, I can skip the initial setup phases and layer any of the 35 Microsoft Entra security capabilities onto my existing identity as clean, add-on code blocks without overwriting my live foundation.</li>
                                 <li><span class="bullet-lead">Always Outputting the Complete Code File (Zero Partial Snippets):</span> Standard AI models love to output tiny, incomplete code fragments ("paste this snippet into line 42") during troubleshooting, which leads to copy-paste mistakes and broken files. Whenever I apply a fix, my System Directive forces the AI to re-sync and output the entire infrastructure file from top to bottom so my local code is always complete and ready to run. For a full phase-by-phase telemetry breakdown, see my <a href="blueprint.html" class="inline-link">Operational Blueprint</a> and <a href="architectural.html" class="inline-link">Pipeline Architecture</a> pages.</li>
@@ -943,7 +943,7 @@
                 <div class="insight-box" style="background: linear-gradient(90deg, rgba(168, 85, 247, 0.1) 0%, transparent 100%);">
                     <div class="insight-header" style="color: var(--color-purple);">Architectural Insight: Enterprise Portability &amp; Private AI Deployment</div>
                     <div class="insight-text">
-                        While I demonstrate the Zero Trust Interactive State Machine in this portfolio using standard AI interfaces, I engineered the System Directive for strict enterprise portability. It does not require public AI endpoints. In a corporate production environment, I can inject this exact state machine directly into a private, tenant-isolated AI instance—such as Azure OpenAI—ensuring that every architectural coordinate, terminal lookup, and compliance ledger remains 100% inside the corporate security boundary.
+                        While I demonstrate the Zero Trust Interactive State Machine in this portfolio using standard AI interfaces, I engineered the System Directive for strict enterprise portability. It does not require public AI endpoints. In a corporate production environment, I can inject this exact state machine directly into a private, tenant-isolated AI instance, such as Azure OpenAI, ensuring that every architectural coordinate, terminal lookup, and compliance ledger remains 100% inside the corporate security boundary.
                     </div>
                 </div>
             </div>
@@ -957,7 +957,7 @@
             <h2 class="section-title">From AI Systems Engineering to Code: The 4 Pillars &amp; The 5 Enterprise Guardrails</h2>
             
             <p class="intro-text">
-                Before an AI model can safely write cloud security code, the system governing the AI must be engineered properly. To build the master System Directive for the Zero Trust Interactive State Machine, I grounded the architecture in <span class="bullet-lead">four globally recognized AI Systems Engineering standards</span>—separating what each standard defines in the broader AI industry from how I wired it into my workflow at the keyboard:
+                Before an AI model can safely write cloud security code, the system governing the AI must be engineered properly. To build the master System Directive for the Zero Trust Interactive State Machine, I grounded the architecture in <span class="bullet-lead">four globally recognized AI Systems Engineering standards</span>, separating what each standard defines in the broader AI industry from how I wired it into my workflow at the keyboard:
             </p>
 
             <!-- PART A: THE 4 PILLARS OF THE SYSTEM DIRECTIVE -->
@@ -965,31 +965,31 @@
                 <div class="hero-sequence-header">[THE 4 AI SYSTEMS ENGINEERING PILLARS OF MY SYSTEM DIRECTIVE]</div>
                 <ul class="hero-step-list">
                     <li class="hero-step-item">
-                        <span class="step-label">Pillar 1 — Agentic Patterns (The ReAct Framework):</span>
+                        <span class="step-label">Pillar 1: Agentic Patterns (The ReAct Framework):</span>
                         <ul class="step-sublist">
                             <li><span class="bullet-lead">The AI Systems Engineering Standard:</span> Developed by researchers at Princeton and Google Brain (Yao et al.), the ReAct (Reasoning and Acting) methodology prevents language models from guessing in a vacuum by forcing them to alternate between reasoning steps and checking real external data sources.</li>
                             <li><span class="bullet-lead">How I Applied It in My System Directive:</span> Instead of letting the AI guess cloud resource names or write a deployment script in one shot, Phases 1 and 2 force the AI to pause, give me native terminal lookup commands, wait for me to paste back the real console output, and only generate code using verified live IDs.</li>
                         </ul>
                     </li>
                     <li class="hero-step-item">
-                        <span class="step-label">Pillar 2 — Bounded Autonomy (OWASP Top 10 for LLMs — LLM08: Excessive Agency):</span>
+                        <span class="step-label">Pillar 2: Bounded Autonomy (OWASP Top 10 for LLMs: LLM08 Excessive Agency):</span>
                         <ul class="step-sublist">
                             <li><span class="bullet-lead">The AI Systems Engineering Standard:</span> The global OWASP application security standard for artificial intelligence, which mandates strict permission boundaries so an AI model cannot exercise unchecked agency or run destructive commands across enterprise systems.</li>
-                            <li><span class="bullet-lead">How I Applied It in My System Directive:</span> The AI Engine has zero direct access to my cloud account and is locked inside hard permission boundaries—requiring read-only lookups for existing resources, single-vault data permissions, and a clean handoff to the Azure web portal whenever a role assignment requires interactive multi-factor authentication.</li>
+                            <li><span class="bullet-lead">How I Applied It in My System Directive:</span> The AI Engine has zero direct access to my cloud account and is locked inside hard permission boundaries, requiring read-only lookups for existing resources, single-vault data permissions, and a clean handoff to the Azure web portal whenever a role assignment requires interactive multi-factor authentication.</li>
                         </ul>
                     </li>
                     <li class="hero-step-item">
-                        <span class="step-label">Pillar 3 — Human-in-the-Loop Governance (NIST AI Risk Management Framework):</span>
+                        <span class="step-label">Pillar 3: Human-in-the-Loop Governance (NIST AI Risk Management Framework):</span>
                         <ul class="step-sublist">
-                            <li><span class="bullet-lead">The AI Systems Engineering Standard:</span> The U.S. federal standard (NIST AI RMF 1.0) establishing the "Govern" function—requiring continuous human oversight, risk control, and clear human accountability at every critical decision point in a high-impact AI system.</li>
-                            <li><span class="bullet-lead">How I Applied It in My System Directive:</span> My System Directive forbids the AI from skipping ahead or stacking manual steps. The machine must halt at every single phase—from locking in coordinates and extracting OIDC strings to running the live pipeline test and checking Azure Portal metrics—waiting for my explicit verification and sign-off before moving forward.</li>
+                            <li><span class="bullet-lead">The AI Systems Engineering Standard:</span> The U.S. federal standard (NIST AI RMF 1.0) establishing the "Govern" function, requiring continuous human oversight, risk control, and clear human accountability at every critical decision point in a high-impact AI system.</li>
+                            <li><span class="bullet-lead">How I Applied It in My System Directive:</span> My System Directive forbids the AI from skipping ahead or stacking manual steps. The machine must halt at every single phase, from locking in coordinates and extracting OIDC strings to running the live pipeline test and checking Azure Portal metrics, waiting for my explicit verification and sign-off before moving forward.</li>
                         </ul>
                     </li>
                     <li class="hero-step-item">
-                        <span class="step-label">Pillar 4 — Cognitive Circuit Breaking (LLM Hallucination &amp; Drift Prevention):</span>
+                        <span class="step-label">Pillar 4: Cognitive Circuit Breaking (LLM Hallucination &amp; Drift Prevention):</span>
                         <ul class="step-sublist">
                             <li><span class="bullet-lead">The AI Systems Engineering Standard:</span> Grounded in foundational AI reliability research (Huang et al.), cognitive circuit breaking stops language models from drifting off their instructions and repeating false guesses ("hallucination spirals") during long, multi-turn troubleshooting sessions.</li>
-                            <li><span class="bullet-lead">How I Applied It in My System Directive:</span> During troubleshooting, my machine tracks every fix attempt on a strict counter. If an error is not resolved after 3 tries, Attempt #4 trips a hard Circuit Breaker that forbids the AI from writing new code—forcing it to audit its own three prior attempts and calculate an Estimated Probability of Success percentage so I can decide whether to stay the course or pivot, before logging the proven fix in my Defect &amp; Patch Ledger.</li>
+                            <li><span class="bullet-lead">How I Applied It in My System Directive:</span> My System Directive separates routine bug logging from emergency circuit breaking across every phase. Whenever a fix succeeds during the Standard Patch Loop (Iterations 1 to 3), it is logged immediately in the Defect &amp; Patch Ledger with a full-file State Re-Sync. Separately, if an error fails 3 times and reaches Iteration 4, the 4-Iteration Circuit Breaker trips automatically, forbidding new code generation and forcing the AI to calculate an Estimated Probability of Success (X%) so I can decide whether to stay the course or pivot.</li>
                         </ul>
                     </li>
                 </ul>
@@ -999,7 +999,7 @@
             <div class="guardrails-sub-header">[TRANSLATING AI SYSTEMS ENGINEERING INTO CODE: THE 5 ENTERPRISE GUARDRAILS]</div>
 
             <p class="intro-text" style="margin-bottom: 3rem;">
-                While the four AI Systems Engineering pillars above govern how the AI behaves across the 7-phase conversation, I translated those standards—alongside specific controls from the OWASP Top 10 for LLMs and the NIST AI Risk Management Framework—into <span class="bullet-lead">five concrete Enterprise Guardrails</span> inside the generated code itself. Enforced at runtime by the Execution Triad and formally scored as [PASS] in my Phase 5 Audit Results Ledger, each guardrail translates a core AI engineering standard into a hard cloud security lock:
+                While the four AI Systems Engineering pillars above govern how the AI behaves across the 7-phase conversation, I translated those standards, alongside specific controls from the OWASP Top 10 for LLMs and the NIST AI Risk Management Framework, into <span class="bullet-lead">five concrete Enterprise Guardrails</span> inside the generated code itself. Enforced at runtime by the Execution Triad and formally scored as [PASS] in my Phase 5 Audit Results Ledger, each guardrail translates a core AI engineering standard into a hard cloud security lock:
             </p>
 
             <div class="vulnerability-grid">
@@ -1007,8 +1007,8 @@
                 <div class="vuln-card">
                     <h3 class="vuln-title">1. Secret &amp; Credential Protection (Data Loss Prevention &amp; Context Leakage)</h3>
                     <ul class="step-sublist">
-                        <li><span class="bullet-lead">The AI Engineering Principle (OWASP LLM06: Sensitive Information Disclosure &amp; NIST Privacy):</span> In AI systems engineering, feeding live passwords or private keys into a model's context window—or echoing them in plain text—creates an immediate credential leak risk.</li>
-                        <li><span class="bullet-lead">How My Guardrail Enforces It in Code (Phases 1, 2 &amp; 3):</span> I separate non-secret cloud routing addresses from private secrets. Using ReAct terminal lookups, I pull safe routing IDs—like my Tenant ID, Subscription ID, Resource Group, and repository name—so the AI writes 100% finished code with zero blank placeholders, while passwordless 60-minute OIDC eliminates client secrets and invisible terminal typing keeps personal tokens off the screen and out of GitHub.</li>
+                        <li><span class="bullet-lead">The AI Engineering Principle (OWASP LLM06: Sensitive Information Disclosure &amp; NIST Privacy):</span> In AI systems engineering, feeding live passwords or private keys into a model's context window, or echoing them in plain text, creates an immediate credential leak risk.</li>
+                        <li><span class="bullet-lead">How My Guardrail Enforces It in Code (Phases 1, 2 &amp; 3):</span> I separate non-secret cloud routing addresses from private secrets. Using ReAct terminal lookups, I pull safe routing IDs (like my Tenant ID, Subscription ID, Resource Group, and repository name) so the AI writes 100% finished code with zero blank placeholders, while passwordless 60-minute OIDC eliminates client secrets and invisible terminal typing keeps personal tokens off the screen and out of GitHub.</li>
                     </ul>
                 </div>
 
@@ -1023,7 +1023,7 @@
                 <div class="vuln-card">
                     <h3 class="vuln-title">3. Stopping "The Contributor Trap" (Single-Asset Data-Plane Scope)</h3>
                     <ul class="step-sublist">
-                        <li><span class="bullet-lead">The AI Engineering Principle (OWASP LLM08: Excessive Agency — Over-Permissioning):</span> Because probabilistic language models optimize for making code run without errors, an untethered AI will frequently grant broad administrative roles like Owner or Contributor as a shortcut.</li>
+                        <li><span class="bullet-lead">The AI Engineering Principle (OWASP LLM08: Excessive Agency / Over-Permissioning):</span> Because probabilistic language models optimize for making code run without errors, an untethered AI will frequently grant broad administrative roles like Owner or Contributor as a shortcut.</li>
                         <li><span class="bullet-lead">How My Guardrail Enforces It in Code (Phases 3 &amp; 5):</span> Giving an automation pipeline Contributor access is like giving a delivery driver the master keys to remodel the building just to drop off one package. My System Directive blocks all broad management-plane roles and locks permissions strictly to the exact data action required on one single Key Vault, Storage Account, or database ID.</li>
                     </ul>
                 </div>
@@ -1032,7 +1032,7 @@
                     <h3 class="vuln-title">4. Supply Chain Version Pinning &amp; Schema Integrity</h3>
                     <ul class="step-sublist">
                         <li><span class="bullet-lead">The AI Engineering Principle (OWASP LLM05: Supply Chain Vulnerabilities &amp; Anti-Hallucination):</span> Left unchecked, generative AI models will use floating version tags (like "latest") that pull unverified third-party updates, or hallucinate invalid API properties by mixing different code languages together.</li>
-                        <li><span class="bullet-lead">How My Guardrail Enforces It in Code (Phase 3):</span> My System Directive pins every Terraform provider, Azure Bicep resource API, and CI/CD pipeline login action to an exact, verified version number—and enforces strict native Microsoft Graph JSON formatting on PowerShell REST API builds so Terraform code words never bleed into direct API calls.</li>
+                        <li><span class="bullet-lead">How My Guardrail Enforces It in Code (Phase 3):</span> My System Directive pins every Terraform provider, Azure Bicep resource API, and CI/CD pipeline login action to an exact, verified version number, and enforces strict native Microsoft Graph JSON formatting on PowerShell REST API builds so Terraform code words never bleed into direct API calls.</li>
                     </ul>
                 </div>
 
@@ -1040,7 +1040,7 @@
                     <h3 class="vuln-title">5. Pipeline Log Token Masking (Runtime Output Scrubbing)</h3>
                     <ul class="step-sublist">
                         <li><span class="bullet-lead">The AI Engineering Principle (OWASP LLM02: Insecure Output Handling &amp; LLM06):</span> Even when a system uses short-lived tokens, allowing an AI-generated pipeline script to print runtime variables directly to a shared console screen exposes sensitive tokens and vault secrets in plain text.</li>
-                        <li><span class="bullet-lead">How My Guardrail Enforces It in Code (Phases 4 &amp; 5):</span> Before my Phase 4 validation pipeline reads a secret or 60-minute OIDC token into memory, my System Directive injects active runtime log masking into the workflow so the runner scrubs any sensitive string with asterisks (***) before a single line prints to the console—a control I explicitly verify in my Phase 5 Audit Results Ledger.</li>
+                        <li><span class="bullet-lead">How My Guardrail Enforces It in Code (Phases 4 &amp; 5):</span> Before my Phase 4 validation pipeline reads a secret or 60-minute OIDC token into memory, my System Directive injects active runtime log masking into the workflow so the runner scrubs any sensitive string with asterisks (***) before a single line prints to the console, a control I explicitly verify in my Phase 5 Audit Results Ledger.</li>
                     </ul>
                 </div>
 
@@ -1056,7 +1056,7 @@
             <h2 class="section-title" style="margin-bottom: 1.5rem;">Environment-Agnostic Flexibility: 72 Build Combinations &amp; 35 Day-2 Modules</h2>
             
             <p class="intro-text" style="margin-bottom: 3rem;">
-                Every enterprise cloud environment is configured differently—a deployment script written for GitHub Actions and Terraform on a brand-new Key Vault will fail immediately if an environment uses Azure DevOps, Bicep, and an existing Storage Account. Instead of maintaining dozens of separate static templates, I start the Zero Trust Interactive State Machine in Phase 1 by locking in five core deployment choices below. Based on those five selections, my System Directive automatically adapts its Phase 2 terminal lookups, Phase 3 deployment code, and Phase 4 test pipelines across <span class="bullet-lead">72 distinct baseline build combinations</span>—each ready to accept <span class="bullet-lead">35 Day-2 Microsoft Entra security expansions:</span>
+                Every enterprise cloud environment is configured differently. A deployment script written for GitHub Actions and Terraform on a brand-new Key Vault will fail immediately if an environment uses Azure DevOps, Bicep, and an existing Storage Account. Instead of maintaining dozens of separate static templates, I start the Zero Trust Interactive State Machine in Phase 1 by locking in five core deployment choices below. Based on those five selections, my System Directive automatically adapts its Phase 2 terminal lookups, Phase 3 deployment code, and Phase 4 test pipelines across <span class="bullet-lead">72 distinct baseline build combinations</span>, each ready to accept <span class="bullet-lead">35 Day-2 Microsoft Entra security expansions:</span>
             </p>
 
             <!-- EMBEDDED 5-COLUMN COORDINATE MATRIX GRAPHIC (ALL UNCHECKED) -->
@@ -1117,7 +1117,7 @@
                     <h3 class="vuln-title">Adapting to Any CI/CD or Kubernetes Platform</h3>
                     <p class="vuln-lead">Each pipeline platform sends a differently formatted OpenID Connect (OIDC) digital ID card to Microsoft Entra ID, so Phase 2 automatically switches its terminal lookup commands to match my chosen platform.</p>
                     <ul class="step-sublist">
-                        <li><span class="bullet-lead">GitHub Actions, Azure DevOps &amp; GitLab CI:</span> Generates the exact terminal lookup script for my chosen platform in Phase 2 so I can pull permanent repository ID numbers and exact upper-and-lower-case repository spelling—ensuring Microsoft Entra ID never rejects a login due to a capital-letter mismatch.</li>
+                        <li><span class="bullet-lead">GitHub Actions, Azure DevOps &amp; GitLab CI:</span> Generates the exact terminal lookup script for my chosen platform in Phase 2 so I can pull permanent repository ID numbers and exact upper-and-lower-case repository spelling, ensuring Microsoft Entra ID never rejects a login due to a capital-letter mismatch.</li>
                         <li><span class="bullet-lead">Azure Kubernetes Service (AKS) Smart Branching:</span> If I am connecting an existing Brownfield AKS cluster, Phase 2 gives me the Azure CLI command to look up the cluster's live OIDC web address and service account; if I am building a brand-new Greenfield cluster, it skips the manual lookup and links the new OIDC address automatically inside my Phase 3 code.</li>
                     </ul>
                 </div>
@@ -1127,7 +1127,7 @@
                     <h3 class="vuln-title">Protecting Existing vs. Brand-New Cloud Resources</h3>
                     <p class="vuln-lead">Based on whether I select Brownfield (Existing) or Greenfield (Net-New) for the Infrastructure State, the machine changes how my deployment code treats Azure resources so nothing is ever overwritten.</p>
                     <ul class="step-sublist">
-                        <li><span class="bullet-lead">Brownfield (Existing Cloud Resources):</span> Uses read-only lookup mode in the code and repeats my existing Application ID back to me before generating the script—ensuring live vaults, storage accounts, and databases are connected safely without ever being modified or replaced.</li>
+                        <li><span class="bullet-lead">Brownfield (Existing Cloud Resources):</span> Uses read-only lookup mode in the code and repeats my existing Application ID back to me before generating the script, ensuring live vaults, storage accounts, and databases are connected safely without ever being modified or replaced.</li>
                         <li><span class="bullet-lead">Greenfield (Brand-New Deployments):</span> Builds the new machine identity and target vault or database from scratch while automatically adding deletion-prevention locks and permanent state storage rules so my new infrastructure cannot be accidentally wiped out.</li>
                     </ul>
                 </div>
@@ -1137,7 +1137,7 @@
                     <h3 class="vuln-title">Matching the Exact Vault, Storage, or Database Permission</h3>
                     <p class="vuln-lead">When I select Azure Key Vault, a Storage Account, or a SQL/Cosmos DB database as my Target Data-Plane Asset, the machine automatically updates both the Phase 3 permission role and the Phase 4 live pipeline test.</p>
                     <ul class="step-sublist">
-                        <li><span class="bullet-lead">Exact Single-Asset Data Role:</span> Blocks broad Owner and Contributor permissions and assigns the exact data-plane role built for my chosen service—such as reading secrets from Key Vault, reading blobs from Storage, or reading items from Cosmos DB—locked strictly to that single resource's ID.</li>
+                        <li><span class="bullet-lead">Exact Single-Asset Data Role:</span> Blocks broad Owner and Contributor permissions and assigns the exact data-plane role built for my chosen service (such as reading secrets from Key Vault, reading blobs from Storage, or reading items from Cosmos DB) locked strictly to that single resource's ID.</li>
                         <li><span class="bullet-lead">Matched Phase 4 Test Pipeline:</span> Automatically writes the matching test command into my GitHub Actions, Azure DevOps, GitLab CI, or Kubernetes test file so Phase 4 proves my pipeline can actually read from that specific vault or database before I check the live API hit spike in the Azure Portal.</li>
                     </ul>
                 </div>
@@ -1145,9 +1145,9 @@
                 <div class="adapt-card purple">
                     <span class="adapt-tag">[ADAPTATION 04 : MULTI-LANGUAGE CODE, MFA HANDOFF &amp; DAY-2 SCALE]</span>
                     <h3 class="vuln-title">Generating Terraform, Bicep, or REST API + 35 Day-2 Modules</h3>
-                    <p class="vuln-lead">My chosen IaC Payload language determines whether Phase 3 outputs Terraform, Azure Bicep, or PowerShell REST API scripts—while enforcing built-in timing pauses, MFA safety handoffs, and Day-2 security scaling.</p>
+                    <p class="vuln-lead">My chosen IaC Payload language determines whether Phase 3 outputs Terraform, Azure Bicep, or PowerShell REST API scripts, while enforcing built-in timing pauses, MFA safety handoffs, and Day-2 security scaling.</p>
                     <ul class="step-sublist">
-                        <li><span class="bullet-lead">Complete Multi-Language Code with Sync Timers:</span> Outputs 100% finished Terraform, Azure Bicep, or native PowerShell REST API code—complete with a built-in 30-second pause timer for Microsoft server syncing and clean, language-accurate formatting so raw API calls never fail.</li>
+                        <li><span class="bullet-lead">Complete Multi-Language Code with Sync Timers:</span> Outputs 100% finished Terraform, Azure Bicep, or native PowerShell REST API code, complete with a built-in 30-second pause timer for Microsoft server syncing and clean, language-accurate formatting so raw API calls never fail.</li>
                         <li><span class="bullet-lead">Portal MFA Handoff &amp; 35 Day-2 Expansions:</span> Automatically separates the role assignment into a guided Azure Portal checklist whenever a build would be blocked by a missing terminal MFA popup, and lets me layer any of the 35 core Microsoft Entra security modules onto my verified identity core without touching my existing setup.</li>
                     </ul>
                 </div>

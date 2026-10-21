@@ -56,6 +56,18 @@
             font-weight: 800;
         }
 
+        .inline-link {
+            color: var(--color-cyan);
+            text-decoration: none;
+            border-bottom: 1px solid var(--color-cyan);
+            font-weight: 800;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+        .inline-link:hover {
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+
         /* ================= NAVIGATION ================= */
         nav {
             position: fixed; top: 0; width: 100%;
@@ -283,10 +295,10 @@
         .bp-arrow { color: var(--color-cyan); font-size: 3.5rem; font-weight: 900; line-height: 1; text-shadow: 0 0 20px var(--color-cyan); opacity: 0.9; }
 
         /* ================= KINETIC TELEMETRY CSS ================= */
-        .canvas-wrapper { width: 100%; overflow-x: auto; padding: 1.5rem 0; }
+        .canvas-wrapper { width: 100%; overflow: visible; padding: 1.5rem 0; }
         
         .dashboard {
-            position: relative; width: 1200px; height: 3740px; margin: 0 auto; text-align: left;
+            position: relative; width: 1180px; max-width: 100%; height: 3920px; margin: 0 auto; text-align: left;
             background-image: 
                 radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.05) 0%, transparent 50%),
                 linear-gradient(to right, rgba(30, 41, 59, 0.3) 1px, transparent 1px), 
@@ -303,15 +315,15 @@
             display: flex; flex-direction: column; align-items: center; gap: 10px;
         }
         .col-label svg { width: 32px; height: 32px; stroke-width: 1.5; fill: none; }
-        .lbl-architect { left: 40px; color: var(--color-cyan); }
+        .lbl-architect { left: 30px; color: var(--color-cyan); }
         .lbl-architect svg { stroke: var(--color-cyan); filter: drop-shadow(0 0 5px var(--color-cyan)); }
-        .lbl-framework { left: 440px; color: var(--color-red); }
+        .lbl-framework { left: 430px; color: var(--color-red); }
         .lbl-framework svg { stroke: var(--color-red); filter: drop-shadow(0 0 5px var(--color-red)); }
-        .lbl-ai { left: 840px; color: var(--color-purple); }
+        .lbl-ai { left: 830px; color: var(--color-purple); }
         .lbl-ai svg { stroke: var(--color-purple); filter: drop-shadow(0 0 5px var(--color-purple)); }
 
         .center-spine {
-            position: absolute; top: 100px; bottom: 0; left: 600px; width: 2px;
+            position: absolute; top: 100px; bottom: 0; left: 590px; width: 2px;
             background: linear-gradient(to bottom, transparent, var(--color-red) 5%, var(--color-red) 95%, transparent);
             box-shadow: 0 0 15px var(--color-red); z-index: 1;
         }
@@ -374,7 +386,7 @@
             display: flex; justify-content: space-between; align-items: center;
         }
         .telemetry-node-title { 
-            font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 900; 
+            font-family: 'Montserrat', sans-serif; font-size: 1.08rem; font-weight: 900; 
             margin-bottom: 0.4rem; line-height: 1.3; color: #ffffff; text-transform: uppercase;
         }
         .mandate-tag {
@@ -382,7 +394,7 @@
             color: var(--color-gold); text-transform: uppercase; margin-bottom: 0.75rem; letter-spacing: 0.5px;
         }
         .telemetry-node-desc { 
-            font-size: 0.9rem; color: var(--text-main); line-height: 1.55; font-weight: 600;
+            font-size: 0.88rem; color: var(--text-main); line-height: 1.55; font-weight: 600;
         }
         .telemetry-node-desc ul {
             list-style: disc;
@@ -397,11 +409,11 @@
         }
 
         /* Telemetry Coordinates */
-        .pos-left { left: 40px; } .pos-center { left: 440px; } .pos-right { left: 840px; }
-        .y-boot { top: 140px; } .y-gate1 { top: 610px; } .y-gate2 { top: 1080px; }
-        .y-gate3 { top: 1550px; } .y-gate4 { top: 2020px; } .y-telemetry { top: 2500px; } 
-        .y-loop { top: 3060px; } 
-        .node-wide { width: 920px; left: 140px; text-align: left; }
+        .pos-left { left: 30px; } .pos-center { left: 430px; } .pos-right { left: 830px; }
+        .y-boot { top: 140px; } .y-gate1 { top: 640px; } .y-gate2 { top: 1140px; }
+        .y-gate3 { top: 1640px; } .y-gate4 { top: 2140px; } .y-telemetry { top: 2660px; } 
+        .y-loop { top: 3250px; } 
+        .node-wide { width: 920px; left: 130px; text-align: left; }
 
         .architect-lock {
             width: 16px; height: 16px; stroke: var(--color-cyan); stroke-width: 2; fill: none;
@@ -427,6 +439,10 @@
         }
 
         /* Responsive Fixes */
+        @media (max-width: 1260px) {
+            .canvas-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 10px; }
+            .dashboard { min-width: 1180px; }
+        }
         @media (max-width: 1100px) {
             .bp-grid-5 { grid-template-columns: repeat(3, 1fr); }
             .bp-grid-split { grid-template-columns: 1fr; }
@@ -455,7 +471,7 @@
 </head>
 <body>
 
-    <!-- MASTER NAVIGATION -->
+    <!-- MASTER NAVIGATION (8-LINK SITE-WIDE BAR WITH SYSTEM GLOSSARY) -->
     <nav>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
@@ -464,6 +480,7 @@
             <li><a href="architectural.html">Pipeline Architecture</a></li>
             <li><a href="workflow-portfolio.html">Machine Identity Execution Showcase</a></li>
             <li><a href="add-capabilities.html">Additional Capability Integration Showcase</a></li>
+            <li><a href="glossary.html">System Glossary</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
@@ -475,23 +492,23 @@
         <div style="text-align: center; margin-bottom: 1rem;">
             <h1 style="font-family: 'Montserrat', sans-serif; font-size: 2.6rem; font-weight: 900; color: var(--text-main); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.5rem;">Architectural Perspectives</h1>
             
-            <!-- INTRODUCTORY PARAGRAPH (ZERO EM-DASHES, UNIFORM BOLD WHITE + BOLD CYAN LEAD-INS) -->
+            <!-- INTRODUCTORY PARAGRAPH (CANONICAL 26-VARIABLE LEXICON, FIRST-PERSON VOICE, ZERO EM-DASHES) -->
             <p class="perspectives-intro">
-                In cloud identity security, relying on an untethered generative AI model to write deployment scripts all at once is a major operational risk. Left on its own, a probabilistic AI engine will guess resource IDs, invent broken syntax, or grant overly broad permissions just to clear an error. To solve this for my Microsoft Entra ID and Azure deployments, I applied formal AI systems engineering best practices to build the <span class="bullet-lead">Zero Trust Interactive State Machine</span>. This framework tethers that probabilistic AI engine to a master <span class="bullet-lead">System Directive</span> to make its output deterministic. Select any of the three architectural views below to explore how my system operates from the keyboard to the underlying rulebook:
+                In cloud identity security, relying on an untethered generative model to write an <span class="bullet-lead">IaC Payload</span> all at once is a major operational risk. Left on its own, <span class="bullet-lead">The AI Engine</span> operates probabilistically: it will guess an <span class="bullet-lead">Entra ID Tenant ID</span> or <span class="bullet-lead">Azure Subscription ID</span>, invent broken syntax, or grant broad <span class="bullet-lead">Owner and Contributor Roles</span> just to clear an error. To solve this for my <span class="bullet-lead">Microsoft Entra ID</span> and Azure deployments, I applied formal AI Systems Engineering best practices and first-principles mathematical variable control (defined in my <a href="glossary.html" class="inline-link">System Glossary</a>) to build the <span class="bullet-lead">Zero Trust Interactive State Machine</span>. By tethering <span class="bullet-lead">The AI Engine</span> to my master <span class="bullet-lead">System Directive</span>, <span class="bullet-lead">The State Machine</span> makes every output deterministic and permanently upgrades my <span class="bullet-lead">System Directive</span> at the close of every build for continuous improvement. Select any of the three architectural views below to explore how my system operates from the keyboard to the underlying rulebook:
             </p>
             
             <div class="jump-nav">
                 <a href="#kinetic-telemetry" class="jump-card" style="text-align: left;">
-                    <h4>➔ 1. Kinetic Execution Telemetry</h4>
-                    <p>Walk through my exact 7-phase execution sequence at the keyboard. This view shows how I lock in deployment coordinates, run local terminal ID lookups, enforce the four architectural gates, verify live Azure Portal metrics, and generate the final audit ledgers.</p>
+                    <h4>&#10148; 1. Kinetic Execution Telemetry</h4>
+                    <p>Walk through my exact 7-phase execution sequence at the keyboard. This view shows how I lock in the 5 Build Coordinates, run local terminal lookups, enforce the 4 Architectural Gates, check Azure Portal Monitoring Metrics (Total Service API Hits), and generate my compliance ledgers.</p>
                 </a>
                 <a href="#operational-blueprint" class="jump-card" style="text-align: left;">
-                    <h4>➔ 2. Operational Systems Blueprint</h4>
-                    <p>See how I engineered my master System Directive by translating the four core AI Systems Engineering standards (ReAct, OWASP LLM08, NIST AI RMF, and Cognitive Circuit Breaking) into the five built-in Enterprise Guardrails and the Execution Triad.</p>
+                    <h4>&#10148; 2. Operational Systems Blueprint</h4>
+                    <p>See how I engineered my master System Directive by translating the 4 AI Systems Engineering Pillars (ReAct, OWASP LLM08, NIST AI RMF, and Cognitive Circuit Breaking) into the 5 Enterprise Guardrails and The Execution Triad across Gates 1 through 4.</p>
                 </a>
                 <a href="#system-classification" class="jump-card" style="text-align: left;">
-                    <h4>➔ 3. L4 System Classification</h4>
-                    <p>Review how my Zero Trust Interactive State Machine aligns with global AI engineering classifications, using the AI Engine for rapid multi-language code synthesis while keeping my explicit human-in-the-loop approval on every phase.</p>
+                    <h4>&#10148; 3. L4 System Classification</h4>
+                    <p>Review how my Zero Trust Interactive State Machine aligns with global AI Systems Engineering classifications, harnessing The AI Engine for multi-language IaC Payload synthesis while keeping my human-in-the-loop sign-off on every phase.</p>
                 </a>
             </div>
         </div>
@@ -500,7 +517,7 @@
         <div class="blueprint-section" id="kinetic-telemetry">
             <h2 class="blueprint-title">Kinetic Execution Telemetry</h2>
             <div class="blueprint-subtitle">
-                This 7-row visual telemetry board maps how I interact with <span class="bullet-lead">The State Machine</span> and <span class="bullet-lead">The AI Engine</span> at the keyboard across my build sequence. Rather than asking an AI to generate an unverified deployment script in one shot, my master <span class="bullet-lead">System Directive</span> enforces a disciplined assembly line. <span class="bullet-lead">Row 1 (Phase 1)</span> initializes my clean local workspace and locks in the five deployment coordinates. <span class="bullet-lead">Rows 2 through 5 (Phases 2 to 3)</span> verify and synthesize the <span class="bullet-lead">Four Architectural Gates of Machine Identity</span> (Boundary, Identity, Federation, and Access) into a complete local deployment payload. <span class="bullet-lead">Row 6 (Phases 4 to 6)</span> executes two-stage live cloud verification (Azure Portal API Hit Metrics followed by the formal Audit Results Ledger, KQL queries, the Defect &amp; Patch Ledger, and repository sync). Finally, <span class="bullet-lead">Row 7</span> illustrates how my system handles troubleshooting across any phase of the build, separating routine bug fixes logged in the <span class="bullet-lead">Defect &amp; Patch Ledger (DPL)</span> from the emergency <span class="bullet-lead">4-Iteration Circuit Breaker</span>, and closing in <span class="bullet-lead">Phase 7</span> with the AI Performance Scorecard and permanent System Directive upgrades.
+                This 7-row visual telemetry board maps how I interact with <span class="bullet-lead">The State Machine</span> and <span class="bullet-lead">The AI Engine</span> at the keyboard across my build sequence. Rather than letting <span class="bullet-lead">The AI Engine</span> generate an unverified <span class="bullet-lead">IaC Payload</span> in one shot, my master <span class="bullet-lead">System Directive</span> enforces a step-by-step assembly line. <span class="bullet-lead">Row 1 (Phase 1)</span> initializes my clean local workspace and locks in the 5 Build Coordinates (<span class="bullet-lead">Identity Core</span>, <span class="bullet-lead">Execution Agent</span>, <span class="bullet-lead">Infrastructure State</span>, <span class="bullet-lead">Data-Plane Asset</span>, and <span class="bullet-lead">IaC Payload</span>). <span class="bullet-lead">Rows 2 through 5 (Phases 2 to 3)</span> verify and synthesize <span class="bullet-lead">The Four Architectural Gates of Machine Identity</span> (Gate 1: Boundary, Gate 2: Identity, Gate 3: Federation, and Gate 4: Access) into a complete <span class="bullet-lead">IaC Payload</span> and <span class="bullet-lead">Terminal Runbook</span>. <span class="bullet-lead">Row 6 (Phases 4 to 6)</span> records the <span class="bullet-lead">Identity Architecture Ledger (IAL)</span>, executes the <span class="bullet-lead">Validation Bridge</span> on my <span class="bullet-lead">Execution Agent</span>, checks <span class="bullet-lead">Azure Portal Monitoring Metrics (Total Service API Hits)</span> on my <span class="bullet-lead">Data-Plane Asset</span>, generates the <span class="bullet-lead">Audit Results Ledger (ARL)</span>, <span class="bullet-lead">KQL Telemetry</span>, and <span class="bullet-lead">Defect &amp; Patch Ledger (DPL)</span>, and syncs my <span class="bullet-lead">Code Repository and Branch</span>. Finally, <span class="bullet-lead">Row 7</span> illustrates how my system separates the <span class="bullet-lead">Standard Patch Loop (Iterations 1 to 3)</span> from <span class="bullet-lead">The 4-Iteration Circuit Breaker</span> and closes in <span class="bullet-lead">Phase 7</span> with the <span class="bullet-lead">AI Performance Scorecard</span> and <span class="bullet-lead">System Directive Compilation</span> for continuous improvement.
             </div>
 
             <div class="canvas-wrapper">
@@ -524,31 +541,31 @@
 
                     <svg class="vector-layer" xmlns="http://www.w3.org/2000/svg">
                         <!-- ROW 1: PHASE 1 INTAKE -->
-                        <path class="kinetic-path path-cyan" d="M 360 280 C 400 280, 400 280, 440 280" />
-                        <path class="kinetic-path path-purple" d="M 840 280 C 800 280, 800 280, 760 280" />
+                        <path class="kinetic-path path-cyan" d="M 350 280 C 390 280, 390 280, 430 280" />
+                        <path class="kinetic-path path-purple" d="M 830 280 C 790 280, 790 280, 750 280" />
 
                         <!-- ROW 2: GATE 1 BOUNDARY -->
-                        <path class="kinetic-path path-cyan" d="M 360 750 C 400 750, 400 750, 440 750" />
-                        <path class="kinetic-path path-purple" d="M 840 730 C 780 730, 780 760, 760 760" />
-                        <path class="kinetic-path path-purple" d="M 840 790 C 780 790, 780 760, 760 760" />
+                        <path class="kinetic-path path-cyan" d="M 350 780 C 390 780, 390 780, 430 780" />
+                        <path class="kinetic-path path-purple" d="M 830 760 C 770 760, 770 790, 750 790" />
+                        <path class="kinetic-path path-purple" d="M 830 820 C 770 820, 770 790, 750 790" />
 
                         <!-- ROW 3: GATE 2 IDENTITY -->
-                        <path class="kinetic-path path-cyan" d="M 360 1220 C 400 1220, 400 1220, 440 1220" />
-                        <path class="kinetic-path path-purple" d="M 840 1200 C 780 1200, 780 1230, 760 1230" />
-                        <path class="kinetic-path path-purple" d="M 840 1260 C 780 1260, 780 1230, 760 1230" />
+                        <path class="kinetic-path path-cyan" d="M 350 1280 C 390 1280, 390 1280, 430 1280" />
+                        <path class="kinetic-path path-purple" d="M 830 1260 C 770 1260, 770 1290, 750 1290" />
+                        <path class="kinetic-path path-purple" d="M 830 1320 C 770 1320, 770 1290, 750 1290" />
 
                         <!-- ROW 4: GATE 3 FEDERATION -->
-                        <path class="kinetic-path path-cyan" d="M 360 1690 C 400 1690, 400 1690, 440 1690" />
-                        <path class="kinetic-path path-purple" d="M 840 1670 C 780 1670, 780 1700, 760 1700" />
-                        <path class="kinetic-path path-purple" d="M 840 1730 C 780 1730, 780 1700, 760 1700" />
+                        <path class="kinetic-path path-cyan" d="M 350 1780 C 390 1780, 390 1780, 430 1780" />
+                        <path class="kinetic-path path-purple" d="M 830 1760 C 770 1760, 770 1790, 750 1790" />
+                        <path class="kinetic-path path-purple" d="M 830 1820 C 770 1820, 770 1790, 750 1790" />
 
                         <!-- ROW 5: GATE 4 ACCESS -->
-                        <path class="kinetic-path path-cyan" d="M 360 2160 C 400 2160, 400 2160, 440 2160" />
-                        <path class="kinetic-path path-purple" d="M 840 2140 C 780 2140, 780 2170, 760 2170" />
-                        <path class="kinetic-path path-purple" d="M 840 2200 C 780 2200, 780 2170, 760 2170" />
+                        <path class="kinetic-path path-cyan" d="M 350 2280 C 390 2280, 390 2280, 430 2280" />
+                        <path class="kinetic-path path-purple" d="M 830 2260 C 770 2260, 770 2290, 750 2290" />
+                        <path class="kinetic-path path-purple" d="M 830 2320 C 770 2320, 770 2290, 750 2290" />
 
                         <!-- ROW 6: PHASES 4-6 DELIVERABLES -->
-                        <path class="kinetic-path path-green" d="M 600 2280 L 600 2500" />
+                        <path class="kinetic-path path-green" d="M 590 2420 L 590 2660" />
                     </svg>
 
                     <!-- ================= ROW 1: PHASE 1 (WORKSPACE BOOT & 5-COORDINATE INTAKE) ================= -->
@@ -558,22 +575,22 @@
                             <svg class="architect-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                         </div>
                         <div class="telemetry-node-title">Lock In the 5 Build Coordinates</div>
-                        <div class="mandate-tag">[MY WORKSPACE &amp; PARAMETER SETUP]</div>
+                        <div class="mandate-tag">[MY WORKSPACE &amp; COORDINATE SETUP]</div>
                         <div class="telemetry-node-desc">
                             <ul>
-                                <li><span class="bullet-lead">Clean Local Folder:</span> I create an empty local directory in VS Code or Git Bash and initialize the five blank deliverable files so old state files never collide.</li>
-                                <li><span class="bullet-lead">5 Core Choices:</span> I select my Identity Core, Execution Agent, Infrastructure State, Target Asset, and IaC Language, either providing my Azure IDs up front or using terminal lookups.</li>
+                                <li><span class="bullet-lead">Clean Local Folder:</span> I create an empty local folder in Visual Studio Code or Git Bash with five blank deliverable files so old state files never collide with my new IaC Payload.</li>
+                                <li><span class="bullet-lead">5 Build Coordinates:</span> I select my Identity Core (Microsoft Entra ID), Execution Agent, Infrastructure State, Data-Plane Asset, and IaC Payload.</li>
                             </ul>
                         </div>
                     </div>
                     <div class="node node-red pos-center y-boot">
-                        <div class="telemetry-node-header" style="color: var(--color-red);">[GUARDRAIL 1: CREDENTIAL ISOLATION]</div>
+                        <div class="telemetry-node-header" style="color: var(--color-red);">[GUARDRAIL 1: CREDENTIAL PROTECTION]</div>
                         <div class="telemetry-node-title">Secret &amp; Credential Protection</div>
                         <div class="mandate-tag">[PILLAR 2: BOUNDED AUTONOMY / OWASP LLM06]</div>
                         <div class="telemetry-node-desc">
                             <ul>
-                                <li><span class="bullet-lead">Routing IDs Go In:</span> Non-secret routing addresses (Tenant ID, Subscription ID, Resource Group, and repo name) are safely used so the AI writes 100% finished code with zero blank placeholders.</li>
-                                <li><span class="bullet-lead">Secrets Stay Out:</span> Passwordless OIDC eliminates client secrets, and any personal setup token is typed invisibly in my local terminal so it never appears on screen.</li>
+                                <li><span class="bullet-lead">Routing IDs Go In:</span> My Entra ID Tenant ID, Azure Subscription ID, Resource Group, and Code Repository and Branch are resolved so The AI Engine writes a 100% finished IaC Payload with zero placeholders.</li>
+                                <li><span class="bullet-lead">Secrets Stay Out:</span> OpenID Connect (OIDC) 60-Minute Login Tokens replace passwords, and my Terminal Runbook uses invisible input (read -s) for setup tokens.</li>
                             </ul>
                         </div>
                     </div>
@@ -585,8 +602,8 @@
                         <div class="mandate-tag">[PILLAR 1: AGENTIC PATTERNS / REACT GROUNDING]</div>
                         <div class="telemetry-node-desc">
                             <ul>
-                                <li><span class="bullet-lead">Full IDs Provided:</span> Locks in all five coordinates immediately and advances straight to Phase 2 without prompting.</li>
-                                <li><span class="bullet-lead">Missing IDs:</span> Outputs native read-only Azure CLI lookup commands and halts for my verification instead of guessing a single ID.</li>
+                                <li><span class="bullet-lead">Full Coordinates Provided:</span> Locks in my Entra ID Tenant ID, Azure Subscription ID, Resource Group, and all 5 Build Coordinates immediately and advances straight to Phase 2.</li>
+                                <li><span class="bullet-lead">Missing Coordinates:</span> Outputs read-only Azure CLI lookup commands so I can extract real IDs before halting for my sign-off.</li>
                             </ul>
                         </div>
                     </div>
@@ -597,23 +614,23 @@
                             <span>[GATE 1: BOUNDARY]</span>
                             <svg class="architect-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                         </div>
-                        <div class="telemetry-node-title">Verify Cloud Perimeter &amp; State</div>
+                        <div class="telemetry-node-title">Verify Boundary &amp; Infrastructure State</div>
                         <div class="mandate-tag">[PHASE 2 TERMINAL VERIFICATION]</div>
                         <div class="telemetry-node-desc">
                             <ul>
-                                <li><span class="bullet-lead">Confirm or Extract IDs:</span> If I did not provide my Tenant ID, Subscription ID, and Resource Group name in Phase 1, I run the read-only terminal lookup script to pull the exact GUIDs from Azure.</li>
-                                <li><span class="bullet-lead">Human Sign-Off:</span> I verify the extracted boundary IDs in my terminal and approve locking the perimeter.</li>
+                                <li><span class="bullet-lead">Confirm Nested Boundary:</span> I verify via my local terminal that my Azure Subscription ID and Resource Group (holding my Data-Plane Asset) sit under my Entra ID Tenant ID (holding my Identity Core).</li>
+                                <li><span class="bullet-lead">Human Sign-Off:</span> I confirm the extracted Entra ID Tenant ID, Azure Subscription ID, and Resource Group before advancing.</li>
                             </ul>
                         </div>
                     </div>
                     <div class="node node-green pos-center y-gate1">
                         <div class="telemetry-node-header" style="color: var(--color-green);">[GUARDRAIL 2: ASSET PROTECTION]</div>
-                        <div class="telemetry-node-title">Protect Existing vs. New Resources</div>
+                        <div class="telemetry-node-title">Brownfield vs. Greenfield Protection</div>
                         <div class="mandate-tag">[PILLAR 2: BOUNDED AUTONOMY / IDEMPOTENCY]</div>
                         <div class="telemetry-node-desc">
                             <ul>
-                                <li><span class="bullet-lead">Brownfield (Existing):</span> Forces the code into read-only lookup mode so my script connects to live vaults or databases without modifying or replacing them.</li>
-                                <li><span class="bullet-lead">Greenfield (Net-New):</span> Attaches deletion-prevention locks and permanent state storage rules so new resources cannot be accidentally wiped.</li>
+                                <li><span class="bullet-lead">Brownfield (Existing):</span> Forces my Phase 3 IaC Payload into read-only lookup mode so my live Data-Plane Asset and Application Registration are never overwritten.</li>
+                                <li><span class="bullet-lead">Greenfield (Net-New):</span> Attaches deletion-prevention locks and persistent state storage rules so my new Data-Plane Asset cannot be accidentally wiped out.</li>
                             </ul>
                         </div>
                     </div>
@@ -621,12 +638,12 @@
                         <div class="telemetry-node-header" style="color: var(--color-purple);">
                             <span class="cursor-blink">[BOUNDARY STATE LOCK]</span>
                         </div>
-                        <div class="telemetry-node-title">Bind Perimeter &amp; Safety Rules</div>
+                        <div class="telemetry-node-title">Bind Perimeter &amp; Local Execution Rules</div>
                         <div class="mandate-tag">[PILLAR 3: HUMAN-IN-THE-LOOP HALT]</div>
                         <div class="telemetry-node-desc">
                             <ul>
-                                <li><span class="bullet-lead">Zero Guesswork:</span> Binds my verified Tenant ID, Subscription ID, and Resource Group perimeter into the active state matrix.</li>
-                                <li><span class="bullet-lead">State Persistence:</span> Enforces local IDE execution and blocks ephemeral browser Cloud Shell sessions that wipe state files on timeout.</li>
+                                <li><span class="bullet-lead">Zero Guesswork:</span> Binds my verified Entra ID Tenant ID, Azure Subscription ID, and Resource Group into the active state matrix for Phase 3.</li>
+                                <li><span class="bullet-lead">Local Workspace Persistence:</span> Enforces local execution in Visual Studio Code or Git Bash and blocks ephemeral browser Cloud Shell sessions.</li>
                             </ul>
                         </div>
                     </div>
@@ -641,19 +658,19 @@
                         <div class="mandate-tag">[PHASE 3 IDENTITY AUTHORIZATION]</div>
                         <div class="telemetry-node-desc">
                             <ul>
-                                <li><span class="bullet-lead">Brownfield Lookup:</span> If my Entra ID Application already exists, I verify that the AI echoes back my exact existing Application (Client) ID before generating code.</li>
-                                <li><span class="bullet-lead">Greenfield Creation:</span> If building from scratch, I authorize provisioning the dedicated non-human Application and Service Principal in my local terminal.</li>
+                                <li><span class="bullet-lead">Brownfield (Existing) Lookup:</span> If my Application Registration already exists in Microsoft Entra ID, I verify that The AI Engine echoes back my exact Application Registration Client ID first.</li>
+                                <li><span class="bullet-lead">Greenfield (Net-New) Creation:</span> If building from scratch, I authorize creating the Application Registration and Service Principal in my Entra ID Tenant ID.</li>
                             </ul>
                         </div>
                     </div>
                     <div class="node node-green pos-center y-gate2">
-                        <div class="telemetry-node-header" style="color: var(--color-green);">[HEADLESS IDENTITY LOCK]</div>
-                        <div class="telemetry-node-title">Block Human &amp; Outside Logins</div>
+                        <div class="telemetry-node-header" style="color: var(--color-green);">[SINGLE-TENANT IDENTITY LOCK]</div>
+                        <div class="telemetry-node-title">Single-Tenant &amp; Disabled Redirect URLs</div>
                         <div class="mandate-tag">[PILLAR 2: BOUNDED AUTONOMY / ATTACK SURFACE]</div>
                         <div class="telemetry-node-desc">
                             <ul>
-                                <li><span class="bullet-lead">Single-Tenant Only:</span> Restricts the identity strictly to my own Entra ID directory, blocking external organizations from instantiating credentials.</li>
-                                <li><span class="bullet-lead">No Web Browser Logins:</span> Because a pipeline runs in the background without a web browser, all interactive browser redirect URLs are disabled to prevent phishing.</li>
+                                <li><span class="bullet-lead">Single-Tenant Mode:</span> Locks my Application Registration and Service Principal strictly to my own Entra ID Tenant ID so outside directories cannot use them.</li>
+                                <li><span class="bullet-lead">Disabled Browser Redirect URLs:</span> Because my Execution Agent never uses a web browser, all interactive browser redirect URLs are disabled with zero saved passwords.</li>
                             </ul>
                         </div>
                     </div>
@@ -662,11 +679,11 @@
                             <span class="cursor-blink">[IDENTITY CODE SYNTHESIS]</span>
                         </div>
                         <div class="telemetry-node-title">Synthesize Hardened Identity Code</div>
-                        <div class="mandate-tag">[GUARDRAIL 4: PINNED PROVIDER VERSIONS]</div>
+                        <div class="mandate-tag">[GUARDRAIL 4: VERSION PINNING &amp; SCHEMAS]</div>
                         <div class="telemetry-node-desc">
                             <ul>
-                                <li><span class="bullet-lead">Multi-Language Output:</span> Writes the complete Terraform, Bicep, or PowerShell REST API identity block with pinned provider versions and zero static passwords.</li>
-                                <li><span class="bullet-lead">Pure API Schemas:</span> Enforces native Microsoft Graph JSON property names on REST builds so Terraform abstractions never bleed into raw API calls.</li>
+                                <li><span class="bullet-lead">Pinned Multi-Language Code:</span> Synthesizes the Gate 2 Application Registration and Service Principal inside my Terraform, Azure Bicep, or PowerShell REST API IaC Payload with pinned versions.</li>
+                                <li><span class="bullet-lead">Pure REST API Schemas:</span> Enforces native Microsoft Graph JSON property names on PowerShell REST API builds.</li>
                             </ul>
                         </div>
                     </div>
@@ -677,23 +694,23 @@
                             <span>[GATE 3: FEDERATION]</span>
                             <svg class="architect-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                         </div>
-                        <div class="telemetry-node-title">Extract Exact Pipeline OIDC IDs</div>
+                        <div class="telemetry-node-title">Extract Execution Agent OIDC IDs</div>
                         <div class="mandate-tag">[PHASE 2 CRYPTOGRAPHIC EXTRACTION]</div>
                         <div class="telemetry-node-desc">
                             <ul>
-                                <li><span class="bullet-lead">Backend ID Extraction:</span> I run the platform-specific terminal script to pull my permanent repository IDs, exact upper-and-lower-case repository spelling, and OIDC Issuer URL directly from my code host.</li>
-                                <li><span class="bullet-lead">Prevent Casing Rejections:</span> Pasting the exact terminal output ensures Entra ID never rejects a token handshake due to a capital-letter mismatch.</li>
+                                <li><span class="bullet-lead">Execution Agent ID Extraction:</span> I run the Phase 2 terminal lookup script against my Execution Agent to pull permanent repository IDs, the exact capital-and-lowercase spelling of my Code Repository and Branch, and the OIDC Issuer URL.</li>
+                                <li><span class="bullet-lead">Prevent Casing Drops:</span> Ensures Microsoft Entra ID never rejects the 60-Minute Login Token exchange due to a capital-letter mismatch in the Subject Claim.</li>
                             </ul>
                         </div>
                     </div>
                     <div class="node node-green pos-center y-gate3">
                         <div class="telemetry-node-header" style="color: var(--color-green);">[SUBJECT CLAIM LOCK]</div>
-                        <div class="telemetry-node-title">Enforce Exact Match &amp; 60-Min Token</div>
-                        <div class="mandate-tag">[PILLAR 1 &amp; 2: EXACT CRYPTOGRAPHIC TRUST]</div>
+                        <div class="telemetry-node-title">Exact Subject Claim &amp; 60-Min Token</div>
+                        <div class="mandate-tag">[PILLAR 1 &amp; 2: EXACT OIDC FEDERATION]</div>
                         <div class="telemetry-node-desc">
                             <ul>
-                                <li><span class="bullet-lead">Character-for-Character Match:</span> Locks the OIDC Subject Claim to my exact repository and branch spelling (such as Compcode1) with zero wildcard (*) shortcuts.</li>
-                                <li><span class="bullet-lead">60-Minute Token Ceiling:</span> Replaces permanent passwords with a temporary OpenID Connect token that expires automatically in 60 minutes.</li>
+                                <li><span class="bullet-lead">Wildcard-Free Subject Claim:</span> Locks the OpenID Connect (OIDC) Subject Claim on my Application Registration character-for-character to my exact Code Repository and Branch spelling (such as CompCode1) with zero wildcards.</li>
+                                <li><span class="bullet-lead">60-Minute Login Token:</span> Issues a 60-Minute Login Token to my Execution Agent for my Service Principal instead of a static password.</li>
                             </ul>
                         </div>
                     </div>
@@ -701,12 +718,12 @@
                         <div class="telemetry-node-header" style="color: var(--color-purple);">
                             <span class="cursor-blink">[SYNC TIMER &amp; OIDC SYNTHESIS]</span>
                         </div>
-                        <div class="telemetry-node-title">Inject 30-Second Graph Sync Timer</div>
+                        <div class="telemetry-node-title">Inject 30-Second Server Sync Timer</div>
                         <div class="mandate-tag">[CLOUD TIMING CRASH PREVENTION]</div>
                         <div class="telemetry-node-desc">
                             <ul>
-                                <li><span class="bullet-lead">Why Scripts Crash Here:</span> Creating a new identity in Entra ID and attaching an OIDC trust rule or Conditional Access policy a split-second later crashes when Microsoft's servers haven't finished syncing.</li>
-                                <li><span class="bullet-lead">Built-In 30-Second Pause:</span> Automatically injects a 30-second wait timer into my deployment code so Microsoft's global directory catches up cleanly.</li>
+                                <li><span class="bullet-lead">Why Deployments Crash Here:</span> Creating an Application Registration and Service Principal in Microsoft Entra ID (Gate 2) and attaching an OpenID Connect (OIDC) Subject Claim a split-second later (Gate 3) crashes if Microsoft's servers haven't finished syncing.</li>
+                                <li><span class="bullet-lead">30-Second Server Sync Timer:</span> Automatically injects a 30-Second Server Sync Timer into my IaC Payload so Microsoft's servers finish syncing first.</li>
                             </ul>
                         </div>
                     </div>
@@ -717,12 +734,12 @@
                             <span>[GATE 4: ACCESS]</span>
                             <svg class="architect-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                         </div>
-                        <div class="telemetry-node-title">Execute Local Deployment &amp; MFA Path</div>
+                        <div class="telemetry-node-title">Execute IaC Payload &amp; MFA Handoff</div>
                         <div class="mandate-tag">[PHASE 3 LOCAL TERMINAL EXECUTION]</div>
                         <div class="telemetry-node-desc">
                             <ul>
-                                <li><span class="bullet-lead">Device-Code MFA Login:</span> I sign into Azure from my local terminal using device-code authentication and run the synthesized deployment script.</li>
-                                <li><span class="bullet-lead">Portal MFA Handoff:</span> For high-security builds where local terminals drop MFA claims, I complete the role binding via the guided Azure Portal checklist.</li>
+                                <li><span class="bullet-lead">Terminal Runbook Execution:</span> I sign into my Entra ID Tenant ID from my local terminal using device-code MFA (az login --use-device-code) and run the Terminal Runbook and IaC Payload.</li>
+                                <li><span class="bullet-lead">Azure Portal MFA Handoff:</span> Whenever local terminal sessions drop MFA claims, I bind the Data-Plane Role on my Data-Plane Asset via the guided Azure Portal MFA Handoff.</li>
                             </ul>
                         </div>
                     </div>
@@ -732,8 +749,8 @@
                         <div class="mandate-tag">[PILLAR 2: BOUNDED AUTONOMY / DATA PLANE ONLY]</div>
                         <div class="telemetry-node-desc">
                             <ul>
-                                <li><span class="bullet-lead">Management Roles Blocked:</span> Giving a pipeline Owner or Contributor access is like giving a delivery driver the master keys to remodel the building. Broad control-plane roles are strictly blocked.</li>
-                                <li><span class="bullet-lead">Single-Asset Data Scope:</span> Restricts permissions strictly to the exact data action required on one single Key Vault, Storage Account, or database ID.</li>
+                                <li><span class="bullet-lead">Owner and Contributor Roles Blocked:</span> Giving an Execution Agent Owner or Contributor access is like giving a delivery driver the master keys to remodel the building. Owner and Contributor Roles are strictly blocked.</li>
+                                <li><span class="bullet-lead">Single-Asset Data-Plane Role:</span> Assigns one Data-Plane Role to my Service Principal, scoped strictly to my single Data-Plane Asset.</li>
                             </ul>
                         </div>
                     </div>
@@ -741,12 +758,12 @@
                         <div class="telemetry-node-header" style="color: var(--color-purple);">
                             <span class="cursor-blink">[MFA-SAFE ROLE STAGING]</span>
                         </div>
-                        <div class="telemetry-node-title">Decouple Role When Terminal MFA Drops</div>
+                        <div class="telemetry-node-title">Stage Azure Portal MFA Handoff</div>
                         <div class="mandate-tag">[PREVENTING 401 MFA ROLE CRASHES]</div>
                         <div class="telemetry-node-desc">
                             <ul>
-                                <li><span class="bullet-lead">Why Scripts Crash Here:</span> Local terminal credential brokers frequently drop tenant-level MFA claims required by Azure to assign security roles.</li>
-                                <li><span class="bullet-lead">Automatic Decoupling:</span> Cleanly separates the role assignment from the code when needed so my identity and OIDC trust deploy without crashing.</li>
+                                <li><span class="bullet-lead">Why Scripts Crash Here:</span> Local terminal credential brokers drop tenant-level MFA claims required by Azure to assign a Data-Plane Role on Conditional Access or PowerShell REST API builds.</li>
+                                <li><span class="bullet-lead">Clean Separation:</span> Separates the Data-Plane Role step from the IaC Payload and outputs the guided Azure Portal MFA Handoff checklist so the build never crashes.</li>
                             </ul>
                         </div>
                     </div>
@@ -754,20 +771,20 @@
                     <!-- ================= ROW 6: PHASES 4, 5 & 6 (TWO-STAGE LIVE VERIFICATION, AUDIT LEDGERS & REPO SYNC) ================= -->
                     <div class="node node-orange node-wide y-telemetry" style="border-top: 4px solid var(--color-orange); border-left: 1px solid var(--border-base); padding: 1.8rem 2rem;">
                         <div class="telemetry-node-header" style="color: var(--color-orange);">[PHASES 4, 5 &amp; 6: LIVE CLOUD VERIFICATION, COMPLIANCE LEDGERS &amp; REPOSITORY SYNC]</div>
-                        <div class="telemetry-node-title" style="font-size: 1.25rem;">Baseline Ledger, Two-Stage Telemetry Proof (Portal Metrics &rarr; ARL &amp; KQL) &amp; Git Push</div>
+                        <div class="telemetry-node-title" style="font-size: 1.25rem;">Identity Architecture Ledger (IAL), Two-Stage Proof (Portal Metrics &rarr; ARL &amp; KQL) &amp; Git Push</div>
                         <div class="mandate-tag">[GUARDRAIL 5: RUNTIME LOG MASKING &amp; EXPLICIT VERIFICATION]</div>
                         <div class="telemetry-node-desc" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; text-align: left; margin-top: 1rem;">
                             <div>
-                                <span class="bullet-lead">&gt; Phase 4: IAL Baseline &amp; Live Metrics</span><br>
-                                First, saves identity_architecture_ledger.md (IAL) recording every deployed ID and OIDC string. Next, I run the generated validation pipeline (with runtime asterisk log masking active). Because Azure Log Analytics takes a long, unpredictable time to index new logs, I immediately check Azure Portal Monitoring Metrics (Total Service API Hits over the last 30 minutes) on my target vault to prove the 60-minute OIDC token read the data plane with zero access errors.
+                                <span class="bullet-lead">&gt; Phase 4: IAL, Validation Bridge &amp; Metrics</span><br>
+                                First, saves my Identity Architecture Ledger (identity_architecture_ledger.md or IAL) recording my Entra ID Tenant ID, Azure Subscription ID, Resource Group, Service Principal, Subject Claim, and Data-Plane Role. Next, I run the Validation Bridge on my Execution Agent (with Runtime Log Masking active). Because Azure Log Analytics takes a long, unpredictable time to index logs, I immediately check Azure Portal Monitoring Metrics (Total Service API Hits over 30 minutes) on my Data-Plane Asset to prove the 60-Minute Login Token read my Data-Plane Asset with zero access errors.
                             </div>
                             <div>
-                                <span class="bullet-lead">&gt; Phase 5: ARL, KQL &amp; Patch Ledgers</span><br>
-                                Once the live Portal metric spike confirms my connection works, the machine generates my formal compliance package: audit_results_ledger.md (ARL) scoring all 4 Audit Gates and all 5 Enterprise Guardrails as [PASS], kql_telemetry.md to pull deep Log Analytics correlation records asynchronously once Azure's indexing catches up, and patch_ledger.md (DPL).
+                                <span class="bullet-lead">&gt; Phase 5: ARL, KQL Telemetry &amp; DPL</span><br>
+                                Once the live spike in Azure Portal Monitoring Metrics (Total Service API Hits) confirms my Execution Agent read my Data-Plane Asset, The AI Engine generates my compliance package: the Audit Results Ledger (audit_results_ledger.md or ARL) scoring all 4 Architectural Gates and all 5 Enterprise Guardrails as [PASS], KQL Telemetry (kql_telemetry.md) to correlate Service Principal sign-in logs with Data-Plane Asset access logs asynchronously once indexing catches up, and the Defect &amp; Patch Ledger (patch_ledger.md or DPL).
                             </div>
                             <div>
-                                <span class="bullet-lead">&gt; Phase 6: Secure Repository Sync</span><br>
-                                To close out my local workspace safely, the machine generates a copy-paste Git synchronization script that pulls remote changes first (git pull origin main), writes a protective .gitignore file so local state files never leak, and pushes my verified code and compliance ledgers to my remote repository.
+                                <span class="bullet-lead">&gt; Phase 6: Code Repository Synchronization</span><br>
+                                To close out my local folder safely, The AI Engine outputs a copy-paste Terminal Runbook script that runs git pull origin main first to sync any remote Validation Bridge files, writes a protective .gitignore file so local state files never leak, and pushes my verified IaC Payload, Identity Architecture Ledger (IAL), Audit Results Ledger (ARL), KQL Telemetry, and Defect &amp; Patch Ledger (DPL) to my remote Code Repository and Branch.
                             </div>
                         </div>
                     </div>
@@ -777,13 +794,13 @@
                         <div style="font-size: 3rem; color: var(--color-pink); font-weight: 900; line-height: 1; margin-top: 0.5rem;">&#10554;</div>
                         <div style="text-align: left;">
                             <div class="telemetry-node-header" style="color: var(--color-pink);">[TROUBLESHOOTING PROTOCOL, THE DEFECT &amp; PATCH LEDGER, THE CIRCUIT BREAKER &amp; PHASE 7]</div>
-                            <div class="telemetry-node-title" style="font-size: 1.25rem;">Real-Time Patch Logging (Iterations 1 to 3), The Iteration 4 Circuit Breaker &amp; Phase 7 Upgrades</div>
-                            <div class="mandate-tag">[PILLAR 4: SEPARATING ROUTINE DPL LOGGING FROM THE ITERATION 4 CIRCUIT BREAKER]</div>
+                            <div class="telemetry-node-title" style="font-size: 1.25rem;">Standard Patch Loop (Iterations 1 to 3), The 4-Iteration Circuit Breaker &amp; Phase 7 Continuous Improvement</div>
+                            <div class="mandate-tag">[PILLAR 4: SEPARATING ROUTINE DPL LOGGING FROM THE 4-ITERATION CIRCUIT BREAKER]</div>
                             <div class="telemetry-node-desc">
                                 <ul>
-                                    <li><span class="bullet-lead">1. Standard Patch Loop &amp; Real-Time Defect &amp; Patch Ledger (Iterations 1 to 3):</span> If a command or script hits an error during any phase of the build, the AI drops all conversational analogies and enters clinical diagnostic mode for up to 3 attempts. As soon as I verify that a fix works (even on the first or second try, without ever hitting the circuit breaker), the machine logs a formal entry in the Defect &amp; Patch Ledger (patch_ledger.md) and outputs the entire infrastructure file from top to bottom (State Re-Sync) so I can resume the build cleanly.</li>
-                                    <li><span class="bullet-lead">2. The 4-Iteration Circuit Breaker (Emergency Stop on Iteration 4):</span> The Circuit Breaker is a separate safety stop that only trips if a single error fails 3 times in a row and reaches Iteration 4. On Iteration 4, the State Machine forbids the AI from writing any new code. Instead, the AI must conduct a Risk Management Assessment by summarizing the error shifts across the 3 failed tries, calculating an Estimated Probability of Success (X%), and presenting alternative pathways for my decision.</li>
-                                    <li><span class="bullet-lead">3. Phase 7 AI Performance Scorecard &amp; System Directive Compilation:</span> At the end of the session in Phase 7, the machine outputs my statistical AI Performance Scorecard. It then takes every verified fix recorded in the Defect &amp; Patch Ledger during the session and compiles those lessons permanently into my master System Directive so the machine never repeats the same mistake twice.</li>
+                                    <li><span class="bullet-lead">1. Standard Patch Loop, State Re-Sync &amp; Real-Time Defect &amp; Patch Ledger (Iterations 1 to 3):</span> If a command or IaC Payload hits an error during any phase of the build, The AI Engine drops all analogies and enters the Standard Patch Loop (Iterations 1 to 3). As soon as I verify in my local terminal that a fix works (even on Iteration 1 or 2, without ever tripping the circuit breaker), The State Machine logs the root cause and fix immediately in the Defect &amp; Patch Ledger (patch_ledger.md or DPL) and performs a full-file State Re-Sync of my entire IaC Payload so I can resume the build cleanly.</li>
+                                    <li><span class="bullet-lead">2. The 4-Iteration Circuit Breaker &amp; Estimated Probability of Success (X%):</span> The 4-Iteration Circuit Breaker is a separate emergency stop that trips ONLY if a single isolated error fails 3 times in a row during the Standard Patch Loop and reaches Iteration 4. On Iteration 4, The State Machine structurally forbids The AI Engine from generating new code. Instead, The AI Engine must analyze the error shifts across Attempts 1, 2, and 3, calculate an Estimated Probability of Success (X%), and present alternative pathways for my decision.</li>
+                                    <li><span class="bullet-lead">3. Phase 7 Continuous Improvement, AI Performance Scorecard &amp; System Directive Compilation:</span> At session close in Phase 7, The AI Engine outputs my statistical AI Performance Scorecard. It then extracts every verified fix recorded in the Defect &amp; Patch Ledger (DPL) during the session and compiles those lessons permanently into my master System Directive in a single copy-paste block so The State Machine continuously improves after every run.</li>
                                 </ul>
                             </div>
                         </div>
@@ -797,7 +814,7 @@
         <div class="blueprint-section" id="operational-blueprint">
             <h2 class="blueprint-title">The Operational Systems Blueprint</h2>
             <div class="blueprint-subtitle">
-                How I engineered my master <span class="bullet-lead">System Directive</span> from top to bottom. This 6-layer architectural funnel illustrates how four globally recognized <span class="bullet-lead">AI Systems Engineering Pillars</span> (Layer 1) are translated into <span class="bullet-lead">five concrete Enterprise Guardrails</span> (Layer 2), enforced at runtime by <span class="bullet-lead">The Execution Triad</span> (Layer 3) across <span class="bullet-lead">The Four Architectural Gates of Machine Identity</span> (Layer 4) to produce <span class="bullet-lead">mathematically verified live cloud deployments and compliance ledgers</span> (Layer 5), backed by <span class="bullet-lead">real-time Defect &amp; Patch Ledger logging, the 4-Iteration Circuit Breaker, and Phase 7 System Directive compilation</span> (Layer 6).
+                How I engineered my master <span class="bullet-lead">System Directive</span> from top to bottom using the 26 fixed system variables defined in my <a href="glossary.html" class="inline-link">System Glossary</a>. This 6-layer architectural funnel illustrates how four globally recognized <span class="bullet-lead">AI Systems Engineering Pillars</span> (Layer 1) are translated into <span class="bullet-lead">five concrete Enterprise Guardrails</span> (Layer 2), enforced at runtime by <span class="bullet-lead">The Execution Triad</span> (Layer 3) across <span class="bullet-lead">The Four Architectural Gates of Machine Identity</span> (Layer 4) to produce a verified <span class="bullet-lead">IaC Payload</span>, two-stage live cloud proof, and compliance ledgers (Layer 5), backed by the <span class="bullet-lead">Standard Patch Loop (Iterations 1 to 3)</span>, <span class="bullet-lead">The 4-Iteration Circuit Breaker</span>, and <span class="bullet-lead">Phase 7 System Directive Compilation</span> for continuous improvement (Layer 6).
             </div>
             
             <div class="blueprint-funnel">
@@ -807,7 +824,7 @@
                     <span class="bp-tag">[LAYER 1: AI SYSTEMS ENGINEERING PILLARS]</span>
                     <div class="bp-heading">The 4 Core AI Engineering Pillars of My System Directive</div>
                     <p class="bp-intro">
-                        Out of the box, generative AI is a probabilistic engine. When asked to write a cloud security script without strict boundaries, it will guess missing resource IDs, invent outdated syntax, or grant overly broad administrative permissions just to clear an error. To tether that probabilistic engine and make its output deterministic, I built my master System Directive around four globally recognized AI Systems Engineering standards, separating what each standard defines in the AI industry from how I wired it into my workflow at the keyboard:
+                        Out of the box, <span class="bullet-lead">The AI Engine</span> is a probabilistic engine. When asked to write an <span class="bullet-lead">IaC Payload</span> without strict boundaries, it will guess a missing <span class="bullet-lead">Entra ID Tenant ID</span> or <span class="bullet-lead">Azure Subscription ID</span>, invent broken syntax, or grant broad <span class="bullet-lead">Owner and Contributor Roles</span> just to clear an error. To tether <span class="bullet-lead">The AI Engine</span> and make its output deterministic, I built my master <span class="bullet-lead">System Directive</span> around four globally recognized AI Systems Engineering standards, separating what each standard defines in the AI industry from how I wired it into my workflow at the keyboard:
                     </p>
                     <div class="bp-grid-split">
                         
@@ -819,7 +836,7 @@
                             </div>
                             <div class="def-block def-translation">
                                 <span class="def-label">How I Applied It in My System Directive</span>
-                                <span class="def-text">In Phases 1 and 2, the AI is forbidden from guessing Azure or pipeline identifiers. Instead, it pauses, gives me native read-only terminal lookup commands, waits for me to paste back the real console output, and only generates deployment code in Phase 3 using verified live IDs.</span>
+                                <span class="def-text">In Phases 1 and 2, The AI Engine is forbidden from guessing my Entra ID Tenant ID, Azure Subscription ID, Resource Group, or Code Repository and Branch spelling. Instead, it pauses, gives me read-only terminal lookup commands, waits for me to paste back the real console output, and only synthesizes my Phase 3 IaC Payload using verified live IDs.</span>
                             </div>
                         </div>
 
@@ -831,7 +848,7 @@
                             </div>
                             <div class="def-block def-translation">
                                 <span class="def-label">How I Applied It in My System Directive</span>
-                                <span class="def-text">The AI Engine has zero direct access to my cloud account and is locked inside hard rules that force read-only lookups for existing Brownfield resources, single-vault data permissions (blocking Owner and Contributor), and a guided Azure Portal handoff whenever a role assignment requires interactive multi-factor authentication.</span>
+                                <span class="def-text">The AI Engine has zero direct network access to my Entra ID Tenant ID or Azure Subscription ID and is locked inside hard rules inside my System Directive: requiring read-only lookups on Brownfield (Existing) Data-Plane Assets, single-asset Data-Plane Roles (blocking Owner and Contributor Roles), and a guided Azure Portal MFA Handoff whenever a Data-Plane Role assignment requires interactive MFA.</span>
                             </div>
                         </div>
 
@@ -843,19 +860,19 @@
                             </div>
                             <div class="def-block def-translation">
                                 <span class="def-label">How I Applied It in My System Directive</span>
-                                <span class="def-text">My System Directive forbids the AI from skipping ahead or stacking manual steps. It must halt at every single phase, from locking in coordinates and extracting OIDC strings to running the live validation pipeline and checking Azure Portal metrics, waiting for my explicit verification and sign-off before advancing.</span>
+                                <span class="def-text">My System Directive forbids The AI Engine from skipping ahead or stacking manual steps. The State Machine must halt at every single phase, from locking in the 5 Build Coordinates and extracting the OpenID Connect (OIDC) Subject Claim to running the Validation Bridge on my Execution Agent and checking Azure Portal Monitoring Metrics (Total Service API Hits) on my Data-Plane Asset, waiting for my explicit verification before advancing.</span>
                             </div>
                         </div>
 
                         <div class="bp-node-split">
-                            <span class="bp-node-split-title">4. Cognitive Circuit Breaking (Hallucination Prevention)</span>
+                            <span class="bp-node-split-title">4. Cognitive Circuit Breaking &amp; Continuous Evolution</span>
                             <div class="def-block def-standard">
                                 <span class="def-label">The AI Systems Engineering Standard (Huang et al.)</span>
                                 <span class="def-text">Grounded in foundational AI reliability research, cognitive circuit breaking stops language models from drifting off their instructions and repeating false guesses ("hallucination spirals") during multi-turn troubleshooting sessions.</span>
                             </div>
                             <div class="def-block def-translation">
                                 <span class="def-label">How I Applied It in My System Directive</span>
-                                <span class="def-text">Active across every phase of the build: if a terminal command or script fails 3 times in a row at any point, Iteration 4 trips a hard Circuit Breaker that forbids the AI from writing new code. Instead, it forces the AI to audit its own three prior attempts and calculate an Estimated Probability of Success percentage so I can decide whether to continue or pivot.</span>
+                                <span class="def-text">My System Directive enforces continuous improvement in Phase 7 while keeping routine bug logging separate from emergency circuit breaking across every phase. Verified fixes during the Standard Patch Loop (Iterations 1 to 3) are logged immediately in the Defect &amp; Patch Ledger (DPL) with a full-file State Re-Sync of my IaC Payload. Separately, if an error fails 3 times and reaches Iteration 4, The 4-Iteration Circuit Breaker forbids new code generation and forces The AI Engine to calculate an Estimated Probability of Success (X%) so I can decide whether to continue or pivot.</span>
                             </div>
                         </div>
 
@@ -869,28 +886,28 @@
                     <span class="bp-tag">[LAYER 2: TRANSLATING AI STANDARDS INTO CODE]</span>
                     <div class="bp-heading" style="color: var(--color-red);">The 5 Enterprise Guardrails (Built-In Safety Locks)</div>
                     <p class="bp-intro">
-                        While the four AI Systems Engineering pillars above govern how the AI behaves across the conversation, I translated those principles, alongside specific controls from the OWASP Top 10 for LLMs and the NIST AI Risk Management Framework, into five concrete Enterprise Guardrails inside the generated code itself. Formally verified and scored as [PASS] in my Phase 5 Audit Results Ledger, these five safety locks prevent the five most common failures in automated cloud deployments:
+                        While the four AI Systems Engineering pillars above govern how <span class="bullet-lead">The AI Engine</span> behaves across the 7-phase conversation, I translated those principles, alongside specific controls from the OWASP Top 10 for LLMs and the NIST AI Risk Management Framework, into five concrete Enterprise Guardrails inside the generated <span class="bullet-lead">IaC Payload</span> and <span class="bullet-lead">Validation Bridge</span>. Formally verified and scored as [PASS] in my Phase 5 <span class="bullet-lead">Audit Results Ledger (ARL)</span>, these five safety locks enforce Zero Trust across Gate 1 through Gate 4:
                     </p>
                     <div class="bp-grid-5">
                         <div class="bp-node bp-node-red">
                             <span class="bp-node-title">1. Secret &amp; Credential Protection</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">OWASP LLM06 &amp; NIST Privacy:</span> Separates non-secret routing addresses from private secrets. My Tenant ID, Subscription ID, Resource Group, and repo name are resolved via terminal lookups so the AI writes 100% finished code with zero placeholders, while 60-minute OIDC eliminates passwords and invisible terminal typing keeps personal tokens off the screen.</span>
+                            <span class="bp-node-desc"><span class="bullet-lead">OWASP LLM06 &amp; NIST Privacy:</span> Separates non-secret routing addresses from private secrets. My Entra ID Tenant ID, Azure Subscription ID, Resource Group, and Code Repository and Branch are resolved via terminal lookups so The AI Engine writes a 100% finished IaC Payload with zero placeholders, while OpenID Connect (OIDC) 60-Minute Login Tokens eliminate passwords and my Terminal Runbook uses invisible input (read -s) for setup tokens.</span>
                         </div>
                         <div class="bp-node bp-node-red">
                             <span class="bp-node-title">2. Existing Asset Protection</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">OWASP LLM08 (Idempotency):</span> Prevents scripts from overwriting or deleting live cloud resources. Forces read-only lookup mode when I connect to existing Brownfield vaults or databases, and attaches deletion-prevention locks and permanent state storage rules when I build brand-new Greenfield infrastructure.</span>
+                            <span class="bp-node-desc"><span class="bullet-lead">OWASP LLM08 (Idempotency):</span> Prevents my IaC Payload from overwriting or deleting live cloud resources. Forces read-only lookup mode in Gate 1 when I connect to Brownfield (Existing) Data-Plane Assets and Application Registrations, and attaches deletion-prevention locks and persistent state storage rules when I build Greenfield (Net-New) Data-Plane Assets.</span>
                         </div>
                         <div class="bp-node bp-node-red">
                             <span class="bp-node-title">3. Stopping "The Contributor Trap"</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">OWASP LLM08 (Least Privilege):</span> Stops the AI shortcut of granting broad administrative roles like Owner or Contributor that could delete resources across Azure. Locks permissions strictly to the specific data action required on one single Key Vault, Storage Account, or database ID.</span>
+                            <span class="bp-node-desc"><span class="bullet-lead">OWASP LLM08 (Least Privilege):</span> Stops the AI shortcut of granting broad Owner and Contributor Roles that could modify or delete infrastructure across my Azure Subscription ID. In Gate 4, The State Machine blocks Owner and Contributor Roles and assigns one Data-Plane Role to my Service Principal, scoped strictly to my single Data-Plane Asset.</span>
                         </div>
                         <div class="bp-node bp-node-red">
-                            <span class="bp-node-title">4. Pinned Provider Versions</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">OWASP LLM05 (Supply Chain Safety):</span> Rejects floating version tags (like "latest") and pins every Terraform provider, Azure Bicep resource API, and CI/CD pipeline action to an exact, verified version number. Also enforces pure Microsoft Graph JSON formatting on PowerShell REST API builds.</span>
+                            <span class="bp-node-title">4. Supply Chain Version Pinning</span>
+                            <span class="bp-node-desc"><span class="bullet-lead">OWASP LLM05 (Supply Chain Safety):</span> Rejects floating version tags (like "latest") and pins every provider and API version in my Phase 3 IaC Payload and every login action in my Phase 4 Validation Bridge to an exact, verified version number. Also enforces pure Microsoft Graph JSON property names on PowerShell REST API builds.</span>
                         </div>
                         <div class="bp-node bp-node-red">
-                            <span class="bp-node-title">5. Pipeline Log Token Masking</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">OWASP LLM02 &amp; LLM06 (Output Scrubbing):</span> Injects active runtime log masking into my Phase 4 validation workflow so the pipeline runner scrubs any temporary 60-minute OIDC token or vault secret with asterisks (***) in memory before a single line can print to the console screen.</span>
+                            <span class="bp-node-title">5. Validation Bridge Log Masking</span>
+                            <span class="bp-node-desc"><span class="bullet-lead">OWASP LLM02 &amp; LLM06 (Output Scrubbing):</span> Injects active Runtime Log Masking into my Phase 4 Validation Bridge file so my Execution Agent scrubs any 60-Minute Login Token or Data-Plane Asset secret with asterisks (***) in memory before a single line prints to the console log.</span>
                         </div>
                     </div>
                 </div>
@@ -902,20 +919,20 @@
                     <span class="bp-tag">[LAYER 3: THREE-PARTY RUNTIME GOVERNANCE]</span>
                     <div class="bp-heading">The Execution Triad</div>
                     <p class="bp-intro">
-                        Inside the Zero Trust Interactive State Machine, runtime execution is divided cleanly among three distinct roles. By separating my human authorization authority from the immutable security rulebook and the tethered code generator, the AI Engine can never act autonomously against live cloud infrastructure:
+                        Inside the <span class="bullet-lead">Zero Trust Interactive State Machine</span>, runtime execution is divided cleanly among three fixed actors. By separating my human authorization authority from <span class="bullet-lead">The State Machine</span> rulebook and <span class="bullet-lead">The AI Engine</span>, no AI component can ever act autonomously against my <span class="bullet-lead">Entra ID Tenant ID</span>, <span class="bullet-lead">Azure Subscription ID</span>, or <span class="bullet-lead">Data-Plane Asset</span>:
                     </p>
                     <div class="bp-grid-3">
                         <div class="bp-node bp-node-purple">
                             <span class="bp-node-title">1. The Architect (Me)</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">My Role at the Keyboard:</span> I initialize the clean local workspace, select the 5 build coordinates in Phase 1, run local terminal extraction scripts in Phase 2, execute the deployment code and any Portal MFA role handoffs in Phase 3, verify live Portal metrics and KQL logs in Phases 4 to 5, and make the final risk decisions if an Iteration 4 Circuit Breaker trips.</span>
+                            <span class="bp-node-desc"><span class="bullet-lead">Strategic Command &amp; Final Authority:</span> As The Architect, I drive the entire build from the keyboard. I initialize the clean local workspace, select the 5 Build Coordinates in Phase 1, run local terminal extraction scripts in Phase 2, execute the IaC Payload, Terminal Runbook, and any Azure Portal MFA Handoff in Phase 3, run the Validation Bridge and check Azure Portal Monitoring Metrics (Total Service API Hits) in Phase 4, and make the final risk decision if an error reaches Iteration 4 and trips The 4-Iteration Circuit Breaker.</span>
                         </div>
                         <div class="bp-node bp-node-purple">
                             <span class="bp-node-title">2. The Interactive State Machine</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">The Deterministic Harness &amp; Rulebook:</span> My master System Directive that enforces mandatory human-in-the-loop halts and continuous Watchdog turn checks, locks in the 5 Enterprise Guardrails, injects 30-second Graph server sync timers, and trips the 4-Iteration Circuit Breaker if a patch fails three times.</span>
+                            <span class="bp-node-desc"><span class="bullet-lead">The Central Controller &amp; Harness:</span> The un-bypassable structural intermediary standing between The Architect and The AI Engine. Governed by my master System Directive, it enforces mandatory human-in-the-loop halts and continuous Watchdog turn checks, locks in the 4 Architectural Gates and 5 Enterprise Guardrails, injects the 30-Second Server Sync Timer, enforces full-file State Re-Syncs, and permanently evolves in Phase 7.</span>
                         </div>
                         <div class="bp-node bp-node-purple">
                             <span class="bp-node-title">3. The AI Engine</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">The Tethered High-Performance Co-Pilot:</span> Provides native terminal lookup queries in Phases 1 to 2, synthesizes complete Terraform, Bicep, or PowerShell REST API code and validation YAML in Phases 3 to 4, logs verified fixes in the Defect &amp; Patch Ledger, and compiles my upgraded System Directive in Phase 7.</span>
+                            <span class="bp-node-desc"><span class="bullet-lead">The Tethered High-Performance Co-Pilot:</span> Operates through controlled state-switching under The Architect's oversight: outputting read-only terminal lookup queries in Phases 1 and 2, synthesizing the complete Terraform, Azure Bicep, or PowerShell REST API IaC Payload and Terminal Runbook in Phase 3, writing the Identity Architecture Ledger (IAL) and Validation Bridge in Phase 4, logging verified fixes in the Defect &amp; Patch Ledger (DPL), and compiling my upgraded System Directive in Phase 7.</span>
                         </div>
                     </div>
                 </div>
@@ -927,24 +944,24 @@
                     <span class="bp-tag">[LAYER 4: THE CLOUD IAM FOUNDATION]</span>
                     <div class="bp-heading">The 4 Architectural Gates of Machine Identity (Phases 1 to 3)</div>
                     <p class="bp-intro">
-                        Underneath all 72 build combinations and 35 Day-2 security expansions, securing any non-human workload in Microsoft Entra ID and Azure comes down to locking down four predictable architectural gates in sequence across Phases 1, 2, and 3:
+                        Underneath all 72 baseline build combinations and 35 Day-2 <span class="bullet-lead">Microsoft Entra ID</span> security modules, securing any non-human identity in <span class="bullet-lead">Microsoft Entra ID</span> and Azure comes down to configuring a predictable, four-part mathematical chain across Phases 1, 2, and 3:
                     </p>
                     <div class="bp-grid-4">
                         <div class="bp-node bp-node-green">
                             <span class="bp-node-title">Gate 1: Boundary (Where It Lives)</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">Locking the Cloud Perimeter (Phases 1 to 2):</span> I lock in the exact Entra ID Tenant ID, Azure Subscription ID, and Resource Group perimeter via read-only terminal lookups, while enforcing read-only lookup mode on existing Brownfield resources or deletion locks on new Greenfield builds.</span>
+                            <span class="bp-node-desc"><span class="bullet-lead">Locking the Cloud Perimeter (Phases 1 to 2):</span> I lock in the exact Entra ID Tenant ID, Azure Subscription ID, and Resource Group perimeter, verifying that my Azure Subscription ID and Resource Group (holding my Data-Plane Asset) sit under my Entra ID Tenant ID (holding my Identity Core), while enforcing read-only lookups on Brownfield (Existing) Data-Plane Assets or deletion-prevention locks on Greenfield (Net-New) Data-Plane Assets.</span>
                         </div>
                         <div class="bp-node bp-node-green">
                             <span class="bp-node-title">Gate 2: Identity (Who the Machine Is)</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">Headless Single-Tenant Identity (Phase 3):</span> I reference or provision a dedicated non-human Application and Service Principal in Microsoft Entra ID. It is locked strictly to my own directory (Single-Tenant mode) with all interactive web browser login URLs disabled and zero saved passwords.</span>
+                            <span class="bp-node-desc"><span class="bullet-lead">Single-Tenant Machine Identity (Phase 3):</span> Inside my Entra ID Tenant ID from Gate 1, my IaC Payload and Terminal Runbook reference or provision a dedicated Application Registration and Service Principal in Microsoft Entra ID. It is locked strictly to my own Entra ID Tenant ID in Single-Tenant mode with web browser redirect URLs disabled and zero saved passwords.</span>
                         </div>
                         <div class="bp-node bp-node-green">
                             <span class="bp-node-title">Gate 3: Federation (How It Authenticates)</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">Passwordless 60-Min OIDC Trust (Phases 2 to 3):</span> I extract my permanent repository IDs and exact upper-and-lower-case repository spelling via the terminal to construct a character-for-character OpenID Connect (OIDC) Subject Claim with zero wildcards, a 60-minute token limit, and a 30-second server sync timer.</span>
+                            <span class="bp-node-desc"><span class="bullet-lead">Passwordless 60-Min OIDC Trust (Phases 2 to 3):</span> Because the Gate 2 Application Registration and Service Principal have no password, I configure OpenID Connect (OIDC) so my external Execution Agent can trade its Subject Claim (locked character-for-character to my exact Code Repository and Branch spelling with zero wildcards) for a 60-Minute Login Token, protected by a 30-Second Server Sync Timer.</span>
                         </div>
                         <div class="bp-node bp-node-green">
                             <span class="bp-node-title">Gate 4: Access (What It Can Touch)</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">Single-Asset Data Role &amp; MFA Path (Phase 3):</span> I block broad Owner and Contributor roles and restrict permissions strictly to the data plane of the single target Key Vault, Storage Account, or database. When local terminal sessions drop MFA claims, I separate the role step into a guided Azure Portal checklist.</span>
+                            <span class="bp-node-desc"><span class="bullet-lead">Single-Asset Data-Plane Role &amp; MFA Handoff (Phase 3):</span> Once my Execution Agent authenticates to my Service Principal with its 60-Minute Login Token from Gate 3, I block broad Owner and Contributor Roles and assign one Data-Plane Role on my single Data-Plane Asset to that Service Principal, using a guided Azure Portal MFA Handoff whenever local terminal MFA claims drop.</span>
                         </div>
                     </div>
                 </div>
@@ -954,22 +971,22 @@
                 <!-- LAYER 5: TWO-STAGE VERIFICATION & AUDIT DELIVERABLES -->
                 <div class="bp-layer outputs">
                     <span class="bp-tag">[LAYER 5: TWO-STAGE VERIFICATION &amp; AUDIT DELIVERABLES]</span>
-                    <div class="bp-heading">Synthesized Code, Two-Stage Live Cloud Proof &amp; Compliance Ledgers (Phases 3 to 6)</div>
+                    <div class="bp-heading">IaC Payload, Two-Stage Live Cloud Proof &amp; Compliance Ledgers (Phases 3 to 6)</div>
                     <p class="bp-intro">
-                        Once the coordinates and OIDC strings are locked in, the machine synthesizes the complete local deployment payload in Phase 3 and walks through a strict two-stage live verification and compliance sequence across Phases 4, 5, and 6:
+                        Once my 5 Build Coordinates and <span class="bullet-lead">OpenID Connect (OIDC)</span> <span class="bullet-lead">Subject Claim</span> are locked in, <span class="bullet-lead">The AI Engine</span> synthesizes the complete <span class="bullet-lead">IaC Payload</span> and <span class="bullet-lead">Terminal Runbook</span> in Phase 3 and walks through a strict two-stage live verification and compliance sequence across Phases 4, 5, and 6:
                     </p>
                     <div class="bp-grid-3">
                         <div class="bp-node bp-node-orange">
-                            <span class="bp-node-title">Phase 3 &amp; 6: Unified IaC Code &amp; Repo Sync</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">100% Complete Code &amp; Clean Git Push:</span> Outputs the complete Terraform, Azure Bicep, or PowerShell REST API deployment file and terminal runbook in Phase 3 with zero blank placeholders, and closes out the workspace in Phase 6 with a protective .gitignore file and automated Git push script.</span>
+                            <span class="bp-node-title">Phase 3 &amp; 6: IaC Payload &amp; Code Repository Sync</span>
+                            <span class="bp-node-desc"><span class="bullet-lead">100% Finished Code &amp; Clean Git Push:</span> Outputs the complete Terraform, Azure Bicep, or PowerShell REST API IaC Payload and Terminal Runbook in Phase 3 with zero blank placeholders, and closes out my local folder in Phase 6 with a protective .gitignore file and automated Git push script to sync my remote Code Repository and Branch.</span>
                         </div>
                         <div class="bp-node bp-node-orange">
                             <span class="bp-node-title">Phase 4: IAL Baseline &amp; Instant Portal Metrics</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">Stage 1 Immediate Live Proof:</span> Generates identity_architecture_ledger.md (IAL) recording every deployed ID and OIDC string, then runs the live validation pipeline. Before waiting on slow Log Analytics indexing, I check Azure Portal Monitoring Metrics (Total Service API Hits over 30 minutes) for immediate mathematical proof that the 60-minute OIDC token unlocked the vault.</span>
+                            <span class="bp-node-desc"><span class="bullet-lead">Stage 1 Immediate Live Proof:</span> Generates my Identity Architecture Ledger (identity_architecture_ledger.md or IAL) recording my deployed coordinates and Subject Claim, then runs the Validation Bridge (with Runtime Log Masking) on my Execution Agent. Before waiting on slow Log Analytics indexing, I check Azure Portal Monitoring Metrics (Total Service API Hits over 30 minutes) on my Data-Plane Asset for immediate proof that the 60-Minute Login Token unlocked my Data-Plane Asset.</span>
                         </div>
                         <div class="bp-node bp-node-orange">
-                            <span class="bp-node-title">Phase 5: ARL, Asynchronous KQL &amp; DPL</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">Stage 2 Deep Compliance Package:</span> Generates audit_results_ledger.md (ARL) scoring all 4 Audit Gates and the 5 Enterprise Guardrails as [PASS], outputs kql_telemetry.md so I can pull the deep Log Analytics correlation records asynchronously once Azure's indexing catches up, and compiles patch_ledger.md (DPL).</span>
+                            <span class="bp-node-title">Phase 5: ARL, KQL Telemetry &amp; DPL</span>
+                            <span class="bp-node-desc"><span class="bullet-lead">Stage 2 Deep Compliance Package:</span> Generates my Audit Results Ledger (audit_results_ledger.md or ARL) scoring all 4 Architectural Gates and all 5 Enterprise Guardrails as [PASS], outputs KQL Telemetry (kql_telemetry.md) so I can correlate Service Principal sign-in logs with Data-Plane Asset access logs asynchronously once indexing catches up, and compiles the Defect &amp; Patch Ledger (patch_ledger.md or DPL).</span>
                         </div>
                     </div>
                 </div>
@@ -979,31 +996,31 @@
                 <!-- LAYER 6: TROUBLESHOOTING, DPL, CIRCUIT BREAKER & PHASE 7 COMPILATION -->
                 <div class="bp-feedback-loop">
                     <div class="feedback-icon">&#10554;</div>
-                    <span class="bp-tag" style="color: var(--color-pink); align-self: center;">[LAYER 6: TROUBLESHOOTING, DPL, CIRCUIT BREAKER &amp; PHASE 7 COMPILATION]</span>
-                    <div class="feedback-title">Troubleshooting, The Defect &amp; Patch Ledger, The Circuit Breaker &amp; Phase 7 Upgrades</div>
+                    <span class="bp-tag" style="color: var(--color-pink); align-self: center;">[LAYER 6: CONTINUOUS IMPROVEMENT, DPL, CIRCUIT BREAKER &amp; PHASE 7 COMPILATION]</span>
+                    <div class="feedback-title">Continuous Improvement, The Defect &amp; Patch Ledger, The Circuit Breaker &amp; Phase 7 Upgrades</div>
                     <p class="bp-intro" style="text-align: left; max-width: 1000px; margin: 0 auto 2.5rem;">
-                        Even with careful planning, real-world cloud deployments can hit unexpected friction such as a Microsoft API schema quirk, a propagation delay, or a terminal permission block. My System Directive handles errors across every phase using two distinct mechanisms: first, a standard patch loop that logs every verified fix in the <span class="bullet-lead">Defect &amp; Patch Ledger (DPL)</span>; and second, an emergency <span class="bullet-lead">4-Iteration Circuit Breaker</span> that only trips if an error is still unresolved on Iteration 4:
+                        Even with careful planning, real-world cloud deployments can hit unexpected friction such as a Microsoft API schema quirk, a directory sync delay, or a terminal MFA block. My <span class="bullet-lead">System Directive</span> handles errors across every phase using two distinct troubleshooting mechanisms while permanently evolving the architecture in Phase 7: first, the <span class="bullet-lead">Standard Patch Loop (Iterations 1 to 3)</span> that logs every verified fix in the <span class="bullet-lead">Defect &amp; Patch Ledger (DPL)</span> alongside a full-file <span class="bullet-lead">State Re-Sync</span>; and second, <span class="bullet-lead">The 4-Iteration Circuit Breaker</span> that trips ONLY if an isolated error reaches Iteration 4:
                     </p>
                     
                     <div class="bp-grid-split">
                         <div class="bp-node bp-node-pink">
                             <span class="bp-node-title">1. Standard Patch Loop &amp; State Re-Sync (Iterations 1 to 3)</span>
-                            <span class="bp-node-desc">Whenever a terminal command or script returns an error during any phase, the AI immediately drops all analogies and enters clinical diagnostic mode for up to 3 focused attempts. Once I confirm a fix works in my terminal, the System Directive forces a full-file State Re-Sync, outputting the complete infrastructure file from top to bottom so partial code snippets never corrupt my workspace.</span>
+                            <span class="bp-node-desc">Whenever a Terminal Runbook command or IaC Payload returns an error during any phase, The AI Engine immediately drops all analogies and enters the Standard Patch Loop (Iterations 1 to 3). Once I confirm a fix works in my local terminal, my System Directive forces a full-file State Re-Sync, outputting the complete IaC Payload file from top to bottom so partial code snippets never corrupt my workspace.</span>
                         </div>
                         
                         <div class="bp-node bp-node-pink">
                             <span class="bp-node-title">2. Real-Time Defect &amp; Patch Ledger (patch_ledger.md)</span>
-                            <span class="bp-node-desc">Logging an entry in the Defect &amp; Patch Ledger does not require hitting the Circuit Breaker. Every time I verify a working fix during Iterations 1, 2, or 3, the root cause and exact engineering solution are staged immediately as a real-time DPL entry and saved into <span class="bullet-lead">patch_ledger.md</span> in Phase 5.</span>
+                            <span class="bp-node-desc">Logging an entry in the Defect &amp; Patch Ledger (DPL) does not require hitting the circuit breaker. Every time I verify a working fix during the Standard Patch Loop (Iterations 1, 2, or 3) across any phase, the root cause and exact engineering solution are staged immediately as a real-time DPL entry and compiled into <span class="bullet-lead">patch_ledger.md</span> in Phase 5.</span>
                         </div>
 
                         <div class="bp-node bp-node-pink">
                             <span class="bp-node-title">3. The 4-Iteration Circuit Breaker (Iteration 4 Halt)</span>
-                            <span class="bp-node-desc">If a specific error fails 3 times in a row and reaches Iteration 4, the Circuit Breaker trips automatically. The State Machine forbids the AI from generating any new code and forces a Risk Management Assessment: the AI must analyze the error shifts across its 3 failed tries, output an <span class="bullet-lead">Estimated Probability of Success (X%)</span>, and present alternative pathways for my decision.</span>
+                            <span class="bp-node-desc">If a single isolated error fails 3 times in a row during the Standard Patch Loop and reaches Iteration 4, The 4-Iteration Circuit Breaker trips automatically. The State Machine structurally forbids The AI Engine from generating any new code and forces a Risk Management Assessment: analyzing the error shifts across its 3 failed tries, calculating an <span class="bullet-lead">Estimated Probability of Success (X%)</span>, and presenting alternative pathways for my decision.</span>
                         </div>
 
                         <div class="bp-node bp-node-pink">
-                            <span class="bp-node-title">4. Phase 7 Scorecard &amp; System Directive Compilation</span>
-                            <span class="bp-node-desc">At session close in Phase 7, the machine outputs my statistical <span class="bullet-lead">AI Performance Scorecard</span> (counting every diagnostic loop, iteration, circuit breaker, and protocol deviation). It then extracts every proven fix from the Defect &amp; Patch Ledger and compiles the newly upgraded System Directive into a single code block.</span>
+                            <span class="bp-node-title">4. Phase 7 Continuous Improvement &amp; System Directive Compilation</span>
+                            <span class="bp-node-desc">At session close in Phase 7, The AI Engine outputs my statistical <span class="bullet-lead">AI Performance Scorecard</span> (counting every diagnostic loop, patch iteration, circuit breaker event, and protocol deviation). It then extracts every proven fix from the Defect &amp; Patch Ledger (DPL) and compiles my newly upgraded System Directive into a single code block so The State Machine permanently improves after every run.</span>
                         </div>
                     </div>
                 </div>
@@ -1016,20 +1033,20 @@
             <div class="class-header">[INDUSTRY AI SYSTEMS ENGINEERING CLASSIFICATION]</div>
             <div class="class-title">L4 Agentic Architecture Under Strict Human-in-the-Loop (HITL) Governance</div>
             <p class="class-intro">
-                Where does my <span class="bullet-lead">Zero Trust Interactive State Machine</span> sit within standard AI industry classifications? Rather than letting an AI model operate as an unchecked autonomous agent, or relying on one-shot unverified prompting, I engineered an <span class="bullet-lead">L4 Agentic Architecture</span> governed by strict human-in-the-loop authority. By tethering a probabilistic AI engine to my master <span class="bullet-lead">System Directive</span>, I harness the speed of automated multi-language code synthesis while keeping every state transition, terminal command, and cloud deployment under my direct control:
+                Where does my <span class="bullet-lead">Zero Trust Interactive State Machine</span> sit within standard AI Systems Engineering classifications? Rather than letting <span class="bullet-lead">The AI Engine</span> operate as an unchecked autonomous agent, or relying on one-shot unverified prompting, I engineered an <span class="bullet-lead">L4 Agentic Architecture</span> governed by my human-in-the-loop authority across all seven phases. By tethering <span class="bullet-lead">The AI Engine</span> to my master <span class="bullet-lead">System Directive</span> and the 26 fixed system variables in my <a href="glossary.html" class="inline-link">System Glossary</a>, I harness multi-language <span class="bullet-lead">IaC Payload</span> synthesis while keeping every state transition, <span class="bullet-lead">Terminal Runbook</span> command, and Azure deployment under my direct control:
             </p>
             <div class="class-grid">
                 <div class="class-card">
                     <h3>1. Applied Control Theory (Brakes &amp; Steering)</h3>
-                    <p><span class="bullet-lead">Full Human Authority Across All 7 Phases:</span> In systems engineering, control theory means putting reliable steering and emergency brakes on a powerful engine. By requiring my explicit verification at every phase of the build, and enforcing a 4-Iteration Circuit Breaker that halts code generation and calculates an Estimated Probability of Success percentage if any error fails 3 times, my System Directive gives me complete steering and braking authority over the AI Engine.</p>
+                    <p><span class="bullet-lead">Full Human Authority Across All 7 Phases:</span> In systems engineering, control theory means putting reliable steering and emergency brakes on a powerful engine. By requiring my explicit verification at every phase of the build, and enforcing The 4-Iteration Circuit Breaker that halts code generation and calculates an Estimated Probability of Success (X%) if any error fails 3 times and reaches Iteration 4, my System Directive gives me complete steering and braking authority over The AI Engine.</p>
                 </div>
                 <div class="class-card">
                     <h3>2. High-Assurance Verification (Two-Stage Live Proof)</h3>
-                    <p><span class="bullet-lead">Baseline Ledger, Portal Metrics &amp; Audit Proof:</span> In enterprise cloud security, a script finishing without an error message is never enough. I must mathematically prove the deployed configuration works. In Phase 4, I generate identity_architecture_ledger.md (IAL), run the live validation pipeline, and check Azure Portal Monitoring Metrics (Total Service API Hits over 30 minutes) for immediate proof of data-plane access, followed in Phase 5 by audit_results_ledger.md (ARL) and asynchronous KQL log queries (kql_telemetry.md) proving zero HTTP 403 Forbidden drops.</p>
+                    <p><span class="bullet-lead">IAL Baseline, Portal Metrics &amp; Audit Ledgers:</span> In enterprise cloud security, an IaC Payload finishing without an error message is never enough; I must mathematically prove the deployed configuration works. In Phase 4, I generate the Identity Architecture Ledger (IAL), run the Validation Bridge (with Runtime Log Masking) on my Execution Agent, and check Azure Portal Monitoring Metrics (Total Service API Hits over 30 minutes) on my Data-Plane Asset for immediate proof that the 60-Minute Login Token unlocked my Data-Plane Asset, followed in Phase 5 by the Audit Results Ledger (ARL) and asynchronous KQL Telemetry (kql_telemetry.md) proving zero HTTP 403 Forbidden drops.</p>
                 </div>
                 <div class="class-card">
-                    <h3>3. Continuous Rulebook Evolution (Self-Improving Harness)</h3>
-                    <p><span class="bullet-lead">Real-Time DPL Staging &amp; Phase 7 Compilation:</span> Instead of solving a cloud timing bug or API error once and losing the lesson when the chat window closes, every fix I verify in my local terminal is staged in real time inside patch_ledger.md (the Defect &amp; Patch Ledger). In Phase 7, I review the AI Performance Scorecard and compile those proven fixes permanently into my master System Directive, turning 28+ iterations of real-world cloud troubleshooting into a hardened, self-improving rulebook.</p>
+                    <h3>3. Continuous System Improvement (Self-Hardening Harness)</h3>
+                    <p><span class="bullet-lead">Real-Time DPL Staging &amp; Phase 7 Compilation:</span> Instead of solving a cloud timing bug or API schema quirk once and losing the lesson when the chat window closes, every fix I verify during the Standard Patch Loop (Iterations 1 to 3) is staged in real time inside the Defect &amp; Patch Ledger (patch_ledger.md or DPL) alongside a full-file State Re-Sync of my IaC Payload. In Phase 7, I review the AI Performance Scorecard and compile those proven fixes permanently into my master System Directive, ensuring The State Machine evolves and improves after every single execution.</p>
                 </div>
             </div>
         </div>

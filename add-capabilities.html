@@ -197,21 +197,26 @@
         .section-title { font-family: 'Montserrat', sans-serif; font-size: 2rem; font-weight: 900; color: var(--text-main); text-transform: uppercase; margin-bottom: 1.8rem; text-align: center; letter-spacing: 1px; }
         .divider { height: 1px; background: var(--border-base); margin: 4.5rem 0; width: 100%; }
 
-        /* ================= 6-BOX CAPABILITY MATRIX (ALL SELECTION BOXES BLANK) ================= */
+        /* ================= 6-BOX CAPABILITY MATRIX (WITH ACTIVE PROJECT CHECKMARKS RESTORED) ================= */
         .matrix-grid-6 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 3rem; }
         @media (max-width: 850px) { .matrix-grid-6 { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 600px) { .matrix-grid-6 { grid-template-columns: minmax(0, 1fr); } }
 
-        .matrix-card { background: rgba(10, 15, 29, 0.95); border: 1px solid var(--border-base); border-top: 3px solid var(--color-cyan); padding: 1.5rem; border-radius: 8px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.35); text-align: left; }
-        .matrix-card.highlight-card { border-top-color: var(--color-purple); }
+        .matrix-card { background: rgba(10, 15, 29, 0.95); border: 1px solid var(--border-base); border-top: 3px solid var(--color-blue); padding: 1.5rem; border-radius: 8px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.35); text-align: left; }
+        .matrix-card.highlight-card { border-top-color: var(--color-purple); background: rgba(168, 85, 247, 0.05); }
         .matrix-card h3 { font-size: 1rem; font-weight: 900; color: var(--text-main); margin-bottom: 1rem; border-bottom: 1px solid var(--border-base); padding-bottom: 0.65rem; font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
-        .matrix-card.highlight-card h3 { color: var(--color-purple); }
+        .matrix-card.highlight-card h3 { color: var(--color-purple); border-bottom-color: rgba(168, 85, 247, 0.3); }
         .matrix-list { list-style: none; }
-        .matrix-list li { font-size: 0.95rem; color: var(--text-main); font-weight: 600; margin-bottom: 0.75rem; display: flex; align-items: center; }
+        .matrix-list li { font-size: 0.95rem; color: var(--text-muted); font-weight: 500; margin-bottom: 0.75rem; display: flex; align-items: center; }
         .matrix-list li:last-child { margin-bottom: 0; }
+        .matrix-list li.active { color: var(--color-cyan); font-weight: 700; }
+        .matrix-list li.active-purple { color: var(--color-purple); font-weight: 700; }
         
-        .checkbox { display: inline-block; width: 16px; height: 16px; border: 1px solid var(--color-cyan); background: rgba(14, 165, 233, 0.08); border-radius: 3px; margin-right: 10px; position: relative; flex-shrink: 0; }
-        .highlight-card .checkbox { border-color: var(--color-purple); background: rgba(168, 85, 247, 0.08); }
+        .checkbox { display: inline-block; width: 16px; height: 16px; border: 1px solid var(--color-grey); border-radius: 3px; margin-right: 10px; position: relative; flex-shrink: 0; }
+        .active .checkbox { border-color: var(--color-cyan); background-color: rgba(14, 165, 233, 0.2); }
+        .active .checkbox::after { content: '✔'; position: absolute; top: -3px; left: 2px; color: var(--color-cyan); font-size: 12px; }
+        .active-purple .checkbox { border-color: var(--color-purple); background-color: rgba(168, 85, 247, 0.2); }
+        .active-purple .checkbox::after { content: '✔'; position: absolute; top: -3px; left: 2px; color: var(--color-purple); font-size: 12px; }
 
         /* ================= INSIGHT BOX ================= */
         .insight-box {
@@ -342,22 +347,22 @@
 
     <div class="container">
 
-        <!-- ================= 6-BOX CAPABILITY MATRIX (ALL SELECTION BOXES BLANK) ================= -->
-        <span class="section-tag" id="intake-matrix">[THE 5 BUILD COORDINATES + 35 DAY-2 EXPANSION MODULES]</span>
+        <!-- ================= 6-BOX CAPABILITY MATRIX (ACTIVE PROJECT SELECTIONS CHECKED) ================= -->
+        <span class="section-tag" id="intake-matrix">[SELECTED BUILD COORDINATES + DAY-2 EXPANSION MODULES FOR THIS EXECUTION]</span>
         <h2 class="section-title">Day-2 Capability Integration Matrix</h2>
 
         <div class="matrix-grid-6">
             <div class="matrix-card">
                 <h3>1. Identity Core</h3>
                 <ul class="matrix-list">
-                    <li><span class="checkbox"></span>Microsoft Entra ID</li>
+                    <li class="active"><span class="checkbox"></span>Microsoft Entra ID</li>
                 </ul>
             </div>
             <div class="matrix-card">
                 <h3>2. Execution Agent</h3>
                 <ul class="matrix-list">
                     <li><span class="checkbox"></span>Azure Kubernetes Service (AKS)</li>
-                    <li><span class="checkbox"></span>GitHub Actions</li>
+                    <li class="active"><span class="checkbox"></span>GitHub Actions</li>
                     <li><span class="checkbox"></span>Azure DevOps</li>
                     <li><span class="checkbox"></span>GitLab CI</li>
                 </ul>
@@ -365,14 +370,14 @@
             <div class="matrix-card">
                 <h3>3. Infrastructure State</h3>
                 <ul class="matrix-list">
-                    <li><span class="checkbox"></span>Brownfield (Existing)</li>
+                    <li class="active"><span class="checkbox"></span>Brownfield (Existing)</li>
                     <li><span class="checkbox"></span>Greenfield (Net-New)</li>
                 </ul>
             </div>
             <div class="matrix-card">
                 <h3>4. Data-Plane Asset</h3>
                 <ul class="matrix-list">
-                    <li><span class="checkbox"></span>Azure Key Vault</li>
+                    <li class="active"><span class="checkbox"></span>Azure Key Vault</li>
                     <li><span class="checkbox"></span>Storage Account</li>
                     <li><span class="checkbox"></span>SQL / Cosmos DB</li>
                 </ul>
@@ -382,16 +387,15 @@
                 <ul class="matrix-list">
                     <li><span class="checkbox"></span>Terraform (HCL)</li>
                     <li><span class="checkbox"></span>Azure Bicep</li>
-                    <li><span class="checkbox"></span>PowerShell REST API</li>
+                    <li class="active"><span class="checkbox"></span>PowerShell REST API</li>
                 </ul>
             </div>
             <!-- ADDITIONAL CAPABILITY BOX -->
             <div class="matrix-card highlight-card">
-                <h3>6. Day-2 Entra ID Modules (35)</h3>
+                <h3>6. Additional Configurations</h3>
                 <ul class="matrix-list">
-                    <li><span class="checkbox"></span>Workload Identity CA (CAWI)</li>
-                    <li><span class="checkbox"></span>Entra ID Protection (Risk)</li>
-                    <li><span class="checkbox"></span>PIM &amp; Entitlement Governance</li>
+                    <li class="active-purple"><span class="checkbox"></span>Workload Identity CAWI</li>
+                    <li class="active-purple"><span class="checkbox"></span>Entra ID Protection (Risk)</li>
                 </ul>
             </div>
         </div>

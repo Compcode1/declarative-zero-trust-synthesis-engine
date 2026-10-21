@@ -74,76 +74,258 @@
             box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
         }
 
-        /* ================= HERO HEADER ================= */
-        .hero { padding: 180px 20px 80px; text-align: center; border-bottom: 1px solid var(--border-base); }
-        .hero-title-container { display: flex; align-items: center; justify-content: center; margin-bottom: 36px; }
-        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 4rem; font-weight: 900; letter-spacing: 3px; color: var(--text-main); text-transform: uppercase; }
-        
-        .hero-section-header {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.45rem;
-            font-weight: 900;
-            letter-spacing: 1.5px;
-            color: var(--color-cyan);
-            text-transform: uppercase;
-            max-width: 1050px;
-            margin: 2.2rem auto 1rem;
-            padding-bottom: 0.75rem;
-            border-bottom: 2px solid var(--border-base);
-            text-align: left;
-        }
-
-        .hero-subtitle { font-size: 1.25rem; color: var(--text-main); font-weight: 600; max-width: 1050px; margin: 0 auto 1.5rem; line-height: 1.8; text-align: left; }
-
-        /* ================= HERO CORE ATTRIBUTE BULLETS ================= */
-        .hero-highlights-list {
-            max-width: 1050px;
-            margin: 0 auto 2.6rem;
-            padding-left: 1.5rem;
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            gap: 0.85rem;
-        }
-        .hero-highlights-list li {
-            font-size: 1.18rem;
-            color: var(--text-main);
-            font-weight: 600;
-            line-height: 1.75;
-            padding-left: 0.4rem;
-        }
-        .hero-highlights-list li::marker {
-            color: var(--color-cyan);
-            font-size: 1.25rem;
-        }
         .bullet-lead {
             color: var(--color-cyan);
             font-weight: 800;
         }
 
-        /* ================= 7-STEP HERO INSET BOX ================= */
-        .hero-sequence-box {
-            max-width: 1050px;
-            margin: 2.4rem auto;
-            background: rgba(10, 15, 29, 0.95);
+        /* ================= HERO HEADER & TOP ARCHITECTURE BLOCKS ================= */
+        .hero { padding: 155px 20px 60px; text-align: center; border-bottom: 1px solid var(--border-base); }
+        .hero-title-container { display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
+        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 4rem; font-weight: 900; letter-spacing: 3px; color: var(--text-main); text-transform: uppercase; }
+
+        /* JUMP LINKS BAR (TOP POSITION) */
+        .jump-links-container {
+            max-width: 1300px;
+            margin: 0 auto 3.2rem;
+            padding: 1.4rem 2rem;
+            background: rgba(15, 23, 42, 0.55);
             border: 1px solid var(--border-base);
-            border-left: 4px solid var(--color-cyan);
-            border-radius: 0 10px 10px 0;
-            padding: 2.5rem 2.6rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .jump-links-intro {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+        .jump-links { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 0.9rem; 
+        }
+        .jump-links a { 
+            color: var(--color-cyan); 
+            border: 1px solid var(--color-cyan); 
+            background: rgba(14, 165, 233, 0.08); 
+            padding: 0.65rem 1.3rem; 
+            border-radius: 8px; 
+            text-decoration: none; 
+            font-size: 0.88rem; 
+            font-weight: 700; 
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+            transition: all 0.3s ease; 
+        }
+        .jump-links a:hover { 
+            background: var(--color-cyan); 
+            color: #ffffff; 
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
+            transform: translateY(-2px); 
+        }
+
+        /* ELEVATED HERO ARCHITECTURAL CONTAINERS */
+        .hero-arch-block {
+            max-width: 1300px;
+            margin: 0 auto 3rem;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-base);
+            border-radius: 12px;
+            padding: 3rem 3.2rem;
             text-align: left;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
         }
-        .hero-sequence-header {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.45rem;
-            font-weight: 900;
-            letter-spacing: 1.5px;
-            color: var(--color-cyan);
+        .hero-arch-block.gates-block { border-top: 4px solid var(--color-green); }
+        .hero-arch-block.solution-block { border-top: 4px solid var(--color-purple); }
+        .hero-arch-block.sequence-block { border-top: 4px solid var(--color-cyan); }
+
+        .hero-block-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.88rem;
+            font-weight: 800;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 1.75rem;
-            padding-bottom: 1rem;
+            display: block;
+            margin-bottom: 0.6rem;
+        }
+        .gates-block .hero-block-tag { color: var(--color-green); }
+        .solution-block .hero-block-tag { color: var(--color-purple); }
+        .sequence-block .hero-block-tag { color: var(--color-cyan); }
+
+        .hero-block-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.85rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            color: var(--text-main);
+            text-transform: uppercase;
+            margin-bottom: 1.4rem;
+            padding-bottom: 0.9rem;
             border-bottom: 2px solid var(--border-base);
         }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        /* 4-COLUMN GATE CARDS GRID */
+        .gates-4col-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        .gate-card {
+            background: rgba(10, 15, 29, 0.95);
+            border: 1px solid var(--border-base);
+            border-top: 4px solid var(--color-green);
+            border-radius: 10px;
+            padding: 1.8rem 1.6rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+            display: flex;
+            flex-direction: column;
+        }
+        .gate-card-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: var(--color-green);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        .gate-card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 900;
+            color: var(--text-main);
+            text-transform: uppercase;
+            margin-bottom: 0.85rem;
+            padding-bottom: 0.7rem;
+            border-bottom: 1px solid var(--border-base);
+            line-height: 1.3;
+        }
+        .gate-card-text {
+            font-size: 1.02rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.65;
+        }
+
+        /* 2X2 ATTRIBUTES GRID FOR AI SOLUTION */
+        .attributes-2x2-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.75rem;
+        }
+        .attribute-card {
+            background: rgba(10, 15, 29, 0.95);
+            border: 1px solid var(--border-base);
+            border-left: 4px solid var(--color-purple);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+        }
+        .attribute-card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: var(--color-cyan);
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.65rem;
+            border-bottom: 1px solid var(--border-base);
+            letter-spacing: 0.5px;
+        }
+        .attribute-card-text {
+            font-size: 1.05rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.7;
+        }
+
+        /* 7 STEPPED PHASE CARDS */
+        .phase-cards-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 1.4rem;
+            margin-bottom: 2.2rem;
+        }
+        .phase-step-card {
+            background: rgba(10, 15, 29, 0.95);
+            border: 1px solid var(--border-base);
+            border-left: 4px solid var(--color-cyan);
+            border-radius: 10px;
+            padding: 1.85rem 2.2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+        }
+        .phase-step-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.7rem;
+            border-bottom: 1px solid var(--border-base);
+            flex-wrap: wrap;
+        }
+        .phase-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: #ffffff;
+            background: var(--color-cyan);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .phase-step-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .phase-step-lead {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.7;
+            margin-bottom: 0.85rem;
+        }
+        .phase-subgrid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+            list-style: none;
+            padding: 0;
+            margin-top: 0.85rem;
+        }
+        .phase-subgrid.three-col {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .phase-subitem {
+            background: rgba(2, 6, 23, 0.75);
+            border: 1px solid var(--border-base);
+            border-top: 2px solid var(--color-cyan);
+            border-radius: 6px;
+            padding: 1.1rem 1.25rem;
+            font-size: 1.02rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
+        /* GENERIC SUBLIST FOR OTHER SECTIONS */
         .hero-step-list {
             list-style: none;
             display: flex;
@@ -182,54 +364,12 @@
         }
 
         /* ================= INSIGHT CALLOUT ================= */
-        .insight-box { border-left: 4px solid var(--color-purple); padding: 2.2rem 2.5rem; margin: 2.5rem auto 2.8rem; max-width: 1050px; border-radius: 0 8px 8px 0; text-align: left; }
+        .insight-box { border-left: 4px solid var(--color-purple); padding: 2.2rem 2.5rem; margin: 2.5rem auto 0; max-width: 1300px; border-radius: 0 8px 8px 0; text-align: left; }
         .insight-header { font-family: 'Montserrat', sans-serif; font-size: 1.15rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.85rem; display: flex; align-items: center; gap: 8px; }
         .insight-header::before { content: '>'; font-weight: 900; }
         .insight-text { font-size: 1.2rem; color: var(--text-main); font-style: normal; line-height: 1.8; font-weight: 600; }
 
-        /* ================= JUMP LINKS & INTRO ================= */
-        .jump-links-container {
-            max-width: 1050px;
-            margin: 3rem auto 0;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border-base);
-            text-align: center;
-        }
-        .jump-links-intro {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--text-main);
-            letter-spacing: 0.5px;
-            margin-bottom: 1.5rem;
-        }
-        .jump-links { 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: center; 
-            gap: 1rem; 
-        }
-        .jump-links a { 
-            color: var(--color-cyan); 
-            border: 1px solid var(--color-cyan); 
-            background: rgba(14, 165, 233, 0.08); 
-            padding: 0.8rem 1.5rem; 
-            border-radius: 8px; 
-            text-decoration: none; 
-            font-size: 0.95rem; 
-            font-weight: 700; 
-            letter-spacing: 1px; 
-            text-transform: uppercase; 
-            transition: all 0.3s ease; 
-        }
-        .jump-links a:hover { 
-            background: var(--color-cyan); 
-            color: #ffffff; 
-            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
-            transform: translateY(-2px); 
-        }
-
-        #execution-triad, #execution-flow, #enterprise-guardrails, #environment-agnostic { 
+        #foundation-gates, #ai-solution, #execution-sequence, #execution-triad, #execution-flow, #enterprise-guardrails, #environment-agnostic { 
             scroll-margin-top: 100px; 
         }
 
@@ -395,6 +535,17 @@
             padding: 2.4rem 2.5rem;
             text-align: left;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+        }
+        .hero-sequence-header {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.45rem;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            color: var(--color-cyan);
+            text-transform: uppercase;
+            margin-bottom: 1.75rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border-base);
         }
 
         .guardrails-sub-header {
@@ -603,27 +754,29 @@
         }
 
         @media (max-width: 1100px) {
+            .gates-4col-grid { grid-template-columns: repeat(2, 1fr); }
+            .phase-subgrid.three-col { grid-template-columns: 1fr; }
             .matrix-5col-grid { grid-template-columns: repeat(3, 1fr); }
             .combinatorial-bar { flex-direction: column; text-align: center; }
         }
 
         @media (max-width: 992px) {
             .hero-title { font-size: 2.8rem; }
-            .summary-title, .section-title, .flow-title { font-size: 1.8rem; }
-            .triad-grid, .adaptation-grid { grid-template-columns: 1fr; }
-            .insight-box, .hero-sequence-box, .flow-mechanics-box, .pillars-inset-box { padding: 1.5rem; margin: 2rem 15px; }
-            .hero-sequence-header, .hero-section-header, .guardrails-sub-header { font-size: 1.2rem; }
+            .summary-title, .section-title, .flow-title, .hero-block-title { font-size: 1.65rem; }
+            .triad-grid, .adaptation-grid, .attributes-2x2-grid, .phase-subgrid { grid-template-columns: 1fr; }
+            .hero-arch-block, .polymorphic-box, .prelude-box { padding: 2rem 1.5rem; }
+            .insight-box, .flow-mechanics-box, .pillars-inset-box { padding: 1.5rem; margin: 2rem 0; }
+            .hero-sequence-header, .guardrails-sub-header { font-size: 1.2rem; }
             .vulnerability-grid { grid-template-columns: 1fr; }
-            .polymorphic-box, .prelude-box { padding: 2.5rem 1.5rem; }
         }
         
         @media (max-width: 700px) {
-            .matrix-5col-grid { grid-template-columns: 1fr; }
+            .gates-4col-grid, .matrix-5col-grid { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 600px) {
             .hero-title { font-size: 2.1rem; letter-spacing: 1px; }
-            .hero { padding-top: 200px; } 
+            .hero { padding-top: 190px; } 
             
             nav { padding: 1rem; }
             .nav-links { gap: 0.6rem; }
@@ -646,136 +799,267 @@
         </ul>
     </nav>
 
-    <!-- ================= SECTION 1: HERO HEADER, 4 GATES & 7-STEP SEQUENCE ================= -->
+    <!-- ================= SECTION 1: HERO HEADER, 4 GATES GRID, AI SOLUTION GRID & 7 PHASE CARDS ================= -->
     <header class="hero">
         <div class="hero-title-container">
             <h1 class="hero-title">INTELLIGENT ARCHITECTURE</h1>
         </div>
 
-        <!-- PART 1: THE ARCHITECTURAL FOUNDATION (THE 4 GATES) -->
-        <div class="hero-section-header">[THE ARCHITECTURAL FOUNDATION: THE 4 GATES OF MACHINE IDENTITY]</div>
-        
-        <p class="hero-subtitle">
-            At its core, securing any non-human workload or automation pipeline in Microsoft Entra ID and Azure, regardless of the CI/CD platform, database, or code language, comes down to configuring a predictable, four-part engineering foundation: <span class="bullet-lead">The Four Architectural Gates of Machine Identity.</span> While cloud tools and enterprise environments change constantly, I structure every zero-trust workload deployment around locking down these four gates in sequence:
-        </p>
-
-        <ul class="hero-highlights-list">
-            <li>
-                <span class="bullet-lead">Gate 1: Boundary (Where It Lives):</span> I lock in the exact Azure Tenant ID, Subscription ID, and Resource Group perimeter, while enforcing read-only lookups on existing Brownfield infrastructure so live resources are never overwritten.
-            </li>
-            <li>
-                <span class="bullet-lead">Gate 2: Identity (Who the Machine Is):</span> I provision a dedicated, Single-Tenant headless Application and Service Principal in Microsoft Entra ID with interactive browser logins disabled and zero saved passwords.
-            </li>
-            <li>
-                <span class="bullet-lead">Gate 3: Federation (How It Authenticates):</span> I replace static secrets with a passwordless, 60-minute OpenID Connect (OIDC) token exchange locked character-for-character to my exact repository and branch with zero wildcards.
-            </li>
-            <li>
-                <span class="bullet-lead">Gate 4: Access (What It Can Touch):</span> I block broad Owner or Contributor management roles and restrict permissions strictly to the data plane of the single target Key Vault, Storage Account, or database.
-            </li>
-        </ul>
-
-        <!-- PART 2: THE AI SYSTEMS ENGINEERING SOLUTION -->
-        <div class="hero-section-header">[THE AI SYSTEMS ENGINEERING SOLUTION: DETERMINISTIC EXECUTION]</div>
-
-        <p class="hero-subtitle">
-            Because these four architectural gates follow a strict, predictable logic, they can be engineered into a repeatable system, provided the automation engine never skips a gate. Out of the box, however, generative AI functions as a probabilistic engine. It is fast and capable, yet prone to guessing cloud resource IDs, inventing settings, or granting overly broad permissions when asked to generate a deployment script all at once. To solve this for my Microsoft Entra ID and Azure security deployments, I engineered a state-driven execution architecture grounded in AI systems engineering best practices, tethering that probabilistic AI engine to a master System Directive governed by state-machine gates, live terminal verification, and hard permission locks to make its output deterministic. The result is my <span class="bullet-lead">Zero Trust Interactive State Machine:</span>
-        </p>
-
-        <!-- BULLETED CORE ATTRIBUTES OF THE MACHINE -->
-        <ul class="hero-highlights-list">
-            <li>
-                <span class="bullet-lead">Strict Step-by-Step Human Control:</span> Guides my build one phase at a time with mandatory human-in-the-loop halts, preventing the AI from skipping steps or generating unverified code prematurely.
-            </li>
-            <li>
-                <span class="bullet-lead">Passwordless 60-Minute OIDC Federation:</span> Eliminates saved pipeline passwords and static secrets completely, replacing them with temporary 60-minute OpenID Connect (OIDC) tokens locked to my exact repository, branch, and single target vault.
-            </li>
-            <li>
-                <span class="bullet-lead">Mathematically Verified Zero Trust &amp; Audit Proof:</span> Validates live data-plane access through Azure Portal metrics and KQL log queries while automatically generating the formal pre-deployment and post-deployment compliance ledgers required for enterprise security audits.
-            </li>
-            <li>
-                <span class="bullet-lead">Real-Time Defect &amp; Patch Ledger &amp; The 4-Iteration Circuit Breaker:</span> Handles troubleshooting across any phase using two distinct mechanisms. First, whenever I verify a working fix during the Standard Patch Loop (Iterations 1 to 3), the root cause and solution are logged immediately in my Defect &amp; Patch Ledger with a full-file State Re-Sync, without needing to hit the circuit breaker. Second, if a single error fails 3 times and reaches Iteration 4, the 4-Iteration Circuit Breaker trips automatically, forbidding new code generation and forcing the AI to calculate an Estimated Probability of Success (X%) so I can decide whether to continue or pivot.
-            </li>
-        </ul>
-
-        <!-- PART 3: 7-STEP DETERMINISTIC EXECUTION SEQUENCE INSET BOX -->
-        <div class="hero-sequence-box">
-            <div class="hero-sequence-header">[THE 7-STEP DETERMINISTIC EXECUTION SEQUENCE]</div>
-            <ul class="hero-step-list">
-                <li class="hero-step-item">
-                    <span class="step-label">Phase 1: Boot, Clean Workspace &amp; 5-Coordinate Intake:</span> I set up an isolated local directory with five blank deliverable files and lock in the five core deployment coordinates alongside any Day-2 Entra ID security expansions.
-                    <ul class="step-sublist">
-                        <li><span class="bullet-lead">Full Coordinates On Hand:</span> If I provide all five parameters up front, the machine locks them in immediately and advances straight to Phase 2 without prompting.</li>
-                        <li><span class="bullet-lead">Missing Coordinates:</span> If I am missing any IDs, the machine outputs native read-only terminal lookup queries so I can extract the real Azure IDs before halting for my sign-off.</li>
-                    </ul>
-                </li>
-                <li class="hero-step-item">
-                    <span class="step-label">Phase 2: Coordinate Lock &amp; Cryptographic Extraction:</span> Bridges my cloud boundary and external pipeline before any deployment code is written.
-                    <ul class="step-sublist">
-                        <li><span class="bullet-lead">Backend ID Extraction:</span> I run local terminal scripts to pull exact repository identifiers, canonical character casing, and OIDC Issuer URLs directly from the provider.</li>
-                        <li><span class="bullet-lead">Mathematical Subject Claim:</span> Constructs an exact, wildcard-free OpenID Connect trust string so my token exchanges never fail.</li>
-                    </ul>
-                </li>
-                <li class="hero-step-item">
-                    <span class="step-label">Phase 3: Payload Synthesis &amp; Local Execution:</span> Generates the unified infrastructure-as-code deployment payload and exact terminal execution runbook for me to run locally.
-                    <ul class="step-sublist">
-                        <li><span class="bullet-lead">Hardened Identity &amp; Boundaries:</span> Enforces a Single-Tenant headless identity with zero passwords, read-only lookups for existing Brownfield resources (or deletion locks for Greenfield), and a 30-second wait timer for Microsoft Graph server sync.</li>
-                        <li><span class="bullet-lead">Least-Privilege Data Role &amp; MFA Safety:</span> Locks permissions strictly to the single target asset's data plane, automatically separating the role assignment into an Azure Portal step if my local terminal session drops MFA claims.</li>
-                    </ul>
-                </li>
-                <li class="hero-step-item">
-                    <span class="step-label">Phase 4: Cryptographic Baseline (IAL) &amp; Live Validation Bridge:</span> Proves my deployed connection works in live cloud reality under the Zero Trust principle of "Verify Explicitly."
-                    <ul class="step-sublist">
-                        <li><span class="bullet-lead">Identity Architecture Ledger (identity_architecture_ledger.md):</span> Records the immutable baseline of every deployed ID, OIDC string, and permission scope in my workspace.</li>
-                        <li><span class="bullet-lead">Live Pipeline &amp; Metric Verification:</span> I run the generated validation pipeline to a green checkmark, then verify the live data-plane read via Azure Portal Monitoring Metrics (Total Service API Hits over the last 30 minutes).</li>
-                    </ul>
-                </li>
-                <li class="hero-step-item">
-                    <span class="step-label">Phase 5: Enterprise Compliance Audit (ARL, KQL &amp; DPL):</span> Generates my formal audit and compliance evidence package once live access is confirmed with zero HTTP 403 Forbidden drops.
-                    <ul class="step-sublist">
-                        <li><span class="bullet-lead">Audit Results Ledger (audit_results_ledger.md):</span> Scores all four verification gates and the five enterprise safety guardrails.</li>
-                        <li><span class="bullet-lead">KQL Telemetry (kql_telemetry.md):</span> Provides the asynchronous Log Analytics query I run to prove token issuance matches vault access.</li>
-                        <li><span class="bullet-lead">Defect &amp; Patch Ledger (patch_ledger.md):</span> Compiles all real-time DPL entries recorded during any phase of the session into a standalone audit file.</li>
-                    </ul>
-                </li>
-                <li class="hero-step-item">
-                    <span class="step-label">Phase 6: Secure Repository Synchronization:</span> Closes out my local workspace and syncs the verified deliverables to my remote repository.
-                    <ul class="step-sublist">
-                        <li><span class="bullet-lead">State &amp; Credential Protection:</span> Pulls remote changes first and writes a protective .gitignore file so my local state files never leak.</li>
-                        <li><span class="bullet-lead">Automated Git Push:</span> Outputs a single copy-paste terminal script so I can commit and push the verified code and ledgers cleanly.</li>
-                    </ul>
-                </li>
-                <li class="hero-step-item">
-                    <span class="step-label">Phase 7: Session Scorecard &amp; Continuous System Directive Upgrades (Backed by All-Phase Troubleshooting):</span> Closes out the build and permanently upgrades my master rulebook, supported by the troubleshooting protocols active across all phases.
-                    <ul class="step-sublist">
-                        <li><span class="bullet-lead">Standard Patch Loop (Iterations 1 to 3) vs. The 4-Iteration Circuit Breaker:</span> During any phase of the build, routine errors solved within Iterations 1 to 3 are logged immediately in the Defect &amp; Patch Ledger with a full-file State Re-Sync. If an error fails 3 times and reaches Iteration 4, the 4-Iteration Circuit Breaker halts code generation and forces the AI to calculate an Estimated Probability of Success (X%) so I can decide whether to stay the course or pivot.</li>
-                        <li><span class="bullet-lead">Phase 7 AI Performance Scorecard &amp; System Upgrade:</span> At session close, outputs an exact statistical scorecard of the session, extracts every lesson learned from my Defect &amp; Patch Ledger, and compiles the newly upgraded System Directive into a single code block.</li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-
-        <p class="hero-subtitle" style="margin-bottom: 0;">
-            By governing the Four Architectural Gates through these seven explicit phases, I leave nothing to guesswork. Every build I execute produces a mathematically verified Zero Trust configuration in the live cloud, backed by a complete, audit-ready compliance trail (the Identity Architecture Ledger, the Audit Results Ledger, asynchronous KQL log queries, and the Defect &amp; Patch Ledger), turning every deployment into a repeatable, self-improving engineering asset.
-        </p>
-        
-        <!-- HERO ARCHITECTURAL INSIGHT -->
-        <div class="insight-box" style="background: linear-gradient(90deg, rgba(168, 85, 247, 0.1) 0%, transparent 100%);">
-            <div class="insight-header" style="color: var(--color-purple);">Architectural Insight: Applied AI Systems Engineering</div>
-            <div class="insight-text">
-                The 7-phase workflow above is the direct product of applying AI systems engineering best practices to cloud identity security. Left untethered, any generative AI model will eventually drift into probabilistic behavior. By translating established industry frameworks, including the NIST AI Risk Management Framework, the OWASP Top 10 for Large Language Models, and the ReAct (Reason + Act) methodology, into a strict deterministic harness, I built this system to account for both the realities of how AI engines behave and the strict compliance and audit requirements of enterprise cloud security. Every gate, terminal check, audit ledger, and circuit breaker exists to ensure I configure Zero Trust identities safely, repeatably, and with verifiable proof.
-            </div>
-        </div>
-
-        <!-- JUMP LINKS WITH INTRODUCTION -->
+        <!-- TOP QUICK-JUMP NAVIGATION BAR -->
         <div class="jump-links-container">
             <div class="jump-links-intro">
                 Explore the Technical Architecture Below. Select any section to jump directly to the detailed breakdown:
             </div>
             <div class="jump-links">
-                <a href="#execution-triad">1. The Execution Triad</a>
-                <a href="#execution-flow">2. System Topology &amp; Runtime Mechanics</a>
-                <a href="#enterprise-guardrails">3. The 4 AI Pillars &amp; 5 Safety Guardrails</a>
-                <a href="#environment-agnostic">4. 72 Build Combinations</a>
+                <a href="#foundation-gates">1. The 4 Gates of Machine Identity</a>
+                <a href="#ai-solution">2. Deterministic AI Solution</a>
+                <a href="#execution-sequence">3. The 7-Phase Execution Sequence</a>
+                <a href="#execution-triad">4. The Execution Triad</a>
+                <a href="#execution-flow">5. System Topology &amp; Mechanics</a>
+                <a href="#enterprise-guardrails">6. The 4 AI Pillars &amp; 5 Guardrails</a>
+                <a href="#environment-agnostic">7. 72 Build Combinations</a>
+            </div>
+        </div>
+
+        <!-- VISUAL BLOCK 1: THE ARCHITECTURAL FOUNDATION (4-COLUMN GATE CARD GRID) -->
+        <div class="hero-arch-block gates-block" id="foundation-gates">
+            <span class="hero-block-tag">[PART 01 :: CLOUD IAM FOUNDATION]</span>
+            <h2 class="hero-block-title">The Architectural Foundation: The 4 Gates of Machine Identity</h2>
+            
+            <p class="hero-subtitle">
+                At its core, securing any non-human workload or automation pipeline in Microsoft Entra ID and Azure, regardless of the CI/CD platform, database, or code language, comes down to configuring a predictable, four-part engineering foundation: <span class="bullet-lead">The Four Architectural Gates of Machine Identity.</span> While cloud tools and enterprise environments change constantly, I structure every zero-trust workload deployment around locking down these four gates in sequence:
+            </p>
+
+            <div class="gates-4col-grid">
+                <div class="gate-card">
+                    <span class="gate-card-badge">[GATE 01 :: PERIMETER]</span>
+                    <h3 class="gate-card-title">Gate 1: Boundary (Where It Lives)</h3>
+                    <p class="gate-card-text">
+                        I lock in the exact Azure Tenant ID, Subscription ID, and Resource Group perimeter, while enforcing read-only lookups on existing Brownfield infrastructure so live resources are never overwritten.
+                    </p>
+                </div>
+
+                <div class="gate-card">
+                    <span class="gate-card-badge">[GATE 02 :: PRINCIPAL]</span>
+                    <h3 class="gate-card-title">Gate 2: Identity (Who the Machine Is)</h3>
+                    <p class="gate-card-text">
+                        I provision a dedicated, Single-Tenant headless Application and Service Principal in Microsoft Entra ID with interactive browser logins disabled and zero saved passwords.
+                    </p>
+                </div>
+
+                <div class="gate-card">
+                    <span class="gate-card-badge">[GATE 03 :: AUTHENTICATION]</span>
+                    <h3 class="gate-card-title">Gate 3: Federation (How It Authenticates)</h3>
+                    <p class="gate-card-text">
+                        I replace static secrets with a passwordless, 60-minute OpenID Connect (OIDC) token exchange locked character-for-character to my exact repository and branch with zero wildcards.
+                    </p>
+                </div>
+
+                <div class="gate-card">
+                    <span class="gate-card-badge">[GATE 04 :: AUTHORIZATION]</span>
+                    <h3 class="gate-card-title">Gate 4: Access (What It Can Touch)</h3>
+                    <p class="gate-card-text">
+                        I block broad Owner or Contributor management roles and restrict permissions strictly to the data plane of the single target Key Vault, Storage Account, or database.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- VISUAL BLOCK 2: THE AI SYSTEMS ENGINEERING SOLUTION (2X2 CARD GRID) -->
+        <div class="hero-arch-block solution-block" id="ai-solution">
+            <span class="hero-block-tag">[PART 02 :: TETHERED AI GOVERNANCE]</span>
+            <h2 class="hero-block-title">The AI Systems Engineering Solution: Deterministic Execution</h2>
+
+            <p class="hero-subtitle">
+                Because these four architectural gates follow a strict, predictable logic, they can be engineered into a repeatable system, provided the automation engine never skips a gate. Out of the box, however, generative AI functions as a probabilistic engine. It is fast and capable, yet prone to guessing cloud resource IDs, inventing settings, or granting overly broad permissions when asked to generate a deployment script all at once. To solve this for my Microsoft Entra ID and Azure security deployments, I engineered a state-driven execution architecture grounded in AI systems engineering best practices, tethering that probabilistic AI engine to a master System Directive governed by state-machine gates, live terminal verification, and hard permission locks to make its output deterministic. The result is my <span class="bullet-lead">Zero Trust Interactive State Machine:</span>
+            </p>
+
+            <div class="attributes-2x2-grid">
+                <div class="attribute-card">
+                    <h3 class="attribute-card-title">1. Strict Step-by-Step Human Control</h3>
+                    <p class="attribute-card-text">
+                        Guides my build one phase at a time with mandatory human-in-the-loop halts, preventing the AI from skipping steps or generating unverified code prematurely.
+                    </p>
+                </div>
+
+                <div class="attribute-card">
+                    <h3 class="attribute-card-title">2. Passwordless 60-Minute OIDC Federation</h3>
+                    <p class="attribute-card-text">
+                        Eliminates saved pipeline passwords and static secrets completely, replacing them with temporary 60-minute OpenID Connect (OIDC) tokens locked to my exact repository, branch, and single target vault.
+                    </p>
+                </div>
+
+                <div class="attribute-card">
+                    <h3 class="attribute-card-title">3. Mathematically Verified Zero Trust &amp; Audit Proof</h3>
+                    <p class="attribute-card-text">
+                        Validates live data-plane access through Azure Portal metrics and KQL log queries while automatically generating the formal pre-deployment and post-deployment compliance ledgers required for enterprise security audits.
+                    </p>
+                </div>
+
+                <div class="attribute-card">
+                    <h3 class="attribute-card-title">4. Real-Time Defect &amp; Patch Ledger &amp; The 4-Iteration Circuit Breaker</h3>
+                    <p class="attribute-card-text">
+                        Handles troubleshooting across any phase using two distinct mechanisms. First, whenever I verify a working fix during the Standard Patch Loop (Iterations 1 to 3), the root cause and solution are logged immediately in my Defect &amp; Patch Ledger with a full-file State Re-Sync, without needing to hit the circuit breaker. Second, if a single error fails 3 times and reaches Iteration 4, the 4-Iteration Circuit Breaker trips automatically, forbidding new code generation and forcing the AI to calculate an Estimated Probability of Success (X%) so I can decide whether to continue or pivot.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- VISUAL BLOCK 3: 7-STEP DETERMINISTIC EXECUTION SEQUENCE (STEPPED PHASE CARDS) -->
+        <div class="hero-arch-block sequence-block" id="execution-sequence">
+            <span class="hero-block-tag">[PART 03 :: END-TO-END WORKFLOW AT THE KEYBOARD]</span>
+            <h2 class="hero-block-title">The 7-Step Deterministic Execution Sequence</h2>
+
+            <div class="phase-cards-stack">
+                
+                <!-- PHASE 1 CARD -->
+                <div class="phase-step-card">
+                    <div class="phase-step-header">
+                        <span class="phase-badge">Phase 01</span>
+                        <h3 class="phase-step-title">Boot, Clean Workspace &amp; 5-Coordinate Intake</h3>
+                    </div>
+                    <p class="phase-step-lead">
+                        I set up an isolated local directory with five blank deliverable files and lock in the five core deployment coordinates alongside any Day-2 Entra ID security expansions.
+                    </p>
+                    <div class="phase-subgrid">
+                        <div class="phase-subitem">
+                            <span class="bullet-lead">Full Coordinates On Hand:</span> If I provide all five parameters up front, the machine locks them in immediately and advances straight to Phase 2 without prompting.
+                        </div>
+                        <div class="phase-subitem">
+                            <span class="bullet-lead">Missing Coordinates:</span> If I am missing any IDs, the machine outputs native read-only terminal lookup queries so I can extract the real Azure IDs before halting for my sign-off.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHASE 2 CARD -->
+                <div class="phase-step-card">
+                    <div class="phase-step-header">
+                        <span class="phase-badge">Phase 02</span>
+                        <h3 class="phase-step-title">Coordinate Lock &amp; Cryptographic Extraction</h3>
+                    </div>
+                    <p class="phase-step-lead">
+                        Bridges my cloud boundary and external pipeline before any deployment code is written.
+                    </p>
+                    <div class="phase-subgrid">
+                        <div class="phase-subitem">
+                            <span class="bullet-lead">Backend ID Extraction:</span> I run local terminal scripts to pull exact repository identifiers, canonical character casing, and OIDC Issuer URLs directly from the provider.
+                        </div>
+                        <div class="phase-subitem">
+                            <span class="bullet-lead">Mathematical Subject Claim:</span> Constructs an exact, wildcard-free OpenID Connect trust string so my token exchanges never fail.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHASE 3 CARD -->
+                <div class="phase-step-card">
+                    <div class="phase-step-header">
+                        <span class="phase-badge">Phase 03</span>
+                        <h3 class="phase-step-title">Payload Synthesis &amp; Local Execution</h3>
+                    </div>
+                    <p class="phase-step-lead">
+                        Generates the unified infrastructure-as-code deployment payload and exact terminal execution runbook for me to run locally.
+                    </p>
+                    <div class="phase-subgrid">
+                        <div class="phase-subitem">
+                            <span class="bullet-lead">Hardened Identity &amp; Boundaries:</span> Enforces a Single-Tenant headless identity with zero passwords, read-only lookups for existing Brownfield resources (or deletion locks for Greenfield), and a 30-second wait timer for Microsoft Graph server sync.
+                        </div>
+                        <div class="phase-subitem">
+                            <span class="bullet-lead">Least-Privilege Data Role &amp; MFA Safety:</span> Locks permissions strictly to the single target asset's data plane, automatically separating the role assignment into an Azure Portal step if my local terminal session drops MFA claims.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHASE 4 CARD -->
+                <div class="phase-step-card">
+                    <div class="phase-step-header">
+                        <span class="phase-badge">Phase 04</span>
+                        <h3 class="phase-step-title">Cryptographic Baseline (IAL) &amp; Live Validation Bridge</h3>
+                    </div>
+                    <p class="phase-step-lead">
+                        Proves my deployed connection works in live cloud reality under the Zero Trust principle of "Verify Explicitly."
+                    </p>
+                    <div class="phase-subgrid">
+                        <div class="phase-subitem">
+                            <span class="bullet-lead">Identity Architecture Ledger (identity_architecture_ledger.md):</span> Records the immutable baseline of every deployed ID, OIDC string, and permission scope in my workspace.
+                        </div>
+                        <div class="phase-subitem">
+                            <span class="bullet-lead">Live Pipeline &amp; Metric Verification:</span> I run the generated validation pipeline to a green checkmark, then verify the live data-plane read via Azure Portal Monitoring Metrics (Total Service API Hits over the last 30 minutes).
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHASE 5 CARD -->
+                <div class="phase-step-card">
+                    <div class="phase-step-header">
+                        <span class="phase-badge">Phase 05</span>
+                        <h3 class="phase-step-title">Enterprise Compliance Audit (ARL, KQL &amp; DPL)</h3>
+                    </div>
+                    <p class="phase-step-lead">
+                        Generates my formal audit and compliance evidence package once live access is confirmed with zero HTTP 403 Forbidden drops.
+                    </p>
+                    <div class="phase-subgrid three-col">
+                        <div class="phase-subitem">
+                            <span class="bullet-lead">Audit Results Ledger (audit_results_ledger.md):</span> Scores all four verification gates and the five enterprise safety guardrails.
+                        </div>
+                        <div class="phase-subitem">
+                            <span class="bullet-lead">KQL Telemetry (kql_telemetry.md):</span> Provides the asynchronous Log Analytics query I run to prove token issuance matches vault access.
+                        </div>
+                        <div class="phase-subitem">
+                            <span class="bullet-lead">Defect &amp; Patch Ledger (patch_ledger.md):</span> Compiles all real-time DPL entries recorded during any phase of the session into a standalone audit file.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHASE 6 CARD -->
+                <div class="phase-step-card">
+                    <div class="phase-step-header">
+                        <span class="phase-badge">Phase 06</span>
+                        <h3 class="phase-step-title">Secure Repository Synchronization</h3>
+                    </div>
+                    <p class="phase-step-lead">
+                        Closes out my local workspace and syncs the verified deliverables to my remote repository.
+                    </p>
+                    <div class="phase-subgrid">
+                        <div class="phase-subitem">
+                            <span class="bullet-lead">State &amp; Credential Protection:</span> Pulls remote changes first and writes a protective .gitignore file so my local state files never leak.
+                        </div>
+                        <div class="phase-subitem">
+                            <span class="bullet-lead">Automated Git Push:</span> Outputs a single copy-paste terminal script so I can commit and push the verified code and ledgers cleanly.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHASE 7 CARD -->
+                <div class="phase-step-card">
+                    <div class="phase-step-header">
+                        <span class="phase-badge">Phase 07</span>
+                        <h3 class="phase-step-title">Session Scorecard &amp; Continuous System Directive Upgrades (Backed by All-Phase Troubleshooting)</h3>
+                    </div>
+                    <p class="phase-step-lead">
+                        Closes out the build and permanently upgrades my master rulebook, supported by the troubleshooting protocols active across all phases.
+                    </p>
+                    <div class="phase-subgrid">
+                        <div class="phase-subitem">
+                            <span class="bullet-lead">Standard Patch Loop (Iterations 1 to 3) vs. The 4-Iteration Circuit Breaker:</span> During any phase of the build, routine errors solved within Iterations 1 to 3 are logged immediately in the Defect &amp; Patch Ledger with a full-file State Re-Sync. If an error fails 3 times and reaches Iteration 4, the 4-Iteration Circuit Breaker halts code generation and forces the AI to calculate an Estimated Probability of Success (X%) so I can decide whether to stay the course or pivot.
+                        </div>
+                        <div class="phase-subitem">
+                            <span class="bullet-lead">Phase 7 AI Performance Scorecard &amp; System Upgrade:</span> At session close, outputs an exact statistical scorecard of the session, extracts every lesson learned from my Defect &amp; Patch Ledger, and compiles the newly upgraded System Directive into a single code block.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <p class="hero-subtitle" style="margin-bottom: 0;">
+                By governing the Four Architectural Gates through these seven explicit phases, I leave nothing to guesswork. Every build I execute produces a mathematically verified Zero Trust configuration in the live cloud, backed by a complete, audit-ready compliance trail (the Identity Architecture Ledger, the Audit Results Ledger, asynchronous KQL log queries, and the Defect &amp; Patch Ledger), turning every deployment into a repeatable, self-improving engineering asset.
+            </p>
+
+            <!-- HERO ARCHITECTURAL INSIGHT -->
+            <div class="insight-box" style="background: linear-gradient(90deg, rgba(168, 85, 247, 0.1) 0%, transparent 100%);">
+                <div class="insight-header" style="color: var(--color-purple);">Architectural Insight: Applied AI Systems Engineering</div>
+                <div class="insight-text">
+                    The 7-phase workflow above is the direct product of applying AI systems engineering best practices to cloud identity security. Left untethered, any generative AI model will eventually drift into probabilistic behavior. By translating established industry frameworks, including the NIST AI Risk Management Framework, the OWASP Top 10 for Large Language Models, and the ReAct (Reason + Act) methodology, into a strict deterministic harness, I built this system to account for both the realities of how AI engines behave and the strict compliance and audit requirements of enterprise cloud security. Every gate, terminal check, audit ledger, and circuit breaker exists to ensure I configure Zero Trust identities safely, repeatably, and with verifiable proof.
+                </div>
             </div>
         </div>
     </header>

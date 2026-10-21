@@ -139,7 +139,7 @@
             text-align: left;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
         }
-        .hero-arch-block.topology-block { border-top: 4px solid var(--color-cyan); }
+        .hero-arch-block.topology-block { border-top: 4px solid var(--color-cyan); padding: 2.8rem 2.5rem; }
         .hero-arch-block.math-block { border-top: 4px solid var(--color-blue); }
         .hero-arch-block.gates-block { border-top: 4px solid var(--color-green); }
         .hero-arch-block.solution-block { border-top: 4px solid var(--color-purple); }
@@ -489,12 +489,12 @@
             color: var(--color-cyan);
         }
         
-        /* ================= THE GRAPHIC & ARCHITECTURAL FLOW ================= */
+        /* ================= THE GRAPHIC & ARCHITECTURAL FLOW (ZERO SCROLLBAR ON DESKTOP, FULL HEIGHT) ================= */
         .flow-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 900; color: var(--color-cyan); margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 1px; text-align: center; width: 100%; }
         
-        .canvas-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 5px; }
+        .canvas-wrapper { width: 100%; overflow: visible; }
         .diagram-canvas {
-            position: relative; max-width: 1200px; min-width: 1200px; height: 730px; margin: 0 auto;
+            position: relative; width: 1180px; max-width: 100%; height: 860px; margin: 0 auto;
             background-color: rgba(2, 6, 23, 0.92);
             background-image: linear-gradient(to right, rgba(30, 41, 59, 0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(30, 41, 59, 0.5) 1px, transparent 1px);
             background-size: 40px 40px; border: 1px solid var(--border-base); border-radius: 12px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
@@ -526,15 +526,16 @@
         .animated-path { stroke-dasharray: 8, 12; animation: flow 1s linear infinite; }
 
         .node { position: absolute; background: var(--bg-node); border: 1px solid var(--border-base); border-radius: 8px; padding: 1.05rem; z-index: 2; backdrop-filter: blur(8px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3); }
-        .node-title { font-size: 0.94rem; font-weight: 900; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.55rem; line-height: 1.25; color: var(--text-main); }
+        .node-title { font-size: 0.92rem; font-weight: 900; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.55rem; line-height: 1.25; color: var(--text-main); }
         .node-text { font-size: 0.8rem; color: var(--text-main); font-weight: 500; line-height: 1.48; }
         .tag { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; font-weight: 800; padding: 3px 6px; border: 1px solid; border-radius: 4px; display: inline-block; margin-bottom: 0.55rem; letter-spacing: 0.5px; }
 
-        .node-engineer { left: 20px; top: 30px; width: 205px; border-left: 4px solid var(--color-blue); }
+        /* TOP ROW NODES (y = 25px) */
+        .node-engineer { left: 15px; top: 25px; width: 205px; border-left: 4px solid var(--color-blue); }
         .node-engineer .tag { color: var(--color-blue); border-color: rgba(59, 130, 246, 0.3); }
         
         .node-compiler { 
-            left: 250px; top: 30px; width: 225px; 
+            left: 245px; top: 25px; width: 225px; 
             border: 2px solid var(--color-purple); border-left: 6px solid var(--color-purple); 
             background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(168, 85, 247, 0.15) 4px, rgba(168, 85, 247, 0.15) 8px), linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(10, 15, 29, 0.95) 100%), var(--bg-node);
             box-shadow: 0 0 25px rgba(168, 85, 247, 0.35), inset 0 0 15px rgba(168, 85, 247, 0.15);
@@ -542,19 +543,18 @@
         }
         .node-compiler .tag { color: var(--color-purple); border-color: rgba(168, 85, 247, 0.3); }
 
-        .node-iac { left: 500px; top: 30px; width: 195px; border-left: 4px solid var(--color-cyan); }
+        .node-iac { left: 495px; top: 25px; width: 195px; border-left: 4px solid var(--color-cyan); }
         .node-iac .tag { color: var(--color-cyan); border-color: rgba(14, 165, 233, 0.3); }
         
-        .node-core { left: 720px; top: 30px; width: 220px; border: 1px solid rgba(16, 185, 129, 0.3); border-left: 4px solid var(--color-green); }
+        .node-core { left: 715px; top: 25px; width: 215px; border: 1px solid rgba(16, 185, 129, 0.3); border-left: 4px solid var(--color-green); }
         .node-core .tag { color: var(--color-green); border-color: rgba(16, 185, 129, 0.3); }
-        .node-core .highlight { color: var(--color-green); font-weight: 700; margin-top: 6px; display: block; }
 
-        .node-scale { left: 965px; top: 30px; width: 215px; border: 1px dashed var(--color-purple); border-left: 4px solid var(--color-purple); }
+        .node-scale { left: 955px; top: 25px; width: 210px; border: 1px dashed var(--color-purple); border-left: 4px solid var(--color-purple); }
         .node-scale .tag { color: var(--color-purple); border-color: rgba(168, 85, 247, 0.3); }
-        .node-scale .highlight { color: var(--color-purple); font-weight: 700; margin-top: 6px; display: block; }
         
+        /* BOTTOM ROW NODES (y = 465px / 500px — ZERO OVERLAP WITH TOP ROW & ZERO BOTTOM CLIPPING) */
         .node-engine { 
-            left: 20px; top: 380px; width: 205px; 
+            left: 15px; top: 465px; width: 205px; 
             border: 2px solid var(--color-cyan); border-left: 6px solid var(--color-cyan); 
             background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(14, 165, 233, 0.18) 4px, rgba(14, 165, 233, 0.18) 8px), linear-gradient(135deg, rgba(14, 165, 233, 0.25) 0%, rgba(10, 15, 29, 0.95) 100%), var(--bg-node); 
             box-shadow: 0 0 25px rgba(14, 165, 233, 0.45), inset 0 0 15px rgba(14, 165, 233, 0.25); 
@@ -563,7 +563,7 @@
         .node-engine .tag { color: var(--color-cyan); border-color: rgba(14, 165, 233, 0.3); margin-right: 5px; }
 
         .node-dpl { 
-            left: 250px; top: 440px; width: 390px; 
+            left: 245px; top: 500px; width: 385px; 
             border: 2px solid var(--color-red); border-left: 6px solid var(--color-red); 
             background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(244, 63, 94, 0.15) 4px, rgba(244, 63, 94, 0.15) 8px), linear-gradient(135deg, rgba(244, 63, 94, 0.15) 0%, rgba(10, 15, 29, 0.95) 100%), var(--bg-node); 
             box-shadow: 0 0 25px rgba(244, 63, 94, 0.35), inset 0 0 15px rgba(244, 63, 94, 0.15); 
@@ -571,10 +571,10 @@
         }
         .node-dpl .tag { color: var(--color-red); border-color: rgba(244, 63, 94, 0.3); }
 
-        .node-ial { left: 665px; top: 440px; width: 240px; border-left: 4px solid var(--color-green); }
+        .node-ial { left: 655px; top: 500px; width: 240px; border-left: 4px solid var(--color-green); }
         .node-ial .tag { color: var(--color-green); border-color: rgba(16, 185, 129, 0.3); }
         
-        .node-arl { left: 930px; top: 440px; width: 250px; border-left: 4px solid var(--color-green); }
+        .node-arl { left: 920px; top: 500px; width: 245px; border-left: 4px solid var(--color-green); }
         .node-arl .tag { color: var(--color-green); border-color: rgba(16, 185, 129, 0.3); }
 
         /* ================= ARCHITECTURAL FLOW EXPLANATION (UNDER THE HOOD) ================= */
@@ -830,6 +830,11 @@
             font-weight: 700;
         }
 
+        @media (max-width: 1260px) {
+            .canvas-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 10px; }
+            .diagram-canvas { min-width: 1180px; }
+        }
+
         @media (max-width: 1100px) {
             .gates-4col-grid { grid-template-columns: repeat(2, 1fr); }
             .phase-subgrid.three-col { grid-template-columns: 1fr; }
@@ -917,27 +922,27 @@
                             <marker id="arrow-red-start" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 10 0 L 0 5 L 10 10 z" fill="#f43f5e" /></marker>
                         </defs>
                         <!-- Architect to AI Engine -->
-                        <path class="animated-path" d="M 225 110 L 250 110" fill="none" stroke="#3b82f6" stroke-width="3" marker-end="url(#arrow-blue)" />
+                        <path class="animated-path" d="M 220 115 L 245 115" fill="none" stroke="#3b82f6" stroke-width="3" marker-end="url(#arrow-blue)" />
                         <!-- AI Engine to Architect -->
-                        <path class="animated-path" d="M 250 140 L 225 140" fill="none" stroke="#a855f7" stroke-width="2" marker-end="url(#arrow-purple)" />
+                        <path class="animated-path" d="M 245 145 L 220 145" fill="none" stroke="#a855f7" stroke-width="2" marker-end="url(#arrow-purple)" />
                         <!-- State Machine to AI Engine -->
-                        <path class="animated-path" d="M 225 430 L 362 430 L 362 340" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
+                        <path class="animated-path" d="M 220 480 L 357 480 L 357 380" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
                         <!-- AI Engine to IaC Payload -->
-                        <path class="animated-path" d="M 475 110 L 500 110" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
+                        <path class="animated-path" d="M 470 115 L 495 115" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
                         <!-- IaC Payload to Core Machine Identity -->
-                        <path class="animated-path" d="M 695 110 L 720 110" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
+                        <path class="animated-path" d="M 690 115 L 715 115" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
                         <!-- Core Machine Identity to 35 Core Entra ID Modules -->
-                        <path class="animated-path" d="M 940 110 L 965 110" fill="none" stroke="#a855f7" stroke-width="3" marker-end="url(#arrow-purple)" />
+                        <path class="animated-path" d="M 930 115 L 955 115" fill="none" stroke="#a855f7" stroke-width="3" marker-end="url(#arrow-purple)" />
 
                         <!-- Core Machine Identity Down to Verification Split -->
-                        <path class="animated-path" d="M 830 330 L 830 390" fill="none" stroke="#10b981" stroke-width="2" />
+                        <path class="animated-path" d="M 822 335 L 822 440" fill="none" stroke="#10b981" stroke-width="2" />
                         <!-- Split to Identity Architecture Ledger -->
-                        <path class="animated-path" d="M 830 390 L 785 390 L 785 435" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
+                        <path class="animated-path" d="M 822 440 L 775 440 L 775 495" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
                         <!-- Split to Live Telemetry & Compliance Ledgers -->
-                        <path class="animated-path" d="M 830 390 L 1055 390 L 1055 435" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
+                        <path class="animated-path" d="M 822 440 L 1042 440 L 1042 495" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
                         
                         <!-- State Machine to Continuous Improvement (Bidirectional Feedback) -->
-                        <path class="animated-path" d="M 225 540 L 250 540" fill="none" stroke="#f43f5e" stroke-width="3" marker-start="url(#arrow-red-start)" marker-end="url(#arrow-red-end)" />
+                        <path class="animated-path" d="M 220 600 L 245 600" fill="none" stroke="#f43f5e" stroke-width="3" marker-start="url(#arrow-red-start)" marker-end="url(#arrow-red-end)" />
                     </svg>
 
                     <div class="node node-engineer">
@@ -973,13 +978,13 @@
                     <div class="node node-core">
                         <div class="tag">[CORE MACHINE IDENTITY]</div>
                         <div class="node-title">Verified Zero Trust Foundation</div>
-                        <div class="node-text">Establishes the live, passwordless non-human identity core in Microsoft Entra ID and Azure, binding a Single-Tenant Service Principal to an exact OpenID Connect (OIDC) Subject Claim.<span class="highlight">60-Minute Login Token locked strictly to one Data-Plane Asset.</span></div>
+                        <div class="node-text">Establishes the live, passwordless non-human identity core in Microsoft Entra ID and Azure, binding a Single-Tenant Service Principal to an exact OpenID Connect (OIDC) Subject Claim so the Execution Agent receives a 60-Minute Login Token locked strictly to one Data-Plane Asset.</div>
                     </div>
                     
                     <div class="node node-scale">
                         <div class="tag">[HOLISTIC EXPANSION]</div>
                         <div class="node-title">35 Core Entra ID Modules</div>
-                        <div class="node-text">Transforms a single machine identity into an extensible enterprise security platform, allowing The Architect to layer 35 advanced Microsoft Entra ID capabilities (such as Conditional Access for Workload Identities) non-destructively onto the verified identity core.<span class="highlight">Non-destructive modular expansion.</span></div>
+                        <div class="node-text">Transforms a single machine identity into an extensible enterprise security platform, allowing The Architect to layer 35 advanced Microsoft Entra ID capabilities (such as Conditional Access for Workload Identities) non-destructively onto the verified identity core.</div>
                     </div>
 
                     <div class="node node-ial">

@@ -14,7 +14,7 @@
       gtag('js', new Date());
 
       gtag('config', 'G-80NYKHYN3R');
-    </script>
+        </script>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
     
@@ -179,7 +179,28 @@
             text-align: left;
         }
 
-        /* 2-COLUMN EXECUTIVE MISSION & PREREQUISITE SPLIT GRID (PART 01 TOP) */
+        /* FULL-WIDTH MASTER MISSION BANNER BOX (PART 01 TOP) */
+        .mission-master-banner {
+            background: rgba(10, 15, 29, 0.95);
+            border: 1px solid var(--border-base);
+            border-left: 5px solid var(--color-blue);
+            border-radius: 10px;
+            padding: 2.2rem 2.4rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+        .mission-banner-lead {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.22rem;
+            font-weight: 800;
+            color: var(--text-main);
+            line-height: 1.65;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.85rem;
+            border-bottom: 1px solid var(--border-base);
+        }
+
+        /* 2-COLUMN EXECUTIVE MISSION & PREREQUISITE SPLIT GRID (PART 01 MIDDLE) */
         .mission-split-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -818,7 +839,7 @@
             .summary-title, .section-title, .flow-title, .hero-block-title { font-size: 1.65rem; }
             .triad-grid, .adaptation-grid, .attributes-2x2-grid, .phase-subgrid, .mission-split-grid { grid-template-columns: 1fr; }
             .hero-arch-block, .polymorphic-box, .prelude-box { padding: 2rem 1.5rem; }
-            .insight-box, .flow-mechanics-box, .pillars-inset-box { padding: 1.5rem; margin: 2rem 0; }
+            .insight-box, .flow-mechanics-box, .pillars-inset-box, .mission-master-banner { padding: 1.5rem; margin: 2rem 0; }
             .hero-sequence-header, .guardrails-sub-header { font-size: 1.2rem; }
             .vulnerability-grid { grid-template-columns: 1fr; }
         }
@@ -880,25 +901,49 @@
         <div class="hero-arch-block math-block" id="scientific-foundation">
             <span class="hero-block-tag">[PART 01 :: MISSION &amp; FIRST-PRINCIPLES ENGINEERING FOUNDATION]</span>
             <h2 class="hero-block-title">The Mission of Intelligent Architecture</h2>
+
+            <!-- DEDICATED FULL-WIDTH BULLETED MASTER MISSION BOX -->
+            <div class="mission-master-banner">
+                <div class="mission-banner-lead">
+                    To optimally apply AI Systems Engineering best practices and first-principles mathematical variable control to build a deterministic Zero Trust Interactive State Machine that delivers:
+                </div>
+                <ul class="mission-bullet-list">
+                    <li>
+                        <span class="bullet-lead">Core Machine Identity Security:</span> Securing non-human machine identities in Microsoft Entra ID and Azure across any Execution Agent, Infrastructure State, Data-Plane Asset, and IaC Payload.
+                    </li>
+                    <li>
+                        <span class="bullet-lead">A Foundation for Holistic Security Configurations:</span> Establishing a verified identity core that serves as the basis for layering 35 additional Day-2 Microsoft Entra ID security modules without disturbing live infrastructure.
+                    </li>
+                    <li>
+                        <span class="bullet-lead">Strict Human-in-the-Loop Governance:</span> Subordinating all AI code synthesis and troubleshooting to mandatory phase halts, explicit coordinate verification, and human authorization authority.
+                    </li>
+                    <li>
+                        <span class="bullet-lead">Mathematically Verified Zero Trust &amp; Audit-Ready Proof:</span> Proving live data-plane access via immediate Azure Portal Monitoring Metrics and generating formal, audit-ready compliance documentation.
+                    </li>
+                    <li>
+                        <span class="bullet-lead">Continuous System Improvement:</span> Evaluating execution performance at the close of every build and compiling verified refinements permanently into the master System Directive so the architecture evolves after every run.
+                    </li>
+                </ul>
+            </div>
             
             <!-- 2-COLUMN BULLETED EXECUTIVE SPLIT GRID -->
             <div class="mission-split-grid">
                 
-                <!-- LEFT CARD: THE MISSION (4 BULLETS) -->
+                <!-- LEFT CARD: APPLIED AI SYSTEMS ENGINEERING (4 BULLETS) -->
                 <div class="mission-split-card">
-                    <h3 class="mission-split-header">1. The Mission: Applied AI Systems Engineering</h3>
+                    <h3 class="mission-split-header">1. Applied AI Systems Engineering</h3>
                     <ul class="mission-bullet-list">
                         <li>
                             <span class="bullet-lead">Leveraging AI Logistically &amp; Securely:</span> Across technology today, unlocking the full potential of artificial intelligence requires leveraging AI systems in a logistical, optimized, and secure manner through formal AI Systems Engineering best practices.
                         </li>
                         <li>
-                            <span class="bullet-lead">Building a Deterministic State Machine:</span> The mission of Intelligent Architecture is to apply AI Systems Engineering best practices to build my Zero Trust Interactive State Machine, providing a rigorous method for me to meet the complex challenge of securing non-human machine identities in Microsoft Entra ID and Azure.
+                            <span class="bullet-lead">Tethering a Probabilistic AI Engine:</span> Left untethered, a generative model operates probabilistically. By wrapping The AI Engine inside my master System Directive, I convert it into a controlled, high-performance engineering co-pilot.
                         </li>
                         <li>
-                            <span class="bullet-lead">Holistic Configurations &amp; Audit-Ready Proof:</span> This core machine identity architecture serves as the foundational basis for layering additional, holistic security configurations, producing mathematically verified Zero Trust deployments backed by formal, audit-ready compliance documentation.
+                            <span class="bullet-lead">Step-by-Step State Enforcement:</span> My Zero Trust Interactive State Machine governs every phase of execution behind strict human-in-the-loop halts, ensuring live cloud coordinates are extracted and verified before any code is synthesized.
                         </li>
                         <li>
-                            <span class="bullet-lead">Continuous System Improvement:</span> Every time I run a configuration using this architecture, the system permanently improves. At the close of every build, my Zero Trust Interactive State Machine evaluates execution performance and compiles new refinements directly into my master System Directive so the system evolves after every run.
+                            <span class="bullet-lead">Self-Hardening Operational Evolution:</span> Every time I run a configuration using this architecture, my System Directive captures verified operational lessons and compiles them at session close so the system permanently improves.
                         </li>
                     </ul>
                 </div>

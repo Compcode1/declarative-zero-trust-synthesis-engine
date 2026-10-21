@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intelligent Architecture - System Glossary</title>
+    <title>Intelligent Architecture - Home</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23020617' rx='20'/><text y='70' x='50' font-family='Arial, sans-serif' font-size='55' font-weight='bold' fill='%230ea5e9' text-anchor='middle'>IA</text></svg>">
     
     <!-- Google tag (gtag.js) -->
@@ -79,111 +79,15 @@
             font-weight: 800;
         }
 
-        /* ================= HERO HEADER ================= */
-        .hero { padding: 155px 20px 50px; text-align: center; border-bottom: 1px solid var(--border-base); }
-        .hero-title-container { display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 2.2rem; }
-        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 4rem; font-weight: 900; letter-spacing: 3px; color: var(--text-main); text-transform: uppercase; margin-bottom: 0.5rem; }
-        .hero-sub-banner { font-family: 'Montserrat', sans-serif; font-size: 1.65rem; font-weight: 800; letter-spacing: 1.5px; color: var(--color-cyan); text-transform: uppercase; }
-        .hero-tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.92rem;
-            font-weight: 800;
-            color: var(--color-cyan);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            display: block;
-            margin-bottom: 0.65rem;
-        }
+        /* ================= HERO HEADER & TOP ARCHITECTURE BLOCKS ================= */
+        .hero { padding: 155px 20px 60px; text-align: center; border-bottom: 1px solid var(--border-base); }
+        .hero-title-container { display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
+        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 4rem; font-weight: 900; letter-spacing: 3px; color: var(--text-main); text-transform: uppercase; }
 
-        /* TOP RECTANGLE 1: MATHEMATICAL & ENGINEERING PRINCIPLES (BULLETED) */
-        .hero-intro-box {
-            max-width: 1300px;
-            margin: 0 auto 2.5rem;
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid var(--border-base);
-            border-top: 4px solid var(--color-cyan);
-            border-radius: 12px;
-            padding: 2.6rem 3rem;
-            text-align: left;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
-        }
-        .intro-block-header {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.45rem;
-            font-weight: 900;
-            color: var(--color-cyan);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1.4rem;
-            padding-bottom: 0.85rem;
-            border-bottom: 2px solid var(--border-base);
-        }
-
-        .top-bullet-list {
-            list-style: disc;
-            padding-left: 1.6rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1.15rem;
-        }
-        .top-bullet-list li {
-            font-size: 1.12rem;
-            color: var(--text-main);
-            font-weight: 600;
-            line-height: 1.75;
-            padding-left: 0.35rem;
-        }
-        .top-bullet-list li::marker {
-            color: var(--color-cyan);
-            font-size: 1.25rem;
-        }
-
-        /* TOP RECTANGLE 2: THE 26 SYSTEM VARIABLES MASTER EQUATION (BULLETED) */
-        .equation-banner {
-            max-width: 1300px;
-            margin: 0 auto 2.8rem;
-            background: rgba(10, 15, 29, 0.95);
-            border: 1px solid rgba(16, 185, 129, 0.4);
-            border-top: 4px solid var(--color-green);
-            border-radius: 12px;
-            padding: 2.6rem 3rem;
-            text-align: left;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
-        }
-        .equation-header {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.45rem;
-            font-weight: 900;
-            color: var(--color-green);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1.4rem;
-            padding-bottom: 0.85rem;
-            border-bottom: 2px solid var(--border-base);
-        }
-        .equation-bullet-list {
-            list-style: disc;
-            padding-left: 1.6rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1.15rem;
-        }
-        .equation-bullet-list li {
-            font-size: 1.12rem;
-            font-weight: 600;
-            color: var(--text-main);
-            line-height: 1.75;
-            padding-left: 0.35rem;
-        }
-        .equation-bullet-list li::marker {
-            color: var(--color-green);
-            font-size: 1.25rem;
-        }
-
-        /* JUMP LINKS BAR */
+        /* JUMP LINKS BAR (TOP POSITION) */
         .jump-links-container {
             max-width: 1300px;
-            margin: 0 auto 1rem;
+            margin: 0 auto 3.2rem;
             padding: 1.4rem 2rem;
             background: rgba(15, 23, 42, 0.55);
             border: 1px solid var(--border-base);
@@ -224,150 +128,620 @@
             transform: translateY(-2px); 
         }
 
-        #cat-actors, #cat-coordinates, #cat-gates, #cat-verification {
-            scroll-margin-top: 100px;
-        }
-
-        /* ================= GLOSSARY CATEGORY CONTAINERS ================= */
-        .glossary-section {
+        /* ELEVATED HERO ARCHITECTURAL CONTAINERS */
+        .hero-arch-block {
             max-width: 1300px;
-            margin: 3.5rem auto 0;
-            padding: 0 20px;
-        }
-        .category-container {
+            margin: 0 auto 3rem;
             background: rgba(15, 23, 42, 0.6);
             border: 1px solid var(--border-base);
             border-radius: 12px;
             padding: 3rem 3.2rem;
+            text-align: left;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
         }
-        .category-container.actors-cat { border-top: 4px solid var(--color-blue); }
-        .category-container.coords-cat { border-top: 4px solid var(--color-cyan); }
-        .category-container.gates-cat { border-top: 4px solid var(--color-green); }
-        .category-container.verify-cat { border-top: 4px solid var(--color-purple); }
+        .hero-arch-block.math-block { border-top: 4px solid var(--color-blue); }
+        .hero-arch-block.gates-block { border-top: 4px solid var(--color-green); }
+        .hero-arch-block.solution-block { border-top: 4px solid var(--color-purple); }
+        .hero-arch-block.sequence-block { border-top: 4px solid var(--color-cyan); }
 
-        .category-tag {
+        .hero-block-tag {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.88rem;
             font-weight: 800;
             letter-spacing: 2px;
             text-transform: uppercase;
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
         }
-        .actors-cat .category-tag { color: var(--color-blue); }
-        .coords-cat .category-tag { color: var(--color-cyan); }
-        .gates-cat .category-tag { color: var(--color-green); }
-        .verify-cat .category-tag { color: var(--color-purple); }
+        .math-block .hero-block-tag { color: var(--color-blue); }
+        .gates-block .hero-block-tag { color: var(--color-green); }
+        .solution-block .hero-block-tag { color: var(--color-purple); }
+        .sequence-block .hero-block-tag { color: var(--color-cyan); }
 
-        .category-title {
+        .hero-block-title {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.9rem;
+            font-size: 1.85rem;
             font-weight: 900;
+            letter-spacing: 1px;
             color: var(--text-main);
             text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1rem;
+            margin-bottom: 1.4rem;
             padding-bottom: 0.9rem;
             border-bottom: 2px solid var(--border-base);
         }
-        .category-desc {
-            font-size: 1.18rem;
+
+        .hero-subtitle {
+            font-size: 1.2rem;
             color: var(--text-main);
             font-weight: 600;
             line-height: 1.8;
-            margin-bottom: 2.2rem;
+            margin-bottom: 2rem;
+            text-align: left;
         }
 
-        /* ================= GLOSSARY TERM CARDS ================= */
-        .glossary-grid {
+        /* 4-COLUMN GATE CARDS GRID */
+        .gates-4col-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.8rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
         }
-        .glossary-card {
+        .gate-card {
             background: rgba(10, 15, 29, 0.95);
             border: 1px solid var(--border-base);
-            border-left: 4px solid var(--color-cyan);
+            border-top: 4px solid var(--color-green);
             border-radius: 10px;
-            padding: 2rem 2.2rem;
+            padding: 1.8rem 1.6rem;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
         }
-        .actors-cat .glossary-card { border-left-color: var(--color-blue); }
-        .coords-cat .glossary-card { border-left-color: var(--color-cyan); }
-        .gates-cat .glossary-card { border-left-color: var(--color-green); }
-        .verify-cat .glossary-card { border-left-color: var(--color-purple); }
-
-        .glossary-card.full-width {
-            grid-column: 1 / -1;
-        }
-
-        .term-badge {
+        .gate-card.blue-top { border-top-color: var(--color-blue); }
+        .gate-card-badge {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.78rem;
             font-weight: 800;
+            color: var(--color-green);
             letter-spacing: 1px;
             text-transform: uppercase;
-            margin-bottom: 0.45rem;
-            display: block;
-            color: var(--color-cyan);
+            margin-bottom: 0.5rem;
         }
-        .actors-cat .term-badge { color: var(--color-blue); }
-        .coords-cat .term-badge { color: var(--color-cyan); }
-        .gates-cat .term-badge { color: var(--color-green); }
-        .verify-cat .term-badge { color: var(--color-purple); }
-
-        .term-name {
+        .gate-card.blue-top .gate-card-badge { color: var(--color-blue); }
+        .gate-card-title {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.35rem;
+            font-size: 1.15rem;
             font-weight: 900;
             color: var(--text-main);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 1.1rem;
-            padding-bottom: 0.75rem;
+            margin-bottom: 0.85rem;
+            padding-bottom: 0.7rem;
             border-bottom: 1px solid var(--border-base);
+            line-height: 1.3;
+        }
+        .gate-card-text {
+            font-size: 1.02rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.65;
         }
 
-        .term-details {
-            list-style: disc;
-            padding-left: 1.4rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.95rem;
+        /* 2X2 ATTRIBUTES GRID FOR AI SOLUTION */
+        .attributes-2x2-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.75rem;
         }
-        .term-details li {
-            font-size: 1.04rem;
+        .attribute-card {
+            background: rgba(10, 15, 29, 0.95);
+            border: 1px solid var(--border-base);
+            border-left: 4px solid var(--color-purple);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+        }
+        .attribute-card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: var(--color-cyan);
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.65rem;
+            border-bottom: 1px solid var(--border-base);
+            letter-spacing: 0.5px;
+        }
+        .attribute-card-text {
+            font-size: 1.05rem;
             color: var(--text-main);
             font-weight: 600;
             line-height: 1.7;
         }
-        .term-details li::marker {
-            color: var(--color-cyan);
+
+        /* 7 STEPPED PHASE CARDS */
+        .phase-cards-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 1.4rem;
+            margin-bottom: 2.2rem;
         }
-        .aka-box {
-            margin-top: 1.1rem;
-            padding: 0.75rem 1rem;
-            background: rgba(2, 6, 23, 0.8);
+        .phase-step-card {
+            background: rgba(10, 15, 29, 0.95);
             border: 1px solid var(--border-base);
-            border-radius: 6px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.84rem;
-            color: var(--text-muted);
-            line-height: 1.5;
+            border-left: 4px solid var(--color-cyan);
+            border-radius: 10px;
+            padding: 1.85rem 2.2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
         }
-        .aka-box strong {
-            color: var(--color-orange);
+        .phase-step-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.7rem;
+            border-bottom: 1px solid var(--border-base);
+            flex-wrap: wrap;
+        }
+        .phase-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: #ffffff;
+            background: var(--color-cyan);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .phase-step-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .phase-step-lead {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.7;
+            margin-bottom: 0.85rem;
+        }
+        .phase-subgrid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+            list-style: none;
+            padding: 0;
+            margin-top: 0.85rem;
+        }
+        .phase-subgrid.three-col {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .phase-subitem {
+            background: rgba(2, 6, 23, 0.75);
+            border: 1px solid var(--border-base);
+            border-top: 2px solid var(--color-cyan);
+            border-radius: 6px;
+            padding: 1.1rem 1.25rem;
+            font-size: 1.02rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
+        /* GENERIC SUBLIST FOR OTHER SECTIONS */
+        .hero-step-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.75rem;
+        }
+        .hero-step-item {
+            font-size: 1.15rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.75;
+            padding-left: 1.15rem;
+            border-left: 3px solid var(--color-cyan);
+        }
+        .step-label {
+            color: var(--color-cyan);
             font-weight: 800;
         }
+        .step-sublist {
+            list-style: disc;
+            margin-top: 0.65rem;
+            padding-left: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+        .step-sublist li {
+            font-size: 1.08rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.65;
+            padding-left: 0.25rem;
+        }
+        .step-sublist li::marker {
+            color: var(--color-cyan);
+        }
+
+        /* ================= INSIGHT CALLOUT ================= */
+        .insight-box { border-left: 4px solid var(--color-purple); padding: 2.2rem 2.5rem; margin: 2.5rem auto 0; max-width: 1300px; border-radius: 0 8px 8px 0; text-align: left; }
+        .insight-header { font-family: 'Montserrat', sans-serif; font-size: 1.15rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.85rem; display: flex; align-items: center; gap: 8px; }
+        .insight-header::before { content: '>'; font-weight: 900; }
+        .insight-text { font-size: 1.2rem; color: var(--text-main); font-style: normal; line-height: 1.8; font-weight: 600; }
+
+        #scientific-foundation, #foundation-gates, #ai-solution, #execution-sequence, #execution-triad, #execution-flow, #enterprise-guardrails, #environment-agnostic { 
+            scroll-margin-top: 100px; 
+        }
+
+        /* ================= SECTION 2: EXECUTION TRIAD ================= */
+        .module-section { display: flex; flex-direction: column; align-items: center; padding: 5rem 20px 2rem; }
+        .architecture-container { width: 100%; max-width: 1300px; display: flex; flex-direction: column; align-items: center; }
+        
+        .summary-section { max-width: 1220px; text-align: center; margin-bottom: 4.5rem; }
+        .summary-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1.8rem; color: var(--color-cyan); }
+        .summary-text { font-size: 1.25rem; color: var(--text-main); font-weight: 600; line-height: 1.8; margin: 0 auto 2.8rem; max-width: 1050px; text-align: left; }
+        
+        /* THE TRIAD GRID */
+        .triad-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; text-align: left; }
+        .triad-card { background: rgba(10, 15, 29, 0.95); border: 1px solid var(--border-base); border-top: 4px solid; padding: 2.2rem 2rem; border-radius: 10px; box-shadow: 0 15px 30px rgba(0,0,0,0.45); display: flex; flex-direction: column; }
+        .triad-card.architect { border-top-color: var(--color-blue); }
+        .triad-card.machine { border-top-color: var(--color-cyan); }
+        .triad-card.ai { border-top-color: var(--color-purple); }
+        
+        .triad-role { font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; font-weight: 800; letter-spacing: 1px; margin-bottom: 0.6rem; text-transform: uppercase; }
+        .triad-card.architect .triad-role { color: var(--color-blue); }
+        .triad-card.machine .triad-role { color: var(--color-cyan); }
+        .triad-card.ai .triad-role { color: var(--color-purple); }
+
+        .triad-header { font-family: 'Montserrat', sans-serif; font-size: 1.4rem; font-weight: 900; color: var(--text-main); margin-bottom: 1rem; padding-bottom: 0.85rem; border-bottom: 1px solid var(--border-base); text-transform: uppercase; letter-spacing: 1px; }
+        .triad-lead { font-size: 1.08rem; color: var(--text-main); font-weight: 600; line-height: 1.7; margin-bottom: 1.2rem; }
+        .triad-sublist {
+            list-style: disc;
+            padding-left: 1.35rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+        .triad-sublist li {
+            font-size: 1.02rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.65;
+            padding-left: 0.2rem;
+        }
+        .triad-sublist li::marker {
+            color: var(--color-cyan);
+        }
+        
+        /* ================= SECTION 3: THE GRAPHIC & ARCHITECTURAL FLOW ================= */
+        .flow-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 900; color: var(--color-cyan); margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 1px; text-align: center; width: 100%; }
+        
+        .canvas-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 15px; }
+        .diagram-canvas {
+            position: relative; max-width: 1220px; min-width: 1220px; height: 680px; margin: 0 auto;
+            background-image: linear-gradient(to right, rgba(30, 41, 59, 0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(30, 41, 59, 0.5) 1px, transparent 1px);
+            background-size: 40px 40px; border: 1px solid var(--border-base); border-radius: 12px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .routing-lines { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+        
+        @keyframes flow { to { stroke-dashoffset: -20; } }
+        @keyframes ai-scanlines {
+            from { background-position: 0 0; }
+            to { background-position: 56px 56px; }
+        }
+        @keyframes pulse-cyan {
+            0% { box-shadow: 0 0 15px rgba(14, 165, 233, 0.35), inset 0 0 10px rgba(14, 165, 233, 0.15); }
+            50% { box-shadow: 0 0 35px rgba(14, 165, 233, 0.6), inset 0 0 20px rgba(14, 165, 233, 0.3); }
+            100% { box-shadow: 0 0 15px rgba(14, 165, 233, 0.35), inset 0 0 10px rgba(14, 165, 233, 0.15); }
+        }
+        @keyframes pulse-purple {
+            0% { box-shadow: 0 0 15px rgba(168, 85, 247, 0.35), inset 0 0 10px rgba(168, 85, 247, 0.15); }
+            50% { box-shadow: 0 0 35px rgba(168, 85, 247, 0.6), inset 0 0 20px rgba(168, 85, 247, 0.3); }
+            100% { box-shadow: 0 0 15px rgba(168, 85, 247, 0.35), inset 0 0 10px rgba(168, 85, 247, 0.15); }
+        }
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 15px rgba(244, 63, 94, 0.35), inset 0 0 10px rgba(244, 63, 94, 0.15); }
+            50% { box-shadow: 0 0 35px rgba(244, 63, 94, 0.6), inset 0 0 20px rgba(244, 63, 94, 0.3); }
+            100% { box-shadow: 0 0 15px rgba(244, 63, 94, 0.35), inset 0 0 10px rgba(244, 63, 94, 0.15); }
+        }
+        
+        .animated-path { stroke-dasharray: 8, 12; animation: flow 1s linear infinite; }
+
+        .node { position: absolute; background: var(--bg-node); border: 1px solid var(--border-base); border-radius: 8px; padding: 1.05rem; z-index: 2; backdrop-filter: blur(8px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3); }
+        .node-title { font-size: 0.96rem; font-weight: 900; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.55rem; line-height: 1.25; color: var(--text-main); }
+        .node-text { font-size: 0.8rem; color: var(--text-main); font-weight: 500; line-height: 1.45; }
+        .tag { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; font-weight: 800; padding: 3px 6px; border: 1px solid; border-radius: 4px; display: inline-block; margin-bottom: 0.55rem; letter-spacing: 0.5px; }
+
+        .node-engineer { left: 20px; top: 40px; width: 200px; border-left: 4px solid var(--color-blue); }
+        .node-engineer .tag { color: var(--color-blue); border-color: rgba(59, 130, 246, 0.3); }
+        
+        .node-compiler { 
+            left: 250px; top: 40px; width: 220px; 
+            border: 2px solid var(--color-purple); border-left: 6px solid var(--color-purple); 
+            background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(168, 85, 247, 0.15) 4px, rgba(168, 85, 247, 0.15) 8px), linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(10, 15, 29, 0.95) 100%), var(--bg-node);
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.35), inset 0 0 15px rgba(168, 85, 247, 0.15);
+            animation: ai-scanlines 1.5s linear infinite, pulse-purple 3s ease-in-out infinite;
+        }
+        .node-compiler .tag { color: var(--color-purple); border-color: rgba(168, 85, 247, 0.3); }
+
+        .node-iac { left: 500px; top: 40px; width: 180px; border-left: 4px solid var(--color-cyan); }
+        .node-iac .tag { color: var(--color-cyan); border-color: rgba(14, 165, 233, 0.3); }
+        
+        .node-core { left: 710px; top: 40px; width: 220px; border: 1px solid rgba(16, 185, 129, 0.3); border-left: 4px solid var(--color-green); }
+        .node-core .tag { color: var(--color-green); border-color: rgba(16, 185, 129, 0.3); }
+        .node-core .highlight { color: var(--color-green); font-weight: 700; margin-top: 6px; display: block; }
+
+        .node-scale { left: 960px; top: 40px; width: 220px; border: 1px dashed var(--color-purple); border-left: 4px solid var(--color-purple); }
+        .node-scale .tag { color: var(--color-purple); border-color: rgba(168, 85, 247, 0.3); }
+        .node-scale .highlight { color: var(--color-purple); font-weight: 700; margin-top: 6px; display: block; }
+        
+        .node-engine { 
+            left: 20px; top: 300px; width: 200px; 
+            border: 2px solid var(--color-cyan); border-left: 6px solid var(--color-cyan); 
+            background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(14, 165, 233, 0.18) 4px, rgba(14, 165, 233, 0.18) 8px), linear-gradient(135deg, rgba(14, 165, 233, 0.25) 0%, rgba(10, 15, 29, 0.95) 100%), var(--bg-node); 
+            box-shadow: 0 0 25px rgba(14, 165, 233, 0.45), inset 0 0 15px rgba(14, 165, 233, 0.25); 
+            animation: ai-scanlines 2s linear infinite, pulse-cyan 3.5s ease-in-out infinite;
+        }
+        .node-engine .tag { color: var(--color-cyan); border-color: rgba(14, 165, 233, 0.3); margin-right: 5px; }
+
+        .node-dpl { 
+            left: 250px; top: 420px; width: 380px; 
+            border: 2px solid var(--color-red); border-left: 6px solid var(--color-red); 
+            background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(244, 63, 94, 0.15) 4px, rgba(244, 63, 94, 0.15) 8px), linear-gradient(135deg, rgba(244, 63, 94, 0.15) 0%, rgba(10, 15, 29, 0.95) 100%), var(--bg-node); 
+            box-shadow: 0 0 25px rgba(244, 63, 94, 0.35), inset 0 0 15px rgba(244, 63, 94, 0.15); 
+            animation: ai-scanlines 2.5s linear infinite, pulse-red 4s ease-in-out infinite;
+        }
+        .node-dpl .tag { color: var(--color-red); border-color: rgba(244, 63, 94, 0.3); }
+
+        .node-ial { left: 670px; top: 420px; width: 200px; border-left: 4px solid var(--color-green); }
+        .node-ial .tag { color: var(--color-green); border-color: rgba(16, 185, 129, 0.3); }
+        
+        .node-arl { left: 900px; top: 420px; width: 230px; border-left: 4px solid var(--color-green); }
+        .node-arl .tag { color: var(--color-green); border-color: rgba(16, 185, 129, 0.3); }
+
+        /* ================= ARCHITECTURAL FLOW EXPLANATION (UNDER THE HOOD) ================= */
+        .flow-explanation { max-width: 1050px; margin: 3rem auto 0; padding: 0 20px; text-align: left; }
+        .flow-subheader { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 900; color: var(--color-cyan); margin-bottom: 1.2rem; text-transform: uppercase; letter-spacing: 1px; }
+        .flow-intro { font-size: 1.22rem; color: var(--text-main); font-weight: 600; line-height: 1.8; margin-bottom: 2rem; }
+        
+        .flow-mechanics-box {
+            background: rgba(10, 15, 29, 0.95);
+            border: 1px solid var(--border-base);
+            border-left: 4px solid var(--color-cyan);
+            border-radius: 0 10px 10px 0;
+            padding: 2.4rem 2.5rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+        }
+
+        .inline-link { color: var(--color-cyan); text-decoration: none; border-bottom: 1px solid var(--color-cyan); font-weight: 800; transition: color 0.3s ease, border-color 0.3s ease; }
+        .inline-link:hover { color: #ffffff; border-color: #ffffff; }
+
+        /* ================= SECTION 4: ENTERPRISE GUARDRAILS & 4 PILLARS ================= */
+        .guardrail-container { max-width: 1300px; margin: 0 auto; padding: 4rem 20px 3rem; }
+        
+        .prelude-box { background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-base); border-top: 4px solid var(--color-blue); border-radius: 12px; padding: 3.5rem; box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
+        .section-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 900; color: var(--color-cyan); text-transform: uppercase; margin-bottom: 1.8rem; letter-spacing: 1px; text-align: center; }
+        
+        .intro-text { font-size: 1.25rem; color: var(--text-main); font-weight: 600; line-height: 1.8; margin-bottom: 2rem; text-align: left; max-width: 1050px; margin-left: auto; margin-right: auto; }
+
+        .pillars-inset-box {
+            max-width: 1050px;
+            margin: 0 auto 2.8rem;
+            background: rgba(10, 15, 29, 0.95);
+            border: 1px solid var(--border-base);
+            border-left: 4px solid var(--color-cyan);
+            border-radius: 0 10px 10px 0;
+            padding: 2.4rem 2.5rem;
+            text-align: left;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+        }
+        .hero-sequence-header {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.45rem;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            color: var(--color-cyan);
+            text-transform: uppercase;
+            margin-bottom: 1.75rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border-base);
+        }
+
+        .guardrails-sub-header {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.45rem;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            color: var(--color-cyan);
+            text-transform: uppercase;
+            max-width: 1050px;
+            margin: 0 auto 1.2rem;
+            padding-bottom: 0.85rem;
+            border-bottom: 2px solid var(--border-base);
+            text-align: left;
+        }
+
+        .vulnerability-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 2rem; }
+        .vuln-card { background: rgba(10, 15, 29, 0.95); border: 1px solid var(--border-base); padding: 2.3rem 2.2rem; border-radius: 10px; border-left: 4px solid var(--color-purple); box-shadow: 0 10px 25px rgba(0,0,0,0.35); text-align: left; }
+        .vuln-title { font-family: 'Montserrat', sans-serif; font-size: 1.3rem; font-weight: 900; color: var(--text-main); margin-bottom: 0.9rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-base); letter-spacing: 0.5px; text-transform: uppercase; }
+        .vuln-lead { font-size: 1.1rem; color: var(--text-main); font-weight: 600; line-height: 1.7; margin-bottom: 1.1rem; }
+
+        .vuln-card:nth-child(5) { grid-column: 1 / -1; }
+
+        /* ================= SECTION 5: POLYMORPHIC COMBINATORIAL MATRIX ================= */
+        .polymorphic-container { max-width: 1300px; margin: 0 auto; padding: 2rem 20px 4rem; }
+        
+        .polymorphic-box {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-base);
+            border-top: 4px solid var(--color-cyan);
+            border-radius: 12px;
+            padding: 4rem 3.5rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .poly-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--color-cyan);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: block;
+            text-align: center;
+            margin-bottom: 0.75rem;
+        }
+
+        /* 5-Column Graphic Canvas */
+        .matrix-graphic-canvas {
+            background-image: linear-gradient(to right, rgba(30, 41, 59, 0.45) 1px, transparent 1px), linear-gradient(to bottom, rgba(30, 41, 59, 0.45) 1px, transparent 1px);
+            background-size: 32px 32px;
+            background-color: rgba(2, 6, 23, 0.9);
+            border: 1px solid var(--border-base);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            margin-bottom: 3.5rem;
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.6), 0 15px 30px rgba(0,0,0,0.4);
+        }
+
+        .matrix-5col-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.25rem;
+        }
+
+        .matrix-node {
+            background: var(--bg-node);
+            border: 1px solid rgba(14, 165, 233, 0.35);
+            border-top: 3px solid var(--color-cyan);
+            border-radius: 8px;
+            padding: 1.5rem 1.25rem;
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .matrix-node-header {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            color: var(--text-main);
+            text-transform: uppercase;
+            padding-bottom: 0.85rem;
+            margin-bottom: 1.1rem;
+            border-bottom: 1px solid var(--border-base);
+        }
+
+        .matrix-option {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            margin-bottom: 0.85rem;
+            line-height: 1.35;
+            font-weight: 600;
+        }
+        .matrix-option:last-child { margin-bottom: 0; }
+
+        .matrix-check {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 16px;
+            height: 16px;
+            border: 1px solid var(--color-cyan);
+            background: rgba(14, 165, 233, 0.08);
+            border-radius: 3px;
+            font-size: 11px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* Combinatorial Telemetry Readout Bar */
+        .combinatorial-bar {
+            margin-top: 2rem;
+            padding: 1.5rem 2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            border-left: 5px solid var(--color-purple);
+            background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(168, 85, 247, 0.08) 4px, rgba(168, 85, 247, 0.08) 8px), rgba(10, 15, 29, 0.95);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.2);
+        }
+
+        .combo-formula {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.98rem;
+            color: var(--text-main);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .combo-formula span { color: var(--color-cyan); }
+
+        .combo-result {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-green);
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+        }
+
+        /* 4-Card Adaptation Grid */
+        .adaptation-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .adapt-card {
+            background: rgba(10, 15, 29, 0.95);
+            border: 1px solid var(--border-base);
+            border-left: 4px solid var(--color-cyan);
+            padding: 2.3rem 2.2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+            text-align: left;
+        }
+
+        .adapt-card.purple { border-left-color: var(--color-purple); }
+        .adapt-card.green { border-left-color: var(--color-green); }
+        .adapt-card.orange { border-left-color: var(--color-orange); }
+
+        .adapt-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            display: block;
+            color: var(--color-cyan);
+        }
+        .adapt-card.purple .adapt-tag { color: var(--color-purple); }
+        .adapt-card.green .adapt-tag { color: var(--color-green); }
+        .adapt-card.orange .adapt-tag { color: var(--color-orange); }
 
         /* ================= PROPRIETARY IP FOOTER ================= */
         .ip-footer {
             max-width: 1300px;
-            margin: 4rem auto 0;
+            margin: 0 auto;
             text-align: center;
             padding: 2.5rem 1.5rem;
             border-top: 1px solid var(--border-base);
@@ -383,17 +757,31 @@
             font-weight: 700;
         }
 
+        @media (max-width: 1100px) {
+            .gates-4col-grid { grid-template-columns: repeat(2, 1fr); }
+            .phase-subgrid.three-col { grid-template-columns: 1fr; }
+            .matrix-5col-grid { grid-template-columns: repeat(3, 1fr); }
+            .combinatorial-bar { flex-direction: column; text-align: center; }
+        }
+
         @media (max-width: 992px) {
-            .hero-title { font-size: 2.6rem; }
-            .hero-sub-banner { font-size: 1.2rem; }
-            .category-title { font-size: 1.55rem; }
-            .glossary-grid { grid-template-columns: 1fr; }
-            .category-container, .hero-intro-box, .equation-banner { padding: 2rem 1.5rem; }
+            .hero-title { font-size: 2.8rem; }
+            .summary-title, .section-title, .flow-title, .hero-block-title { font-size: 1.65rem; }
+            .triad-grid, .adaptation-grid, .attributes-2x2-grid, .phase-subgrid { grid-template-columns: 1fr; }
+            .hero-arch-block, .polymorphic-box, .prelude-box { padding: 2rem 1.5rem; }
+            .insight-box, .flow-mechanics-box, .pillars-inset-box { padding: 1.5rem; margin: 2rem 0; }
+            .hero-sequence-header, .guardrails-sub-header { font-size: 1.2rem; }
+            .vulnerability-grid { grid-template-columns: 1fr; }
+        }
+        
+        @media (max-width: 700px) {
+            .gates-4col-grid, .matrix-5col-grid { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 600px) {
-            .hero-title { font-size: 2rem; }
-            .hero { padding-top: 190px; }
+            .hero-title { font-size: 2.1rem; letter-spacing: 1px; }
+            .hero { padding-top: 190px; } 
+            
             nav { padding: 1rem; }
             .nav-links { gap: 0.6rem; }
             .nav-links a { font-size: 0.75rem; padding: 0.4rem 0.8rem; letter-spacing: 0.5px; }
@@ -405,542 +793,703 @@
     <!-- MASTER NAVIGATION -->
     <nav>
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html" class="active-link">Home</a></li>
             <li><a href="blueprint.html">Operational Blueprint</a></li>
             <li><a href="ai-systems-engineering.html">AI Systems Engineering</a></li>
             <li><a href="architectural.html">Pipeline Architecture</a></li>
             <li><a href="workflow-portfolio.html">Machine Identity Execution Showcase</a></li>
             <li><a href="add-capabilities.html">Additional Capability Integration Showcase</a></li>
-            <li><a href="glossary.html" class="active-link">System Glossary</a></li>
+            <li><a href="glossary.html">System Glossary</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
 
-    <!-- ================= HERO HEADER & BULLETED MATHEMATICAL FOUNDATION ================= -->
+    <!-- ================= SECTION 1: HERO HEADER, SCIENTIFIC FOUNDATION, 4 GATES GRID, AI SOLUTION GRID & 7 PHASE CARDS ================= -->
     <header class="hero">
-        <span class="hero-tag">[FORMAL SYSTEMS ENGINEERING &amp; MATHEMATICAL NOMENCLATURE]</span>
         <div class="hero-title-container">
-            <h1 class="hero-title">SYSTEM GLOSSARY</h1>
-            <div class="hero-sub-banner">Defining the 26 Fixed Variables of the Zero Trust Interactive State Machine</div>
+            <h1 class="hero-title">INTELLIGENT ARCHITECTURE</h1>
         </div>
 
-        <!-- TOP RECTANGLE 1: BULLETED ENGINEERING & MATHEMATICAL PRINCIPLES -->
-        <div class="hero-intro-box">
-            <h2 class="intro-block-header">1. First-Principles Engineering: Mathematical Variable Control &amp; Logistical Precision</h2>
-            
-            <ul class="top-bullet-list">
-                <li>
-                    <span class="bullet-lead">Axiomatic Variable Definition (Mathematical Control):</span> In mathematics and formal systems engineering, an equation cannot be solved if its variables change names mid-proof; every variable (Variable A, Variable B, Variable C) must be defined once with an exact, unambiguous boundary before it is used.
-                </li>
-                <li>
-                    <span class="bullet-lead">Bijective One-to-One Nomenclature (Zero Synonym Drift):</span> In set theory and logistics, a bijective mapping assigns one fixed name to one physical component, so an external platform defined as an Execution Agent in Phase 1 is never renamed a "pipeline," "runner," or "workload" in Phase 3.
-                </li>
-                <li>
-                    <span class="bullet-lead">Deterministic State-Space Chaining (Step A &rarr; Step B &rarr; Step C Logistics):</span> In control engineering, a system is deterministic only when the output of Step A feeds directly into the input of Step B, so every glossary entry below explicitly states which variable feeds into it and which variable it acts upon next.
-                </li>
-                <li>
-                    <span class="bullet-lead">Ubiquitous Language Standard (ISO/IEC/IEEE 15288 &amp; Domain-Driven Design):</span> Grounded in formal Systems Engineering standards and Domain-Driven Design, this glossary locks the entire website to 26 fixed Title-Case variables, while listing the informal industry nicknames each variable replaces at the bottom of every card.
-                </li>
-            </ul>
-        </div>
-
-        <!-- TOP RECTANGLE 2: BULLETED MASTER EQUATION OF THE 26 SYSTEM VARIABLES -->
-        <div class="equation-banner">
-            <h2 class="equation-header">2. The 26 System Variables: The Master End-to-End Mathematical Chain (Step A &rarr; Step B &rarr; Step C &rarr; Step D)</h2>
-            
-            <ul class="equation-bullet-list">
-                <li>
-                    <span class="bullet-lead">Gate 1 Link (Boundary):</span> My Azure Subscription ID and Resource Group (holding my Data-Plane Asset) sit under my Entra ID Tenant ID (holding my Identity Core), enforcing read-only lookups on Brownfield (Existing) Data-Plane Assets or deletion-prevention locks on Greenfield (Net-New) Data-Plane Assets.
-                </li>
-                <li>
-                    <span class="bullet-lead">Gate 2 Link (Identity):</span> Inside my Entra ID Tenant ID, my IaC Payload and Terminal Runbook create or reference my Application Registration and Service Principal in Single-Tenant mode with disabled browser redirect URLs and zero saved passwords.
-                </li>
-                <li>
-                    <span class="bullet-lead">Gate 3 Link (Federation):</span> My external Execution Agent sends its Subject Claim (locked to my exact Code Repository and Branch spelling) via OpenID Connect (OIDC) to Microsoft Entra ID to receive a 60-Minute Login Token for that Service Principal, protected by a 30-Second Server Sync Timer.
-                </li>
-                <li>
-                    <span class="bullet-lead">Gate 4 Link (Access):</span> I assign one Data-Plane Role on my single Data-Plane Asset to that Service Principal (blocking Owner and Contributor Roles and using an Azure Portal MFA Handoff if terminal MFA drops) so my Execution Agent can use its 60-Minute Login Token to read that single Data-Plane Asset and nothing else.
-                </li>
-                <li>
-                    <span class="bullet-lead">Verification &amp; Audit Link (Phases 4 to 7):</span> My Execution Agent runs the Validation Bridge (with Runtime Log Masking) to read my Data-Plane Asset, which I verify first via Azure Portal Monitoring Metrics (Total Service API Hits) and record across the Identity Architecture Ledger (IAL), Audit Results Ledger (ARL), KQL Telemetry, Defect &amp; Patch Ledger (DPL), and AI Performance Scorecard.
-                </li>
-            </ul>
-        </div>
-
-        <!-- CATEGORY JUMP LINKS -->
+        <!-- TOP QUICK-JUMP NAVIGATION BAR -->
         <div class="jump-links-container">
             <div class="jump-links-intro">
-                Select any of the 4 variable categories below to jump directly to its definitions:
+                Explore the Technical Architecture Below. Select any section to jump directly to the detailed breakdown:
             </div>
             <div class="jump-links">
-                <a href="#cat-actors">Category 1: The 3 Actors (Execution Triad)</a>
-                <a href="#cat-coordinates">Category 2: The 5 Build Coordinates</a>
-                <a href="#cat-gates">Category 3: The 10 Gate Mechanics (Gates 1 to 4)</a>
-                <a href="#cat-verification">Category 4: The 8 Verification &amp; Troubleshooting Variables</a>
+                <a href="#scientific-foundation">1. Scientific &amp; Mathematical Foundation</a>
+                <a href="#foundation-gates">2. The 4 Gates of Machine Identity</a>
+                <a href="#ai-solution">3. Deterministic AI Solution</a>
+                <a href="#execution-sequence">4. The 7-Phase Execution Sequence</a>
+                <a href="#execution-triad">5. The Execution Triad</a>
+                <a href="#execution-flow">6. System Topology &amp; Mechanics</a>
+                <a href="#enterprise-guardrails">7. The 4 AI Pillars &amp; 5 Guardrails</a>
+                <a href="#environment-agnostic">8. 72 Build Combinations</a>
+            </div>
+        </div>
+
+        <!-- NEW LEAD-IN VISUAL BLOCK: SCIENTIFIC METHOD, MATHEMATICAL VARIABLE CONTROL & LOGISTICAL PRECISION -->
+        <div class="hero-arch-block math-block" id="scientific-foundation">
+            <span class="hero-block-tag">[PART 01 :: SCIENTIFIC METHOD &amp; MATHEMATICAL VARIABLE CONTROL]</span>
+            <h2 class="hero-block-title">The Engineering Prerequisite: Defining the 26 Fixed System Variables</h2>
+            
+            <p class="hero-subtitle">
+                You cannot apply AI Systems Engineering or build a deterministic state machine on top of shifting terminology. In mathematics, physics, and formal systems engineering, an equation cannot be solved if its variables change names mid-proof. Before tethering an AI model to write cloud security code, I first reduced the entire Microsoft Entra ID and Azure machine identity lifecycle into a strict mathematical and logistical system governed by <span class="bullet-lead">26 fixed Title-Case variables</span> (documented in my <a href="glossary.html" class="inline-link">System Glossary</a>) across four foundational engineering principles:
+            </p>
+
+            <div class="gates-4col-grid">
+                <div class="gate-card blue-top">
+                    <span class="gate-card-badge">[PRINCIPLE 01 :: AXIOMS]</span>
+                    <h3 class="gate-card-title">Axiomatic Variable Definition</h3>
+                    <p class="gate-card-text">
+                        In formal mathematics, every variable (Variable A, Variable B, Variable C) must be defined once with an exact, unambiguous boundary before it is used in an operation. Every actor, build coordinate, security gate, and audit ledger in this architecture is locked to one explicit physical definition and one operational role.
+                    </p>
+                </div>
+
+                <div class="gate-card blue-top">
+                    <span class="gate-card-badge">[PRINCIPLE 02 :: BIJECTION]</span>
+                    <h3 class="gate-card-title">Bijective One-to-One Nomenclature</h3>
+                    <p class="gate-card-text">
+                        In set theory and systems logistics, a bijective mapping assigns one fixed name to one physical component. An external platform defined as an Execution Agent in Phase 1 is never renamed a "background pipeline," "CI/CD runner," or "workload" in Phase 3, eliminating synonym drift completely.
+                    </p>
+                </div>
+
+                <div class="gate-card blue-top">
+                    <span class="gate-card-badge">[PRINCIPLE 03 :: LOGISTICS]</span>
+                    <h3 class="gate-card-title">Deterministic Step A &rarr; Step B Chaining</h3>
+                    <p class="gate-card-text">
+                        In control engineering, a system is deterministic only when the output of Step A feeds directly into the input of Step B without gaps. Every component on this site explicitly states which fixed variable feeds into it and which fixed variable it acts upon next.
+                    </p>
+                </div>
+
+                <div class="gate-card blue-top">
+                    <span class="gate-card-badge">[PRINCIPLE 04 :: LEXICON]</span>
+                    <h3 class="gate-card-title">Ubiquitous Language (ISO 15288)</h3>
+                    <p class="gate-card-text">
+                        Grounded in ISO/IEC/IEEE 15288 Systems Engineering standards and Domain-Driven Design, my <a href="glossary.html" class="inline-link">System Glossary</a> defines all 26 fixed variables in one place and maps each variable to the informal industry nicknames it replaces.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- VISUAL BLOCK 2: THE ARCHITECTURAL FOUNDATION (4-COLUMN GATE CARD GRID) -->
+        <div class="hero-arch-block gates-block" id="foundation-gates">
+            <span class="hero-block-tag">[PART 02 :: CLOUD IAM FOUNDATION]</span>
+            <h2 class="hero-block-title">The Architectural Foundation: The 4 Gates of Machine Identity</h2>
+            
+            <p class="hero-subtitle">
+                With those 26 variables locked in, securing any non-human identity in Microsoft Entra ID and Azure, regardless of which Execution Agent, Infrastructure State, Data-Plane Asset, or IaC Payload I select, comes down to configuring a predictable, four-part mathematical chain: <span class="bullet-lead">The Four Architectural Gates of Machine Identity.</span> Every deployment I execute locks down these four gates in sequence so each gate connects directly to the next:
+            </p>
+
+            <div class="gates-4col-grid">
+                <div class="gate-card">
+                    <span class="gate-card-badge">[GATE 01 :: PERIMETER]</span>
+                    <h3 class="gate-card-title">Gate 1: Boundary (Where It Lives)</h3>
+                    <p class="gate-card-text">
+                        I lock in the exact Entra ID Tenant ID, Azure Subscription ID, and Resource Group perimeter, verifying that the Azure Subscription ID and Resource Group holding my Data-Plane Asset are nested under the same Entra ID Tenant ID holding my Identity Core. To protect the Infrastructure State, I enforce read-only lookups on Brownfield (Existing) Data-Plane Assets so live resources are never overwritten, or attach deletion-prevention locks when building Greenfield (Net-New) Data-Plane Assets.
+                    </p>
+                </div>
+
+                <div class="gate-card">
+                    <span class="gate-card-badge">[GATE 02 :: PRINCIPAL]</span>
+                    <h3 class="gate-card-title">Gate 2: Identity (Who the Machine Is)</h3>
+                    <p class="gate-card-text">
+                        Inside my Entra ID Tenant ID from Gate 1, I reference or provision a dedicated, non-human Application Registration and Service Principal in Microsoft Entra ID with zero saved passwords. To minimize the attack surface, I lock the Application Registration and Service Principal strictly to my own Entra ID Tenant in Single-Tenant mode and disable all web browser redirect URLs because an Execution Agent never uses a web browser.
+                    </p>
+                </div>
+
+                <div class="gate-card">
+                    <span class="gate-card-badge">[GATE 03 :: AUTHENTICATION]</span>
+                    <h3 class="gate-card-title">Gate 3: Federation (How It Authenticates)</h3>
+                    <p class="gate-card-text">
+                        Because the Gate 2 Application Registration and Service Principal have no password, I configure OpenID Connect (OIDC) so my external Execution Agent can trade its Subject Claim for a 60-Minute Login Token from Microsoft Entra ID. I run a terminal lookup to copy the exact capital-and-lowercase spelling of my Code Repository and Branch into the Subject Claim (with zero wildcards) and inject a 30-Second Server Sync Timer so Microsoft Entra ID only issues a 60-Minute Login Token to my exact Code Repository and Branch.
+                    </p>
+                </div>
+
+                <div class="gate-card">
+                    <span class="gate-card-badge">[GATE 04 :: AUTHORIZATION]</span>
+                    <h3 class="gate-card-title">Gate 4: Access (What It Can Touch)</h3>
+                    <p class="gate-card-text">
+                        Once my Execution Agent authenticates to my Service Principal with its 60-Minute Login Token from Gate 3, I block broad Owner and Contributor Roles so the Service Principal can never delete or modify Azure infrastructure. Instead, I assign one Data-Plane Role on my single Data-Plane Asset to that Service Principal so my Execution Agent can use its 60-Minute Login Token to read that single Data-Plane Asset and nothing else.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- VISUAL BLOCK 3: THE AI SYSTEMS ENGINEERING SOLUTION (2X2 CARD GRID) -->
+        <div class="hero-arch-block solution-block" id="ai-solution">
+            <span class="hero-block-tag">[PART 03 :: TETHERED AI GOVERNANCE]</span>
+            <h2 class="hero-block-title">The AI Systems Engineering Solution: Deterministic Execution</h2>
+
+            <p class="hero-subtitle">
+                Because the 26 system variables and the Four Architectural Gates of Machine Identity follow a strict mathematical chain from Gate 1 to Gate 4, they can be engineered into a repeatable system, provided the engine never skips a gate. Out of the box, however, The AI Engine functions as a probabilistic engine: when asked to generate an IaC Payload all at once, it will guess Entra ID Tenant IDs or Azure Subscription IDs, invent broken syntax, or grant broad Owner and Contributor Roles just to clear an error. To solve this for my Microsoft Entra ID and Azure deployments, I engineered a state-driven execution architecture grounded in AI systems engineering best practices, tethering The AI Engine to my master System Directive to make its output deterministic. The result is my <span class="bullet-lead">Zero Trust Interactive State Machine:</span>
+            </p>
+
+            <div class="attributes-2x2-grid">
+                <div class="attribute-card">
+                    <h3 class="attribute-card-title">1. Strict Step-by-Step Human Control</h3>
+                    <p class="attribute-card-text">
+                        The State Machine guides my build one phase at a time with mandatory human-in-the-loop halts, preventing The AI Engine from skipping gates or generating an unverified IaC Payload before I verify my Entra ID Tenant ID, Azure Subscription ID, Resource Group, and Execution Agent identifiers in my local terminal.
+                    </p>
+                </div>
+
+                <div class="attribute-card">
+                    <h3 class="attribute-card-title">2. Passwordless 60-Minute OIDC Federation</h3>
+                    <p class="attribute-card-text">
+                        Eliminates saved passwords and static client secrets on my Application Registration and Service Principal, replacing them with a 60-Minute Login Token issued via OpenID Connect (OIDC) that is locked character-for-character to my Subject Claim (my exact Code Repository and Branch) and scoped to my single Data-Plane Asset.
+                    </p>
+                </div>
+
+                <div class="attribute-card">
+                    <h3 class="attribute-card-title">3. Mathematically Verified Zero Trust &amp; Audit Proof</h3>
+                    <p class="attribute-card-text">
+                        Proves that my Execution Agent used its 60-Minute Login Token to read my Data-Plane Asset by running the Validation Bridge and checking Azure Portal Monitoring Metrics (Total Service API Hits) first, followed by generating the Identity Architecture Ledger (IAL), the Audit Results Ledger (ARL), and KQL Telemetry (kql_telemetry.md).
+                    </p>
+                </div>
+
+                <div class="attribute-card">
+                    <h3 class="attribute-card-title">4. Real-Time Defect &amp; Patch Ledger &amp; The 4-Iteration Circuit Breaker</h3>
+                    <p class="attribute-card-text">
+                        Handles troubleshooting across any phase using two distinct mechanisms. First, whenever I verify a working fix during the Standard Patch Loop (Iterations 1 to 3), the root cause and fix are logged immediately in my Defect &amp; Patch Ledger (patch_ledger.md) with a full-file State Re-Sync of my IaC Payload, without needing to hit the circuit breaker. Second, if a single error fails 3 times and reaches Iteration 4, The 4-Iteration Circuit Breaker trips automatically, forbidding The AI Engine from writing new code and forcing it to calculate an Estimated Probability of Success (X%) so I can decide whether to continue or pivot.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- VISUAL BLOCK 4: 7-STEP DETERMINISTIC EXECUTION SEQUENCE (STEPPED PHASE CARDS) -->
+        <div class="hero-arch-block sequence-block" id="execution-sequence">
+            <span class="hero-block-tag">[PART 04 :: END-TO-END WORKFLOW AT THE KEYBOARD]</span>
+            <h2 class="hero-block-title">The 7-Step Deterministic Execution Sequence</h2>
+
+            <div class="phase-cards-stack">
+                
+                <!-- PHASE 1 CARD -->
+                <div class="phase-step-card">
+                    <div class="phase-step-header">
+                        <span class="phase-badge">Phase 01</span>
+                        <h3 class="phase-step-title">Boot, Clean Workspace &amp; 5-Coordinate Intake</h3>
+                    </div>
+                    <p class="phase-step-lead">
+                        I create a clean local folder in Visual Studio Code or Git Bash with five blank deliverable files and lock in the 5 Build Coordinates: Identity Core (Microsoft Entra ID), Execution Agent, Infrastructure State, Data-Plane Asset, and IaC Payload, alongside any Day-2 Microsoft Entra ID security modules.
+                    </p>
+                    <div class="phase-subgrid">
+                        <div class="phase-subitem">
+                            <span class="bullet-lead">Full Coordinates On Hand:</span> If I provide my Entra ID Tenant ID, Azure Subscription ID, Resource Group, and all 5 Build Coordinates up front, The State Machine locks them in immediately and advances straight to Phase 2 without prompting.
+                        </div>
+                        <div class="phase-subitem">
+                            <span class="bullet-lead">Missing Coordinates:</span> If I am missing my Entra ID Tenant ID, Azure Subscription ID, Resource Group, or Data-Plane Asset name, The AI Engine outputs read-only Azure CLI terminal lookup commands so I can extract the real IDs before halting for my sign-off.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHASE 2 CARD -->
+                <div class="phase-step-card">
+                    <div class="phase-step-header">
+                        <span class="phase-badge">Phase 02</span>
+                        <h3 class="phase-step-title">Coordinate Lock &amp; Cryptographic Extraction (Gates 1 &amp; 3)</h3>
+                    </div>
+                    <p class="phase-step-lead">
+                        Connects my Gate 1 Boundary (Entra ID Tenant ID, Azure Subscription ID, and Resource Group) to my Gate 3 Federation settings on my Execution Agent before any IaC Payload is written.
+                    </p>
+                    <div class="phase-subgrid">
+                        <div class="phase-subitem">
+                            <span class="bullet-lead">Execution Agent ID Extraction:</span> I run local terminal lookup scripts against my Execution Agent to pull permanent repository ID numbers, the exact capital-and-lowercase spelling of my Code Repository and Branch, and the OIDC Issuer URL.
+                        </div>
+                        <div class="phase-subitem">
+                            <span class="bullet-lead">Exact Subject Claim Construction:</span> Uses that exact Code Repository and Branch spelling to build a wildcard-free OpenID Connect (OIDC) Subject Claim so Microsoft Entra ID never rejects my Execution Agent's 60-Minute Login Token handshake.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHASE 3 CARD -->
+                <div class="phase-step-card">
+                    <div class="phase-step-header">
+                        <span class="phase-badge">Phase 03</span>
+                        <h3 class="phase-step-title">IaC Payload Synthesis &amp; Local Execution (Gates 1, 2, 3 &amp; 4)</h3>
+                    </div>
+                    <p class="phase-step-lead">
+                        The AI Engine synthesizes the complete IaC Payload and Terminal Runbook combining all four gates so I can deploy them from my local terminal.
+                    </p>
+                    <div class="phase-subgrid">
+                        <div class="phase-subitem">
+                            <span class="bullet-lead">Gate 1, Gate 2 &amp; Gate 3 Code Synthesis:</span> Configures read-only lookups for Brownfield (Existing) Data-Plane Assets or deletion-prevention locks for Greenfield (Net-New) Data-Plane Assets (Gate 1), provisions or references the Single-Tenant Application Registration and Service Principal with zero passwords (Gate 2), and attaches the OpenID Connect (OIDC) Subject Claim with a 30-Second Server Sync Timer (Gate 3).
+                        </div>
+                        <div class="phase-subitem">
+                            <span class="bullet-lead">Gate 4 Data-Plane Role &amp; Azure Portal MFA Handoff:</span> Blocks Owner and Contributor Roles and scopes one Data-Plane Role strictly to my single Data-Plane Asset, automatically separating the Data-Plane Role assignment into a guided Azure Portal MFA Handoff if my local terminal session drops MFA claims.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHASE 4 CARD -->
+                <div class="phase-step-card">
+                    <div class="phase-step-header">
+                        <span class="phase-badge">Phase 04</span>
+                        <h3 class="phase-step-title">Cryptographic Baseline (IAL) &amp; Live Validation Bridge</h3>
+                    </div>
+                    <p class="phase-step-lead">
+                        Mathematically proves that my Execution Agent can trade its OpenID Connect (OIDC) Subject Claim for a 60-Minute Login Token, assume my Service Principal, and read my Data-Plane Asset in the live cloud.
+                    </p>
+                    <div class="phase-subgrid">
+                        <div class="phase-subitem">
+                            <span class="bullet-lead">Identity Architecture Ledger (identity_architecture_ledger.md):</span> Records the baseline of my Entra ID Tenant ID, Azure Subscription ID, Resource Group, Application Registration Client ID, Service Principal, Subject Claim, and Data-Plane Role on my Data-Plane Asset.
+                        </div>
+                        <div class="phase-subitem">
+                            <span class="bullet-lead">Validation Bridge &amp; Azure Portal Monitoring Metrics:</span> I run the generated Validation Bridge on my Execution Agent (with Runtime Log Masking active) to a green checkmark, then immediately inspect Azure Portal Monitoring Metrics (Total Service API Hits over the last 30 minutes) on my Data-Plane Asset to prove the 60-Minute Login Token read my Data-Plane Asset with zero access errors.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHASE 5 CARD -->
+                <div class="phase-step-card">
+                    <div class="phase-step-header">
+                        <span class="phase-badge">Phase 05</span>
+                        <h3 class="phase-step-title">Enterprise Compliance Audit (ARL, KQL &amp; DPL)</h3>
+                    </div>
+                    <p class="phase-step-lead">
+                        Once Azure Portal Monitoring Metrics (Total Service API Hits) confirm that my Execution Agent read my Data-Plane Asset with zero HTTP 403 Forbidden drops, The AI Engine generates my three post-validation audit files.
+                    </p>
+                    <div class="phase-subgrid three-col">
+                        <div class="phase-subitem">
+                            <span class="bullet-lead">Audit Results Ledger (audit_results_ledger.md):</span> Scores all 4 Architectural Gates and all 5 Enterprise Guardrails as [PASS].
+                        </div>
+                        <div class="phase-subitem">
+                            <span class="bullet-lead">KQL Telemetry (kql_telemetry.md):</span> Provides the asynchronous Log Analytics query I run once Azure's indexing catches up to correlate Service Principal sign-in logs with Data-Plane Asset access logs.
+                        </div>
+                        <div class="phase-subitem">
+                            <span class="bullet-lead">Defect &amp; Patch Ledger (patch_ledger.md):</span> Compiles all real-time Defect &amp; Patch Ledger entries recorded during the Standard Patch Loop (Iterations 1 to 3) across any phase of the session.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHASE 6 CARD -->
+                <div class="phase-step-card">
+                    <div class="phase-step-header">
+                        <span class="phase-badge">Phase 06</span>
+                        <h3 class="phase-step-title">Secure Code Repository Synchronization</h3>
+                    </div>
+                    <p class="phase-step-lead">
+                        Closes out my local folder and pushes the verified IaC Payload and compliance ledgers to my remote Code Repository.
+                    </p>
+                    <div class="phase-subgrid">
+                        <div class="phase-subitem">
+                            <span class="bullet-lead">State File Protection (.gitignore):</span> Runs git pull origin main first to sync any remote Validation Bridge files and writes a protective .gitignore file so local state files never leak into my Code Repository.
+                        </div>
+                        <div class="phase-subitem">
+                            <span class="bullet-lead">Automated Git Push Script:</span> Outputs a single copy-paste Terminal Runbook script so I can commit and push my IaC Payload, Identity Architecture Ledger (IAL), Audit Results Ledger (ARL), KQL Telemetry, and Defect &amp; Patch Ledger (DPL) cleanly.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHASE 7 CARD -->
+                <div class="phase-step-card">
+                    <div class="phase-step-header">
+                        <span class="phase-badge">Phase 07</span>
+                        <h3 class="phase-step-title">AI Performance Scorecard &amp; System Directive Compilation (Backed by All-Phase Troubleshooting)</h3>
+                    </div>
+                    <p class="phase-step-lead">
+                        Closes out the session and permanently upgrades my System Directive, supported by the two separate troubleshooting mechanisms active across Phases 1 through 6.
+                    </p>
+                    <div class="phase-subgrid">
+                        <div class="phase-subitem">
+                            <span class="bullet-lead">Standard Patch Loop (Iterations 1 to 3) vs. The 4-Iteration Circuit Breaker:</span> Across any phase of the build, routine errors solved within Iterations 1 to 3 are logged immediately in the Defect &amp; Patch Ledger (DPL) with a full-file State Re-Sync of my IaC Payload. Separately, if a single error fails 3 times and reaches Iteration 4, The 4-Iteration Circuit Breaker halts code generation and forces The AI Engine to calculate an Estimated Probability of Success (X%) so I can decide whether to continue or pivot.
+                        </div>
+                        <div class="phase-subitem">
+                            <span class="bullet-lead">Phase 7 AI Performance Scorecard &amp; System Directive Upgrade:</span> At session close, outputs my statistical AI Performance Scorecard, extracts every verified fix from my Defect &amp; Patch Ledger (patch_ledger.md), and compiles the newly upgraded System Directive into a single code block.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <p class="hero-subtitle" style="margin-bottom: 0;">
+                By governing the Four Architectural Gates of Machine Identity through these seven explicit phases, I leave nothing to guesswork. Every build I execute produces a mathematically verified Zero Trust configuration in Microsoft Entra ID and Azure where my Execution Agent uses a 60-Minute Login Token to access my single Data-Plane Asset, backed by the Identity Architecture Ledger (IAL), the Audit Results Ledger (ARL), KQL Telemetry (kql_telemetry.md), and the Defect &amp; Patch Ledger (DPL). For exact definitions of every component above, see my <a href="glossary.html" class="inline-link">System Glossary</a>.
+            </p>
+
+            <!-- HERO ARCHITECTURAL INSIGHT -->
+            <div class="insight-box" style="background: linear-gradient(90deg, rgba(168, 85, 247, 0.1) 0%, transparent 100%);">
+                <div class="insight-header" style="color: var(--color-purple);">Architectural Insight: Applied AI Systems Engineering</div>
+                <div class="insight-text">
+                    The 7-phase sequence above is the direct product of applying AI systems engineering best practices on top of a fixed mathematical lexicon. Left untethered, The AI Engine will eventually drift into probabilistic guessing. By translating established industry frameworks, including the NIST AI Risk Management Framework, the OWASP Top 10 for Large Language Models, and the ReAct (Reasoning and Acting) methodology, into my master System Directive, I built The State Machine to govern both how The AI Engine synthesizes my IaC Payload and how I verify live access between my Execution Agent, my Service Principal, and my Data-Plane Asset.
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- ================= CATEGORY 1: THE 3 ACTORS (THE EXECUTION TRIAD) ================= -->
-    <section class="glossary-section" id="cat-actors">
-        <div class="category-container actors-cat">
-            <span class="category-tag">[CATEGORY 01 :: VARIABLES 01 TO 03]</span>
-            <h2 class="category-title">The 3 Actors (The Execution Triad)</h2>
-            <p class="category-desc">
-                Every build separates my human authorization authority, the immutable security rulebook, and the generative compute engine into three fixed roles so no AI component ever acts autonomously against live cloud infrastructure.
-            </p>
-
-            <div class="glossary-grid">
+    <!-- ================= SECTION 2 & SECTION 3: EXECUTION TRIAD & ARCHITECTURAL FLOW ================= -->
+    <section class="module-section">
+        <div class="architecture-container">
+            
+            <!-- SECTION 2: THE EXECUTION TRIAD -->
+            <div class="summary-section" id="execution-triad">
+                <h2 class="summary-title">The Execution Triad: Three-Party Governance &amp; Tethering</h2>
                 
-                <!-- VARIABLE 01 -->
-                <div class="glossary-card">
-                    <div>
-                        <span class="term-badge">[VARIABLE 01 :: HUMAN AUTHORITY]</span>
-                        <h3 class="term-name">1. The Architect (I / Me / My)</h3>
-                        <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> My role at the physical keyboard in Visual Studio Code or Git Bash. I hold sole authorization authority over every phase transition, terminal lookup command, local deployment execution, and Azure Portal verification step.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> I lock in the 5 Build Coordinates in Phase 1, run terminal extraction queries in Phase 2, execute the IaC Payload and Terminal Runbook in Phase 3, run the Validation Bridge and check Azure Portal Monitoring Metrics (Total Service API Hits) in Phase 4, and approve every phase halt enforced by The State Machine.</li>
+                <p class="summary-text">
+                    To ensure The AI Engine never acts autonomously against my Entra ID Tenant, Azure Subscription, or Data-Plane Asset, my System Directive establishes a strict three-party operational model: <span class="bullet-lead">The Execution Triad.</span> Instead of an unconstrained two-way chat with The AI Engine, every phase of my build separates my human authorization authority, The State Machine rulebook, and The AI Engine into three distinct roles:
+                </p>
+
+                <!-- THE TRIAD GRID -->
+                <div class="triad-grid">
+                    <div class="triad-card architect">
+                        <div class="triad-role">[ROLE: MY AUTHORITY &amp; STRATEGIC GOVERNANCE]</div>
+                        <h3 class="triad-header">1. The Architect (Me)</h3>
+                        <p class="triad-lead">
+                            My role at the keyboard, holding sole authorization authority over every state transition, Terminal Runbook command, and Azure deployment.
+                        </p>
+                        <ul class="triad-sublist">
+                            <li><span class="bullet-lead">Workspace &amp; Coordinate Lock (Phases 1 to 2):</span> I initialize the clean local directory, select the 5 Build Coordinates (Identity Core, Execution Agent, Infrastructure State, Data-Plane Asset, and IaC Payload), and run local terminal lookup scripts to pull my Entra ID Tenant ID, Azure Subscription ID, Resource Group, and exact Code Repository and Branch spelling from my Execution Agent.</li>
+                            <li><span class="bullet-lead">Local IaC Payload Execution &amp; Azure Portal MFA Handoff (Phase 3):</span> I review and execute the synthesized IaC Payload from my local terminal using device-code authentication, and complete the guided Azure Portal MFA Handoff to bind the Data-Plane Role on my Data-Plane Asset whenever local terminal MFA claims drop.</li>
+                            <li><span class="bullet-lead">Live Telemetry Verification &amp; Code Repository Sync (Phases 4 to 6):</span> I run the Validation Bridge on my Execution Agent to a green checkmark, inspect Azure Portal Monitoring Metrics (Total Service API Hits) on my Data-Plane Asset, execute KQL Telemetry (kql_telemetry.md) queries, and push the verified files to my remote Code Repository.</li>
+                            <li><span class="bullet-lead">Patch Verification &amp; Circuit Breaker Decisions (All Phases):</span> I verify fixes in my local terminal during the Standard Patch Loop (Iterations 1 to 3) so they can be logged in the Defect &amp; Patch Ledger (DPL), and I make the final risk decision if an unresolved error reaches Iteration 4 and trips The 4-Iteration Circuit Breaker.</li>
                         </ul>
                     </div>
-                    <div class="aka-box">
-                        <strong>REPLACES INDUSTRY NICKNAMES:</strong> "The human engineer," "the operator," "the user," "DevSecOps teams," "organizations," "administrators."
-                    </div>
-                </div>
-
-                <!-- VARIABLE 02 -->
-                <div class="glossary-card">
-                    <div>
-                        <span class="term-badge">[VARIABLE 02 :: THE DETERMINISTIC HARNESS]</span>
-                        <h3 class="term-name">2. The State Machine (Zero Trust Interactive State Machine &amp; System Directive)</h3>
-                        <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> My master System Directive rulebook that wraps around The AI Engine as an un-bypassable seven-phase harness. It enforces mandatory human-in-the-loop halts, a continuous Watchdog self-check on every turn, and hard security rules across Gate 1 through Gate 4.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Receives my 5 Build Coordinates in Phase 1 and constrains The AI Engine across Phases 1 through 7 so The AI Engine cannot skip gates, guess IDs, grant Owner and Contributor Roles, or generate new code if an error reaches Iteration 4 under The 4-Iteration Circuit Breaker.</li>
+                    
+                    <div class="triad-card machine">
+                        <div class="triad-role">[ROLE: THE DETERMINISTIC HARNESS &amp; RULEBOOK]</div>
+                        <h3 class="triad-header">2. The Interactive State Machine</h3>
+                        <p class="triad-lead">
+                            My master System Directive rulebook that acts as an un-bypassable harness around The AI Engine across all seven phases.
+                        </p>
+                        <ul class="triad-sublist">
+                            <li><span class="bullet-lead">Mandatory Halts &amp; Watchdog Enforcement:</span> Forces The AI Engine to execute one phase at a time behind strict human-in-the-loop halts and runs a continuous Watchdog check on every turn so The AI Engine can never skip ahead or stack manual steps without my approval.</li>
+                            <li><span class="bullet-lead">Enforcing the 4 Architectural Gates:</span> Mandates read-only lookups on Brownfield (Existing) Data-Plane Assets and deletion-prevention locks on Greenfield (Net-New) Data-Plane Assets (Gate 1), Single-Tenant Application Registrations and Service Principals with zero passwords (Gate 2), exact wildcard-free OpenID Connect (OIDC) Subject Claims with a 60-Minute Login Token ceiling (Gate 3), and single-asset Data-Plane Roles while blocking Owner and Contributor Roles (Gate 4).</li>
+                            <li><span class="bullet-lead">Built-In Cloud Crash Prevention:</span> Enforces a 30-Second Server Sync Timer inside the IaC Payload to absorb Microsoft Entra ID directory sync delays, chunks external IP lists to prevent Conditional Access size errors, mandates invisible terminal input for setup tokens, and blocks ephemeral browser Cloud Shell sessions.</li>
+                            <li><span class="bullet-lead">DPL State Re-Sync, The 4-Iteration Circuit Breaker &amp; Audit Schemas:</span> Mandates real-time Defect &amp; Patch Ledger (DPL) logging and full-file State Re-Syncs of my IaC Payload whenever a fix succeeds in Iterations 1 to 3, structurally forbids new code generation if a patch reaches Iteration 4, and locks Phases 4 and 5 to strict Markdown schemas for the Identity Architecture Ledger (IAL) and Audit Results Ledger (ARL).</li>
                         </ul>
                     </div>
-                    <div class="aka-box">
-                        <strong>REPLACES INDUSTRY NICKNAMES:</strong> "The software," "the prompt template," "the compiler harness," "the governance wrapper," "ACPHF."
-                    </div>
-                </div>
 
-                <!-- VARIABLE 03 -->
-                <div class="glossary-card full-width">
-                    <div>
-                        <span class="term-badge">[VARIABLE 03 :: TETHERED COMPUTE ENGINE]</span>
-                        <h3 class="term-name">3. The AI Engine</h3>
-                        <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The generative artificial intelligence model whose probabilistic behavior is tethered to my System Directive inside The State Machine. It has zero direct network access to my Entra ID Tenant or Azure Subscription.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Subordinated to The State Machine and my sign-off, The AI Engine outputs read-only terminal lookup commands in Phases 1 and 2, synthesizes the finished IaC Payload and Terminal Runbook in Phase 3, writes the Validation Bridge and Identity Architecture Ledger (IAL) in Phase 4, compiles the Audit Results Ledger (ARL), KQL Telemetry, and Defect &amp; Patch Ledger (DPL) in Phase 5, and outputs the AI Performance Scorecard and upgraded System Directive in Phase 7.</li>
+                    <div class="triad-card ai">
+                        <div class="triad-role">[ROLE: THE TETHERED HIGH-PERFORMANCE CO-PILOT]</div>
+                        <h3 class="triad-header">3. The AI Engine</h3>
+                        <p class="triad-lead">
+                            The generative compute engine whose capabilities are strictly subordinated to The State Machine's rules and my sign-off.
+                        </p>
+                        <ul class="triad-sublist">
+                            <li><span class="bullet-lead">Explicit State-Switching &amp; Terminal Lookup Queries:</span> Openly narrates its operational state, providing read-only terminal lookup commands during Phases 1 and 2 so I can extract my Entra ID Tenant ID, Azure Subscription ID, Resource Group, and Code Repository and Branch spelling without The AI Engine ever guessing or outputting manual placeholders.</li>
+                            <li><span class="bullet-lead">IaC Payload, Terminal Runbook &amp; Validation Bridge Synthesis:</span> Synthesizes the complete Terraform, Azure Bicep, or PowerShell REST API IaC Payload and Terminal Runbook in Phase 3, the Validation Bridge for my Execution Agent in Phase 4, and Plain Talk anatomical translations at each phase.</li>
+                            <li><span class="bullet-lead">Standard Patch Loop (Iterations 1 to 3) &amp; Iteration 4 Risk Assessment:</span> Drops all conversational analogies during troubleshooting to fix errors, stage real-time Defect &amp; Patch Ledger (DPL) entries, and output a full-file State Re-Sync of my IaC Payload. If a patch fails 3 times and hits Iteration 4, it halts code generation, analyzes the error shifts across its 3 attempts, outputs an Estimated Probability of Success (X%), and presents alternative pathways for my review.</li>
+                            <li><span class="bullet-lead">Self-Correction Scorecard &amp; System Directive Compilation:</span> Logs any internal rule deviations in real time, compiles the formal Defect &amp; Patch Ledger (patch_ledger.md) file in Phase 5, outputs the Phase 7 AI Performance Scorecard, and compiles my upgraded System Directive at session close.</li>
                         </ul>
                     </div>
-                    <div class="aka-box">
-                        <strong>REPLACES INDUSTRY NICKNAMES:</strong> "The LLM," "the chatbot," "the autonomous agent," "the generative model," "the AI assistant."
-                    </div>
                 </div>
-
             </div>
+
+            <!-- SECTION 3: THE ARCHITECTURAL EXECUTION FLOW -->
+            <h2 class="flow-title" id="execution-flow">The Architectural Execution Flow: System Topology &amp; Runtime Mechanics</h2>
+
+            <!-- THE GRAPHIC (CANONICAL LEXICON ALIGNED) -->
+            <div class="canvas-wrapper">
+                <div class="diagram-canvas">
+                    <svg class="routing-lines" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6" /></marker>
+                            <marker id="arrow-cyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0ea5e9" /></marker>
+                            <marker id="arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#a855f7" /></marker>
+                            <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#10b981" /></marker>
+                            <marker id="arrow-red-end" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#f43f5e" /></marker>
+                            <marker id="arrow-red-start" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 10 0 L 0 5 L 10 10 z" fill="#f43f5e" /></marker>
+                        </defs>
+                        <!-- Eng to Compiler -->
+                        <path class="animated-path" d="M 220 100 L 250 100" fill="none" stroke="#3b82f6" stroke-width="3" marker-end="url(#arrow-blue)" />
+                        <!-- Compiler to Eng -->
+                        <path class="animated-path" d="M 250 130 L 220 130" fill="none" stroke="#a855f7" stroke-width="2" marker-end="url(#arrow-purple)" />
+                        <!-- Engine to Compiler -->
+                        <path class="animated-path" d="M 220 340 L 360 340 L 360 190" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
+                        <!-- Compiler to IaC -->
+                        <path class="animated-path" d="M 470 100 L 500 100" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
+                        <!-- IaC to Core -->
+                        <path class="animated-path" d="M 680 100 L 710 100" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
+                        <!-- Core to Modular Scaling -->
+                        <path class="animated-path" d="M 930 100 L 960 100" fill="none" stroke="#a855f7" stroke-width="3" marker-end="url(#arrow-purple)" />
+
+                        <!-- Core to Split -->
+                        <path class="animated-path" d="M 820 220 L 820 320" fill="none" stroke="#10b981" stroke-width="2" />
+                        <!-- Split to IAL -->
+                        <path class="animated-path" d="M 820 320 L 770 320 L 770 410" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
+                        <!-- Split to ARL -->
+                        <path class="animated-path" d="M 820 320 L 1015 320 L 1015 410" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
+                        
+                        <!-- Engine to DPL (Bidirectional Feedback) -->
+                        <path class="animated-path" d="M 220 450 L 250 450" fill="none" stroke="#f43f5e" stroke-width="3" marker-start="url(#arrow-red-start)" marker-end="url(#arrow-red-end)" />
+                    </svg>
+
+                    <div class="node node-engineer"><div class="tag">[THE ARCHITECT (ME)]</div><div class="node-title">My Role at the Keyboard</div><div class="node-text">I set up the clean local workspace, select the 5 Build Coordinates, run terminal lookup scripts, execute the IaC Payload locally, and approve every phase.</div></div>
+                    
+                    <div class="node node-engine"><div class="tag">[THE STATE MACHINE]</div><div class="node-title">Zero Trust Interactive State Machine<br><span style="font-size: 0.78rem; font-weight: 700; color: var(--color-cyan);">(MASTER SYSTEM DIRECTIVE)</span></div><div class="tag" style="margin-top: 5px;">[THE HARNESS]</div><div class="node-text">Enforces step-by-step halts, Single-Tenant Service Principals, read-only lookups on Brownfield Data-Plane Assets, and single-asset Data-Plane Roles.</div></div>
+                    
+                    <div class="node node-compiler"><div class="tag">[THE AI ENGINE]</div><div class="node-title">Tethered Co-Pilot<br><span style="font-size: 0.78rem; font-weight: 700; color: #a855f7;">(CONTROLLED BUILDER)</span></div><div class="node-text">Provides my terminal lookup commands, synthesizes the complete IaC Payload, Terminal Runbook, and Validation Bridge, and writes the formal ledgers.</div></div>
+                    
+                    <div class="node node-dpl"><div class="tag">[DPL &amp; CIRCUIT BREAKER]</div><div class="node-title">Defect &amp; Patch Ledger (DPL)</div><div class="node-text">Logs every verified fix in real time (Iterations 1 to 3) to upgrade my System Directive in Phase 7. Separately, if an error fails 3 times, The 4-Iteration Circuit Breaker halts code generation on Iteration 4.</div></div>
+                    
+                    <div class="node node-iac"><div class="tag">[PHASE 3 OUTPUT]</div><div class="node-title">IaC Payload &amp; Runbook</div><div class="node-text">Outputs the finished Terraform, Azure Bicep, or PowerShell REST API IaC Payload with a 30-Second Server Sync Timer and Terminal Runbook.</div></div>
+                    
+                    <div class="node node-core"><div class="tag">[DEPLOYED CLOUD STATE]</div><div class="node-title">Gates 1 to 4 Live in Azure</div><div class="node-text">Live Application Registration, Service Principal, and OIDC Subject Claim.<span class="highlight">60-Minute Login Token locked to one Data-Plane Asset.</span></div></div>
+                    
+                    <div class="node node-scale"><div class="tag">[DAY-2 EXPANSION]</div><div class="node-title">35 Core Entra Modules</div><div class="node-text">Lets me layer advanced Microsoft Entra ID security services (like Conditional Access) onto my verified Application Registration and Service Principal.<span class="highlight">Non-destructive add-on modules.</span></div></div>
+
+                    <div class="node node-ial"><div class="tag">[PHASE 4 BASELINE]</div><div class="node-title">Identity Architecture Ledger (IAL)</div><div class="node-text">Pre-validation baseline recording my Entra ID Tenant ID, Azure Subscription ID, Service Principal, Subject Claim, and Data-Plane Role.</div></div>
+                    
+                    <div class="node node-arl"><div class="tag">[PHASE 4 &amp; 5 PROOF]</div><div class="node-title">Portal Metrics, ARL &amp; KQL</div><div class="node-text">My Stage 1 proof via Azure Portal Monitoring Metrics (Total Service API Hits), followed by the Audit Results Ledger (ARL) and KQL Telemetry.</div></div>
+                </div>
+            </div>
+
+            <!-- ARCHITECTURAL FLOW EXPLANATION (UNDER THE HOOD MECHANICS: CANONICAL LEXICON) -->
+            <div class="flow-explanation">
+                <h3 class="flow-subheader">Under the Hood: 4 Practical Engineering Controls Built Into My Flow</h3>
+                
+                <p class="flow-intro">
+                    Beyond the 7-phase sequence at the top of the page, the diagram above highlights four practical engineering solutions I built into my System Directive to prevent the real-world terminal crashes, Microsoft Entra ID syncing delays, and logging bottlenecks that routinely break deployments between an Execution Agent, a Service Principal, and a Data-Plane Asset:
+                </p>
+
+                <div class="flow-mechanics-box">
+                    <ul class="hero-step-list">
+                        <li class="hero-step-item">
+                            <span class="step-label">1. Running My IaC Payload from a Clean Local Folder Instead of Browser Cloud Shells:</span> I deprecated browser-based terminals like Azure Cloud Shell in my System Directive because temporary browser sessions time out after brief periods of inactivity, wiping out local state files mid-build, dropping multi-factor login claims, and cutting off large pasted IaC Payloads.
+                            <ul class="step-sublist">
+                                <li><span class="bullet-lead">Isolated Local Workspace:</span> I run every build inside a brand-new, empty folder on my local computer using Visual Studio Code or Git Bash, ensuring old state files from previous projects never collide with my current IaC Payload.</li>
+                                <li><span class="bullet-lead">Multi-Factor Terminal Sign-In:</span> My Terminal Runbook starts with a device-code sign-in command (az login --use-device-code) so my local terminal session carries full multi-factor authentication approval into my Entra ID Tenant ID and Azure Subscription ID right from the beginning.</li>
+                            </ul>
+                        </li>
+                        <li class="hero-step-item">
+                            <span class="step-label">2. Preventing Microsoft Entra ID Sync Crashes, Subject Claim Case-Sensitivity Drops &amp; MFA Errors:</span> Even when an IaC Payload is written properly, Microsoft Entra ID and Azure have strict timing and security quirks that will crash a deployment across Gate 2, Gate 3, and Gate 4 if I do not handle them ahead of time.
+                            <ul class="step-sublist">
+                                <li><span class="bullet-lead">Automatic 30-Second Server Sync Timer (Gate 2 to Gate 3):</span> When my IaC Payload creates a new Application Registration and Service Principal in Microsoft Entra ID (Gate 2) and immediately tries to attach an OpenID Connect (OIDC) Subject Claim or Conditional Access policy a split-second later (Gate 3), Microsoft's global directory servers often haven't finished syncing the new Service Principal yet and the deployment crashes. The State Machine automatically injects a 30-Second Server Sync Timer into my IaC Payload so Microsoft's servers catch up before the next step runs.</li>
+                                <li><span class="bullet-lead">Exact Capital-and-Lowercase Subject Claim Matching (Gate 3):</span> Microsoft Entra ID rejects OpenID Connect (OIDC) token exchanges if the capital and lowercase letters in the Subject Claim sent by my Execution Agent do not match 100% character-for-character with my Code Repository and Branch spelling. In Phase 2, I run a terminal lookup script to pull the exact spelling of my Code Repository and Branch directly from my Execution Agent so Microsoft Entra ID never rejects the 60-Minute Login Token due to a capital-letter mismatch.</li>
+                                <li><span class="bullet-lead">Azure Portal MFA Handoff When Local Terminal MFA Drops (Gate 4):</span> For certain high-security builds (such as Conditional Access for Workload Identities or PowerShell REST API builds), Azure blocks local terminals from assigning a Data-Plane Role on a Data-Plane Asset because a local terminal cannot display an interactive multi-factor authentication popup screen. When The State Machine detects one of those builds, it cleanly separates the Data-Plane Role step from the IaC Payload and gives me a guided Azure Portal MFA Handoff checklist to assign that single Data-Plane Role on my Data-Plane Asset inside the Azure web portal so my IaC Payload never crashes.</li>
+                            </ul>
+                        </li>
+                        <li class="hero-step-item">
+                            <span class="step-label">3. Two-Stage Live Verification: Instant Azure Portal Monitoring Metrics Before Slow KQL Telemetry:</span> In the real world, Azure Log Analytics can take a very long, unpredictable amount of time to index new sign-in logs, making it impractical for me to wait on KQL Telemetry (kql_telemetry.md) just to find out if my Execution Agent successfully read my Data-Plane Asset.
+                            <ul class="step-sublist">
+                                <li><span class="bullet-lead">Stage 1: My Immediate Verification in Azure Portal Monitoring Metrics (Phase 4):</span> As soon as my Execution Agent runs the Validation Bridge to a green checkmark, I check Azure Portal Monitoring Metrics (Total Service API Hits over the last 30 minutes) directly on my Data-Plane Asset. Seeing that immediate API hit spike proves mathematically that my Execution Agent traded its Subject Claim for a 60-Minute Login Token, assumed my Service Principal, and unlocked my Data-Plane Asset with zero access errors, before I ever wait on Log Analytics.</li>
+                                <li><span class="bullet-lead">Stage 2: Audit Results Ledger &amp; Asynchronous KQL Telemetry (Phase 5):</span> Once the live spike in Azure Portal Monitoring Metrics (Total Service API Hits) confirms my Execution Agent read my Data-Plane Asset, The AI Engine generates my formal Audit Results Ledger (audit_results_ledger.md) and provides my standalone KQL Telemetry (kql_telemetry.md) file so I can pull the deep correlation logs between my Service Principal and my Data-Plane Asset later once Azure Log Analytics finishes indexing.</li>
+                            </ul>
+                        </li>
+                        <li class="hero-step-item">
+                            <span class="step-label">4. Day-2 Microsoft Entra ID Expansions &amp; Full-File State Re-Syncing:</span> Once my Application Registration, Service Principal, Subject Claim, and Data-Plane Role are live across Gate 1 through Gate 4, I often need to add stricter Microsoft Entra ID security rules (like IP address restrictions) or apply a troubleshooting fix during the Standard Patch Loop (Iterations 1 to 3) without breaking my original IaC Payload.
+                            <ul class="step-sublist">
+                                <li><span class="bullet-lead">Adding Any of the 35 Microsoft Entra ID Modules (Day-2 Expansion):</span> Once my core Application Registration and Service Principal are verified, I can skip Phases 1 and 2 and layer any of the 35 Microsoft Entra ID security capabilities onto my existing Application Registration and Service Principal as additive code blocks inside my IaC Payload without overwriting my live foundation.</li>
+                                <li><span class="bullet-lead">Full-File State Re-Sync of My IaC Payload (Zero Partial Snippets):</span> Unconstrained AI models often output incomplete code fragments ("paste this snippet into line 42") during troubleshooting, which causes copy-paste mistakes and broken files. Whenever I verify a fix during the Standard Patch Loop (Iterations 1 to 3), my System Directive logs the fix in the Defect &amp; Patch Ledger (DPL) and forces a full-file State Re-Sync, outputting the entire IaC Payload file from top to bottom so my local workspace is always complete. For a full phase-by-phase breakdown and term definitions, see my <a href="blueprint.html" class="inline-link">Operational Blueprint</a>, <a href="architectural.html" class="inline-link">Pipeline Architecture</a>, and <a href="glossary.html" class="inline-link">System Glossary</a> pages.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- SECTION 3 ARCHITECTURAL INSIGHT: ENTERPRISE PORTABILITY -->
+                <div class="insight-box" style="background: linear-gradient(90deg, rgba(168, 85, 247, 0.1) 0%, transparent 100%);">
+                    <div class="insight-header" style="color: var(--color-purple);">Architectural Insight: Enterprise Portability &amp; Private AI Deployment</div>
+                    <div class="insight-text">
+                        While I demonstrate the Zero Trust Interactive State Machine in this portfolio using standard interfaces, I engineered my System Directive for strict enterprise portability. It does not require public AI endpoints. In a corporate production environment, I can inject this exact System Directive directly into a private, tenant-isolated instance of The AI Engine (such as Azure OpenAI), ensuring that my Entra ID Tenant ID, Azure Subscription ID, Resource Group, IaC Payload, and compliance ledgers remain 100% inside the corporate security boundary.
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <!-- ================= CATEGORY 2: THE 5 BUILD COORDINATES ================= -->
-    <section class="glossary-section" id="cat-coordinates">
-        <div class="category-container coords-cat">
-            <span class="category-tag">[CATEGORY 02 :: VARIABLES 04 TO 08]</span>
-            <h2 class="category-title">The 5 Build Coordinates (The Phase 1 Intake Matrix)</h2>
-            <p class="category-desc">
-                Every deployment begins in Phase 1 by selecting five core coordinates from the 5-Column Build Matrix. Multiplying these five choices (1 Identity Core &times; 4 Execution Agents &times; 2 Infrastructure States &times; 3 Data-Plane Assets &times; 3 IaC Payloads) produces the 72 baseline build combinations supported by my System Directive.
+    <!-- ================= SECTION 4: THE 4 AI ENGINEERING PILLARS & THE 5 ENTERPRISE GUARDRAILS ================= -->
+    <div class="guardrail-container" id="enterprise-guardrails">
+        <div class="prelude-box">
+            <h2 class="section-title">From AI Systems Engineering to Code: The 4 Pillars &amp; The 5 Enterprise Guardrails</h2>
+            
+            <p class="intro-text">
+                Before The AI Engine can safely write an IaC Payload for Microsoft Entra ID and Azure, the system governing The AI Engine must be engineered properly. To build the master System Directive for the Zero Trust Interactive State Machine, I grounded the architecture in <span class="bullet-lead">four globally recognized AI Systems Engineering standards</span>, separating what each standard defines in the broader AI industry from how I wired it into my workflow across the 5 Build Coordinates and the 4 Architectural Gates:
             </p>
 
-            <div class="glossary-grid">
-
-                <!-- VARIABLE 04 -->
-                <div class="glossary-card">
-                    <div>
-                        <span class="term-badge">[VARIABLE 04 :: COORDINATE 1 OF 5]</span>
-                        <h3 class="term-name">4. Identity Core (Microsoft Entra ID)</h3>
-                        <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> Column 1 of my Build Matrix. Microsoft Entra ID is Microsoft's cloud identity directory service that acts as the central authority for creating machine identities, verifying OpenID Connect (OIDC) Subject Claims, and issuing 60-Minute Login Tokens.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Lives inside my Entra ID Tenant ID (Gate 1), hosts my Application Registration and Service Principal (Gate 2), verifies the Subject Claim from my Execution Agent to issue a 60-Minute Login Token (Gate 3), and logs every sign-in for KQL Telemetry (Phase 5).</li>
+            <!-- PART A: THE 4 PILLARS OF THE SYSTEM DIRECTIVE -->
+            <div class="pillars-inset-box">
+                <div class="hero-sequence-header">[THE 4 AI SYSTEMS ENGINEERING PILLARS OF MY SYSTEM DIRECTIVE]</div>
+                <ul class="hero-step-list">
+                    <li class="hero-step-item">
+                        <span class="step-label">Pillar 1: Agentic Patterns (The ReAct Framework):</span>
+                        <ul class="step-sublist">
+                            <li><span class="bullet-lead">The AI Systems Engineering Standard:</span> Developed by researchers at Princeton and Google Brain (Yao et al.), the ReAct (Reasoning and Acting) methodology prevents language models from guessing in a vacuum by forcing them to alternate between reasoning steps and checking real external data sources.</li>
+                            <li><span class="bullet-lead">How I Applied It in My System Directive:</span> Instead of letting The AI Engine guess my Entra ID Tenant ID, Azure Subscription ID, Resource Group, or Code Repository and Branch spelling, Phases 1 and 2 force The AI Engine to pause, give me read-only terminal lookup commands, wait for me to paste back the real console output, and only synthesize my Phase 3 IaC Payload using verified live IDs.</li>
                         </ul>
-                    </div>
-                    <div class="aka-box">
-                        <strong>REPLACES INDUSTRY NICKNAMES:</strong> "Azure Active Directory," "Azure AD," "AAD," "the identity provider (IdP)," "the directory service."
-                    </div>
-                </div>
-
-                <!-- VARIABLE 05 -->
-                <div class="glossary-card">
-                    <div>
-                        <span class="term-badge">[VARIABLE 05 :: COORDINATE 2 OF 5]</span>
-                        <h3 class="term-name">5. Execution Agent</h3>
-                        <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> Column 2 of my Build Matrix. The external automation platform or container cluster that runs automated jobs outside of Azure and needs to log into Azure without a human at a web browser. The 4 options are: Azure Kubernetes Service (AKS), GitHub Actions, Azure DevOps, or GitLab CI.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> In Gate 3, my Execution Agent sends its digital ID card (containing the Subject Claim) to Microsoft Entra ID via OpenID Connect (OIDC) and receives a 60-Minute Login Token. In Gate 4 and Phase 4, my Execution Agent uses that 60-Minute Login Token to assume my Service Principal and run the Validation Bridge to read my Data-Plane Asset.</li>
+                    </li>
+                    <li class="hero-step-item">
+                        <span class="step-label">Pillar 2: Bounded Autonomy (OWASP Top 10 for LLMs: LLM08 Excessive Agency):</span>
+                        <ul class="step-sublist">
+                            <li><span class="bullet-lead">The AI Systems Engineering Standard:</span> The global OWASP application security standard for artificial intelligence, which mandates strict permission boundaries so an AI model cannot exercise unchecked agency or run destructive commands across enterprise systems.</li>
+                            <li><span class="bullet-lead">How I Applied It in My System Directive:</span> The AI Engine has zero direct access to my Entra ID Tenant or Azure Subscription and is locked inside hard rules inside my System Directive: requiring read-only lookups on Brownfield (Existing) Data-Plane Assets, single-asset Data-Plane Roles (blocking Owner and Contributor Roles), and an Azure Portal MFA Handoff whenever a Data-Plane Role assignment requires interactive multi-factor authentication.</li>
                         </ul>
-                    </div>
-                    <div class="aka-box">
-                        <strong>REPLACES INDUSTRY NICKNAMES:</strong> "Pipeline," "background pipeline," "CI/CD platform," "external automation tool," "runner," "workload," "workflow."
-                    </div>
-                </div>
-
-                <!-- VARIABLE 06 -->
-                <div class="glossary-card">
-                    <div>
-                        <span class="term-badge">[VARIABLE 06 :: COORDINATE 3 OF 5]</span>
-                        <h3 class="term-name">6. Infrastructure State: Brownfield (Existing) vs. Greenfield (Net-New)</h3>
-                        <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> Column 3 of my Build Matrix. Defines whether the cloud resources I am connecting to already exist in live production (Brownfield) or are being built from scratch for the first time (Greenfield).</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Directly controls how my Phase 3 IaC Payload treats Gate 1, Gate 2, and Gate 4. If I select Brownfield (Existing), the IaC Payload uses read-only lookups (such as Terraform data blocks or Bicep existing keywords) so live Data-Plane Assets and Application Registrations are never overwritten. If I select Greenfield (Net-New), the IaC Payload creates the resources from scratch and attaches deletion-prevention locks.</li>
+                    </li>
+                    <li class="hero-step-item">
+                        <span class="step-label">Pillar 3: Human-in-the-Loop Governance (NIST AI Risk Management Framework):</span>
+                        <ul class="step-sublist">
+                            <li><span class="bullet-lead">The AI Systems Engineering Standard:</span> The U.S. federal standard (NIST AI RMF 1.0) establishing the "Govern" function, requiring continuous human oversight, risk control, and clear human accountability at every critical decision point in a high-impact AI system.</li>
+                            <li><span class="bullet-lead">How I Applied It in My System Directive:</span> My System Directive forbids The AI Engine from skipping ahead or stacking manual steps. The State Machine must halt at every single phase, from locking in the 5 Build Coordinates and extracting the OpenID Connect (OIDC) Subject Claim to running the Validation Bridge on my Execution Agent and checking Azure Portal Monitoring Metrics (Total Service API Hits) on my Data-Plane Asset, waiting for my explicit verification before advancing.</li>
                         </ul>
-                    </div>
-                    <div class="aka-box">
-                        <strong>REPLACES INDUSTRY NICKNAMES:</strong> "Legacy environment," "production topography," "live cloud estate," "state-space idempotency."
-                    </div>
-                </div>
-
-                <!-- VARIABLE 07 -->
-                <div class="glossary-card">
-                    <div>
-                        <span class="term-badge">[VARIABLE 07 :: COORDINATE 4 OF 5]</span>
-                        <h3 class="term-name">7. Data-Plane Asset</h3>
-                        <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> Column 4 of my Build Matrix. The single protected Azure storage or vault resource that my Execution Agent needs to read data from. The 3 options are: Azure Key Vault, Storage Account, or SQL / Cosmos DB.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Sits inside my Azure Subscription ID and Resource Group (Gate 1). In Gate 4, I assign one Data-Plane Role on this single Data-Plane Asset to my Service Principal. In Phase 4, my Execution Agent runs the Validation Bridge to read from this Data-Plane Asset, generating the live API hit spike in Azure Portal Monitoring Metrics (Total Service API Hits).</li>
+                    </li>
+                    <li class="hero-step-item">
+                        <span class="step-label">Pillar 4: Cognitive Circuit Breaking (LLM Hallucination &amp; Drift Prevention):</span>
+                        <ul class="step-sublist">
+                            <li><span class="bullet-lead">The AI Systems Engineering Standard:</span> Grounded in foundational AI reliability research (Huang et al.), cognitive circuit breaking stops language models from drifting off their instructions and repeating false guesses ("hallucination spirals") during long, multi-turn troubleshooting sessions.</li>
+                            <li><span class="bullet-lead">How I Applied It in My System Directive:</span> My System Directive separates routine bug logging from emergency circuit breaking across every phase. Whenever a fix succeeds during the Standard Patch Loop (Iterations 1 to 3), it is logged immediately in the Defect &amp; Patch Ledger (DPL) with a full-file State Re-Sync of my IaC Payload. Separately, if an error fails 3 times and reaches Iteration 4, The 4-Iteration Circuit Breaker trips automatically, forbidding The AI Engine from generating new code and forcing it to calculate an Estimated Probability of Success (X%) so I can decide whether to stay the course or pivot.</li>
                         </ul>
-                    </div>
-                    <div class="aka-box">
-                        <strong>REPLACES INDUSTRY NICKNAMES:</strong> "Target vault," "target resource," "cloud database," "storage bucket," "secret store," "protected resource."
-                    </div>
-                </div>
-
-                <!-- VARIABLE 08 -->
-                <div class="glossary-card full-width">
-                    <div>
-                        <span class="term-badge">[VARIABLE 08 :: COORDINATE 5 OF 5]</span>
-                        <h3 class="term-name">8. IaC Payload &amp; Terminal Runbook</h3>
-                        <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> Column 5 of my Build Matrix. The IaC Payload is the complete, finished Infrastructure-as-Code file generated in Phase 3 (written in Terraform HCL, Azure Bicep, or PowerShell REST API) that configures Gates 1 through 4 in the cloud. The Terminal Runbook is the companion step-by-step copy-paste command script I run in my local terminal to execute that IaC Payload.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Synthesized by The AI Engine in Phase 3 using the verified IDs extracted in Phases 1 and 2. When I execute the Terminal Runbook and IaC Payload from my local folder, it configures Gate 1, Gate 2, Gate 3 (with the 30-Second Server Sync Timer), and Gate 4 in Microsoft Entra ID and Azure. If a fix is needed during the Standard Patch Loop (Iterations 1 to 3), The AI Engine performs a full-file State Re-Sync of the entire IaC Payload.</li>
-                        </ul>
-                    </div>
-                    <div class="aka-box">
-                        <strong>REPLACES INDUSTRY NICKNAMES:</strong> "Deployment script," "automation code," "infrastructure template," "provisioning manifest," "CLI commands."
-                    </div>
-                </div>
-
+                    </li>
+                </ul>
             </div>
-        </div>
-    </section>
 
-    <!-- ================= CATEGORY 3: THE 10 GATE MECHANICS (GATES 1 TO 4) ================= -->
-    <section class="glossary-section" id="cat-gates">
-        <div class="category-container gates-cat">
-            <span class="category-tag">[CATEGORY 03 :: VARIABLES 09 TO 18]</span>
-            <h2 class="category-title">The 10 Gate Mechanics (Gates 1 through 4)</h2>
-            <p class="category-desc">
-                These ten mechanical variables form the internal anatomy of Gate 1 (Boundary), Gate 2 (Identity), Gate 3 (Federation), and Gate 4 (Access), locking together in sequence so an external Execution Agent can authenticate without a password and read a single Data-Plane Asset.
+            <!-- PART B: MATCHING HEADER & THE 5 ENTERPRISE GUARDRAILS -->
+            <div class="guardrails-sub-header">[TRANSLATING AI SYSTEMS ENGINEERING INTO CODE: THE 5 ENTERPRISE GUARDRAILS]</div>
+
+            <p class="intro-text" style="margin-bottom: 3rem;">
+                While the four AI Systems Engineering pillars above govern how The AI Engine behaves across the 7-phase conversation, I translated those standards, alongside specific controls from the OWASP Top 10 for LLMs and the NIST AI Risk Management Framework, into <span class="bullet-lead">five concrete Enterprise Guardrails</span> inside the generated IaC Payload and Validation Bridge. Enforced at runtime by The Execution Triad and formally scored as [PASS] in my Phase 5 Audit Results Ledger (ARL), each guardrail translates a core AI engineering standard into a hard security lock across Gates 1 through 4:
             </p>
 
-            <div class="glossary-grid">
-
-                <!-- VARIABLE 09 -->
-                <div class="glossary-card">
-                    <div>
-                        <span class="term-badge">[VARIABLE 09 :: GATE 1 BOUNDARY]</span>
-                        <h3 class="term-name">9. Entra ID Tenant ID, Azure Subscription ID &amp; Resource Group</h3>
-                        <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The three nested routing addresses that define my Gate 1 Boundary in Azure:
-                                <br>&bull; <strong>Entra ID Tenant ID:</strong> The top-level organization directory root that holds Microsoft Entra ID.
-                                <br>&bull; <strong>Azure Subscription ID:</strong> The billing and management container nested directly under that Entra ID Tenant ID.
-                                <br>&bull; <strong>Resource Group:</strong> The logical folder inside that Azure Subscription ID that holds my Data-Plane Asset.
-                            </li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Locked in during Phase 1 and verified in the Phase 4 Identity Architecture Ledger (IAL). Because an Azure Subscription ID only trusts the Microsoft Entra ID directory it is nested under, Gate 1 verifies that my Azure Subscription ID and Resource Group sit under the exact same Entra ID Tenant ID where my Gate 2 Service Principal is created.</li>
-                        </ul>
-                    </div>
-                    <div class="aka-box">
-                        <strong>REPLACES INDUSTRY NICKNAMES:</strong> "Cloud perimeter," "root domain structure," "environment coordinates," "account boundary."
-                    </div>
+            <div class="vulnerability-grid">
+                
+                <div class="vuln-card">
+                    <h3 class="vuln-title">1. Secret &amp; Credential Protection (Data Loss Prevention &amp; Context Leakage)</h3>
+                    <ul class="step-sublist">
+                        <li><span class="bullet-lead">The AI Engineering Principle (OWASP LLM06: Sensitive Information Disclosure &amp; NIST Privacy):</span> In AI systems engineering, feeding live passwords or static secrets into a model's context window, or echoing them in plain text in a terminal, creates an immediate credential leak risk.</li>
+                        <li><span class="bullet-lead">How My Guardrail Enforces It in Code (Phases 1, 2 &amp; 3 / Gates 1, 2 &amp; 3):</span> I separate non-secret routing addresses from private secrets. Using Phase 1 and Phase 2 terminal lookups, I pull safe routing IDs (my Entra ID Tenant ID, Azure Subscription ID, Resource Group, and Code Repository and Branch name) so The AI Engine writes a 100% finished IaC Payload with zero blank placeholders. Meanwhile, Gate 2 and Gate 3 eliminate static passwords completely using a passwordless 60-Minute Login Token via OpenID Connect (OIDC), and my Terminal Runbook uses invisible terminal typing (read -s) so any setup token never appears on my screen or in my Code Repository.</li>
+                    </ul>
                 </div>
 
-                <!-- VARIABLE 10 -->
-                <div class="glossary-card">
-                    <div>
-                        <span class="term-badge">[VARIABLE 10 :: GATE 2 IDENTITY]</span>
-                        <h3 class="term-name">10. Application Registration &amp; Service Principal</h3>
-                        <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The two linked objects inside Microsoft Entra ID that form a non-human machine identity in Gate 2:
-                                <br>&bull; <strong>Application Registration:</strong> The global identity definition and configuration blueprint (which holds the Application Client ID and the Gate 3 OpenID Connect trust rule).
-                                <br>&bull; <strong>Service Principal:</strong> The local directory badge (Enterprise Application Object ID) created from that blueprint inside my Entra ID Tenant ID that actually receives permissions in Gate 4.
-                            </li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Created or referenced inside my Entra ID Tenant ID (Gate 1) with zero passwords. The Application Registration holds the Gate 3 OpenID Connect (OIDC) Subject Claim rule, while the Service Principal receives the Gate 4 Data-Plane Role on my Data-Plane Asset.</li>
-                        </ul>
-                    </div>
-                    <div class="aka-box">
-                        <strong>REPLACES INDUSTRY NICKNAMES:</strong> "Machine account," "bot identity," "client object," "service account," "app identity."
-                    </div>
+                <div class="vuln-card">
+                    <h3 class="vuln-title">2. Existing Asset Protection (Destructive State Prevention &amp; Idempotency)</h3>
+                    <ul class="step-sublist">
+                        <li><span class="bullet-lead">The AI Engineering Principle (OWASP LLM08: Excessive Agency &amp; NIST Risk Control):</span> An unconstrained AI model asked to connect to an Azure resource will often generate creation commands that accidentally overwrite, recreate, or delete an existing production asset.</li>
+                        <li><span class="bullet-lead">How My Guardrail Enforces It in Code (Phases 2 &amp; 3 / Gate 1 Boundary):</span> My System Directive constrains the IaC Payload based on the Infrastructure State I select in Phase 1. When I select a Brownfield (Existing) Infrastructure State, Gate 1 forces the IaC Payload into read-only lookup mode so my live Data-Plane Asset and existing Application Registration cannot be modified or replaced. When I select a Greenfield (Net-New) Infrastructure State, Gate 1 attaches deletion-prevention locks and persistent state storage rules to the new Data-Plane Asset.</li>
+                    </ul>
                 </div>
 
-                <!-- VARIABLE 11 -->
-                <div class="glossary-card">
-                    <div>
-                        <span class="term-badge">[VARIABLE 11 :: GATE 2 HARDENING]</span>
-                        <h3 class="term-name">11. Single-Tenant Mode &amp; Disabled Browser Redirect URLs</h3>
-                        <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> Two security lockdown settings applied to my Application Registration in Gate 2. Single-Tenant mode (AzureADMyOrg) restricts the identity strictly to my own Entra ID Tenant ID so external Microsoft directories cannot use it. Disabling web browser redirect URLs turns off interactive browser login callbacks.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Applied to the Gate 2 Application Registration inside my Phase 3 IaC Payload because my Coordinate 2 Execution Agent runs automated jobs in the background and never uses a web browser, eliminating browser callback phishing completely.</li>
-                        </ul>
-                    </div>
-                    <div class="aka-box">
-                        <strong>REPLACES INDUSTRY NICKNAMES:</strong> "Headless mode," "browser callback vector elimination," "tenant isolation."
-                    </div>
+                <div class="vuln-card">
+                    <h3 class="vuln-title">3. Stopping "The Contributor Trap" (Single-Asset Data-Plane Role Scope)</h3>
+                    <ul class="step-sublist">
+                        <li><span class="bullet-lead">The AI Engineering Principle (OWASP LLM08: Excessive Agency / Over-Permissioning):</span> Because probabilistic language models optimize for making code run without errors, an untethered model will frequently grant broad Owner and Contributor Roles as a shortcut.</li>
+                        <li><span class="bullet-lead">How My Guardrail Enforces It in Code (Phases 3 &amp; 5 / Gate 4 Access):</span> Giving an Execution Agent Owner or Contributor access is like giving a delivery driver the master keys to remodel the building just to drop off one package. In Gate 4, my System Directive blocks all Owner and Contributor Roles and assigns one specific Data-Plane Role to my Service Principal, scoped strictly to the exact resource ID of my single Data-Plane Asset.</li>
+                    </ul>
                 </div>
 
-                <!-- VARIABLE 12 -->
-                <div class="glossary-card">
-                    <div>
-                        <span class="term-badge">[VARIABLE 12 :: GATE 3 PROTOCOL]</span>
-                        <h3 class="term-name">12. OpenID Connect (OIDC)</h3>
-                        <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The industry-standard passwordless authentication protocol configured in Gate 3 (via a Federated Identity Credential on my Application Registration). It allows my external Execution Agent to prove who it is using a signed digital ID card instead of a saved password.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Bridges my external Execution Agent (Coordinate 2) and my Application Registration in Microsoft Entra ID (Gate 2). When my Execution Agent sends its digital ID card over OpenID Connect (OIDC), Microsoft Entra ID checks the OIDC Issuer URL and the Subject Claim; if they match 100%, Microsoft Entra ID issues a 60-Minute Login Token.</li>
-                        </ul>
-                    </div>
-                    <div class="aka-box">
-                        <strong>REPLACES INDUSTRY NICKNAMES:</strong> "Workload Identity Federation (WIF)," "federated trust," "cryptographic handshake," "passwordless federation."
-                    </div>
+                <div class="vuln-card">
+                    <h3 class="vuln-title">4. Supply Chain Version Pinning &amp; Schema Integrity</h3>
+                    <ul class="step-sublist">
+                        <li><span class="bullet-lead">The AI Engineering Principle (OWASP LLM05: Supply Chain Vulnerabilities &amp; Anti-Hallucination):</span> Left unchecked, generative AI models will use floating version tags (like "latest") that pull unverified third-party updates, or invent invalid API property names by mixing different code languages together.</li>
+                        <li><span class="bullet-lead">How My Guardrail Enforces It in Code (Phases 3 &amp; 4 / IaC Payload &amp; Validation Bridge):</span> My System Directive pins every provider and API version in my Phase 3 IaC Payload and every login action in my Phase 4 Validation Bridge to an exact, verified version number. When my chosen IaC Payload language is PowerShell REST API, it enforces pure Microsoft Graph JSON property names so Terraform terms never bleed into raw REST API calls.</li>
+                    </ul>
                 </div>
 
-                <!-- VARIABLE 13 -->
-                <div class="glossary-card">
-                    <div>
-                        <span class="term-badge">[VARIABLE 13 :: GATE 3 RETURN ADDRESS]</span>
-                        <h3 class="term-name">13. Subject Claim &amp; Code Repository and Branch</h3>
-                        <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> My Code Repository and Branch is the exact project folder and Git branch (such as main) where my code lives on my Execution Agent. The Subject Claim is the exact text string on the OpenID Connect (OIDC) digital ID card that states that return address (for example, repo:CompCode1/my-project:ref:refs/heads/main).</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Because Microsoft Entra ID is 100% case-sensitive, I run a terminal lookup script in Phase 2 to extract the exact capital-and-lowercase spelling of my Code Repository and Branch and lock it into the Gate 3 Subject Claim with zero wildcards. If any other repository or branch tries to log in, the Subject Claim fails to match and Microsoft Entra ID blocks the login.</li>
-                        </ul>
-                    </div>
-                    <div class="aka-box">
-                        <strong>REPLACES INDUSTRY NICKNAMES:</strong> "Exact repository casing," "federated trust string," "sub claim," "cryptographic coordinate."
-                    </div>
-                </div>
-
-                <!-- VARIABLE 14 -->
-                <div class="glossary-card">
-                    <div>
-                        <span class="term-badge">[VARIABLE 14 :: GATE 3 CREDENTIAL]</span>
-                        <h3 class="term-name">14. 60-Minute Login Token</h3>
-                        <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The temporary, short-lived Azure access token issued by Microsoft Entra ID in Gate 3 that automatically expires after 60 minutes, completely replacing 2-year saved passwords and static client secrets.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Issued by Microsoft Entra ID (Gate 3) to my Execution Agent after the Execution Agent's Subject Claim passes verification. My Execution Agent then presents this 60-Minute Login Token in Gate 4 and Phase 4 to assume my Service Principal and read my single Data-Plane Asset.</li>
-                        </ul>
-                    </div>
-                    <div class="aka-box">
-                        <strong>REPLACES INDUSTRY NICKNAMES:</strong> "Ephemeral token," "short-lived JWT," "bearer token," "access token."
-                    </div>
-                </div>
-
-                <!-- VARIABLE 15 -->
-                <div class="glossary-card">
-                    <div>
-                        <span class="term-badge">[VARIABLE 15 :: GATE 2 TO GATE 3 TIMING]</span>
-                        <h3 class="term-name">15. 30-Second Server Sync Timer</h3>
-                        <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> A mandatory 30-second pause (time_sleep in Terraform or Start-Sleep -Seconds 30 in PowerShell) built directly into my Phase 3 IaC Payload between creating the Gate 2 identity and attaching the Gate 3 rules.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> When my IaC Payload creates a new Application Registration and Service Principal in Microsoft Entra ID (Gate 2) and immediately tries to attach an OpenID Connect (OIDC) Subject Claim or Conditional Access policy a split-second later (Gate 3), Microsoft's global directory servers often haven't finished syncing the new Service Principal yet and the script crashes. The 30-Second Server Sync Timer pauses execution so Microsoft's servers finish syncing before Gate 3 and Gate 4 run.</li>
-                        </ul>
-                    </div>
-                    <div class="aka-box">
-                        <strong>REPLACES INDUSTRY NICKNAMES:</strong> "Eventual consistency barrier," "Graph API replication delay mitigation," "race condition buffer."
-                    </div>
-                </div>
-
-                <!-- VARIABLE 16 -->
-                <div class="glossary-card">
-                    <div>
-                        <span class="term-badge">[VARIABLE 16 :: GATE 4 LEAST PRIVILEGE]</span>
-                        <h3 class="term-name">16. Data-Plane Role</h3>
-                        <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The specific, narrowly scoped Azure role assigned in Gate 4 that grants permission only to read data inside a single Data-Plane Asset (such as Key Vault Secrets User for Azure Key Vault, Storage Blob Data Reader for a Storage Account, or Cosmos DB Built-in Data Reader for SQL / Cosmos DB).</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Assigned in Gate 4 (Phase 3 IaC Payload) to my Gate 2 Service Principal and scoped strictly to the exact resource ID of my single Coordinate 4 Data-Plane Asset. This allows my Execution Agent (using its 60-Minute Login Token) to read that single Data-Plane Asset during the Phase 4 Validation Bridge without having permission to touch any other resource in my Azure Subscription ID.</li>
-                        </ul>
-                    </div>
-                    <div class="aka-box">
-                        <strong>REPLACES INDUSTRY NICKNAMES:</strong> "Data-plane RBAC entitlement," "granular permission mapping," "least-privilege role binding."
-                    </div>
-                </div>
-
-                <!-- VARIABLE 17 -->
-                <div class="glossary-card">
-                    <div>
-                        <span class="term-badge">[VARIABLE 17 :: GATE 4 BLOCKED ROLES]</span>
-                        <h3 class="term-name">17. Owner and Contributor Roles (Blocked Management Roles)</h3>
-                        <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> Broad Azure control-plane (management) roles that allow an identity to create, modify, remodel, or delete cloud infrastructure across an Azure Subscription ID or Resource Group. Unconstrained AI models frequently grant Contributor as a shortcut ("The Contributor Trap").</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Strictly blocked by The State Machine in Gate 4 (Phase 3) and audited as a hard [PASS/FAIL] check in the Phase 5 Audit Results Ledger (ARL). Blocking Owner and Contributor Roles ensures that my Service Principal can never modify or delete infrastructure in my Resource Group, restricting it strictly to the single Data-Plane Role on my Data-Plane Asset.</li>
-                        </ul>
-                    </div>
-                    <div class="aka-box">
-                        <strong>REPLACES INDUSTRY NICKNAMES:</strong> "Broad administrative permissions," "control-plane privileges," "over-permissioned entitlements."
-                    </div>
-                </div>
-
-                <!-- VARIABLE 18 -->
-                <div class="glossary-card">
-                    <div>
-                        <span class="term-badge">[VARIABLE 18 :: GATE 4 MFA SAFETY]</span>
-                        <h3 class="term-name">18. Azure Portal MFA Handoff</h3>
-                        <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> A guided, step-by-step web portal checklist generated by The State Machine in Phase 3 whenever Azure blocks a local terminal from assigning a Gate 4 Data-Plane Role because the local terminal cannot display an interactive multi-factor authentication (MFA) popup window.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> When I build high-security configurations (such as Conditional Access for Workload Identities or PowerShell REST API builds), The State Machine automatically separates the Gate 4 Data-Plane Role assignment from the Phase 3 IaC Payload so the terminal script completes cleanly without crashing, and hands me the exact Azure Portal MFA Handoff checklist to bind that single Data-Plane Role to my Service Principal on my Data-Plane Asset in the browser.</li>
-                        </ul>
-                    </div>
-                    <div class="aka-box">
-                        <strong>REPLACES INDUSTRY NICKNAMES:</strong> "Control-plane decoupling," "interactive MFA claim fallback," "portal role binding."
-                    </div>
+                <div class="vuln-card">
+                    <h3 class="vuln-title">5. Validation Bridge Runtime Log Masking (Output Scrubbing)</h3>
+                    <ul class="step-sublist">
+                        <li><span class="bullet-lead">The AI Engineering Principle (OWASP LLM02: Insecure Output Handling &amp; LLM06):</span> Even when an architecture uses a short-lived 60-Minute Login Token, allowing an automated test script to print runtime variables directly to a shared console log exposes sensitive tokens and Data-Plane Asset values in plain text.</li>
+                        <li><span class="bullet-lead">How My Guardrail Enforces It in Code (Phases 4 &amp; 5 / Validation Bridge &amp; ARL):</span> Before my Execution Agent runs the Phase 4 Validation Bridge to trade its Subject Claim for a 60-Minute Login Token and read my Data-Plane Asset, my System Directive injects active Runtime Log Masking into the Validation Bridge file so the Execution Agent scrubs any sensitive token or secret with asterisks (***) in memory before a single line prints to the console log, a control I formally score as [PASS] in my Phase 5 Audit Results Ledger (ARL).</li>
+                    </ul>
                 </div>
 
             </div>
+            
         </div>
-    </section>
+    </div>
 
-    <!-- ================= CATEGORY 4: THE 8 VERIFICATION, AUDIT & TROUBLESHOOTING VARIABLES ================= -->
-    <section class="glossary-section" id="cat-verification">
-        <div class="category-container verify-cat">
-            <span class="category-tag">[CATEGORY 04 :: VARIABLES 19 TO 26]</span>
-            <h2 class="category-title">The 8 Verification, Audit &amp; Troubleshooting Variables</h2>
-            <p class="category-desc">
-                These eight variables govern how I record the cryptographic baseline, prove live data-plane access in two stages (instant metrics first, asynchronous log queries second), log real-time patches during Iterations 1 to 3, halt on Iteration 4 if an error persists, and upgrade my System Directive in Phase 7.
+    <!-- ================= SECTION 5: POLYMORPHIC ARCHITECTURE & COMBINATORIAL SCALE ================= -->
+    <div class="polymorphic-container" id="environment-agnostic">
+        <div class="polymorphic-box">
+            <span class="poly-tag">[PHASE 1 INTAKE MATRIX &amp; DYNAMIC BRANCHING ENGINE]</span>
+            <h2 class="section-title" style="margin-bottom: 1.5rem;">Environment-Agnostic Flexibility: 72 Build Combinations &amp; 35 Day-2 Modules</h2>
+            
+            <p class="intro-text" style="margin-bottom: 3rem;">
+                Every enterprise cloud environment is configured differently. An IaC Payload written for GitHub Actions (Execution Agent), Greenfield (Infrastructure State), Azure Key Vault (Data-Plane Asset), and Terraform (IaC Payload) will fail immediately if an environment uses Azure DevOps, Brownfield, a Storage Account, and Azure Bicep. Instead of maintaining dozens of separate static templates, I start the Zero Trust Interactive State Machine in Phase 1 by locking in the 5 Build Coordinates below. Based on those five selections, my System Directive automatically adapts its Phase 2 terminal lookups, Phase 3 IaC Payload, and Phase 4 Validation Bridge across <span class="bullet-lead">72 distinct baseline build combinations</span>, each ready to accept <span class="bullet-lead">35 Day-2 Microsoft Entra ID security modules:</span>
             </p>
 
-            <div class="glossary-grid">
+            <!-- EMBEDDED 5-COLUMN COORDINATE MATRIX GRAPHIC (ALL UNCHECKED) -->
+            <div class="matrix-graphic-canvas">
+                <div class="matrix-5col-grid">
+                    
+                    <div class="matrix-node">
+                        <div class="matrix-node-header">1. Identity Core</div>
+                        <div class="matrix-option"><span class="matrix-check"></span> Microsoft Entra ID</div>
+                    </div>
 
-                <!-- VARIABLE 19 -->
-                <div class="glossary-card">
-                    <div>
-                        <span class="term-badge">[VARIABLE 19 :: PHASE 4 BASELINE FILE]</span>
-                        <h3 class="term-name">19. Identity Architecture Ledger (identity_architecture_ledger.md or IAL)</h3>
-                        <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The formal pre-validation Markdown file generated in Phase 4 and saved in my local workspace before I run the live test. It records the exact deployed IDs and configuration settings across all four gates.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Captures the exact deployed output of Phase 3: my Entra ID Tenant ID, Azure Subscription ID, and Resource Group (Gate 1), my Application Registration Client ID and Service Principal Object ID (Gate 2), my exact OpenID Connect (OIDC) Subject Claim and 60-Minute Login Token ceiling (Gate 3), and my single-asset Data-Plane Role scope (Gate 4), serving as the baseline for the Phase 5 Audit Results Ledger (ARL).</li>
-                        </ul>
+                    <div class="matrix-node">
+                        <div class="matrix-node-header">2. Execution Agent</div>
+                        <div class="matrix-option"><span class="matrix-check"></span> Azure Kubernetes Service (AKS)</div>
+                        <div class="matrix-option"><span class="matrix-check"></span> GitHub Actions</div>
+                        <div class="matrix-option"><span class="matrix-check"></span> Azure DevOps</div>
+                        <div class="matrix-option"><span class="matrix-check"></span> GitLab CI</div>
                     </div>
-                    <div class="aka-box">
-                        <strong>REPLACES INDUSTRY NICKNAMES:</strong> "Pre-deployment manifest," "cryptographic baseline receipt," "configuration snapshot."
+
+                    <div class="matrix-node">
+                        <div class="matrix-node-header">3. Infrastructure State</div>
+                        <div class="matrix-option"><span class="matrix-check"></span> Brownfield (Existing)</div>
+                        <div class="matrix-option"><span class="matrix-check"></span> Greenfield (Net-New)</div>
                     </div>
+
+                    <div class="matrix-node">
+                        <div class="matrix-node-header">4. Data-Plane Asset</div>
+                        <div class="matrix-option"><span class="matrix-check"></span> Azure Key Vault</div>
+                        <div class="matrix-option"><span class="matrix-check"></span> Storage Account</div>
+                        <div class="matrix-option"><span class="matrix-check"></span> SQL / Cosmos DB</div>
+                    </div>
+
+                    <div class="matrix-node">
+                        <div class="matrix-node-header">5. IaC Payload</div>
+                        <div class="matrix-option"><span class="matrix-check"></span> Terraform (HCL)</div>
+                        <div class="matrix-option"><span class="matrix-check"></span> Azure Bicep</div>
+                        <div class="matrix-option"><span class="matrix-check"></span> PowerShell REST API</div>
+                    </div>
+
                 </div>
 
-                <!-- VARIABLE 20 -->
-                <div class="glossary-card">
-                    <div>
-                        <span class="term-badge">[VARIABLE 20 :: PHASE 4 LIVE TEST]</span>
-                        <h3 class="term-name">20. Validation Bridge &amp; Runtime Log Masking</h3>
-                        <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The Validation Bridge is the automated test file (such as a .yml workflow file or Kubernetes pod manifest) synthesized in Phase 4 that I run on my Execution Agent to test reading from my Data-Plane Asset. Runtime Log Masking is the security command injected inside that file that scrubs sensitive values with asterisks (***) in memory before anything prints to the console log.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Run by my Execution Agent in Phase 4. It sends the Gate 3 Subject Claim to Microsoft Entra ID, receives the 60-Minute Login Token, assumes the Gate 2 Service Principal, and reads the Gate 4 Data-Plane Asset while Runtime Log Masking ensures the token and secret never leak to the console screen.</li>
-                        </ul>
+                <!-- COMBINATORIAL TELEMETRY BAR -->
+                <div class="combinatorial-bar">
+                    <div class="combo-formula">
+                        <span>[1]</span> Identity Core &times; <span>[4]</span> Execution Agents &times; <span>[2]</span> Infrastructure States &times; <span>[3]</span> Data-Plane Assets &times; <span>[3]</span> IaC Payloads
                     </div>
-                    <div class="aka-box">
-                        <strong>REPLACES INDUSTRY NICKNAMES:</strong> "Test pipeline," "validation workflow," "canary script," "stdout secret scrubbing."
+                    <div class="combo-result">
+                        72 Verified Build Combinations + 35 Day-2 Entra Modules
                     </div>
                 </div>
+            </div>
 
-                <!-- VARIABLE 21 -->
-                <div class="glossary-card">
-                    <div>
-                        <span class="term-badge">[VARIABLE 21 :: PHASE 4 STAGE 1 PROOF]</span>
-                        <h3 class="term-name">21. Azure Portal Monitoring Metrics (Total Service API Hits)</h3>
-                        <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The real-time telemetry chart built directly into my Data-Plane Asset inside the Azure web portal (Monitoring &rarr; Metrics &rarr; Total Service API Hits over a 30-minute window).</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Because Azure Log Analytics can take a long, unpredictable amount of time to index background logs, I check Azure Portal Monitoring Metrics (Total Service API Hits) on my Data-Plane Asset in Phase 4 immediately after my Execution Agent finishes running the Validation Bridge. Seeing that live API hit spike provides instant mathematical proof (Stage 1 Verification) that the 60-Minute Login Token unlocked my Data-Plane Asset with zero access errors, unlocking Phase 5.</li>
-                        </ul>
-                    </div>
-                    <div class="aka-box">
-                        <strong>REPLACES INDUSTRY NICKNAMES:</strong> "Live data-plane telemetry," "control-plane metric spike," "synchronous verification."
-                    </div>
+            <!-- 4-CARD ADAPTATION BREAKDOWN -->
+            <div class="adaptation-grid">
+                
+                <div class="adapt-card">
+                    <span class="adapt-tag">[ADAPTATION 01 : COORDINATE 2 (EXECUTION AGENT) &rarr; GATE 3 FEDERATION]</span>
+                    <h3 class="vuln-title">Adapting to Any Execution Agent</h3>
+                    <p class="vuln-lead">Each Execution Agent in Column 2 sends a differently formatted OpenID Connect (OIDC) Subject Claim to Microsoft Entra ID in Gate 3, so Phase 2 automatically switches its terminal lookup commands to match my selected Execution Agent.</p>
+                    <ul class="step-sublist">
+                        <li><span class="bullet-lead">GitHub Actions, Azure DevOps &amp; GitLab CI Execution Agents:</span> Generates the exact terminal lookup script for my chosen Execution Agent in Phase 2 so I can pull permanent repository ID numbers and the exact capital-and-lowercase spelling of my Code Repository and Branch, ensuring Microsoft Entra ID never rejects the OpenID Connect (OIDC) 60-Minute Login Token handshake due to a capital-letter mismatch in the Subject Claim.</li>
+                        <li><span class="bullet-lead">Azure Kubernetes Service (AKS) Execution Agent Branching:</span> If my Execution Agent is a Brownfield (Existing) AKS cluster, Phase 2 gives me the Azure CLI command to extract the cluster's live OIDC Issuer URL and Kubernetes Service Account for the Subject Claim; if my Execution Agent is a Greenfield (Net-New) AKS cluster, it skips the manual Phase 2 lookup and links the generated OIDC Issuer URL directly into the Subject Claim inside my Phase 3 IaC Payload.</li>
+                    </ul>
                 </div>
 
-                <!-- VARIABLE 22 -->
-                <div class="glossary-card">
-                    <div>
-                        <span class="term-badge">[VARIABLE 22 :: PHASE 5 COMPLIANCE REPORT]</span>
-                        <h3 class="term-name">22. Audit Results Ledger (audit_results_ledger.md or ARL)</h3>
-                        <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The formal post-validation compliance report generated in Phase 5 and saved to my local workspace and remote Code Repository and Branch.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Generated in Phase 5 only after the Validation Bridge passes and Azure Portal Monitoring Metrics (Total Service API Hits) confirm the live read on my Data-Plane Asset. It formally scores Gate 1 (Boundary), Gate 2 (Identity), Gate 3 (Federation), Gate 4 (Access), and all 5 Enterprise Guardrails (including blocking Owner and Contributor Roles and enforcing Runtime Log Masking) as [PASS].</li>
-                        </ul>
-                    </div>
-                    <div class="aka-box">
-                        <strong>REPLACES INDUSTRY NICKNAMES:</strong> "Post-deployment compliance report," "security audit receipt," "governance scorecard."
-                    </div>
+                <div class="adapt-card green">
+                    <span class="adapt-tag">[ADAPTATION 02 : COORDINATE 3 (INFRASTRUCTURE STATE) &rarr; GATES 1 &amp; 2]</span>
+                    <h3 class="vuln-title">Protecting Brownfield (Existing) vs. Greenfield (Net-New) Infrastructure States</h3>
+                    <p class="vuln-lead">Based on whether I select Brownfield (Existing) or Greenfield (Net-New) as my Infrastructure State in Column 3, The State Machine changes how my Phase 3 IaC Payload treats my Gate 1 Boundary, Gate 2 Service Principal, and Gate 4 Data-Plane Asset.</p>
+                    <ul class="step-sublist">
+                        <li><span class="bullet-lead">Brownfield (Existing) Infrastructure State:</span> Enforces read-only lookup mode in the IaC Payload and echoes my existing Application Registration Client ID back to me before generating code, ensuring my live Data-Plane Asset, Resource Group, and Service Principal are connected safely without ever being overwritten or replaced.</li>
+                        <li><span class="bullet-lead">Greenfield (Net-New) Infrastructure State:</span> Provisions the new Application Registration, Service Principal, and Data-Plane Asset from scratch inside my Entra ID Tenant ID and Azure Subscription ID while attaching deletion-prevention locks and persistent state storage rules so the new Data-Plane Asset cannot be accidentally wiped out.</li>
+                    </ul>
                 </div>
 
-                <!-- VARIABLE 23 -->
-                <div class="glossary-card">
-                    <div>
-                        <span class="term-badge">[VARIABLE 23 :: PHASE 5 STAGE 2 LOG PROOF]</span>
-                        <h3 class="term-name">23. KQL Telemetry (kql_telemetry.md)</h3>
-                        <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The standalone file generated in Phase 5 containing the exact Kusto Query Language (KQL) query for Azure Log Analytics (AADServicePrincipalSignInLogs and AzureDiagnostics).</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Serves as Stage 2 Verification. After Azure Portal Monitoring Metrics (Total Service API Hits) give me immediate proof in Phase 4, I use KQL Telemetry (kql_telemetry.md) asynchronously once Azure Log Analytics finishes indexing the background logs to pull deep cryptographic audit records correlating my Service Principal token issuance with the exact millisecond my Execution Agent read my Data-Plane Asset.</li>
-                        </ul>
-                    </div>
-                    <div class="aka-box">
-                        <strong>REPLACES INDUSTRY NICKNAMES:</strong> "SIEM log query," "asynchronous Log Analytics proof," "forensic query."
-                    </div>
+                <div class="adapt-card orange">
+                    <span class="adapt-tag">[ADAPTATION 03 : COORDINATE 4 (DATA-PLANE ASSET) &rarr; GATE 4 &amp; PHASE 4]</span>
+                    <h3 class="vuln-title">Matching the Exact Data-Plane Role &amp; Validation Bridge to My Data-Plane Asset</h3>
+                    <p class="vuln-lead">When I select Azure Key Vault, Storage Account, or SQL / Cosmos DB as my Data-Plane Asset in Column 4, The State Machine automatically updates both the Gate 4 Data-Plane Role in Phase 3 and the Phase 4 Validation Bridge run by my Execution Agent.</p>
+                    <ul class="step-sublist">
+                        <li><span class="bullet-lead">Exact Single-Asset Data-Plane Role (Gate 4):</span> Blocks broad Owner and Contributor Roles and assigns the exact Data-Plane Role built for my chosen Data-Plane Asset (such as Key Vault Secrets User for Azure Key Vault, Storage Blob Data Reader for a Storage Account, or Cosmos DB Built-in Data Reader for SQL / Cosmos DB) to my Service Principal, locked strictly to that single Data-Plane Asset's resource ID.</li>
+                        <li><span class="bullet-lead">Matched Phase 4 Validation Bridge:</span> Automatically writes the matching data-plane read command into the Validation Bridge file for my Execution Agent so Phase 4 proves my Execution Agent can use its 60-Minute Login Token to read from that specific Data-Plane Asset before I verify the live spike in Azure Portal Monitoring Metrics (Total Service API Hits).</li>
+                    </ul>
                 </div>
 
-                <!-- VARIABLE 24 -->
-                <div class="glossary-card">
-                    <div>
-                        <span class="term-badge">[VARIABLE 24 :: ALL-PHASE TROUBLESHOOTING (ITERATIONS 1 TO 3)]</span>
-                        <h3 class="term-name">24. Standard Patch Loop (Iterations 1 to 3), State Re-Sync &amp; Defect &amp; Patch Ledger (patch_ledger.md or DPL)</h3>
-                        <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> My routine troubleshooting and bug-logging mechanism active across every phase of the build (Phases 1 through 6):
-                                <br>&bull; <strong>Standard Patch Loop (Iterations 1 to 3):</strong> Clinical diagnostic mode where The AI Engine drops all analogies and provides a targeted fix for any terminal or cloud error during attempts 1, 2, or 3.
-                                <br>&bull; <strong>State Re-Sync:</strong> Outputting the complete, top-to-bottom IaC Payload file after a fix (never partial code snippets).
-                                <br>&bull; <strong>Defect &amp; Patch Ledger (patch_ledger.md or DPL):</strong> The ledger that records the root cause and verified fix of every error solved during Iterations 1 to 3.
-                            </li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Whenever I verify in my local terminal that a fix worked during the Standard Patch Loop (Iterations 1 to 3) at any phase, The State Machine immediately logs the entry in the Defect &amp; Patch Ledger (DPL) and performs a full-file State Re-Sync of my IaC Payload, without ever needing to trip The 4-Iteration Circuit Breaker. In Phase 5, all entries are compiled into patch_ledger.md, and in Phase 7 they are permanently compiled into my upgraded System Directive.</li>
-                        </ul>
-                    </div>
-                    <div class="aka-box">
-                        <strong>REPLACES INDUSTRY NICKNAMES:</strong> "Bug log," "error remediation loop," "telemetry feedback loop."
-                    </div>
-                </div>
-
-                <!-- VARIABLE 25 -->
-                <div class="glossary-card">
-                    <div>
-                        <span class="term-badge">[VARIABLE 25 :: ITERATION 4 EMERGENCY STOP]</span>
-                        <h3 class="term-name">25. The 4-Iteration Circuit Breaker &amp; Estimated Probability of Success (X%)</h3>
-                        <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The emergency cognitive circuit breaker active across every phase of the build that trips ONLY if a single isolated error fails 3 times in a row during the Standard Patch Loop and reaches Iteration 4.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Completely separate from routine Defect &amp; Patch Ledger (DPL) logging. If an error reaches Iteration 4, The 4-Iteration Circuit Breaker structurally forbids The AI Engine from generating any new code. Instead, The AI Engine must perform a formal Risk Management Assessment: analyzing how the error messages shifted across Attempts 1, 2, and 3, calculating a mathematical Estimated Probability of Success (X%) for staying the course, and presenting alternative architectural pathways so I can decide whether to authorize one more attempt or pivot.</li>
-                        </ul>
-                    </div>
-                    <div class="aka-box">
-                        <strong>REPLACES INDUSTRY NICKNAMES:</strong> "Three-strike rule," "hallucination spiral halt," "Attempt #4 self-audit."
-                    </div>
-                </div>
-
-                <!-- VARIABLE 26 -->
-                <div class="glossary-card full-width">
-                    <div>
-                        <span class="term-badge">[VARIABLE 26 :: PHASE 7 SESSION CLOSE &amp; UPGRADE]</span>
-                        <h3 class="term-name">26. AI Performance Scorecard &amp; System Directive Compilation</h3>
-                        <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The final close-out sequence in Phase 7 after my verified files are pushed to my Code Repository and Branch in Phase 6. The AI Performance Scorecard is a statistical table grading The AI Engine's execution accuracy across the session (First-Try Execution Rate, Total Patch Iterations, Circuit Breaker Events, and Watchdog Self-Corrections).</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> In Phase 7, The AI Engine outputs the AI Performance Scorecard, extracts every verified root cause and fix logged in the Defect &amp; Patch Ledger (DPL) during the session, weaves those new rules permanently into my master System Directive, and outputs the complete upgraded System Directive in a single copy-paste block so the exact same bug can never happen again on future builds.</li>
-                        </ul>
-                    </div>
-                    <div class="aka-box">
-                        <strong>REPLACES INDUSTRY NICKNAMES:</strong> "Post-mortem summary," "continuous learning loop," "prompt evolution."
-                    </div>
+                <div class="adapt-card purple">
+                    <span class="adapt-tag">[ADAPTATION 04 : COORDINATE 5 (IAC PAYLOAD) &rarr; PHASE 3 &amp; DAY-2 MODULES]</span>
+                    <h3 class="vuln-title">Synthesizing Any IaC Payload Language + 35 Day-2 Microsoft Entra ID Modules</h3>
+                    <p class="vuln-lead">My selection in Column 5 determines whether Phase 3 synthesizes my IaC Payload in Terraform (HCL), Azure Bicep, or PowerShell REST API, while enforcing the 30-Second Server Sync Timer, Azure Portal MFA Handoffs, and 35 Day-2 Microsoft Entra ID expansions.</p>
+                    <ul class="step-sublist">
+                        <li><span class="bullet-lead">Multi-Language IaC Payload with 30-Second Server Sync Timer:</span> Outputs a 100% finished Terraform (HCL), Azure Bicep, or PowerShell REST API IaC Payload and Terminal Runbook, complete with the 30-Second Server Sync Timer between Gate 2 (Service Principal creation) and Gate 3 (Subject Claim attachment) and pure Microsoft Graph JSON schemas on PowerShell REST API builds.</li>
+                        <li><span class="bullet-lead">Azure Portal MFA Handoff &amp; 35 Day-2 Modules:</span> Automatically separates the Gate 4 Data-Plane Role assignment into a guided Azure Portal MFA Handoff checklist whenever local terminal MFA claims drop, and lets me layer any of the 35 Microsoft Entra ID security modules onto my verified Application Registration and Service Principal without disturbing Gates 1 through 4.</li>
+                    </ul>
                 </div>
 
             </div>
+
         </div>
-    </section>
+    </div>
 
     <!-- ================= PROPRIETARY IP FOOTER ================= -->
     <footer class="ip-footer">

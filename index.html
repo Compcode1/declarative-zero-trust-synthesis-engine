@@ -14,7 +14,7 @@
       gtag('js', new Date());
 
       gtag('config', 'G-80NYKHYN3R');
-        </script>
+    </script>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
     
@@ -139,6 +139,7 @@
             text-align: left;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
         }
+        .hero-arch-block.topology-block { border-top: 4px solid var(--color-cyan); }
         .hero-arch-block.math-block { border-top: 4px solid var(--color-blue); }
         .hero-arch-block.gates-block { border-top: 4px solid var(--color-green); }
         .hero-arch-block.solution-block { border-top: 4px solid var(--color-purple); }
@@ -153,6 +154,7 @@
             display: block;
             margin-bottom: 0.6rem;
         }
+        .topology-block .hero-block-tag { color: var(--color-cyan); }
         .math-block .hero-block-tag { color: var(--color-blue); }
         .gates-block .hero-block-tag { color: var(--color-green); }
         .solution-block .hero-block-tag { color: var(--color-purple); }
@@ -443,7 +445,7 @@
         .insight-header::before { content: '>'; font-weight: 900; }
         .insight-text { font-size: 1.2rem; color: var(--text-main); font-style: normal; line-height: 1.8; font-weight: 600; }
 
-        #scientific-foundation, #foundation-gates, #ai-solution, #execution-sequence, #execution-triad, #execution-flow, #enterprise-guardrails, #environment-agnostic { 
+        #system-topology, #scientific-foundation, #foundation-gates, #ai-solution, #execution-sequence, #execution-triad, #execution-flow, #enterprise-guardrails, #environment-agnostic { 
             scroll-margin-top: 100px; 
         }
 
@@ -487,12 +489,13 @@
             color: var(--color-cyan);
         }
         
-        /* ================= SECTION 3: THE GRAPHIC & ARCHITECTURAL FLOW ================= */
+        /* ================= THE GRAPHIC & ARCHITECTURAL FLOW ================= */
         .flow-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 900; color: var(--color-cyan); margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 1px; text-align: center; width: 100%; }
         
-        .canvas-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 15px; }
+        .canvas-wrapper { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 5px; }
         .diagram-canvas {
-            position: relative; max-width: 1220px; min-width: 1220px; height: 680px; margin: 0 auto;
+            position: relative; max-width: 1200px; min-width: 1200px; height: 680px; margin: 0 auto;
+            background-color: rgba(2, 6, 23, 0.92);
             background-image: linear-gradient(to right, rgba(30, 41, 59, 0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(30, 41, 59, 0.5) 1px, transparent 1px);
             background-size: 40px 40px; border: 1px solid var(--border-base); border-radius: 12px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
@@ -575,7 +578,7 @@
         .node-arl .tag { color: var(--color-green); border-color: rgba(16, 185, 129, 0.3); }
 
         /* ================= ARCHITECTURAL FLOW EXPLANATION (UNDER THE HOOD) ================= */
-        .flow-explanation { max-width: 1050px; margin: 3rem auto 0; padding: 0 20px; text-align: left; }
+        .flow-explanation { max-width: 1050px; margin: 1.5rem auto 0; padding: 0 20px; text-align: left; }
         .flow-subheader { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 900; color: var(--color-cyan); margin-bottom: 1.2rem; text-transform: uppercase; letter-spacing: 1px; }
         .flow-intro { font-size: 1.22rem; color: var(--text-main); font-weight: 600; line-height: 1.8; margin-bottom: 2rem; }
         
@@ -874,7 +877,7 @@
         </ul>
     </nav>
 
-    <!-- ================= SECTION 1: HERO HEADER, MISSION, 4 GATES GRID, AI SOLUTION GRID & 7 PHASE CARDS ================= -->
+    <!-- ================= SECTION 1: HERO HEADER, TOPOLOGY GRAPHIC, MISSION, 4 GATES GRID, AI SOLUTION GRID & 7 PHASE CARDS ================= -->
     <header class="hero">
         <div class="hero-title-container">
             <h1 class="hero-title">INTELLIGENT ARCHITECTURE</h1>
@@ -886,14 +889,75 @@
                 Explore the Technical Architecture Below. Select any section to jump directly to the detailed breakdown:
             </div>
             <div class="jump-links">
-                <a href="#scientific-foundation">1. The Mission of Intelligent Architecture</a>
-                <a href="#foundation-gates">2. The 4 Gates of Machine Identity</a>
-                <a href="#ai-solution">3. Deterministic AI Solution</a>
-                <a href="#execution-sequence">4. The 7-Phase Execution Sequence</a>
-                <a href="#execution-triad">5. The Execution Triad</a>
-                <a href="#execution-flow">6. System Topology &amp; Mechanics</a>
+                <a href="#system-topology">1. Architectural Execution Flow</a>
+                <a href="#scientific-foundation">2. The Mission of Intelligent Architecture</a>
+                <a href="#foundation-gates">3. The 4 Gates of Machine Identity</a>
+                <a href="#ai-solution">4. Deterministic AI Solution</a>
+                <a href="#execution-sequence">5. The 7-Phase Execution Sequence</a>
+                <a href="#execution-triad">6. The Execution Triad &amp; Controls</a>
                 <a href="#enterprise-guardrails">7. The 4 AI Pillars &amp; 5 Guardrails</a>
                 <a href="#environment-agnostic">8. 72 Build Combinations</a>
+            </div>
+        </div>
+
+        <!-- TOP VISUAL SCHEMATIC: THE ARCHITECTURAL EXECUTION FLOW GRAPHIC -->
+        <div class="hero-arch-block topology-block" id="system-topology">
+            <span class="hero-block-tag">[MASTER SYSTEM SCHEMATIC :: LIVE ARCHITECTURAL TOPOLOGY]</span>
+            <h2 class="hero-block-title">The Architectural Execution Flow: System Topology &amp; Runtime Mechanics</h2>
+
+            <div class="canvas-wrapper">
+                <div class="diagram-canvas">
+                    <svg class="routing-lines" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6" /></marker>
+                            <marker id="arrow-cyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0ea5e9" /></marker>
+                            <marker id="arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#a855f7" /></marker>
+                            <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#10b981" /></marker>
+                            <marker id="arrow-red-end" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#f43f5e" /></marker>
+                            <marker id="arrow-red-start" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 10 0 L 0 5 L 10 10 z" fill="#f43f5e" /></marker>
+                        </defs>
+                        <!-- Eng to Compiler -->
+                        <path class="animated-path" d="M 220 100 L 250 100" fill="none" stroke="#3b82f6" stroke-width="3" marker-end="url(#arrow-blue)" />
+                        <!-- Compiler to Eng -->
+                        <path class="animated-path" d="M 250 130 L 220 130" fill="none" stroke="#a855f7" stroke-width="2" marker-end="url(#arrow-purple)" />
+                        <!-- Engine to Compiler -->
+                        <path class="animated-path" d="M 220 340 L 360 340 L 360 190" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
+                        <!-- Compiler to IaC -->
+                        <path class="animated-path" d="M 470 100 L 500 100" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
+                        <!-- IaC to Core -->
+                        <path class="animated-path" d="M 680 100 L 710 100" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
+                        <!-- Core to Modular Scaling -->
+                        <path class="animated-path" d="M 930 100 L 960 100" fill="none" stroke="#a855f7" stroke-width="3" marker-end="url(#arrow-purple)" />
+
+                        <!-- Core to Split -->
+                        <path class="animated-path" d="M 820 220 L 820 320" fill="none" stroke="#10b981" stroke-width="2" />
+                        <!-- Split to IAL -->
+                        <path class="animated-path" d="M 820 320 L 770 320 L 770 410" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
+                        <!-- Split to ARL -->
+                        <path class="animated-path" d="M 820 320 L 1015 320 L 1015 410" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
+                        
+                        <!-- Engine to Continuous Improvement (Bidirectional Feedback) -->
+                        <path class="animated-path" d="M 220 450 L 250 450" fill="none" stroke="#f43f5e" stroke-width="3" marker-start="url(#arrow-red-start)" marker-end="url(#arrow-red-end)" />
+                    </svg>
+
+                    <div class="node node-engineer"><div class="tag">[THE ARCHITECT (ME)]</div><div class="node-title">My Role at the Keyboard</div><div class="node-text">I set up the clean local workspace, select the 5 Build Coordinates, run terminal lookup scripts, execute the IaC Payload locally, and approve every phase.</div></div>
+                    
+                    <div class="node node-engine"><div class="tag">[THE STATE MACHINE]</div><div class="node-title">Zero Trust Interactive State Machine<br><span style="font-size: 0.78rem; font-weight: 700; color: var(--color-cyan);">(MASTER SYSTEM DIRECTIVE)</span></div><div class="tag" style="margin-top: 5px;">[THE HARNESS]</div><div class="node-text">Enforces step-by-step halts, Single-Tenant Service Principals, read-only lookups on Brownfield Data-Plane Assets, and single-asset Data-Plane Roles.</div></div>
+                    
+                    <div class="node node-compiler"><div class="tag">[THE AI ENGINE]</div><div class="node-title">Tethered Co-Pilot<br><span style="font-size: 0.78rem; font-weight: 700; color: #a855f7;">(CONTROLLED BUILDER)</span></div><div class="node-text">Provides my terminal lookup commands, synthesizes the complete IaC Payload, Terminal Runbook, and Validation Bridge, and writes the formal ledgers.</div></div>
+                    
+                    <div class="node node-dpl"><div class="tag">[CONTINUOUS IMPROVEMENT]</div><div class="node-title">Continuous Improvement &amp; Circuit Breaking</div><div class="node-text">Every build permanently refines and upgrades my System Directive in Phase 7 so The State Machine evolves after every execution, backed by runtime circuit breaking if an error persists.</div></div>
+                    
+                    <div class="node node-iac"><div class="tag">[PHASE 3 OUTPUT]</div><div class="node-title">IaC Payload &amp; Runbook</div><div class="node-text">Outputs the finished Terraform, Azure Bicep, or PowerShell REST API IaC Payload with a 30-Second Server Sync Timer and Terminal Runbook.</div></div>
+                    
+                    <div class="node node-core"><div class="tag">[DEPLOYED CLOUD STATE]</div><div class="node-title">Gates 1 to 4 Live in Azure</div><div class="node-text">Live Application Registration, Service Principal, and OIDC Subject Claim.<span class="highlight">60-Minute Login Token locked to one Data-Plane Asset.</span></div></div>
+                    
+                    <div class="node node-scale"><div class="tag">[DAY-2 EXPANSION]</div><div class="node-title">35 Core Entra Modules</div><div class="node-text">Lets me layer advanced Microsoft Entra ID security services (like Conditional Access) onto my verified Application Registration and Service Principal.<span class="highlight">Non-destructive add-on modules.</span></div></div>
+
+                    <div class="node node-ial"><div class="tag">[PHASE 4 BASELINE]</div><div class="node-title">Identity Architecture Ledger (IAL)</div><div class="node-text">Pre-validation baseline recording my Entra ID Tenant ID, Azure Subscription ID, Service Principal, Subject Claim, and Data-Plane Role.</div></div>
+                    
+                    <div class="node node-arl"><div class="tag">[PHASE 4 &amp; 5 OUTPUTS]</div><div class="node-title">Portal Metrics, ARL, KQL &amp; DPL</div><div class="node-text">My Stage 1 proof via Azure Portal Monitoring Metrics (Total Service API Hits), followed by the ARL, KQL Telemetry, and Defect &amp; Patch Ledger (DPL).</div></div>
+                </div>
             </div>
         </div>
 
@@ -1248,7 +1312,7 @@
         </div>
     </header>
 
-    <!-- ================= SECTION 2 & SECTION 3: EXECUTION TRIAD & ARCHITECTURAL FLOW ================= -->
+    <!-- ================= SECTION 2 & SECTION 3: EXECUTION TRIAD & UNDER THE HOOD CONTROLS ================= -->
     <section class="module-section">
         <div class="architecture-container">
             
@@ -1306,71 +1370,12 @@
                 </div>
             </div>
 
-            <!-- SECTION 3: THE ARCHITECTURAL EXECUTION FLOW -->
-            <h2 class="flow-title" id="execution-flow">The Architectural Execution Flow: System Topology &amp; Runtime Mechanics</h2>
-
-            <!-- THE GRAPHIC (CORRECTED FLOWCHART TOPOLOGY: CONTINUOUS IMPROVEMENT LOOP + PHASE 4/5 DELIVERABLES) -->
-            <div class="canvas-wrapper">
-                <div class="diagram-canvas">
-                    <svg class="routing-lines" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6" /></marker>
-                            <marker id="arrow-cyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0ea5e9" /></marker>
-                            <marker id="arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#a855f7" /></marker>
-                            <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#10b981" /></marker>
-                            <marker id="arrow-red-end" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#f43f5e" /></marker>
-                            <marker id="arrow-red-start" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 10 0 L 0 5 L 10 10 z" fill="#f43f5e" /></marker>
-                        </defs>
-                        <!-- Eng to Compiler -->
-                        <path class="animated-path" d="M 220 100 L 250 100" fill="none" stroke="#3b82f6" stroke-width="3" marker-end="url(#arrow-blue)" />
-                        <!-- Compiler to Eng -->
-                        <path class="animated-path" d="M 250 130 L 220 130" fill="none" stroke="#a855f7" stroke-width="2" marker-end="url(#arrow-purple)" />
-                        <!-- Engine to Compiler -->
-                        <path class="animated-path" d="M 220 340 L 360 340 L 360 190" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
-                        <!-- Compiler to IaC -->
-                        <path class="animated-path" d="M 470 100 L 500 100" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
-                        <!-- IaC to Core -->
-                        <path class="animated-path" d="M 680 100 L 710 100" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
-                        <!-- Core to Modular Scaling -->
-                        <path class="animated-path" d="M 930 100 L 960 100" fill="none" stroke="#a855f7" stroke-width="3" marker-end="url(#arrow-purple)" />
-
-                        <!-- Core to Split -->
-                        <path class="animated-path" d="M 820 220 L 820 320" fill="none" stroke="#10b981" stroke-width="2" />
-                        <!-- Split to IAL -->
-                        <path class="animated-path" d="M 820 320 L 770 320 L 770 410" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
-                        <!-- Split to ARL -->
-                        <path class="animated-path" d="M 820 320 L 1015 320 L 1015 410" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
-                        
-                        <!-- Engine to Continuous Improvement (Bidirectional Feedback) -->
-                        <path class="animated-path" d="M 220 450 L 250 450" fill="none" stroke="#f43f5e" stroke-width="3" marker-start="url(#arrow-red-start)" marker-end="url(#arrow-red-end)" />
-                    </svg>
-
-                    <div class="node node-engineer"><div class="tag">[THE ARCHITECT (ME)]</div><div class="node-title">My Role at the Keyboard</div><div class="node-text">I set up the clean local workspace, select the 5 Build Coordinates, run terminal lookup scripts, execute the IaC Payload locally, and approve every phase.</div></div>
-                    
-                    <div class="node node-engine"><div class="tag">[THE STATE MACHINE]</div><div class="node-title">Zero Trust Interactive State Machine<br><span style="font-size: 0.78rem; font-weight: 700; color: var(--color-cyan);">(MASTER SYSTEM DIRECTIVE)</span></div><div class="tag" style="margin-top: 5px;">[THE HARNESS]</div><div class="node-text">Enforces step-by-step halts, Single-Tenant Service Principals, read-only lookups on Brownfield Data-Plane Assets, and single-asset Data-Plane Roles.</div></div>
-                    
-                    <div class="node node-compiler"><div class="tag">[THE AI ENGINE]</div><div class="node-title">Tethered Co-Pilot<br><span style="font-size: 0.78rem; font-weight: 700; color: #a855f7;">(CONTROLLED BUILDER)</span></div><div class="node-text">Provides my terminal lookup commands, synthesizes the complete IaC Payload, Terminal Runbook, and Validation Bridge, and writes the formal ledgers.</div></div>
-                    
-                    <div class="node node-dpl"><div class="tag">[CONTINUOUS IMPROVEMENT]</div><div class="node-title">Continuous Improvement &amp; Circuit Breaking</div><div class="node-text">Every build permanently refines and upgrades my System Directive in Phase 7 so The State Machine evolves after every execution, backed by runtime circuit breaking if an error persists.</div></div>
-                    
-                    <div class="node node-iac"><div class="tag">[PHASE 3 OUTPUT]</div><div class="node-title">IaC Payload &amp; Runbook</div><div class="node-text">Outputs the finished Terraform, Azure Bicep, or PowerShell REST API IaC Payload with a 30-Second Server Sync Timer and Terminal Runbook.</div></div>
-                    
-                    <div class="node node-core"><div class="tag">[DEPLOYED CLOUD STATE]</div><div class="node-title">Gates 1 to 4 Live in Azure</div><div class="node-text">Live Application Registration, Service Principal, and OIDC Subject Claim.<span class="highlight">60-Minute Login Token locked to one Data-Plane Asset.</span></div></div>
-                    
-                    <div class="node node-scale"><div class="tag">[DAY-2 EXPANSION]</div><div class="node-title">35 Core Entra Modules</div><div class="node-text">Lets me layer advanced Microsoft Entra ID security services (like Conditional Access) onto my verified Application Registration and Service Principal.<span class="highlight">Non-destructive add-on modules.</span></div></div>
-
-                    <div class="node node-ial"><div class="tag">[PHASE 4 BASELINE]</div><div class="node-title">Identity Architecture Ledger (IAL)</div><div class="node-text">Pre-validation baseline recording my Entra ID Tenant ID, Azure Subscription ID, Service Principal, Subject Claim, and Data-Plane Role.</div></div>
-                    
-                    <div class="node node-arl"><div class="tag">[PHASE 4 &amp; 5 OUTPUTS]</div><div class="node-title">Portal Metrics, ARL, KQL &amp; DPL</div><div class="node-text">My Stage 1 proof via Azure Portal Monitoring Metrics (Total Service API Hits), followed by the ARL, KQL Telemetry, and Defect &amp; Patch Ledger (DPL).</div></div>
-                </div>
-            </div>
-
             <!-- ARCHITECTURAL FLOW EXPLANATION (UNDER THE HOOD MECHANICS: CANONICAL LEXICON) -->
-            <div class="flow-explanation">
+            <div class="flow-explanation" id="execution-flow">
                 <h3 class="flow-subheader">Under the Hood: 4 Practical Engineering Controls Built Into My Flow</h3>
                 
                 <p class="flow-intro">
-                    Beyond the 7-phase sequence at the top of the page, the diagram above highlights four practical engineering solutions I built into my System Directive to prevent the real-world terminal crashes, Microsoft Entra ID syncing delays, and logging bottlenecks that routinely break deployments between an Execution Agent, a Service Principal, and a Data-Plane Asset:
+                    Beyond the 7-phase sequence and system topology at the top of the page, I built four practical engineering controls into my System Directive to prevent the real-world terminal crashes, Microsoft Entra ID syncing delays, and logging bottlenecks that routinely break deployments between an Execution Agent, a Service Principal, and a Data-Plane Asset:
                 </p>
 
                 <div class="flow-mechanics-box">

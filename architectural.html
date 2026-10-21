@@ -264,7 +264,7 @@
         
         .feature-title { font-family: 'Montserrat', sans-serif; font-size: 1.28rem; font-weight: 900; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-base); color: var(--text-main); text-transform: uppercase; letter-spacing: 0.5px; }
         
-        /* ================= HOME-PAGE STYLE ANIMATED DIAGRAMS (ZERO SCROLLBAR ON DESKTOP) ================= */
+        /* ================= HOME-PAGE STYLE ANIMATED DIAGRAMS WITH FORMAL HEADER BARS ================= */
         @keyframes flow { to { stroke-dashoffset: -20; } }
         @keyframes ai-scanlines {
             from { background-position: 0 0; }
@@ -293,8 +293,39 @@
             position: relative; width: 1180px; max-width: 100%; margin: 0 auto;
             background-color: rgba(2, 6, 23, 0.92);
             background-image: linear-gradient(to right, rgba(30, 41, 59, 0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(30, 41, 59, 0.5) 1px, transparent 1px);
-            background-size: 40px 40px; border: 1px solid var(--border-base); border-radius: 12px;
+            background-size: 40px 40px; border: 1px solid var(--border-base); border-top: 4px solid var(--color-cyan); border-radius: 12px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); overflow: hidden;
+        }
+
+        /* FORMAL DIAGRAM HEADER BAR INSIDE TOP OF CANVAS */
+        .diagram-header-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.15rem 2rem;
+            background: rgba(10, 15, 29, 0.95);
+            border-bottom: 1px solid var(--border-base);
+            z-index: 5;
+            text-align: center;
+        }
+        .diagram-header-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: var(--color-cyan);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+        .diagram-header-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 900;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .diagram-caption-box {
@@ -308,27 +339,31 @@
             text-align: left;
         }
 
-        /* ================= DIAGRAM 1: ANATOMY DIAGRAM (ANIMATED & PULSING) ================= */
-        .anatomy-diagram { height: 560px; }
+        /* ================= DIAGRAM 1: ANATOMY DIAGRAM (760PX HEIGHT, ZERO OVERLAP) ================= */
+        .anatomy-diagram { height: 760px; }
         .a-node { position: absolute; background: var(--bg-node); border: 1px solid var(--border-base); border-radius: 8px; padding: 1.25rem 1.4rem; text-align: left; z-index: 2; backdrop-filter: blur(8px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.5); }
         .a-node .tag { font-family: 'JetBrains Mono', monospace; font-weight: 800; border: 1px solid rgba(59, 130, 246, 0.4); color: var(--color-blue); font-size: 0.72rem; padding: 3px 8px; border-radius: 4px; display: inline-block; margin-bottom: 8px; }
         .a-node .title { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.02rem; text-transform: uppercase; margin-bottom: 6px; color: var(--text-main); }
         .a-node .sub { font-size: 0.88rem; color: var(--text-main); font-weight: 600; line-height: 1.5; }
         
-        .a-input { width: 380px; top: 30px; left: 400px; border-left: 4px solid var(--color-blue); }
+        /* Tier 1 (Top Input Box): y = 110px to ~250px */
+        .a-input { width: 420px; top: 110px; left: 380px; border-left: 4px solid var(--color-blue); }
+        /* Tier 2 (Center State Machine Box): y = 315px to ~465px (65px clear gap below Tier 1) */
         .a-engine { 
-            width: 440px; top: 195px; left: 370px; 
+            width: 460px; top: 315px; left: 360px; 
             border: 2px solid var(--color-cyan); border-left: 6px solid var(--color-cyan);
             background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(14, 165, 233, 0.18) 4px, rgba(14, 165, 233, 0.18) 8px), linear-gradient(135deg, rgba(14, 165, 233, 0.25) 0%, rgba(10, 15, 29, 0.95) 100%), var(--bg-node);
             animation: ai-scanlines 2s linear infinite, pulse-cyan 3.5s ease-in-out infinite;
         }
-        .a-out-1 { width: 380px; top: 380px; left: 110px; border-left: 4px solid var(--color-purple); }
-        .a-out-2 { width: 380px; top: 380px; left: 690px; border-left: 4px solid var(--color-green); }
+        /* Tier 3 (Bottom Dual Stream Boxes): y = 555px to ~710px (90px clear gap below Tier 2, 50px above floor) */
+        .a-out-1 { width: 410px; top: 555px; left: 95px; border-left: 4px solid var(--color-purple); }
+        .a-out-2 { width: 410px; top: 555px; left: 675px; border-left: 4px solid var(--color-green); }
 
-        /* ================= DIAGRAM 2: WORKFLOW DIAGRAM (ANIMATED ORBITAL & PULSING CORE) ================= */
-        .workflow-diagram { height: 680px; display: flex; justify-content: center; align-items: center; }
+        /* ================= DIAGRAM 2: WORKFLOW DIAGRAM (780PX HEIGHT, CENTERED AT Y=435PX) ================= */
+        .workflow-diagram { height: 780px; }
         .w-center { 
-            position: relative; z-index: 3; width: 210px; height: 210px; border-radius: 50%; 
+            position: absolute; top: 435px; left: 50%; transform: translate(-50%, -50%);
+            z-index: 3; width: 210px; height: 210px; border-radius: 50%; 
             background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(14, 165, 233, 0.18) 4px, rgba(14, 165, 233, 0.18) 8px), radial-gradient(circle, rgba(14,165,233,0.3) 0%, var(--bg-page) 75%); 
             border: 2px solid var(--color-cyan); display: flex; flex-direction: column; justify-content: center; align-items: center; 
             text-align: center; padding: 1rem;
@@ -338,31 +373,31 @@
         .w-center-main { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.05rem; color: var(--text-main); text-transform: uppercase; line-height: 1.3; }
         
         .w-ring { 
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-            width: 490px; height: 490px; border-radius: 50%; 
+            position: absolute; top: 435px; left: 50%; transform: translate(-50%, -50%); 
+            width: 470px; height: 470px; border-radius: 50%; 
             border: 3px dashed var(--color-cyan); z-index: 1; 
             box-shadow: 0 0 25px rgba(14, 165, 233, 0.2);
             animation: spin-slow 28s linear infinite;
         }
-        .w-node { position: absolute; background: var(--bg-node); border: 1px solid var(--border-base); border-left: 4px solid; border-radius: 8px; padding: 1.1rem 1.35rem; width: 270px; text-align: left; z-index: 3; box-shadow: 0 10px 20px rgba(0,0,0,0.5); color: var(--text-main); }
+        .w-node { position: absolute; background: var(--bg-node); border: 1px solid var(--border-base); border-left: 4px solid; border-radius: 8px; padding: 1.1rem 1.35rem; width: 280px; text-align: left; z-index: 3; box-shadow: 0 10px 20px rgba(0,0,0,0.5); color: var(--text-main); }
         .w-node-title { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 0.98rem; text-transform: uppercase; margin-bottom: 4px; color: var(--text-main); }
         .w-node-sub { font-size: 0.84rem; font-weight: 600; color: var(--text-main); line-height: 1.45; }
         
-        .w-n1 { top: 35px; left: 50%; transform: translateX(-50%); border-left-color: var(--color-blue); }
+        .w-n1 { top: 115px; left: 50%; transform: translateX(-50%); border-left-color: var(--color-blue); }
         .w-n2 { 
-            top: 50%; left: calc(50% + 330px); transform: translate(-50%, -50%); 
+            top: 435px; left: calc(50% + 340px); transform: translate(-50%, -50%); 
             border: 2px solid var(--color-purple); border-left: 6px solid var(--color-purple);
             background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(168, 85, 247, 0.15) 4px, rgba(168, 85, 247, 0.15) 8px), var(--bg-node);
             animation: ai-scanlines 1.5s linear infinite, pulse-purple 3s ease-in-out infinite;
         }
-        .w-n3 { bottom: 35px; left: 50%; transform: translateX(-50%); border-left-color: var(--color-red); }
-        .w-n4 { top: 50%; left: calc(50% - 330px); transform: translate(-50%, -50%); border-left-color: var(--color-green); }
+        .w-n3 { top: 625px; left: 50%; transform: translateX(-50%); border-left-color: var(--color-red); }
+        .w-n4 { top: 435px; left: calc(50% - 340px); transform: translate(-50%, -50%); border-left-color: var(--color-green); }
 
-        /* ================= DIAGRAM 3: FEDERATION DIAGRAM (ANIMATED & PULSING) ================= */
-        .federation-diagram { height: 520px; }
+        /* ================= DIAGRAM 3: FEDERATION DIAGRAM (600PX HEIGHT, ZERO OVERLAP) ================= */
+        .federation-diagram { height: 600px; }
         .f-node { position: absolute; background: var(--bg-node); border: 1px solid var(--border-base); border-radius: 8px; z-index: 2; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
         .f-engine { 
-            width: 340px; top: 145px; left: 140px; text-align: left; padding: 1.6rem 1.8rem;
+            width: 350px; top: 220px; left: 130px; text-align: left; padding: 1.6rem 1.8rem;
             border: 2px solid var(--color-cyan); border-left: 6px solid var(--color-cyan);
             background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(14, 165, 233, 0.18) 4px, rgba(14, 165, 233, 0.18) 8px), linear-gradient(135deg, rgba(14, 165, 233, 0.25) 0%, rgba(10, 15, 29, 0.95) 100%), var(--bg-node);
             animation: ai-scanlines 2s linear infinite, pulse-cyan 3.5s ease-in-out infinite;
@@ -371,10 +406,10 @@
         .f-engine .title { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.15rem; color: var(--text-main); text-transform: uppercase; margin-bottom: 8px; }
         .f-engine .desc { font-size: 0.88rem; color: var(--text-main); font-weight: 600; line-height: 1.5; }
 
-        .f-target { width: 410px; left: 640px; display: flex; align-items: center; padding: 1.2rem 1.4rem; border-left: 4px solid var(--color-purple); }
-        .f-tf { top: 65px; border-left-color: var(--color-cyan); }
-        .f-az { top: 205px; border-left-color: var(--color-blue); }
-        .f-api { top: 345px; border-left-color: var(--color-purple); }
+        .f-target { width: 420px; left: 630px; display: flex; align-items: center; padding: 1.2rem 1.4rem; border-left: 4px solid var(--color-purple); }
+        .f-tf { top: 120px; border-left-color: var(--color-cyan); }
+        .f-az { top: 270px; border-left-color: var(--color-blue); }
+        .f-api { top: 420px; border-left-color: var(--color-purple); }
         .f-target-icon { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 1.1rem; color: var(--color-cyan); border-right: 1px solid var(--border-base); padding-right: 15px; margin-right: 15px; width: 65px; text-align: center; flex-shrink: 0; }
         .f-target-text { display: flex; flex-direction: column; text-align: left; }
         .f-target-title { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.05rem; color: var(--text-main); text-transform: uppercase; }
@@ -562,15 +597,25 @@
 
         <div class="canvas-wrapper">
             <div class="diagram-wrapper-wide anatomy-diagram scrollable-diagram">
+                
+                <!-- FORMAL DIAGRAM HEADER BAR -->
+                <div class="diagram-header-bar">
+                    <span class="diagram-header-tag">[SCHEMATIC 01 :: DUAL-STREAM COMPILATION TOPOLOGY]</span>
+                    <div class="diagram-header-title">State Machine Anatomy: Dual-Stream Execution &amp; Verification</div>
+                </div>
+
                 <svg class="anatomy-svg" xmlns="http://www.w3.org/2000/svg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
                     <defs>
                         <marker id="arr-cyan-2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0ea5e9" /></marker>
                         <marker id="arr-purple-2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#a855f7" /></marker>
                         <marker id="arr-green-2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#10b981" /></marker>
                     </defs>
-                    <path class="animated-path" d="M 590 145 L 590 190" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arr-cyan-2)" />
-                    <path class="animated-path" d="M 590 325 L 590 350 L 300 350 L 300 375" fill="none" stroke="#a855f7" stroke-width="3" marker-end="url(#arr-purple-2)" />
-                    <path class="animated-path" d="M 590 325 L 590 350 L 880 350 L 880 375" fill="none" stroke="#10b981" stroke-width="3" marker-end="url(#arr-green-2)" />
+                    <!-- Tier 1 to Tier 2 -->
+                    <path class="animated-path" d="M 590 250 L 590 310" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arr-cyan-2)" />
+                    <!-- Tier 2 to Left Tier 3 -->
+                    <path class="animated-path" d="M 590 465 L 590 510 L 300 510 L 300 550" fill="none" stroke="#a855f7" stroke-width="3" marker-end="url(#arr-purple-2)" />
+                    <!-- Tier 2 to Right Tier 3 -->
+                    <path class="animated-path" d="M 590 465 L 590 510 L 880 510 L 880 550" fill="none" stroke="#10b981" stroke-width="3" marker-end="url(#arr-green-2)" />
                 </svg>
 
                 <div class="a-node a-input">
@@ -684,6 +729,12 @@
         <div class="canvas-wrapper">
             <div class="diagram-wrapper-wide workflow-diagram scrollable-diagram">
                 
+                <!-- FORMAL DIAGRAM HEADER BAR -->
+                <div class="diagram-header-bar">
+                    <span class="diagram-header-tag">[SCHEMATIC 02 :: CLOSED-LOOP GOVERNANCE ORBIT]</span>
+                    <div class="diagram-header-title">Tethered State-Switching &amp; Drift Prevention Loop</div>
+                </div>
+
                 <div class="w-ring"></div>
                 
                 <div class="w-center">
@@ -799,15 +850,21 @@
         <div class="canvas-wrapper">
             <div class="diagram-wrapper-wide federation-diagram scrollable-diagram">
                 
+                <!-- FORMAL DIAGRAM HEADER BAR -->
+                <div class="diagram-header-bar">
+                    <span class="diagram-header-tag">[SCHEMATIC 03 :: MULTI-LANGUAGE IAC PAYLOAD ENGINE]</span>
+                    <div class="diagram-header-title">Zero Trust OIDC Synthesis Across All 3 IaC Payload Languages</div>
+                </div>
+
                 <svg class="routing-lines" xmlns="http://www.w3.org/2000/svg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
                     <defs>
                         <marker id="arr-cyan-f" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0ea5e9" /></marker>
                         <marker id="arr-blue-f" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6" /></marker>
                         <marker id="arr-purple-f" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#a855f7" /></marker>
                     </defs>
-                    <path class="animated-path" d="M 480 260 L 560 260 L 560 120 L 635 120" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arr-cyan-f)" />
-                    <path class="animated-path" d="M 480 260 L 635 260" fill="none" stroke="#3b82f6" stroke-width="3" marker-end="url(#arr-blue-f)" />
-                    <path class="animated-path" d="M 480 260 L 560 260 L 560 400 L 635 400" fill="none" stroke="#a855f7" stroke-width="3" marker-end="url(#arr-purple-f)" />
+                    <path class="animated-path" d="M 480 325 L 555 325 L 555 175 L 625 175" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arr-cyan-f)" />
+                    <path class="animated-path" d="M 480 325 L 625 325" fill="none" stroke="#3b82f6" stroke-width="3" marker-end="url(#arr-blue-f)" />
+                    <path class="animated-path" d="M 480 325 L 555 325 L 555 475 L 625 475" fill="none" stroke="#a855f7" stroke-width="3" marker-end="url(#arr-purple-f)" />
                 </svg>
 
                 <div class="f-node f-engine">

@@ -91,7 +91,52 @@
         }
 
         /* ================= HERO HEADER & BULLETED INTRO BOXES ================= */
-        .hero { padding: 155px 20px 60px; text-align: center; border-bottom: 1px solid var(--border-base); }
+        .hero { padding: 145px 20px 60px; text-align: center; border-bottom: 1px solid var(--border-base); }
+        
+        /* TOP SUB-NAVIGATION JUMP LINKS BAR (ABOVE TITLE) */
+        .jump-links-container {
+            max-width: 1120px;
+            margin: 0 auto 2.5rem;
+            padding: 1.25rem 1.8rem;
+            background: rgba(15, 23, 42, 0.55);
+            border: 1px solid var(--border-base);
+            border-radius: 10px;
+            text-align: center;
+        }
+        .jump-links-intro {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: 0.5px;
+            margin-bottom: 0.9rem;
+        }
+        .jump-links { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 1rem; 
+        }
+        .jump-links a { 
+            color: var(--color-cyan); 
+            border: 1px solid var(--color-cyan); 
+            background: rgba(14, 165, 233, 0.08); 
+            padding: 0.65rem 1.35rem; 
+            border-radius: 8px; 
+            text-decoration: none; 
+            font-size: 0.88rem; 
+            font-weight: 700; 
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+            transition: all 0.3s ease; 
+        }
+        .jump-links a:hover { 
+            background: var(--color-cyan); 
+            color: #ffffff; 
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
+            transform: translateY(-2px); 
+        }
+
         .hero-title-container { display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
         .hero-title { font-family: 'Montserrat', sans-serif; font-size: 3.4rem; font-weight: 900; letter-spacing: 3px; color: var(--text-main); text-transform: uppercase; }
         .hero-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; font-weight: 800; color: var(--color-purple); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.8rem; display: block; }
@@ -143,7 +188,7 @@
             border-left: 4px solid var(--color-purple); 
             background: linear-gradient(90deg, rgba(168, 85, 247, 0.1) 0%, transparent 100%);
             padding: 2rem 2.4rem; 
-            margin: 2rem auto 2.5rem; 
+            margin: 2rem auto 0; 
             max-width: 1120px; 
             border-radius: 0 8px 8px 0; 
             text-align: left; 
@@ -162,34 +207,6 @@
         }
         .insight-header::before { content: '>'; font-weight: 900; }
         .insight-text { font-size: 1.12rem; color: var(--text-main); font-style: normal; line-height: 1.75; font-weight: 600; }
-
-        /* ================= JUMP LINKS ================= */
-        .jump-links { 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: center; 
-            gap: 1rem; 
-            margin-top: 2rem; 
-        }
-        .jump-links a { 
-            color: var(--color-cyan); 
-            border: 1px solid var(--color-cyan); 
-            background: rgba(14, 165, 233, 0.08); 
-            padding: 0.75rem 1.5rem; 
-            border-radius: 8px; 
-            text-decoration: none; 
-            font-size: 0.9rem; 
-            font-weight: 700; 
-            letter-spacing: 1px; 
-            text-transform: uppercase; 
-            transition: all 0.3s ease; 
-        }
-        .jump-links a:hover { 
-            background: var(--color-cyan); 
-            color: #ffffff; 
-            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
-            transform: translateY(-2px); 
-        }
 
         #classification, #operational-challenge, #agentic-patterns, #translation-matrix { scroll-margin-top: 100px; }
 
@@ -508,6 +525,20 @@
 
     <!-- HERO HEADER -->
     <header class="hero">
+        
+        <!-- TOP ON-PAGE SUB-NAVIGATION BAR (ABOVE TITLE) -->
+        <div class="jump-links-container">
+            <div class="jump-links-intro">
+                Select any section below to jump directly to the AI Systems Engineering specification:
+            </div>
+            <div class="jump-links">
+                <a href="#classification">1. Anatomy of My System Directive</a>
+                <a href="#operational-challenge">2. Matching System Complexity &amp; Precision</a>
+                <a href="#agentic-patterns">3. The 4 AI Engineering Standards</a>
+                <a href="#translation-matrix">4. The 5 Enterprise Guardrails Matrix</a>
+            </div>
+        </div>
+
         <span class="hero-tag">[MASTER SYSTEM DIRECTIVE SPECIFICATION :: v9.2]</span>
         <div class="hero-title-container">
             <h1 class="hero-title">DETERMINISTIC AI SYSTEMS ENGINEERING</h1>
@@ -537,13 +568,6 @@
             <div class="insight-text">
                 A traditional code compiler takes human instructions, verifies that every variable and boundary rule is valid, and refuses to build the program if a single dependency is missing. My Zero Trust Interactive State Machine works on that exact engineering principle: in Phases 1 and 2, my System Directive forces The AI Engine to verify my Entra ID Tenant ID, Azure Subscription ID, Resource Group, and exact Code Repository and Branch spelling with me in my local terminal before it is permitted to synthesize my IaC Payload and Terminal Runbook in Phase 3.
             </div>
-        </div>
-        
-        <div class="jump-links">
-            <a href="#classification">1. Anatomy of My System Directive</a>
-            <a href="#operational-challenge">2. Matching System Complexity &amp; Precision</a>
-            <a href="#agentic-patterns">3. The 4 AI Engineering Standards</a>
-            <a href="#translation-matrix">4. The 5 Enterprise Guardrails Matrix</a>
         </div>
     </header>
 

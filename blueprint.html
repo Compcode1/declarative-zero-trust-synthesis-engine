@@ -51,6 +51,7 @@
             overflow-x: hidden;
         }
 
+        /* STRICT COLOR DISCIPLINE: ONLY FOR BULLET LEAD-IN LABELS BEFORE A COLON */
         .bullet-lead {
             color: var(--color-cyan);
             font-weight: 800;
@@ -104,23 +105,56 @@
             scroll-margin-top: 100px;
         }
 
-        /* ================= PAGE CONTAINER & JUMP LINKS ================= */
+        /* ================= PAGE CONTAINER & BULLETED INTRO BOXES ================= */
         .blueprint-page-container {
             max-width: 1300px;
             margin: 0 auto;
             padding: 150px 20px 20px; 
         }
 
-        .perspectives-intro {
-            font-size: 1.22rem;
-            color: var(--text-main);
-            max-width: 1050px;
-            margin: 0 auto 3rem;
-            line-height: 1.8;
-            font-weight: 600;
+        .section-intro-box {
+            max-width: 1120px;
+            margin: 0 auto 2.8rem;
+            background: rgba(10, 15, 29, 0.95);
+            border: 1px solid var(--border-base);
+            border-left: 4px solid var(--color-cyan);
+            border-radius: 10px;
+            padding: 2rem 2.4rem;
             text-align: left;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
         }
 
+        .intro-lead-sentence {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--text-main);
+            line-height: 1.65;
+            margin-bottom: 1.15rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--border-base);
+        }
+
+        .clean-bullet-list {
+            list-style: disc;
+            padding-left: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            text-align: left;
+        }
+        .clean-bullet-list li {
+            font-size: 1.06rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.7;
+            padding-left: 0.25rem;
+        }
+        .clean-bullet-list li::marker {
+            color: var(--color-cyan);
+        }
+
+        /* JUMP CARDS */
         .jump-nav {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -159,7 +193,7 @@
             gap: 0.5rem;
         }
         .jump-card p {
-            font-size: 1rem;
+            font-size: 1.02rem;
             color: var(--text-main);
             font-weight: 600;
             line-height: 1.65;
@@ -182,30 +216,26 @@
         }
         .class-title {
             font-family: 'Montserrat', sans-serif; font-size: 2.1rem;
-            font-weight: 900; color: var(--text-main); margin-bottom: 1.5rem;
+            font-weight: 900; color: var(--text-main); margin-bottom: 1.8rem;
             letter-spacing: 1px; text-transform: uppercase;
         }
-        .class-intro {
-            font-size: 1.2rem; color: var(--text-main); line-height: 1.8;
-            margin-bottom: 2.5rem; max-width: 1100px; font-weight: 600;
-        }
-        .class-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
+        .class-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; margin-top: 2.2rem; }
         .class-card {
             background: rgba(10, 15, 29, 0.95); border: 1px solid var(--border-base);
             border-top: 3px solid var(--color-cyan);
             padding: 2rem; border-radius: 8px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+            text-align: left;
         }
         .class-card h3 {
             color: var(--text-main); font-size: 1.2rem; margin-bottom: 1rem;
             padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-base);
             font-family: 'Montserrat', sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px;
         }
-        .class-card p { color: var(--text-main); font-size: 1.02rem; line-height: 1.7; font-weight: 600; }
 
         /* ================= MASTER BLUEPRINT GRAPHIC ================= */
         .blueprint-section {
-            padding: 4.5rem 2.5rem;
+            padding: 4rem 2.5rem;
             background: rgba(15, 23, 42, 0.4);
             border: 1px solid var(--border-base);
             border-radius: 10px;
@@ -216,17 +246,12 @@
         .blueprint-title {
             font-family: 'Montserrat', sans-serif; font-size: 2.4rem; font-weight: 900;
             color: var(--color-cyan); text-transform: uppercase; letter-spacing: 1.5px;
-            margin-bottom: 1.4rem;
-        }
-        .blueprint-subtitle {
-            font-size: 1.2rem; color: var(--text-main); font-style: normal; 
-            margin-bottom: 3.5rem; max-width: 1050px; margin-left: auto; margin-right: auto; line-height: 1.8;
-            font-weight: 600; text-align: left;
+            margin-bottom: 1.8rem;
         }
         .blueprint-funnel { display: flex; flex-direction: column; align-items: center; gap: 0; }
 
         .bp-layer {
-            border: 1px solid var(--border-base); border-radius: 8px; padding: 3rem;
+            border: 1px solid var(--border-base); border-radius: 8px; padding: 2.8rem;
             width: 100%; background: rgba(2, 6, 23, 0.85); box-shadow: 0 10px 20px rgba(0,0,0,0.35);
             display: flex; flex-direction: column; align-items: center;
         }
@@ -236,15 +261,24 @@
         .bp-layer.bot { max-width: 1120px; border-top: 4px solid var(--color-green); box-shadow: 0 0 30px rgba(16, 185, 129, 0.1); }
         .bp-layer.outputs { max-width: 1120px; border-top: 4px solid var(--color-orange); box-shadow: 0 0 30px rgba(249, 115, 22, 0.1); }
 
-        .bp-tag { font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: 800; letter-spacing: 2px; margin-bottom: 0.8rem; text-transform: uppercase; }
+        .bp-tag { font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: 800; letter-spacing: 2px; margin-bottom: 0.6rem; text-transform: uppercase; }
         .bp-layer.top .bp-tag { color: var(--color-cyan); }
         .bp-layer.guard .bp-tag { color: var(--color-red); }
         .bp-layer.mid .bp-tag { color: var(--color-purple); }
         .bp-layer.bot .bp-tag { color: var(--color-green); }
         .bp-layer.outputs .bp-tag { color: var(--color-orange); }
 
-        .bp-heading { font-family: 'Montserrat', sans-serif; font-size: 1.9rem; font-weight: 900; color: var(--text-main); text-transform: uppercase; margin-bottom: 1.5rem; letter-spacing: 1px; }
-        .bp-intro { font-size: 1.15rem; color: var(--text-main); max-width: 1000px; margin-bottom: 2.5rem; line-height: 1.8; font-weight: 600; text-align: left; }
+        .bp-heading { font-family: 'Montserrat', sans-serif; font-size: 1.85rem; font-weight: 900; color: var(--text-main); text-transform: uppercase; margin-bottom: 1.5rem; letter-spacing: 1px; }
+
+        .bp-layer-intro-box {
+            width: 100%;
+            background: rgba(15, 23, 42, 0.65);
+            border: 1px solid var(--border-base);
+            border-radius: 8px;
+            padding: 1.6rem 2rem;
+            margin-bottom: 2.2rem;
+            text-align: left;
+        }
 
         .bp-grid-split { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; width: 100%; }
         .bp-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; width: 100%; }
@@ -259,9 +293,9 @@
             border-top: 4px solid var(--color-cyan); padding: 2rem; border-radius: 8px;
             text-align: left; display: flex; flex-direction: column; gap: 1.1rem;
         }
-        .bp-node-split-title { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.25rem; color: var(--color-cyan); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border-base); padding-bottom: 0.9rem; }
+        .bp-node-split-title { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.22rem; color: var(--color-cyan); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border-base); padding-bottom: 0.9rem; }
         
-        .def-block { font-size: 1.02rem; line-height: 1.65; }
+        .def-block { font-size: 1.04rem; line-height: 1.68; }
         .def-label { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.4rem; display: block; }
         .def-standard .def-label { color: var(--color-purple); }
         .def-standard .def-text { color: var(--text-main); font-weight: 600; }
@@ -280,10 +314,10 @@
         .bp-node-green .bp-node-title { color: var(--color-green); }
         .bp-node-orange .bp-node-title { color: var(--color-orange); font-size: 1.1rem; }
         .bp-node-pink .bp-node-title { color: var(--color-pink); }
-        .bp-node-desc { font-size: 0.98rem; color: var(--text-main); line-height: 1.65; font-weight: 600; }
+        .bp-node-desc { font-size: 1rem; color: var(--text-main); line-height: 1.68; font-weight: 600; }
 
         .bp-feedback-loop {
-            margin-top: 2rem; padding: 3rem; max-width: 1120px; width: 100%;
+            margin-top: 2rem; padding: 2.8rem; max-width: 1120px; width: 100%;
             border: 2px dashed var(--color-pink); border-radius: 8px; background: rgba(2, 6, 23, 0.92);
             display: flex; flex-direction: column; align-items: center; text-align: left;
             box-shadow: 0 0 40px rgba(236, 72, 153, 0.15);
@@ -294,11 +328,11 @@
         .bp-arrow-container { display: flex; justify-content: center; width: 100%; margin: 1rem 0; }
         .bp-arrow { color: var(--color-cyan); font-size: 3.5rem; font-weight: 900; line-height: 1; text-shadow: 0 0 20px var(--color-cyan); opacity: 0.9; }
 
-        /* ================= KINETIC TELEMETRY CSS ================= */
+        /* ================= KINETIC TELEMETRY CSS (LARGER READABLE FONTS & 3-COLUMN WIDE CARDS) ================= */
         .canvas-wrapper { width: 100%; overflow: visible; padding: 1.5rem 0; }
         
         .dashboard {
-            position: relative; width: 1180px; max-width: 100%; height: 3920px; margin: 0 auto; text-align: left;
+            position: relative; width: 1180px; max-width: 100%; height: 4220px; margin: 0 auto; text-align: left;
             background-image: 
                 radial-gradient(circle at 50% 0%, rgba(14, 165, 233, 0.05) 0%, transparent 50%),
                 linear-gradient(to right, rgba(30, 41, 59, 0.3) 1px, transparent 1px), 
@@ -309,17 +343,17 @@
         }
 
         .col-label {
-            position: absolute; top: 20px; width: 320px; text-align: center;
+            position: absolute; top: 20px; width: 340px; text-align: center;
             font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.05rem;
             letter-spacing: 2px; text-transform: uppercase;
             display: flex; flex-direction: column; align-items: center; gap: 10px;
         }
         .col-label svg { width: 32px; height: 32px; stroke-width: 1.5; fill: none; }
-        .lbl-architect { left: 30px; color: var(--color-cyan); }
+        .lbl-architect { left: 25px; color: var(--color-cyan); }
         .lbl-architect svg { stroke: var(--color-cyan); filter: drop-shadow(0 0 5px var(--color-cyan)); }
-        .lbl-framework { left: 430px; color: var(--color-red); }
+        .lbl-framework { left: 420px; color: var(--color-red); }
         .lbl-framework svg { stroke: var(--color-red); filter: drop-shadow(0 0 5px var(--color-red)); }
-        .lbl-ai { left: 830px; color: var(--color-purple); }
+        .lbl-ai { left: 815px; color: var(--color-purple); }
         .lbl-ai svg { stroke: var(--color-purple); filter: drop-shadow(0 0 5px var(--color-purple)); }
 
         .center-spine {
@@ -341,7 +375,7 @@
 
         .node {
             position: absolute; background-color: rgba(10, 15, 29, 0.95); border: 1px solid var(--border-base);
-            border-radius: 8px; padding: 1.35rem; width: 320px; min-height: 220px; z-index: 10;
+            border-radius: 8px; padding: 1.45rem; width: 340px; min-height: 240px; z-index: 10;
             backdrop-filter: blur(12px); box-shadow: 0 15px 25px rgba(0,0,0,0.45); display: block;
         }
 
@@ -386,34 +420,63 @@
             display: flex; justify-content: space-between; align-items: center;
         }
         .telemetry-node-title { 
-            font-family: 'Montserrat', sans-serif; font-size: 1.08rem; font-weight: 900; 
-            margin-bottom: 0.4rem; line-height: 1.3; color: #ffffff; text-transform: uppercase;
+            font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 900; 
+            margin-bottom: 0.45rem; line-height: 1.3; color: #ffffff; text-transform: uppercase;
         }
         .mandate-tag {
-            font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; font-weight: 800; 
-            color: var(--color-gold); text-transform: uppercase; margin-bottom: 0.75rem; letter-spacing: 0.5px;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; font-weight: 800; 
+            color: var(--color-gold); text-transform: uppercase; margin-bottom: 0.85rem; letter-spacing: 0.5px;
         }
         .telemetry-node-desc { 
-            font-size: 0.88rem; color: var(--text-main); line-height: 1.55; font-weight: 600;
+            font-size: 0.95rem; color: var(--text-main); line-height: 1.62; font-weight: 600;
         }
         .telemetry-node-desc ul {
             list-style: disc;
-            padding-left: 1.15rem;
-            margin-top: 0.35rem;
+            padding-left: 1.2rem;
+            margin-top: 0.4rem;
             display: flex;
             flex-direction: column;
-            gap: 0.45rem;
+            gap: 0.6rem;
         }
         .telemetry-node-desc li::marker {
             color: var(--color-cyan);
         }
 
+        /* 3-COLUMN INSET SUB-CARDS FOR WIDE TELEMETRY ROWS (ROW 6 & ROW 7) */
+        .wide-3col-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.1rem;
+        }
+        .wide-subcard {
+            background: rgba(2, 6, 23, 0.85);
+            border: 1px solid var(--border-base);
+            border-top: 3px solid var(--color-orange);
+            border-radius: 8px;
+            padding: 1.35rem 1.4rem;
+        }
+        .wide-subcard.pink-top {
+            border-top-color: var(--color-pink);
+        }
+        .wide-subcard-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 900;
+            color: #ffffff;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.55rem;
+            border-bottom: 1px solid var(--border-base);
+            letter-spacing: 0.5px;
+        }
+
         /* Telemetry Coordinates */
-        .pos-left { left: 30px; } .pos-center { left: 430px; } .pos-right { left: 830px; }
-        .y-boot { top: 140px; } .y-gate1 { top: 640px; } .y-gate2 { top: 1140px; }
-        .y-gate3 { top: 1640px; } .y-gate4 { top: 2140px; } .y-telemetry { top: 2660px; } 
-        .y-loop { top: 3250px; } 
-        .node-wide { width: 920px; left: 130px; text-align: left; }
+        .pos-left { left: 25px; } .pos-center { left: 420px; } .pos-right { left: 815px; }
+        .y-boot { top: 130px; } .y-gate1 { top: 670px; } .y-gate2 { top: 1210px; }
+        .y-gate3 { top: 1750px; } .y-gate4 { top: 2290px; } .y-telemetry { top: 2850px; } 
+        .y-loop { top: 3530px; } 
+        .node-wide { width: 1130px; left: 25px; text-align: left; }
 
         .architect-lock {
             width: 16px; height: 16px; stroke: var(--color-cyan); stroke-width: 2; fill: none;
@@ -488,19 +551,32 @@
     <!-- CONTENT CONTAINER -->
     <div class="blueprint-page-container">
 
-        <!-- ================= OPENING SECTION: ARCHITECTURAL PERSPECTIVES (JUMP LINKS) ================= -->
+        <!-- ================= OPENING SECTION: ARCHITECTURAL PERSPECTIVES (BULLETED INTRO + JUMP LINKS) ================= -->
         <div style="text-align: center; margin-bottom: 1rem;">
             <h1 style="font-family: 'Montserrat', sans-serif; font-size: 2.6rem; font-weight: 900; color: var(--text-main); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.5rem;">Architectural Perspectives</h1>
             
-            <!-- INTRODUCTORY PARAGRAPH (CANONICAL 26-VARIABLE LEXICON, FIRST-PERSON VOICE, ZERO EM-DASHES) -->
-            <p class="perspectives-intro">
-                In cloud identity security, relying on an untethered generative model to write an <span class="bullet-lead">IaC Payload</span> all at once is a major operational risk. Left on its own, <span class="bullet-lead">The AI Engine</span> operates probabilistically: it will guess an <span class="bullet-lead">Entra ID Tenant ID</span> or <span class="bullet-lead">Azure Subscription ID</span>, invent broken syntax, or grant broad <span class="bullet-lead">Owner and Contributor Roles</span> just to clear an error. To solve this for my <span class="bullet-lead">Microsoft Entra ID</span> and Azure deployments, I applied formal AI Systems Engineering best practices and first-principles mathematical variable control (defined in my <a href="glossary.html" class="inline-link">System Glossary</a>) to build the <span class="bullet-lead">Zero Trust Interactive State Machine</span>. By tethering <span class="bullet-lead">The AI Engine</span> to my master <span class="bullet-lead">System Directive</span>, <span class="bullet-lead">The State Machine</span> makes every output deterministic and permanently upgrades my <span class="bullet-lead">System Directive</span> at the close of every build for continuous improvement. Select any of the three architectural views below to explore how my system operates from the keyboard to the underlying rulebook:
-            </p>
+            <!-- BULLETED INTRO BOX (ZERO MID-SENTENCE BLUE CLUTTER) -->
+            <div class="section-intro-box">
+                <div class="intro-lead-sentence">
+                    How I engineered a deterministic state machine to govern Microsoft Entra ID and Azure deployments (using the fixed system variables defined in my <a href="glossary.html" class="inline-link">System Glossary</a>):
+                </div>
+                <ul class="clean-bullet-list">
+                    <li>
+                        <span class="bullet-lead">The Probabilistic AI Risk:</span> Relying on an untethered generative model to write an IaC Payload all at once is a major operational risk because The AI Engine will guess an Entra ID Tenant ID or Azure Subscription ID, invent broken syntax, or grant broad Owner and Contributor Roles just to clear an error.
+                    </li>
+                    <li>
+                        <span class="bullet-lead">Tethering The AI Engine to My System Directive:</span> To solve this, I applied formal AI Systems Engineering best practices and first-principles mathematical variable control to build the Zero Trust Interactive State Machine, wrapping The AI Engine inside my master System Directive so every output is deterministic.
+                    </li>
+                    <li>
+                        <span class="bullet-lead">Continuous System Improvement:</span> Every execution produces live mathematical Zero Trust verification and audit-ready compliance ledgers while permanently upgrading my System Directive at session close. Select any of the three architectural views below to explore the system:
+                    </li>
+                </ul>
+            </div>
             
             <div class="jump-nav">
                 <a href="#kinetic-telemetry" class="jump-card" style="text-align: left;">
                     <h4>&#10148; 1. Kinetic Execution Telemetry</h4>
-                    <p>Walk through my exact 7-phase execution sequence at the keyboard. This view shows how I lock in the 5 Build Coordinates, run local terminal lookups, enforce the 4 Architectural Gates, check Azure Portal Monitoring Metrics (Total Service API Hits), and generate my compliance ledgers.</p>
+                    <p>Walk through my exact 7-phase execution sequence at the keyboard, showing how I lock in the 5 Build Coordinates, enforce the 4 Architectural Gates, check Azure Portal Monitoring Metrics (Total Service API Hits), and generate my compliance ledgers.</p>
                 </a>
                 <a href="#operational-blueprint" class="jump-card" style="text-align: left;">
                     <h4>&#10148; 2. Operational Systems Blueprint</h4>
@@ -516,8 +592,26 @@
         <!-- ================= SECTION 1: KINETIC EXECUTION TELEMETRY ================= -->
         <div class="blueprint-section" id="kinetic-telemetry">
             <h2 class="blueprint-title">Kinetic Execution Telemetry</h2>
-            <div class="blueprint-subtitle">
-                This 7-row visual telemetry board maps how I interact with <span class="bullet-lead">The State Machine</span> and <span class="bullet-lead">The AI Engine</span> at the keyboard across my build sequence. Rather than letting <span class="bullet-lead">The AI Engine</span> generate an unverified <span class="bullet-lead">IaC Payload</span> in one shot, my master <span class="bullet-lead">System Directive</span> enforces a step-by-step assembly line. <span class="bullet-lead">Row 1 (Phase 1)</span> initializes my clean local workspace and locks in the 5 Build Coordinates (<span class="bullet-lead">Identity Core</span>, <span class="bullet-lead">Execution Agent</span>, <span class="bullet-lead">Infrastructure State</span>, <span class="bullet-lead">Data-Plane Asset</span>, and <span class="bullet-lead">IaC Payload</span>). <span class="bullet-lead">Rows 2 through 5 (Phases 2 to 3)</span> verify and synthesize <span class="bullet-lead">The Four Architectural Gates of Machine Identity</span> (Gate 1: Boundary, Gate 2: Identity, Gate 3: Federation, and Gate 4: Access) into a complete <span class="bullet-lead">IaC Payload</span> and <span class="bullet-lead">Terminal Runbook</span>. <span class="bullet-lead">Row 6 (Phases 4 to 6)</span> records the <span class="bullet-lead">Identity Architecture Ledger (IAL)</span>, executes the <span class="bullet-lead">Validation Bridge</span> on my <span class="bullet-lead">Execution Agent</span>, checks <span class="bullet-lead">Azure Portal Monitoring Metrics (Total Service API Hits)</span> on my <span class="bullet-lead">Data-Plane Asset</span>, generates the <span class="bullet-lead">Audit Results Ledger (ARL)</span>, <span class="bullet-lead">KQL Telemetry</span>, and <span class="bullet-lead">Defect &amp; Patch Ledger (DPL)</span>, and syncs my <span class="bullet-lead">Code Repository and Branch</span>. Finally, <span class="bullet-lead">Row 7</span> illustrates how my system separates the <span class="bullet-lead">Standard Patch Loop (Iterations 1 to 3)</span> from <span class="bullet-lead">The 4-Iteration Circuit Breaker</span> and closes in <span class="bullet-lead">Phase 7</span> with the <span class="bullet-lead">AI Performance Scorecard</span> and <span class="bullet-lead">System Directive Compilation</span> for continuous improvement.
+            
+            <!-- BULLETED SECTION 1 INTRO BOX (ZERO MID-SENTENCE BLUE CLUTTER) -->
+            <div class="section-intro-box">
+                <div class="intro-lead-sentence">
+                    This 7-row visual telemetry board maps how I interact with The State Machine and The AI Engine at the keyboard across my build sequence:
+                </div>
+                <ul class="clean-bullet-list">
+                    <li>
+                        <span class="bullet-lead">Row 1 (Phase 1 Workspace &amp; Coordinate Intake):</span> I initialize a clean local folder in Visual Studio Code or Git Bash with five blank deliverable files and lock in the 5 Build Coordinates: Identity Core (Microsoft Entra ID), Execution Agent, Infrastructure State, Data-Plane Asset, and IaC Payload.
+                    </li>
+                    <li>
+                        <span class="bullet-lead">Rows 2 to 5 (Phases 2 to 3 Gate Synthesis &amp; Execution):</span> I run local terminal lookup scripts and execute the synthesized IaC Payload and Terminal Runbook to configure the Four Architectural Gates of Machine Identity in sequence: Gate 1 (Boundary), Gate 2 (Identity), Gate 3 (Federation), and Gate 4 (Access).
+                    </li>
+                    <li>
+                        <span class="bullet-lead">Row 6 (Phases 4 to 6 Two-Stage Verification &amp; Audit Ledgers):</span> I record the Identity Architecture Ledger (IAL), run the Validation Bridge on my Execution Agent, inspect Azure Portal Monitoring Metrics (Total Service API Hits) on my Data-Plane Asset, generate the Audit Results Ledger (ARL), KQL Telemetry, and Defect &amp; Patch Ledger (DPL), and sync my Code Repository and Branch.
+                    </li>
+                    <li>
+                        <span class="bullet-lead">Row 7 (All-Phase Troubleshooting &amp; Phase 7 Continuous Improvement):</span> Across any phase, verified fixes during the Standard Patch Loop (Iterations 1 to 3) are logged in the Defect &amp; Patch Ledger (DPL) with a full-file State Re-Sync, separate from The 4-Iteration Circuit Breaker on Iteration 4, before Phase 7 outputs the AI Performance Scorecard and compiles all upgrades into my System Directive.
+                    </li>
+                </ul>
             </div>
 
             <div class="canvas-wrapper">
@@ -541,31 +635,31 @@
 
                     <svg class="vector-layer" xmlns="http://www.w3.org/2000/svg">
                         <!-- ROW 1: PHASE 1 INTAKE -->
-                        <path class="kinetic-path path-cyan" d="M 350 280 C 390 280, 390 280, 430 280" />
-                        <path class="kinetic-path path-purple" d="M 830 280 C 790 280, 790 280, 750 280" />
+                        <path class="kinetic-path path-cyan" d="M 365 290 C 392 290, 392 290, 420 290" />
+                        <path class="kinetic-path path-purple" d="M 815 290 C 787 290, 787 290, 760 290" />
 
                         <!-- ROW 2: GATE 1 BOUNDARY -->
-                        <path class="kinetic-path path-cyan" d="M 350 780 C 390 780, 390 780, 430 780" />
-                        <path class="kinetic-path path-purple" d="M 830 760 C 770 760, 770 790, 750 790" />
-                        <path class="kinetic-path path-purple" d="M 830 820 C 770 820, 770 790, 750 790" />
+                        <path class="kinetic-path path-cyan" d="M 365 830 C 392 830, 392 830, 420 830" />
+                        <path class="kinetic-path path-purple" d="M 815 810 C 775 810, 775 840, 760 840" />
+                        <path class="kinetic-path path-purple" d="M 815 870 C 775 870, 775 840, 760 840" />
 
                         <!-- ROW 3: GATE 2 IDENTITY -->
-                        <path class="kinetic-path path-cyan" d="M 350 1280 C 390 1280, 390 1280, 430 1280" />
-                        <path class="kinetic-path path-purple" d="M 830 1260 C 770 1260, 770 1290, 750 1290" />
-                        <path class="kinetic-path path-purple" d="M 830 1320 C 770 1320, 770 1290, 750 1290" />
+                        <path class="kinetic-path path-cyan" d="M 365 1370 C 392 1370, 392 1370, 420 1370" />
+                        <path class="kinetic-path path-purple" d="M 815 1350 C 775 1350, 775 1380, 760 1380" />
+                        <path class="kinetic-path path-purple" d="M 815 1410 C 775 1410, 775 1380, 760 1380" />
 
                         <!-- ROW 4: GATE 3 FEDERATION -->
-                        <path class="kinetic-path path-cyan" d="M 350 1780 C 390 1780, 390 1780, 430 1780" />
-                        <path class="kinetic-path path-purple" d="M 830 1760 C 770 1760, 770 1790, 750 1790" />
-                        <path class="kinetic-path path-purple" d="M 830 1820 C 770 1820, 770 1790, 750 1790" />
+                        <path class="kinetic-path path-cyan" d="M 365 1910 C 392 1910, 392 1910, 420 1910" />
+                        <path class="kinetic-path path-purple" d="M 815 1890 C 775 1890, 775 1920, 760 1920" />
+                        <path class="kinetic-path path-purple" d="M 815 1950 C 775 1950, 775 1920, 760 1920" />
 
                         <!-- ROW 5: GATE 4 ACCESS -->
-                        <path class="kinetic-path path-cyan" d="M 350 2280 C 390 2280, 390 2280, 430 2280" />
-                        <path class="kinetic-path path-purple" d="M 830 2260 C 770 2260, 770 2290, 750 2290" />
-                        <path class="kinetic-path path-purple" d="M 830 2320 C 770 2320, 770 2290, 750 2290" />
+                        <path class="kinetic-path path-cyan" d="M 365 2450 C 392 2450, 392 2450, 420 2450" />
+                        <path class="kinetic-path path-purple" d="M 815 2430 C 775 2430, 775 2460, 760 2460" />
+                        <path class="kinetic-path path-purple" d="M 815 2490 C 775 2490, 775 2460, 760 2460" />
 
                         <!-- ROW 6: PHASES 4-6 DELIVERABLES -->
-                        <path class="kinetic-path path-green" d="M 590 2420 L 590 2660" />
+                        <path class="kinetic-path path-green" d="M 590 2620 L 590 2850" />
                     </svg>
 
                     <!-- ================= ROW 1: PHASE 1 (WORKSPACE BOOT & 5-COORDINATE INTAKE) ================= -->
@@ -768,40 +862,92 @@
                         </div>
                     </div>
 
-                    <!-- ================= ROW 6: PHASES 4, 5 & 6 (TWO-STAGE LIVE VERIFICATION, AUDIT LEDGERS & REPO SYNC) ================= -->
+                    <!-- ================= ROW 6: PHASES 4, 5 & 6 (3 SEPARATED SUB-CARDS WITH CLEAN BULLETS) ================= -->
                     <div class="node node-orange node-wide y-telemetry" style="border-top: 4px solid var(--color-orange); border-left: 1px solid var(--border-base); padding: 1.8rem 2rem;">
-                        <div class="telemetry-node-header" style="color: var(--color-orange);">[PHASES 4, 5 &amp; 6: LIVE CLOUD VERIFICATION, COMPLIANCE LEDGERS &amp; REPOSITORY SYNC]</div>
+                        <div class="telemetry-node-header" style="color: var(--color-orange);">[ROW 6 :: PHASES 4, 5 &amp; 6: LIVE CLOUD VERIFICATION, COMPLIANCE LEDGERS &amp; REPOSITORY SYNC]</div>
                         <div class="telemetry-node-title" style="font-size: 1.25rem;">Identity Architecture Ledger (IAL), Two-Stage Proof (Portal Metrics &rarr; ARL &amp; KQL) &amp; Git Push</div>
-                        <div class="mandate-tag">[GUARDRAIL 5: RUNTIME LOG MASKING &amp; EXPLICIT VERIFICATION]</div>
-                        <div class="telemetry-node-desc" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; text-align: left; margin-top: 1rem;">
-                            <div>
-                                <span class="bullet-lead">&gt; Phase 4: IAL, Validation Bridge &amp; Metrics</span><br>
-                                First, saves my Identity Architecture Ledger (identity_architecture_ledger.md or IAL) recording my Entra ID Tenant ID, Azure Subscription ID, Resource Group, Service Principal, Subject Claim, and Data-Plane Role. Next, I run the Validation Bridge on my Execution Agent (with Runtime Log Masking active). Because Azure Log Analytics takes a long, unpredictable time to index logs, I immediately check Azure Portal Monitoring Metrics (Total Service API Hits over 30 minutes) on my Data-Plane Asset to prove the 60-Minute Login Token read my Data-Plane Asset with zero access errors.
+                        <div class="mandate-tag">[GUARDRAIL 5: RUNTIME LOG MASKING &amp; TWO-STAGE LIVE VERIFICATION]</div>
+                        
+                        <div class="wide-3col-grid">
+                            <!-- SUBCARD 1: PHASE 4 -->
+                            <div class="wide-subcard">
+                                <div class="wide-subcard-title">Phase 4: IAL &amp; Stage 1 Metrics</div>
+                                <div class="telemetry-node-desc">
+                                    <ul>
+                                        <li><span class="bullet-lead">Save IAL Baseline:</span> Saves identity_architecture_ledger.md (IAL) recording my Entra ID Tenant ID, Azure Subscription ID, Resource Group, Service Principal, Subject Claim, and Data-Plane Role.</li>
+                                        <li><span class="bullet-lead">Run Validation Bridge:</span> My Execution Agent runs the Validation Bridge (with Runtime Log Masking active) using its 60-Minute Login Token.</li>
+                                        <li><span class="bullet-lead">Instant Portal Metrics:</span> I check Azure Portal Monitoring Metrics (Total Service API Hits) on my Data-Plane Asset for immediate Stage 1 proof of access.</li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div>
-                                <span class="bullet-lead">&gt; Phase 5: ARL, KQL Telemetry &amp; DPL</span><br>
-                                Once the live spike in Azure Portal Monitoring Metrics (Total Service API Hits) confirms my Execution Agent read my Data-Plane Asset, The AI Engine generates my compliance package: the Audit Results Ledger (audit_results_ledger.md or ARL) scoring all 4 Architectural Gates and all 5 Enterprise Guardrails as [PASS], KQL Telemetry (kql_telemetry.md) to correlate Service Principal sign-in logs with Data-Plane Asset access logs asynchronously once indexing catches up, and the Defect &amp; Patch Ledger (patch_ledger.md or DPL).
+
+                            <!-- SUBCARD 2: PHASE 5 -->
+                            <div class="wide-subcard">
+                                <div class="wide-subcard-title">Phase 5: ARL, KQL &amp; DPL Ledgers</div>
+                                <div class="telemetry-node-desc">
+                                    <ul>
+                                        <li><span class="bullet-lead">Audit Results Ledger (ARL):</span> Generates audit_results_ledger.md scoring all 4 Architectural Gates and all 5 Enterprise Guardrails as [PASS].</li>
+                                        <li><span class="bullet-lead">KQL Telemetry (Stage 2 Proof):</span> Outputs kql_telemetry.md so I can correlate Service Principal sign-in logs with Data-Plane Asset access logs once Log Analytics finishes indexing.</li>
+                                        <li><span class="bullet-lead">Defect &amp; Patch Ledger (DPL):</span> Compiles all real-time fixes recorded during Iterations 1 to 3 into patch_ledger.md.</li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div>
-                                <span class="bullet-lead">&gt; Phase 6: Code Repository Synchronization</span><br>
-                                To close out my local folder safely, The AI Engine outputs a copy-paste Terminal Runbook script that runs git pull origin main first to sync any remote Validation Bridge files, writes a protective .gitignore file so local state files never leak, and pushes my verified IaC Payload, Identity Architecture Ledger (IAL), Audit Results Ledger (ARL), KQL Telemetry, and Defect &amp; Patch Ledger (DPL) to my remote Code Repository and Branch.
+
+                            <!-- SUBCARD 3: PHASE 6 -->
+                            <div class="wide-subcard">
+                                <div class="wide-subcard-title">Phase 6: Code Repository Sync</div>
+                                <div class="telemetry-node-desc">
+                                    <ul>
+                                        <li><span class="bullet-lead">Remote Pull First:</span> Runs git pull origin main first so remote Validation Bridge files never conflict with my local folder.</li>
+                                        <li><span class="bullet-lead">State File Protection:</span> Writes a protective .gitignore file so local state files never leak into my Code Repository and Branch.</li>
+                                        <li><span class="bullet-lead">Automated Git Push:</span> Pushes my verified IaC Payload, IAL, ARL, KQL Telemetry, and DPL cleanly to my remote Code Repository and Branch.</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- ================= ROW 7: TROUBLESHOOTING PROTOCOL, DPL, CIRCUIT BREAKER & PHASE 7 ================= -->
-                    <div class="node node-pink node-wide y-loop" style="display: flex; align-items: flex-start; gap: 2rem; padding: 1.8rem 2rem;">
-                        <div style="font-size: 3rem; color: var(--color-pink); font-weight: 900; line-height: 1; margin-top: 0.5rem;">&#10554;</div>
-                        <div style="text-align: left;">
-                            <div class="telemetry-node-header" style="color: var(--color-pink);">[TROUBLESHOOTING PROTOCOL, THE DEFECT &amp; PATCH LEDGER, THE CIRCUIT BREAKER &amp; PHASE 7]</div>
-                            <div class="telemetry-node-title" style="font-size: 1.25rem;">Standard Patch Loop (Iterations 1 to 3), The 4-Iteration Circuit Breaker &amp; Phase 7 Continuous Improvement</div>
-                            <div class="mandate-tag">[PILLAR 4: SEPARATING ROUTINE DPL LOGGING FROM THE 4-ITERATION CIRCUIT BREAKER]</div>
-                            <div class="telemetry-node-desc">
-                                <ul>
-                                    <li><span class="bullet-lead">1. Standard Patch Loop, State Re-Sync &amp; Real-Time Defect &amp; Patch Ledger (Iterations 1 to 3):</span> If a command or IaC Payload hits an error during any phase of the build, The AI Engine drops all analogies and enters the Standard Patch Loop (Iterations 1 to 3). As soon as I verify in my local terminal that a fix works (even on Iteration 1 or 2, without ever tripping the circuit breaker), The State Machine logs the root cause and fix immediately in the Defect &amp; Patch Ledger (patch_ledger.md or DPL) and performs a full-file State Re-Sync of my entire IaC Payload so I can resume the build cleanly.</li>
-                                    <li><span class="bullet-lead">2. The 4-Iteration Circuit Breaker &amp; Estimated Probability of Success (X%):</span> The 4-Iteration Circuit Breaker is a separate emergency stop that trips ONLY if a single isolated error fails 3 times in a row during the Standard Patch Loop and reaches Iteration 4. On Iteration 4, The State Machine structurally forbids The AI Engine from generating new code. Instead, The AI Engine must analyze the error shifts across Attempts 1, 2, and 3, calculate an Estimated Probability of Success (X%), and present alternative pathways for my decision.</li>
-                                    <li><span class="bullet-lead">3. Phase 7 Continuous Improvement, AI Performance Scorecard &amp; System Directive Compilation:</span> At session close in Phase 7, The AI Engine outputs my statistical AI Performance Scorecard. It then extracts every verified fix recorded in the Defect &amp; Patch Ledger (DPL) during the session and compiles those lessons permanently into my master System Directive in a single copy-paste block so The State Machine continuously improves after every run.</li>
-                                </ul>
+                    <!-- ================= ROW 7: ALL-PHASE TROUBLESHOOTING & PHASE 7 (3 SEPARATED SUB-CARDS WITH CLEAN BULLETS) ================= -->
+                    <div class="node node-pink node-wide y-loop" style="border-top: 4px solid var(--color-pink); border-left: 1px solid var(--border-base); padding: 1.8rem 2rem;">
+                        <div class="telemetry-node-header" style="color: var(--color-pink);">[ROW 7 :: ALL-PHASE TROUBLESHOOTING, THE 4-ITERATION CIRCUIT BREAKER &amp; PHASE 7 CONTINUOUS IMPROVEMENT]</div>
+                        <div class="telemetry-node-title" style="font-size: 1.25rem;">Standard Patch Loop (Iterations 1 to 3), The 4-Iteration Circuit Breaker &amp; System Directive Compilation</div>
+                        <div class="mandate-tag">[PILLAR 4: SEPARATING ROUTINE DPL LOGGING FROM THE ITERATION 4 CIRCUIT BREAKER]</div>
+                        
+                        <div class="wide-3col-grid">
+                            <!-- SUBCARD 1: STANDARD PATCH LOOP -->
+                            <div class="wide-subcard pink-top">
+                                <div class="wide-subcard-title">1. Standard Patch Loop (Tries 1 to 3)</div>
+                                <div class="telemetry-node-desc">
+                                    <ul>
+                                        <li><span class="bullet-lead">Clinical Diagnostic Mode:</span> If an error occurs at any phase, The AI Engine drops all analogies and provides up to 3 targeted fixes.</li>
+                                        <li><span class="bullet-lead">Real-Time DPL Logging:</span> As soon as I verify a fix in my terminal (without needing to trip the circuit breaker), it is logged immediately in the Defect &amp; Patch Ledger (DPL).</li>
+                                        <li><span class="bullet-lead">Full-File State Re-Sync:</span> Outputs the complete IaC Payload from top to bottom so partial code snippets never break my file.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- SUBCARD 2: THE 4-ITERATION CIRCUIT BREAKER -->
+                            <div class="wide-subcard pink-top">
+                                <div class="wide-subcard-title">2. The 4-Iteration Circuit Breaker</div>
+                                <div class="telemetry-node-desc">
+                                    <ul>
+                                        <li><span class="bullet-lead">Trips Only on Iteration 4:</span> Separate from routine DPL logging; triggers only if a single isolated error fails 3 times in a row and reaches Iteration 4.</li>
+                                        <li><span class="bullet-lead">Hard Code Halt:</span> The State Machine structurally forbids The AI Engine from writing any new code on Iteration 4.</li>
+                                        <li><span class="bullet-lead">Probability Assessment:</span> The AI Engine analyzes the 3 failed tries, calculates an Estimated Probability of Success (X%), and presents alternative pathways for my decision.</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- SUBCARD 3: PHASE 7 CONTINUOUS IMPROVEMENT -->
+                            <div class="wide-subcard pink-top">
+                                <div class="wide-subcard-title">3. Phase 7 Continuous Improvement</div>
+                                <div class="telemetry-node-desc">
+                                    <ul>
+                                        <li><span class="bullet-lead">AI Performance Scorecard:</span> At session close in Phase 7, outputs a statistical readout counting every diagnostic loop, patch iteration, circuit breaker, and deviation.</li>
+                                        <li><span class="bullet-lead">System Directive Compilation:</span> Extracts every verified fix from the Defect &amp; Patch Ledger (DPL) and compiles them permanently into my master System Directive.</li>
+                                        <li><span class="bullet-lead">Compounding Evolution:</span> Outputs the upgraded System Directive in a single code block so the system gets smarter after every run.</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -813,8 +959,23 @@
         <!-- ================= SECTION 2: THE OPERATIONAL SYSTEMS BLUEPRINT (6-LAYER FUNNEL) ================= -->
         <div class="blueprint-section" id="operational-blueprint">
             <h2 class="blueprint-title">The Operational Systems Blueprint</h2>
-            <div class="blueprint-subtitle">
-                How I engineered my master <span class="bullet-lead">System Directive</span> from top to bottom using the 26 fixed system variables defined in my <a href="glossary.html" class="inline-link">System Glossary</a>. This 6-layer architectural funnel illustrates how four globally recognized <span class="bullet-lead">AI Systems Engineering Pillars</span> (Layer 1) are translated into <span class="bullet-lead">five concrete Enterprise Guardrails</span> (Layer 2), enforced at runtime by <span class="bullet-lead">The Execution Triad</span> (Layer 3) across <span class="bullet-lead">The Four Architectural Gates of Machine Identity</span> (Layer 4) to produce a verified <span class="bullet-lead">IaC Payload</span>, two-stage live cloud proof, and compliance ledgers (Layer 5), backed by the <span class="bullet-lead">Standard Patch Loop (Iterations 1 to 3)</span>, <span class="bullet-lead">The 4-Iteration Circuit Breaker</span>, and <span class="bullet-lead">Phase 7 System Directive Compilation</span> for continuous improvement (Layer 6).
+            
+            <!-- BULLETED SECTION 2 INTRO BOX -->
+            <div class="section-intro-box">
+                <div class="intro-lead-sentence">
+                    How I engineered my master System Directive from top to bottom using the fixed system variables defined in my <a href="glossary.html" class="inline-link">System Glossary</a>:
+                </div>
+                <ul class="clean-bullet-list">
+                    <li>
+                        <span class="bullet-lead">Layers 1 &amp; 2 (AI Standards to Code Guardrails):</span> Translates four globally recognized AI Systems Engineering Pillars (Layer 1) directly into five concrete Enterprise Guardrails inside the generated IaC Payload and Validation Bridge (Layer 2).
+                    </li>
+                    <li>
+                        <span class="bullet-lead">Layers 3 &amp; 4 (Runtime Triad to Cloud IAM Gates):</span> Enforces those guardrails through The Execution Triad (Layer 3) to configure The Four Architectural Gates of Machine Identity across Microsoft Entra ID and Azure (Layer 4).
+                    </li>
+                    <li>
+                        <span class="bullet-lead">Layers 5 &amp; 6 (Two-Stage Verification &amp; Continuous Improvement):</span> Produces a verified IaC Payload, two-stage live cloud proof, and compliance ledgers (Layer 5), backed by the Standard Patch Loop (Iterations 1 to 3), The 4-Iteration Circuit Breaker, and Phase 7 System Directive Compilation (Layer 6).
+                    </li>
+                </ul>
             </div>
             
             <div class="blueprint-funnel">
@@ -823,9 +984,18 @@
                 <div class="bp-layer top">
                     <span class="bp-tag">[LAYER 1: AI SYSTEMS ENGINEERING PILLARS]</span>
                     <div class="bp-heading">The 4 Core AI Engineering Pillars of My System Directive</div>
-                    <p class="bp-intro">
-                        Out of the box, <span class="bullet-lead">The AI Engine</span> is a probabilistic engine. When asked to write an <span class="bullet-lead">IaC Payload</span> without strict boundaries, it will guess a missing <span class="bullet-lead">Entra ID Tenant ID</span> or <span class="bullet-lead">Azure Subscription ID</span>, invent broken syntax, or grant broad <span class="bullet-lead">Owner and Contributor Roles</span> just to clear an error. To tether <span class="bullet-lead">The AI Engine</span> and make its output deterministic, I built my master <span class="bullet-lead">System Directive</span> around four globally recognized AI Systems Engineering standards, separating what each standard defines in the AI industry from how I wired it into my workflow at the keyboard:
-                    </p>
+                    
+                    <div class="bp-layer-intro-box">
+                        <ul class="clean-bullet-list">
+                            <li>
+                                <span class="bullet-lead">Neutralizing Probabilistic Drift:</span> Left untethered, The AI Engine will guess a missing Entra ID Tenant ID or Azure Subscription ID, invent broken syntax, or grant broad Owner and Contributor Roles just to clear an error.
+                            </li>
+                            <li>
+                                <span class="bullet-lead">Four Global AI Standards:</span> I built my master System Directive around four industry AI Systems Engineering standards, separating what each standard defines in the AI industry from how I wired it into my workflow:
+                            </li>
+                        </ul>
+                    </div>
+
                     <div class="bp-grid-split">
                         
                         <div class="bp-node-split">
@@ -885,9 +1055,18 @@
                 <div class="bp-layer guard">
                     <span class="bp-tag">[LAYER 2: TRANSLATING AI STANDARDS INTO CODE]</span>
                     <div class="bp-heading" style="color: var(--color-red);">The 5 Enterprise Guardrails (Built-In Safety Locks)</div>
-                    <p class="bp-intro">
-                        While the four AI Systems Engineering pillars above govern how <span class="bullet-lead">The AI Engine</span> behaves across the 7-phase conversation, I translated those principles, alongside specific controls from the OWASP Top 10 for LLMs and the NIST AI Risk Management Framework, into five concrete Enterprise Guardrails inside the generated <span class="bullet-lead">IaC Payload</span> and <span class="bullet-lead">Validation Bridge</span>. Formally verified and scored as [PASS] in my Phase 5 <span class="bullet-lead">Audit Results Ledger (ARL)</span>, these five safety locks enforce Zero Trust across Gate 1 through Gate 4:
-                    </p>
+                    
+                    <div class="bp-layer-intro-box">
+                        <ul class="clean-bullet-list">
+                            <li>
+                                <span class="bullet-lead">From Conversation Rules to Code Locks:</span> While the four AI Systems Engineering pillars above govern how The AI Engine behaves across the 7-phase conversation, I translated those principles into five concrete Enterprise Guardrails inside the generated IaC Payload and Validation Bridge.
+                            </li>
+                            <li>
+                                <span class="bullet-lead">Audited in Phase 5:</span> Formally verified and scored as [PASS] in my Phase 5 Audit Results Ledger (ARL), these five safety locks enforce Zero Trust across Gate 1 through Gate 4:
+                            </li>
+                        </ul>
+                    </div>
+
                     <div class="bp-grid-5">
                         <div class="bp-node bp-node-red">
                             <span class="bp-node-title">1. Secret &amp; Credential Protection</span>
@@ -918,9 +1097,15 @@
                 <div class="bp-layer mid">
                     <span class="bp-tag">[LAYER 3: THREE-PARTY RUNTIME GOVERNANCE]</span>
                     <div class="bp-heading">The Execution Triad</div>
-                    <p class="bp-intro">
-                        Inside the <span class="bullet-lead">Zero Trust Interactive State Machine</span>, runtime execution is divided cleanly among three fixed actors. By separating my human authorization authority from <span class="bullet-lead">The State Machine</span> rulebook and <span class="bullet-lead">The AI Engine</span>, no AI component can ever act autonomously against my <span class="bullet-lead">Entra ID Tenant ID</span>, <span class="bullet-lead">Azure Subscription ID</span>, or <span class="bullet-lead">Data-Plane Asset</span>:
-                    </p>
+                    
+                    <div class="bp-layer-intro-box">
+                        <ul class="clean-bullet-list">
+                            <li>
+                                <span class="bullet-lead">Three-Party Separation of Powers:</span> Inside the Zero Trust Interactive State Machine, runtime execution is divided cleanly among three fixed actors so no AI component ever acts autonomously against my Entra ID Tenant ID, Azure Subscription ID, or Data-Plane Asset:
+                            </li>
+                        </ul>
+                    </div>
+
                     <div class="bp-grid-3">
                         <div class="bp-node bp-node-purple">
                             <span class="bp-node-title">1. The Architect (Me)</span>
@@ -943,9 +1128,15 @@
                 <div class="bp-layer bot">
                     <span class="bp-tag">[LAYER 4: THE CLOUD IAM FOUNDATION]</span>
                     <div class="bp-heading">The 4 Architectural Gates of Machine Identity (Phases 1 to 3)</div>
-                    <p class="bp-intro">
-                        Underneath all 72 baseline build combinations and 35 Day-2 <span class="bullet-lead">Microsoft Entra ID</span> security modules, securing any non-human identity in <span class="bullet-lead">Microsoft Entra ID</span> and Azure comes down to configuring a predictable, four-part mathematical chain across Phases 1, 2, and 3:
-                    </p>
+                    
+                    <div class="bp-layer-intro-box">
+                        <ul class="clean-bullet-list">
+                            <li>
+                                <span class="bullet-lead">The Four-Part Mathematical Chain:</span> Underneath all 72 baseline build combinations and 35 Day-2 Microsoft Entra ID security modules, securing any non-human identity in Microsoft Entra ID and Azure comes down to configuring four architectural gates in sequence across Phases 1, 2, and 3:
+                            </li>
+                        </ul>
+                    </div>
+
                     <div class="bp-grid-4">
                         <div class="bp-node bp-node-green">
                             <span class="bp-node-title">Gate 1: Boundary (Where It Lives)</span>
@@ -972,9 +1163,15 @@
                 <div class="bp-layer outputs">
                     <span class="bp-tag">[LAYER 5: TWO-STAGE VERIFICATION &amp; AUDIT DELIVERABLES]</span>
                     <div class="bp-heading">IaC Payload, Two-Stage Live Cloud Proof &amp; Compliance Ledgers (Phases 3 to 6)</div>
-                    <p class="bp-intro">
-                        Once my 5 Build Coordinates and <span class="bullet-lead">OpenID Connect (OIDC)</span> <span class="bullet-lead">Subject Claim</span> are locked in, <span class="bullet-lead">The AI Engine</span> synthesizes the complete <span class="bullet-lead">IaC Payload</span> and <span class="bullet-lead">Terminal Runbook</span> in Phase 3 and walks through a strict two-stage live verification and compliance sequence across Phases 4, 5, and 6:
-                    </p>
+                    
+                    <div class="bp-layer-intro-box">
+                        <ul class="clean-bullet-list">
+                            <li>
+                                <span class="bullet-lead">From Code Synthesis to Live Proof:</span> Once my 5 Build Coordinates and OpenID Connect (OIDC) Subject Claim are locked in, The AI Engine synthesizes the complete IaC Payload and Terminal Runbook in Phase 3 and walks through a strict two-stage live verification and compliance sequence across Phases 4, 5, and 6:
+                            </li>
+                        </ul>
+                    </div>
+
                     <div class="bp-grid-3">
                         <div class="bp-node bp-node-orange">
                             <span class="bp-node-title">Phase 3 &amp; 6: IaC Payload &amp; Code Repository Sync</span>
@@ -998,29 +1195,37 @@
                     <div class="feedback-icon">&#10554;</div>
                     <span class="bp-tag" style="color: var(--color-pink); align-self: center;">[LAYER 6: CONTINUOUS IMPROVEMENT, DPL, CIRCUIT BREAKER &amp; PHASE 7 COMPILATION]</span>
                     <div class="feedback-title">Continuous Improvement, The Defect &amp; Patch Ledger, The Circuit Breaker &amp; Phase 7 Upgrades</div>
-                    <p class="bp-intro" style="text-align: left; max-width: 1000px; margin: 0 auto 2.5rem;">
-                        Even with careful planning, real-world cloud deployments can hit unexpected friction such as a Microsoft API schema quirk, a directory sync delay, or a terminal MFA block. My <span class="bullet-lead">System Directive</span> handles errors across every phase using two distinct troubleshooting mechanisms while permanently evolving the architecture in Phase 7: first, the <span class="bullet-lead">Standard Patch Loop (Iterations 1 to 3)</span> that logs every verified fix in the <span class="bullet-lead">Defect &amp; Patch Ledger (DPL)</span> alongside a full-file <span class="bullet-lead">State Re-Sync</span>; and second, <span class="bullet-lead">The 4-Iteration Circuit Breaker</span> that trips ONLY if an isolated error reaches Iteration 4:
-                    </p>
+                    
+                    <div class="bp-layer-intro-box">
+                        <ul class="clean-bullet-list">
+                            <li>
+                                <span class="bullet-lead">Two Separate Troubleshooting Mechanisms:</span> Across Phases 1 through 6, routine fixes verified during the Standard Patch Loop (Iterations 1 to 3) are logged immediately in the Defect &amp; Patch Ledger (DPL) with a full-file State Re-Sync, while The 4-Iteration Circuit Breaker trips only if a single isolated error reaches Iteration 4.
+                            </li>
+                            <li>
+                                <span class="bullet-lead">Permanent Evolution in Phase 7:</span> At session close in Phase 7, every verified fix recorded in the Defect &amp; Patch Ledger (DPL) is compiled permanently into my master System Directive so The State Machine continuously improves after every execution:
+                            </li>
+                        </ul>
+                    </div>
                     
                     <div class="bp-grid-split">
                         <div class="bp-node bp-node-pink">
                             <span class="bp-node-title">1. Standard Patch Loop &amp; State Re-Sync (Iterations 1 to 3)</span>
-                            <span class="bp-node-desc">Whenever a Terminal Runbook command or IaC Payload returns an error during any phase, The AI Engine immediately drops all analogies and enters the Standard Patch Loop (Iterations 1 to 3). Once I confirm a fix works in my local terminal, my System Directive forces a full-file State Re-Sync, outputting the complete IaC Payload file from top to bottom so partial code snippets never corrupt my workspace.</span>
+                            <span class="bp-node-desc"><span class="bullet-lead">Full-File Code Re-Sync:</span> Whenever a Terminal Runbook command or IaC Payload returns an error during any phase, The AI Engine immediately drops all analogies and enters the Standard Patch Loop (Iterations 1 to 3). Once I confirm a fix works in my local terminal, my System Directive forces a full-file State Re-Sync, outputting the complete IaC Payload file from top to bottom so partial code snippets never corrupt my workspace.</span>
                         </div>
                         
                         <div class="bp-node bp-node-pink">
                             <span class="bp-node-title">2. Real-Time Defect &amp; Patch Ledger (patch_ledger.md)</span>
-                            <span class="bp-node-desc">Logging an entry in the Defect &amp; Patch Ledger (DPL) does not require hitting the circuit breaker. Every time I verify a working fix during the Standard Patch Loop (Iterations 1, 2, or 3) across any phase, the root cause and exact engineering solution are staged immediately as a real-time DPL entry and compiled into <span class="bullet-lead">patch_ledger.md</span> in Phase 5.</span>
+                            <span class="bp-node-desc"><span class="bullet-lead">Immediate Fix Logging:</span> Logging an entry in the Defect &amp; Patch Ledger (DPL) does not require hitting the circuit breaker. Every time I verify a working fix during the Standard Patch Loop (Iterations 1, 2, or 3) across any phase, the root cause and exact engineering solution are staged immediately as a real-time DPL entry and compiled into patch_ledger.md in Phase 5.</span>
                         </div>
 
                         <div class="bp-node bp-node-pink">
                             <span class="bp-node-title">3. The 4-Iteration Circuit Breaker (Iteration 4 Halt)</span>
-                            <span class="bp-node-desc">If a single isolated error fails 3 times in a row during the Standard Patch Loop and reaches Iteration 4, The 4-Iteration Circuit Breaker trips automatically. The State Machine structurally forbids The AI Engine from generating any new code and forces a Risk Management Assessment: analyzing the error shifts across its 3 failed tries, calculating an <span class="bullet-lead">Estimated Probability of Success (X%)</span>, and presenting alternative pathways for my decision.</span>
+                            <span class="bp-node-desc"><span class="bullet-lead">Iteration 4 Risk Assessment:</span> If a single isolated error fails 3 times in a row during the Standard Patch Loop and reaches Iteration 4, The 4-Iteration Circuit Breaker trips automatically. The State Machine structurally forbids The AI Engine from generating any new code and forces a Risk Management Assessment: analyzing the error shifts across its 3 failed tries, calculating an Estimated Probability of Success (X%), and presenting alternative pathways for my decision.</span>
                         </div>
 
                         <div class="bp-node bp-node-pink">
                             <span class="bp-node-title">4. Phase 7 Continuous Improvement &amp; System Directive Compilation</span>
-                            <span class="bp-node-desc">At session close in Phase 7, The AI Engine outputs my statistical <span class="bullet-lead">AI Performance Scorecard</span> (counting every diagnostic loop, patch iteration, circuit breaker event, and protocol deviation). It then extracts every proven fix from the Defect &amp; Patch Ledger (DPL) and compiles my newly upgraded System Directive into a single code block so The State Machine permanently improves after every run.</span>
+                            <span class="bp-node-desc"><span class="bullet-lead">Scorecard &amp; Directive Upgrade:</span> At session close in Phase 7, The AI Engine outputs my statistical AI Performance Scorecard (counting every diagnostic loop, patch iteration, circuit breaker event, and protocol deviation). It then extracts every proven fix from the Defect &amp; Patch Ledger (DPL) and compiles my newly upgraded System Directive into a single code block so The State Machine permanently improves after every run.</span>
                         </div>
                     </div>
                 </div>
@@ -1032,21 +1237,40 @@
         <div class="classification-section" id="system-classification">
             <div class="class-header">[INDUSTRY AI SYSTEMS ENGINEERING CLASSIFICATION]</div>
             <div class="class-title">L4 Agentic Architecture Under Strict Human-in-the-Loop (HITL) Governance</div>
-            <p class="class-intro">
-                Where does my <span class="bullet-lead">Zero Trust Interactive State Machine</span> sit within standard AI Systems Engineering classifications? Rather than letting <span class="bullet-lead">The AI Engine</span> operate as an unchecked autonomous agent, or relying on one-shot unverified prompting, I engineered an <span class="bullet-lead">L4 Agentic Architecture</span> governed by my human-in-the-loop authority across all seven phases. By tethering <span class="bullet-lead">The AI Engine</span> to my master <span class="bullet-lead">System Directive</span> and the 26 fixed system variables in my <a href="glossary.html" class="inline-link">System Glossary</a>, I harness multi-language <span class="bullet-lead">IaC Payload</span> synthesis while keeping every state transition, <span class="bullet-lead">Terminal Runbook</span> command, and Azure deployment under my direct control:
-            </p>
+            
+            <!-- BULLETED SECTION 3 INTRO BOX -->
+            <div class="bp-layer-intro-box" style="margin-bottom: 0;">
+                <ul class="clean-bullet-list">
+                    <li>
+                        <span class="bullet-lead">Beyond Unchecked Autonomous Agents:</span> Rather than letting The AI Engine operate as an unchecked autonomous agent or relying on one-shot unverified prompting, I engineered an L4 Agentic Architecture governed by my human-in-the-loop authority across all seven phases.
+                    </li>
+                    <li>
+                        <span class="bullet-lead">Deterministic Compute Under Human Command:</span> By tethering The AI Engine to my master System Directive and the fixed system variables in my <a href="glossary.html" class="inline-link">System Glossary</a>, I harness multi-language IaC Payload synthesis while keeping every state transition, Terminal Runbook command, and Azure deployment under my direct control:
+                    </li>
+                </ul>
+            </div>
+
             <div class="class-grid">
                 <div class="class-card">
                     <h3>1. Applied Control Theory (Brakes &amp; Steering)</h3>
-                    <p><span class="bullet-lead">Full Human Authority Across All 7 Phases:</span> In systems engineering, control theory means putting reliable steering and emergency brakes on a powerful engine. By requiring my explicit verification at every phase of the build, and enforcing The 4-Iteration Circuit Breaker that halts code generation and calculates an Estimated Probability of Success (X%) if any error fails 3 times and reaches Iteration 4, my System Directive gives me complete steering and braking authority over The AI Engine.</p>
+                    <ul class="clean-bullet-list">
+                        <li><span class="bullet-lead">Mandatory Phase Halts:</span> In systems engineering, control theory means putting reliable steering and brakes on a powerful engine by requiring my explicit verification at every phase of the build.</li>
+                        <li><span class="bullet-lead">Emergency Circuit Breaking:</span> Enforces The 4-Iteration Circuit Breaker on Iteration 4, halting code generation and calculating an Estimated Probability of Success (X%) if any error fails 3 times.</li>
+                    </ul>
                 </div>
                 <div class="class-card">
                     <h3>2. High-Assurance Verification (Two-Stage Live Proof)</h3>
-                    <p><span class="bullet-lead">IAL Baseline, Portal Metrics &amp; Audit Ledgers:</span> In enterprise cloud security, an IaC Payload finishing without an error message is never enough; I must mathematically prove the deployed configuration works. In Phase 4, I generate the Identity Architecture Ledger (IAL), run the Validation Bridge (with Runtime Log Masking) on my Execution Agent, and check Azure Portal Monitoring Metrics (Total Service API Hits over 30 minutes) on my Data-Plane Asset for immediate proof that the 60-Minute Login Token unlocked my Data-Plane Asset, followed in Phase 5 by the Audit Results Ledger (ARL) and asynchronous KQL Telemetry (kql_telemetry.md) proving zero HTTP 403 Forbidden drops.</p>
+                    <ul class="clean-bullet-list">
+                        <li><span class="bullet-lead">Stage 1 Immediate Proof (Phase 4):</span> Generates the Identity Architecture Ledger (IAL), runs the Validation Bridge (with Runtime Log Masking) on my Execution Agent, and checks Azure Portal Monitoring Metrics (Total Service API Hits) on my Data-Plane Asset.</li>
+                        <li><span class="bullet-lead">Stage 2 Compliance Package (Phase 5):</span> Generates the Audit Results Ledger (ARL) and asynchronous KQL Telemetry (kql_telemetry.md) proving zero HTTP 403 Forbidden drops.</li>
+                    </ul>
                 </div>
                 <div class="class-card">
                     <h3>3. Continuous System Improvement (Self-Hardening Harness)</h3>
-                    <p><span class="bullet-lead">Real-Time DPL Staging &amp; Phase 7 Compilation:</span> Instead of solving a cloud timing bug or API schema quirk once and losing the lesson when the chat window closes, every fix I verify during the Standard Patch Loop (Iterations 1 to 3) is staged in real time inside the Defect &amp; Patch Ledger (patch_ledger.md or DPL) alongside a full-file State Re-Sync of my IaC Payload. In Phase 7, I review the AI Performance Scorecard and compile those proven fixes permanently into my master System Directive, ensuring The State Machine evolves and improves after every single execution.</p>
+                    <ul class="clean-bullet-list">
+                        <li><span class="bullet-lead">Real-Time DPL &amp; State Re-Sync:</span> Every fix I verify during the Standard Patch Loop (Iterations 1 to 3) is staged in the Defect &amp; Patch Ledger (patch_ledger.md or DPL) alongside a full-file State Re-Sync of my IaC Payload.</li>
+                        <li><span class="bullet-lead">Phase 7 Directive Compilation:</span> Reviews the AI Performance Scorecard and compiles all proven DPL fixes permanently into my master System Directive so the system evolves after every run.</li>
+                    </ul>
                 </div>
             </div>
         </div>

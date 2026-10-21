@@ -16,7 +16,7 @@
       gtag('config', 'G-80NYKHYN3R');
     </script>
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -31,11 +31,37 @@
             --color-grey: #64748b;
             --color-green: #10b981;
             --color-red: #f43f5e;
+            --color-orange: #f97316;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body { background-color: var(--bg-page); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--text-main); line-height: 1.6; }
+        body {
+            background-color: var(--bg-page);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 4rem;
+            overflow-x: hidden;
+        }
+
+        /* STRICT COLOR DISCIPLINE: ONLY FOR BULLET LEAD-IN LABELS BEFORE A COLON */
+        .bullet-lead {
+            color: var(--color-cyan);
+            font-weight: 800;
+        }
+
+        .inline-link {
+            color: var(--color-cyan);
+            text-decoration: none;
+            border-bottom: 1px solid var(--color-cyan);
+            font-weight: 800;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+        .inline-link:hover {
+            color: #ffffff;
+            border-color: #ffffff;
+        }
 
         /* ================= NAVIGATION ================= */
         nav {
@@ -48,10 +74,8 @@
             display: flex; gap: 1.2rem; list-style: none; flex-wrap: wrap; 
             justify-content: center; align-items: center; 
         }
-        
-        /* Universal Button Styling for all links */
         .nav-links a { 
-            display: inline-block; /* FIX: Prevents vertical padding overlap on mobile wrap */
+            display: inline-block;
             color: var(--color-cyan); 
             border: 1px solid var(--color-cyan);
             background: rgba(14, 165, 233, 0.1); 
@@ -64,8 +88,6 @@
             text-transform: uppercase; 
             transition: all 0.3s ease; 
         }
-        
-        /* Hover state and Active Page state are filled solid */
         .nav-links a:hover, 
         .nav-links a.active-link { 
             background: var(--color-cyan); 
@@ -73,90 +95,202 @@
             box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
         }
 
-        /* ================= HERO MINIMAL ================= */
-        .hero-minimal { padding: 140px 20px 60px; text-align: center; border-bottom: 1px solid var(--border-base); }
-        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 2.8rem; font-weight: 900; letter-spacing: 2px; color: var(--color-purple); text-transform: uppercase; margin-bottom: 15px; }
-        .hero-subtitle { font-size: 1.2rem; color: var(--text-muted); max-width: 1000px; margin: 0 auto; font-weight: 500; line-height: 1.6; }
-        .hero-subtitle strong { color: var(--color-cyan); }
+        /* ================= HERO HEADER & TOP SUB-NAVIGATION ================= */
+        .hero { padding: 145px 20px 60px; text-align: center; border-bottom: 1px solid var(--border-base); }
+
+        .jump-links-container {
+            max-width: 1120px;
+            margin: 0 auto 2.5rem;
+            padding: 1.25rem 1.8rem;
+            background: rgba(15, 23, 42, 0.55);
+            border: 1px solid var(--border-base);
+            border-radius: 10px;
+            text-align: center;
+        }
+        .jump-links-intro {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: 0.5px;
+            margin-bottom: 0.9rem;
+        }
+        .jump-links { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 0.9rem; 
+        }
+        .jump-links a { 
+            color: var(--color-cyan); 
+            border: 1px solid var(--color-cyan); 
+            background: rgba(14, 165, 233, 0.08); 
+            padding: 0.65rem 1.25rem; 
+            border-radius: 8px; 
+            text-decoration: none; 
+            font-size: 0.86rem; 
+            font-weight: 700; 
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+            transition: all 0.3s ease; 
+        }
+        .jump-links a:hover { 
+            background: var(--color-cyan); 
+            color: #ffffff; 
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
+            transform: translateY(-2px); 
+        }
+
+        .hero-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; font-weight: 800; color: var(--color-purple); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.75rem; display: block; }
+        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 3rem; font-weight: 900; letter-spacing: 2px; color: var(--text-main); text-transform: uppercase; margin-bottom: 1.5rem; }
+
+        /* ================= BULLETED INTRO BOXES & LISTS ================= */
+        .section-intro-box {
+            max-width: 1100px;
+            margin: 0 auto 2.5rem;
+            background: rgba(10, 15, 29, 0.95);
+            border: 1px solid var(--border-base);
+            border-left: 4px solid var(--color-cyan);
+            border-radius: 10px;
+            padding: 2rem 2.4rem;
+            text-align: left;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .intro-lead-sentence {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--text-main);
+            line-height: 1.65;
+            margin-bottom: 1.15rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--border-base);
+        }
+
+        .clean-bullet-list {
+            list-style: disc;
+            padding-left: 1.45rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            text-align: left;
+        }
+        .clean-bullet-list li {
+            font-size: 1.04rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.7;
+            padding-left: 0.2rem;
+        }
+        .clean-bullet-list li::marker {
+            color: var(--color-cyan);
+        }
+
+        #intake-matrix, #step-1, #step-2, #step-3, #step-4 {
+            scroll-margin-top: 100px;
+        }
 
         /* ================= MAIN CONTAINER ================= */
-        .container { max-width: 1100px; margin: 0 auto; padding: 4rem 20px; }
-        .section-title { font-family: 'Montserrat', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--color-cyan); text-transform: uppercase; margin-bottom: 2rem; text-align: center; letter-spacing: 1px; }
-        .divider { height: 1px; background: var(--border-base); margin: 5rem 0; width: 100%; }
+        .container { max-width: 1120px; margin: 0 auto; padding: 3.5rem 20px 1rem; }
+        .section-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; font-weight: 800; color: var(--color-cyan); letter-spacing: 2px; text-transform: uppercase; display: block; text-align: center; margin-bottom: 0.5rem; }
+        .section-title { font-family: 'Montserrat', sans-serif; font-size: 2rem; font-weight: 900; color: var(--text-main); text-transform: uppercase; margin-bottom: 1.8rem; text-align: center; letter-spacing: 1px; }
+        .divider { height: 1px; background: var(--border-base); margin: 4.5rem 0; width: 100%; }
 
-        /* ================= 6-BOX CAPABILITY MATRIX ================= */
-        .matrix-grid-6 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-bottom: 4rem; }
+        /* ================= 6-BOX CAPABILITY MATRIX (ALL SELECTION BOXES BLANK) ================= */
+        .matrix-grid-6 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 3rem; }
         @media (max-width: 850px) { .matrix-grid-6 { grid-template-columns: repeat(2, 1fr); } }
-        /* FIX: Ensure grid collapses to 1 column cleanly without horizontal bleed */
         @media (max-width: 600px) { .matrix-grid-6 { grid-template-columns: minmax(0, 1fr); } }
 
-        .matrix-card { background: rgba(15, 23, 42, 0.4); border: 1px solid var(--border-base); border-top: 3px solid var(--color-blue); padding: 1.5rem; border-radius: 8px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); }
-        .matrix-card.highlight-card { border-top-color: var(--color-purple); background: rgba(168, 85, 247, 0.05); }
-        .matrix-card h3 { font-size: 1.1rem; color: var(--text-main); margin-bottom: 1rem; border-bottom: 1px solid var(--border-base); padding-bottom: 0.5rem; font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
-        .matrix-card.highlight-card h3 { color: var(--color-purple); border-bottom-color: rgba(168, 85, 247, 0.3); }
+        .matrix-card { background: rgba(10, 15, 29, 0.95); border: 1px solid var(--border-base); border-top: 3px solid var(--color-cyan); padding: 1.5rem; border-radius: 8px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.35); text-align: left; }
+        .matrix-card.highlight-card { border-top-color: var(--color-purple); }
+        .matrix-card h3 { font-size: 1rem; font-weight: 900; color: var(--text-main); margin-bottom: 1rem; border-bottom: 1px solid var(--border-base); padding-bottom: 0.65rem; font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
+        .matrix-card.highlight-card h3 { color: var(--color-purple); }
         .matrix-list { list-style: none; }
-        .matrix-list li { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0.7rem; display: flex; align-items: center; }
-        .matrix-list li.active { color: var(--color-cyan); font-weight: 600; }
-        .matrix-list li.active-purple { color: var(--color-purple); font-weight: 700; }
+        .matrix-list li { font-size: 0.95rem; color: var(--text-main); font-weight: 600; margin-bottom: 0.75rem; display: flex; align-items: center; }
+        .matrix-list li:last-child { margin-bottom: 0; }
         
-        .checkbox { display: inline-block; width: 16px; height: 16px; border: 1px solid var(--color-grey); border-radius: 3px; margin-right: 10px; position: relative; flex-shrink: 0; }
-        .active .checkbox { border-color: var(--color-cyan); background-color: rgba(14, 165, 233, 0.2); }
-        .active .checkbox::after { content: '✔'; position: absolute; top: -3px; left: 2px; color: var(--color-cyan); font-size: 12px; }
-        .active-purple .checkbox { border-color: var(--color-purple); background-color: rgba(168, 85, 247, 0.2); }
-        .active-purple .checkbox::after { content: '✔'; position: absolute; top: -3px; left: 2px; color: var(--color-purple); font-size: 12px; }
+        .checkbox { display: inline-block; width: 16px; height: 16px; border: 1px solid var(--color-cyan); background: rgba(14, 165, 233, 0.08); border-radius: 3px; margin-right: 10px; position: relative; flex-shrink: 0; }
+        .highlight-card .checkbox { border-color: var(--color-purple); background: rgba(168, 85, 247, 0.08); }
 
-        /* ================= NARRATIVE TEXT BLOCKS ================= */
-        .narrative-block { font-size: 1.15rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 2.5rem; text-align: left; }
-        .narrative-block strong { color: var(--text-main); font-weight: 700; }
-        .narrative-highlight { color: var(--color-cyan); font-weight: 600; }
+        /* ================= INSIGHT BOX ================= */
+        .insight-box {
+            border-left: 4px solid var(--color-purple);
+            background: linear-gradient(90deg, rgba(168, 85, 247, 0.1) 0%, transparent 100%);
+            padding: 2rem 2.4rem;
+            margin: 0 auto 3.5rem;
+            border-radius: 0 8px 8px 0;
+            text-align: left;
+        }
+        .insight-title {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--color-purple);
+            font-weight: 900;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+        .insight-text { font-size: 1.1rem; color: var(--text-main); font-weight: 600; line-height: 1.75; }
 
         /* ================= ARCHITECT COMMAND MODULE ================= */
-        .architect-command { background: #f8fafc; border-left: 6px solid var(--color-blue); border-radius: 8px; padding: 1.5rem 2.5rem; margin: 0 auto 2.5rem; width: 100%; max-width: 100%; box-sizing: border-box; box-shadow: 0 15px 30px rgba(0,0,0,0.4); color: #0f172a; position: relative; }
-        .architect-badge { display: inline-block; background: var(--color-blue); color: #ffffff; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; font-weight: 800; letter-spacing: 1.5px; padding: 6px 14px; border-radius: 4px; margin-bottom: 12px; text-transform: uppercase; }
-        .architect-text { font-size: 1.15rem; font-weight: 600; line-height: 1.6; }
+        .architect-command { background: #f8fafc; border-left: 6px solid var(--color-blue); border-radius: 8px; padding: 1.5rem 2.2rem; margin: 0 auto 2rem; width: 100%; box-sizing: border-box; box-shadow: 0 15px 30px rgba(0,0,0,0.4); color: #0f172a; position: relative; text-align: left; }
+        .architect-badge { display: inline-block; background: var(--color-blue); color: #ffffff; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; font-weight: 800; letter-spacing: 1.5px; padding: 6px 14px; border-radius: 4px; margin-bottom: 10px; text-transform: uppercase; }
+        .architect-text { font-size: 1.1rem; font-weight: 700; line-height: 1.65; color: #0f172a; }
 
         /* ================= TERMINAL STYLING ================= */
-        .terminal-window { background: #0d1117; border: 1px solid var(--border-base); border-radius: 10px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); width: 100%; margin: 0 auto 4rem; text-align: left; overflow: hidden; }
+        .terminal-window { background: #0d1117; border: 1px solid var(--border-base); border-radius: 10px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); width: 100%; margin: 0 auto 1rem; text-align: left; overflow: hidden; }
         .terminal-header { background: #161b22; padding: 12px 20px; display: flex; align-items: center; border-bottom: 1px solid var(--border-base); position: relative; }
         .terminal-dots { display: flex; gap: 8px; position: absolute; left: 20px; }
         .dot { width: 12px; height: 12px; border-radius: 50%; }
         .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
-        .terminal-title { margin: 0 auto; color: var(--text-muted); font-size: 0.85rem; font-family: monospace; letter-spacing: 1px; }
-        .terminal-body { padding: 2.5rem; font-family: 'Consolas', 'Courier New', monospace; font-size: 1.05rem; line-height: 1.8; color: var(--text-main); overflow-x: auto; white-space: pre-wrap; word-wrap: break-word; background: linear-gradient(rgba(13, 17, 23, 1) 0%, rgba(13, 17, 23, 0.95) 100%); }
+        .terminal-title { margin: 0 auto; color: var(--text-muted); font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; font-weight: 700; letter-spacing: 1px; }
+        .terminal-body { padding: 2.2rem 2.4rem; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: 0.98rem; line-height: 1.8; color: var(--text-main); overflow-x: auto; white-space: pre-wrap; word-wrap: break-word; background: linear-gradient(rgba(13, 17, 23, 1) 0%, rgba(13, 17, 23, 0.95) 100%); }
         
         .t-cyan { color: var(--color-cyan); font-weight: 700; } 
         .t-green { color: var(--color-green); font-weight: 700; } 
-        .t-blue { color: var(--color-blue); } 
+        .t-blue { color: var(--color-blue); font-weight: 700; } 
         .t-purple { color: var(--color-purple); font-weight: 700; } 
         .t-muted { color: var(--text-muted); } 
-        .t-comment { color: var(--color-grey); font-style: italic; }
+        .t-comment { color: #94a3b8; }
         .t-red { color: #ff5f56; font-weight: 700; }
 
-        .insight-box { background: rgba(14, 165, 233, 0.05); border-left: 4px solid var(--color-cyan); padding: 1.5rem 2rem; margin: 0 auto 3rem; box-sizing: border-box; }
-        .insight-title { color: var(--color-cyan); font-weight: 800; font-size: 0.9rem; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 0.5rem; }
-        .insight-text { font-size: 1.1rem; color: var(--text-main); line-height: 1.7; }
+        /* ================= PROPRIETARY IP FOOTER ================= */
+        .ip-footer {
+            max-width: 1120px;
+            margin: 2rem auto 0;
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            border-top: 1px solid var(--border-base);
+            background: rgba(10, 15, 29, 0.6);
+            border-radius: 8px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+            line-height: 1.8;
+        }
+        .ip-footer strong {
+            color: var(--color-cyan);
+            font-weight: 700;
+        }
 
-        /* FIX: Title sizing, Nav adjustments, and component padding scaling for vertical phone screens */
         @media (max-width: 600px) {
-            .hero-title { font-size: 2.1rem; letter-spacing: 1px; }
-            .hero-minimal { padding-top: 200px; padding-bottom: 40px; }
-            
+            .hero-title { font-size: 2rem; letter-spacing: 1px; }
+            .hero { padding-top: 190px; padding-bottom: 40px; }
             nav { padding: 1rem; }
             .nav-links { gap: 0.6rem; }
             .nav-links a { font-size: 0.75rem; padding: 0.4rem 0.8rem; letter-spacing: 0.5px; }
-
             .section-title { font-size: 1.5rem; }
-            
-            /* Shrinking padding on mobile so text doesn't get squished */
             .terminal-body { font-size: 0.85rem; padding: 1.5rem; }
             .architect-command { padding: 1.2rem 1.5rem; }
-            .insight-box { padding: 1.5rem; }
+            .insight-box, .section-intro-box { padding: 1.5rem; }
             .matrix-card { padding: 1.2rem; }
         }
     </style>
 </head>
 <body>
 
+    <!-- GLOBAL NAVIGATION (8-LINK SITE-WIDE BAR WITH SYSTEM GLOSSARY) -->
     <nav>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
@@ -165,190 +299,292 @@
             <li><a href="architectural.html">Pipeline Architecture</a></li>
             <li><a href="workflow-portfolio.html">Machine Identity Execution Showcase</a></li>
             <li><a href="add-capabilities.html" class="active-link">Additional Capability Integration Showcase</a></li>
+            <li><a href="glossary.html">System Glossary</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
 
-    <header class="hero-minimal">
+    <!-- HERO HEADER -->
+    <header class="hero">
+        
+        <!-- TOP ON-PAGE SUB-NAVIGATION BAR (ABOVE TITLE) -->
+        <div class="jump-links-container">
+            <div class="jump-links-intro">
+                Select any phase of this Day-2 capability expansion showcase to jump directly to its execution record:
+            </div>
+            <div class="jump-links">
+                <a href="#intake-matrix">1. Day-2 Intake Matrix</a>
+                <a href="#step-1">2. Step 1: Verified Identity Core</a>
+                <a href="#step-2">3. Step 2: Day-2 CAWI &amp; Risk Layering</a>
+                <a href="#step-3">4. Step 3: Standard Patch Loop &amp; DPL</a>
+                <a href="#step-4">5. Step 4: Two-Stage Verification &amp; Phase 7</a>
+            </div>
+        </div>
+
+        <span class="hero-tag">[HOLISTIC DAY-2 MICROSOFT ENTRA ID EXPANSION SHOWCASE]</span>
         <h1 class="hero-title">Additional Capability Integration Showcase</h1>
-        <p class="hero-subtitle">Demonstrating the final phase of the Architectural Execution Flow. Leveraging the <strong>Zero Trust Interactive State Machine</strong> to securely execute <strong>Modular Scaling</strong>—seamlessly integrating advanced Microsoft Entra ID network and behavioral security controls directly on top of an established zero-trust machine identity core.</p>
+
+        <!-- BULLETED HERO INTRO BOX -->
+        <div class="section-intro-box" style="margin-bottom: 0;">
+            <div class="intro-lead-sentence">
+                How my Zero Trust Interactive State Machine layers any of the 35 Day-2 Microsoft Entra ID security modules onto a verified machine identity core (using the fixed system variables in my <a href="glossary.html" class="inline-link">System Glossary</a>):
+            </div>
+            <ul class="clean-bullet-list">
+                <li>
+                    <span class="bullet-lead">Non-Destructive Day-2 Expansion:</span> Once my Application Registration, Service Principal, OpenID Connect (OIDC) Subject Claim, and single-asset Data-Plane Role are verified across Gates 1 through 4, I can skip Phases 1 and 2 and layer advanced Microsoft Entra ID capabilities directly onto my live identity core.
+                </li>
+                <li>
+                    <span class="bullet-lead">Case Study (Conditional Access for Workload Identities &amp; Entra ID Protection):</span> This showcase demonstrates layering IPv4-fenced Conditional Access for Workload Identities (CAWI) and Entra ID Protection machine-learning risk policies onto a Brownfield (Existing) GitHub Actions Execution Agent and Azure Key Vault Data-Plane Asset using a PowerShell REST API IaC Payload.
+                </li>
+            </ul>
+        </div>
     </header>
 
     <div class="container">
 
-        <!-- ================= 6-BOX MATRIX ================= -->
+        <!-- ================= 6-BOX CAPABILITY MATRIX (ALL SELECTION BOXES BLANK) ================= -->
+        <span class="section-tag" id="intake-matrix">[THE 5 BUILD COORDINATES + 35 DAY-2 EXPANSION MODULES]</span>
+        <h2 class="section-title">Day-2 Capability Integration Matrix</h2>
+
         <div class="matrix-grid-6">
             <div class="matrix-card">
-                <h3>Identity Core</h3>
+                <h3>1. Identity Core</h3>
                 <ul class="matrix-list">
-                    <li class="active"><span class="checkbox"></span>Microsoft Entra ID</li>
+                    <li><span class="checkbox"></span>Microsoft Entra ID</li>
                 </ul>
             </div>
             <div class="matrix-card">
-                <h3>Execution Agent</h3>
+                <h3>2. Execution Agent</h3>
                 <ul class="matrix-list">
-                    <li class="active"><span class="checkbox"></span>GitHub Actions</li>
+                    <li><span class="checkbox"></span>Azure Kubernetes Service (AKS)</li>
+                    <li><span class="checkbox"></span>GitHub Actions</li>
                     <li><span class="checkbox"></span>Azure DevOps</li>
                     <li><span class="checkbox"></span>GitLab CI</li>
                 </ul>
             </div>
             <div class="matrix-card">
-                <h3>Infrastructure State</h3>
+                <h3>3. Infrastructure State</h3>
                 <ul class="matrix-list">
-                    <li class="active"><span class="checkbox"></span>Brownfield (Existing)</li>
+                    <li><span class="checkbox"></span>Brownfield (Existing)</li>
                     <li><span class="checkbox"></span>Greenfield (Net-New)</li>
                 </ul>
             </div>
             <div class="matrix-card">
-                <h3>Data-Plane Asset</h3>
+                <h3>4. Data-Plane Asset</h3>
                 <ul class="matrix-list">
-                    <li class="active"><span class="checkbox"></span>Azure Key Vault</li>
+                    <li><span class="checkbox"></span>Azure Key Vault</li>
                     <li><span class="checkbox"></span>Storage Account</li>
                     <li><span class="checkbox"></span>SQL / Cosmos DB</li>
                 </ul>
             </div>
             <div class="matrix-card">
-                <h3>IaC Payload</h3>
+                <h3>5. IaC Payload</h3>
                 <ul class="matrix-list">
                     <li><span class="checkbox"></span>Terraform (HCL)</li>
                     <li><span class="checkbox"></span>Azure Bicep</li>
-                    <li class="active"><span class="checkbox"></span>PowerShell REST API</li>
+                    <li><span class="checkbox"></span>PowerShell REST API</li>
                 </ul>
             </div>
             <!-- ADDITIONAL CAPABILITY BOX -->
             <div class="matrix-card highlight-card">
-                <h3>Additional Configurations</h3>
+                <h3>6. Day-2 Entra ID Modules (35)</h3>
                 <ul class="matrix-list">
-                    <li class="active-purple"><span class="checkbox"></span>Workload Identity CAWI</li>
-                    <li class="active-purple"><span class="checkbox"></span>Entra ID Protection (Risk)</li>
+                    <li><span class="checkbox"></span>Workload Identity CA (CAWI)</li>
+                    <li><span class="checkbox"></span>Entra ID Protection (Risk)</li>
+                    <li><span class="checkbox"></span>PIM &amp; Entitlement Governance</li>
                 </ul>
             </div>
         </div>
 
         <div class="insight-box">
-            <div class="insight-title">> Architectural Insight</div>
+            <div class="insight-title">&gt; Architectural Insight: True Modular Scaling Without Expanding the Blast Radius</div>
             <div class="insight-text">
-                "The defining metric of an enterprise cloud architecture is not just how securely it can be built, but how securely it can evolve. True modular scaling requires integrating advanced security capabilities without disrupting the foundational deployment or expanding the credential blast radius. This execution demonstrates how the framework systematically layers dynamic behavioral and network controls perfectly onto an existing cryptographic baseline."
+                The defining metric of an enterprise cloud architecture is not just how securely the initial identity is provisioned, but how cleanly the architecture can evolve. By establishing a passwordless Application Registration, Service Principal, and single-asset Data-Plane Role first, my Zero Trust Interactive State Machine allows me to layer network-fenced Conditional Access for Workload Identities and behavioral risk policies as additive code blocks inside my IaC Payload without disturbing live production resources.
             </div>
         </div>
 
         <!-- ================= STEP 1 ================= -->
-        <h2 class="section-title">Step 1: The Machine Identity Core (Prerequisite)</h2>
-        <p class="narrative-block">Capability integration demands a hardened foundation. Before expanding the enterprise architecture, the Engineer engages the Interactive State Machine to establish the baseline: provisioning a non-human identity, forging a passwordless OpenID Connect (OIDC) trust matrix, and mathematically restricting access to the granular data-plane.</p>
+        <span class="section-tag" id="step-1">[PREREQUISITE :: GATES 1 TO 4 ESTABLISHED]</span>
+        <h2 class="section-title">Step 1: The Verified Machine Identity Core &amp; Azure Portal MFA Handoff</h2>
+        
+        <div class="section-intro-box">
+            <div class="intro-lead-sentence">
+                Before layering Day-2 Microsoft Entra ID modules, I establish the core machine identity across Gates 1 through 4:
+            </div>
+            <ul class="clean-bullet-list">
+                <li>
+                    <span class="bullet-lead">Gates 1, 2 &amp; 3 Configured via PowerShell REST API:</span> Using my verified Entra ID Tenant ID, Azure Subscription ID, and Resource Group (Gate 1), my PowerShell REST API IaC Payload provisions the Single-Tenant Application Registration and Service Principal with zero passwords (Gate 2) and binds the wildcard-free OpenID Connect (OIDC) Subject Claim for my GitHub Actions Execution Agent (CompCode1) with a 30-Second Server Sync Timer (Gate 3).
+                </li>
+                <li>
+                    <span class="bullet-lead">Gate 4 Azure Portal MFA Handoff:</span> Because local terminal credential brokers drop interactive MFA claims when assigning a Data-Plane Role on high-security PowerShell REST API and Conditional Access builds, The State Machine cleanly separates the Gate 4 Data-Plane Role assignment (Key Vault Secrets User on my Azure Key Vault Data-Plane Asset) into a guided Azure Portal MFA Handoff checklist so the terminal script completes without crashing.
+                </li>
+            </ul>
+        </div>
 
         <div class="architect-command">
-            <div class="architect-badge">[ARCHITECT DIRECTIVE 01]</div>
+            <div class="architect-badge">[THE ARCHITECT (ME) :: PHASE 3 FOUNDATION DIRECTIVE]</div>
             <div class="architect-text">
-                Coordinates locked. Target: GitHub Actions to Azure Key Vault. Tooling: PowerShell REST API. Synthesize the OIDC trust baseline.
+                5 Build Coordinates locked: Microsoft Entra ID (Identity Core), GitHub Actions (Execution Agent), Brownfield (Existing) (Infrastructure State), Azure Key Vault (Data-Plane Asset), and PowerShell REST API (IaC Payload). Synthesize the Gate 1 through Gate 4 foundation and stage the Azure Portal MFA Handoff.
             </div>
         </div>
 
         <div class="terminal-window">
             <div class="terminal-header">
                 <div class="terminal-dots"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
-                <div class="terminal-title">engine_console.exe // Core_Foundation</div>
+                <div class="terminal-title">state_machine_console // Phase_3_Core_Foundation</div>
             </div>
-            <pre class="terminal-body"><span class="t-cyan">[STATE: CRYPTOGRAPHIC OIDC ESTABLISHED]</span>
-I have successfully engineered the native REST API payload to establish the foundational trust matrix.
+            <pre class="terminal-body"><span class="t-cyan">[PHASE 3: CORE MACHINE IDENTITY &amp; OIDC FEDERATION ESTABLISHED]</span>
+The PowerShell REST API IaC Payload and Terminal Runbook have configured Gates 1, 2, and 3 in Microsoft Entra ID:
 
-The `azuread_application` and corresponding `service_principal` have been provisioned. The OpenID Connect federated credentials have been mathematically bound to the GitHub Actions execution agent, ensuring token exchange is strictly governed by the verified repository coordinates.
+1. <span class="t-blue">Gate 1 (Boundary):</span> Verified Brownfield (Existing) read-only lookup on Data-Plane Asset (Azure Key Vault) inside your Resource Group and Azure Subscription ID.
+2. <span class="t-blue">Gate 2 (Identity):</span> Provisioned Single-Tenant Application Registration and Service Principal with disabled browser redirect URLs and zero saved passwords.
+3. <span class="t-blue">Gate 3 (Federation):</span> Injected the 30-Second Server Sync Timer (Start-Sleep -Seconds 30) and bound the wildcard-free OpenID Connect (OIDC) Subject Claim (repo:CompCode1/machine-identity-1:ref:refs/heads/main) for a 60-Minute Login Token ceiling.
 
-<span class="t-muted">Action Required: Data-Plane Binding</span>
-To complete the core foundation, please manually assign the `Key Vault Secrets User` role to the generated Service Principal via the Azure Portal, satisfying MFA constraints and isolating the identity entirely from the control plane.</pre>
+<span class="t-muted">[GATE 4: AZURE PORTAL MFA HANDOFF REQUIRED]</span>
+To prevent a local terminal 401 MFA claim drop, the Gate 4 Data-Plane Role step has been decoupled from the terminal script. Please complete the guided Azure Portal MFA Handoff to assign the single-asset Data-Plane Role (Key Vault Secrets User) to your Service Principal on your Azure Key Vault Data-Plane Asset (Owner and Contributor Roles remain strictly blocked).</pre>
         </div>
 
         <div class="divider"></div>
 
         <!-- ================= STEP 2 ================= -->
-        <h2 class="section-title">Step 2: Modular Scaling (Capability Integration)</h2>
-        <p class="narrative-block">With the baseline locked, the architecture is ready to scale. The Engineer initiates the <strong>Capability Integration</strong> phase, directing the state machine to layer on two advanced enterprise modules: Conditional Access for Workload Identities (CAWI) to enforce strict network boundaries, and Entra ID Protection to enforce real-time behavioral risk analysis.</p>
+        <span class="section-tag" id="step-2">[DAY-2 EXPANSION :: LAYERING MODULES ONTO THE VERIFIED CORE]</span>
+        <h2 class="section-title">Step 2: Layering Workload Conditional Access &amp; Entra ID Protection</h2>
+        
+        <div class="section-intro-box">
+            <div class="intro-lead-sentence">
+                With my Gate 1 through Gate 4 identity core verified, I direct The State Machine to layer two of the 35 Day-2 Microsoft Entra ID security modules onto my existing Service Principal:
+            </div>
+            <ul class="clean-bullet-list">
+                <li>
+                    <span class="bullet-lead">Module 1 (Conditional Access for Workload Identities with IPv4 Chunking):</span> Extracts the live IPv4 CIDR ranges for my GitHub Actions Execution Agent, automatically chunks the IPv4 list into safe blocks so Microsoft Entra ID Named Location limits never overflow, pauses for a 30-Second Server Sync Timer, and locks a Conditional Access policy to my Service Principal that blocks any 60-Minute Login Token request outside that network fence.
+                </li>
+                <li>
+                    <span class="bullet-lead">Module 2 (Microsoft Entra ID Protection Workload Risk Block):</span> Layers an automated machine-learning risk policy onto my Service Principal that immediately blocks token issuance if Microsoft Entra ID detects anomalous behavioral telemetry or leaked token replay.
+                </li>
+            </ul>
+        </div>
 
         <div class="architect-command">
-            <div class="architect-badge">[ARCHITECT DIRECTIVE 02]</div>
+            <div class="architect-badge">[THE ARCHITECT (ME) :: DAY-2 EXPANSION DIRECTIVE]</div>
             <div class="architect-text">
-                The baseline is secure. Initiate Modular Scaling. Generate the payloads to integrate Conditional Access for Workload Identities (CAWI) and Entra ID Protection Risk policies on top of the established identity.
+                Core foundation verified. Initiate Day-2 capability expansion on my existing Application Registration and Service Principal. Synthesize the additive PowerShell REST API IaC Payload for Conditional Access for Workload Identities (CAWI) and Entra ID Protection Workload Risk policies.
             </div>
         </div>
 
         <div class="terminal-window">
             <div class="terminal-header">
                 <div class="terminal-dots"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
-                <div class="terminal-title">engine_console.exe // Capability_Synthesis</div>
+                <div class="terminal-title">state_machine_console // Day_2_Capability_Synthesis</div>
             </div>
-            <pre class="terminal-body"><span class="t-purple">[MODE: CAPABILITY INTEGRATION]</span>
-I am dynamically synthesizing the modular capabilities to expand the architecture.
+            <pre class="terminal-body"><span class="t-purple">[MODE: DAY-2 CAPABILITY INTEGRATION :: NON-DESTRUCTIVE ADDITIVE SYNTHESIS]</span>
+Synthesizing additive PowerShell REST API IaC Payload blocks targeting your verified Service Principal:
 
-<span class="t-blue">1. Conditional Access for Workload Identities (CAWI):</span>
-I am extracting the dynamic IPv4 network boundary for GitHub Actions. I am compiling these network parameters into a strict Named Location and generating a Conditional Access policy that explicitly blocks any token request originating outside this geographic fence.
+<span class="t-blue">1. Conditional Access for Workload Identities (IPv4 Network Fence):</span>
+Extracting GitHub Actions IPv4 CIDR ranges, chunking ranges into compliant Named Location blocks, injecting a 30-Second Server Sync Timer (Start-Sleep -Seconds 30), and binding a Conditional Access policy that blocks any OpenID Connect (OIDC) 60-Minute Login Token request originating outside the verified IPv4 boundary.
 
-<span class="t-blue">2. Entra ID Protection (Machine Learning Risk Block):</span>
-I am layering a secondary Risk Policy targeting the specific Service Principal. If Microsoft's backend telemetry algorithms detect anomalous token usage or impossible travel, this policy will trigger a high-risk block, dropping the connection regardless of cryptographic validity.
+<span class="t-blue">2. Microsoft Entra ID Protection (Workload Risk Policy):</span>
+Layering a high-confidence workload risk block policy onto the Service Principal. If Microsoft Entra ID telemetry detects anomalous token usage or impossible travel, the policy drops the connection immediately.
 
-<span class="t-muted">Action Required: Execute Expansion Payload</span>
-I am locking the brakes. Please execute the generated `deploy_cawi_expansion.ps1` script in your terminal to fuse these capabilities to the identity.</pre>
+<span class="t-muted">[PHASE HALT: AWAITING ARCHITECT EXECUTION]</span>
+Please execute the generated `deploy_cawi_expansion.ps1` Terminal Runbook in your local folder and confirm the console output.</pre>
         </div>
 
         <div class="divider"></div>
 
         <!-- ================= STEP 3 ================= -->
-        <h2 class="section-title">Step 3: Under the Hood (Governance & Execution)</h2>
-        <p class="narrative-block">Integrating complex capabilities natively via Microsoft Graph API introduces strict JSON schema requirements. When the Engineer executed the synthesized payload, the Graph API rejected the configuration with a `(400) Bad Request`. This showcases the framework's core value: the Interactive State Machine instantly halts execution, catching its own schema error and forcing the AI to strictly realign with the Microsoft architectural baseline before proceeding.</p>
+        <span class="section-tag" id="step-3">[ALL-PHASE TROUBLESHOOTING :: STANDARD PATCH LOOP (ITERATION 1 OF 3)]</span>
+        <h2 class="section-title">Step 3: Standard Patch Loop, Pure Graph JSON Fix &amp; Real-Time DPL Logging</h2>
+        
+        <div class="section-intro-box">
+            <div class="intro-lead-sentence">
+                How my System Directive handles a real-world Microsoft Graph API schema error during the Standard Patch Loop (Iterations 1 to 3) without needing to trip The 4-Iteration Circuit Breaker:
+            </div>
+            <ul class="clean-bullet-list">
+                <li>
+                    <span class="bullet-lead">The Schema Collision Error:</span> When I executed the PowerShell REST API IaC Payload in my local terminal, Microsoft Graph returned an HTTP 400 Bad Request because The AI Engine accidentally used a Terraform property name (`includedApplications`) instead of the native Microsoft Graph JSON property name (`includeApplications`) and omitted `"users": "None"` on a workload identity Conditional Access policy.
+                </li>
+                <li>
+                    <span class="bullet-lead">Clinical Diagnostic Mode &amp; Full-File State Re-Sync (Iteration 1):</span> Instead of guessing in circles, The AI Engine immediately dropped all analogies, entered the Standard Patch Loop (Iteration 1 of 3), isolated the exact Microsoft Graph JSON schema rule, staged the real-time entry in the Defect &amp; Patch Ledger (patch_ledger.md or DPL), and performed a full-file State Re-Sync of the entire PowerShell REST API IaC Payload.
+                </li>
+            </ul>
+        </div>
 
         <div class="architect-command">
-            <div class="architect-badge">[ARCHITECT DIRECTIVE 03]</div>
+            <div class="architect-badge">[THE ARCHITECT (ME) :: TERMINAL ERROR TELEMETRY]</div>
             <div class="architect-text">
-                Execution failed. The terminal threw a "(400) Bad Request" directly on the Graph API `POST` request during the Conditional Access policy synthesis.
+                Local execution halted. The terminal returned an HTTP (400) Bad Request on the Invoke-RestMethod POST call during the Conditional Access policy creation step.
             </div>
         </div>
 
         <div class="terminal-window">
             <div class="terminal-header">
                 <div class="terminal-dots"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
-                <div class="terminal-title">engine_console.exe // COLLABORATIVE TROUBLESHOOTING</div>
+                <div class="terminal-title">state_machine_console // Standard_Patch_Loop_Iteration_1</div>
             </div>
-            <pre class="terminal-body"><span class="t-purple">[ACTIVE DIAGNOSTIC: Graph API Schema Translation Error] | Iteration: 1</span>
+            <pre class="terminal-body"><span class="t-purple">[STANDARD PATCH LOOP: CLINICAL DIAGNOSTIC MODE] | Iteration: 1 of 3</span>
+<span class="t-comment">(Note: The 4-Iteration Circuit Breaker remains on standby and only trips if an error reaches Iteration 4.)</span>
 
-<span class="t-cyan">Root Cause Hypothesis:</span>
-The REST API successfully generated the network fence, but the 400 Bad Request occurred during the policy instantiation. This was a schema translation deviation. 
+<span class="t-cyan">Root Cause Diagnosis (Guardrail 4 Schema Integrity):</span>
+The PowerShell REST API IaC Payload created the IPv4 Named Location cleanly, but the HTTP 400 Bad Request occurred on the Conditional Access policy POST call due to two Microsoft Graph JSON schema mismatches:
+1. Used `"includedApplications"` (Terraform HCL provider naming) instead of `"includeApplications"` (native Microsoft Graph JSON schema).
+2. When a Conditional Access policy targets a non-human Service Principal (`clientApplications.includeServicePrincipals`), Microsoft Graph requires `"users": { "includeUsers": ["None"] }` to be explicitly declared.
 
-I attempted to bleed Terraform structural logic into a raw Graph API REST call:
-1. I utilized `"includedApplications"` (Terraform syntax) instead of `"includeApplications"` (Native Graph JSON).
-​2. Graph API strictly mandates that `"users"` must be explicitly defined and set to `"None"` when a policy targets a `servicePrincipal` condition.
+<span class="t-green">[REAL-TIME DEFECT &amp; PATCH LEDGER (DPL) ENTRY STAGED]</span>
+Logged Root Cause and Verified Fix into `patch_ledger.md` for Phase 7 System Directive Compilation.
 
-<span class="t-muted">Action Required: Execute Patched Payload</span>
-I have completely rewritten the payload, dropping the abstracted syntax and mapping the parameters exactly to the Microsoft Graph API REST JSON schema required for CAWI.
-
-<span class="t-purple">[PIPELINE HALTED]</span>
-Please replace the payload and execute the patched configuration to finalize the integration.</pre>
+<span class="t-cyan">[FULL-FILE STATE RE-SYNC EXECUTED]</span>
+Outputting the complete, top-to-bottom patched `deploy_cawi_expansion.ps1` IaC Payload with pure Microsoft Graph JSON property names. Please replace the file in your local workspace and re-run.</pre>
         </div>
 
         <div class="divider"></div>
 
         <!-- ================= STEP 4 ================= -->
-        <h2 class="section-title">Step 4: Telemetry Verification & Final Audit</h2>
-        <p class="narrative-block">With the capabilities successfully integrated, the pipeline execution proves the architecture. The deployed identity is now dynamically defended by both ML-based risk policies and hard network fences, demonstrating the completion of the Architectural Execution Flow.</p>
+        <span class="section-tag" id="step-4">[PHASES 4 TO 7 :: TWO-STAGE LIVE VERIFICATION &amp; DIRECTIVE COMPILATION]</span>
+        <h2 class="section-title">Step 4: Two-Stage Live Verification, Compliance Ledgers &amp; Phase 7 Upgrade</h2>
+        
+        <div class="section-intro-box">
+            <div class="intro-lead-sentence">
+                Proving the Day-2 Conditional Access and Entra ID Protection expansion works in the live cloud and compiling the lesson into my System Directive:
+            </div>
+            <ul class="clean-bullet-list">
+                <li>
+                    <span class="bullet-lead">Phase 4 Validation Bridge &amp; Stage 1 Portal Metrics:</span> After the patched PowerShell REST API IaC Payload deployed cleanly, I ran a terminal audit command to verify the Conditional Access policy was active in Microsoft Entra ID, executed the Validation Bridge on my GitHub Actions Execution Agent (with Runtime Log Masking active) to a green checkmark, and checked Azure Portal Monitoring Metrics (Total Service API Hits over 30 minutes) on my Azure Key Vault Data-Plane Asset for immediate Stage 1 proof.
+                </li>
+                <li>
+                    <span class="bullet-lead">Phases 5, 6 &amp; 7 (Compliance Package &amp; Continuous Improvement):</span> With the live API hit spike confirmed, The AI Engine generated my updated Identity Architecture Ledger (IAL), Audit Results Ledger (ARL), KQL Telemetry (kql_telemetry.md), and Defect &amp; Patch Ledger (patch_ledger.md), synced my Code Repository and Branch in Phase 6, and compiled the pure Microsoft Graph JSON schema rule permanently into my master System Directive in Phase 7.
+                </li>
+            </ul>
+        </div>
 
         <div class="architect-command">
-            <div class="architect-badge">[ARCHITECT DIRECTIVE 04]</div>
+            <div class="architect-badge">[THE ARCHITECT (ME) :: PHASE 4 &amp; PHASE 5 SIGN-OFF]</div>
             <div class="architect-text">
-                The patched payload executed successfully. Live telemetry verifies the data-plane read is green. The capability integration is complete.
+                The full-file State Re-Sync executed cleanly on Iteration 1. The Validation Bridge passed on GitHub Actions, and Azure Portal Monitoring Metrics (Total Service API Hits) on my Azure Key Vault Data-Plane Asset confirm the live read with zero HTTP 403 drops. Generate the Phase 5 ledgers and close out in Phase 7.
             </div>
         </div>
 
         <div class="terminal-window">
             <div class="terminal-header">
                 <div class="terminal-dots"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
-                <div class="terminal-title">engine_console.exe // Modular_Scaling_Complete</div>
+                <div class="terminal-title">state_machine_console // Phases_5_to_7_Complete</div>
             </div>
-            <pre class="terminal-body"><span class="t-cyan">The architecture has successfully achieved Modular Scaling.</span>
+            <pre class="terminal-body"><span class="t-cyan">[TWO-STAGE VERIFICATION &amp; DAY-2 CAPABILITY INTEGRATION COMPLETE]</span>
 
-<span class="t-blue">Verification Analysis:</span>
-By successfully verifying the data-plane read through the live GitHub Actions pipeline, we have mathematically proven that the `ACPHF-CAWI-Risk-Block` policy is actively evaluating the identity's behavior and recognizing the execution agent as "Low Risk," permitting the flow of authorized traffic. 
+<span class="t-blue">1. Stage 1 &amp; Stage 2 Telemetry Proof (Phases 4 &amp; 5):</span>
+The live spike in Azure Portal Monitoring Metrics (Total Service API Hits) mathematically proves that your GitHub Actions Execution Agent satisfied the IPv4-fenced Conditional Access for Workload Identities policy and the Entra ID Protection low-risk evaluation, traded its Subject Claim for a 60-Minute Login Token, assumed the Service Principal, and read the Azure Key Vault Data-Plane Asset with zero access errors.
 
-<span class="t-green">The machine identity is no longer just cryptographically secure; it is dynamically defended. The zero-trust baseline remains immutable, while the enterprise capabilities have been successfully expanded.</span></pre>
+<span class="t-blue">2. Compliance Ledgers &amp; Code Repository Sync (Phases 5 &amp; 6):</span>
+Generated `identity_architecture_ledger.md` (IAL), `audit_results_ledger.md` (ARL scoring Gates 1 to 4 and all 5 Enterprise Guardrails as [PASS]), `kql_telemetry.md`, and `patch_ledger.md` (DPL), and generated the Phase 6 Git synchronization script with `.gitignore` state protection.
+
+<span class="t-green">3. Phase 7 AI Performance Scorecard &amp; System Directive Compilation:</span>
+The Iteration 1 Microsoft Graph JSON schema fix from `patch_ledger.md` (enforcing `"includeApplications"` and `"users": "None"` on PowerShell REST API Conditional Access builds) has been permanently compiled into your master System Directive (Guardrail 4) so this schema error can never recur on future builds.</pre>
         </div>
 
-        <div class="divider"></div>
+        <!-- ================= PROPRIETARY IP FOOTER ================= -->
+        <footer class="ip-footer">
+            <strong>&copy; 2026 Steven Tuschman | Intelligent Architecture (intelligent-architecture.com). All Rights Reserved.</strong><br>
+            The Zero Trust Interactive State Machine, AI and Cloud Pipeline Hardening Framework (ACPHF), and associated deterministic governance protocols are proprietary intellectual property. Unauthorized reproduction, distribution, or commercial adaptation is strictly prohibited.
+        </footer>
 
     </div>
 

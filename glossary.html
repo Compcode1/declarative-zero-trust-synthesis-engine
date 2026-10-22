@@ -81,7 +81,7 @@
         }
 
         /* ================= HERO HEADER & TOP SUB-NAVIGATION ================= */
-        .hero { padding: 145px 20px 50px; text-align: center; border-bottom: 1px solid var(--border-base); }
+        .hero { padding: 145px 20px 45px; text-align: center; border-bottom: 1px solid var(--border-base); }
         
         /* TOP JUMP LINKS BAR (ABOVE TITLE) */
         .jump-links-container {
@@ -127,9 +127,9 @@
             transform: translateY(-2px); 
         }
 
-        .hero-title-container { display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 2.2rem; }
+        .hero-title-container { display: flex; flex-direction: column; align-items: center; justify-content: center; margin-bottom: 0.5rem; }
         .hero-title { font-family: 'Montserrat', sans-serif; font-size: 3.8rem; font-weight: 900; letter-spacing: 3px; color: var(--text-main); text-transform: uppercase; margin-bottom: 0.5rem; }
-        .hero-sub-banner { font-family: 'Montserrat', sans-serif; font-size: 1.55rem; font-weight: 800; letter-spacing: 1.5px; color: var(--color-cyan); text-transform: uppercase; }
+        .hero-sub-banner { font-family: 'Montserrat', sans-serif; font-size: 1.45rem; font-weight: 800; letter-spacing: 1.5px; color: var(--color-cyan); text-transform: uppercase; }
         .hero-tag {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.92rem;
@@ -139,48 +139,6 @@
             text-transform: uppercase;
             display: block;
             margin-bottom: 0.65rem;
-        }
-
-        /* TOP BANNER: THE 26 SYSTEM VARIABLES MASTER EQUATION (BULLETED) */
-        .equation-banner {
-            max-width: 1300px;
-            margin: 0 auto 1rem;
-            background: rgba(10, 15, 29, 0.95);
-            border: 1px solid rgba(16, 185, 129, 0.4);
-            border-top: 4px solid var(--color-green);
-            border-radius: 12px;
-            padding: 2.6rem 3rem;
-            text-align: left;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
-        }
-        .equation-header {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.45rem;
-            font-weight: 900;
-            color: var(--color-green);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1.4rem;
-            padding-bottom: 0.85rem;
-            border-bottom: 2px solid var(--border-base);
-        }
-        .equation-bullet-list {
-            list-style: disc;
-            padding-left: 1.6rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1.15rem;
-        }
-        .equation-bullet-list li {
-            font-size: 1.08rem;
-            font-weight: 600;
-            color: var(--text-main);
-            line-height: 1.75;
-            padding-left: 0.35rem;
-        }
-        .equation-bullet-list li::marker {
-            color: var(--color-green);
-            font-size: 1.2rem;
         }
 
         /* BOTTOM APPENDIX BOX: MATHEMATICAL & ENGINEERING PRINCIPLES (BULLETED) */
@@ -418,7 +376,7 @@
             .hero-sub-banner { font-size: 1.2rem; }
             .category-title { font-size: 1.55rem; }
             .glossary-grid { grid-template-columns: 1fr; }
-            .category-container, .hero-intro-box, .equation-banner { padding: 2rem 1.5rem; }
+            .category-container, .hero-intro-box { padding: 2rem 1.5rem; }
         }
 
         @media (max-width: 600px) {
@@ -446,7 +404,7 @@
         </ul>
     </nav>
 
-    <!-- ================= HERO HEADER & MASTER END-TO-END CHAIN ================= -->
+    <!-- ================= HERO HEADER (CLEAN REFERENCE ENTRY) ================= -->
     <header class="hero">
 
         <!-- TOP ON-PAGE SUB-NAVIGATION BAR (ABOVE TITLE) -->
@@ -468,29 +426,6 @@
             <h1 class="hero-title">SYSTEM GLOSSARY</h1>
             <div class="hero-sub-banner">Defining the 26 Fixed Variables of the Zero Trust Interactive State Machine</div>
         </div>
-
-        <!-- TOP BANNER: BULLETED MASTER EQUATION OF THE 26 SYSTEM VARIABLES -->
-        <div class="equation-banner">
-            <h2 class="equation-header">The 26 System Variables: The Master End-to-End Cloud IAM Chain (Gates 1 to 4 &amp; Phases 4 to 7)</h2>
-            
-            <ul class="equation-bullet-list">
-                <li>
-                    <span class="bullet-lead">Gate 1 Link (Boundary):</span> My Azure Subscription ID and Resource Group (holding my Data-Plane Asset) sit under my Entra ID Tenant ID (holding my Identity Core), enforcing read-only lookups on Brownfield (Existing) Data-Plane Assets or deletion-prevention locks on Greenfield (Net-New) Data-Plane Assets.
-                </li>
-                <li>
-                    <span class="bullet-lead">Gate 2 Link (Identity):</span> Inside my Entra ID Tenant ID, my IaC Payload and Terminal Runbook create or reference my Application Registration and Service Principal in Single-Tenant mode with disabled browser redirect URLs and zero saved passwords.
-                </li>
-                <li>
-                    <span class="bullet-lead">Gate 3 Link (Federation):</span> My external Execution Agent sends its Subject Claim (locked to my exact Code Repository and Branch spelling) via OpenID Connect (OIDC) to Microsoft Entra ID to receive a 60-Minute Login Token for that Service Principal, protected by a 30-Second Server Sync Timer.
-                </li>
-                <li>
-                    <span class="bullet-lead">Gate 4 Link (Access):</span> I assign one Data-Plane Role on my single Data-Plane Asset to that Service Principal (blocking Owner and Contributor Roles and using an Azure Portal MFA Handoff if terminal MFA drops) so my Execution Agent can use its 60-Minute Login Token to read that single Data-Plane Asset and nothing else.
-                </li>
-                <li>
-                    <span class="bullet-lead">Verification &amp; Evolution Link (Phases 4 to 7):</span> My Execution Agent runs the Validation Bridge (with Runtime Log Masking) to read my Data-Plane Asset, which I verify first via Azure Portal Monitoring Metrics (Total Service API Hits) and record across the Identity Architecture Ledger (IAL), Audit Results Ledger (ARL), KQL Telemetry, Defect &amp; Patch Ledger (DPL), and Phase 7 AI Performance Scorecard and System Directive Compilation.
-                </li>
-            </ul>
-        </div>
     </header>
 
     <!-- ================= CATEGORY 1: THE 3 ACTORS (THE EXECUTION TRIAD) ================= -->
@@ -502,7 +437,7 @@
             <div class="category-intro-box">
                 <ul class="term-details">
                     <li>
-                        <span class="bullet-lead">Three-Party Command &amp; Control:</span> Every build separates my strategic human command authority, the central State Machine controller, and the tethered AI compute engine into three fixed roles so no AI component ever acts autonomously against live cloud infrastructure.
+                        <span class="bullet-lead">Three-Party Command &amp; Control:</span> Every deployment separates my strategic human command authority, the central State Machine rulebook, and the tethered AI compute engine into three fixed roles so no AI component ever acts autonomously against live cloud infrastructure.
                     </li>
                 </ul>
             </div>
@@ -515,8 +450,8 @@
                         <span class="term-badge">[VARIABLE 01 :: STRATEGIC COMMAND &amp; FINAL AUTHORITY]</span>
                         <h3 class="term-name">1. The Architect (I / Me / My)</h3>
                         <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> My role in the driver's seat at the physical keyboard in Visual Studio Code or Git Bash. Guided step-by-step by The State Machine, I receive continuous progress updates, evaluate diagnostic reports from The AI Engine, make every strategic decision, and hold absolute approval authority over every phase transition, terminal command, and Azure Portal verification step.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> I lock in the 5 Build Coordinates in Phase 1, run terminal extraction queries in Phase 2, execute the IaC Payload, Terminal Runbook, and any Azure Portal MFA Handoff in Phase 3, run the Validation Bridge and check Azure Portal Monitoring Metrics (Total Service API Hits) in Phase 4, and make the final risk decision if an error reaches Iteration 4 under The 4-Iteration Circuit Breaker.</li>
+                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> My role in the driver's seat at the physical keyboard in Visual Studio Code or Git Bash. Guided step-by-step by The State Machine, I receive continuous progress updates, evaluate diagnostic reports from The AI Engine, make every strategic decision, and hold sole approval authority over every phase transition, terminal command, and Azure Portal verification step.</li>
+                            <li><span class="bullet-lead">How It Connects Across Phases 1 to 7:</span> I lock in the 5 Build Coordinates in Phase 1, run local terminal extraction queries in Phase 2, execute the IaC Payload, Terminal Runbook, and any Azure Portal MFA Handoff in Phase 3, run the Validation Bridge and check Azure Portal Monitoring Metrics (Total Service API Hits) in Phase 4, review the compliance ledgers in Phase 5, push the repository in Phase 6, and make the final risk decision if an error reaches Iteration 4 under The 4-Iteration Circuit Breaker.</li>
                         </ul>
                     </div>
                     <div class="aka-box">
@@ -530,8 +465,8 @@
                         <span class="term-badge">[VARIABLE 02 :: THE CENTRAL CONTROLLER &amp; HARNESS]</span>
                         <h3 class="term-name">2. The State Machine (Zero Trust Interactive State Machine &amp; System Directive)</h3>
                         <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The un-bypassable structural intermediary standing between The Architect and The AI Engine. Governed by my master System Directive (v9.2), it paces The Architect through 7 sequential phases while locking The AI Engine inside mandatory human-in-the-loop halts, a continuous Watchdog turn check, and hard Zero Trust rules across Gates 1 through 4.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Receives my 5 Build Coordinates in Phase 1 and constrains The AI Engine across Phases 1 through 7 so The AI Engine cannot skip gates, guess IDs, grant Owner and Contributor Roles, or generate new code if an error reaches Iteration 4 under The 4-Iteration Circuit Breaker, while permanently upgrading itself in Phase 7.</li>
+                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> My master System Directive rulebook (v9.2) that stands as an un-bypassable structural intermediary between The Architect and The AI Engine. It paces the build through 7 sequential phases while locking The AI Engine inside mandatory human-in-the-loop halts, a continuous Watchdog turn check, and hard Zero Trust security rules across Gate 1 through Gate 4.</li>
+                            <li><span class="bullet-lead">How It Connects Across Phases 1 to 7:</span> Receives my 5 Build Coordinates in Phase 1 and constrains The AI Engine across Phases 1 through 7 so The AI Engine cannot skip phases, guess IDs, grant Owner and Contributor Roles, or generate new code if an error reaches Iteration 4 under The 4-Iteration Circuit Breaker, while permanently upgrading its own System Directive rules in Phase 7.</li>
                         </ul>
                     </div>
                     <div class="aka-box">
@@ -545,8 +480,8 @@
                         <span class="term-badge">[VARIABLE 03 :: TETHERED HIGH-PERFORMANCE CO-PILOT]</span>
                         <h3 class="term-name">3. The AI Engine</h3>
                         <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The generative compute engine whose probabilistic behavior is tethered to my System Directive inside The State Machine. It has zero direct network access to my Entra ID Tenant ID or Azure Subscription ID and operates through controlled state-switching under The Architect's oversight: stepping out of the harness only when authorized to synthesize code or diagnose errors, and reporting every finding back to The Architect before snapping back into The State Machine.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Subordinated to The State Machine and my sign-off, The AI Engine outputs read-only terminal lookup commands in Phases 1 and 2, synthesizes the finished IaC Payload and Terminal Runbook in Phase 3, writes the Validation Bridge and Identity Architecture Ledger (IAL) in Phase 4, compiles the Audit Results Ledger (ARL), KQL Telemetry, and Defect &amp; Patch Ledger (DPL) in Phase 5, and outputs the AI Performance Scorecard and upgraded System Directive in Phase 7.</li>
+                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The generative compute engine whose probabilistic behavior is tethered to my System Directive inside The State Machine. It has zero direct network access to my Entra ID Tenant ID or Azure Subscription ID and operates through controlled state-switching under my oversight: stepping out of the harness only when authorized to diagnose errors, and tethering right back into The State Machine to output code and await my sign-off.</li>
+                            <li><span class="bullet-lead">How It Connects Across Phases 1 to 7:</span> Subordinated to The State Machine and my approval, The AI Engine outputs terminal extraction scripts in Phases 1 and 2, synthesizes the finished IaC Payload and Terminal Runbook in Phase 3, generates the Identity Architecture Ledger (IAL) and Validation Bridge in Phase 4, compiles the Audit Results Ledger (ARL), KQL Telemetry, and Defect &amp; Patch Ledger (DPL) in Phase 5, generates the Git sync script in Phase 6, and outputs the AI Performance Scorecard and upgraded System Directive in Phase 7.</li>
                         </ul>
                     </div>
                     <div class="aka-box">
@@ -581,7 +516,7 @@
                         <h3 class="term-name">4. Identity Core (Microsoft Entra ID)</h3>
                         <ul class="term-details">
                             <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> Column 1 of my Build Matrix. Microsoft Entra ID is Microsoft's cloud identity directory service that acts as the central authority for creating machine identities, verifying OpenID Connect (OIDC) Subject Claims, and issuing 60-Minute Login Tokens.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Lives inside my Entra ID Tenant ID (Gate 1), hosts my Application Registration and Service Principal (Gate 2), verifies the Subject Claim from my Execution Agent to issue a 60-Minute Login Token (Gate 3), and logs every sign-in for KQL Telemetry (Phase 5).</li>
+                            <li><span class="bullet-lead">How It Connects to the 4 Gates:</span> Lives inside my Entra ID Tenant ID (Gate 1), hosts my Application Registration and Service Principal (Gate 2), verifies the Subject Claim from my Execution Agent over OpenID Connect (OIDC) to issue a 60-Minute Login Token (Gate 3), and logs every sign-in event for KQL Telemetry verification (Phase 5).</li>
                         </ul>
                     </div>
                     <div class="aka-box">
@@ -595,8 +530,8 @@
                         <span class="term-badge">[VARIABLE 05 :: COORDINATE 2 OF 5]</span>
                         <h3 class="term-name">5. Execution Agent</h3>
                         <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> Column 2 of my Build Matrix. The external automation platform or container cluster that runs automated jobs outside of Azure and needs to log into Azure without a human at a web browser. The 4 options are: Azure Kubernetes Service (AKS), GitHub Actions, Azure DevOps, or GitLab CI.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> In Gate 3, my Execution Agent sends its digital ID card (containing the Subject Claim) to Microsoft Entra ID via OpenID Connect (OIDC) and receives a 60-Minute Login Token. In Gate 4 and Phase 4, my Execution Agent uses that 60-Minute Login Token to assume my Service Principal and run the Validation Bridge to read my Data-Plane Asset.</li>
+                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> Column 2 of my Build Matrix. The external automation platform or container cluster that runs automated jobs outside of Azure and needs to authenticate into Azure without a human at a web browser. The 4 options are: Azure Kubernetes Service (AKS), GitHub Actions, Azure DevOps, or GitLab CI.</li>
+                            <li><span class="bullet-lead">How It Connects to the 4 Gates:</span> In Phase 2, I extract the backend identifiers from my Execution Agent to build the Gate 3 Subject Claim. In Phase 4, my Execution Agent runs the Validation Bridge: it sends its Subject Claim to Microsoft Entra ID via OpenID Connect (OIDC), receives a 60-Minute Login Token, assumes my Gate 2 Service Principal, and reads my single Gate 4 Data-Plane Asset.</li>
                         </ul>
                     </div>
                     <div class="aka-box">
@@ -610,8 +545,8 @@
                         <span class="term-badge">[VARIABLE 06 :: COORDINATE 3 OF 5]</span>
                         <h3 class="term-name">6. Infrastructure State: Brownfield (Existing) vs. Greenfield (Net-New)</h3>
                         <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> Column 3 of my Build Matrix. Defines whether the cloud resources I am connecting to already exist in live production (Brownfield) or are being built from scratch for the first time (Greenfield).</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Directly controls how my Phase 3 IaC Payload treats Gate 1, Gate 2, and Gate 4. If I select Brownfield (Existing), the IaC Payload uses read-only lookups (such as Terraform data blocks or Bicep existing keywords) so live Data-Plane Assets and Application Registrations are never overwritten. If I select Greenfield (Net-New), the IaC Payload creates the resources from scratch and attaches deletion-prevention locks.</li>
+                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> Column 3 of my Build Matrix. Defines whether the cloud resources and identities I am targeting already exist in live production (Brownfield) or are being provisioned from scratch for the first time (Greenfield).</li>
+                            <li><span class="bullet-lead">How It Connects to Phase 3 Synthesis:</span> Directly governs how my Phase 3 IaC Payload writes resource blocks to prevent accidental infrastructure deletion. If I select Brownfield (Existing), the IaC Payload references existing live resources in place (using Terraform data blocks or Bicep existing keywords) so live Data-Plane Assets and Application Registrations are never overwritten or wiped out. If I select Greenfield (Net-New), the IaC Payload provisions new resources from scratch and attaches deletion-prevention lifecycle locks (prevent_destroy = true).</li>
                         </ul>
                     </div>
                     <div class="aka-box">
@@ -625,8 +560,8 @@
                         <span class="term-badge">[VARIABLE 07 :: COORDINATE 4 OF 5]</span>
                         <h3 class="term-name">7. Data-Plane Asset</h3>
                         <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> Column 4 of my Build Matrix. The single protected Azure storage or vault resource that my Execution Agent needs to read data from. The 3 options are: Azure Key Vault, Storage Account, or SQL / Cosmos DB.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Sits inside my Azure Subscription ID and Resource Group (Gate 1). In Gate 4, I assign one Data-Plane Role on this single Data-Plane Asset to my Service Principal. In Phase 4, my Execution Agent runs the Validation Bridge to read from this Data-Plane Asset, generating the live API hit spike in Azure Portal Monitoring Metrics (Total Service API Hits).</li>
+                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> Column 4 of my Build Matrix. The single protected Azure vault, storage account, or database resource that my Execution Agent needs to read secrets or data from. The 3 options are: Azure Key Vault, Storage Account, or SQL / Cosmos DB.</li>
+                            <li><span class="bullet-lead">How It Connects to the 4 Gates:</span> Sits inside my Azure Subscription ID and Resource Group (Gate 1). In Gate 4, I assign one Data-Plane Role on this single Data-Plane Asset to my Service Principal. In Phase 4, my Execution Agent runs the Validation Bridge to read from this Data-Plane Asset, generating the live API hit spike in Azure Portal Monitoring Metrics (Total Service API Hits).</li>
                         </ul>
                     </div>
                     <div class="aka-box">
@@ -640,8 +575,8 @@
                         <span class="term-badge">[VARIABLE 08 :: COORDINATE 5 OF 5]</span>
                         <h3 class="term-name">8. IaC Payload &amp; Terminal Runbook</h3>
                         <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> Column 5 of my Build Matrix. The IaC Payload is the complete, finished Infrastructure-as-Code file generated in Phase 3 (written in Terraform HCL, Azure Bicep, or PowerShell REST API) that configures Gates 1 through 4 in the cloud. The Terminal Runbook is the companion step-by-step copy-paste command script I run in my local terminal to execute that IaC Payload.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Synthesized by The AI Engine in Phase 3 using the verified IDs extracted in Phases 1 and 2. When I execute the Terminal Runbook and IaC Payload from my local folder, it configures Gate 1, Gate 2, Gate 3 (with the 30-Second Server Sync Timer), and Gate 4 in Microsoft Entra ID and Azure. If a fix is needed during the Standard Patch Loop (Iterations 1 to 3), The AI Engine performs a full-file State Re-Sync of the entire IaC Payload.</li>
+                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> Column 5 of my Build Matrix. The IaC Payload is the complete, finished Infrastructure-as-Code file synthesized in Phase 3 (written in Terraform HCL, Azure Bicep, or PowerShell REST API) that configures Gates 1 through 4 in the cloud. The Terminal Runbook is the companion step-by-step copy-paste command script (including az login --use-device-code and read -s secure input) that I run in my local terminal to execute that IaC Payload.</li>
+                            <li><span class="bullet-lead">How It Connects Across Phases 1 to 3:</span> The AI Engine is forbidden from writing the IaC Payload in Phases 1 and 2 until all coordinates and backend identifiers are extracted and locked. Once synthesized in Phase 3, I execute the Terminal Runbook and IaC Payload from my clean local workspace in Visual Studio Code or Git Bash to provision or bind Gates 1 through 4 in Microsoft Entra ID and Azure.</li>
                         </ul>
                     </div>
                     <div class="aka-box">
@@ -662,7 +597,7 @@
             <div class="category-intro-box">
                 <ul class="term-details">
                     <li>
-                        <span class="bullet-lead">The Four Architectural Gates of Machine Identity:</span> These ten mechanical variables form the internal anatomy of Gate 1 (Boundary), Gate 2 (Identity), Gate 3 (Federation), and Gate 4 (Access), locking together in sequence so an external Execution Agent can authenticate without a password and read a single Data-Plane Asset.
+                        <span class="bullet-lead">The Four Architectural Gates of Machine Identity:</span> Securing any non-human identity in Microsoft Entra ID and Azure requires locking down four security gates in order: Gate 1: Boundary (Where It Lives), Gate 2: Identity (Who the Machine Is), Gate 3: Federation (How It Authenticates Without a Password), and Gate 4: Access (What Single Asset It Can Read). The ten variables below are the exact technical settings inside those four gates.
                     </li>
                 </ul>
             </div>
@@ -683,7 +618,7 @@
                                     <li><span class="bullet-lead">Resource Group:</span> The logical folder inside that Azure Subscription ID that holds my Data-Plane Asset.</li>
                                 </ul>
                             </li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Locked in during Phase 1 and verified in the Phase 4 Identity Architecture Ledger (IAL). Because an Azure Subscription ID only trusts the Microsoft Entra ID directory it is nested under, Gate 1 verifies that my Azure Subscription ID and Resource Group sit under the exact same Entra ID Tenant ID where my Gate 2 Service Principal is created.</li>
+                            <li><span class="bullet-lead">How Gate 1 Works:</span> Locked in during Phase 1 and recorded in Section 1 of the Phase 4 Identity Architecture Ledger (IAL). Because an Azure Subscription ID only trusts the Microsoft Entra ID directory it is nested under, Gate 1 verifies that my Azure Subscription ID and Resource Group sit under the exact same Entra ID Tenant ID where my Gate 2 Service Principal lives.</li>
                         </ul>
                     </div>
                     <div class="aka-box">
@@ -704,7 +639,7 @@
                                     <li><span class="bullet-lead">Service Principal:</span> The local directory badge (Enterprise Application Object ID) created from that blueprint inside my Entra ID Tenant ID that actually receives permissions in Gate 4.</li>
                                 </ul>
                             </li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Created or referenced inside my Entra ID Tenant ID (Gate 1) with zero passwords. The Application Registration holds the Gate 3 OpenID Connect (OIDC) Subject Claim rule, while the Service Principal receives the Gate 4 Data-Plane Role on my Data-Plane Asset.</li>
+                            <li><span class="bullet-lead">How Gate 2 Works:</span> Provisioned or referenced inside my Entra ID Tenant ID (Gate 1) with zero static passwords or client secrets. The Application Registration holds the Gate 3 OpenID Connect (OIDC) Subject Claim rule (and its Client ID is used by the Execution Agent to log in), while the Service Principal Object ID receives the Gate 4 Data-Plane Role on my Data-Plane Asset.</li>
                         </ul>
                     </div>
                     <div class="aka-box">
@@ -718,8 +653,8 @@
                         <span class="term-badge">[VARIABLE 11 :: GATE 2 HARDENING]</span>
                         <h3 class="term-name">11. Single-Tenant Mode &amp; Disabled Browser Redirect URLs</h3>
                         <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> Two security lockdown settings applied to my Application Registration in Gate 2. Single-Tenant mode (AzureADMyOrg) restricts the identity strictly to my own Entra ID Tenant ID so external Microsoft directories cannot use it. Disabling web browser redirect URLs turns off interactive browser login callbacks.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Applied to the Gate 2 Application Registration inside my Phase 3 IaC Payload because my Coordinate 2 Execution Agent runs automated jobs in the background and never uses a web browser, eliminating browser callback phishing completely.</li>
+                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> Two attack-surface lockdown settings applied to my Application Registration in Gate 2. Single-Tenant mode (AzureADMyOrg) restricts the identity strictly to my own Entra ID Tenant ID so external Microsoft directories cannot instantiate it. Disabling web browser redirect URLs (Blank Redirect URI) turns off interactive browser login callbacks.</li>
+                            <li><span class="bullet-lead">How Gate 2 Hardening Works:</span> Enforced on my Gate 2 Application Registration in Phase 3 and verified in Section 2 of the Identity Architecture Ledger (IAL). Because an Execution Agent runs automated background jobs without a human at a web browser, disabling browser redirect URLs eliminates browser callback phishing completely.</li>
                         </ul>
                     </div>
                     <div class="aka-box">
@@ -733,8 +668,8 @@
                         <span class="term-badge">[VARIABLE 12 :: GATE 3 PROTOCOL]</span>
                         <h3 class="term-name">12. OpenID Connect (OIDC)</h3>
                         <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The industry-standard passwordless authentication protocol configured in Gate 3 (via a Federated Identity Credential on my Application Registration). It allows my external Execution Agent to prove who it is using a signed digital ID card instead of a saved password.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Bridges my external Execution Agent (Coordinate 2) and my Application Registration in Microsoft Entra ID (Gate 2). When my Execution Agent sends its digital ID card over OpenID Connect (OIDC), Microsoft Entra ID checks the OIDC Issuer URL and the Subject Claim; if they match 100%, Microsoft Entra ID issues a 60-Minute Login Token.</li>
+                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The industry-standard passwordless authentication protocol configured in Gate 3 (via a Federated Identity Credential attached to my Application Registration). It allows my external Execution Agent to prove its identity using a cryptographically signed digital ID card instead of a saved password.</li>
+                            <li><span class="bullet-lead">How Gate 3 Federation Works:</span> Bridges my external Execution Agent and my Gate 2 Application Registration in Microsoft Entra ID. When my Execution Agent requests access, it sends its OIDC token to Microsoft Entra ID (`api://AzureADTokenExchange`); Microsoft Entra ID verifies the OIDC Issuer URL and the exact Subject Claim, and if they match 100%, issues a 60-Minute Login Token.</li>
                         </ul>
                     </div>
                     <div class="aka-box">
@@ -748,8 +683,8 @@
                         <span class="term-badge">[VARIABLE 13 :: GATE 3 RETURN ADDRESS]</span>
                         <h3 class="term-name">13. Subject Claim &amp; Code Repository and Branch</h3>
                         <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> My Code Repository and Branch is the exact project folder and Git branch (such as main) where my code lives on my Execution Agent. The Subject Claim is the exact text string on the OpenID Connect (OIDC) digital ID card that states that return address (for example, repo:CompCode1/my-project:ref:refs/heads/main).</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Because Microsoft Entra ID is 100% case-sensitive, I run a terminal lookup script in Phase 2 to extract the exact capital-and-lowercase spelling of my Code Repository and Branch and lock it into the Gate 3 Subject Claim with zero wildcards. If any other repository or branch tries to log in, the Subject Claim fails to match and Microsoft Entra ID blocks the login.</li>
+                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The Subject Claim (`sub`) is the exact, case-sensitive return address string on the OpenID Connect (OIDC) digital ID card that identifies the specific workload allowed to log in. For CI/CD Execution Agents, my Code Repository and Branch is the exact repository path and Git branch (for example, `repo:CompCode1/my-project:ref:refs/heads/main`); for Azure Kubernetes Service (AKS), it is the cluster namespace and service account.</li>
+                            <li><span class="bullet-lead">How Gate 3 Subject Verification Works:</span> Because Microsoft Entra ID performs a 100% case-sensitive comparison on the Subject Claim, I run a terminal extraction script in Phase 2 to pull the exact capital-and-lowercase spelling from my Execution Agent and lock it into the Gate 3 Subject Claim with zero wildcards (`*`). If any unauthorized repository, branch, or container tries to log in, the Subject Claim fails to match and Microsoft Entra ID drops the request immediately.</li>
                         </ul>
                     </div>
                     <div class="aka-box">
@@ -763,8 +698,8 @@
                         <span class="term-badge">[VARIABLE 14 :: GATE 3 CREDENTIAL]</span>
                         <h3 class="term-name">14. 60-Minute Login Token</h3>
                         <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The temporary, short-lived Azure access token issued by Microsoft Entra ID in Gate 3 that automatically expires after 60 minutes, completely replacing 2-year saved passwords and static client secrets.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Issued by Microsoft Entra ID (Gate 3) to my Execution Agent after the Execution Agent's Subject Claim passes verification. My Execution Agent then presents this 60-Minute Login Token in Gate 4 and Phase 4 to assume my Service Principal and read my single Data-Plane Asset.</li>
+                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The temporary, short-lived Azure access token issued by Microsoft Entra ID in Gate 3 that automatically expires after 60 minutes, completely replacing 2-year static client secrets and saved passwords.</li>
+                            <li><span class="bullet-lead">How Gate 3 Token Exchange Works:</span> Issued by Microsoft Entra ID to my Execution Agent only after the Gate 3 OpenID Connect (OIDC) Issuer URL and Subject Claim pass verification. My Execution Agent then presents this 60-Minute Login Token in Gate 4 and Phase 4 to assume my Service Principal and read my single Data-Plane Asset.</li>
                         </ul>
                     </div>
                     <div class="aka-box">
@@ -778,8 +713,8 @@
                         <span class="term-badge">[VARIABLE 15 :: GATE 2 TO GATE 3 TIMING]</span>
                         <h3 class="term-name">15. 30-Second Server Sync Timer</h3>
                         <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> A mandatory 30-second pause (time_sleep in Terraform or Start-Sleep -Seconds 30 in PowerShell) built directly into my Phase 3 IaC Payload between creating the Gate 2 identity and attaching the Gate 3 rules.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> When my IaC Payload creates a new Application Registration and Service Principal in Microsoft Entra ID (Gate 2) and immediately tries to attach an OpenID Connect (OIDC) Subject Claim or Conditional Access policy a split-second later (Gate 3), Microsoft's global directory servers often haven't finished syncing the new Service Principal yet and the script crashes. The 30-Second Server Sync Timer pauses execution so Microsoft's servers finish syncing before Gate 3 and Gate 4 run.</li>
+                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> A mandatory 30-second pause (`time_sleep` in Terraform or `Start-Sleep -Seconds 30` in PowerShell) built directly into my Phase 3 IaC Payload between creating a new directory object and attaching dependent security rules.</li>
+                            <li><span class="bullet-lead">What Real-World Crash It Prevents:</span> When my IaC Payload creates a new Application Registration, Service Principal, or Named Location in Microsoft Entra ID and immediately tries to attach an OpenID Connect (OIDC) Subject Claim or Conditional Access policy a split-second later, Microsoft's global directory servers often haven't finished syncing the new object yet and the deployment crashes. The 30-Second Server Sync Timer pauses execution so Microsoft's servers finish syncing before the next rule is attached.</li>
                         </ul>
                     </div>
                     <div class="aka-box">
@@ -793,8 +728,8 @@
                         <span class="term-badge">[VARIABLE 16 :: GATE 4 LEAST PRIVILEGE]</span>
                         <h3 class="term-name">16. Data-Plane Role</h3>
                         <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The specific, narrowly scoped Azure role assigned in Gate 4 that grants permission only to read data inside a single Data-Plane Asset (such as Key Vault Secrets User for Azure Key Vault, Storage Blob Data Reader for a Storage Account, or Cosmos DB Built-in Data Reader for SQL / Cosmos DB).</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Assigned in Gate 4 (Phase 3 IaC Payload) to my Gate 2 Service Principal and scoped strictly to the exact resource ID of my single Coordinate 4 Data-Plane Asset. This allows my Execution Agent (using its 60-Minute Login Token) to read that single Data-Plane Asset during the Phase 4 Validation Bridge without having permission to touch any other resource in my Azure Subscription ID.</li>
+                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The specific, narrowly scoped Azure role assigned in Gate 4 that grants permission only to read data inside a single Data-Plane Asset (such as *Key Vault Secrets User* for Azure Key Vault, *Storage Blob Data Reader* for a Storage Account, or *Cosmos DB Built-in Data Reader* for SQL / Cosmos DB).</li>
+                            <li><span class="bullet-lead">How Gate 4 Access Works:</span> Bound to my Gate 2 Service Principal and scoped strictly to the exact resource ID of my single Data-Plane Asset (`/subscriptions/.../resourceGroups/.../providers/...`). This allows my Execution Agent (using its 60-Minute Login Token) to read that single Data-Plane Asset during the Phase 4 Validation Bridge while having zero access to any other resource in my Resource Group or Azure Subscription ID.</li>
                         </ul>
                     </div>
                     <div class="aka-box">
@@ -809,7 +744,7 @@
                         <h3 class="term-name">17. Owner and Contributor Roles (Blocked Management Roles)</h3>
                         <ul class="term-details">
                             <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> Broad Azure control-plane (management) roles that allow an identity to create, modify, remodel, or delete cloud infrastructure across an Azure Subscription ID or Resource Group. Unconstrained AI models frequently grant Contributor as a shortcut ("The Contributor Trap").</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Strictly blocked by The State Machine in Gate 4 (Phase 3) and audited as a hard [PASS/FAIL] check in the Phase 5 Audit Results Ledger (ARL). Blocking Owner and Contributor Roles ensures that my Service Principal can never modify or delete infrastructure in my Resource Group, restricting it strictly to the single Data-Plane Role on my Data-Plane Asset.</li>
+                            <li><span class="bullet-lead">How Gate 4 Blocks Them:</span> Strictly forbidden by The State Machine in Gate 4 and audited as a hard `[PASS/FAIL]` guardrail in the Phase 5 Audit Results Ledger (ARL). Blocking Owner and Contributor Roles ensures that my Service Principal can never modify or delete infrastructure in my Resource Group, restricting it strictly to the single Data-Plane Role on my Data-Plane Asset.</li>
                         </ul>
                     </div>
                     <div class="aka-box">
@@ -823,8 +758,8 @@
                         <span class="term-badge">[VARIABLE 18 :: GATE 4 MFA SAFETY]</span>
                         <h3 class="term-name">18. Azure Portal MFA Handoff</h3>
                         <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> A guided, step-by-step web portal checklist generated by The State Machine in Phase 3 whenever Azure blocks a local terminal from assigning a Gate 4 Data-Plane Role because the local terminal cannot display an interactive multi-factor authentication (MFA) popup window.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> When I build high-security configurations (such as Conditional Access for Workload Identities or PowerShell REST API builds), The State Machine automatically separates the Gate 4 Data-Plane Role assignment from the Phase 3 IaC Payload so the terminal script completes cleanly without crashing, and hands me the exact Azure Portal MFA Handoff checklist to bind that single Data-Plane Role to my Service Principal on my Data-Plane Asset in the browser.</li>
+                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> A guided, step-by-step web portal checklist generated by The State Machine in Phase 3 whenever Azure blocks a local terminal from assigning a Gate 4 Data-Plane Role because the local terminal credential broker drops interactive multi-factor authentication (MFA) claims.</li>
+                            <li><span class="bullet-lead">What Real-World Crash It Prevents:</span> On Conditional Access for Workload Identities (CAWI) or PowerShell REST API builds, attempting to assign a Data-Plane Role from a local terminal throws a 401 `RequestDisallowedByAzure` error because the terminal cannot pop up an interactive browser MFA prompt. The State Machine decouples the Gate 4 role assignment from the code script so the terminal deployment finishes cleanly, and gives me the exact Azure Portal MFA Handoff steps to bind the Data-Plane Role in the browser.</li>
                         </ul>
                     </div>
                     <div class="aka-box">
@@ -845,7 +780,7 @@
             <div class="category-intro-box">
                 <ul class="term-details">
                     <li>
-                        <span class="bullet-lead">Two-Stage Proof &amp; Self-Hardening Evolution:</span> These eight variables govern how I record the cryptographic baseline, prove live data-plane access in two stages (instant metrics first, asynchronous log queries second), log real-time patches during Iterations 1 to 3, halt on Iteration 4 if an error persists, and permanently upgrade my System Directive in Phase 7.
+                        <span class="bullet-lead">Two-Stage Proof &amp; Self-Hardening Evolution:</span> These eight variables govern how I record the deployed configuration baseline in Phase 4, prove live data-plane access in two stages (instant portal metrics in Phase 4 followed by asynchronous log queries in Phase 5), fix and log errors across all phases during Iterations 1 to 3, halt on Iteration 4 if an error persists, and permanently upgrade my System Directive in Phase 7.
                     </li>
                 </ul>
             </div>
@@ -858,8 +793,8 @@
                         <span class="term-badge">[VARIABLE 19 :: PHASE 4 BASELINE FILE]</span>
                         <h3 class="term-name">19. Identity Architecture Ledger (identity_architecture_ledger.md or IAL)</h3>
                         <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The formal pre-validation Markdown file generated in Phase 4 and saved in my local workspace before I run the live test. It records the exact deployed IDs and configuration settings across all four gates.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Captures the exact deployed output of Phase 3: my Entra ID Tenant ID, Azure Subscription ID, and Resource Group (Gate 1), my Application Registration Client ID and Service Principal Object ID (Gate 2), my exact OpenID Connect (OIDC) Subject Claim and 60-Minute Login Token ceiling (Gate 3), and my single-asset Data-Plane Role scope (Gate 4), serving as the baseline for the Phase 5 Audit Results Ledger (ARL).</li>
+                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The formal pre-validation Markdown file generated in Step 1 of Phase 4 and saved in my local workspace immediately after my Phase 3 IaC Payload finishes deploying. It records the exact deployed IDs and configuration settings across all four gates.</li>
+                            <li><span class="bullet-lead">How It Connects Phase 3 to Phase 5:</span> Captures the exact deployed output of Phase 3: my Entra ID Tenant ID, Azure Subscription ID, and Resource Group (Gate 1), my Application Registration Client ID and Service Principal Object ID (Gate 2), my exact OpenID Connect (OIDC) Subject Claim and 60-Minute Login Token ceiling (Gate 3), and my single-asset Data-Plane Role scope (Gate 4), serving as the baseline record for the Phase 5 Audit Results Ledger (ARL).</li>
                         </ul>
                     </div>
                     <div class="aka-box">
@@ -873,8 +808,8 @@
                         <span class="term-badge">[VARIABLE 20 :: PHASE 4 LIVE TEST]</span>
                         <h3 class="term-name">20. Validation Bridge &amp; Runtime Log Masking</h3>
                         <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The Validation Bridge is the automated test file (such as a .yml workflow file or Kubernetes pod manifest) synthesized in Phase 4 that I run on my Execution Agent to test reading from my Data-Plane Asset. Runtime Log Masking is the security command injected inside that file that scrubs sensitive values with asterisks (***) in memory before anything prints to the console log.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Run by my Execution Agent in Phase 4. It sends the Gate 3 Subject Claim to Microsoft Entra ID, receives the 60-Minute Login Token, assumes the Gate 2 Service Principal, and reads the Gate 4 Data-Plane Asset while Runtime Log Masking ensures the token and secret never leak to the console screen.</li>
+                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The Validation Bridge is the automated test file (`.github/workflows/validate-bridge.yml`, `azure-pipelines.yml`, `.gitlab-ci.yml`, or AKS `validate-pod.yaml`) synthesized in Step 2 of Phase 4 that I trigger on my Execution Agent to test reading from my Data-Plane Asset. Runtime Log Masking (`::add-mask::`) is the security command injected inside that file that scrubs sensitive values with asterisks (`***`) in memory before anything prints to the console log.</li>
+                            <li><span class="bullet-lead">How It Proves the Architecture:</span> Executed by my Execution Agent in Phase 4. It sends the Gate 3 Subject Claim to Microsoft Entra ID, receives the 60-Minute Login Token, assumes the Gate 2 Service Principal, and reads the Gate 4 Data-Plane Asset while Runtime Log Masking ensures the token and secret never leak to the terminal screen.</li>
                         </ul>
                     </div>
                     <div class="aka-box">
@@ -888,8 +823,8 @@
                         <span class="term-badge">[VARIABLE 21 :: PHASE 4 STAGE 1 PROOF]</span>
                         <h3 class="term-name">21. Azure Portal Monitoring Metrics (Total Service API Hits)</h3>
                         <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The real-time telemetry chart built directly into my Data-Plane Asset inside the Azure web portal (Monitoring &rarr; Metrics &rarr; Total Service API Hits over a 30-minute window).</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Because Azure Log Analytics can take a long, unpredictable amount of time to index background logs, I check Azure Portal Monitoring Metrics (Total Service API Hits) on my Data-Plane Asset in Phase 4 immediately after my Execution Agent finishes running the Validation Bridge. Seeing that live API hit spike provides instant mathematical proof (Stage 1 Verification) that the 60-Minute Login Token unlocked my Data-Plane Asset with zero access errors, unlocking Phase 5.</li>
+                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The real-time telemetry chart built directly into my Data-Plane Asset inside the Azure web portal (`Monitoring` &rarr; `Metrics` &rarr; `Total Service API Hits` filtered to the `Last 30 minutes`).</li>
+                            <li><span class="bullet-lead">Why It Is Stage 1 Verification:</span> Because Azure Log Analytics backend indexing has a natural time delay and can take a long, unpredictable amount of time to surface new logs, I check Azure Portal Monitoring Metrics (`Total Service API Hits`) on my Data-Plane Asset in Step 3 of Phase 4 immediately after the Validation Bridge finishes. Confirming that live API hit spike provides immediate mathematical proof that the 60-Minute Login Token unlocked my Data-Plane Asset with zero access errors, unlocking Phase 5.</li>
                         </ul>
                     </div>
                     <div class="aka-box">
@@ -904,7 +839,7 @@
                         <h3 class="term-name">22. Audit Results Ledger (audit_results_ledger.md or ARL)</h3>
                         <ul class="term-details">
                             <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The formal post-validation compliance report generated in Phase 5 and saved to my local workspace and remote Code Repository and Branch.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Generated in Phase 5 only after the Validation Bridge passes and Azure Portal Monitoring Metrics (Total Service API Hits) confirm the live read on my Data-Plane Asset. It formally scores Gate 1 (Boundary), Gate 2 (Identity), Gate 3 (Federation), Gate 4 (Access), and all 5 Enterprise Guardrails (including blocking Owner and Contributor Roles and enforcing Runtime Log Masking) as [PASS].</li>
+                            <li><span class="bullet-lead">What It Audits &amp; Scores:</span> Generated in Phase 5 only after the Validation Bridge passes and Azure Portal Monitoring Metrics (`Total Service API Hits`) confirm the live read on my Data-Plane Asset. It formally audits Gate 1 (Coordinate Check), Gate 2 (Character Check), Gate 3 (Clock Check), and Gate 4 (Plane Check with zero HTTP 403 drops), and scores all 5 Enterprise Guardrails (DLP Parameterization, Non-Destructive State, Blocking Owner/Contributor, Version Pinning, and Runtime Log Masking) as `[PASS]`.</li>
                         </ul>
                     </div>
                     <div class="aka-box">
@@ -918,8 +853,8 @@
                         <span class="term-badge">[VARIABLE 23 :: PHASE 5 STAGE 2 LOG PROOF]</span>
                         <h3 class="term-name">23. KQL Telemetry (kql_telemetry.md)</h3>
                         <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The standalone file generated in Phase 5 containing the exact Kusto Query Language (KQL) query for Azure Log Analytics (AADServicePrincipalSignInLogs and AzureDiagnostics).</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Serves as Stage 2 Verification. After Azure Portal Monitoring Metrics (Total Service API Hits) give me immediate proof in Phase 4, I use KQL Telemetry (kql_telemetry.md) asynchronously once Azure Log Analytics finishes indexing the background logs to pull deep cryptographic audit records correlating my Service Principal token issuance with the exact millisecond my Execution Agent read my Data-Plane Asset.</li>
+                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The standalone file generated in Phase 5 containing the exact Kusto Query Language (KQL) query for Azure Log Analytics (`ServicePrincipalSignInLogs` and `AzureDiagnostics` / `AuditEvent`).</li>
+                            <li><span class="bullet-lead">Why It Is Stage 2 Verification:</span> After Azure Portal Monitoring Metrics (`Total Service API Hits`) provide immediate Stage 1 proof in Phase 4, I execute the KQL Telemetry (`kql_telemetry.md`) query asynchronously once Azure Log Analytics finishes indexing the backend logs to pull the deep audit records correlating my Service Principal token issuance with the exact timestamp my Execution Agent read my Data-Plane Asset.</li>
                         </ul>
                     </div>
                     <div class="aka-box">
@@ -936,12 +871,12 @@
                             <li>
                                 <span class="bullet-lead">What It Is (Physical Anatomy):</span> My routine troubleshooting and bug-logging mechanism active across every phase of the build (Phases 1 through 6):
                                 <ul class="term-sublist">
-                                    <li><span class="bullet-lead">Standard Patch Loop (Iterations 1 to 3):</span> Clinical diagnostic mode where The AI Engine drops all analogies and provides a targeted fix for any terminal or cloud error during attempts 1, 2, or 3.</li>
-                                    <li><span class="bullet-lead">State Re-Sync:</span> Outputting the complete, top-to-bottom IaC Payload file after a fix (never partial code snippets).</li>
-                                    <li><span class="bullet-lead">Defect &amp; Patch Ledger (patch_ledger.md or DPL):</span> The ledger that records the root cause and verified fix of every error solved during Iterations 1 to 3.</li>
+                                    <li><span class="bullet-lead">Standard Patch Loop (Iterations 1 to 3):</span> Clinical diagnostic mode (`[ACTIVE DIAGNOSTIC: ...] | Iteration: 1 to 3`) where The AI Engine drops all analogies and provides a targeted fix for any terminal or cloud error during attempts 1, 2, or 3.</li>
+                                    <li><span class="bullet-lead">State Re-Sync:</span> Reproducing the complete, unified IaC Payload file from top to bottom after exiting a patch loop (never partial code snippets).</li>
+                                    <li><span class="bullet-lead">Defect &amp; Patch Ledger (patch_ledger.md or DPL):</span> The ledger that records the Error, Root Cause, and Engineered Fix of every defect solved during Iterations 1 to 3.</li>
                                 </ul>
                             </li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Whenever I verify in my local terminal that a fix worked during the Standard Patch Loop (Iterations 1 to 3) at any phase, The State Machine immediately logs the entry in the Defect &amp; Patch Ledger (DPL) and performs a full-file State Re-Sync of my IaC Payload, without ever needing to trip The 4-Iteration Circuit Breaker. In Phase 5, all entries are compiled into patch_ledger.md, and in Phase 7 they are permanently compiled into my upgraded System Directive.</li>
+                            <li><span class="bullet-lead">How Real-Time DPL Staging Works:</span> Whenever I confirm in my terminal that a patch worked during Iterations 1, 2, or 3 at any phase, The AI Engine immediately outputs the `[DPL ENTRY]` in the chat and performs a full-file State Re-Sync of my IaC Payload, without ever needing to trip The 4-Iteration Circuit Breaker. In Phase 5, all staged entries are written into `patch_ledger.md`, and in Phase 7 they are permanently compiled into my upgraded System Directive.</li>
                         </ul>
                     </div>
                     <div class="aka-box">
@@ -955,8 +890,8 @@
                         <span class="term-badge">[VARIABLE 25 :: ITERATION 4 EMERGENCY STOP]</span>
                         <h3 class="term-name">25. The 4-Iteration Circuit Breaker &amp; Estimated Probability of Success (X%)</h3>
                         <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The emergency cognitive circuit breaker active across every phase of the build that trips ONLY if a single isolated error fails 3 times in a row during the Standard Patch Loop and reaches Iteration 4.</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> Completely separate from routine Defect &amp; Patch Ledger (DPL) logging. If an error reaches Iteration 4, The 4-Iteration Circuit Breaker structurally forbids The AI Engine from generating any new code. Instead, The AI Engine must perform a formal Risk Management Assessment: analyzing how the error messages shifted across Attempts 1, 2, and 3, calculating a mathematical Estimated Probability of Success (X%) for staying the course, and presenting alternative architectural pathways so I can decide whether to authorize one more attempt or pivot.</li>
+                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The emergency cognitive circuit breaker active across every phase of the build that trips ONLY if a single isolated error fails 3 times in a row during the Standard Patch Loop and reaches Iteration 4 (the iteration counter resets to 1 for each new, separate defect).</li>
+                            <li><span class="bullet-lead">What Happens at Iteration 4:</span> Completely separate from routine Defect &amp; Patch Ledger (DPL) logging. If an isolated error reaches Iteration 4, The 4-Iteration Circuit Breaker structurally forbids The AI Engine from generating any new code. Instead, The AI Engine locks the brakes and conducts a Risk Management Assessment: summarizing how the error telemetry shifted across Attempts 1, 2, and 3, calculating an Estimated Probability of Success (X%), making a logistical recommendation, and presenting alternative architectural pathways so I can make the final strategic decision.</li>
                         </ul>
                     </div>
                     <div class="aka-box">
@@ -970,8 +905,8 @@
                         <span class="term-badge">[VARIABLE 26 :: PHASE 7 CONTINUOUS IMPROVEMENT &amp; UPGRADE]</span>
                         <h3 class="term-name">26. AI Performance Scorecard &amp; System Directive Compilation</h3>
                         <ul class="term-details">
-                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The final continuous-improvement close-out sequence in Phase 7 after my verified files are pushed to my Code Repository and Branch in Phase 6. The AI Performance Scorecard is a statistical table grading The AI Engine's execution accuracy across the session (First-Try Execution Rate, Total Patch Iterations, Circuit Breaker Events, and Watchdog Self-Corrections).</li>
-                            <li><span class="bullet-lead">Mathematical Chain (Step A &rarr; Step B):</span> In Phase 7, The AI Engine outputs the AI Performance Scorecard, extracts every verified root cause and fix logged in the Defect &amp; Patch Ledger (DPL) during the session, weaves those new rules permanently into my master System Directive, and outputs the complete upgraded System Directive in a single copy-paste block so The State Machine becomes smarter, tighter, and more resilient after every single run.</li>
+                            <li><span class="bullet-lead">What It Is (Physical Anatomy):</span> The final close-out sequence in Phase 7 after my verified files are pushed to my Code Repository and Branch in Phase 6. The AI Performance Scorecard is an exact statistical readout (`Total Diagnostic Loops Triggered`, `Total Iterations Executed`, `Circuit Breakers Pulled`, and `Protocol Deviations Logged`) counted directly from a bulleted list of the session's events.</li>
+                            <li><span class="bullet-lead">How It Upgrades the State Machine:</span> In Phase 7, after outputting the AI Performance Scorecard, The AI Engine retrieves every entry from the Defect &amp; Patch Ledger (DPL), states the specific Lesson Learned and rule adjustment for each entry, and upon my confirmation outputs the complete, newly optimized System Directive inside a single copy-paste code block so the machine never repeats that defect on future builds.</li>
                         </ul>
                     </div>
                     <div class="aka-box">

@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adversarial Kill-Chain Counter-Engineering - Home</title>
-   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-80NYKHYN3R"></script>
     <script>
@@ -78,28 +79,61 @@
             font-weight: 800;
         }
 
-        /* ================= HERO HEADER & TOP ARCHITECTURE BLOCKS ================= */
+        /* ================= HERO HEADER & BRAND INSIGNIA ================= */
         .hero { padding: 155px 20px 60px; text-align: center; border-bottom: 1px solid var(--border-base); }
-        .hero-title-container { display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
+        .hero-title-container { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 1.35rem; 
+            margin-bottom: 1.8rem; 
+            flex-wrap: wrap;
+        }
+        .hero-brand-crest {
+            width: 66px;
+            height: 66px;
+            flex-shrink: 0;
+            filter: drop-shadow(0 0 18px rgba(14, 165, 233, 0.35)) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.6));
+            transition: transform 0.3s ease;
+        }
+        .hero-brand-crest:hover {
+            transform: translateY(-2px) scale(1.04);
+        }
         .hero-title { font-family: 'Montserrat', sans-serif; font-size: 3.1rem; font-weight: 900; letter-spacing: 3px; color: var(--text-main); text-transform: uppercase; }
 
-        /* JUMP LINKS BAR (TOP POSITION) */
+        /* JUMP LINKS BAR (TOP POSITION WITH EMBEDDED 6D INSIGNIA) */
         .jump-links-container {
             max-width: 1300px;
             margin: 0 auto 3.2rem;
-            padding: 1.4rem 2rem;
-            background: rgba(15, 23, 42, 0.55);
+            padding: 1.6rem 2rem;
+            background: rgba(15, 23, 42, 0.65);
             border: 1px solid var(--border-base);
+            border-top: 3px solid var(--color-cyan);
             border-radius: 10px;
             text-align: center;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+        }
+        .jump-links-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.9rem;
+            margin-bottom: 1.15rem;
+            flex-wrap: wrap;
+        }
+        .jump-links-crest {
+            width: 42px;
+            height: 42px;
+            flex-shrink: 0;
+            filter: drop-shadow(0 0 12px rgba(14, 165, 233, 0.3));
         }
         .jump-links-intro {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.05rem;
-            font-weight: 700;
+            font-size: 1.1rem;
+            font-weight: 800;
             color: var(--text-main);
             letter-spacing: 0.5px;
-            margin-bottom: 1rem;
+            margin-bottom: 0;
         }
         .jump-links { 
             display: flex; 
@@ -826,6 +860,16 @@
             font-family: 'JetBrains Mono', monospace;
             line-height: 1.8;
         }
+        .footer-crest-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0.85rem;
+        }
+        .footer-brand-crest {
+            width: 38px;
+            height: 38px;
+            filter: drop-shadow(0 0 10px rgba(14, 165, 233, 0.25));
+        }
         .ip-footer strong {
             color: var(--color-cyan);
             font-weight: 700;
@@ -845,6 +889,7 @@
 
         @media (max-width: 992px) {
             .hero-title { font-size: 2.2rem; }
+            .hero-brand-crest { width: 54px; height: 54px; }
             .summary-title, .section-title, .flow-title, .hero-block-title { font-size: 1.45rem; }
             .hero-block-tag { font-size: 0.95rem; }
             .triad-grid, .adaptation-grid, .attributes-2x2-grid, .phase-subgrid, .mission-split-grid { grid-template-columns: 1fr; }
@@ -860,6 +905,7 @@
 
         @media (max-width: 600px) {
             .hero-title { font-size: 1.65rem; letter-spacing: 1px; }
+            .hero-brand-crest { width: 46px; height: 46px; }
             .hero { padding-top: 190px; } 
             
             nav { padding: 1rem; }
@@ -887,6 +933,22 @@
     <!-- ================= SECTION 1: HERO HEADER, WARFARE DOCTRINE, TOPOLOGY GRAPHIC, MISSION, 4 GATES GRID, AI SOLUTION GRID & 7 PHASE CARDS ================= -->
     <header class="hero">
         <div class="hero-title-container">
+            <!-- 6D. 4-CHEVRON (3D MACHINED BEVEL) HERO BRAND CREST -->
+            <svg class="hero-brand-crest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Adversarial Kill-Chain Counter-Engineering 4-Chevron Crest">
+                <rect width="114" height="114" x="3" y="3" fill="#020617" rx="22" stroke="#1e293b" stroke-width="3"/>
+                <!-- Gate 1: Gunmetal Bevel -->
+                <polygon points="24,18 60,36 60,48 24,30" fill="#475569"/>
+                <polygon points="96,18 60,36 60,48 96,30" fill="#1e293b"/>
+                <!-- Gate 2: Cobalt Bevel -->
+                <polygon points="24,39 60,57 60,69 24,51" fill="#0284c7"/>
+                <polygon points="96,39 60,57 60,69 96,51" fill="#075985"/>
+                <!-- Gate 3: Electric Cyan Bevel -->
+                <polygon points="24,60 60,78 60,90 24,72" fill="#38bdf8"/>
+                <polygon points="96,60 60,78 60,90 96,72" fill="#0369a1"/>
+                <!-- Gate 4: Crimson Bevel -->
+                <polygon points="24,81 60,99 60,111 24,93" fill="#f43f5e"/>
+                <polygon points="96,81 60,99 60,111 96,93" fill="#9f1239"/>
+            </svg>
             <h1 class="hero-title">ADVERSARIAL KILL-CHAIN COUNTER-ENGINEERING&trade;</h1>
         </div>
 
@@ -908,10 +970,23 @@
             </div>
         </div>
 
-        <!-- TOP QUICK-JUMP NAVIGATION BAR (PATCH 2B) -->
+        <!-- TOP QUICK-JUMP NAVIGATION BAR WITH 6D 4-CHEVRON INSIGNIA -->
         <div class="jump-links-container">
-            <div class="jump-links-intro">
-                Explore the Counter-Engineering Architecture Below. Select any section to jump directly to the detailed breakdown:
+            <div class="jump-links-header">
+                <svg class="jump-links-crest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+                    <rect width="114" height="114" x="3" y="3" fill="#020617" rx="22" stroke="#1e293b" stroke-width="3"/>
+                    <polygon points="24,18 60,36 60,48 24,30" fill="#475569"/>
+                    <polygon points="96,18 60,36 60,48 96,30" fill="#1e293b"/>
+                    <polygon points="24,39 60,57 60,69 24,51" fill="#0284c7"/>
+                    <polygon points="96,39 60,57 60,69 96,51" fill="#075985"/>
+                    <polygon points="24,60 60,78 60,90 24,72" fill="#38bdf8"/>
+                    <polygon points="96,60 60,78 60,90 96,72" fill="#0369a1"/>
+                    <polygon points="24,81 60,99 60,111 24,93" fill="#f43f5e"/>
+                    <polygon points="96,81 60,99 60,111 96,93" fill="#9f1239"/>
+                </svg>
+                <div class="jump-links-intro">
+                    Explore the Counter-Engineering Architecture Below. Select any section to jump directly to the detailed breakdown:
+                </div>
             </div>
             <div class="jump-links">
                 <a href="#system-topology">1. Adversarial Kill-Chain Counter-Engineering State Machine</a>
@@ -1697,6 +1772,19 @@
 
     <!-- ================= PROPRIETARY IP FOOTER ================= -->
     <footer class="ip-footer">
+        <div class="footer-crest-wrapper">
+            <svg class="footer-brand-crest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+                <rect width="114" height="114" x="3" y="3" fill="#020617" rx="22" stroke="#1e293b" stroke-width="3"/>
+                <polygon points="24,18 60,36 60,48 24,30" fill="#475569"/>
+                <polygon points="96,18 60,36 60,48 96,30" fill="#1e293b"/>
+                <polygon points="24,39 60,57 60,69 24,51" fill="#0284c7"/>
+                <polygon points="96,39 60,57 60,69 96,51" fill="#075985"/>
+                <polygon points="24,60 60,78 60,90 24,72" fill="#38bdf8"/>
+                <polygon points="96,60 60,78 60,90 96,72" fill="#0369a1"/>
+                <polygon points="24,81 60,99 60,111 24,93" fill="#f43f5e"/>
+                <polygon points="96,81 60,99 60,111 96,93" fill="#9f1239"/>
+            </svg>
+        </div>
         <strong>&copy; 2026 Steven Tuschman | Adversarial Kill-Chain Counter-Engineering&trade; (adversarialkillchaincounterengineering.com). All Rights Reserved.</strong><br>
         The Adversarial Kill-Chain Counter-Engineering State Machine v1.0, Sequential Kill-Chain Counter-Engineering Protocol, Execution Triad governance model, Four Architectural Gates of Machine Identity, Five Enterprise Guardrails, 72-Combination Build Matrix, and 26-Variable System Glossary are proprietary intellectual property. Unauthorized reproduction, distribution, or commercial adaptation is strictly prohibited.
     </footer>

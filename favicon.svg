@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="100%" height="100%">
+  <!-- Obsidian Armor Base & Slate Bezel -->
+  <rect width="114" height="114" x="3" y="3" fill="#020617" rx="22" stroke="#1e293b" stroke-width="3" />
+  
+  <!-- Gate 1: Gunmetal Bevel (Boundary) -->
+  <polygon points="24,18 60,36 60,48 24,30" fill="#475569" />
+  <polygon points="96,18 60,36 60,48 96,30" fill="#1e293b" />
+
+  <!-- Gate 2: Cobalt Bevel (Identity) -->
+  <polygon points="24,39 60,57 60,69 24,51" fill="#0284c7" />
+  <polygon points="96,39 60,57 60,69 96,51" fill="#075985" />
+
+  <!-- Gate 3: Electric Cyan Bevel (Federation) -->
+  <polygon points="24,60 60,78 60,90 24,72" fill="#38bdf8" />
+  <polygon points="96,60 60,78 60,90 96,72" fill="#0369a1" />
+
+  <!-- Gate 4: Crimson Bevel (Access Lockdown) -->
+  <polygon points="24,81 60,99 60,111 24,93" fill="#f43f5e" />
+  <polygon points="96,81 60,99 60,111 96,93" fill="#9f1239" />
+</svg>

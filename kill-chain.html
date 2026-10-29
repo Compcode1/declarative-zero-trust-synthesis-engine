@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Adversarial Kill Chain - The Enemy's Playbook | Adversarial Kill-Chain Counter-Engineering</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-80NYKHYN3R"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-80NYKHYN3R');
+    </script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-page: #020617; 
+            --bg-node: rgba(10, 15, 29, 0.95);
+            --border-base: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+            --color-blue: #3b82f6;
+            --color-cyan: #0ea5e9;
+            --color-purple: #a855f7;
+            --color-grey: #64748b;
+            --color-green: #10b981;
+            --color-teal: #14b8a6;
+            --color-red: #f43f5e;
+            --color-orange: #f97316;
+            --logo-blue: #2563eb;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--bg-page); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--text-main); line-height: 1.6; padding-bottom: 4rem; }
+
+        /* ================= NAVIGATION ================= */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-base); z-index: 100;
+            padding: 1.2rem 2rem; display: flex; justify-content: center;
+        }
+        .nav-links { 
+            display: flex; gap: 1.2rem; list-style: none; flex-wrap: wrap; 
+            justify-content: center; align-items: center; 
+        }
+        
+        .nav-links a { 
+            display: inline-block;
+            color: var(--color-cyan); 
+            border: 1px solid var(--color-cyan);
+            background: rgba(14, 165, 233, 0.1); 
+            padding: 0.5rem 1.2rem; 
+            border-radius: 6px;
+            text-decoration: none; 
+            font-size: 0.9rem; 
+            font-weight: 700; 
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+            transition: all 0.3s ease; 
+        }
+        
+        .nav-links a:hover, 
+        .nav-links a.active-link { 
+            background: var(--color-cyan); 
+            color: #ffffff; 
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
+        }
+
+        .bullet-lead {
+            color: var(--color-cyan);
+            font-weight: 800;
+        }
+        .bullet-lead-red {
+            color: var(--color-red);
+            font-weight: 800;
+        }
+        .bullet-lead-green {
+            color: var(--color-green);
+            font-weight: 800;
+        }
+        .bullet-lead-orange {
+            color: var(--color-orange);
+            font-weight: 800;
+        }
+
+        /* ================= HERO HEADER & BRAND INSIGNIA ================= */
+        .hero { padding: 155px 20px 40px; text-align: center; }
+        .hero-title-container { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 1.35rem; 
+            margin-bottom: 0.8rem; 
+            flex-wrap: wrap;
+        }
+        .hero-brand-crest {
+            width: 66px;
+            height: 66px;
+            flex-shrink: 0;
+            filter: drop-shadow(0 0 18px rgba(244, 63, 94, 0.4)) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.6));
+            transition: transform 0.3s ease;
+        }
+        .hero-brand-crest:hover {
+            transform: translateY(-2px) scale(1.04);
+        }
+        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 3.1rem; font-weight: 900; letter-spacing: 3px; color: var(--text-main); text-transform: uppercase; }
+        .hero-page-subtitle {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--color-red);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2.2rem;
+        }
+
+        /* JUMP LINKS BAR (TOP POSITION WITH EMBEDDED 6D INSIGNIA) */
+        .jump-links-container {
+            max-width: 1300px;
+            margin: 0 auto 3.2rem;
+            padding: 1.6rem 2rem;
+            background: rgba(15, 23, 42, 0.65);
+            border: 1px solid var(--border-base);
+            border-top: 3px solid var(--color-red);
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+        }
+        .jump-links-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.9rem;
+            margin-bottom: 1.15rem;
+            flex-wrap: wrap;
+        }
+        .jump-links-crest {
+            width: 42px;
+            height: 42px;
+            flex-shrink: 0;
+            filter: drop-shadow(0 0 12px rgba(244, 63, 94, 0.35));
+        }
+        .jump-links-intro {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: 0.5px;
+            margin-bottom: 0;
+        }
+        .jump-links { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 0.9rem; 
+        }
+        .jump-links a { 
+            color: var(--color-cyan); 
+            border: 1px solid var(--color-cyan); 
+            background: rgba(14, 165, 233, 0.08); 
+            padding: 0.65rem 1.2rem; 
+            border-radius: 8px; 
+            text-decoration: none; 
+            font-size: 0.85rem; 
+            font-weight: 700; 
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+            transition: all 0.3s ease; 
+        }
+        .jump-links a:hover { 
+            background: var(--color-cyan); 
+            color: #ffffff; 
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
+            transform: translateY(-2px); 
+        }
+
+        /* ELEVATED ARCHITECTURAL CONTAINERS */
+        .hero-arch-block {
+            max-width: 1300px;
+            margin: 0 auto 3rem;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-base);
+            border-radius: 12px;
+            padding: 3rem 3.2rem;
+            text-align: left;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+        }
+        .hero-arch-block.red-block { border-top: 4px solid var(--color-red); }
+        .hero-arch-block.cyan-block { border-top: 4px solid var(--color-cyan); }
+        .hero-arch-block.green-block { border-top: 4px solid var(--color-green); }
+
+        .hero-block-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.02rem;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            line-height: 1.55;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 0.75rem;
+        }
+        .red-block .hero-block-tag { color: var(--color-red); }
+        .cyan-block .hero-block-tag { color: var(--color-cyan); }
+        .green-block .hero-block-tag { color: var(--color-green); }
+
+        .hero-block-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            line-height: 1.35;
+            color: var(--text-main);
+            text-transform: uppercase;
+            margin-bottom: 1.6rem;
+            padding-bottom: 0.9rem;
+            border-bottom: 2px solid var(--border-base);
+        }
+
+        .hero-subtitle {
+            font-size: 1.18rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.8;
+            margin-bottom: 1.4rem;
+            text-align: left;
+        }
+
+        .mission-master-banner {
+            background: rgba(10, 15, 29, 0.95);
+            border: 1px solid var(--border-base);
+            border-left: 5px solid var(--color-red);
+            border-radius: 10px;
+            padding: 2.2rem 2.4rem;
+            margin-bottom: 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        /* STAGE HEADER BADGE & FLEX */
+        .stage-header-row {
+            display: flex;
+            align-items: center;
+            gap: 1.1rem;
+            margin-bottom: 1.4rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border-base);
+            flex-wrap: wrap;
+        }
+        .stage-badge-red {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: #ffffff;
+            background: var(--color-red);
+            padding: 0.35rem 0.9rem;
+            border-radius: 5px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px rgba(244, 63, 94, 0.35);
+        }
+        .stage-badge-green {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: var(--color-green);
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.45);
+            padding: 0.32rem 0.85rem;
+            border-radius: 5px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .stage-main-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.65rem;
+            font-weight: 900;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            line-height: 1.3;
+            width: 100%;
+            margin-top: 0.3rem;
+        }
+
+        /* 2X2 STAGE QUADRANT GRID */
+        .stage-quadrant-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.6rem;
+        }
+        .quad-card {
+            background: rgba(10, 15, 29, 0.95);
+            border: 1px solid var(--border-base);
+            border-radius: 10px;
+            padding: 2rem 2.1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+            display: flex;
+            flex-direction: column;
+        }
+        .quad-card.hacker-play { border-left: 4px solid var(--color-red); }
+        .quad-card.tech-seam { border-left: 4px solid var(--color-orange); }
+        .quad-card.authority-proof { border-left: 4px solid var(--color-purple); }
+        .quad-card.akcce-strike { border-left: 4px solid var(--color-green); }
+
+        .quad-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.45rem;
+        }
+        .quad-card.hacker-play .quad-tag { color: var(--color-red); }
+        .quad-card.tech-seam .quad-tag { color: var(--color-orange); }
+        .quad-card.authority-proof .quad-tag { color: var(--color-purple); }
+        .quad-card.akcce-strike .quad-tag { color: var(--color-green); }
+
+        .quad-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: var(--text-main);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            padding-bottom: 0.7rem;
+            border-bottom: 1px solid var(--border-base);
+            letter-spacing: 0.5px;
+        }
+        .quad-text {
+            font-size: 1.05rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.72;
+        }
+
+        .quad-list {
+            list-style: disc;
+            padding-left: 1.35rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+        .quad-list li {
+            font-size: 1.02rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.65;
+            padding-left: 0.2rem;
+        }
+        .quad-card.tech-seam .quad-list li::marker { color: var(--color-orange); }
+        .quad-card.authority-proof .quad-list li::marker { color: var(--color-purple); }
+        .quad-card.akcce-strike .quad-list li::marker { color: var(--color-green); }
+
+        /* EXTERNAL AUTHORITY REFERENCE BUTTONS */
+        .authority-link-badge {
+            display: inline-block;
+            margin-top: 0.45rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: var(--color-cyan);
+            background: rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.45);
+            padding: 0.28rem 0.75rem;
+            border-radius: 4px;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            transition: all 0.25s ease;
+        }
+        .authority-link-badge:hover {
+            background: var(--color-cyan);
+            color: #ffffff;
+            box-shadow: 0 0 12px rgba(14, 165, 233, 0.4);
+        }
+
+        .inline-link { color: var(--color-cyan); text-decoration: none; border-bottom: 1px solid var(--color-cyan); font-weight: 800; transition: color 0.3s ease, border-color 0.3s ease; }
+        .inline-link:hover { color: #ffffff; border-color: #ffffff; }
+
+        /* MASTER SUMMARY COMPARISON TABLE */
+        .matrix-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            border-radius: 10px;
+            border: 1px solid var(--border-base);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+        }
+        .killchain-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(10, 15, 29, 0.95);
+            text-align: left;
+        }
+        .killchain-table th {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-cyan);
+            background: rgba(2, 6, 23, 0.95);
+            padding: 1.25rem 1.2rem;
+            border-bottom: 2px solid var(--border-base);
+        }
+        .killchain-table td {
+            padding: 1.25rem 1.2rem;
+            font-size: 0.98rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.6;
+            border-bottom: 1px solid var(--border-base);
+            vertical-align: top;
+        }
+        .killchain-table tr:hover td {
+            background: rgba(14, 165, 233, 0.04);
+        }
+
+        /* INSIGHT BOX */
+        .insight-box { border-left: 4px solid var(--color-purple); padding: 2.2rem 2.5rem; margin: 2.5rem auto 0; max-width: 1300px; border-radius: 0 8px 8px 0; text-align: left; }
+        .insight-header { font-family: 'Montserrat', sans-serif; font-size: 1.15rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.85rem; display: flex; align-items: center; gap: 8px; }
+        .insight-header::before { content: '>'; font-weight: 900; }
+        .insight-text { font-size: 1.18rem; color: var(--text-main); font-style: normal; line-height: 1.8; font-weight: 600; }
+
+        #command-briefing, #stage-1, #stage-2, #stage-3, #stage-4, #stage-5, #stage-6, #stage-7, #master-matrix {
+            scroll-margin-top: 105px;
+        }
+
+        /* ================= PROPRIETARY IP FOOTER ================= */
+        .ip-footer {
+            max-width: 1300px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            border-top: 1px solid var(--border-base);
+            background: rgba(10, 15, 29, 0.6);
+            border-radius: 8px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+            line-height: 1.8;
+        }
+        .footer-crest-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0.85rem;
+        }
+        .footer-brand-crest {
+            width: 38px;
+            height: 38px;
+            filter: drop-shadow(0 0 10px rgba(14, 165, 233, 0.25));
+        }
+        .ip-footer strong {
+            color: var(--color-cyan);
+            font-weight: 700;
+        }
+
+        @media (max-width: 992px) {
+            .hero-title { font-size: 2.2rem; }
+            .hero-brand-crest { width: 54px; height: 54px; }
+            .hero-block-title, .stage-main-title { font-size: 1.45rem; }
+            .stage-quadrant-grid { grid-template-columns: 1fr; }
+            .hero-arch-block { padding: 2rem 1.5rem; }
+            .mission-master-banner, .insight-box { padding: 1.5rem; }
+        }
+
+        @media (max-width: 600px) {
+            .hero-title { font-size: 1.65rem; letter-spacing: 1px; }
+            .hero-brand-crest { width: 46px; height: 46px; }
+            .hero { padding-top: 190px; }
+            nav { padding: 1rem; }
+            .nav-links { gap: 0.6rem; }
+            .nav-links a { font-size: 0.75rem; padding: 0.4rem 0.8rem; letter-spacing: 0.5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MASTER NAVIGATION -->
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="kill-chain.html" class="active-link">The Adversarial Kill Chain</a></li>
+            <li><a href="blueprint.html">7-Phase Counter-Engineering Blueprint</a></li>
+            <li><a href="ai-systems-engineering.html">Tethered AI Systems Engineering</a></li>
+            <li><a href="architectural.html">Exploit-Level Pipeline Architecture</a></li>
+            <li><a href="workflow-portfolio.html">Live Counter-Engineering Proofs</a></li>
+            <li><a href="add-capabilities.html">35 Day-2 Entra ID Modules</a></li>
+            <li><a href="glossary.html">26-Variable System Glossary</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- ================= HERO HEADER & COMMANDER'S BRIEFING ================= -->
+    <header class="hero">
+        <div class="hero-title-container">
+            <!-- 6D. 4-CHEVRON (3D MACHINED BEVEL) HERO BRAND CREST -->
+            <svg class="hero-brand-crest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Adversarial Kill-Chain Counter-Engineering 4-Chevron Crest">
+                <rect width="114" height="114" x="3" y="3" fill="#020617" rx="22" stroke="#1e293b" stroke-width="3"/>
+                <polygon points="24,18 60,36 60,48 24,30" fill="#475569"/>
+                <polygon points="96,18 60,36 60,48 96,30" fill="#1e293b"/>
+                <polygon points="24,39 60,57 60,69 24,51" fill="#0284c7"/>
+                <polygon points="96,39 60,57 60,69 96,51" fill="#075985"/>
+                <polygon points="24,60 60,78 60,90 24,72" fill="#38bdf8"/>
+                <polygon points="96,60 60,78 60,90 96,72" fill="#0369a1"/>
+                <polygon points="24,81 60,99 60,111 24,93" fill="#f43f5e"/>
+                <polygon points="96,81 60,99 60,111 96,93" fill="#9f1239"/>
+            </svg>
+            <h1 class="hero-title">THE ADVERSARIAL KILL CHAIN&trade;</h1>
+        </div>
+        <div class="hero-page-subtitle">The Enemy's 7-Stage Playbook &amp; Global Threat Authority Matrix</div>
+
+        <!-- COMMANDER'S BRIEFING BLOCK -->
+        <div class="hero-arch-block red-block" id="command-briefing">
+            <span class="hero-block-tag">[COMMANDER'S BRIEFING :: WHY THE ADVERSARIAL KILL CHAIN IS FINITE, PREDICTABLE &amp; EMPIRICALLY PROVEN]</span>
+            <h2 class="hero-block-title">Knowing the Enemy's Exact Playbook Inside a Closed Mechanical System</h2>
+
+            <div class="mission-master-banner">
+                <p class="hero-subtitle">
+                    In any military conflict, a defense cannot hold a perimeter if it treats the enemy's strategy as an afterthought. Yet across the modern cybersecurity industry, the "kill chain" is routinely treated as background noise while defenders rely on disconnected checklists, manual portal clicks, and unconstrained AI guesswork. <span class="bullet-lead-red">Adversarial Kill-Chain Counter-Engineering&trade;</span> starts from the opposite premise: cybersecurity is an active, asymmetric war fought inside a closed mechanical system.
+                </p>
+                <p class="hero-subtitle">
+                    When an external <span class="bullet-lead">Execution Agent</span> (Azure Kubernetes Service (AKS), GitHub Actions, Azure DevOps, or GitLab CI) authenticates into <span class="bullet-lead">Microsoft Entra ID</span> to read a protected <span class="bullet-lead">Data-Plane Asset</span> (Azure Key Vault, Storage Account, or SQL / Cosmos DB), there are not thousands of mysterious ways for an adversary to break in. Because the Microsoft Entra ID and Azure machine-identity pipeline is governed by strict mathematical schemas and cryptographic handshakes, the attack surface is physically finite. From the engineer's local keyboard to the final repository commit, there are only <span class="bullet-lead-red">seven structural seams&mdash;seven physical handoffs&mdash;where an attacker can strike.</span>
+                </p>
+                <p class="hero-subtitle" style="margin-bottom: 0;">
+                    Sophisticated threat actors, red-team researchers, and AI-armed adversaries have mapped those exact seven seams into a repeatable, seven-stage offensive playbook. Mathematically, the attacker only needs one unsealed seam to breach the environment (1 hit out of N), while the defender must seal 100% of the chain in sequence (1.0). Below is the enemy's exact operational playbook from Stage 1 to Stage 7&mdash;backed by primary-source citations and live links to <span class="bullet-lead">MITRE ATT&amp;CK&reg;, OWASP, NIST, CISA/NSA, HashiCorp, and Microsoft Threat Intelligence</span>&mdash;alongside the exact mechanical strike inside <span class="bullet-lead-green">The Adversarial Kill-Chain Counter-Engineering State Machine</span> that neutralizes each play 100% of the time.
+                </p>
+            </div>
+        </div>
+
+        <!-- TOP QUICK-JUMP NAVIGATION BAR -->
+        <div class="jump-links-container">
+            <div class="jump-links-header">
+                <svg class="jump-links-crest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+                    <rect width="114" height="114" x="3" y="3" fill="#020617" rx="22" stroke="#1e293b" stroke-width="3"/>
+                    <polygon points="24,18 60,36 60,48 24,30" fill="#475569"/>
+                    <polygon points="96,18 60,36 60,48 96,30" fill="#1e293b"/>
+                    <polygon points="24,39 60,57 60,69 24,51" fill="#0284c7"/>
+                    <polygon points="96,39 60,57 60,69 96,51" fill="#075985"/>
+                    <polygon points="24,60 60,78 60,90 24,72" fill="#38bdf8"/>
+                    <polygon points="96,60 60,78 60,90 96,72" fill="#0369a1"/>
+                    <polygon points="24,81 60,99 60,111 24,93" fill="#f43f5e"/>
+                    <polygon points="96,81 60,99 60,111 96,93" fill="#9f1239"/>
+                </svg>
+                <div class="jump-links-intro">
+                    Select Any Link of the 7-Stage Adversarial Kill Chain Below to Inspect the Offensive Tradecraft &amp; Counter-Engineering Strike:
+                </div>
+            </div>
+            <div class="jump-links">
+                <a href="#stage-1">Stage 1: Local Workspace &amp; Coordinate Harvesting</a>
+                <a href="#stage-2">Stage 2: OIDC Wildcard &amp; Token Impersonation</a>
+                <a href="#stage-3">Stage 3: Multi-Tenant &amp; "The Contributor Trap"</a>
+                <a href="#stage-4">Stage 4: CI/CD Console Log &amp; Token Scraping</a>
+                <a href="#stage-5">Stage 5: SIEM Indexing &amp; Forensic Blind Spots</a>
+                <a href="#stage-6">Stage 6: Git State-File (.tfstate) Leakage</a>
+                <a href="#stage-7">Stage 7: AI Amnesia &amp; Regression Drift</a>
+                <a href="#master-matrix">Master 7-Stage Comparison Matrix</a>
+            </div>
+        </div>
+
+        <!-- ================= STAGE 1 ================= -->
+        <div class="hero-arch-block red-block" id="stage-1">
+            <div class="stage-header-row">
+                <span class="stage-badge-red">OFFENSIVE STAGE 01</span>
+                <span class="stage-badge-green">NEUTRALIZED IN PHASE 1 / GATE 1 (BOUNDARY)</span>
+                <h2 class="stage-main-title">Local Coordinate Harvesting &amp; Workspace Exposure</h2>
+            </div>
+
+            <div class="stage-quadrant-grid">
+                <div class="quad-card hacker-play">
+                    <span class="quad-tag">[01 :: THE HACKER'S PLAY &mdash; PLAIN-TALK TRADECRAFT]</span>
+                    <h3 class="quad-title">What the Adversary Sees &amp; Does</h3>
+                    <p class="quad-text">
+                        Before an attacker ever tries to break through Microsoft's front-door authentication servers, they hunt for leftover keys and maps on the engineer's own workstation. Whenever an engineer types or pastes a temporary setup token directly into a standard terminal line, the operating system silently writes that exact command into a hidden plain-text history file on the hard drive. At the same time, engineers using browser-based Azure Cloud Shells routinely leave behind abandoned storage containers holding cached tokens and state files, or paste real corporate Tenant IDs and Subscription IDs into public AI chat windows. The attacker uses automated credential-harvesting scripts and infostealer malware to sweep those history files, browser storage mounts, and messy project folders&mdash;stealing the organization's cloud routing map and setup keys before the cloud deployment even begins.
+                    </p>
+                </div>
+
+                <div class="quad-card tech-seam">
+                    <span class="quad-tag">[02 :: THE TECHNICAL SEAM TARGETED]</span>
+                    <h3 class="quad-title">Exact Mechanical Vulnerability</h3>
+                    <ul class="quad-list">
+                        <li><span class="bullet-lead-orange">Plaintext Shell History Files:</span> Unmasked commands written to <code style="color: var(--color-cyan);">.bash_history</code> (Linux/macOS/Git Bash) and <code style="color: var(--color-cyan);">ConsoleHost_history.txt</code> (PowerShell) whenever setup tokens are exported inline.</li>
+                        <li><span class="bullet-lead-orange">Abandoned Browser Cloud Shell Storage:</span> Ephemeral browser-based Azure Cloud Shell sessions timing out at 20 minutes, dropping MFA claims, and leaving behind persistent storage mounts containing stale <code style="color: var(--color-cyan);">.tfstate</code> files and cached credentials.</li>
+                        <li><span class="bullet-lead-orange">AI Context Leakage &amp; Unverified Boundaries:</span> Hardcoded Entra ID Tenant IDs and Azure Subscription IDs pasted into untethered AI prompts, or deploying into a subscription nested under the wrong directory tenant.</li>
+                    </ul>
+                </div>
+
+                <div class="quad-card authority-proof">
+                    <span class="quad-tag">[03 :: GLOBAL THREAT INTELLIGENCE &amp; STANDARDS PROOF]</span>
+                    <h3 class="quad-title">Verified World-Authority Citations</h3>
+                    <ul class="quad-list">
+                        <li>
+                            <span class="bullet-lead">MITRE ATT&amp;CK&reg; T1552.003 (Unsecured Credentials: Bash History):</span> Documents how adversaries systematically scrape local <code style="color: var(--color-cyan);">.bash_history</code> and PowerShell history files on developer machines to harvest plaintext CLI tokens.<br>
+                            <a href="https://attack.mitre.org/techniques/T1552/003/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify MITRE T1552.003 &rarr;</a>
+                        </li>
+                        <li>
+                            <span class="bullet-lead">MITRE ATT&amp;CK&reg; T1552.001 (Credentials In Files):</span> Details automated harvesting of secrets and cloud coordinates from unisolated local folders and cloud shell mounts.<br>
+                            <a href="https://attack.mitre.org/techniques/T1552/001/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify MITRE T1552.001 &rarr;</a>
+                        </li>
+                        <li>
+                            <span class="bullet-lead">OWASP Top 10 for LLM Applications (LLM06: Sensitive Information Disclosure):</span> Establishes the global standard against leaking proprietary tenant coordinates and credentials into untethered AI context windows.<br>
+                            <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify OWASP LLM Top 10 &rarr;</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="quad-card akcce-strike">
+                    <span class="quad-tag">[04 :: THE AKCCE COUNTER-ENGINEERING STRIKE]</span>
+                    <h3 class="quad-title">How Phase 1 Welds the Seam Shut</h3>
+                    <ul class="quad-list">
+                        <li><span class="bullet-lead-green">Cloud Shell Deprecation &amp; Clean Local Workspace (Rules 12, 19 &amp; 20):</span> Permanently bans browser Cloud Shells and requires The Architect to initialize a brand-new, empty local directory in Visual Studio Code containing the five blank deliverable files.</li>
+                        <li><span class="bullet-lead-green">DLP Parameterization &amp; Silent RAM Input (Rules 2 &amp; 22 / Guardrail 1):</span> Replaces corporate IDs with plain-language parameters and mandates invisible memory-buffered terminal input (<code style="color: var(--color-green);">read -s</code>) so setup tokens live strictly in temporary RAM and never touch the screen or <code style="color: var(--color-green);">.bash_history</code>.</li>
+                        <li><span class="bullet-lead-green">Gate 1 Boundary Verification (Rule 17):</span> Executes read-only Azure CLI lookups to prove the Azure Subscription ID, Resource Group, and Data-Plane Asset sit nested under the organization's Entra ID Tenant ID before unlocking Phase 2.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= STAGE 2 ================= -->
+        <div class="hero-arch-block red-block" id="stage-2">
+            <div class="stage-header-row">
+                <span class="stage-badge-red">OFFENSIVE STAGE 02</span>
+                <span class="stage-badge-green">NEUTRALIZED IN PHASE 2 / GATE 3 (FEDERATION)</span>
+                <h2 class="stage-main-title">OIDC Token Impersonation &amp; Wildcard Exploitation</h2>
+            </div>
+
+            <div class="stage-quadrant-grid">
+                <div class="quad-card hacker-play">
+                    <span class="quad-tag">[01 :: THE HACKER'S PLAY &mdash; PLAIN-TALK TRADECRAFT]</span>
+                    <h3 class="quad-title">What the Adversary Sees &amp; Does</h3>
+                    <p class="quad-text">
+                        Once the cloud perimeter is established, the attacker targets the passwordless bridge between the external Execution Agent and Microsoft Entra ID. In an OpenID Connect (OIDC) login, the external platform presents a digital ID card containing a Subject Claim&mdash;the exact return address of the Code Repository and Branch requesting access. Because Microsoft Entra ID checks that Subject Claim with 100% case-sensitive strictness (throwing an <code style="color: var(--color-red);">AADSTS700213</code> rejection if a single capital or lowercase letter is off), frustrated engineers and untethered AI models frequently insert a wildcard asterisk (<code style="color: var(--color-red);">*</code>) or loosen the branch filter just to make the login work. Attackers actively hunt for those wildcard trust rules. The moment an asterisk is present, an attacker can fork the repository, submit a malicious pull request, or trigger a build from an unauthorized side branch, satisfy the loose trust rule, and trick Microsoft Entra ID into handing them a real 60-Minute Login Token.
+                    </p>
+                </div>
+
+                <div class="quad-card tech-seam">
+                    <span class="quad-tag">[02 :: THE TECHNICAL SEAM TARGETED]</span>
+                    <h3 class="quad-title">Exact Mechanical Vulnerability</h3>
+                    <ul class="quad-list">
+                        <li><span class="bullet-lead-orange">Wildcard (*) Subject Claim Filters:</span> Overly broad OIDC trust rules inside Microsoft Entra ID Federated Identity Credentials that trust any branch, pull request, tag, or forked repository within an organization.</li>
+                        <li><span class="bullet-lead-orange">Case-Sensitivity Shortcuts (AADSTS700213):</span> Manual typing or AI capitalization guesswork on GitHub Actions, Azure DevOps, GitLab CI, or AKS paths that fails Microsoft Entra ID's binary string comparison and tempts engineers to weaken the trust rule.</li>
+                        <li><span class="bullet-lead-orange">Mutable String Renaming:</span> Relying purely on guessed text handles without extracting permanent backend numeric Owner IDs and Repository IDs from the provider API.</li>
+                    </ul>
+                </div>
+
+                <div class="quad-card authority-proof">
+                    <span class="quad-tag">[03 :: GLOBAL THREAT INTELLIGENCE &amp; STANDARDS PROOF]</span>
+                    <h3 class="quad-title">Verified World-Authority Citations</h3>
+                    <ul class="quad-list">
+                        <li>
+                            <span class="bullet-lead">OWASP Top 10 CI/CD Security Risks (CICD-SEC-01 &amp; CICD-SEC-02):</span> Documents how attackers exploit loosely scoped CI/CD OIDC trust policies and pull-request workflow triggers to impersonate production pipeline identities.<br>
+                            <a href="https://owasp.org/www-project-top-10-ci-cd-security-risks/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify OWASP CI/CD Top 10 &rarr;</a>
+                        </li>
+                        <li>
+                            <span class="bullet-lead">OWASP Non-Human Identities Top 10 (NHI2: Misconfigured Federated Trust):</span> Details how wildcard OIDC subject claims in cloud workload federation allow unauthorized branches to mint valid cloud access tokens.<br>
+                            <a href="https://owasp.org/www-project-non-human-identities-top-10/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify OWASP NHI Top 10 &rarr;</a>
+                        </li>
+                        <li>
+                            <span class="bullet-lead">Microsoft Entra Workload ID Security Advisory:</span> Explicitly warns against wildcard subject claims and mandates exact case-sensitive string matching on the <code style="color: var(--color-cyan);">sub</code> claim.<br>
+                            <a href="https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation-considerations" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify Microsoft Entra Advisory &rarr;</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="quad-card akcce-strike">
+                    <span class="quad-tag">[04 :: THE AKCCE COUNTER-ENGINEERING STRIKE]</span>
+                    <h3 class="quad-title">How Phase 2 Welds the Seam Shut</h3>
+                    <ul class="quad-list">
+                        <li><span class="bullet-lead-green">Mandatory Programmatic Source Extraction (Phase 2 &amp; Rule 24):</span> Physically blocks Phase 3 code synthesis until The Architect runs read-only terminal extraction scripts directly against the selected Execution Agent backend API (GitHub Actions, Azure DevOps, GitLab CI, or AKS).</li>
+                        <li><span class="bullet-lead-green">Zero-Wildcard Character &amp; Node-ID Lock (Gate 3):</span> Extracts the immutable numeric Owner and Repository IDs alongside the exact capital-and-lowercase Code Repository and Branch string straight from the provider's database&mdash;locking the Gate 3 Subject Claim character-for-character with zero wildcards (<code style="color: var(--color-green);">*</code>).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= STAGE 3 ================= -->
+        <div class="hero-arch-block red-block" id="stage-3">
+            <div class="stage-header-row">
+                <span class="stage-badge-red">OFFENSIVE STAGE 03</span>
+                <span class="stage-badge-green">NEUTRALIZED IN PHASE 3 / GATES 2 &amp; 4 (IDENTITY &amp; ACCESS)</span>
+                <h2 class="stage-main-title">Multi-Tenant Injection &amp; Control-Plane Escalation via "The Contributor Trap"</h2>
+            </div>
+
+            <div class="stage-quadrant-grid">
+                <div class="quad-card hacker-play">
+                    <span class="quad-tag">[01 :: THE HACKER'S PLAY &mdash; PLAIN-TALK TRADECRAFT]</span>
+                    <h3 class="quad-title">What the Adversary Sees &amp; Does</h3>
+                    <p class="quad-text">
+                        If an attacker compromises a build workflow, they do not want to stop at reading one secret&mdash;they want to take over the entire cloud subscription. They immediately probe the machine identity for two devastating misconfigurations. First, they check if the Application Registration was left in multi-tenant mode or configured with active web browser redirect URLs, which allows an attacker in an outside Microsoft directory to instantiate the app or phish tokens via browser callbacks. Second, they check the identity's Azure permissions for <span class="bullet-lead-red">"The Contributor Trap."</span> When engineers or untethered AI assistants get stuck on Azure permission errors, they routinely grant the machine identity the broad <code style="color: var(--color-red);">Contributor</code> or <code style="color: var(--color-red);">Owner</code> role across the Resource Group or subscription. Because Contributor is a management-plane role, an attacker holding that token can spin up backdoor virtual machines, alter firewall rules, create rogue admin accounts, or wipe out production infrastructure across the entire environment.
+                    </p>
+                </div>
+
+                <div class="quad-card tech-seam">
+                    <span class="quad-tag">[02 :: THE TECHNICAL SEAM TARGETED]</span>
+                    <h3 class="quad-title">Exact Mechanical Vulnerability</h3>
+                    <ul class="quad-list">
+                        <li><span class="bullet-lead-orange">"The Contributor Trap" (Control-Plane Over-Permissioning):</span> Assigning management-plane roles (<code style="color: var(--color-cyan);">Owner</code> or <code style="color: var(--color-cyan);">Contributor</code>) to a workload Service Principal that only needs to read a single Data-Plane Asset.</li>
+                        <li><span class="bullet-lead-orange">Multi-Tenant Registrations &amp; Active Browser Callbacks:</span> Leaving <code style="color: var(--color-cyan);">signInAudience</code> open to external Microsoft directories or leaving web redirect URIs active on headless machine identities.</li>
+                        <li><span class="bullet-lead-orange">Graph API Replication Crashes &amp; Dropped Terminal MFA Claims:</span> Attaching Gate 3 trust rules before Microsoft's global directory servers finish syncing Gate 2 objects (404 crashes), or assigning sensitive roles from a terminal that strips interactive MFA claims (401 <code style="color: var(--color-cyan);">RequestDisallowedByAzure</code>).</li>
+                    </ul>
+                </div>
+
+                <div class="quad-card authority-proof">
+                    <span class="quad-tag">[03 :: GLOBAL THREAT INTELLIGENCE &amp; STANDARDS PROOF]</span>
+                    <h3 class="quad-title">Verified World-Authority Citations</h3>
+                    <ul class="quad-list">
+                        <li>
+                            <span class="bullet-lead">MITRE ATT&amp;CK&reg; T1078.004 (Cloud Accounts) &amp; T1098.003 (Additional Cloud Roles):</span> Documents how adversaries abuse over-privileged service principals and multi-tenant registrations to escalate across the Azure control plane.<br>
+                            <a href="https://attack.mitre.org/techniques/T1078/004/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify MITRE T1078.004 &rarr;</a>
+                            <a href="https://attack.mitre.org/techniques/T1098/003/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify MITRE T1098.003 &rarr;</a>
+                        </li>
+                        <li>
+                            <span class="bullet-lead">Microsoft Threat Intelligence (Midnight Blizzard Cloud Identity Tradecraft):</span> Details how nation-state actors target multi-tenant apps and over-privileged service principals to pivot across Microsoft Entra ID and Azure.<br>
+                            <a href="https://www.microsoft.com/en-us/security/blog/2024/01/25/midnight-blizzard-guidance-for-responders-on-nation-state-attack/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify Microsoft Threat Intel &rarr;</a>
+                        </li>
+                        <li>
+                            <span class="bullet-lead">NIST Special Publication 800-207 (Zero Trust Architecture):</span> Mandates strict least-privilege authorization scoped to individual data resources rather than broad management zones.<br>
+                            <a href="https://csrc.nist.gov/pubs/sp/800/207/final" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify NIST SP 800-207 &rarr;</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="quad-card akcce-strike">
+                    <span class="quad-tag">[04 :: THE AKCCE COUNTER-ENGINEERING STRIKE]</span>
+                    <h3 class="quad-title">How Phase 3 Welds the Seam Shut</h3>
+                    <ul class="quad-list">
+                        <li><span class="bullet-lead-green">Gate 2 Single-Tenant &amp; Headless Hardening:</span> Locks the Application Registration and Service Principal strictly to Single-Tenant Mode (<code style="color: var(--color-green);">AzureADMyOrg</code>) with Disabled Browser Redirect URLs and zero static passwords.</li>
+                        <li><span class="bullet-lead-green">Stopping "The Contributor Trap" (Rule 4 / Guardrail 3 / Gate 4):</span> Mathematically blocks <code style="color: var(--color-green);">Owner</code> and <code style="color: var(--color-green);">Contributor</code> roles, restricting the Service Principal to one narrow Data-Plane Role locked strictly to the single Data-Plane Asset.</li>
+                        <li><span class="bullet-lead-green">Asset Protection, 30s Sync Timer &amp; Portal MFA Handoff (Rules 3, 5, 23 &amp; 29):</span> Enforces read-only lookups on Brownfield (Existing) assets (and deletion locks on Greenfield (Net-New) assets), pins all provider versions, embeds the mandatory 30-Second Server Sync Timer to eliminate Graph API race conditions, and triggers the guided Azure Portal MFA Handoff whenever terminal credential brokers drop MFA claims.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= STAGE 4 ================= -->
+        <div class="hero-arch-block red-block" id="stage-4">
+            <div class="stage-header-row">
+                <span class="stage-badge-red">OFFENSIVE STAGE 04</span>
+                <span class="stage-badge-green">NEUTRALIZED IN PHASE 4 (VALIDATION BRIDGE &amp; PORTAL METRICS)</span>
+                <h2 class="stage-main-title">CI/CD Console Log Scraping &amp; Bearer Token Exfiltration</h2>
+            </div>
+
+            <div class="stage-quadrant-grid">
+                <div class="quad-card hacker-play">
+                    <span class="quad-tag">[01 :: THE HACKER'S PLAY &mdash; PLAIN-TALK TRADECRAFT]</span>
+                    <h3 class="quad-title">What the Adversary Sees &amp; Does</h3>
+                    <p class="quad-text">
+                        Even when a machine identity is locked down in Azure, the attacker knows that engineers almost always run a test job on the external Execution Agent to prove the connection works&mdash;and to see that proof with their own eyes, engineers and standard AI tools routinely write test scripts that echo the retrieved vault secret or the temporary 60-Minute Login Token directly to the runner's console screen (<code style="color: var(--color-red);">stdout</code>). The instant that job runs, those raw secrets are permanently written into the CI/CD platform's searchable build history logs. Automated offensive scanners continuously crawl corporate build logs&mdash;which are often readable by hundreds of internal users, contractors, and third-party plugins&mdash;and steal the active bearer token or vault secret straight off the screen without ever attacking Azure directly.
+                    </p>
+                </div>
+
+                <div class="quad-card tech-seam">
+                    <span class="quad-tag">[02 :: THE TECHNICAL SEAM TARGETED]</span>
+                    <h3 class="quad-title">Exact Mechanical Vulnerability</h3>
+                    <ul class="quad-list">
+                        <li><span class="bullet-lead-orange">Unmasked Runner Console Output (stdout / stderr):</span> Validation scripts inside GitHub Actions, Azure DevOps, GitLab CI, or Kubernetes pods that print retrieved Key Vault secrets, storage keys, or active OIDC bearer tokens to job logs.</li>
+                        <li><span class="bullet-lead-orange">Unverified "Blind" Deployments:</span> Stopping after Phase 3 infrastructure code runs without proving live end-to-end token exchange and data-plane access from the external Execution Agent.</li>
+                        <li><span class="bullet-lead-orange">Client ID vs. Object ID Confusion &amp; Policy Cache Delays:</span> Passing internal directory Object IDs instead of Application Client IDs to login actions, or re-running pipelines before Microsoft Entra ID's 3-to-5-minute policy cache settles.</li>
+                    </ul>
+                </div>
+
+                <div class="quad-card authority-proof">
+                    <span class="quad-tag">[03 :: GLOBAL THREAT INTELLIGENCE &amp; STANDARDS PROOF]</span>
+                    <h3 class="quad-title">Verified World-Authority Citations</h3>
+                    <ul class="quad-list">
+                        <li>
+                            <span class="bullet-lead">OWASP Top 10 CI/CD Security Risks (CICD-SEC-06: Insufficient Credential Hygiene):</span> Explicitly identifies plaintext exposure of tokens and secrets inside CI/CD console build logs as a primary enterprise breach vector.<br>
+                            <a href="https://owasp.org/www-project-top-10-ci-cd-security-risks/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify OWASP CICD-SEC-06 &rarr;</a>
+                        </li>
+                        <li>
+                            <span class="bullet-lead">MITRE ATT&amp;CK&reg; T1552 (Unsecured Credentials in Pipeline &amp; Container Logs):</span> Documents adversary harvesting of ephemeral bearer tokens and secrets exposed in automation runner outputs.<br>
+                            <a href="https://attack.mitre.org/techniques/T1552/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify MITRE T1552 &rarr;</a>
+                        </li>
+                        <li>
+                            <span class="bullet-lead">CISA &amp; NSA Joint Cybersecurity Information Sheet (Defending CI/CD Environments):</span> Warns that build logs are high-risk exposure surfaces and mandates runtime secret masking and strict pipeline verification.<br>
+                            <a href="https://www.cisa.gov/resources-tools/resources/defending-continuous-integrationcontinuous-delivery-cicd-environments" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify CISA/NSA CI/CD Guide &rarr;</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="quad-card akcce-strike">
+                    <span class="quad-tag">[04 :: THE AKCCE COUNTER-ENGINEERING STRIKE]</span>
+                    <h3 class="quad-title">How Phase 4 Welds the Seam Shut</h3>
+                    <ul class="quad-list">
+                        <li><span class="bullet-lead-green">Pre-Test Cryptographic Baseline (Phase 4 Step 1):</span> Saves the four-section Identity Architecture Ledger (<code style="color: var(--color-green);">identity_architecture_ledger.md</code> or IAL) immediately before live testing begins.</li>
+                        <li><span class="bullet-lead-green">Validation Bridge with Active Runtime Log Masking (Rule 6 / Guardrail 5 / Step 2):</span> Injects active Runtime Log Masking (<code style="color: var(--color-green);">::add-mask::</code>) into the live Validation Bridge workflow so the 60-Minute Login Token and Data-Plane Asset secret are intercepted in runner memory and replaced with asterisks (<code style="color: var(--color-green);">***</code>) before a single character can reach the console log.</li>
+                        <li><span class="bullet-lead-green">Stage 1 Mathematical Proof via Portal Metrics (Rule 25 / Step 3):</span> Instead of printing secrets to the screen, proves live data-plane access mathematically by verifying the real-time spike in Azure Portal Monitoring Metrics (<code style="color: var(--color-green);">Total Service API Hits</code>) directly on the Data-Plane Asset.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= STAGE 5 ================= -->
+        <div class="hero-arch-block red-block" id="stage-5">
+            <div class="stage-header-row">
+                <span class="stage-badge-red">OFFENSIVE STAGE 05</span>
+                <span class="stage-badge-green">NEUTRALIZED IN PHASE 5 (ARL, STANDBY KQL &amp; DPL)</span>
+                <h2 class="stage-main-title">Unverified Compliance Claims &amp; Forensic Blind Spots</h2>
+            </div>
+
+            <div class="stage-quadrant-grid">
+                <div class="quad-card hacker-play">
+                    <span class="quad-tag">[01 :: THE HACKER'S PLAY &mdash; PLAIN-TALK TRADECRAFT]</span>
+                    <h3 class="quad-title">What the Adversary Sees &amp; Does</h3>
+                    <p class="quad-text">
+                        Once an attacker is inside an environment, their survival depends on staying invisible inside the gap between engineering and security operations. Attackers know that when Azure Log Analytics takes 5 to 20 minutes to index new sign-in and vault audit logs, impatient engineers abandon deep log verification and move on to their next ticket without leaving the Security Operations Center (SOC) a working detection query. Furthermore, without a standardized post-deployment audit ledger that grades every security gate and records every mid-build patch, compliance teams are left with verbal assurances rather than verifiable facts. The attacker exploits this forensic blind spot to make unauthorized data-plane reads that nobody is correlating against Microsoft Entra ID token issuance logs.
+                    </p>
+                </div>
+
+                <div class="quad-card tech-seam">
+                    <span class="quad-tag">[02 :: THE TECHNICAL SEAM TARGETED]</span>
+                    <h3 class="quad-title">Exact Mechanical Vulnerability</h3>
+                    <ul class="quad-list">
+                        <li><span class="bullet-lead-orange">The 5-to-20-Minute SIEM Indexing Delay:</span> Backend ingestion latency in Azure Log Analytics that causes engineers to skip writing correlation queries between <code style="color: var(--color-cyan);">ServicePrincipalSignInLogs</code> and <code style="color: var(--color-cyan);">AzureDiagnostics / AuditEvent</code>.</li>
+                        <li><span class="bullet-lead-orange">Uncorrelated Control-Plane vs. Data-Plane Logs:</span> Failing to join token issuance events with vault read events across 5-minute execution windows and 60-minute token lifetime buckets.</li>
+                        <li><span class="bullet-lead-orange">Rubber-Stamp Compliance &amp; Lost Patch History:</span> Closing deployments without a gate-by-gate compliance scorecard or a permanent record of mid-build troubleshooting changes.</li>
+                    </ul>
+                </div>
+
+                <div class="quad-card authority-proof">
+                    <span class="quad-tag">[03 :: GLOBAL THREAT INTELLIGENCE &amp; STANDARDS PROOF]</span>
+                    <h3 class="quad-title">Verified World-Authority Citations</h3>
+                    <ul class="quad-list">
+                        <li>
+                            <span class="bullet-lead">MITRE ATT&amp;CK&reg; T1562.008 (Impair Defenses: Evade Cloud Logs &amp; Telemetry):</span> Highlights how adversaries exploit unmonitored cloud log streams and lack of cross-plane correlation between identity sign-ins and resource access.<br>
+                            <a href="https://attack.mitre.org/techniques/T1562/008/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify MITRE T1562.008 &rarr;</a>
+                        </li>
+                        <li>
+                            <span class="bullet-lead">CISA Cloud Security Technical Reference Architecture:</span> Mandates continuous correlation of identity authentication logs with data-plane resource access logs to detect anomalous workload behavior.<br>
+                            <a href="https://www.cisa.gov/resources-tools/resources/cloud-security-technical-reference-architecture" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify CISA Cloud TRA &rarr;</a>
+                        </li>
+                        <li>
+                            <span class="bullet-lead">NIST SP 800-53 Rev. 5 (Controls AU-2 &amp; AU-6 Audit Review and Reporting):</span> Establishes federal requirements for verifiable audit trails linking identity authentication events directly to data access actions.<br>
+                            <a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify NIST SP 800-53 &rarr;</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="quad-card akcce-strike">
+                    <span class="quad-tag">[04 :: THE AKCCE COUNTER-ENGINEERING STRIKE]</span>
+                    <h3 class="quad-title">How Phase 5 Welds the Seam Shut</h3>
+                    <ul class="quad-list">
+                        <li><span class="bullet-lead-green">Formal Gate &amp; Guardrail Compliance Scoring (Phase 5 Step 1):</span> Generates the Audit Results Ledger (<code style="color: var(--color-green);">audit_results_ledger.md</code> or ARL), mathematically verifying and scoring all 4 Architectural Gates (Coordinate, Character, Clock, and Plane Checks) and all 5 Enterprise Guardrails as <code style="color: var(--color-green);">[PASS]</code>.</li>
+                        <li><span class="bullet-lead-green">On-Demand Standby KQL Telemetry Packaging (Phase 5 Step 2):</span> Packages pre-engineered KQL Telemetry (<code style="color: var(--color-green);">kql_telemetry.md</code>) directly into the project folder so Log Analytics indexing latency never stalls the build, while giving the SOC and auditors ready-to-run query code joining Service Principal sign-ins with data-plane reads.</li>
+                        <li><span class="bullet-lead-green">Complete Troubleshooting Transparency (Rule 21 / Step 3):</span> Compiles all real-time troubleshooting entries into the finalized Defect &amp; Patch Ledger (<code style="color: var(--color-green);">patch_ledger.md</code> or DPL).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= STAGE 6 ================= -->
+        <div class="hero-arch-block red-block" id="stage-6">
+            <div class="stage-header-row">
+                <span class="stage-badge-red">OFFENSIVE STAGE 06</span>
+                <span class="stage-badge-green">NEUTRALIZED IN PHASE 6 (REPOSITORY SYNC &amp; .GITIGNORE BARRIER)</span>
+                <h2 class="stage-main-title">Repository State-File Leakage &amp; Configuration Desynchronization</h2>
+            </div>
+
+            <div class="stage-quadrant-grid">
+                <div class="quad-card hacker-play">
+                    <span class="quad-tag">[01 :: THE HACKER'S PLAY &mdash; PLAIN-TALK TRADECRAFT]</span>
+                    <h3 class="quad-title">What the Adversary Sees &amp; Does</h3>
+                    <p class="quad-text">
+                        At the end of a long deployment, the attacker waits for one of the most catastrophic mistakes in cloud engineering: pushing local infrastructure state files to Git. When tools like Terraform run in a local folder during Phase 3, they automatically generate a local state file (<code style="color: var(--color-red);">terraform.tfstate</code> and <code style="color: var(--color-red);">terraform.tfstate.backup</code>) on the hard drive that stores the raw internal map of the cloud deployment, object IDs, and resource metadata in unencrypted plain text. When a tired engineer runs a quick Git push without locking down an exclusion barrier first, those raw state files and local <code style="color: var(--color-red);">.env</code> caches get uploaded straight to the remote repository&mdash;where automated attacker bots scan commits around the clock to download them. At the same time, if the engineer forgets to pull the remote Validation Bridge workflow created in Phase 4 before pushing, Git throws a branch conflict that tempts the engineer to run a destructive force-push (<code style="color: var(--color-red);">git push --force</code>), wiping out the validated pipeline history.
+                    </p>
+                </div>
+
+                <div class="quad-card tech-seam">
+                    <span class="quad-tag">[02 :: THE TECHNICAL SEAM TARGETED]</span>
+                    <h3 class="quad-title">Exact Mechanical Vulnerability</h3>
+                    <ul class="quad-list">
+                        <li><span class="bullet-lead-orange">Unfiltered Git Staging (git add .):</span> Committing local <code style="color: var(--color-cyan);">terraform.tfstate</code>, <code style="color: var(--color-cyan);">terraform.tfstate.backup</code>, <code style="color: var(--color-cyan);">.tfvars</code>, <code style="color: var(--color-cyan);">.terraform/</code> directories, and <code style="color: var(--color-cyan);">.env</code> caches into version control.</li>
+                        <li><span class="bullet-lead-orange">Remote-to-Local Branch Desynchronization:</span> Pushing local audit ledgers without first pulling the remote Phase 4 Validation Bridge workflow file, causing merge rejections and destructive <code style="color: var(--color-cyan);">git push --force</code> overwrites.</li>
+                        <li><span class="bullet-lead-orange">Hardcoded GUIDs in Committed Code:</span> Committing scripts containing raw corporate Tenant IDs or Subscription IDs into shared repositories.</li>
+                    </ul>
+                </div>
+
+                <div class="quad-card authority-proof">
+                    <span class="quad-tag">[03 :: GLOBAL THREAT INTELLIGENCE &amp; STANDARDS PROOF]</span>
+                    <h3 class="quad-title">Verified World-Authority Citations</h3>
+                    <ul class="quad-list">
+                        <li>
+                            <span class="bullet-lead">OWASP Non-Human Identities Top 10 (NHI1 &amp; NHI2: Artifacts in Code Repositories):</span> Identifies committed IaC state files and environment files in Git repositories as a top source of enterprise cloud compromises.<br>
+                            <a href="https://owasp.org/www-project-non-human-identities-top-10/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify OWASP NHI Top 10 &rarr;</a>
+                        </li>
+                        <li>
+                            <span class="bullet-lead">HashiCorp Official Security Advisory (Sensitive Data in Terraform State):</span> Explicitly warns that Terraform state files contain raw resource metadata in plain text and must never be committed to unencrypted version control.<br>
+                            <a href="https://developer.hashicorp.com/terraform/language/state/sensitive-data" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify HashiCorp Advisory &rarr;</a>
+                        </li>
+                        <li>
+                            <span class="bullet-lead">MITRE ATT&amp;CK&reg; T1213.003 (Data from Information Repositories: Code Repositories):</span> Documents how adversaries mine corporate and public Git repositories for committed state files and environment variables.<br>
+                            <a href="https://attack.mitre.org/techniques/T1213/003/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify MITRE T1213.003 &rarr;</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="quad-card akcce-strike">
+                    <span class="quad-tag">[04 :: THE AKCCE COUNTER-ENGINEERING STRIKE]</span>
+                    <h3 class="quad-title">How Phase 6 Welds the Seam Shut</h3>
+                    <ul class="quad-list">
+                        <li><span class="bullet-lead-green">Mandatory Pull-First Synchronization (Phase 6 Step 1):</span> Commands the local terminal to execute <code style="color: var(--color-green);">git pull origin main</code> first so the remote Phase 4 Validation Bridge merges cleanly onto the workstation without branch conflicts or destructive force-pushes.</li>
+                        <li><span class="bullet-lead-green">Locked State-File Exclusion Barrier (Phase 6 Step 2):</span> Automatically generates and locks a strict <code style="color: var(--color-green);">.gitignore</code> barrier before staging a single file, physically blocking all <code style="color: var(--color-green);">.tfstate</code>, <code style="color: var(--color-green);">.tfstate.backup</code>, <code style="color: var(--color-green);">.tfvars</code>, <code style="color: var(--color-green);">.terraform/</code>, and <code style="color: var(--color-green);">.env</code> artifacts from leaving the local computer.</li>
+                        <li><span class="bullet-lead-green">Sterilized Five-File Push (Phase 6 Step 3):</span> Commits and pushes only the five verified, DLP-parameterized deliverable files cleanly to the authorized Code Repository and Branch.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= STAGE 7 ================= -->
+        <div class="hero-arch-block red-block" id="stage-7">
+            <div class="stage-header-row">
+                <span class="stage-badge-red">OFFENSIVE STAGE 07</span>
+                <span class="stage-badge-green">NEUTRALIZED BY ALL-PHASE DIRECTIVE 05 &amp; PHASE 7 COMPILATION</span>
+                <h2 class="stage-main-title">Uncodified Institutional Memory &amp; Recurring Regression Vulnerability</h2>
+            </div>
+
+            <div class="stage-quadrant-grid">
+                <div class="quad-card hacker-play">
+                    <span class="quad-tag">[01 :: THE HACKER'S PLAY &mdash; PLAIN-TALK TRADECRAFT]</span>
+                    <h3 class="quad-title">What the Adversary Sees &amp; Does</h3>
+                    <p class="quad-text">
+                        Even when an organization secures a single cloud deployment from Phase 1 through Phase 6, the adversary counts on human forgetfulness and AI amnesia across the next hundred builds. In a standard workflow, when an engineer and an AI chatbot spend an hour solving complex Microsoft Entra ID schema errors, MFA drops, or IP chunking bugs, all of that hard-won knowledge vanishes the instant the chat window closes. Worse, when an untethered AI hits repeated errors mid-build, it guesses in circles ("hallucination spirals") and weakens security controls just to make the error stop&mdash;or truncates older rules when asked to update its prompt. The attacker knows that if an organization's deployment system does not permanently codify every live fix into its core rulebook, the next build will start from the same flawed baseline and repeat the exact same vulnerability until a door is left open.
+                    </p>
+                </div>
+
+                <div class="quad-card tech-seam">
+                    <span class="quad-tag">[02 :: THE TECHNICAL SEAM TARGETED]</span>
+                    <h3 class="quad-title">Exact Mechanical Vulnerability</h3>
+                    <ul class="quad-list">
+                        <li><span class="bullet-lead-orange">Ephemeral Chat Amnesia:</span> Closing an AI session without compiling verified runtime fixes into the master system directive, guaranteeing that future builds repeat the exact same configuration mistakes.</li>
+                        <li><span class="bullet-lead-orange">Mid-Build AI Hallucination Spirals &amp; Piecemeal Snippets:</span> Unconstrained models guessing past 3 failed troubleshooting attempts, outputting partial code snippets ("paste this at line 42") that corrupt files, or weakening security controls to bypass an error.</li>
+                        <li><span class="bullet-lead-orange">Prompt Compression &amp; Rule Truncation:</span> Unchecked AI models summarizing or deleting existing security rules ("the rest of the code remains the same") when generating system updates.</li>
+                    </ul>
+                </div>
+
+                <div class="quad-card authority-proof">
+                    <span class="quad-tag">[03 :: GLOBAL THREAT INTELLIGENCE &amp; STANDARDS PROOF]</span>
+                    <h3 class="quad-title">Verified World-Authority Citations</h3>
+                    <ul class="quad-list">
+                        <li>
+                            <span class="bullet-lead">NIST AI Risk Management Framework (AI RMF 1.0 &mdash; Govern &amp; Manage):</span> Mandates systematic tracking of AI errors, human-in-the-loop governance over system updates, and continuous post-deployment improvement to prevent recurring failures.<br>
+                            <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify NIST AI RMF 1.0 &rarr;</a>
+                        </li>
+                        <li>
+                            <span class="bullet-lead">OWASP Top 10 for LLM Applications (LLM08: Excessive Agency &amp; LLM09: Overreliance):</span> Warns against allowing AI models to modify configurations autonomously or guess through multi-step errors without deterministic circuit breakers.<br>
+                            <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify OWASP LLM08/09 &rarr;</a>
+                        </li>
+                        <li>
+                            <span class="bullet-lead">MITRE ATT&amp;CK&reg; Cloud Matrix (Exploitation of Configuration Drift &amp; Regression):</span> Demonstrates how adversaries target recurring misconfigurations introduced across repeated enterprise deployments.<br>
+                            <a href="https://attack.mitre.org/matrices/enterprise/cloud/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify MITRE Cloud Matrix &rarr;</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="quad-card akcce-strike">
+                    <span class="quad-tag">[04 :: THE AKCCE COUNTER-ENGINEERING STRIKE]</span>
+                    <h3 class="quad-title">How Directive 05 &amp; Phase 7 Weld the Seam Shut</h3>
+                    <ul class="quad-list">
+                        <li><span class="bullet-lead-green">All-Phase Patch Loop, State Re-Sync &amp; 4-Iteration Circuit Breaker (Directive 05 &amp; Rules 7, 9, 15, 26):</span> Solves routine errors inside the Standard Patch Loop (Iterations 1 to 3) with real-time <code style="color: var(--color-green);">[DPL ENTRY]</code> staging and a complete top-to-bottom State Re-Sync of the IaC Payload&mdash;and trips The 4-Iteration Circuit Breaker at Iteration 4 to halt code generation and output an Estimated Probability of Success (X%) before the model can guess in circles.</li>
+                        <li><span class="bullet-lead-green">Counted AI Performance Scorecard (Phase 7 Step 1):</span> Enforces a strict "list first, count second" rule to physically list and count every diagnostic loop, iteration, circuit breaker, and protocol deviation from the session.</li>
+                        <li><span class="bullet-lead-green">Zero-Truncation System Directive Compilation (Rules 8, 10, 11, 13, 16 / Phase 7 Steps 2 &amp; 3):</span> Translates every empirically verified fix from the Defect &amp; Patch Ledger (DPL) into an additive rule upgrade and compiles 100% of the upgraded System Directive from top to bottom with zero truncation&mdash;ensuring the machine never repeats a solved vulnerability on any future build.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= MASTER SUMMARY MATRIX ================= -->
+        <div class="hero-arch-block cyan-block" id="master-matrix">
+            <span class="hero-block-tag">[MASTER BATTLEFIELD REFERENCE :: 7 OFFENSIVE STAGES VS. 7 COUNTER-ENGINEERING PHASES]</span>
+            <h2 class="hero-block-title">Master Summary Matrix: The 7-Stage Adversarial Kill Chain vs. The AKCCE State Machine</h2>
+
+            <div class="matrix-table-wrapper">
+                <table class="killchain-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 18%;">Kill-Chain Stage</th>
+                            <th style="width: 30%;">The Adversary's Play (What the Hacker Targets)</th>
+                            <th style="width: 22%;">Global Threat Authority</th>
+                            <th style="width: 30%;">AKCCE Counter-Engineering Strike</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="bullet-lead-red">Stage 1:</span><br>Workspace &amp; Coordinates</td>
+                            <td>Scrapes <code style="color: var(--color-cyan);">.bash_history</code>, browser Cloud Shells, and untethered AI chats for Tenant IDs, Subscription IDs, and setup tokens.</td>
+                            <td>MITRE T1552.003<br>MITRE T1552.001<br>OWASP LLM06</td>
+                            <td><span class="bullet-lead-green">Phase 1 (Gate 1):</span> Clean local VS Code folder, 5 blank files, DLP parameters, <code style="color: var(--color-green);">read -s</code> RAM input, read-only boundary check (Rules 2, 19, 20, 22).</td>
+                        </tr>
+                        <tr>
+                            <td><span class="bullet-lead-red">Stage 2:</span><br>OIDC Federation</td>
+                            <td>Exploits wildcard (<code style="color: var(--color-red);">*</code>) subject claims and <code style="color: var(--color-red);">AADSTS700213</code> case workarounds to forge tokens from rogue branches, forks, or PRs.</td>
+                            <td>OWASP CICD-SEC-01/02<br>OWASP NHI Top 10 (NHI2)<br>Microsoft Entra Advisory</td>
+                            <td><span class="bullet-lead-green">Phase 2 (Gate 3):</span> Direct CLI extraction of numeric IDs and exact Code Repository and Branch casing with zero wildcards (Rule 24).</td>
+                        </tr>
+                        <tr>
+                            <td><span class="bullet-lead-red">Stage 3:</span><br>Identity &amp; Access</td>
+                            <td>Abuses multi-tenant apps and broad <code style="color: var(--color-red);">Owner</code> / <code style="color: var(--color-red);">Contributor</code> roles ("The Contributor Trap") to hijack the subscription control plane.</td>
+                            <td>MITRE T1078.004 / T1098.003<br>Midnight Blizzard Advisory<br>NIST SP 800-207</td>
+                            <td><span class="bullet-lead-green">Phase 3 (Gates 2 &amp; 4):</span> Single-Tenant Mode, blank redirects, 30s Sync Timer, single Data-Plane Role, Portal MFA Handoff (Rules 3, 4, 23, 29).</td>
+                        </tr>
+                        <tr>
+                            <td><span class="bullet-lead-red">Stage 4:</span><br>Runtime Console Logs</td>
+                            <td>Scrapes shared CI/CD build logs (<code style="color: var(--color-red);">stdout</code>) for printed 60-minute bearer tokens and retrieved vault secrets.</td>
+                            <td>OWASP CICD-SEC-06<br>MITRE T1552<br>CISA/NSA CI/CD Guide</td>
+                            <td><span class="bullet-lead-green">Phase 4:</span> Saves <code style="color: var(--color-green);">IAL</code>, injects <code style="color: var(--color-green);">::add-mask::</code> Runtime Log Masking in Validation Bridge, proves access via Portal API Hits (Rules 6, 25).</td>
+                        </tr>
+                        <tr>
+                            <td><span class="bullet-lead-red">Stage 5:</span><br>Forensic Blind Spots</td>
+                            <td>Hides inside the 5-to-20-minute Log Analytics indexing delay and unaudited compliance claims.</td>
+                            <td>MITRE T1562.008<br>CISA Cloud TRA<br>NIST SP 800-53 (AU-2/AU-6)</td>
+                            <td><span class="bullet-lead-green">Phase 5:</span> Scores all 4 Gates &amp; 5 Guardrails as <code style="color: var(--color-green);">[PASS]</code> in <code style="color: var(--color-green);">ARL</code>, packages standby <code style="color: var(--color-green);">kql_telemetry.md</code>, finalizes <code style="color: var(--color-green);">patch_ledger.md</code> (Rule 21).</td>
+                        </tr>
+                        <tr>
+                            <td><span class="bullet-lead-red">Stage 6:</span><br>Repository State Leak</td>
+                            <td>Scans Git commits for leaked <code style="color: var(--color-red);">terraform.tfstate</code> files and exploits branch conflicts that trigger destructive force-pushes.</td>
+                            <td>OWASP NHI Top 10 (NHI1/2)<br>HashiCorp State Advisory<br>MITRE T1213.003</td>
+                            <td><span class="bullet-lead-green">Phase 6:</span> Enforces <code style="color: var(--color-green);">git pull origin main</code> first, locks <code style="color: var(--color-green);">.gitignore</code> barrier blocking <code style="color: var(--color-green);">.tfstate</code>, pushes 5 clean deliverable files.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="bullet-lead-red">Stage 7:</span><br>AI Amnesia &amp; Drift</td>
+                            <td>Counts on closed chat windows forgetting fixes and untethered AI hallucination spirals weakening security controls.</td>
+                            <td>NIST AI RMF 1.0<br>OWASP LLM08 &amp; LLM09<br>MITRE Cloud Matrix</td>
+                            <td><span class="bullet-lead-green">Directive 05 &amp; Phase 7:</span> 3-Iteration Patch Loop, Full-File State Re-Sync, 4-Iteration Circuit Breaker, Counted Scorecard, Zero-Truncation Compilation (Rules 7&ndash;16).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- CLOSING ARCHITECTURAL INSIGHT -->
+            <div class="insight-box" style="background: linear-gradient(90deg, rgba(16, 185, 129, 0.12) 0%, transparent 100%); border-left-color: var(--color-green);">
+                <div class="insight-header" style="color: var(--color-green);">Commander's Bottom Line: Proceed to the 7-Phase Counter-Engineering Blueprint</div>
+                <div class="insight-text">
+                    Because a Microsoft Entra ID and Azure machine-identity pipeline is a closed mechanical circuit, the adversary has nowhere else to go outside the seven stages above. When all seven stages are counter-engineered in strict mathematical sequence, verified via live telemetry, and compiled back into the master System Directive at session close, the exploitation chain is neutralized completely. Next, explore the step-by-step execution mechanics on the <a href="blueprint.html" class="inline-link">7-Phase Counter-Engineering Blueprint</a> page or inspect the complete <a href="glossary.html" class="inline-link">26-Variable System Glossary</a>.
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= PROPRIETARY IP FOOTER ================= -->
+    <footer class="ip-footer">
+        <div class="footer-crest-wrapper">
+            <svg class="footer-brand-crest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+                <rect width="114" height="114" x="3" y="3" fill="#020617" rx="22" stroke="#1e293b" stroke-width="3"/>
+                <polygon points="24,18 60,36 60,48 24,30" fill="#475569"/>
+                <polygon points="96,18 60,36 60,48 96,30" fill="#1e293b"/>
+                <polygon points="24,39 60,57 60,69 24,51" fill="#0284c7"/>
+                <polygon points="96,39 60,57 60,69 96,51" fill="#075985"/>
+                <polygon points="24,60 60,78 60,90 24,72" fill="#38bdf8"/>
+                <polygon points="96,60 60,78 60,90 96,72" fill="#0369a1"/>
+                <polygon points="24,81 60,99 60,111 24,93" fill="#f43f5e"/>
+                <polygon points="96,81 60,99 60,111 96,93" fill="#9f1239"/>
+            </svg>
+        </div>
+        <strong>&copy; 2026 Steven Tuschman | Adversarial Kill-Chain Counter-Engineering&trade; (adversarialkillchaincounterengineering.com). All Rights Reserved.</strong><br>
+        The Adversarial Kill-Chain Counter-Engineering State Machine v1.0, Sequential Kill-Chain Counter-Engineering Protocol, Execution Triad governance model, Four Architectural Gates of Machine Identity, Five Enterprise Guardrails, 72-Combination Build Matrix, and 26-Variable System Glossary are proprietary intellectual property. Unauthorized reproduction, distribution, or commercial adaptation is strictly prohibited.
+    </footer>
+
+</body>
+</html>

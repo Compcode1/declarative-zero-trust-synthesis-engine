@@ -631,6 +631,23 @@
             .nav-links a { font-size: 0.75rem; padding: 0.4rem 0.8rem; letter-spacing: 0.5px; }
             .blueprint-page-container { padding-top: 190px; }
         }
+        /* FIX FOR PHONES HELD HORIZONTALLY OR VERTICALLY */
+        @media (max-width: 992px), (max-height: 550px) {
+            nav {
+                position: relative !important;
+                padding: 0.75rem 0.5rem !important;
+            }
+            .nav-links {
+                gap: 0.45rem !important;
+            }
+            .nav-links a {
+                font-size: 0.72rem !important;
+                padding: 0.35rem 0.65rem !important;
+            }
+            .hero, .blueprint-page-container {
+                padding-top: 30px !important;
+            }
+        }
     </style>
 </head>
 <body>

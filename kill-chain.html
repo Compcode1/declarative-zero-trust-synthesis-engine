@@ -507,7 +507,7 @@
             <li><a href="ai-systems-engineering.html">Tethered AI Systems Engineering</a></li>
             <li><a href="architectural.html">Exploit-Level Pipeline Architecture</a></li>
             <li><a href="workflow-portfolio.html">Live Counter-Engineering Proofs</a></li>
-            <li><a href="add-capabilities.html">35 Day-2 Entra ID Modules</a></li>
+            <li><a href="add-capabilities.html">Day-2 Multi-Cloud Modules</a></li>
             <li><a href="glossary.html">26-Variable System Glossary</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
@@ -542,10 +542,10 @@
                     In any military conflict, a defense cannot hold a perimeter if it treats the enemy's strategy as an afterthought. Yet across the modern cybersecurity industry, the "kill chain" is routinely treated as background noise while defenders rely on disconnected checklists, manual portal clicks, and unconstrained AI guesswork. <span class="bullet-lead-red">Adversarial Kill-Chain Counter-Engineering&trade;</span> starts from the opposite premise: cybersecurity is an active, asymmetric war fought inside a closed mechanical system.
                 </p>
                 <p class="hero-subtitle">
-                    When an external <span class="bullet-lead">Execution Agent</span> (Azure Kubernetes Service (AKS), GitHub Actions, Azure DevOps, or GitLab CI) authenticates into <span class="bullet-lead">Microsoft Entra ID</span> to read a protected <span class="bullet-lead">Data-Plane Asset</span> (Azure Key Vault, Storage Account, or SQL / Cosmos DB), there are not thousands of mysterious ways for an adversary to break in. Because the Microsoft Entra ID and Azure machine-identity pipeline is governed by strict mathematical schemas and cryptographic handshakes, the attack surface is physically finite. From the engineer's local keyboard to the final repository commit, there are only <span class="bullet-lead-red">seven structural seams&mdash;seven physical handoffs&mdash;where an attacker can strike.</span>
+                    When an external <span class="bullet-lead">Execution Agent</span> (Kubernetes clusters across EKS, AKS, or GKE, GitHub Actions, GitLab CI, or Azure DevOps) authenticates into a cloud identity provider (<span class="bullet-lead">AWS IAM &amp; STS, Microsoft Entra ID, or Google Cloud IAM</span>) to read a protected <span class="bullet-lead">Data-Plane Asset</span> (Secret &amp; Key Vaults, Object Storage, or Cloud Databases), there are not thousands of mysterious ways for an adversary to break in. Because a multi-cloud machine-identity pipeline is governed by strict mathematical schemas and cryptographic handshakes, the attack surface is physically finite. From the engineer's local keyboard to the final repository commit, there are only <span class="bullet-lead-red">seven structural seams&mdash;seven physical handoffs&mdash;where an attacker can strike.</span>
                 </p>
                 <p class="hero-subtitle" style="margin-bottom: 0;">
-                    Sophisticated threat actors, red-team researchers, and AI-armed adversaries have mapped those exact seven seams into a repeatable, seven-stage offensive playbook. Mathematically, the attacker only needs one unsealed seam to breach the environment (1 hit out of N), while the defender must seal 100% of the chain in sequence (1.0). Below is the enemy's exact operational playbook from Stage 1 to Stage 7&mdash;backed by primary-source citations and live links to <span class="bullet-lead">MITRE ATT&amp;CK&reg;, OWASP, NIST, CISA/NSA, HashiCorp, and Microsoft Threat Intelligence</span>&mdash;alongside the exact mechanical strike inside <span class="bullet-lead-green">The Adversarial Kill-Chain Counter-Engineering State Machine</span> that neutralizes each play 100% of the time.
+                    Sophisticated threat actors, red-team researchers, and AI-armed adversaries have mapped those exact seven seams into a repeatable, seven-stage offensive playbook. Mathematically, the attacker only needs one unsealed seam to breach the environment (1 hit out of N), while the defender must seal 100% of the chain in sequence (1.0). Below is the enemy's exact operational playbook from Stage 1 to Stage 7&mdash;backed by primary-source citations and live links to <span class="bullet-lead">MITRE ATT&amp;CK&reg;, OWASP, NIST, CISA/NSA, HashiCorp, and Cloud Threat Intelligence</span>&mdash;alongside the exact mechanical strike inside <span class="bullet-lead-green">The Adversarial Kill-Chain Counter-Engineering State Machine</span> that neutralizes each play 100% of the time.
                 </p>
             </div>
         </div>
@@ -571,7 +571,7 @@
             <div class="jump-links">
                 <a href="#stage-1">Stage 1: Local Workspace &amp; Coordinate Harvesting</a>
                 <a href="#stage-2">Stage 2: OIDC Wildcard &amp; Token Impersonation</a>
-                <a href="#stage-3">Stage 3: Multi-Tenant &amp; "The Contributor Trap"</a>
+                <a href="#stage-3">Stage 3: Cross-Tenant &amp; "The Contributor Trap"</a>
                 <a href="#stage-4">Stage 4: CI/CD Console Log &amp; Token Scraping</a>
                 <a href="#stage-5">Stage 5: SIEM Indexing &amp; Forensic Blind Spots</a>
                 <a href="#stage-6">Stage 6: Git State-File (.tfstate) Leakage</a>
@@ -593,7 +593,7 @@
                     <span class="quad-tag">[01 :: THE HACKER'S PLAY &mdash; PLAIN-TALK TRADECRAFT]</span>
                     <h3 class="quad-title">What the Adversary Sees &amp; Does</h3>
                     <p class="quad-text">
-                        Before an attacker ever tries to break through Microsoft's front-door authentication servers, they hunt for leftover keys and maps on the engineer's own workstation. Whenever an engineer types or pastes a temporary setup token directly into a standard terminal line, the operating system silently writes that exact command into a hidden plain-text history file on the hard drive. At the same time, engineers using browser-based Azure Cloud Shells routinely leave behind abandoned storage containers holding cached tokens and state files, or paste real corporate Tenant IDs and Subscription IDs into public AI chat windows. The attacker uses automated credential-harvesting scripts and infostealer malware to sweep those history files, browser storage mounts, and messy project folders&mdash;stealing the organization's cloud routing map and setup keys before the cloud deployment even begins.
+                        Before an attacker ever tries to break through a cloud provider's front-door authentication servers, they hunt for leftover keys and maps on the engineer's own workstation. Whenever an engineer types or pastes a temporary setup token directly into a standard terminal line, the operating system silently writes that exact command into a hidden plain-text history file on the hard drive. At the same time, engineers using browser-based Cloud Shells (AWS CloudShell, Azure Cloud Shell, or GCP Cloud Shell) routinely leave behind abandoned storage containers holding cached tokens and state files, or paste real corporate Account, Tenant, Subscription, and Project IDs into public AI chat windows. The attacker uses automated credential-harvesting scripts and infostealer malware to sweep those history files, browser storage mounts, and messy project folders&mdash;stealing the organization's cloud routing map and setup keys before the cloud deployment even begins.
                     </p>
                 </div>
 
@@ -602,8 +602,8 @@
                     <h3 class="quad-title">Exact Mechanical Vulnerability</h3>
                     <ul class="quad-list">
                         <li><span class="bullet-lead-orange">Plaintext Shell History Files:</span> Unmasked commands written to <code style="color: var(--color-cyan);">.bash_history</code> (Linux/macOS/Git Bash) and <code style="color: var(--color-cyan);">ConsoleHost_history.txt</code> (PowerShell) whenever setup tokens are exported inline.</li>
-                        <li><span class="bullet-lead-orange">Abandoned Browser Cloud Shell Storage:</span> Ephemeral browser-based Azure Cloud Shell sessions timing out at 20 minutes, dropping MFA claims, and leaving behind persistent storage mounts containing stale <code style="color: var(--color-cyan);">.tfstate</code> files and cached credentials.</li>
-                        <li><span class="bullet-lead-orange">AI Context Leakage &amp; Unverified Boundaries:</span> Hardcoded Entra ID Tenant IDs and Azure Subscription IDs pasted into untethered AI prompts, or deploying into a subscription nested under the wrong directory tenant.</li>
+                        <li><span class="bullet-lead-orange">Abandoned Browser Cloud Shell Storage:</span> Ephemeral browser-based Cloud Shell sessions (AWS, Azure, GCP) timing out at 20 minutes, dropping MFA claims, and leaving behind persistent storage mounts containing stale <code style="color: var(--color-cyan);">.tfstate</code> files and cached credentials.</li>
+                        <li><span class="bullet-lead-orange">AI Context Leakage &amp; Unverified Boundaries:</span> Hardcoded AWS Account IDs, Entra ID Tenant IDs, Azure Subscription IDs, and GCP Project IDs pasted into untethered AI prompts, or deploying into an account/subscription nested under the wrong root organization boundary.</li>
                     </ul>
                 </div>
 
@@ -632,7 +632,7 @@
                     <ul class="quad-list">
                         <li><span class="bullet-lead-green">Cloud Shell Deprecation &amp; Clean Local Workspace (Rules 12, 19 &amp; 20):</span> Permanently bans browser Cloud Shells and requires The Architect to initialize a brand-new, empty local directory in Visual Studio Code containing the five blank deliverable files.</li>
                         <li><span class="bullet-lead-green">DLP Parameterization &amp; Silent RAM Input (Rules 2 &amp; 22 / Guardrail 1):</span> Replaces corporate IDs with plain-language parameters and mandates invisible memory-buffered terminal input (<code style="color: var(--color-green);">read -s</code>) so setup tokens live strictly in temporary RAM and never touch the screen or <code style="color: var(--color-green);">.bash_history</code>.</li>
-                        <li><span class="bullet-lead-green">Gate 1 Boundary Verification (Rule 17):</span> Executes read-only Azure CLI lookups to prove the Azure Subscription ID, Resource Group, and Data-Plane Asset sit nested under the organization's Entra ID Tenant ID before unlocking Phase 2.</li>
+                        <li><span class="bullet-lead-green">Gate 1 Boundary Verification (Rule 17):</span> Executes read-only CLI lookups (AWS CLI, Azure CLI, or gcloud CLI) to prove the target AWS Account, Azure Subscription &amp; Resource Group, or GCP Project and Data-Plane Asset sit nested under the organization's verified root boundary before unlocking Phase 2.</li>
                     </ul>
                 </div>
             </div>
@@ -651,7 +651,7 @@
                     <span class="quad-tag">[01 :: THE HACKER'S PLAY &mdash; PLAIN-TALK TRADECRAFT]</span>
                     <h3 class="quad-title">What the Adversary Sees &amp; Does</h3>
                     <p class="quad-text">
-                        Once the cloud perimeter is established, the attacker targets the passwordless bridge between the external Execution Agent and Microsoft Entra ID. In an OpenID Connect (OIDC) login, the external platform presents a digital ID card containing a Subject Claim&mdash;the exact return address of the Code Repository and Branch requesting access. Because Microsoft Entra ID checks that Subject Claim with 100% case-sensitive strictness (throwing an <code style="color: var(--color-red);">AADSTS700213</code> rejection if a single capital or lowercase letter is off), frustrated engineers and untethered AI models frequently insert a wildcard asterisk (<code style="color: var(--color-red);">*</code>) or loosen the branch filter just to make the login work. Attackers actively hunt for those wildcard trust rules. The moment an asterisk is present, an attacker can fork the repository, submit a malicious pull request, or trigger a build from an unauthorized side branch, satisfy the loose trust rule, and trick Microsoft Entra ID into handing them a real 60-Minute Login Token.
+                        Once the cloud perimeter is established, the attacker targets the passwordless bridge between the external Execution Agent and the cloud identity provider (AWS STS, Microsoft Entra ID, or Google Cloud IAM). In an OpenID Connect (OIDC) login, the external platform presents a digital ID card containing a Subject Claim&mdash;the exact return address of the Code Repository and Branch requesting access. Because cloud OIDC endpoints check that Subject Claim with 100% case-sensitive strictness (throwing immediate token rejections like <code style="color: var(--color-red);">AADSTS700213</code> or <code style="color: var(--color-red);">AccessDenied</code> if a single capital or lowercase letter is off), frustrated engineers and untethered AI models frequently insert a wildcard asterisk (<code style="color: var(--color-red);">*</code>) or loosen the branch filter just to make the login work. Attackers actively hunt for those wildcard trust rules. The moment an asterisk is present, an attacker can fork the repository, submit a malicious pull request, or trigger a build from an unauthorized side branch, satisfy the loose trust rule, and trick AWS STS, Entra ID, or GCP IAM into handing them a real 60-Minute Login Token.
                     </p>
                 </div>
 
@@ -659,8 +659,8 @@
                     <span class="quad-tag">[02 :: THE TECHNICAL SEAM TARGETED]</span>
                     <h3 class="quad-title">Exact Mechanical Vulnerability</h3>
                     <ul class="quad-list">
-                        <li><span class="bullet-lead-orange">Wildcard (*) Subject Claim Filters:</span> Overly broad OIDC trust rules inside Microsoft Entra ID Federated Identity Credentials that trust any branch, pull request, tag, or forked repository within an organization.</li>
-                        <li><span class="bullet-lead-orange">Case-Sensitivity Shortcuts (AADSTS700213):</span> Manual typing or AI capitalization guesswork on GitHub Actions, Azure DevOps, GitLab CI, or AKS paths that fails Microsoft Entra ID's binary string comparison and tempts engineers to weaken the trust rule.</li>
+                        <li><span class="bullet-lead-orange">Wildcard (*) Subject Claim Filters:</span> Overly broad OIDC trust rules inside AWS IAM Role Trust Policies (<code style="color: var(--color-cyan);">StringLike</code> with <code style="color: var(--color-cyan);">*</code>), Microsoft Entra ID Federated Identity Credentials, or GCP Workload Identity Pools that trust any branch, pull request, tag, or forked repository within an organization.</li>
+                        <li><span class="bullet-lead-orange">Case-Sensitivity Shortcuts (AADSTS700213 / STS Rejections):</span> Manual typing or AI capitalization guesswork on EKS, AKS, GKE, GitHub Actions, GitLab CI, or Azure DevOps paths that fails binary string comparison and tempts engineers to weaken the trust rule.</li>
                         <li><span class="bullet-lead-orange">Mutable String Renaming:</span> Relying purely on guessed text handles without extracting permanent backend numeric Owner IDs and Repository IDs from the provider API.</li>
                     </ul>
                 </div>
@@ -674,12 +674,12 @@
                             <a href="https://owasp.org/www-project-top-10-ci-cd-security-risks/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify OWASP CI/CD Top 10 &rarr;</a>
                         </li>
                         <li>
-                            <span class="bullet-lead">OWASP Non-Human Identities Top 10 (NHI2: Misconfigured Federated Trust):</span> Details how wildcard OIDC subject claims in cloud workload federation allow unauthorized branches to mint valid cloud access tokens.<br>
+                            <span class="bullet-lead">OWASP Non-Human Identities Top 10 (NHI2: Misconfigured Federated Trust):</span> Details how wildcard OIDC subject claims in cloud workload federation across AWS, Entra ID, and GCP allow unauthorized branches to mint valid cloud access tokens.<br>
                             <a href="https://owasp.org/www-project-non-human-identities-top-10/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify OWASP NHI Top 10 &rarr;</a>
                         </li>
                         <li>
-                            <span class="bullet-lead">Microsoft Entra Workload ID Security Advisory:</span> Explicitly warns against wildcard subject claims and mandates exact case-sensitive string matching on the <code style="color: var(--color-cyan);">sub</code> claim.<br>
-                            <a href="https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation-considerations" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify Microsoft Entra Advisory &rarr;</a>
+                            <span class="bullet-lead">Cloud Workload Identity Federation Advisories (AWS IAM &amp; Microsoft Entra):</span> Explicitly warn against wildcard subject claims and mandate exact case-sensitive string matching on the <code style="color: var(--color-cyan);">sub</code> claim.<br>
+                            <a href="https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation-considerations" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify Workload ID Advisory &rarr;</a>
                         </li>
                     </ul>
                 </div>
@@ -688,7 +688,7 @@
                     <span class="quad-tag">[04 :: THE AKCCE COUNTER-ENGINEERING STRIKE]</span>
                     <h3 class="quad-title">How Phase 2 Welds the Seam Shut</h3>
                     <ul class="quad-list">
-                        <li><span class="bullet-lead-green">Mandatory Programmatic Source Extraction (Phase 2 &amp; Rule 24):</span> Physically blocks Phase 3 code synthesis until The Architect runs read-only terminal extraction scripts directly against the selected Execution Agent backend API (GitHub Actions, Azure DevOps, GitLab CI, or AKS).</li>
+                        <li><span class="bullet-lead-green">Mandatory Programmatic Source Extraction (Phase 2 &amp; Rule 24):</span> Physically blocks Phase 3 code synthesis until The Architect runs read-only terminal extraction scripts directly against the selected Execution Agent backend API (EKS, AKS, GKE, GitHub Actions, GitLab CI, or Azure DevOps).</li>
                         <li><span class="bullet-lead-green">Zero-Wildcard Character &amp; Node-ID Lock (Gate 3):</span> Extracts the immutable numeric Owner and Repository IDs alongside the exact capital-and-lowercase Code Repository and Branch string straight from the provider's database&mdash;locking the Gate 3 Subject Claim character-for-character with zero wildcards (<code style="color: var(--color-green);">*</code>).</li>
                     </ul>
                 </div>
@@ -700,7 +700,7 @@
             <div class="stage-header-row">
                 <span class="stage-badge-red">OFFENSIVE STAGE 03</span>
                 <span class="stage-badge-green">NEUTRALIZED IN PHASE 3 / GATES 2 &amp; 4 (IDENTITY &amp; ACCESS)</span>
-                <h2 class="stage-main-title">Multi-Tenant Injection &amp; Control-Plane Escalation via "The Contributor Trap"</h2>
+                <h2 class="stage-main-title">Cross-Tenant Injection &amp; Control-Plane Escalation via "The Contributor Trap"</h2>
             </div>
 
             <div class="stage-quadrant-grid">
@@ -708,7 +708,7 @@
                     <span class="quad-tag">[01 :: THE HACKER'S PLAY &mdash; PLAIN-TALK TRADECRAFT]</span>
                     <h3 class="quad-title">What the Adversary Sees &amp; Does</h3>
                     <p class="quad-text">
-                        If an attacker compromises a build workflow, they do not want to stop at reading one secret&mdash;they want to take over the entire cloud subscription. They immediately probe the machine identity for two devastating misconfigurations. First, they check if the Application Registration was left in multi-tenant mode or configured with active web browser redirect URLs, which allows an attacker in an outside Microsoft directory to instantiate the app or phish tokens via browser callbacks. Second, they check the identity's Azure permissions for <span class="bullet-lead-red">"The Contributor Trap."</span> When engineers or untethered AI assistants get stuck on Azure permission errors, they routinely grant the machine identity the broad <code style="color: var(--color-red);">Contributor</code> or <code style="color: var(--color-red);">Owner</code> role across the Resource Group or subscription. Because Contributor is a management-plane role, an attacker holding that token can spin up backdoor virtual machines, alter firewall rules, create rogue admin accounts, or wipe out production infrastructure across the entire environment.
+                        If an attacker compromises a build workflow, they do not want to stop at reading one secret&mdash;they want to take over the entire cloud account, subscription, or project. They immediately probe the machine identity for two devastating misconfigurations. First, they check if the identity registration was left open to cross-account/multi-tenant trust or configured with active web browser redirect URLs, which allows an attacker in an outside directory or account to assume the principal or phish tokens via browser callbacks. Second, they check the identity's cloud permissions for <span class="bullet-lead-red">"The Contributor Trap."</span> When engineers or untethered AI assistants get stuck on cloud permission errors, they routinely grant the machine identity broad <code style="color: var(--color-red);">AdministratorAccess</code>, <code style="color: var(--color-red);">Owner</code>, or <code style="color: var(--color-red);">Contributor</code> roles across the account, subscription, or project. Because those are management-plane roles, an attacker holding that token can spin up backdoor virtual machines, alter firewall rules, create rogue admin accounts, or wipe out production infrastructure across the entire environment.
                     </p>
                 </div>
 
@@ -716,9 +716,9 @@
                     <span class="quad-tag">[02 :: THE TECHNICAL SEAM TARGETED]</span>
                     <h3 class="quad-title">Exact Mechanical Vulnerability</h3>
                     <ul class="quad-list">
-                        <li><span class="bullet-lead-orange">"The Contributor Trap" (Control-Plane Over-Permissioning):</span> Assigning management-plane roles (<code style="color: var(--color-cyan);">Owner</code> or <code style="color: var(--color-cyan);">Contributor</code>) to a workload Service Principal that only needs to read a single Data-Plane Asset.</li>
-                        <li><span class="bullet-lead-orange">Multi-Tenant Registrations &amp; Active Browser Callbacks:</span> Leaving <code style="color: var(--color-cyan);">signInAudience</code> open to external Microsoft directories or leaving web redirect URIs active on headless machine identities.</li>
-                        <li><span class="bullet-lead-orange">Graph API Replication Crashes &amp; Dropped Terminal MFA Claims:</span> Attaching Gate 3 trust rules before Microsoft's global directory servers finish syncing Gate 2 objects (404 crashes), or assigning sensitive roles from a terminal that strips interactive MFA claims (401 <code style="color: var(--color-cyan);">RequestDisallowedByAzure</code>).</li>
+                        <li><span class="bullet-lead-orange">"The Contributor Trap" (Control-Plane Over-Permissioning):</span> Assigning management-plane roles (<code style="color: var(--color-cyan);">AdministratorAccess</code>, <code style="color: var(--color-cyan);">Owner</code>, <code style="color: var(--color-cyan);">Contributor</code>, or <code style="color: var(--color-cyan);">Editor</code>) to a workload principal that only needs to read a single Data-Plane Asset.</li>
+                        <li><span class="bullet-lead-orange">Cross-Account / Multi-Tenant Registrations &amp; Active Browser Callbacks:</span> Leaving <code style="color: var(--color-cyan);">signInAudience</code> or IAM trust policies open to external directories/accounts or leaving web redirect URIs active on headless machine identities.</li>
+                        <li><span class="bullet-lead-orange">IAM API Replication Crashes &amp; Dropped Terminal MFA Claims:</span> Attaching Gate 3 trust rules before global cloud directory servers finish syncing Gate 2 objects (404 / NoSuchEntity crashes), or assigning sensitive roles from a terminal that strips interactive MFA claims (401/403 errors).</li>
                     </ul>
                 </div>
 
@@ -727,13 +727,13 @@
                     <h3 class="quad-title">Verified World-Authority Citations</h3>
                     <ul class="quad-list">
                         <li>
-                            <span class="bullet-lead">MITRE ATT&amp;CK&reg; T1078.004 (Cloud Accounts) &amp; T1098.003 (Additional Cloud Roles):</span> Documents how adversaries abuse over-privileged service principals and multi-tenant registrations to escalate across the Azure control plane.<br>
+                            <span class="bullet-lead">MITRE ATT&amp;CK&reg; T1078.004 (Cloud Accounts) &amp; T1098.003 (Additional Cloud Roles):</span> Documents how adversaries abuse over-privileged service principals, IAM roles, and multi-tenant registrations to escalate across the cloud control plane.<br>
                             <a href="https://attack.mitre.org/techniques/T1078/004/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify MITRE T1078.004 &rarr;</a>
                             <a href="https://attack.mitre.org/techniques/T1098/003/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify MITRE T1098.003 &rarr;</a>
                         </li>
                         <li>
-                            <span class="bullet-lead">Microsoft Threat Intelligence (Midnight Blizzard Cloud Identity Tradecraft):</span> Details how nation-state actors target multi-tenant apps and over-privileged service principals to pivot across Microsoft Entra ID and Azure.<br>
-                            <a href="https://www.microsoft.com/en-us/security/blog/2024/01/25/midnight-blizzard-guidance-for-responders-on-nation-state-attack/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify Microsoft Threat Intel &rarr;</a>
+                            <span class="bullet-lead">Cloud Threat Intelligence (Midnight Blizzard Cloud Identity Tradecraft):</span> Details how nation-state actors target multi-tenant apps and over-privileged machine identities to pivot across enterprise cloud environments.<br>
+                            <a href="https://www.microsoft.com/en-us/security/blog/2024/01/25/midnight-blizzard-guidance-for-responders-on-nation-state-attack/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify Cloud Threat Intel &rarr;</a>
                         </li>
                         <li>
                             <span class="bullet-lead">NIST Special Publication 800-207 (Zero Trust Architecture):</span> Mandates strict least-privilege authorization scoped to individual data resources rather than broad management zones.<br>
@@ -746,9 +746,9 @@
                     <span class="quad-tag">[04 :: THE AKCCE COUNTER-ENGINEERING STRIKE]</span>
                     <h3 class="quad-title">How Phase 3 Welds the Seam Shut</h3>
                     <ul class="quad-list">
-                        <li><span class="bullet-lead-green">Gate 2 Single-Tenant &amp; Headless Hardening:</span> Locks the Application Registration and Service Principal strictly to Single-Tenant Mode (<code style="color: var(--color-green);">AzureADMyOrg</code>) with Disabled Browser Redirect URLs and zero static passwords.</li>
-                        <li><span class="bullet-lead-green">Stopping "The Contributor Trap" (Rule 4 / Guardrail 3 / Gate 4):</span> Mathematically blocks <code style="color: var(--color-green);">Owner</code> and <code style="color: var(--color-green);">Contributor</code> roles, restricting the Service Principal to one narrow Data-Plane Role locked strictly to the single Data-Plane Asset.</li>
-                        <li><span class="bullet-lead-green">Asset Protection, 30s Sync Timer &amp; Portal MFA Handoff (Rules 3, 5, 23 &amp; 29):</span> Enforces read-only lookups on Brownfield (Existing) assets (and deletion locks on Greenfield (Net-New) assets), pins all provider versions, embeds the mandatory 30-Second Server Sync Timer to eliminate Graph API race conditions, and triggers the guided Azure Portal MFA Handoff whenever terminal credential brokers drop MFA claims.</li>
+                        <li><span class="bullet-lead-green">Gate 2 Account/Tenant Isolation &amp; Headless Hardening:</span> Locks the IAM Role, Application Registration &amp; Service Principal, or GCP Service Account strictly to the organization's own boundary (such as <code style="color: var(--color-green);">AzureADMyOrg</code> or isolated AWS/GCP trust policies) with Disabled Browser Redirect URLs and zero static passwords or access keys.</li>
+                        <li><span class="bullet-lead-green">Stopping "The Contributor Trap" (Rule 4 / Guardrail 3 / Gate 4):</span> Mathematically blocks <code style="color: var(--color-green);">Admin</code>, <code style="color: var(--color-green);">Owner</code>, and <code style="color: var(--color-green);">Contributor</code> roles, restricting the identity principal to one narrow Data-Plane Role locked strictly to the single Data-Plane Asset (ARN / Resource ID).</li>
+                        <li><span class="bullet-lead-green">Asset Protection, 30s Sync Timer &amp; Cloud Console MFA Handoff (Rules 3, 5, 23 &amp; 29):</span> Enforces read-only lookups on Brownfield (Existing) assets (and deletion locks on Greenfield (Net-New) assets), pins all provider versions, embeds the mandatory 30-Second Server Sync Timer to eliminate IAM API race conditions, and triggers the guided Cloud Console MFA Handoff whenever terminal credential brokers drop MFA claims.</li>
                     </ul>
                 </div>
             </div>
@@ -758,7 +758,7 @@
         <div class="hero-arch-block red-block" id="stage-4">
             <div class="stage-header-row">
                 <span class="stage-badge-red">OFFENSIVE STAGE 04</span>
-                <span class="stage-badge-green">NEUTRALIZED IN PHASE 4 (VALIDATION BRIDGE &amp; PORTAL METRICS)</span>
+                <span class="stage-badge-green">NEUTRALIZED IN PHASE 4 (VALIDATION BRIDGE &amp; CLOUD METRICS)</span>
                 <h2 class="stage-main-title">CI/CD Console Log Scraping &amp; Bearer Token Exfiltration</h2>
             </div>
 
@@ -767,7 +767,7 @@
                     <span class="quad-tag">[01 :: THE HACKER'S PLAY &mdash; PLAIN-TALK TRADECRAFT]</span>
                     <h3 class="quad-title">What the Adversary Sees &amp; Does</h3>
                     <p class="quad-text">
-                        Even when a machine identity is locked down in Azure, the attacker knows that engineers almost always run a test job on the external Execution Agent to prove the connection works&mdash;and to see that proof with their own eyes, engineers and standard AI tools routinely write test scripts that echo the retrieved vault secret or the temporary 60-Minute Login Token directly to the runner's console screen (<code style="color: var(--color-red);">stdout</code>). The instant that job runs, those raw secrets are permanently written into the CI/CD platform's searchable build history logs. Automated offensive scanners continuously crawl corporate build logs&mdash;which are often readable by hundreds of internal users, contractors, and third-party plugins&mdash;and steal the active bearer token or vault secret straight off the screen without ever attacking Azure directly.
+                        Even when a machine identity is locked down in AWS, Azure, or GCP, the attacker knows that engineers almost always run a test job on the external Execution Agent to prove the connection works&mdash;and to see that proof with their own eyes, engineers and standard AI tools routinely write test scripts that echo the retrieved vault secret or the temporary 60-Minute Login Token directly to the runner's console screen (<code style="color: var(--color-red);">stdout</code>). The instant that job runs, those raw secrets are permanently written into the CI/CD platform's searchable build history logs. Automated offensive scanners continuously crawl corporate build logs&mdash;which are often readable by hundreds of internal users, contractors, and third-party plugins&mdash;and steal the active bearer token or vault secret straight off the screen without ever attacking the cloud provider directly.
                     </p>
                 </div>
 
@@ -775,9 +775,9 @@
                     <span class="quad-tag">[02 :: THE TECHNICAL SEAM TARGETED]</span>
                     <h3 class="quad-title">Exact Mechanical Vulnerability</h3>
                     <ul class="quad-list">
-                        <li><span class="bullet-lead-orange">Unmasked Runner Console Output (stdout / stderr):</span> Validation scripts inside GitHub Actions, Azure DevOps, GitLab CI, or Kubernetes pods that print retrieved Key Vault secrets, storage keys, or active OIDC bearer tokens to job logs.</li>
+                        <li><span class="bullet-lead-orange">Unmasked Runner Console Output (stdout / stderr):</span> Validation scripts inside EKS/AKS/GKE pods, GitHub Actions, GitLab CI, or Azure DevOps that print retrieved Secrets Manager/Key Vault secrets, S3/Blob keys, or active OIDC bearer tokens to job logs.</li>
                         <li><span class="bullet-lead-orange">Unverified "Blind" Deployments:</span> Stopping after Phase 3 infrastructure code runs without proving live end-to-end token exchange and data-plane access from the external Execution Agent.</li>
-                        <li><span class="bullet-lead-orange">Client ID vs. Object ID Confusion &amp; Policy Cache Delays:</span> Passing internal directory Object IDs instead of Application Client IDs to login actions, or re-running pipelines before Microsoft Entra ID's 3-to-5-minute policy cache settles.</li>
+                        <li><span class="bullet-lead-orange">Identifier Confusion &amp; Policy Cache Delays:</span> Passing internal directory Object IDs instead of Application Client IDs or Role ARNs to login actions, or re-running pipelines before cloud IAM policy caches settle.</li>
                     </ul>
                 </div>
 
@@ -806,7 +806,7 @@
                     <ul class="quad-list">
                         <li><span class="bullet-lead-green">Pre-Test Cryptographic Baseline (Phase 4 Step 1):</span> Saves the four-section Identity Architecture Ledger (<code style="color: var(--color-green);">identity_architecture_ledger.md</code> or IAL) immediately before live testing begins.</li>
                         <li><span class="bullet-lead-green">Validation Bridge with Active Runtime Log Masking (Rule 6 / Guardrail 5 / Step 2):</span> Injects active Runtime Log Masking (<code style="color: var(--color-green);">::add-mask::</code>) into the live Validation Bridge workflow so the 60-Minute Login Token and Data-Plane Asset secret are intercepted in runner memory and replaced with asterisks (<code style="color: var(--color-green);">***</code>) before a single character can reach the console log.</li>
-                        <li><span class="bullet-lead-green">Stage 1 Mathematical Proof via Portal Metrics (Rule 25 / Step 3):</span> Instead of printing secrets to the screen, proves live data-plane access mathematically by verifying the real-time spike in Azure Portal Monitoring Metrics (<code style="color: var(--color-green);">Total Service API Hits</code>) directly on the Data-Plane Asset.</li>
+                        <li><span class="bullet-lead-green">Stage 1 Mathematical Proof via Cloud Metrics (Rule 25 / Step 3):</span> Instead of printing secrets to the screen, proves live data-plane access mathematically by verifying the real-time spike in cloud monitoring metrics (<code style="color: var(--color-green);">Total Service API Hits / CloudWatch / Portal Metrics</code>) directly on the Data-Plane Asset.</li>
                     </ul>
                 </div>
             </div>
@@ -816,7 +816,7 @@
         <div class="hero-arch-block red-block" id="stage-5">
             <div class="stage-header-row">
                 <span class="stage-badge-red">OFFENSIVE STAGE 05</span>
-                <span class="stage-badge-green">NEUTRALIZED IN PHASE 5 (ARL, STANDBY KQL &amp; DPL)</span>
+                <span class="stage-badge-green">NEUTRALIZED IN PHASE 5 (ARL, STANDBY TELEMETRY &amp; DPL)</span>
                 <h2 class="stage-main-title">Unverified Compliance Claims &amp; Forensic Blind Spots</h2>
             </div>
 
@@ -825,7 +825,7 @@
                     <span class="quad-tag">[01 :: THE HACKER'S PLAY &mdash; PLAIN-TALK TRADECRAFT]</span>
                     <h3 class="quad-title">What the Adversary Sees &amp; Does</h3>
                     <p class="quad-text">
-                        Once an attacker is inside an environment, their survival depends on staying invisible inside the gap between engineering and security operations. Attackers know that when Azure Log Analytics takes 5 to 20 minutes to index new sign-in and vault audit logs, impatient engineers abandon deep log verification and move on to their next ticket without leaving the Security Operations Center (SOC) a working detection query. Furthermore, without a standardized post-deployment audit ledger that grades every security gate and records every mid-build patch, compliance teams are left with verbal assurances rather than verifiable facts. The attacker exploits this forensic blind spot to make unauthorized data-plane reads that nobody is correlating against Microsoft Entra ID token issuance logs.
+                        Once an attacker is inside an environment, their survival depends on staying invisible inside the gap between engineering and security operations. Attackers know that when backend SIEM and cloud log analytics platforms take 5 to 20 minutes to index new sign-in and vault audit logs, impatient engineers abandon deep log verification and move on to their next ticket without leaving the Security Operations Center (SOC) a working detection query. Furthermore, without a standardized post-deployment audit ledger that grades every security gate and records every mid-build patch, compliance teams are left with verbal assurances rather than verifiable facts. The attacker exploits this forensic blind spot to make unauthorized data-plane reads that nobody is correlating against cloud OIDC token issuance logs.
                     </p>
                 </div>
 
@@ -833,8 +833,8 @@
                     <span class="quad-tag">[02 :: THE TECHNICAL SEAM TARGETED]</span>
                     <h3 class="quad-title">Exact Mechanical Vulnerability</h3>
                     <ul class="quad-list">
-                        <li><span class="bullet-lead-orange">The 5-to-20-Minute SIEM Indexing Delay:</span> Backend ingestion latency in Azure Log Analytics that causes engineers to skip writing correlation queries between <code style="color: var(--color-cyan);">ServicePrincipalSignInLogs</code> and <code style="color: var(--color-cyan);">AzureDiagnostics / AuditEvent</code>.</li>
-                        <li><span class="bullet-lead-orange">Uncorrelated Control-Plane vs. Data-Plane Logs:</span> Failing to join token issuance events with vault read events across 5-minute execution windows and 60-minute token lifetime buckets.</li>
+                        <li><span class="bullet-lead-orange">The 5-to-20-Minute SIEM Indexing Delay:</span> Backend ingestion latency across CloudTrail Lake/Athena, Azure Log Analytics, and GCP Cloud Audit Logs that causes engineers to skip writing correlation queries between OIDC sign-in events (<code style="color: var(--color-cyan);">AssumeRoleWithWebIdentity</code> / <code style="color: var(--color-cyan);">ServicePrincipalSignInLogs</code>) and data-plane access events.</li>
+                        <li><span class="bullet-lead-orange">Uncorrelated Control-Plane vs. Data-Plane Logs:</span> Failing to join token issuance events with vault, storage, or database read events across 5-minute execution windows and 60-minute token lifetime buckets.</li>
                         <li><span class="bullet-lead-orange">Rubber-Stamp Compliance &amp; Lost Patch History:</span> Closing deployments without a gate-by-gate compliance scorecard or a permanent record of mid-build troubleshooting changes.</li>
                     </ul>
                 </div>
@@ -863,7 +863,7 @@
                     <h3 class="quad-title">How Phase 5 Welds the Seam Shut</h3>
                     <ul class="quad-list">
                         <li><span class="bullet-lead-green">Formal Gate &amp; Guardrail Compliance Scoring (Phase 5 Step 1):</span> Generates the Audit Results Ledger (<code style="color: var(--color-green);">audit_results_ledger.md</code> or ARL), mathematically verifying and scoring all 4 Architectural Gates (Coordinate, Character, Clock, and Plane Checks) and all 5 Enterprise Guardrails as <code style="color: var(--color-green);">[PASS]</code>.</li>
-                        <li><span class="bullet-lead-green">On-Demand Standby KQL Telemetry Packaging (Phase 5 Step 2):</span> Packages pre-engineered KQL Telemetry (<code style="color: var(--color-green);">kql_telemetry.md</code>) directly into the project folder so Log Analytics indexing latency never stalls the build, while giving the SOC and auditors ready-to-run query code joining Service Principal sign-ins with data-plane reads.</li>
+                        <li><span class="bullet-lead-green">On-Demand Standby CloudTrail, KQL &amp; SIEM Telemetry Packaging (Phase 5 Step 2):</span> Packages pre-engineered CloudTrail, KQL, and SIEM Telemetry (<code style="color: var(--color-green);">kql_telemetry.md</code>) directly into the project folder so log indexing latency never stalls the build, while giving the SOC and auditors ready-to-run query code joining OIDC sign-ins with data-plane reads.</li>
                         <li><span class="bullet-lead-green">Complete Troubleshooting Transparency (Rule 21 / Step 3):</span> Compiles all real-time troubleshooting entries into the finalized Defect &amp; Patch Ledger (<code style="color: var(--color-green);">patch_ledger.md</code> or DPL).</li>
                     </ul>
                 </div>
@@ -883,7 +883,7 @@
                     <span class="quad-tag">[01 :: THE HACKER'S PLAY &mdash; PLAIN-TALK TRADECRAFT]</span>
                     <h3 class="quad-title">What the Adversary Sees &amp; Does</h3>
                     <p class="quad-text">
-                        At the end of a long deployment, the attacker waits for one of the most catastrophic mistakes in cloud engineering: pushing local infrastructure state files to Git. When tools like Terraform run in a local folder during Phase 3, they automatically generate a local state file (<code style="color: var(--color-red);">terraform.tfstate</code> and <code style="color: var(--color-red);">terraform.tfstate.backup</code>) on the hard drive that stores the raw internal map of the cloud deployment, object IDs, and resource metadata in unencrypted plain text. When a tired engineer runs a quick Git push without locking down an exclusion barrier first, those raw state files and local <code style="color: var(--color-red);">.env</code> caches get uploaded straight to the remote repository&mdash;where automated attacker bots scan commits around the clock to download them. At the same time, if the engineer forgets to pull the remote Validation Bridge workflow created in Phase 4 before pushing, Git throws a branch conflict that tempts the engineer to run a destructive force-push (<code style="color: var(--color-red);">git push --force</code>), wiping out the validated pipeline history.
+                        At the end of a long deployment, the attacker waits for one of the most catastrophic mistakes in cloud engineering: pushing local infrastructure state files to Git. When tools like Terraform run in a local folder during Phase 3, they automatically generate a local state file (<code style="color: var(--color-red);">terraform.tfstate</code> and <code style="color: var(--color-red);">terraform.tfstate.backup</code>) on the hard drive that stores the raw internal map of the cloud deployment, ARNs, object IDs, and resource metadata in unencrypted plain text. When a tired engineer runs a quick Git push without locking down an exclusion barrier first, those raw state files and local <code style="color: var(--color-red);">.env</code> caches get uploaded straight to the remote repository&mdash;where automated attacker bots scan commits around the clock to download them. At the same time, if the engineer forgets to pull the remote Validation Bridge workflow created in Phase 4 before pushing, Git throws a branch conflict that tempts the engineer to run a destructive force-push (<code style="color: var(--color-red);">git push --force</code>), wiping out the validated pipeline history.
                     </p>
                 </div>
 
@@ -893,7 +893,7 @@
                     <ul class="quad-list">
                         <li><span class="bullet-lead-orange">Unfiltered Git Staging (git add .):</span> Committing local <code style="color: var(--color-cyan);">terraform.tfstate</code>, <code style="color: var(--color-cyan);">terraform.tfstate.backup</code>, <code style="color: var(--color-cyan);">.tfvars</code>, <code style="color: var(--color-cyan);">.terraform/</code> directories, and <code style="color: var(--color-cyan);">.env</code> caches into version control.</li>
                         <li><span class="bullet-lead-orange">Remote-to-Local Branch Desynchronization:</span> Pushing local audit ledgers without first pulling the remote Phase 4 Validation Bridge workflow file, causing merge rejections and destructive <code style="color: var(--color-cyan);">git push --force</code> overwrites.</li>
-                        <li><span class="bullet-lead-orange">Hardcoded GUIDs in Committed Code:</span> Committing scripts containing raw corporate Tenant IDs or Subscription IDs into shared repositories.</li>
+                        <li><span class="bullet-lead-orange">Hardcoded Identifiers in Committed Code:</span> Committing scripts containing raw corporate AWS Account IDs, Entra ID Tenant IDs, Azure Subscription IDs, or GCP Project IDs into shared repositories.</li>
                     </ul>
                 </div>
 
@@ -941,7 +941,7 @@
                     <span class="quad-tag">[01 :: THE HACKER'S PLAY &mdash; PLAIN-TALK TRADECRAFT]</span>
                     <h3 class="quad-title">What the Adversary Sees &amp; Does</h3>
                     <p class="quad-text">
-                        Even when an organization secures a single cloud deployment from Phase 1 through Phase 6, the adversary counts on human forgetfulness and AI amnesia across the next hundred builds. In a standard workflow, when an engineer and an AI chatbot spend an hour solving complex Microsoft Entra ID schema errors, MFA drops, or IP chunking bugs, all of that hard-won knowledge vanishes the instant the chat window closes. Worse, when an untethered AI hits repeated errors mid-build, it guesses in circles ("hallucination spirals") and weakens security controls just to make the error stop&mdash;or truncates older rules when asked to update its prompt. The attacker knows that if an organization's deployment system does not permanently codify every live fix into its core rulebook, the next build will start from the same flawed baseline and repeat the exact same vulnerability until a door is left open.
+                        Even when an organization secures a single cloud deployment from Phase 1 through Phase 6, the adversary counts on human forgetfulness and AI amnesia across the next hundred builds. In a standard workflow, when an engineer and an AI chatbot spend an hour solving complex AWS IAM/STS, Microsoft Entra ID, or GCP IAM schema errors, MFA drops, or IP chunking bugs, all of that hard-won knowledge vanishes the instant the chat window closes. Worse, when an untethered AI hits repeated errors mid-build, it guesses in circles ("hallucination spirals") and weakens security controls just to make the error stop&mdash;or truncates older rules when asked to update its prompt. The attacker knows that if an organization's deployment system does not permanently codify every live fix into its core rulebook, the next build will start from the same flawed baseline and repeat the exact same vulnerability until a door is left open.
                     </p>
                 </div>
 
@@ -960,7 +960,7 @@
                     <h3 class="quad-title">Verified World-Authority Citations</h3>
                     <ul class="quad-list">
                         <li>
-                            <span class="bullet-lead">NIST AI Risk Management Framework (AI RMF 1.0 &mdash; Govern &amp; Manage):</span> Mandates systematic tracking of AI errors, human-in-the-loop governance over system updates, and continuous post-deployment improvement to prevent recurring failures.<br>
+                            <span class="bullet-lead">NIST AI Risk Management Framework (AI RMF 1.0 &mdash; Govern &amp; Manage) &amp; ISO/IEC 42001:</span> Mandate systematic tracking of AI errors, human-in-the-loop governance over system updates, and continuous post-deployment improvement to prevent recurring failures.<br>
                             <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify NIST AI RMF 1.0 &rarr;</a>
                         </li>
                         <li>
@@ -1004,33 +1004,33 @@
                     <tbody>
                         <tr>
                             <td><span class="bullet-lead-red">Stage 1:</span><br>Workspace &amp; Coordinates</td>
-                            <td>Scrapes <code style="color: var(--color-cyan);">.bash_history</code>, browser Cloud Shells, and untethered AI chats for Tenant IDs, Subscription IDs, and setup tokens.</td>
+                            <td>Scrapes <code style="color: var(--color-cyan);">.bash_history</code>, browser Cloud Shells, and untethered AI chats for Account/Tenant/Subscription IDs and setup tokens.</td>
                             <td>MITRE T1552.003<br>MITRE T1552.001<br>OWASP LLM06</td>
                             <td><span class="bullet-lead-green">Phase 1 (Gate 1):</span> Clean local VS Code folder, 5 blank files, DLP parameters, <code style="color: var(--color-green);">read -s</code> RAM input, read-only boundary check (Rules 2, 19, 20, 22).</td>
                         </tr>
                         <tr>
                             <td><span class="bullet-lead-red">Stage 2:</span><br>OIDC Federation</td>
-                            <td>Exploits wildcard (<code style="color: var(--color-red);">*</code>) subject claims and <code style="color: var(--color-red);">AADSTS700213</code> case workarounds to forge tokens from rogue branches, forks, or PRs.</td>
-                            <td>OWASP CICD-SEC-01/02<br>OWASP NHI Top 10 (NHI2)<br>Microsoft Entra Advisory</td>
+                            <td>Exploits wildcard (<code style="color: var(--color-red);">*</code>) subject claims and OIDC case workarounds (<code style="color: var(--color-red);">AADSTS700213</code> / STS) to forge tokens from rogue branches, forks, or PRs.</td>
+                            <td>OWASP CICD-SEC-01/02<br>OWASP NHI Top 10 (NHI2)<br>Workload ID Advisories</td>
                             <td><span class="bullet-lead-green">Phase 2 (Gate 3):</span> Direct CLI extraction of numeric IDs and exact Code Repository and Branch casing with zero wildcards (Rule 24).</td>
                         </tr>
                         <tr>
                             <td><span class="bullet-lead-red">Stage 3:</span><br>Identity &amp; Access</td>
-                            <td>Abuses multi-tenant apps and broad <code style="color: var(--color-red);">Owner</code> / <code style="color: var(--color-red);">Contributor</code> roles ("The Contributor Trap") to hijack the subscription control plane.</td>
+                            <td>Abuses cross-tenant/multi-tenant apps and broad <code style="color: var(--color-red);">Admin</code> / <code style="color: var(--color-red);">Owner</code> / <code style="color: var(--color-red);">Contributor</code> roles ("The Contributor Trap") to hijack the control plane.</td>
                             <td>MITRE T1078.004 / T1098.003<br>Midnight Blizzard Advisory<br>NIST SP 800-207</td>
-                            <td><span class="bullet-lead-green">Phase 3 (Gates 2 &amp; 4):</span> Single-Tenant Mode, blank redirects, 30s Sync Timer, single Data-Plane Role, Portal MFA Handoff (Rules 3, 4, 23, 29).</td>
+                            <td><span class="bullet-lead-green">Phase 3 (Gates 2 &amp; 4):</span> Account/Tenant Isolation, blank redirects, 30s Sync Timer, single Data-Plane Role, Cloud Console MFA Handoff (Rules 3, 4, 23, 29).</td>
                         </tr>
                         <tr>
                             <td><span class="bullet-lead-red">Stage 4:</span><br>Runtime Console Logs</td>
                             <td>Scrapes shared CI/CD build logs (<code style="color: var(--color-red);">stdout</code>) for printed 60-minute bearer tokens and retrieved vault secrets.</td>
                             <td>OWASP CICD-SEC-06<br>MITRE T1552<br>CISA/NSA CI/CD Guide</td>
-                            <td><span class="bullet-lead-green">Phase 4:</span> Saves <code style="color: var(--color-green);">IAL</code>, injects <code style="color: var(--color-green);">::add-mask::</code> Runtime Log Masking in Validation Bridge, proves access via Portal API Hits (Rules 6, 25).</td>
+                            <td><span class="bullet-lead-green">Phase 4:</span> Saves <code style="color: var(--color-green);">IAL</code>, injects <code style="color: var(--color-green);">::add-mask::</code> Runtime Log Masking in Validation Bridge, proves access via Cloud API Hits (Rules 6, 25).</td>
                         </tr>
                         <tr>
                             <td><span class="bullet-lead-red">Stage 5:</span><br>Forensic Blind Spots</td>
-                            <td>Hides inside the 5-to-20-minute Log Analytics indexing delay and unaudited compliance claims.</td>
+                            <td>Hides inside the 5-to-20-minute SIEM / Log Analytics indexing delay and unaudited compliance claims.</td>
                             <td>MITRE T1562.008<br>CISA Cloud TRA<br>NIST SP 800-53 (AU-2/AU-6)</td>
-                            <td><span class="bullet-lead-green">Phase 5:</span> Scores all 4 Gates &amp; 5 Guardrails as <code style="color: var(--color-green);">[PASS]</code> in <code style="color: var(--color-green);">ARL</code>, packages standby <code style="color: var(--color-green);">kql_telemetry.md</code>, finalizes <code style="color: var(--color-green);">patch_ledger.md</code> (Rule 21).</td>
+                            <td><span class="bullet-lead-green">Phase 5:</span> Scores all 4 Gates &amp; 5 Guardrails as <code style="color: var(--color-green);">[PASS]</code> in <code style="color: var(--color-green);">ARL</code>, packages standby CloudTrail/KQL/SIEM Telemetry, finalizes <code style="color: var(--color-green);">patch_ledger.md</code> (Rule 21).</td>
                         </tr>
                         <tr>
                             <td><span class="bullet-lead-red">Stage 6:</span><br>Repository State Leak</td>
@@ -1041,7 +1041,7 @@
                         <tr>
                             <td><span class="bullet-lead-red">Stage 7:</span><br>AI Amnesia &amp; Drift</td>
                             <td>Counts on closed chat windows forgetting fixes and untethered AI hallucination spirals weakening security controls.</td>
-                            <td>NIST AI RMF 1.0<br>OWASP LLM08 &amp; LLM09<br>MITRE Cloud Matrix</td>
+                            <td>NIST AI RMF 1.0 &amp; ISO 42001<br>OWASP LLM08 &amp; LLM09<br>MITRE Cloud Matrix</td>
                             <td><span class="bullet-lead-green">Directive 05 &amp; Phase 7:</span> 3-Iteration Patch Loop, Full-File State Re-Sync, 4-Iteration Circuit Breaker, Counted Scorecard, Zero-Truncation Compilation (Rules 7&ndash;16).</td>
                         </tr>
                     </tbody>
@@ -1052,7 +1052,7 @@
             <div class="insight-box" style="background: linear-gradient(90deg, rgba(16, 185, 129, 0.12) 0%, transparent 100%); border-left-color: var(--color-green);">
                 <div class="insight-header" style="color: var(--color-green);">Commander's Bottom Line: Proceed to the 7-Phase Counter-Engineering Blueprint</div>
                 <div class="insight-text">
-                    Because a Microsoft Entra ID and Azure machine-identity pipeline is a closed mechanical circuit, the adversary has nowhere else to go outside the seven stages above. When all seven stages are counter-engineered in strict mathematical sequence, verified via live telemetry, and compiled back into the master System Directive at session close, the exploitation chain is neutralized completely. Next, explore the step-by-step execution mechanics on the <a href="blueprint.html" class="inline-link">7-Phase Counter-Engineering Blueprint</a> page or inspect the complete <a href="glossary.html" class="inline-link">26-Variable System Glossary</a>.
+                    Because a multi-cloud machine-identity pipeline across AWS, Microsoft Entra ID &amp; Azure, and Google Cloud is a closed mechanical circuit, the adversary has nowhere else to go outside the seven stages above. When all seven stages are counter-engineered in strict mathematical sequence, verified via live telemetry, and compiled back into the master System Directive at session close, the exploitation chain is neutralized completely. Next, explore the step-by-step execution mechanics on the <a href="blueprint.html" class="inline-link">7-Phase Counter-Engineering Blueprint</a> page or inspect the complete <a href="glossary.html" class="inline-link">26-Variable System Glossary</a>.
                 </div>
             </div>
         </div>
@@ -1074,7 +1074,7 @@
             </svg>
         </div>
         <strong>&copy; 2026 Steven Tuschman | Adversarial Kill-Chain Counter-Engineering&trade; (adversarialkillchaincounterengineering.com). All Rights Reserved.</strong><br>
-        The Adversarial Kill-Chain Counter-Engineering State Machine v1.0, Sequential Kill-Chain Counter-Engineering Protocol, Execution Triad governance model, Four Architectural Gates of Machine Identity, Five Enterprise Guardrails, 72-Combination Build Matrix, and 26-Variable System Glossary are proprietary intellectual property. Unauthorized reproduction, distribution, or commercial adaptation is strictly prohibited.
+        The Adversarial Kill-Chain Counter-Engineering State Machine v1.0, Sequential Kill-Chain Counter-Engineering Protocol, Execution Triad governance model, Four Architectural Gates of Machine Identity, Five Enterprise Guardrails, 72+ Combination Build Matrix, and 26-Variable System Glossary are proprietary intellectual property. Unauthorized reproduction, distribution, or commercial adaptation is strictly prohibited.
     </footer>
 
 </body>

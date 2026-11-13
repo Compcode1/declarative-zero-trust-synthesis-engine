@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autonomous Systems Applications - Execution-Plane Lockdown | Adversarial Kill-Chain Counter-Engineering</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-80NYKHYN3R"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-80NYKHYN3R');
+    </script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-page: #020617; 
+            --bg-node: rgba(10, 15, 29, 0.95);
+            --border-base: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+            --color-blue: #3b82f6;
+            --color-cyan: #0ea5e9;
+            --color-purple: #a855f7;
+            --color-grey: #64748b;
+            --color-green: #10b981;
+            --color-teal: #14b8a6;
+            --color-red: #f43f5e;
+            --color-orange: #f97316;
+            --logo-blue: #2563eb;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--bg-page); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--text-main); line-height: 1.6; padding-bottom: 4rem; }
+
+        /* ================= NAVIGATION ================= */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-base); z-index: 100;
+            padding: 1.2rem 2rem; display: flex; justify-content: center;
+        }
+        .nav-links { 
+            display: flex; gap: 1.1rem; list-style: none; flex-wrap: wrap; 
+            justify-content: center; align-items: center; 
+        }
+        
+        .nav-links a { 
+            display: inline-block;
+            color: var(--color-cyan); 
+            border: 1px solid var(--color-cyan);
+            background: rgba(14, 165, 233, 0.1); 
+            padding: 0.5rem 1.15rem; 
+            border-radius: 6px;
+            text-decoration: none; 
+            font-size: 0.88rem; 
+            font-weight: 700; 
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+            transition: all 0.3s ease; 
+        }
+        
+        .nav-links a:hover, 
+        .nav-links a.active-link { 
+            background: var(--color-cyan); 
+            color: #ffffff; 
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
+        }
+
+        .bullet-lead { color: var(--color-cyan); font-weight: 800; }
+        .bullet-lead-red { color: var(--color-red); font-weight: 800; }
+        .bullet-lead-green { color: var(--color-green); font-weight: 800; }
+        .bullet-lead-orange { color: var(--color-orange); font-weight: 800; }
+        .bullet-lead-purple { color: var(--color-purple); font-weight: 800; }
+
+        /* ================= HERO HEADER & BRAND INSIGNIA ================= */
+        .hero { padding: 155px 20px 40px; text-align: center; }
+        .hero-title-container { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 1.35rem; 
+            margin-bottom: 0.8rem; 
+            flex-wrap: wrap;
+        }
+        .hero-brand-crest {
+            width: 66px;
+            height: 66px;
+            flex-shrink: 0;
+            filter: drop-shadow(0 0 18px rgba(14, 165, 233, 0.4)) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.6));
+            transition: transform 0.3s ease;
+        }
+        .hero-brand-crest:hover {
+            transform: translateY(-2px) scale(1.04);
+        }
+        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 2.95rem; font-weight: 900; letter-spacing: 2.5px; color: var(--text-main); text-transform: uppercase; line-height: 1.15; }
+        .hero-page-subtitle {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.08rem;
+            font-weight: 800;
+            color: var(--color-cyan);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2.2rem;
+        }
+
+        /* JUMP LINKS BAR */
+        .jump-links-container {
+            max-width: 1300px;
+            margin: 0 auto 3.2rem;
+            padding: 1.6rem 2rem;
+            background: rgba(15, 23, 42, 0.65);
+            border: 1px solid var(--border-base);
+            border-top: 3px solid var(--color-cyan);
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+        }
+        .jump-links-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.9rem;
+            margin-bottom: 1.15rem;
+            flex-wrap: wrap;
+        }
+        .jump-links-crest {
+            width: 42px;
+            height: 42px;
+            flex-shrink: 0;
+            filter: drop-shadow(0 0 12px rgba(14, 165, 233, 0.35));
+        }
+        .jump-links-intro {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.08rem;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: 0.5px;
+            margin-bottom: 0;
+        }
+        .jump-links { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 0.85rem; 
+        }
+        .jump-links a { 
+            color: var(--color-cyan); 
+            border: 1px solid var(--color-cyan); 
+            background: rgba(14, 165, 233, 0.08); 
+            padding: 0.62rem 1.15rem; 
+            border-radius: 8px; 
+            text-decoration: none; 
+            font-size: 0.84rem; 
+            font-weight: 700; 
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+            transition: all 0.3s ease; 
+        }
+        .jump-links a:hover { 
+            background: var(--color-cyan); 
+            color: #ffffff; 
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
+            transform: translateY(-2px); 
+        }
+
+        /* ELEVATED ARCHITECTURAL CONTAINERS */
+        .hero-arch-block {
+            max-width: 1300px;
+            margin: 0 auto 3rem;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-base);
+            border-radius: 12px;
+            padding: 3rem 3.2rem;
+            text-align: left;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+        }
+        .hero-arch-block.red-block { border-top: 4px solid var(--color-red); }
+        .hero-arch-block.cyan-block { border-top: 4px solid var(--color-cyan); }
+        .hero-arch-block.green-block { border-top: 4px solid var(--color-green); }
+        .hero-arch-block.purple-block { border-top: 4px solid var(--color-purple); }
+        .hero-arch-block.orange-block { border-top: 4px solid var(--color-orange); }
+
+        .hero-block-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.0rem;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            line-height: 1.55;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 0.75rem;
+        }
+        .red-block .hero-block-tag { color: var(--color-red); }
+        .cyan-block .hero-block-tag { color: var(--color-cyan); }
+        .green-block .hero-block-tag { color: var(--color-green); }
+        .purple-block .hero-block-tag { color: var(--color-purple); }
+        .orange-block .hero-block-tag { color: var(--color-orange); }
+
+        .hero-block-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            line-height: 1.35;
+            color: var(--text-main);
+            text-transform: uppercase;
+            margin-bottom: 1.6rem;
+            padding-bottom: 0.9rem;
+            border-bottom: 2px solid var(--border-base);
+        }
+
+        .hero-subtitle {
+            font-size: 1.16rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.8;
+            margin-bottom: 1.4rem;
+            text-align: left;
+        }
+
+        .mission-master-banner {
+            background: rgba(10, 15, 29, 0.95);
+            border: 1px solid var(--border-base);
+            border-left: 5px solid var(--color-cyan);
+            border-radius: 10px;
+            padding: 2.2rem 2.4rem;
+            margin-bottom: 2.2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        /* PUBLISHED EVIDENCE QUOTE BOX */
+        .evidence-quote {
+            background: rgba(2, 6, 23, 0.9);
+            border-left: 3px solid var(--color-purple);
+            padding: 1rem 1.25rem;
+            margin: 0.95rem 0;
+            border-radius: 0 6px 6px 0;
+            font-size: 0.99rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.68;
+        }
+
+        /* STAGE HEADER BADGE & FLEX */
+        .stage-header-row {
+            display: flex;
+            align-items: center;
+            gap: 1.1rem;
+            margin-bottom: 1.4rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border-base);
+            flex-wrap: wrap;
+        }
+        .stage-badge-red {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.86rem;
+            font-weight: 800;
+            color: #ffffff;
+            background: var(--color-red);
+            padding: 0.35rem 0.9rem;
+            border-radius: 5px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px rgba(244, 63, 94, 0.35);
+        }
+        .stage-badge-green {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: var(--color-green);
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.45);
+            padding: 0.32rem 0.85rem;
+            border-radius: 5px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .stage-main-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.62rem;
+            font-weight: 900;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            line-height: 1.3;
+            width: 100%;
+            margin-top: 0.3rem;
+        }
+
+        /* 2X2 STAGE QUADRANT GRID */
+        .stage-quadrant-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.6rem;
+        }
+        .quad-card {
+            background: rgba(10, 15, 29, 0.95);
+            border: 1px solid var(--border-base);
+            border-radius: 10px;
+            padding: 2rem 2.1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+            display: flex;
+            flex-direction: column;
+        }
+        .quad-card.hacker-play { border-left: 4px solid var(--color-red); }
+        .quad-card.tech-seam { border-left: 4px solid var(--color-orange); }
+        .quad-card.authority-proof { border-left: 4px solid var(--color-purple); }
+        .quad-card.akcce-strike { border-left: 4px solid var(--color-green); }
+        .quad-card.cyan-card { border-left: 4px solid var(--color-cyan); }
+
+        .quad-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.45rem;
+        }
+        .quad-card.hacker-play .quad-tag { color: var(--color-red); }
+        .quad-card.tech-seam .quad-tag { color: var(--color-orange); }
+        .quad-card.authority-proof .quad-tag { color: var(--color-purple); }
+        .quad-card.akcce-strike .quad-tag { color: var(--color-green); }
+        .quad-card.cyan-card .quad-tag { color: var(--color-cyan); }
+
+        .quad-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.18rem;
+            font-weight: 900;
+            color: var(--text-main);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            padding-bottom: 0.7rem;
+            border-bottom: 1px solid var(--border-base);
+            letter-spacing: 0.5px;
+            line-height: 1.35;
+        }
+        .quad-text {
+            font-size: 1.04rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.72;
+        }
+
+        .quad-list {
+            list-style: disc;
+            padding-left: 1.35rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+        .quad-list li {
+            font-size: 1.02rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.65;
+            padding-left: 0.2rem;
+        }
+        .quad-card.tech-seam .quad-list li::marker { color: var(--color-orange); }
+        .quad-card.authority-proof .quad-list li::marker { color: var(--color-purple); }
+        .quad-card.akcce-strike .quad-list li::marker { color: var(--color-green); }
+        .quad-card.cyan-card .quad-list li::marker { color: var(--color-cyan); }
+
+        /* 5 DELIVERABLES GRID */
+        .deliverables-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+            gap: 1.6rem;
+        }
+        .deliverable-card {
+            background: rgba(10, 15, 29, 0.95);
+            border: 1px solid var(--border-base);
+            border-top: 4px solid var(--color-green);
+            border-radius: 10px;
+            padding: 1.95rem 2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+            display: flex;
+            flex-direction: column;
+        }
+        .deliverable-card:nth-child(5) {
+            grid-column: 1 / -1;
+        }
+
+        /* EXTERNAL AUTHORITY REFERENCE BUTTONS */
+        .authority-link-badge {
+            display: inline-block;
+            margin-top: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: var(--color-cyan);
+            background: rgba(14, 165, 233, 0.1);
+            border: 1px solid rgba(14, 165, 233, 0.45);
+            padding: 0.3rem 0.78rem;
+            border-radius: 4px;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+            transition: all 0.25s ease;
+            align-self: flex-start;
+        }
+        .authority-link-badge:hover {
+            background: var(--color-cyan);
+            color: #ffffff;
+            box-shadow: 0 0 12px rgba(14, 165, 233, 0.4);
+        }
+
+        .inline-link { color: var(--color-cyan); text-decoration: none; border-bottom: 1px solid var(--color-cyan); font-weight: 800; transition: color 0.3s ease, border-color 0.3s ease; }
+        .inline-link:hover { color: #ffffff; border-color: #ffffff; }
+
+        /* MASTER SUMMARY COMPARISON TABLE */
+        .matrix-table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            border-radius: 10px;
+            border: 1px solid var(--border-base);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+        }
+        .killchain-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(10, 15, 29, 0.95);
+            text-align: left;
+        }
+        .killchain-table th {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-cyan);
+            background: rgba(2, 6, 23, 0.95);
+            padding: 1.25rem 1.15rem;
+            border-bottom: 2px solid var(--border-base);
+        }
+        .killchain-table td {
+            padding: 1.25rem 1.15rem;
+            font-size: 0.97rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.62;
+            border-bottom: 1px solid var(--border-base);
+            vertical-align: top;
+        }
+        .killchain-table tr:hover td {
+            background: rgba(14, 165, 233, 0.04);
+        }
+
+        /* INSIGHT BOX */
+        .insight-box { border-left: 4px solid var(--color-purple); padding: 2.2rem 2.5rem; margin: 2.5rem auto 0; max-width: 1300px; border-radius: 0 8px 8px 0; text-align: left; }
+        .insight-header { font-family: 'Montserrat', sans-serif; font-size: 1.15rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.85rem; display: flex; align-items: center; gap: 8px; }
+        .insight-header::before { content: '>'; font-weight: 900; }
+        .insight-text { font-size: 1.15rem; color: var(--text-main); font-style: normal; line-height: 1.8; font-weight: 600; }
+
+        #industry-reality, #auto-stage-1, #auto-stage-2, #auto-stage-3, #auto-stage-4, #auto-stage-5, #auto-stage-6, #auto-stage-7, #proof-deliverables, #autonomous-matrix {
+            scroll-margin-top: 105px;
+        }
+
+        /* ================= PROPRIETARY IP FOOTER ================= */
+        .ip-footer {
+            max-width: 1300px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            border-top: 1px solid var(--border-base);
+            background: rgba(10, 15, 29, 0.6);
+            border-radius: 8px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+            line-height: 1.8;
+        }
+        .footer-crest-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0.85rem;
+        }
+        .footer-brand-crest {
+            width: 38px;
+            height: 38px;
+            filter: drop-shadow(0 0 10px rgba(14, 165, 233, 0.25));
+        }
+        .ip-footer strong {
+            color: var(--color-cyan);
+            font-weight: 700;
+        }
+
+        @media (max-width: 992px) {
+            .hero-title { font-size: 2.15rem; }
+            .hero-brand-crest { width: 54px; height: 54px; }
+            .hero-block-title, .stage-main-title { font-size: 1.45rem; }
+            .stage-quadrant-grid, .deliverables-grid { grid-template-columns: 1fr; }
+            .hero-arch-block { padding: 2rem 1.5rem; }
+            .mission-master-banner, .insight-box { padding: 1.5rem; }
+        }
+
+        @media (max-width: 600px) {
+            .hero-title { font-size: 1.65rem; letter-spacing: 1px; }
+            .hero-brand-crest { width: 46px; height: 46px; }
+            .hero { padding-top: 190px; }
+            nav { padding: 1rem; }
+            .nav-links { gap: 0.6rem; }
+            .nav-links a { font-size: 0.75rem; padding: 0.4rem 0.8rem; letter-spacing: 0.5px; }
+        }
+        /* FIX FOR PHONES HELD HORIZONTALLY OR VERTICALLY */
+        @media (max-width: 992px), (max-height: 550px) {
+            nav {
+                position: relative !important;
+                padding: 0.75rem 0.5rem !important;
+            }
+            .nav-links {
+                gap: 0.45rem !important;
+            }
+            .nav-links a {
+                font-size: 0.72rem !important;
+                padding: 0.35rem 0.65rem !important;
+            }
+            .hero {
+                padding-top: 30px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MASTER NAVIGATION (#2 SLOT NEXT TO HOME) -->
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="autonomous-systems.html" class="active-link">Autonomous Systems</a></li>
+            <li><a href="kill-chain.html">The Adversarial Kill Chain</a></li>
+            <li><a href="blueprint.html">7-Phase Counter-Engineering Blueprint</a></li>
+            <li><a href="ai-systems-engineering.html">Tethered AI Systems Engineering</a></li>
+            <li><a href="architectural.html">Exploit-Level Pipeline Architecture</a></li>
+            <li><a href="workflow-portfolio.html">Live Counter-Engineering Proofs</a></li>
+            <li><a href="add-capabilities.html">Day-2 Multi-Cloud Modules</a></li>
+            <li><a href="glossary.html">26-Variable System Glossary</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- ================= ZONE 1: HERO HEADER & PUBLISHED INDUSTRY REALITY ================= -->
+    <header class="hero">
+        <div class="hero-title-container">
+            <!-- 6D. 4-CHEVRON (3D MACHINED BEVEL) HERO BRAND CREST -->
+            <svg class="hero-brand-crest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Adversarial Kill-Chain Counter-Engineering 4-Chevron Crest">
+                <rect width="114" height="114" x="3" y="3" fill="#020617" rx="22" stroke="#1e293b" stroke-width="3"/>
+                <polygon points="24,18 60,36 60,48 24,30" fill="#475569"/>
+                <polygon points="96,18 60,36 60,48 96,30" fill="#1e293b"/>
+                <polygon points="24,39 60,57 60,69 24,51" fill="#0284c7"/>
+                <polygon points="96,39 60,57 60,69 96,51" fill="#075985"/>
+                <polygon points="24,60 60,78 60,90 24,72" fill="#38bdf8"/>
+                <polygon points="96,60 60,78 60,90 96,72" fill="#0369a1"/>
+                <polygon points="24,81 60,99 60,111 24,93" fill="#f43f5e"/>
+                <polygon points="96,81 60,99 60,111 96,93" fill="#9f1239"/>
+            </svg>
+            <h1 class="hero-title">AUTONOMOUS SYSTEMS APPLICATIONS</h1>
+        </div>
+        <div class="hero-page-subtitle">Locking Down Physical-AI Robotics, Autonomous Vehicles &amp; Space Fleets at the Hacker Level</div>
+
+        <!-- ZONE 1 BLOCK: PUBLISHED REALITY & THE EXECUTION-PLANE GAP -->
+        <div class="hero-arch-block cyan-block" id="industry-reality">
+            <span class="hero-block-tag">[INDUSTRY REALITY :: PUBLISHED EVIDENCE FROM FEDERAL &amp; MOBILITY THREAT AUTHORITIES]</span>
+            <h2 class="hero-block-title">Why Autonomous Fleets Are Targeted in the Cloud&mdash;And the Missing Execution-Level Solution</h2>
+
+            <div class="mission-master-banner">
+                <p class="hero-subtitle">
+                    Companies building autonomous trucks, industrial robots, defense unmanned systems, and orbital spacecraft invest hundreds of millions of dollars into two irreplaceable assets: <span class="bullet-lead">proprietary artificial intelligence foundation-model weights</span> (the trained "brains" learned across millions of simulation and real-world hours) and <span class="bullet-lead">wireless Over-the-Air software update pipelines</span> (the cloud channels that push new driving, flight, or manipulation code directly out to live hardware in the field).
+                </p>
+                <p class="hero-subtitle">
+                    Modern attackers rarely walk up to a robot or vehicle with a cable. Because every training cluster, simulation job, and wireless fleet update runs through automated software build pipelines connected to cloud accounts (<span class="bullet-lead">Amazon Web Services, Microsoft Entra ID and Azure, or Google Cloud</span>), adversaries go straight after the <span class="bullet-lead-red">non-human machine identities</span>—the automated software logins that connect code repositories and container clusters to cloud storage buckets and cryptographic signing vaults.
+                </p>
+                <p class="hero-subtitle" style="margin-bottom: 0;">
+                    Published mobility incident data, national security research, and federal safety advisories all document this exact exposure. Yet while existing industry reports and management audits define the problem on paper, they stop short of providing an engineering mechanism to weld those cloud handoffs shut without slowing down fleet software releases. Below are the four primary-source findings defining the current reality—followed by the deterministic, seven-stage counter-engineering solution built to lock every seam down at the raw code level.
+                </p>
+            </div>
+
+            <!-- 4 PUBLISHED INDUSTRY & FEDERAL EVIDENCE CARDS -->
+            <div class="stage-quadrant-grid">
+                
+                <!-- REPORT 1: UPSTREAM SECURITY -->
+                <div class="quad-card authority-proof">
+                    <span class="quad-tag">[PRIMARY SOURCE 01 :: CLOUD &amp; TELEMATICS ATTACK DOMINANCE]</span>
+                    <h3 class="quad-title">Upstream Security: 2026 Global Automotive &amp; Smart Mobility Cybersecurity Report</h3>
+                    <p class="quad-text">
+                        Analyzing <span class="bullet-lead">494 publicly reported cybersecurity incidents</span> across the connected vehicle, autonomous trucking, and smart mobility ecosystem, researchers documented that <span class="bullet-lead-red">92% of attacks were executed remotely</span> without any physical proximity to the hardware, and <span class="bullet-lead-red">67% directly targeted backend cloud servers and telematics infrastructure</span>.
+                    </p>
+                    <div class="evidence-quote">
+                        "Modern cars, trucking fleets, and logistics networks often run on the same kinds of software, cloud services, and remote management systems. If a weakness is found in one of them, it could potentially be used against many others in the same way."
+                    </div>
+                    <a href="https://upstream.auto/reports/global-automotive-cybersecurity-report/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify Upstream Mobility Report &rarr;</a>
+                </div>
+
+                <!-- REPORT 2: RAND CORPORATION -->
+                <div class="quad-card authority-proof">
+                    <span class="quad-tag">[PRIMARY SOURCE 02 :: FOUNDATION-MODEL WEIGHT EXFILTRATION]</span>
+                    <h3 class="quad-title">RAND Corporation: Securing Artificial Intelligence Model Weights (Report RR-A2849-1)</h3>
+                    <p class="quad-text">
+                        Physical-AI robotics and autonomous driving companies store terabytes of trained foundation-model weights inside cloud object storage buckets (<span class="bullet-lead">Amazon S3, Azure Blob Storage, or Google Cloud Storage</span>) read continuously by automated training and simulation pipelines—making over-permissioned machine identities the fastest path to intellectual property theft.
+                    </p>
+                    <div class="evidence-quote">
+                        "Avoiding significant security gaps is highly challenging and requires comprehensive implementation of a broad set of security practices... Centralize all copies of weights to a limited number of access-controlled and monitored systems [and] reduce the number of people [and identities] authorized to access the weights."
+                    </div>
+                    <a href="https://www.rand.org/pubs/research_reports/RRA2849-1.html" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify RAND Research Report &rarr;</a>
+                </div>
+
+                <!-- REPORT 3: CISA & NSA -->
+                <div class="quad-card authority-proof">
+                    <span class="quad-tag">[PRIMARY SOURCE 03 :: SOFTWARE BUILD &amp; RELEASE PIPELINE EXPOSURE]</span>
+                    <h3 class="quad-title">Cybersecurity &amp; Infrastructure Security Agency (CISA) &amp; National Security Agency (NSA)</h3>
+                    <p class="quad-text">
+                        In their joint directive on <span class="bullet-lead">Defending Continuous Integration and Continuous Delivery (CI/CD) Environments</span>—the automated software assembly lines that compile code and push updates to fleets—federal intelligence identifies static cloud keys and loosely scoped pipeline logins as top-tier supply chain breach vectors.
+                    </p>
+                    <div class="evidence-quote">
+                        "For software-to-software authentication, avoid software-based long-term credentials as much as possible; in cloud environments, use the cloud's temporary and ephemeral credentials."
+                    </div>
+                    <a href="https://www.cisa.gov/resources-tools/resources/defending-continuous-integrationcontinuous-delivery-cicd-environments" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify CISA &amp; NSA Advisory &rarr;</a>
+                </div>
+
+                <!-- REPORT 4: U.S. DOT / NHTSA -->
+                <div class="quad-card authority-proof">
+                    <span class="quad-tag">[PRIMARY SOURCE 04 :: WIRELESS FLEET UPDATE &amp; SIGNING INTEGRITY]</span>
+                    <h3 class="quad-title">U.S. Department of Transportation / National Highway Traffic Safety Administration (NHTSA)</h3>
+                    <p class="quad-text">
+                        Federal safety guidelines (<span class="bullet-lead">87 FR 55459: Cybersecurity Best Practices for the Safety of Modern Vehicles</span>) warn that if an adversary compromises cloud communication channels or wireless Over-the-Air firmware signing keys, a digital cloud intrusion immediately becomes a physical safety hazard across live vehicles and machines.
+                    </p>
+                    <div class="evidence-quote">
+                        "[T.11] Employ best practices for communication of critical information over shared and possibly insecure channels. Limit the possibility of replay, integrity compromise, and spoofing. Physical and logical access should also be highly restricted."
+                    </div>
+                    <a href="https://www.federalregister.gov/documents/2022/09/09/2022-19507/cybersecurity-best-practices-for-the-safety-of-modern-vehicles" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify NHTSA Federal Guidance &rarr;</a>
+                </div>
+
+            </div>
+
+            <!-- CLOSING REALITY INSIGHT -->
+            <div class="insight-box" style="background: linear-gradient(90deg, rgba(14, 165, 233, 0.12) 0%, transparent 100%); border-left-color: var(--color-cyan);">
+                <div class="insight-header" style="color: var(--color-cyan);">Bridging the Gap Between High-Level Policy Audits and Raw Attacker Mechanics</div>
+                <div class="insight-text">
+                    Automotive and enterprise audit frameworks (such as ISO/SAE 21434, UNECE R155, and SOC 2) verify management policies and reactive monitoring workflows, but they do not write hardened infrastructure code. Under tight fleet release deadlines, busy engineering teams and untethered artificial intelligence coding assistants inevitably introduce wildcard login filters (<code style="color: var(--color-red);">*</code>), broad administrator permissions, and unmasked build logs just to clear deployment errors. <span class="bullet-lead">The Adversarial Kill-Chain Counter-Engineering State Machine</span> solves that operational gap directly—locking down all seven physical handoffs of an autonomous software pipeline in strict mathematical sequence without slowing down engineering velocity.
+                </div>
+            </div>
+        </div>
+
+        <!-- TOP QUICK-JUMP NAVIGATION BAR -->
+        <div class="jump-links-container">
+            <div class="jump-links-header">
+                <svg class="jump-links-crest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+                    <rect width="114" height="114" x="3" y="3" fill="#020617" rx="22" stroke="#1e293b" stroke-width="3"/>
+                    <polygon points="24,18 60,36 60,48 24,30" fill="#475569"/>
+                    <polygon points="96,18 60,36 60,48 96,30" fill="#1e293b"/>
+                    <polygon points="24,39 60,57 60,69 24,51" fill="#0284c7"/>
+                    <polygon points="96,39 60,57 60,69 96,51" fill="#075985"/>
+                    <polygon points="24,60 60,78 60,90 24,72" fill="#38bdf8"/>
+                    <polygon points="96,60 60,78 60,90 96,72" fill="#0369a1"/>
+                    <polygon points="24,81 60,99 60,111 24,93" fill="#f43f5e"/>
+                    <polygon points="96,81 60,99 60,111 96,93" fill="#9f1239"/>
+                </svg>
+                <div class="jump-links-intro">
+                    Inspect All 7 Autonomous Kill-Chain Stages &amp; Turnkey Proof Deliverables Below:
+                </div>
+            </div>
+            <div class="jump-links">
+                <a href="#auto-stage-1">Stage 1: Developer Laptop &amp; Cloud Map Theft</a>
+                <a href="#auto-stage-2">Stage 2: Wildcard Pipeline Login Forgery</a>
+                <a href="#auto-stage-3">Stage 3: Broad Cloud Role Fleet Takeover</a>
+                <a href="#auto-stage-4">Stage 4: Build Log Signing-Key Scraping</a>
+                <a href="#auto-stage-5">Stage 5: The 20-Minute Log Blind Spot</a>
+                <a href="#auto-stage-6">Stage 6: Leaked Infrastructure State Files</a>
+                <a href="#auto-stage-7">Stage 7: AI Chat Amnesia &amp; Drift</a>
+                <a href="#proof-deliverables">5 Turnkey Proof Deliverables</a>
+                <a href="#autonomous-matrix">Master Autonomous Matrix</a>
+            </div>
+        </div>
+
+        <!-- ================= AUTONOMOUS STAGE 1 ================= -->
+        <div class="hero-arch-block red-block" id="auto-stage-1">
+            <div class="stage-header-row">
+                <span class="stage-badge-red">AUTONOMOUS KILL-CHAIN STAGE 01</span>
+                <span class="stage-badge-green">LOCKED IN PHASE 1 / GATE 1 (CLOUD BOUNDARY)</span>
+                <h2 class="stage-main-title">Developer Workstation Harvesting &amp; Fleet Cloud Map Exposure</h2>
+            </div>
+
+            <div class="stage-quadrant-grid">
+                <div class="quad-card hacker-play">
+                    <span class="quad-tag">[01 :: THE HACKER'S PLAY ON AN AUTONOMOUS COMPANY]</span>
+                    <h3 class="quad-title">Plain-Talk Attack Tradecraft</h3>
+                    <p class="quad-text">
+                        Before an attacker ever touches a live robot, autonomous truck, or cloud storage bucket, they target the laptops of robotics, perception, and infrastructure engineers. Whenever an engineer types or pastes a temporary cloud setup token directly into a standard command terminal, the laptop's operating system silently records that exact line into a hidden plain-text history file on the hard drive. At the same time, engineers using temporary web-browser terminals (AWS CloudShell, Azure Cloud Shell, or Google Cloud Shell) leave behind abandoned cloud storage folders containing cached login tokens, or paste real production account numbers into public artificial intelligence chat windows. Automated attacker malware sweeps those developer history files and abandoned browser mounts to steal the company's internal map of training, simulation, and fleet production accounts before a deployment even starts.
+                    </p>
+                </div>
+
+                <div class="quad-card tech-seam">
+                    <span class="quad-tag">[02 :: AUTONOMOUS ASSETS &amp; MECHANICAL SEAM EXPOSED]</span>
+                    <h3 class="quad-title">What Is Put at Risk</h3>
+                    <ul class="quad-list">
+                        <li><span class="bullet-lead-orange">Plain-Text Terminal History Files:</span> Unmasked cloud setup tokens written directly to <code style="color: var(--color-cyan);">.bash_history</code> or PowerShell command history on robotics and infrastructure developer machines.</li>
+                        <li><span class="bullet-lead-orange">Abandoned Browser Cloud Shell Storage:</span> Browser-based Cloud Shell sessions timing out after 20 minutes, dropping multi-factor authentication checks, and leaving cached tokens sitting in unmonitored storage mounts.</li>
+                        <li><span class="bullet-lead-orange">Mismatched Simulation vs. Production Boundaries:</span> Accidentally pointing a test script at a live fleet production account or pasting real cloud account, tenant, subscription, and project identifiers into untethered chat prompts.</li>
+                    </ul>
+                </div>
+
+                <div class="quad-card authority-proof">
+                    <span class="quad-tag">[03 :: PUBLISHED THREAT &amp; STANDARDS VERIFICATION]</span>
+                    <h3 class="quad-title">Primary-Source Citations</h3>
+                    <ul class="quad-list">
+                        <li>
+                            <span class="bullet-lead">MITRE ATT&amp;CK&reg; T1552.003 (Unsecured Credentials: Command History):</span> Documents how threat actors scrape local <code style="color: var(--color-cyan);">.bash_history</code> and PowerShell logs on engineering laptops to harvest cloud credentials.<br>
+                            <a href="https://attack.mitre.org/techniques/T1552/003/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify MITRE T1552.003 &rarr;</a>
+                        </li>
+                        <li>
+                            <span class="bullet-lead">OWASP Top 10 for Large Language Models (LLM06: Sensitive Information Disclosure):</span> Warns against exposing proprietary cloud routing coordinates and tokens inside untethered artificial intelligence prompts.<br>
+                            <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify OWASP LLM06 &rarr;</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="quad-card akcce-strike">
+                    <span class="quad-tag">[04 :: THE COUNTER-ENGINEERING WELD (PHASE 1 / GATE 1)]</span>
+                    <h3 class="quad-title">How the State Machine Locks It Shut</h3>
+                    <ul class="quad-list">
+                        <li><span class="bullet-lead-green">Browser Cloud Shell Ban &amp; Clean Local Folder:</span> Permanently bans browser Cloud Shells and initializes a clean, isolated local project folder in Visual Studio Code containing five blank deliverable files so old files never collide.</li>
+                        <li><span class="bullet-lead-green">Invisible Memory-Only Token Input (<code style="color: var(--color-green);">read -s</code>):</span> Enforces silent memory-buffered input so temporary setup tokens live strictly in computer memory (RAM) and never appear on screen or write to <code style="color: var(--color-green);">.bash_history</code>, while using clean parameter variables instead of hardcoded corporate IDs.</li>
+                        <li><span class="bullet-lead-green">Read-Only Cloud Boundary Verification:</span> Runs read-only command-line checks first to prove mathematically that the target AWS Account, Azure Subscription, or Google Cloud Project holding the fleet asset sits inside the verified corporate root boundary.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= AUTONOMOUS STAGE 2 ================= -->
+        <div class="hero-arch-block red-block" id="auto-stage-2">
+            <div class="stage-header-row">
+                <span class="stage-badge-red">AUTONOMOUS KILL-CHAIN STAGE 02</span>
+                <span class="stage-badge-green">LOCKED IN PHASE 2 / GATE 3 (WORKLOAD FEDERATION)</span>
+                <h2 class="stage-main-title">Wildcard Pipeline Login Forgery Across Software Build &amp; Simulation Runners</h2>
+            </div>
+
+            <div class="stage-quadrant-grid">
+                <div class="quad-card hacker-play">
+                    <span class="quad-tag">[01 :: THE HACKER'S PLAY ON AN AUTONOMOUS COMPANY]</span>
+                    <h3 class="quad-title">Plain-Talk Attack Tradecraft</h3>
+                    <p class="quad-text">
+                        Autonomous engineering teams use automated software runners—such as GitHub Actions, GitLab CI, Azure DevOps, or Kubernetes container clusters (Amazon EKS, Azure AKS, or Google GKE)—to compile perception models, run simulation tests, and package wireless fleet updates. Instead of using old static passwords, modern clouds use a passwordless digital ID handshake called <span class="bullet-lead">OpenID Connect (OIDC)</span>, where the runner presents a "Subject Claim" stating the exact name of the code repository and branch asking to log in. Because cloud servers check every capital and lowercase letter of that Subject Claim with zero tolerance (rejecting the login immediately if a single letter is capitalized wrong), frustrated engineers and standard AI tools routinely drop in a wildcard asterisk (<code style="color: var(--color-red);">*</code>) so any branch in the repository is trusted. Attackers hunt specifically for that asterisk: once present, an attacker who compromises a side test branch, a contractor fork, or a pull request can trick the cloud into handing them a real production login token.
+                    </p>
+                </div>
+
+                <div class="quad-card tech-seam">
+                    <span class="quad-tag">[02 :: AUTONOMOUS ASSETS &amp; MECHANICAL SEAM EXPOSED]</span>
+                    <h3 class="quad-title">What Is Put at Risk</h3>
+                    <ul class="quad-list">
+                        <li><span class="bullet-lead-orange">Wireless Over-the-Air (OTA) Release Pipelines:</span> An unauthorized developer branch or malicious pull request impersonating the main production release branch that packages software for live vehicles, robots, or satellites.</li>
+                        <li><span class="bullet-lead-orange">Simulation &amp; Foundation-Model Training Clusters:</span> Container pods inside shared Kubernetes clusters minting valid cloud access tokens intended only for production training jobs.</li>
+                        <li><span class="bullet-lead-orange">Wildcard (<code style="color: var(--color-cyan);">*</code>) Trust Policies:</span> Loose <code style="color: var(--color-cyan);">StringLike</code> rules in AWS IAM, Entra ID Federated Credentials, or Google Workload Identity Pools created to bypass case-sensitivity rejections.</li>
+                    </ul>
+                </div>
+
+                <div class="quad-card authority-proof">
+                    <span class="quad-tag">[03 :: PUBLISHED THREAT &amp; STANDARDS VERIFICATION]</span>
+                    <h3 class="quad-title">Primary-Source Citations</h3>
+                    <ul class="quad-list">
+                        <li>
+                            <span class="bullet-lead">OWASP Top 10 CI/CD Security Risks (CICD-SEC-01 &amp; CICD-SEC-02):</span> Details how loosely scoped pipeline trust rules and pull-request triggers let attackers hijack production software delivery identities.<br>
+                            <a href="https://owasp.org/www-project-top-10-ci-cd-security-risks/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify OWASP CI/CD Top 10 &rarr;</a>
+                        </li>
+                        <li>
+                            <span class="bullet-lead">OWASP Non-Human Identities Top 10 (NHI2: Misconfigured Federated Trust):</span> Documents how wildcard OIDC Subject Claims allow unauthorized branches to mint valid cloud tokens.<br>
+                            <a href="https://owasp.org/www-project-non-human-identities-top-10/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify OWASP NHI Top 10 &rarr;</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="quad-card akcce-strike">
+                    <span class="quad-tag">[04 :: THE COUNTER-ENGINEERING WELD (PHASE 2 / GATE 3)]</span>
+                    <h3 class="quad-title">How the State Machine Locks It Shut</h3>
+                    <ul class="quad-list">
+                        <li><span class="bullet-lead-green">Direct API Extraction Before Code Is Written:</span> Physically blocks infrastructure code generation until The Architect runs a read-only extraction command directly against the live GitHub, GitLab, Azure DevOps, or Kubernetes API.</li>
+                        <li><span class="bullet-lead-green">Zero-Wildcard Character &amp; Numeric ID Lock:</span> Pulls the permanent backend numeric repository and owner IDs alongside the exact capital-and-lowercase repository and branch spelling straight from the platform's database—locking the Gate 3 Subject Claim character-for-character with <span class="bullet-lead-green">zero wildcards (*)</span> and capping every issued token to a strict 60-minute lifetime.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= AUTONOMOUS STAGE 3 ================= -->
+        <div class="hero-arch-block red-block" id="auto-stage-3">
+            <div class="stage-header-row">
+                <span class="stage-badge-red">AUTONOMOUS KILL-CHAIN STAGE 03</span>
+                <span class="stage-badge-green">LOCKED IN PHASE 3 / GATES 2 &amp; 4 (IDENTITY &amp; SINGLE-ASSET ACCESS)</span>
+                <h2 class="stage-main-title">Control-Plane Escalation Across Model Weights, Customer Facility Maps &amp; Fleet Infrastructure ("The Contributor Trap")</h2>
+            </div>
+
+            <div class="stage-quadrant-grid">
+                <div class="quad-card hacker-play">
+                    <span class="quad-tag">[01 :: THE HACKER'S PLAY ON AN AUTONOMOUS COMPANY]</span>
+                    <h3 class="quad-title">Plain-Talk Attack Tradecraft</h3>
+                    <p class="quad-text">
+                        Once an attacker compromises a single build job or simulation container, their immediate goal is lateral escalation: jumping from a low-level test pipeline into the company's crown-jewel vaults and fleet servers. They look for <span class="bullet-lead-red">"The Contributor Trap."</span> When engineers or untethered AI assistants hit complex cloud permission errors while connecting a pipeline to a storage bucket or secret vault, they routinely clear the error by granting the machine identity broad <code style="color: var(--color-red);">AdministratorAccess</code>, <code style="color: var(--color-red);">Owner</code>, or <code style="color: var(--color-red);">Contributor</code> permissions across the entire cloud account or subscription. Granting a software runner Contributor or Administrator access is like handing a delivery driver the master keys to remodel the entire building just to drop off one box: an attacker holding that token can read every storage bucket in the account, steal nine-figure foundation-model weights, access confidential customer warehouse or defense facility blueprints, spin up rogue GPU servers, or alter live fleet routing infrastructure.
+                    </p>
+                </div>
+
+                <div class="quad-card tech-seam">
+                    <span class="quad-tag">[02 :: AUTONOMOUS ASSETS &amp; MECHANICAL SEAM EXPOSED]</span>
+                    <h3 class="quad-title">What Is Put at Risk</h3>
+                    <ul class="quad-list">
+                        <li><span class="bullet-lead-orange">Nine-Figure Foundation-Model Weights &amp; Training Data:</span> Complete exfiltration of proprietary robotics, autonomy, and perception model weights stored in adjacent S3, Azure Blob, or Google Cloud Storage buckets.</li>
+                        <li><span class="bullet-lead-orange">Customer Warehouse, Factory &amp; Defense Site Maps:</span> Unauthorized access to 3D LiDAR point clouds, facility layouts, and operational telemetry belonging to enterprise or government customers.</li>
+                        <li><span class="bullet-lead-orange">Cross-Tenant Backdoors &amp; Production Overwrites:</span> Multi-tenant app registrations open to external directories, or unconstrained scripts accidentally overwriting live fleet vaults and databases.</li>
+                    </ul>
+                </div>
+
+                <div class="quad-card authority-proof">
+                    <span class="quad-tag">[03 :: PUBLISHED THREAT &amp; STANDARDS VERIFICATION]</span>
+                    <h3 class="quad-title">Primary-Source Citations</h3>
+                    <ul class="quad-list">
+                        <li>
+                            <span class="bullet-lead">MITRE ATT&amp;CK&reg; T1078.004 &amp; T1098.003 (Cloud Accounts &amp; Roles):</span> Documents how attackers weaponize over-privileged service principals and IAM roles to take over cloud control planes.<br>
+                            <a href="https://attack.mitre.org/techniques/T1078/004/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify MITRE T1078.004 &rarr;</a>
+                        </li>
+                        <li>
+                            <span class="bullet-lead">NIST Special Publication 800-207 (Zero Trust Architecture):</span> Mandates granular authorization scoped strictly to individual target assets rather than broad account-wide zones.<br>
+                            <a href="https://csrc.nist.gov/pubs/sp/800/207/final" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify NIST SP 800-207 &rarr;</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="quad-card akcce-strike">
+                    <span class="quad-tag">[04 :: THE COUNTER-ENGINEERING WELD (PHASE 3 / GATES 2 &amp; 4)]</span>
+                    <h3 class="quad-title">How the State Machine Locks It Shut</h3>
+                    <ul class="quad-list">
+                        <li><span class="bullet-lead-green">Single-Asset Data-Plane Isolation (Stopping "The Contributor Trap"):</span> Mathematically blocks <code style="color: var(--color-green);">Administrator</code>, <code style="color: var(--color-green);">Owner</code>, and <code style="color: var(--color-green);">Contributor</code> roles. Binds one narrow Data-Plane Role locked strictly to the exact resource ID of <span class="bullet-lead-green">one single vault secret, one single model-weight bucket, or one single database table</span>—leaving zero lateral movement paths.</li>
+                        <li><span class="bullet-lead-green">Account Isolation &amp; Existing Fleet Asset Protection:</span> Locks the identity strictly to the company's own tenant with browser redirect URLs disabled and zero static keys; enforces read-only lookups on existing (Brownfield) fleet assets so live production vaults can never be overwritten.</li>
+                        <li><span class="bullet-lead-green">30-Second Server Sync Timer &amp; MFA Handoff:</span> Embeds a 30-second directory sync timer so global cloud replication lag never crashes deployments, plus a guided browser Multi-Factor Authentication handoff when terminal MFA claims drop.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= AUTONOMOUS STAGE 4 ================= -->
+        <div class="hero-arch-block red-block" id="auto-stage-4">
+            <div class="stage-header-row">
+                <span class="stage-badge-red">AUTONOMOUS KILL-CHAIN STAGE 04</span>
+                <span class="stage-badge-green">LOCKED IN PHASE 4 (MASKED VALIDATION BRIDGE &amp; CLOUD METRICS)</span>
+                <h2 class="stage-main-title">Build Console Log Scraping of Wireless Update Signing Keys &amp; Active Tokens</h2>
+            </div>
+
+            <div class="stage-quadrant-grid">
+                <div class="quad-card hacker-play">
+                    <span class="quad-tag">[01 :: THE HACKER'S PLAY ON AN AUTONOMOUS COMPANY]</span>
+                    <h3 class="quad-title">Plain-Talk Attack Tradecraft</h3>
+                    <p class="quad-text">
+                        Even if the cloud vault itself is locked down, attackers know that engineers have to test whether the automated build pipeline can actually log in and read the secret or signing key—and to verify it worked, engineers and standard AI scripts routinely print the retrieved secret or temporary 60-minute login token to the build runner's console screen (<code style="color: var(--color-red);">stdout</code>) during debug runs. The split-second that happens, those active login tokens or cryptographic material are saved into the company's shared CI/CD build log history, which is frequently visible to dozens or hundreds of developers, contractors, and third-party code plugins. Attackers scrape those shared build logs to lift active tokens or signing credentials straight off the screen without ever attacking the cloud vault directly.
+                    </p>
+                </div>
+
+                <div class="quad-card tech-seam">
+                    <span class="quad-tag">[02 :: AUTONOMOUS ASSETS &amp; MECHANICAL SEAM EXPOSED]</span>
+                    <h3 class="quad-title">What Is Put at Risk</h3>
+                    <ul class="quad-list">
+                        <li><span class="bullet-lead-orange">Wireless Over-the-Air (OTA) Firmware Signing Keys &amp; API Secrets:</span> Cryptographic secrets or container registry credentials echoed accidentally into GitHub Actions, GitLab, Azure DevOps, or Kubernetes pod logs.</li>
+                        <li><span class="bullet-lead-orange">Active 60-Minute Cloud Bearer Tokens:</span> Live session tokens scraped from shared build logs and replayed by an attacker from an external machine while the 60-minute window is still open.</li>
+                        <li><span class="bullet-lead-orange">Unverified "Assumed Working" Configurations:</span> Skipping live end-to-end testing altogether and discovering during an urgent fleet patch release that permissions fail.</li>
+                    </ul>
+                </div>
+
+                <div class="quad-card authority-proof">
+                    <span class="quad-tag">[03 :: PUBLISHED THREAT &amp; STANDARDS VERIFICATION]</span>
+                    <h3 class="quad-title">Primary-Source Citations</h3>
+                    <ul class="quad-list">
+                        <li>
+                            <span class="bullet-lead">OWASP Top 10 CI/CD Security Risks (CICD-SEC-06: Insufficient Credential Hygiene):</span> Identifies unmasked secrets and tokens printed inside pipeline build logs as a leading enterprise compromise vector.<br>
+                            <a href="https://owasp.org/www-project-top-10-ci-cd-security-risks/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify OWASP CICD-SEC-06 &rarr;</a>
+                        </li>
+                        <li>
+                            <span class="bullet-lead">MITRE ATT&amp;CK&reg; T1552 (Unsecured Credentials in Pipeline Output):</span> Documents automated harvesting of credentials exposed in container and build logs.<br>
+                            <a href="https://attack.mitre.org/techniques/T1552/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify MITRE T1552 &rarr;</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="quad-card akcce-strike">
+                    <span class="quad-tag">[04 :: THE COUNTER-ENGINEERING WELD (PHASE 4)]</span>
+                    <h3 class="quad-title">How the State Machine Locks It Shut</h3>
+                    <ul class="quad-list">
+                        <li><span class="bullet-lead-green">Pre-Test Identity Architecture Ledger (IAL):</span> Records the exact cryptographic baseline—every boundary ID, principal ID, wildcard-free Subject Claim, and single-asset role—before running a single live test.</li>
+                        <li><span class="bullet-lead-green">In-Memory Runtime Log Masking (<code style="color: var(--color-green);">::add-mask::</code>):</span> Injects active memory scrubbing directly into the live Validation Bridge workflow so every 60-minute login token and retrieved vault secret is overwritten with asterisks (<code style="color: var(--color-green);">***</code>) in RAM before a single character can reach the console log.</li>
+                        <li><span class="bullet-lead-green">Zero-Exposure Proof via Real-Time Cloud Metrics:</span> Proves mathematically that the runner accessed the single target asset by verifying the immediate spike in cloud monitoring metrics (<code style="color: var(--color-green);">Total Service API Hits / CloudWatch / Portal Metrics</code>) directly on the asset—never printing secrets to the screen.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= AUTONOMOUS STAGE 5 ================= -->
+        <div class="hero-arch-block red-block" id="auto-stage-5">
+            <div class="stage-header-row">
+                <span class="stage-badge-red">AUTONOMOUS KILL-CHAIN STAGE 05</span>
+                <span class="stage-badge-green">LOCKED IN PHASE 5 (AUDIT RESULTS LEDGER &amp; STANDBY TELEMETRY)</span>
+                <h2 class="stage-main-title">Operating Inside the 5-to-20-Minute Security Log Blind Spot &amp; Paper Compliance</h2>
+            </div>
+
+            <div class="stage-quadrant-grid">
+                <div class="quad-card hacker-play">
+                    <span class="quad-tag">[01 :: THE HACKER'S PLAY ON AN AUTONOMOUS COMPANY]</span>
+                    <h3 class="quad-title">Plain-Talk Attack Tradecraft</h3>
+                    <p class="quad-text">
+                        Most corporate security teams rely on central log-monitoring software—known as <span class="bullet-lead">Security Information and Event Management (SIEM)</span> platforms (such as AWS CloudTrail Lake, Azure Sentinel / Log Analytics, or Google Cloud Audit Logs)—to spot suspicious activity. What attackers know, and exploit ruthlessly, is that cloud log platforms take <span class="bullet-lead-red">5 to 20 minutes</span> just to ingest and index new login and storage-read events. Because of that 20-minute delay, busy infrastructure engineers rarely wait around after a deployment to write custom detection queries linking pipeline logins to vault reads, and annual compliance audits pass on written policy spreadsheets alone. An automated attacker script uses that exact 5-to-20-minute blind spot to authenticate, pull gigabytes of model weights or signing keys, and disconnect before a reactive security alert ever fires on an analyst's screen.
+                    </p>
+                </div>
+
+                <div class="quad-card tech-seam">
+                    <span class="quad-tag">[02 :: AUTONOMOUS ASSETS &amp; MECHANICAL SEAM EXPOSED]</span>
+                    <h3 class="quad-title">What Is Put at Risk</h3>
+                    <ul class="quad-list">
+                        <li><span class="bullet-lead-orange">The 5-to-20-Minute Detection Window:</span> High-speed automated exfiltration of model checkpoints, sensor datasets, or signing secrets completed before central log tables finish indexing.</li>
+                        <li><span class="bullet-lead-orange">Uncorrelated Login vs. Vault Logs:</span> Security Operations Center (SOC) teams seeing isolated login events without a pre-built query tying each 60-minute pipeline token directly to the exact storage bucket or vault it touched.</li>
+                        <li><span class="bullet-lead-orange">Checkbox Process Audits (ISO/SAE 21434, UNECE R155, SOC 2):</span> Passing high-level OEM or defense governance audits on paper without line-by-line proof that wildcard logins and broad roles are actually blocked in production.</li>
+                    </ul>
+                </div>
+
+                <div class="quad-card authority-proof">
+                    <span class="quad-tag">[03 :: PUBLISHED THREAT &amp; STANDARDS VERIFICATION]</span>
+                    <h3 class="quad-title">Primary-Source Citations</h3>
+                    <ul class="quad-list">
+                        <li>
+                            <span class="bullet-lead">MITRE ATT&amp;CK&reg; T1562.008 (Impair Defenses: Cloud Logs &amp; Telemetry):</span> Details how adversaries exploit unmonitored cloud log streams and missing cross-plane log correlation.<br>
+                            <a href="https://attack.mitre.org/techniques/T1562/008/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify MITRE T1562.008 &rarr;</a>
+                        </li>
+                        <li>
+                            <span class="bullet-lead">NIST Special Publication 800-53 Rev. 5 (Controls AU-2 &amp; AU-6):</span> Establishes strict federal requirements for correlating identity authentication events directly with data-plane resource reads.<br>
+                            <a href="https://csrc.nist.gov/pubs/sp/800/53/r5/upd1/final" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify NIST SP 800-53 &rarr;</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="quad-card akcce-strike">
+                    <span class="quad-tag">[04 :: THE COUNTER-ENGINEERING WELD (PHASE 5)]</span>
+                    <h3 class="quad-title">How the State Machine Locks It Shut</h3>
+                    <ul class="quad-list">
+                        <li><span class="bullet-lead-green">Preventative Lockdown Before Any Alert Is Needed:</span> Because Gates 1 through 4 already block wildcards and broad roles up front, an attacker cannot pivot during the 20-minute log delay even if they try.</li>
+                        <li><span class="bullet-lead-green">Turnkey Audit Results Ledger (ARL):</span> Automatically grades and scores all 4 Architectural Gates and all 5 Enterprise Guardrails as <code style="color: var(--color-green);">[PASS]</code> against live cloud evidence—giving OEM partners, Department of Defense assessors, and internal CISOs instant code-level proof.</li>
+                        <li><span class="bullet-lead-green">Pre-Engineered Standby Telemetry Queries:</span> Packages ready-to-run AWS CloudTrail, Azure Kusto Query Language (KQL), or Google Cloud Audit scripts joining OIDC sign-ins with single-asset reads across 5-minute windows and 60-minute token buckets without stalling engineering builds.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= AUTONOMOUS STAGE 6 ================= -->
+        <div class="hero-arch-block red-block" id="auto-stage-6">
+            <div class="stage-header-row">
+                <span class="stage-badge-red">AUTONOMOUS KILL-CHAIN STAGE 06</span>
+                <span class="stage-badge-green">LOCKED IN PHASE 6 (PULL-FIRST SYNC &amp; .GITIGNORE BARRIER)</span>
+                <h2 class="stage-main-title">Git Repository Infrastructure State-File Leakage &amp; Force-Push Overwrites</h2>
+            </div>
+
+            <div class="stage-quadrant-grid">
+                <div class="quad-card hacker-play">
+                    <span class="quad-tag">[01 :: THE HACKER'S PLAY ON AN AUTONOMOUS COMPANY]</span>
+                    <h3 class="quad-title">Plain-Talk Attack Tradecraft</h3>
+                    <p class="quad-text">
+                        At the end of an infrastructure build, attackers watch for one of the most common mistakes in fast-moving robotics and autonomous engineering shops: accidentally uploading local infrastructure "state files" to Git. When an engineer runs a tool like Terraform on their workstation, Terraform creates a local tracking file (<code style="color: var(--color-red);">terraform.tfstate</code>) that records every cloud resource ID, internal role mapping, and sensitive configuration attribute in unencrypted plain text. If a hurried engineer runs <code style="color: var(--color-red);">git add .</code> without an exclusion barrier in place, that plain-text blueprint of the company's cloud architecture gets pushed straight into the shared Git repository—where anyone with repository read access (or a compromised developer token) can download the entire map. Meanwhile, pushing local files without pulling remote pipeline changes first triggers Git merge errors that tempt engineers into running destructive force-pushes (<code style="color: var(--color-red);">git push --force</code>) that wipe out validated security workflows.
+                    </p>
+                </div>
+
+                <div class="quad-card tech-seam">
+                    <span class="quad-tag">[02 :: AUTONOMOUS ASSETS &amp; MECHANICAL SEAM EXPOSED]</span>
+                    <h3 class="quad-title">What Is Put at Risk</h3>
+                    <ul class="quad-list">
+                        <li><span class="bullet-lead-orange">Plain-Text Cloud Architecture Blueprints (<code style="color: var(--color-cyan);">terraform.tfstate</code> &amp; <code style="color: var(--color-cyan);">.env</code>):</span> Exposing exact vault resource paths, storage bucket identifiers, and identity metadata across shared engineering repositories.</li>
+                        <li><span class="bullet-lead-orange">Destructive Pipeline History Overwrites:</span> Force-pushing over the live Phase 4 Validation Bridge workflow and breaking automated security verification for future fleet builds.</li>
+                    </ul>
+                </div>
+
+                <div class="quad-card authority-proof">
+                    <span class="quad-tag">[03 :: PUBLISHED THREAT &amp; STANDARDS VERIFICATION]</span>
+                    <h3 class="quad-title">Primary-Source Citations</h3>
+                    <ul class="quad-list">
+                        <li>
+                            <span class="bullet-lead">HashiCorp Official Security Advisory (Sensitive Data in Terraform State):</span> Explicitly warns that local Terraform state files store resource metadata in plain text and must never be committed to Git.<br>
+                            <a href="https://developer.hashicorp.com/terraform/language/state/sensitive-data" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify HashiCorp Advisory &rarr;</a>
+                        </li>
+                        <li>
+                            <span class="bullet-lead">MITRE ATT&amp;CK&reg; T1213.003 (Data from Code Repositories):</span> Documents automated adversary scanning of Git commits for leaked state and environment files.<br>
+                            <a href="https://attack.mitre.org/techniques/T1213/003/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify MITRE T1213.003 &rarr;</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="quad-card akcce-strike">
+                    <span class="quad-tag">[04 :: THE COUNTER-ENGINEERING WELD (PHASE 6)]</span>
+                    <h3 class="quad-title">How the State Machine Locks It Shut</h3>
+                    <ul class="quad-list">
+                        <li><span class="bullet-lead-green">Mandatory Pull-First Merge:</span> Executes <code style="color: var(--color-green);">git pull origin main</code> first so the remote Phase 4 Validation Bridge workflow merges cleanly onto the local workstation without conflicts or force-pushes.</li>
+                        <li><span class="bullet-lead-green">Hard State-File Exclusion Barrier (<code style="color: var(--color-green);">.gitignore</code>):</span> Automatically writes and locks a strict <code style="color: var(--color-green);">.gitignore</code> file before staging anything—physically blocking <code style="color: var(--color-green);">.tfstate</code>, <code style="color: var(--color-green);">.tfstate.backup</code>, <code style="color: var(--color-green);">.tfvars</code>, <code style="color: var(--color-green);">.terraform/</code>, and <code style="color: var(--color-green);">.env</code> files from ever leaving the engineer's machine.</li>
+                        <li><span class="bullet-lead-green">Sterilized Five-File Push:</span> Stages and pushes only the five parameter-clean deliverable files to the authorized repository and branch.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= AUTONOMOUS STAGE 7 ================= -->
+        <div class="hero-arch-block red-block" id="auto-stage-7">
+            <div class="stage-header-row">
+                <span class="stage-badge-red">AUTONOMOUS KILL-CHAIN STAGE 07</span>
+                <span class="stage-badge-green">LOCKED BY ALL-PHASE CIRCUIT BREAKER &amp; PHASE 7 DIRECTIVE COMPILATION</span>
+                <h2 class="stage-main-title">Configuration Drift &amp; AI Chat Amnesia Across Rapid Fleet Scaling</h2>
+            </div>
+
+            <div class="stage-quadrant-grid">
+                <div class="quad-card hacker-play">
+                    <span class="quad-tag">[01 :: THE HACKER'S PLAY ON AN AUTONOMOUS COMPANY]</span>
+                    <h3 class="quad-title">Plain-Talk Attack Tradecraft</h3>
+                    <p class="quad-text">
+                        Even if an autonomous company locks down one cloud pipeline manually today, attackers count on configuration drift as the fleet scales from ten test units to thousands of deployed robots, vehicles, or satellites. Every week, engineers spin up new training buckets, new simulation clusters, and new regional deployment pipelines. In a standard workflow, when an engineer and an AI coding assistant spend hours solving a tricky AWS, Entra ID, or Google Cloud permission bug, that lesson vanishes the moment the chat window closes—and when an untethered AI hits three or four errors in a row mid-build, it spirals into guesswork, outputs broken partial code snippets, or re-introduces wildcards and broad roles just to make the error disappear. Attackers simply wait for the next hurried Friday release to re-open a previously solved hole.
+                    </p>
+                </div>
+
+                <div class="quad-card tech-seam">
+                    <span class="quad-tag">[02 :: AUTONOMOUS ASSETS &amp; MECHANICAL SEAM EXPOSED]</span>
+                    <h3 class="quad-title">What Is Put at Risk</h3>
+                    <ul class="quad-list">
+                        <li><span class="bullet-lead-orange">Recurring Security Regressions Across New Fleet Environments:</span> Repeating the exact same OIDC, MFA, or role-scoping mistakes every time a new robotics model or regional deployment pipeline is added.</li>
+                        <li><span class="bullet-lead-orange">Mid-Build AI Hallucination Spirals (19.7% 10-Step Reliability):</span> Untethered generative models compounding single-step guesswork (<code style="color: var(--color-cyan);">0.85^10 = 19.7%</code>) into broken configurations or weakened security settings under deadline pressure.</li>
+                    </ul>
+                </div>
+
+                <div class="quad-card authority-proof">
+                    <span class="quad-tag">[03 :: PUBLISHED THREAT &amp; STANDARDS VERIFICATION]</span>
+                    <h3 class="quad-title">Primary-Source Citations</h3>
+                    <ul class="quad-list">
+                        <li>
+                            <span class="bullet-lead">NIST Artificial Intelligence Risk Management Framework (AI RMF 1.0) &amp; ISO/IEC 42001:</span> Mandate human-in-the-loop governance, systematic error tracking, and continuous post-deployment rule hardening.<br>
+                            <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify NIST AI RMF 1.0 &rarr;</a>
+                        </li>
+                        <li>
+                            <span class="bullet-lead">OWASP Top 10 for Large Language Models (LLM08: Excessive Agency &amp; LLM09: Overreliance):</span> Warns against allowing AI tools to guess past repeated errors without deterministic circuit breakers.<br>
+                            <a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener noreferrer" class="authority-link-badge">Verify OWASP LLM08/09 &rarr;</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="quad-card akcce-strike">
+                    <span class="quad-tag">[04 :: THE COUNTER-ENGINEERING WELD (DIRECTIVE 05 &amp; PHASE 7)]</span>
+                    <h3 class="quad-title">How the State Machine Locks It Shut</h3>
+                    <ul class="quad-list">
+                        <li><span class="bullet-lead-green">3-Attempt Clinical Patch Loop &amp; Full-File Re-Sync:</span> Logs every verified mid-build fix in real time into the Defect &amp; Patch Ledger (DPL) and reprints 100% of the infrastructure file from top to bottom so partial snippets never corrupt code.</li>
+                        <li><span class="bullet-lead-green">The 4-Iteration Circuit Breaker:</span> If any isolated error fails 3 times and reaches Attempt 4, the state machine physically halts code generation and calculates an Estimated Probability of Success (X%) so The Architect stays in command.</li>
+                        <li><span class="bullet-lead-green">Permanent Self-Hardening Compilation (Phase 7):</span> Audits the session via a counted AI Performance Scorecard and compiles every proven fix permanently back into the master System Directive with zero truncation—so solved vulnerabilities never recur as the fleet scales.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= ZONE 3: THE 5 TURNKEY PROOF DELIVERABLES ================= -->
+        <div class="hero-arch-block green-block" id="proof-deliverables">
+            <span class="hero-block-tag">[TURNKEY ENGINEERING &amp; AUDIT ARTIFACTS :: LEFT IN YOUR REPOSITORY AFTER EVERY BUILD]</span>
+            <h2 class="hero-block-title">What Engineering &amp; Security Leadership Receive: The 5 Sterilized Proof Deliverables</h2>
+
+            <p class="hero-subtitle">
+                Instead of leaving behind verbal assurances or static policy spreadsheets, every execution of <span class="bullet-lead">The Adversarial Kill-Chain Counter-Engineering State Machine</span> across Amazon Web Services, Microsoft Entra ID and Azure, or Google Cloud produces five concrete, parameter-clean files committed directly to your authorized repository—proving mathematically that the autonomous pipeline works and every attacker seam is sealed:
+            </p>
+
+            <div class="deliverables-grid">
+                <div class="deliverable-card">
+                    <span class="quad-tag" style="color: var(--color-green);">[DELIVERABLE 01 :: PRODUCTION INFRASTRUCTURE CODE]</span>
+                    <h3 class="quad-title">1. Hardened 4-Gate IaC Payload &amp; Terminal Runbook</h3>
+                    <p class="quad-text">
+                        A 100% finished, version-pinned deployment file synthesized in your team's exact language (<span class="bullet-lead">Terraform HCL, AWS CLI / CloudFormation, Azure Bicep, PowerShell REST API, or Python</span>)—complete with read-only existing-asset protection, single-tenant isolation, wildcard-free OIDC trust, the 30-Second Server Sync Timer, and single-asset Data-Plane Role scoping.
+                    </p>
+                </div>
+
+                <div class="deliverable-card">
+                    <span class="quad-tag" style="color: var(--color-green);">[DELIVERABLE 02 :: PRE-TEST CRYPTOGRAPHIC BLUEPRINT]</span>
+                    <h3 class="quad-title">2. Identity Architecture Ledger (<code style="color: var(--color-cyan);">identity_architecture_ledger.md</code>)</h3>
+                    <p class="quad-text">
+                        The permanent structural record of the machine identity—documenting the verified cloud account/subscription/project boundary, headless identity principal identifiers, exact character-for-character OIDC Subject Claim, 60-minute token ceiling, and single-asset permission mapping.
+                    </p>
+                </div>
+
+                <div class="deliverable-card">
+                    <span class="quad-tag" style="color: var(--color-green);">[DELIVERABLE 03 :: GATE-BY-GATE COMPLIANCE PROOF]</span>
+                    <h3 class="quad-title">3. Audit Results Ledger (<code style="color: var(--color-cyan);">audit_results_ledger.md</code>)</h3>
+                    <p class="quad-text">
+                        Turnkey technical verification for OEM partner reviews, ISO/SAE 21434, UNECE R155, SOC 2, and Department of Defense Zero Trust assessments—scoring all 4 Architectural Gates (Coordinate, Character, Clock, and Plane Checks) and all 5 Enterprise Guardrails as <code style="color: var(--color-green);">[PASS]</code> against live cloud metrics and masked Validation Bridge runs.
+                    </p>
+                </div>
+
+                <div class="deliverable-card">
+                    <span class="quad-tag" style="color: var(--color-green);">[DELIVERABLE 04 :: CROSS-PLANE SOC DETECTION CODE]</span>
+                    <h3 class="quad-title">4. Standby CloudTrail, KQL &amp; Cloud Audit Telemetry (<code style="color: var(--color-cyan);">kql_telemetry.md</code>)</h3>
+                    <p class="quad-text">
+                        Ready-to-run forensic correlation queries built for your Security Operations Center—joining passwordless OIDC token sign-in logs directly with vault, model-weight bucket, or database read logs across 5-minute execution windows and 60-minute token buckets so asynchronous log indexing never stalls fleet releases.
+                    </p>
+                </div>
+
+                <div class="deliverable-card">
+                    <span class="quad-tag" style="color: var(--color-green);">[DELIVERABLE 05 :: INSTITUTIONAL MEMORY &amp; ZERO-DRIFT RECORD]</span>
+                    <h3 class="quad-title">5. Finalized Defect &amp; Patch Ledger (<code style="color: var(--color-cyan);">patch_ledger.md</code>)</h3>
+                    <p class="quad-text">
+                        Captures every real-world cloud API nuance, Error Signature, Root Cause, and Verified Fix encountered during the build—serving both as a transparent engineering change log and as the exact input compiled permanently into the master System Directive in Phase 7 so your autonomous infrastructure hardens further with every deployment.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= ZONE 4: MASTER AUTONOMOUS SUMMARY MATRIX ================= -->
+        <div class="hero-arch-block cyan-block" id="autonomous-matrix">
+            <span class="hero-block-tag">[EXECUTIVE REFERENCE :: AUTONOMOUS FLEET EXPOSURES VS. DETERMINISTIC COUNTER-ENGINEERING LOCKS]</span>
+            <h2 class="hero-block-title">Master Autonomous Systems Summary: 7 Attacker Plays vs. 7 Counter-Engineering Locks</h2>
+
+            <div class="matrix-table-wrapper">
+                <table class="killchain-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 17%;">Kill-Chain Stage</th>
+                            <th style="width: 28%;">Autonomous Fleet Exposure (What the Hacker Targets)</th>
+                            <th style="width: 23%;">Published Authority</th>
+                            <th style="width: 32%;">AKCCE Counter-Engineering Weld</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="bullet-lead-red">Stage 1:</span><br>Developer Laptops &amp; Cloud Map</td>
+                            <td>Scrapes <code style="color: var(--color-cyan);">.bash_history</code>, abandoned browser Cloud Shells, and AI chat logs for setup tokens and simulation/production account IDs.</td>
+                            <td>Upstream 2026 Report<br>MITRE T1552.003<br>OWASP LLM06</td>
+                            <td><span class="bullet-lead-green">Phase 1 (Gate 1):</span> Bans browser Cloud Shells, isolates clean VS Code folder with 5 blank files, enforces invisible <code style="color: var(--color-green);">read -s</code> RAM input, verifies root boundary via CLI.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="bullet-lead-red">Stage 2:</span><br>Pipeline Login Forgery</td>
+                            <td>Exploits wildcard (<code style="color: var(--color-red);">*</code>) OIDC trust filters to mint real cloud tokens from rogue branches, forks, or pull requests in OTA or training repos.</td>
+                            <td>CISA/NSA CI/CD Guide<br>OWASP CICD-SEC-01/02<br>OWASP NHI2</td>
+                            <td><span class="bullet-lead-green">Phase 2 (Gate 3):</span> Extracts permanent numeric repo IDs and exact capital-and-lowercase repo/branch spelling via CLI—locking OIDC trust with zero wildcards and a 60-minute ceiling.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="bullet-lead-red">Stage 3:</span><br>"The Contributor Trap"</td>
+                            <td>Pivots off broad <code style="color: var(--color-red);">Admin</code> / <code style="color: var(--color-red);">Owner</code> / <code style="color: var(--color-red);">Contributor</code> roles to steal nine-figure foundation-model weights, customer facility maps, or fleet controls.</td>
+                            <td>RAND Weight Report<br>MITRE T1078.004<br>NIST SP 800-207</td>
+                            <td><span class="bullet-lead-green">Phase 3 (Gates 2 &amp; 4):</span> Single-tenant isolation, disabled browser redirects, read-only Brownfield asset locks, 30s Sync Timer, and one Data-Plane Role locked to one single bucket or vault secret.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="bullet-lead-red">Stage 4:</span><br>Build Console Log Scraping</td>
+                            <td>Scrapes shared runner build logs (<code style="color: var(--color-red);">stdout</code>) for echoed OTA firmware signing keys, vault secrets, and active 60-minute bearer tokens.</td>
+                            <td>NHTSA 87 FR 55459<br>OWASP CICD-SEC-06<br>MITRE T1552</td>
+                            <td><span class="bullet-lead-green">Phase 4:</span> Records pre-test <code style="color: var(--color-green);">IAL</code>, scrubs all tokens/secrets in RAM with <code style="color: var(--color-green);">::add-mask::</code> (<code style="color: var(--color-green);">***</code>), proves live read via real-time Cloud API Hit metrics.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="bullet-lead-red">Stage 5:</span><br>20-Minute Log Blind Spot</td>
+                            <td>Exfiltrates model weights or keys inside the 5-to-20-minute SIEM log indexing lag while paper compliance audits assume lockdown.</td>
+                            <td>MITRE T1562.008<br>NIST SP 800-53 (AU-2/6)<br>CISA Cloud TRA</td>
+                            <td><span class="bullet-lead-green">Phase 5:</span> Preventative Gate 1–4 lockdown stops pivots up front; scores all 4 Gates &amp; 5 Guardrails as <code style="color: var(--color-green);">[PASS]</code> in <code style="color: var(--color-green);">ARL</code>; packages standby CloudTrail/KQL/Audit queries.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="bullet-lead-red">Stage 6:</span><br>Git State-File Leakage</td>
+                            <td>Harvests plain-text cloud maps from committed <code style="color: var(--color-red);">terraform.tfstate</code> files and exploits merge conflicts that trigger destructive force-pushes.</td>
+                            <td>HashiCorp State Advisory<br>OWASP NHI1/NHI2<br>MITRE T1213.003</td>
+                            <td><span class="bullet-lead-green">Phase 6:</span> Runs <code style="color: var(--color-green);">git pull origin main</code> first, writes strict <code style="color: var(--color-green);">.gitignore</code> blocking all <code style="color: var(--color-green);">.tfstate</code> and <code style="color: var(--color-green);">.env</code> files, pushes 5 clean deliverables.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="bullet-lead-red">Stage 7:</span><br>Fleet Drift &amp; AI Amnesia</td>
+                            <td>Waits for closed AI chat windows and untethered 19.7% model guesswork to re-introduce wildcards and broad roles as new fleet pipelines scale.</td>
+                            <td>NIST AI RMF 1.0<br>ISO/IEC 42001<br>OWASP LLM08 / LLM09</td>
+                            <td><span class="bullet-lead-green">Directive 05 &amp; Phase 7:</span> 3-Attempt Patch Loop with full-file re-sync, Attempt 4 Circuit Breaker, counted Scorecard, and zero-truncation compilation into the master System Directive.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- CLOSING CALLOUT -->
+            <div class="insight-box" style="background: linear-gradient(90deg, rgba(16, 185, 129, 0.12) 0%, transparent 100%); border-left-color: var(--color-green);">
+                <div class="insight-header" style="color: var(--color-green);">Private Corporate Deployment &amp; Next Architectural Views</div>
+                <div class="insight-text">
+                    The Adversarial Kill-Chain Counter-Engineering State Machine operates across <span class="bullet-lead">72+ multi-cloud baseline combinations</span> (Amazon Web Services, Microsoft Entra ID and Azure, and Google Cloud across Kubernetes EKS/AKS/GKE, GitHub Actions, GitLab CI, and Azure DevOps) and runs 100% inside your private corporate AI boundary (AWS Bedrock, Azure OpenAI, or Google Vertex AI) so proprietary fleet identifiers never touch public endpoints. Explore live multi-cloud execution proofs on the <a href="workflow-portfolio.html" class="inline-link">Live Counter-Engineering Proofs</a> page, inspect the <a href="blueprint.html" class="inline-link">7-Phase Counter-Engineering Blueprint</a>, or reach out directly via the <a href="contact.html" class="inline-link">Contact</a> page.
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ================= PROPRIETARY IP FOOTER ================= -->
+    <footer class="ip-footer">
+        <div class="footer-crest-wrapper">
+            <svg class="footer-brand-crest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+                <rect width="114" height="114" x="3" y="3" fill="#020617" rx="22" stroke="#1e293b" stroke-width="3"/>
+                <polygon points="24,18 60,36 60,48 24,30" fill="#475569"/>
+                <polygon points="96,18 60,36 60,48 96,30" fill="#1e293b"/>
+                <polygon points="24,39 60,57 60,69 24,51" fill="#0284c7"/>
+                <polygon points="96,39 60,57 60,69 96,51" fill="#075985"/>
+                <polygon points="24,60 60,78 60,90 24,72" fill="#38bdf8"/>
+                <polygon points="96,60 60,78 60,90 96,72" fill="#0369a1"/>
+                <polygon points="24,81 60,99 60,111 24,93" fill="#f43f5e"/>
+                <polygon points="96,81 60,78 60,90 96,72" fill="#0369a1"/>
+                <polygon points="96,81 60,99 60,111 96,93" fill="#9f1239"/>
+            </svg>
+        </div>
+        <strong>&copy; 2026 Steven Tuschman | Adversarial Kill-Chain Counter-Engineering&trade; (adversarialkillchaincounterengineering.com). All Rights Reserved.</strong><br>
+        The Adversarial Kill-Chain Counter-Engineering State Machine v1.0, Sequential Kill-Chain Counter-Engineering Protocol, Execution Triad governance model, Four Architectural Gates of Machine Identity, Five Enterprise Guardrails, 72+ Combination Build Matrix, and 26-Variable System Glossary are proprietary intellectual property. Unauthorized reproduction, distribution, or commercial adaptation is strictly prohibited.
+    </footer>
+
+</body>
+</html>

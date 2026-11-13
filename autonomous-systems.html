@@ -120,6 +120,119 @@
             margin-bottom: 2.2rem;
         }
 
+        /* ================= LIVE EXECUTION PROOFS LAUNCH SHOWCASE ================= */
+        .proof-launch-showcase {
+            max-width: 1300px;
+            margin: 0 auto 3.2rem;
+            padding: 2.6rem 3rem;
+            background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.16), transparent 55%),
+                        radial-gradient(circle at bottom left, rgba(14, 165, 233, 0.14), transparent 55%),
+                        rgba(10, 15, 29, 0.96);
+            border: 1px solid rgba(16, 185, 129, 0.55);
+            border-top: 4px solid var(--color-green);
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 30px rgba(16, 185, 129, 0.14);
+            position: relative;
+            overflow: hidden;
+        }
+        .proof-status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: var(--color-green);
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.45);
+            padding: 0.38rem 1rem;
+            border-radius: 999px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            margin-bottom: 1.1rem;
+        }
+        .proof-status-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--color-green);
+            box-shadow: 0 0 10px var(--color-green);
+            display: inline-block;
+        }
+        .proof-launch-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.85rem;
+            font-weight: 900;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            line-height: 1.3;
+            margin-bottom: 0.95rem;
+        }
+        .proof-launch-desc {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            max-width: 980px;
+            margin: 0 auto 1.55rem;
+            line-height: 1.75;
+        }
+        .proof-artifact-chips {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-bottom: 1.85rem;
+        }
+        .proof-chip {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--color-cyan);
+            background: rgba(14, 165, 233, 0.09);
+            border: 1px solid rgba(14, 165, 233, 0.38);
+            padding: 0.42rem 0.95rem;
+            border-radius: 6px;
+            letter-spacing: 0.5px;
+        }
+        .proof-cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.85rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 900;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: #020617;
+            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+            border: 2px solid #34d399;
+            padding: 1.05rem 2.4rem;
+            border-radius: 9px;
+            box-shadow: 0 0 25px rgba(16, 185, 129, 0.45), 0 8px 20px rgba(0, 0, 0, 0.5);
+            transition: all 0.25s ease;
+        }
+        .proof-cta-button:hover {
+            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+            border-color: #7dd3fc;
+            color: #020617;
+            transform: translateY(-3px) scale(1.015);
+            box-shadow: 0 0 32px rgba(14, 165, 233, 0.65), 0 12px 26px rgba(0, 0, 0, 0.6);
+        }
+        .proof-cta-button svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            stroke-width: 2.8;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            flex-shrink: 0;
+        }
+
         /* JUMP LINKS BAR */
         .jump-links-container {
             max-width: 1300px;
@@ -467,7 +580,7 @@
         .insight-header::before { content: '>'; font-weight: 900; }
         .insight-text { font-size: 1.15rem; color: var(--text-main); font-style: normal; line-height: 1.8; font-weight: 600; }
 
-        #industry-reality, #auto-stage-1, #auto-stage-2, #auto-stage-3, #auto-stage-4, #auto-stage-5, #auto-stage-6, #auto-stage-7, #proof-deliverables, #autonomous-matrix {
+        #industry-reality, #live-autonomous-proofs, #auto-stage-1, #auto-stage-2, #auto-stage-3, #auto-stage-4, #auto-stage-5, #auto-stage-6, #auto-stage-7, #proof-deliverables, #autonomous-matrix {
             scroll-margin-top: 105px;
         }
 
@@ -503,10 +616,11 @@
         @media (max-width: 992px) {
             .hero-title { font-size: 2.15rem; }
             .hero-brand-crest { width: 54px; height: 54px; }
-            .hero-block-title, .stage-main-title { font-size: 1.45rem; }
+            .hero-block-title, .stage-main-title, .proof-launch-title { font-size: 1.45rem; }
             .stage-quadrant-grid, .deliverables-grid { grid-template-columns: 1fr; }
-            .hero-arch-block { padding: 2rem 1.5rem; }
+            .hero-arch-block, .proof-launch-showcase { padding: 2rem 1.5rem; }
             .mission-master-banner, .insight-box { padding: 1.5rem; }
+            .proof-cta-button { font-size: 0.92rem; padding: 0.95rem 1.5rem; width: 100%; }
         }
 
         @media (max-width: 600px) {
@@ -654,6 +768,28 @@
                     Automotive and enterprise audit frameworks (such as ISO/SAE 21434, UNECE R155, and SOC 2) verify management policies and reactive monitoring workflows, but they do not write hardened infrastructure code. Under tight fleet release deadlines, busy engineering teams and untethered artificial intelligence coding assistants inevitably introduce wildcard login filters (<code style="color: var(--color-red);">*</code>), broad administrator permissions, and unmasked build logs just to clear deployment errors. <span class="bullet-lead">The Adversarial Kill-Chain Counter-Engineering State Machine</span> solves that operational gap directly—locking down all seven physical handoffs of an autonomous software pipeline in strict mathematical sequence without slowing down engineering velocity.
                 </div>
             </div>
+        </div>
+
+        <!-- ================= LIVE AUTONOMOUS EXECUTION PROOFS LAUNCH SHOWCASE ================= -->
+        <div class="proof-launch-showcase" id="live-autonomous-proofs">
+            <div class="proof-status-pill">
+                <span class="proof-status-dot"></span>
+                Verified Live Production Code &amp; Server-Side Cloud Telemetry
+            </div>
+            <h2 class="proof-launch-title">Don&rsquo;t Take Theory on Faith&mdash;Inspect the Live Autonomous Execution Proofs</h2>
+            <p class="proof-launch-desc">
+                Examine complete, production-executed autonomous fleet lockdowns—including declarative Terraform &amp; cloud payloads, immutable Node-ID OIDC federation, Identity Architecture Ledgers, Audit Results Ledgers, live lateral-movement counter-tests, and server-side CloudTrail audit receipts.
+            </p>
+            <div class="proof-artifact-chips">
+                <span class="proof-chip">[4-Gate Production IaC Code]</span>
+                <span class="proof-chip">[Zero-Wildcard Node-ID OIDC Lock]</span>
+                <span class="proof-chip">[Live AccessDenied Counter-Tests]</span>
+                <span class="proof-chip">[Audited IAL, ARL &amp; CloudTrail Receipts]</span>
+            </div>
+            <a href="autonomous-proofs.html" class="proof-cta-button">
+                Click Here for Complete Autonomous Execution Proofs
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
         </div>
 
         <!-- TOP QUICK-JUMP NAVIGATION BAR -->
@@ -1178,9 +1314,15 @@
 
             <!-- CLOSING CALLOUT -->
             <div class="insight-box" style="background: linear-gradient(90deg, rgba(16, 185, 129, 0.12) 0%, transparent 100%); border-left-color: var(--color-green);">
-                <div class="insight-header" style="color: var(--color-green);">Private Corporate Deployment &amp; Next Architectural Views</div>
+                <div class="insight-header" style="color: var(--color-green);">Private Corporate Deployment &amp; Live Autonomous Proof Inspection</div>
                 <div class="insight-text">
-                    The Adversarial Kill-Chain Counter-Engineering State Machine operates across <span class="bullet-lead">216+ multi-cloud baseline combinations</span> (Amazon Web Services, Microsoft Entra ID and Azure, and Google Cloud across Kubernetes EKS/AKS/GKE, GitHub Actions, GitLab CI, and Azure DevOps) and runs 100% inside your private corporate AI boundary (AWS Bedrock, Azure OpenAI, or Google Vertex AI) so proprietary fleet identifiers never touch public endpoints. Explore live multi-cloud execution proofs on the <a href="workflow-portfolio.html" class="inline-link">Live Counter-Engineering Proofs</a> page, inspect the <a href="blueprint.html" class="inline-link">7-Phase Counter-Engineering Blueprint</a>, or reach out directly via the <a href="contact.html" class="inline-link">Contact</a> page.
+                    The Adversarial Kill-Chain Counter-Engineering State Machine operates across <span class="bullet-lead">216+ multi-cloud baseline combinations</span> (Amazon Web Services, Microsoft Entra ID and Azure, and Google Cloud across Kubernetes EKS/AKS/GKE, GitHub Actions, GitLab CI, and Azure DevOps) and runs 100% inside your private corporate AI boundary (AWS Bedrock, Azure OpenAI, or Google Vertex AI) so proprietary fleet identifiers never touch public endpoints. Inspect the <a href="blueprint.html" class="inline-link">7-Phase Counter-Engineering Blueprint</a>, explore multi-cloud workflows on <a href="workflow-portfolio.html" class="inline-link">Live Counter-Engineering Proofs</a>, or reach out directly via the <a href="contact.html" class="inline-link">Contact</a> page.
+                </div>
+                <div style="margin-top: 1.55rem;">
+                    <a href="autonomous-proofs.html" class="proof-cta-button">
+                        Inspect Complete Autonomous Execution Proofs
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </a>
                 </div>
             </div>
         </div>
@@ -1198,7 +1340,6 @@
                 <polygon points="24,60 60,78 60,90 24,72" fill="#38bdf8"/>
                 <polygon points="96,60 60,78 60,90 96,72" fill="#0369a1"/>
                 <polygon points="24,81 60,99 60,111 24,93" fill="#f43f5e"/>
-                <polygon points="96,81 60,78 60,90 96,72" fill="#0369a1"/>
                 <polygon points="96,81 60,99 60,111 96,93" fill="#9f1239"/>
             </svg>
         </div>

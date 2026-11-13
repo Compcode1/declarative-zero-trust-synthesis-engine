@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Intelligent Architecture - Technical Execution Showcase</title>
    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <script>
+      if (window.location.search.indexOf('block_ga=true') !== -1) {
+        localStorage.setItem('akcce_block_ga', 'true');
+        alert('SUCCESS: Google Analytics is permanently disabled on this browser.');
+      }
+      if (localStorage.getItem('akcce_block_ga') === 'true') {
+        window['ga-disable-G-80NYKHYN3R'] = true;
+      }
+    </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-80NYKHYN3R"></script>
     <script>
       window.dataLayer = window.dataLayer || [];

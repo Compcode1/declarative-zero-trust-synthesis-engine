@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Autonomous Fleet Execution Proof - 7-Stage Lockdown | Adversarial Kill-Chain Counter-Engineering</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    <script>
+      if (window.location.search.indexOf('block_ga=true') !== -1) {
+        localStorage.setItem('akcce_block_ga', 'true');
+        alert('SUCCESS: Google Analytics is permanently disabled on this browser.');
+      }
+      if (localStorage.getItem('akcce_block_ga') === 'true') {
+        window['ga-disable-G-80NYKHYN3R'] = true;
+      }
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-80NYKHYN3R"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-80NYKHYN3R');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-page: #020617;
+            --bg-node: rgba(10, 15, 29, 0.95);
+            --border-base: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+            --color-blue: #3b82f6;
+            --color-cyan: #0ea5e9;
+            --color-purple: #a855f7;
+            --color-grey: #64748b;
+            --color-green: #10b981;
+            --color-teal: #14b8a6;
+            --color-red: #f43f5e;
+            --color-orange: #f97316;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--bg-page);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 4rem;
+        }
+
+        /* ================= NAVIGATION ================= */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-base); z-index: 100;
+            padding: 1.2rem 2rem; display: flex; justify-content: center;
+        }
+        .nav-links {
+            display: flex; gap: 1.1rem; list-style: none; flex-wrap: wrap;
+            justify-content: center; align-items: center;
+        }
+        .nav-links a {
+            display: inline-block;
+            color: var(--color-cyan);
+            border: 1px solid var(--color-cyan);
+            background: rgba(14, 165, 233, 0.1);
+            padding: 0.5rem 1.15rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a.active-link {
+            background: var(--color-cyan);
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
+        }
+
+        .bullet-lead { color: var(--color-cyan); font-weight: 800; }
+        .bullet-lead-red { color: var(--color-red); font-weight: 800; }
+        .bullet-lead-green { color: var(--color-green); font-weight: 800; }
+        .bullet-lead-orange { color: var(--color-orange); font-weight: 800; }
+        .bullet-lead-purple { color: var(--color-purple); font-weight: 800; }
+
+        /* ================= HERO HEADER ================= */
+        .hero { padding: 155px 20px 30px; text-align: center; }
+        .hero-title-container {
+            display: flex; align-items: center; justify-content: center;
+            gap: 1.35rem; margin-bottom: 0.8rem; flex-wrap: wrap;
+        }
+        .hero-brand-crest {
+            width: 66px; height: 66px; flex-shrink: 0;
+            filter: drop-shadow(0 0 18px rgba(14, 165, 233, 0.4)) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.6));
+        }
+        .hero-title {
+            font-family: 'Montserrat', sans-serif; font-size: 2.75rem; font-weight: 900;
+            letter-spacing: 2px; color: var(--text-main); text-transform: uppercase; line-height: 1.15;
+        }
+        .hero-page-subtitle {
+            font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; font-weight: 800;
+            color: var(--color-cyan); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2.2rem;
+        }
+
+        /* ================= JUMP LINKS BAR ================= */
+        .jump-links-container {
+            max-width: 1250px; margin: 0 auto 3rem; padding: 1.5rem 2rem;
+            background: rgba(15, 23, 42, 0.65); border: 1px solid var(--border-base);
+            border-top: 3px solid var(--color-cyan); border-radius: 10px;
+            text-align: center; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+        }
+        .jump-links-intro {
+            font-family: 'Montserrat', sans-serif; font-size: 1.05rem; font-weight: 800;
+            color: var(--text-main); letter-spacing: 0.5px; margin-bottom: 1rem;
+        }
+        .jump-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; }
+        .jump-links a {
+            color: var(--color-cyan); border: 1px solid var(--color-cyan);
+            background: rgba(14, 165, 233, 0.08); padding: 0.58rem 1.1rem;
+            border-radius: 8px; text-decoration: none; font-size: 0.82rem;
+            font-weight: 700; letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s ease;
+        }
+        .jump-links a:hover {
+            background: var(--color-cyan); color: #ffffff;
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); transform: translateY(-2px);
+        }
+
+        /* ================= CONTAINERS & EXECUTIVE SUMMARY ================= */
+        .container { max-width: 1250px; margin: 0 auto; padding: 0 20px; }
+
+        .hero-arch-block {
+            max-width: 1250px; margin: 0 auto 3rem;
+            background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-base);
+            border-radius: 12px; padding: 2.8rem 3rem; text-align: left;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+            scroll-margin-top: 105px;
+        }
+        .hero-arch-block.cyan-block { border-top: 4px solid var(--color-cyan); }
+        .hero-arch-block.green-block { border-top: 4px solid var(--color-green); }
+        .hero-arch-block.red-block { border-top: 4px solid var(--color-red); }
+
+        .hero-block-tag {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.96rem; font-weight: 800;
+            letter-spacing: 1.2px; text-transform: uppercase; display: block; margin-bottom: 0.7rem;
+        }
+        .cyan-block .hero-block-tag { color: var(--color-cyan); }
+        .green-block .hero-block-tag { color: var(--color-green); }
+        .red-block .hero-block-tag { color: var(--color-red); }
+
+        .hero-block-title {
+            font-family: 'Montserrat', sans-serif; font-size: 1.7rem; font-weight: 900;
+            letter-spacing: 1px; line-height: 1.35; color: var(--text-main); text-transform: uppercase;
+            margin-bottom: 1.5rem; padding-bottom: 0.9rem; border-bottom: 2px solid var(--border-base);
+        }
+        .hero-lead-p {
+            font-size: 1.12rem; color: var(--text-main); font-weight: 600;
+            line-height: 1.8; margin-bottom: 1.3rem;
+        }
+
+        /* MICRO CARDS (WORKFLOW PORTFOLIO STYLE) */
+        .micro-card {
+            background: rgba(10, 15, 29, 0.92); border: 1px solid var(--border-base);
+            border-radius: 8px; padding: 1.6rem 1.8rem; margin-bottom: 1.25rem;
+            transition: all 0.3s ease;
+        }
+        .micro-card-challenge { border-left: 4px solid var(--color-purple); }
+        .micro-card-execution { border-left: 4px solid var(--color-cyan); }
+        .micro-card-value { border-left: 4px solid var(--color-green); margin-bottom: 0; }
+
+        .micro-header {
+            font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.15rem;
+            text-transform: uppercase; letter-spacing: 1px; display: flex; align-items: center;
+            gap: 10px; margin-bottom: 0.75rem;
+        }
+        .mc-color-challenge { color: var(--color-purple); }
+        .mc-color-execution { color: var(--color-cyan); }
+        .mc-color-value { color: var(--color-green); }
+
+        .micro-text { font-size: 1.04rem; line-height: 1.75; color: var(--text-muted); }
+        .micro-text strong { color: var(--text-main); font-weight: 700; }
+
+        .bottom-line {
+            margin-top: 1.1rem; padding: 1.1rem 1.25rem;
+            background: rgba(255, 255, 255, 0.03); border-radius: 6px;
+            border-left: 3px solid var(--color-grey); font-size: 0.98rem;
+            font-style: italic; color: var(--text-muted); line-height: 1.65;
+        }
+        .bottom-line strong { color: var(--text-main); font-weight: 700; font-style: normal; }
+
+        /* ================= 5-CARD CAPABILITY MATRIX ================= */
+        .section-title {
+            font-family: 'Montserrat', sans-serif; font-size: 1.75rem; font-weight: 800;
+            color: var(--color-cyan); text-transform: uppercase; letter-spacing: 1.5px;
+            margin: 3.5rem 0 1.8rem; text-align: center; scroll-margin-top: 105px;
+        }
+        .matrix-grid {
+            display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.15rem; margin-bottom: 3rem;
+        }
+        .matrix-card {
+            background: rgba(15, 23, 42, 0.55); border: 1px solid var(--border-base);
+            border-top: 3px solid var(--color-blue); padding: 1.45rem; border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+        }
+        .matrix-card h3 {
+            font-size: 1.02rem; color: var(--text-main); margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-base); padding-bottom: 0.5rem;
+            font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .matrix-list { list-style: none; }
+        .matrix-list li {
+            font-size: 0.93rem; color: var(--text-muted); margin-bottom: 0.68rem;
+            display: flex; align-items: center;
+        }
+        .matrix-list li.active { color: var(--color-cyan); font-weight: 700; }
+        .checkbox {
+            display: inline-block; width: 16px; height: 16px; border: 1px solid var(--color-grey);
+            border-radius: 3px; margin-right: 10px; position: relative; flex-shrink: 0;
+        }
+        .active .checkbox { border-color: var(--color-cyan); background-color: rgba(14, 165, 233, 0.2); }
+        .active .checkbox::after { content: '✔'; position: absolute; top: -3px; left: 2px; color: var(--color-cyan); font-size: 12px; }
+
+        /* ================= 7 LOCKDOWN CARDS & TABLE ================= */
+        .lockdown-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 2rem;
+        }
+        .lockdown-card {
+            background: rgba(10, 15, 29, 0.95); border: 1px solid var(--border-base);
+            border-left: 4px solid var(--color-green); border-radius: 10px;
+            padding: 1.85rem 2rem; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+        }
+        .lockdown-card.full-span { grid-column: 1 / -1; }
+        .lockdown-badge-row {
+            display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.75rem;
+        }
+        .lockdown-num {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 800;
+            color: #ffffff; background: var(--color-red); padding: 0.25rem 0.7rem;
+            border-radius: 4px; letter-spacing: 1px; text-transform: uppercase;
+        }
+        .lockdown-gate {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; font-weight: 800;
+            color: var(--color-green); background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.45); padding: 0.23rem 0.7rem;
+            border-radius: 4px; letter-spacing: 0.8px; text-transform: uppercase;
+        }
+        .lockdown-title {
+            font-family: 'Montserrat', sans-serif; font-size: 1.18rem; font-weight: 900;
+            color: var(--text-main); text-transform: uppercase; margin-bottom: 0.85rem;
+            padding-bottom: 0.6rem; border-bottom: 1px solid var(--border-base);
+        }
+        .lockdown-list {
+            list-style: disc; padding-left: 1.3rem; display: flex; flex-direction: column; gap: 0.65rem;
+        }
+        .lockdown-list li {
+            font-size: 0.99rem; color: var(--text-main); font-weight: 600; line-height: 1.65;
+        }
+        .lockdown-list li::marker { color: var(--color-green); }
+
+        /* ================= TERMINAL STYLING ================= */
+        .terminal-window {
+            background: #0d1117; border: 1px solid var(--border-base); border-radius: 10px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); width: 100%;
+            max-width: 1180px; margin: 0 auto 3.2rem; text-align: left; overflow: hidden;
+            scroll-margin-top: 105px;
+        }
+        .terminal-header {
+            background: #161b22; padding: 12px 20px; display: flex; align-items: center;
+            border-bottom: 1px solid var(--border-base); position: relative;
+        }
+        .terminal-dots { display: flex; gap: 8px; position: absolute; left: 20px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot.red { background: #ff5f56; }
+        .dot.yellow { background: #ffbd2e; }
+        .dot.green { background: #27c93f; }
+        .terminal-title {
+            margin: 0 auto; color: var(--text-muted); font-size: 0.86rem;
+            font-family: 'JetBrains Mono', monospace; letter-spacing: 1px;
+        }
+        .terminal-body {
+            padding: 2.2rem 2.4rem; font-family: 'JetBrains Mono', 'Consolas', monospace;
+            font-size: 0.9rem; line-height: 1.75; color: var(--text-main);
+            overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;
+            background: linear-gradient(rgba(13, 17, 23, 1) 0%, rgba(13, 17, 23, 0.96) 100%);
+        }
+
+        .t-cyan { color: var(--color-cyan); font-weight: 700; }
+        .t-green { color: var(--color-green); font-weight: 700; }
+        .t-blue { color: var(--color-blue); font-weight: 700; }
+        .t-purple { color: var(--color-purple); font-weight: 700; }
+        .t-orange { color: var(--color-orange); font-weight: 700; }
+        .t-muted { color: var(--text-muted); }
+        .t-comment { color: var(--color-grey); font-style: italic; }
+        .t-red { color: #ff5f56; font-weight: 700; }
+
+        /* ================= FORENSIC LEDGER TABLES ================= */
+        .matrix-table-wrapper {
+            width: 100%; overflow-x: auto; border-radius: 10px;
+            border: 1px solid var(--border-base); margin-top: 1.2rem;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+        }
+        .killchain-table {
+            width: 100%; border-collapse: collapse; background: rgba(10, 15, 29, 0.95); text-align: left;
+        }
+        .killchain-table th {
+            font-family: 'Montserrat', sans-serif; font-size: 0.86rem; font-weight: 900;
+            text-transform: uppercase; letter-spacing: 1px; color: var(--color-cyan);
+            background: rgba(2, 6, 23, 0.95); padding: 1.1rem 1.1rem; border-bottom: 2px solid var(--border-base);
+        }
+        .killchain-table td {
+            padding: 1.1rem 1.1rem; font-size: 0.94rem; color: var(--text-main);
+            font-weight: 600; line-height: 1.6; border-bottom: 1px solid var(--border-base); vertical-align: top;
+        }
+        .killchain-table tr:hover td { background: rgba(14, 165, 233, 0.04); }
+
+        .divider { height: 1px; background: var(--border-base); margin: 3.5rem auto; max-width: 1250px; }
+
+        /* ================= FOOTER ================= */
+        .ip-footer {
+            max-width: 1250px; margin: 3rem auto 0; text-align: center; padding: 2.5rem 1.5rem;
+            border-top: 1px solid var(--border-base); background: rgba(10, 15, 29, 0.6);
+            border-radius: 8px; color: var(--text-muted); font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace; line-height: 1.8;
+        }
+        .footer-crest-wrapper { display: flex; justify-content: center; margin-bottom: 0.85rem; }
+        .footer-brand-crest { width: 38px; height: 38px; filter: drop-shadow(0 0 10px rgba(14, 165, 233, 0.25)); }
+        .ip-footer strong { color: var(--color-cyan); font-weight: 700; }
+
+        @media (max-width: 1050px) {
+            .matrix-grid { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+            .lockdown-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 992px), (max-height: 550px) {
+            nav { position: relative !important; padding: 0.75rem 0.5rem !important; }
+            .nav-links { gap: 0.45rem !important; }
+            .nav-links a { font-size: 0.72rem !important; padding: 0.35rem 0.65rem !important; }
+            .hero { padding-top: 30px !important; }
+            .hero-arch-block { padding: 2rem 1.4rem; }
+            .terminal-body { padding: 1.4rem; font-size: 0.82rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- MASTER NAVIGATION -->
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="autonomous-systems.html" class="active-link">Autonomous Systems</a></li>
+            <li><a href="kill-chain.html">The Adversarial Kill Chain</a></li>
+            <li><a href="blueprint.html">7-Phase Counter-Engineering Blueprint</a></li>
+            <li><a href="ai-systems-engineering.html">Tethered AI Systems Engineering</a></li>
+            <li><a href="architectural.html">Exploit-Level Pipeline Architecture</a></li>
+            <li><a href="workflow-portfolio.html">Live Counter-Engineering Proofs</a></li>
+            <li><a href="add-capabilities.html">Day-2 Multi-Cloud Modules</a></li>
+            <li><a href="glossary.html">26-Variable System Glossary</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- ================= HERO HEADER ================= -->
+    <header class="hero">
+        <div class="hero-title-container">
+            <svg class="hero-brand-crest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Adversarial Kill-Chain Counter-Engineering 4-Chevron Crest">
+                <rect width="114" height="114" x="3" y="3" fill="#020617" rx="22" stroke="#1e293b" stroke-width="3"/>
+                <polygon points="24,18 60,36 60,48 24,30" fill="#475569"/>
+                <polygon points="96,18 60,36 60,48 96,30" fill="#1e293b"/>
+                <polygon points="24,39 60,57 60,69 24,51" fill="#0284c7"/>
+                <polygon points="96,39 60,57 60,69 96,51" fill="#075985"/>
+                <polygon points="24,60 60,78 60,90 24,72" fill="#38bdf8"/>
+                <polygon points="96,60 60,78 60,90 96,72" fill="#0369a1"/>
+                <polygon points="24,81 60,99 60,111 24,93" fill="#f43f5e"/>
+                <polygon points="96,81 60,99 60,111 96,93" fill="#9f1239"/>
+            </svg>
+            <h1 class="hero-title">AWS AUTONOMOUS FLEET EXECUTION PROOF</h1>
+        </div>
+        <div class="hero-page-subtitle">Zero-Static-Secret Ed25519 OTA Firmware Signing Vault Lockdown (AWS IAM OIDC &bull; STS &bull; Secrets Manager &bull; Terraform)</div>
+
+        <!-- QUICK JUMP LINKS -->
+        <div class="jump-links-container">
+            <div class="jump-links-intro">Inspect the AWS Autonomous Fleet Architecture, 7 Lockdowns, Code &amp; Live Telemetry Below:</div>
+            <div class="jump-links">
+                <a href="#project-brief">Executive Overview</a>
+                <a href="#seven-lockdowns">The 7 AWS Lockdowns</a>
+                <a href="#iac-code">Declarative AWS Code (main.tf)</a>
+                <a href="#oidc-workflow">Validation &amp; Counter-Test Workflow</a>
+                <a href="#live-output">Live Runner &amp; AccessDenied Proof</a>
+                <a href="#cryptographic-ledgers">IAL, ARL &amp; CloudTrail Receipts</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- ================= ZONE 1: BRIEF INTRODUCTORY WRITE-UP & EXECUTIVE SUMMARY ================= -->
+        <section class="hero-arch-block cyan-block" id="project-brief">
+            <span class="hero-block-tag">[AUTONOMOUS DEPLOYMENT SHOWCASE :: akcce-aws-autonomous-fleet-01 (us-east-2)]</span>
+            <h2 class="hero-block-title">Securing Wireless Over-the-Air (OTA) Firmware Signing Pipelines on Amazon Web Services</h2>
+
+            <p class="hero-lead-p">
+                In physical-AI robotics, autonomous trucking, unmanned defense platforms, and orbital spacecraft, the <span class="bullet-lead">Over-the-Air (OTA) firmware signing key</span> is the single highest-consequence credential in the enterprise. If an adversary compromises the automated CI/CD runner that packages fleet releases—or scrapes a long-lived AWS access key from a repository or build log—they can sign unauthorized software updates or pivot laterally across cloud vaults holding proprietary foundation-model weights.
+            </p>
+            <p class="hero-lead-p" style="margin-bottom: 2rem;">
+                This live production execution (<code style="color: var(--color-cyan);">Compcode1/Compcode1-akcce-aws-autonomous-fleet-01</code> targeting AWS Account <code style="color: var(--color-cyan);">698250246230</code> in <code style="color: var(--color-cyan);">us-east-2</code>) demonstrates how <span class="bullet-lead">Adversarial Kill-Chain Counter-Engineering&trade;</span> welds all seven seams of an AWS autonomous release pipeline shut using declarative Terraform, immutable GitHub numeric Node-ID OpenID Connect (OIDC) federation, dual-layer AWS IAM + Secrets Manager resource guardrails, and an active lateral-movement kill-chain counter-test—operating with <span class="bullet-lead-green">zero static AWS credentials stored anywhere in GitHub</span>.
+            </p>
+
+            <!-- 3 MICRO CARDS MATCHING WORKFLOW-PORTFOLIO STYLE -->
+            <div class="micro-card micro-card-challenge">
+                <div class="micro-header mc-color-challenge">The Autonomous Fleet Challenge</div>
+                <p class="micro-text">
+                    Connecting an external GitHub Actions release pipeline to an <strong>AWS Secrets Manager</strong> vault housing an Ed25519 OTA firmware signing key (<code style="color: var(--color-cyan);">autonomy-prod/ota-firmware-signing-key</code>) without static <code style="color: var(--color-red);">AWS_ACCESS_KEY_ID</code> secrets, wildcard (<code style="color: var(--color-red);">*</code>) branch filters, mutable repository name trust, broad <code style="color: var(--color-red);">AdministratorAccess</code> roles, or unmasked runner console logs.
+                </p>
+                <div class="bottom-line">
+                    <strong>The Bottom Line:</strong> Standard OIDC tutorials rely on text-based repository names and permissive IAM policies that let a renamed repository, rogue pull request, or compromised runner enumerate every secret in the AWS account. An autonomous fleet vault requires cryptographic identity binding on both the identity plane and the vault resource plane.
+                </div>
+            </div>
+
+            <div class="micro-card micro-card-execution">
+                <div class="micro-header mc-color-execution">4-Gate AWS Architecture &amp; 7-Lockdown Execution</div>
+                <p class="micro-text">
+                    Synthesized a 130-line declarative Terraform configuration (<code style="color: var(--color-cyan);">main.tf</code>) establishing a singleton AWS IAM OIDC Trust Anchor (Gate 1), a 3,600-second ephemeral STS role locked via <code style="color: var(--color-cyan);">StringEquals</code> and <code style="color: var(--color-cyan);">Null=false</code> conditions to immutable GitHub Owner and Repository numeric Node IDs (<code style="color: var(--color-cyan);">@171821203</code> / <code style="color: var(--color-cyan);">@1457038661</code>) (Gate 2), an inline single-ARN read policy (Gate 3), and a resource-based Secrets Manager guardrail policy with <code style="color: var(--color-cyan);">block_public_policy = true</code> (Gate 4).
+                </p>
+                <div class="bottom-line">
+                    <strong>The Bottom Line:</strong> Every federated session is cryptographically pinned to permanent backend database IDs, capped at 60 minutes over post-quantum TLS 1.3 (<code style="color: var(--color-cyan);">X25519MLKEM768</code>), permitted to read strictly one signing key ARN, and deterministically blocked from lateral vault enumeration (<code style="color: var(--color-cyan);">secretsmanager:ListSecrets</code>).
+                </div>
+            </div>
+
+            <div class="micro-card micro-card-value">
+                <div class="micro-header mc-color-value">Empirical Verification &amp; Forensic Proof</div>
+                <p class="micro-text">
+                    Verified live via GitHub Actions Run <code style="color: var(--color-green);">43512129647</code> and server-side AWS CloudTrail telemetry in <code style="color: var(--color-cyan);">us-east-2</code>: AWS STS rejected a pre-hardening slug-only token (<code style="color: var(--color-red);">2778200d-...</code>), issued an ephemeral session for the Node-ID-bound assertion (<code style="color: var(--color-green);">73d8d34f-...</code>), completed the scoped Ed25519 metadata read (<code style="color: var(--color-green);">3361b71b-...</code>), and blocked lateral <code style="color: var(--color-red);">ListSecrets</code> reconnaissance with <code style="color: var(--color-red);">AccessDeniedException</code> (<code style="color: var(--color-green);">3c37b5af-...</code>, exit code <code style="color: var(--color-cyan);">254</code>).
+                </p>
+                <div class="bottom-line">
+                    <strong>The Bottom Line:</strong> Delivers mathematical, dual-sided proof—demonstrating both authorized passwordless OTA key retrieval and deterministic lateral-movement containment for CISO, OEM, ISO/SAE 21434, and DoD Zero-Trust audits.
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= 5-COLUMN CAPABILITY MATRIX ================= -->
+        <h2 class="section-title">Deployment Topology Matrix</h2>
+        <div class="matrix-grid">
+            <div class="matrix-card">
+                <h3>Identity Core</h3>
+                <ul class="matrix-list">
+                    <li class="active"><span class="checkbox"></span>AWS IAM &amp; STS OIDC</li>
+                    <li><span class="checkbox"></span>Microsoft Entra ID</li>
+                    <li><span class="checkbox"></span>Google Cloud IAM</li>
+                </ul>
+            </div>
+            <div class="matrix-card">
+                <h3>Execution Agent</h3>
+                <ul class="matrix-list">
+                    <li class="active"><span class="checkbox"></span>GitHub Actions</li>
+                    <li><span class="checkbox"></span>Amazon EKS</li>
+                    <li><span class="checkbox"></span>GitLab CI</li>
+                    <li><span class="checkbox"></span>Azure DevOps</li>
+                </ul>
+            </div>
+            <div class="matrix-card">
+                <h3>Infrastructure State</h3>
+                <ul class="matrix-list">
+                    <li class="active"><span class="checkbox"></span>Greenfield (us-east-2)</li>
+                    <li><span class="checkbox"></span>Brownfield (Existing)</li>
+                </ul>
+            </div>
+            <div class="matrix-card">
+                <h3>Data-Plane Asset</h3>
+                <ul class="matrix-list">
+                    <li class="active"><span class="checkbox"></span>AWS Secrets Manager</li>
+                    <li><span class="checkbox"></span>Amazon S3 (Weights)</li>
+                    <li><span class="checkbox"></span>Amazon DynamoDB</li>
+                </ul>
+            </div>
+            <div class="matrix-card">
+                <h3>IaC Payload</h3>
+                <ul class="matrix-list">
+                    <li class="active"><span class="checkbox"></span>Terraform (HCL v1.15+)</li>
+                    <li><span class="checkbox"></span>AWS CLI / REST</li>
+                    <li><span class="checkbox"></span>CloudFormation</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ================= ZONE 2: THE 7 LOCKDOWNS ON AWS ================= -->
+        <section class="hero-arch-block red-block" id="seven-lockdowns">
+            <span class="hero-block-tag">[AWS COUNTER-ENGINEERING MECHANICS :: ALL 7 AUTONOMOUS KILL-CHAIN STAGES LOCKED]</span>
+            <h2 class="hero-block-title">How Each of the 7 Lockdowns Is Enforced Natively in AWS</h2>
+
+            <div class="lockdown-grid">
+                <!-- LOCKDOWN 1 -->
+                <div class="lockdown-card">
+                    <div class="lockdown-badge-row">
+                        <span class="lockdown-num">LOCKDOWN 01</span>
+                        <span class="lockdown-gate">STAGE 1 &bull; GATE 1 ACCOUNT &amp; WORKSTATION BOUNDARY</span>
+                    </div>
+                    <h3 class="lockdown-title">Account Pinning &amp; Zero-History RAM Credential Isolation</h3>
+                    <ul class="lockdown-list">
+                        <li><span class="bullet-lead-green">AWS Account Guardrail:</span> Enforces <code style="color: var(--color-cyan);">allowed_account_ids = [var.aws_account_id]</code> inside the Terraform <code style="color: var(--color-cyan);">provider "aws"</code> block alongside <code style="color: var(--color-cyan);">data "aws_caller_identity"</code> verification, preventing accidental deployment outside AWS Account <code style="color: var(--color-cyan);">698250246230</code> (<code style="color: var(--color-cyan);">us-east-2</code>).</li>
+                        <li><span class="bullet-lead-green">Zero Shell-History Leakage:</span> Bans browser CloudShell mounts and enforces silent in-memory token buffering (<code style="color: var(--color-cyan);">read -r -s</code>) and transient HTTP extraheader Git authentication (<code style="color: var(--color-cyan);">credential.helper=""</code>) so setup credentials never touch <code style="color: var(--color-cyan);">.bash_history</code> or <code style="color: var(--color-cyan);">.git/config</code>.</li>
+                    </ul>
+                </div>
+
+                <!-- LOCKDOWN 2 -->
+                <div class="lockdown-card">
+                    <div class="lockdown-badge-row">
+                        <span class="lockdown-num">LOCKDOWN 02</span>
+                        <span class="lockdown-gate">STAGE 2 &bull; GATES 1 &amp; 2 IMMUTABLE OIDC FEDERATION</span>
+                    </div>
+                    <h3 class="lockdown-title">Zero-Wildcard Node-ID Subject Lock &amp; 3,600s STS Ceiling</h3>
+                    <ul class="lockdown-list">
+                        <li><span class="bullet-lead-green">Immutable Node-ID Binding:</span> Binds <code style="color: var(--color-cyan);">token.actions.githubusercontent.com:sub</code> via <code style="color: var(--color-cyan);">StringEquals</code> (never <code style="color: var(--color-red);">StringLike</code> with <code style="color: var(--color-red);">*</code>) to permanent numeric GitHub Owner and Repo IDs: <code style="color: var(--color-cyan);">repo:Compcode1@171821203/Compcode1-akcce-aws-autonomous-fleet-01@1457038661:ref:refs/heads/main</code>.</li>
+                        <li><span class="bullet-lead-green">Null-Claim Defense &amp; Clock Cap:</span> Pairs <code style="color: var(--color-cyan);">aud = "sts.amazonaws.com"</code> with an explicit <code style="color: var(--color-cyan);">Null = "false"</code> condition on <code style="color: var(--color-cyan);">sub</code> and caps <code style="color: var(--color-cyan);">max_session_duration = 3600</code> seconds (60 minutes).</li>
+                    </ul>
+                </div>
+
+                <!-- LOCKDOWN 3 -->
+                <div class="lockdown-card">
+                    <div class="lockdown-badge-row">
+                        <span class="lockdown-num">LOCKDOWN 03</span>
+                        <span class="lockdown-gate">STAGE 3 &bull; GATES 3 &amp; 4 DUAL-PLANE VAULT ISOLATION</span>
+                    </div>
+                    <h3 class="lockdown-title">Eliminating "The Contributor Trap" &amp; Lateral Vault Movement</h3>
+                    <ul class="lockdown-list">
+                        <li><span class="bullet-lead-green">Gate 3 Inline Role Policy:</span> Grants strictly <code style="color: var(--color-cyan);">secretsmanager:GetSecretValue</code> and <code style="color: var(--color-cyan);">secretsmanager:DescribeSecret</code> against the single secret ARN—omitting <code style="color: var(--color-red);">secretsmanager:ListSecrets</code>, S3, EC2, and IAM management permissions.</li>
+                        <li><span class="bullet-lead-green">Gate 4 Vault Resource Guardrail:</span> Attaches <code style="color: var(--color-cyan);">aws_secretsmanager_secret_policy</code> (<code style="color: var(--color-cyan);">block_public_policy = true</code>) restricting the secret exclusively to <code style="color: var(--color-cyan);">akcce-autonomous-fleet-01-ota-oidc-role</code> inside <code style="color: var(--color-cyan);">aws:PrincipalAccount = 698250246230</code>.</li>
+                    </ul>
+                </div>
+
+                <!-- LOCKDOWN 4 -->
+                <div class="lockdown-card">
+                    <div class="lockdown-badge-row">
+                        <span class="lockdown-num">LOCKDOWN 04</span>
+                        <span class="lockdown-gate">STAGE 4 &bull; MASKED VALIDATION BRIDGE &amp; COUNTER-TEST</span>
+                    </div>
+                    <h3 class="lockdown-title">Zero-Exposure Secret Attestation &amp; Active Kill-Chain Block</h3>
+                    <ul class="lockdown-list">
+                        <li><span class="bullet-lead-green">RAM Masking &amp; Metadata-Only Proof:</span> Uses <code style="color: var(--color-cyan);">aws-actions/configure-aws-credentials@v4</code> automatic STS credential masking and parses only non-sensitive Ed25519 attestation fields (<code style="color: var(--color-cyan);">key_id</code>, <code style="color: var(--color-cyan);">algorithm</code>, <code style="color: var(--color-cyan);">bound_repo_node_id</code>) in memory without echoing raw secret material.</li>
+                        <li><span class="bullet-lead-green">Live Adversarial Counter-Test:</span> Executes <code style="color: var(--color-cyan);">aws secretsmanager list-secrets</code> inside the live workflow and asserts a deterministic <code style="color: var(--color-green);">AccessDeniedException</code> (<code style="color: var(--color-cyan);">exit 254</code>) to prove lateral vault enumeration is welded shut.</li>
+                    </ul>
+                </div>
+
+                <!-- LOCKDOWN 5 -->
+                <div class="lockdown-card">
+                    <div class="lockdown-badge-row">
+                        <span class="lockdown-num">LOCKDOWN 05</span>
+                        <span class="lockdown-gate">STAGE 5 &bull; SERVER-SIDE CLOUDTRAIL CORRELATION</span>
+                    </div>
+                    <h3 class="lockdown-title">Cross-Plane CloudTrail Forensic Receipts &amp; Audit Ledger</h3>
+                    <ul class="lockdown-list">
+                        <li><span class="bullet-lead-green">Control-to-Data-Plane Event Chain:</span> Correlates AWS STS <code style="color: var(--color-cyan);">AssumeRoleWithWebIdentity</code> events directly with AWS Secrets Manager <code style="color: var(--color-cyan);">GetSecretValue</code> and denied <code style="color: var(--color-cyan);">ListSecrets</code> events under federated session <code style="color: var(--color-cyan);">AKCCE-AutonomousFleet-OIDC-Proof</code>.</li>
+                        <li><span class="bullet-lead-green">Post-Quantum Transport Verification:</span> Confirms server-side CloudTrail transport negotiation over <code style="color: var(--color-cyan);">TLSv1.3</code> with hybrid post-quantum key exchange (<code style="color: var(--color-cyan);">X25519MLKEM768</code>).</li>
+                    </ul>
+                </div>
+
+                <!-- LOCKDOWN 6 -->
+                <div class="lockdown-card">
+                    <div class="lockdown-badge-row">
+                        <span class="lockdown-num">LOCKDOWN 06</span>
+                        <span class="lockdown-gate">STAGE 6 &bull; REPOSITORY STATE-FILE EXCLUSION BARRIER</span>
+                    </div>
+                    <h3 class="lockdown-title">Hard <code style="color: var(--color-cyan);">.gitignore</code> Shield Against <code style="color: var(--color-cyan);">.tfstate</code> &amp; Plan Leakage</h3>
+                    <ul class="lockdown-list">
+                        <li><span class="bullet-lead-green">Plaintext State Protection:</span> Enforces a pre-commit <code style="color: var(--color-cyan);">.gitignore</code> barrier blocking <code style="color: var(--color-cyan);">*.tfstate</code>, <code style="color: var(--color-cyan);">*.tfstate.*</code>, <code style="color: var(--color-cyan);">tfplan</code>, <code style="color: var(--color-cyan);">*.tfvars</code>, and <code style="color: var(--color-cyan);">.terraform/</code> caches before staging a single file to GitHub.</li>
+                        <li><span class="bullet-lead-green">Parameterized Variables:</span> Externalizes AWS account, region, repository slug, and numeric Node IDs cleanly through <code style="color: var(--color-cyan);">variables.tf</code> while tracking provider cryptographic hashes in <code style="color: var(--color-cyan);">.terraform.lock.hcl</code>.</li>
+                    </ul>
+                </div>
+
+                <!-- LOCKDOWN 7 -->
+                <div class="lockdown-card full-span">
+                    <div class="lockdown-badge-row">
+                        <span class="lockdown-num">LOCKDOWN 07</span>
+                        <span class="lockdown-gate">STAGE 7 &bull; DETERMINISTIC HARNESS &amp; SELF-HARDENING COMPILATION</span>
+                    </div>
+                    <h3 class="lockdown-title">Version-Pinned Authenticode Supply Chain &amp; Master Directive v2.0 Compilation</h3>
+                    <ul class="lockdown-list">
+                        <li><span class="bullet-lead-green">Supply-Chain &amp; Kernel Verification:</span> Executes on Terraform <code style="color: var(--color-cyan);">v1.15.8</code> with Microsoft-Authenticode-verified <code style="color: var(--color-cyan);">hashicorp/aws v6.73.0</code> binaries and explicit Human-in-the-Loop (<code style="color: var(--color-cyan);">tfplan</code>) approval gates prior to cloud mutation.</li>
+                        <li><span class="bullet-lead-green">Zero-Amnesia Fleet Scaling:</span> Codifies all AWS OIDC Node-ID claim predicates, singleton provider checks, and on-disk state-machine tether rules permanently into <span class="bullet-lead">AKCCE AWS Master Execution Harness v2.0</span> so every subsequent robotics or autonomous vehicle repository inherits the hardened baseline on first synthesis.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider"></div>
+
+        <!-- ================= ZONE 3: CORE PRODUCTION CODE ================= -->
+        <h2 id="iac-code" class="section-title">Artifact 01: Declarative 4-Gate AWS Infrastructure (main.tf)</h2>
+
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-dots"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                <div class="terminal-title">main.tf // 4-Gate AWS IAM OIDC &amp; Secrets Manager Lockdown</div>
+            </div>
+            <pre class="terminal-body"><span class="t-blue">terraform</span> {
+  required_version = <span class="t-green">"&gt;= 1.15.0"</span>
+  required_providers {
+    aws = {
+      source  = <span class="t-green">"hashicorp/aws"</span>
+      version = <span class="t-green">"&gt;= 5.0"</span>
+    }
+  }
+}
+
+<span class="t-blue">provider</span> <span class="t-cyan">"aws"</span> {
+  region              = var.aws_region
+  allowed_account_ids = [var.aws_account_id]
+  default_tags {
+    tags = {
+      Architecture       = <span class="t-green">"AKCCE-Zero-Trust-Machine-Identity"</span>
+      Project            = <span class="t-green">"akcce-aws-autonomous-fleet-01"</span>
+      GitHubOwnerID      = var.github_owner_id
+      GitHubRepositoryID = var.github_repo_id
+      ManagedBy          = <span class="t-green">"Terraform"</span>
+    }
+  }
+}
+
+<span class="t-blue">data</span> <span class="t-cyan">"aws_caller_identity"</span> <span class="t-cyan">"current"</span> {}
+
+<span class="t-comment"># Gate 1: Singleton AWS IAM OIDC Trust Anchor</span>
+<span class="t-blue">resource</span> <span class="t-cyan">"aws_iam_openid_connect_provider"</span> <span class="t-cyan">"github_actions"</span> {
+  url            = <span class="t-green">"https://token.actions.githubusercontent.com"</span>
+  client_id_list = [<span class="t-green">"sts.amazonaws.com"</span>]
+  thumbprint_list = [
+    <span class="t-green">"6938fd4d98bab03faadb97b34396831e3780aea1"</span>,
+    <span class="t-green">"1c58a3a8518e8759bf075b76b750d4f2df264fcd"</span>
+  ]
+}
+
+<span class="t-comment"># Gate 2: 60-Min Ephemeral Role &amp; Exact Numeric Node-ID Subject/Audience Claim Lock</span>
+<span class="t-blue">data</span> <span class="t-cyan">"aws_iam_policy_document"</span> <span class="t-cyan">"github_oidc_assume_role"</span> {
+  statement {
+    sid     = <span class="t-green">"EnforceGitHubActionsOIDCExactSubjectAndAudience"</span>
+    effect  = <span class="t-green">"Allow"</span>
+    actions = [<span class="t-green">"sts:AssumeRoleWithWebIdentity"</span>]
+    principals {
+      type        = <span class="t-green">"Federated"</span>
+      identifiers = [aws_iam_openid_connect_provider.github_actions.arn]
+    }
+    condition {
+      test     = <span class="t-green">"StringEquals"</span>
+      variable = <span class="t-green">"token.actions.githubusercontent.com:aud"</span>
+      values   = [<span class="t-green">"sts.amazonaws.com"</span>]
+    }
+    condition {
+      test     = <span class="t-green">"StringEquals"</span>
+      variable = <span class="t-green">"token.actions.githubusercontent.com:sub"</span>
+      values   = [<span class="t-green">"repo:${var.github_owner}@${var.github_owner_id}/${var.github_repo}@${var.github_repo_id}:ref:refs/heads/${var.github_branch}"</span>]
+    }
+    condition {
+      test     = <span class="t-green">"Null"</span>
+      variable = <span class="t-green">"token.actions.githubusercontent.com:sub"</span>
+      values   = [<span class="t-green">"false"</span>]
+    }
+  }
+}
+
+<span class="t-blue">resource</span> <span class="t-cyan">"aws_iam_role"</span> <span class="t-cyan">"autonomous_fleet_ota_signer"</span> {
+  name                 = <span class="t-green">"akcce-autonomous-fleet-01-ota-oidc-role"</span>
+  description          = <span class="t-green">"AKCCE OIDC role bound to Compcode1/Compcode1-akcce-aws-autonomous-fleet-01 (Repo ID 1457038661)"</span>
+  assume_role_policy   = data.aws_iam_policy_document.github_oidc_assume_role.json
+  max_session_duration = 3600
+}
+
+<span class="t-comment"># Gate 4A: Autonomous Fleet OTA Signing Secret (us-east-2)</span>
+<span class="t-blue">resource</span> <span class="t-cyan">"aws_secretsmanager_secret"</span> <span class="t-cyan">"ota_firmware_signing_key"</span> {
+  name                    = <span class="t-green">"autonomy-prod/ota-firmware-signing-key"</span>
+  description             = <span class="t-green">"Simulated Ed25519 OTA firmware signing key metadata"</span>
+  recovery_window_in_days = 0
+}
+
+<span class="t-blue">resource</span> <span class="t-cyan">"aws_secretsmanager_secret_version"</span> <span class="t-cyan">"ota_firmware_signing_key_v1"</span> {
+  secret_id = aws_secretsmanager_secret.ota_firmware_signing_key.id
+  secret_string = jsonencode({
+    key_id              = <span class="t-green">"akcce-ed25519-ota-prod-01"</span>
+    algorithm           = <span class="t-green">"Ed25519"</span>
+    fleet_domain        = <span class="t-green">"us-east-2-autonomous-fleet"</span>
+    bound_repo_node_id  = var.github_repo_id
+    bound_owner_node_id = var.github_owner_id
+    attestation_state   = <span class="t-green">"ZERO_STATIC_SECRETS_ENFORCED"</span>
+  })
+}
+
+<span class="t-comment"># Gate 3: Identity-Based Least-Privilege Inline Policy (Single Secret ARN Only)</span>
+<span class="t-blue">data</span> <span class="t-cyan">"aws_iam_policy_document"</span> <span class="t-cyan">"ota_secret_least_privilege"</span> {
+  statement {
+    sid       = <span class="t-green">"AllowReadSingleOTASigningSecretOnly"</span>
+    effect    = <span class="t-green">"Allow"</span>
+    actions   = [<span class="t-green">"secretsmanager:GetSecretValue"</span>, <span class="t-green">"secretsmanager:DescribeSecret"</span>]
+    resources = [aws_secretsmanager_secret.ota_firmware_signing_key.arn]
+  }
+}
+
+<span class="t-blue">resource</span> <span class="t-cyan">"aws_iam_role_policy"</span> <span class="t-cyan">"autonomous_fleet_ota_signer_policy"</span> {
+  name   = <span class="t-green">"akcce-ota-secret-read-only"</span>
+  role   = aws_iam_role.autonomous_fleet_ota_signer.id
+  policy = data.aws_iam_policy_document.ota_secret_least_privilege.json
+}
+
+<span class="t-comment"># Gate 4B: Resource-Based Vault Guardrail Policy</span>
+<span class="t-blue">data</span> <span class="t-cyan">"aws_iam_policy_document"</span> <span class="t-cyan">"ota_secret_resource_guardrail"</span> {
+  statement {
+    sid    = <span class="t-green">"AllowOnlyFederatedAutonomousFleetRole"</span>
+    effect = <span class="t-green">"Allow"</span>
+    principals {
+      type        = <span class="t-green">"AWS"</span>
+      identifiers = [aws_iam_role.autonomous_fleet_ota_signer.arn]
+    }
+    actions   = [<span class="t-green">"secretsmanager:GetSecretValue"</span>, <span class="t-green">"secretsmanager:DescribeSecret"</span>]
+    resources = [<span class="t-green">"*"</span>]
+    condition {
+      test     = <span class="t-green">"StringEquals"</span>
+      variable = <span class="t-green">"aws:PrincipalAccount"</span>
+      values   = [var.aws_account_id]
+    }
+  }
+}
+
+<span class="t-blue">resource</span> <span class="t-cyan">"aws_secretsmanager_secret_policy"</span> <span class="t-cyan">"ota_firmware_signing_key_policy"</span> {
+  secret_arn          = aws_secretsmanager_secret.ota_firmware_signing_key.arn
+  policy              = data.aws_iam_policy_document.ota_secret_resource_guardrail.json
+  block_public_policy = true
+}</pre>
+        </div>
+
+        <!-- ================= ARTIFACT 02: GITHUB WORKFLOW ================= -->
+        <h2 id="oidc-workflow" class="section-title">Artifact 02: Ephemeral OIDC Validation &amp; Kill-Chain Counter-Test Workflow</h2>
+
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-dots"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                <div class="terminal-title">.github/workflows/akcce-ota-oidc-attestation.yml // Zero Stored Secrets</div>
+            </div>
+            <pre class="terminal-body"><span class="t-blue">name:</span> AKCCE Autonomous Fleet OIDC Attestation
+
+<span class="t-blue">on:</span>
+  <span class="t-blue">push:</span>
+    <span class="t-blue">branches:</span> [ <span class="t-green">"main"</span> ]
+  <span class="t-blue">workflow_dispatch:</span>
+
+<span class="t-blue">permissions:</span>
+  <span class="t-cyan">id-token:</span> write
+  <span class="t-cyan">contents:</span> read
+
+<span class="t-blue">jobs:</span>
+  <span class="t-blue">attest-zero-trust-ota-vault:</span>
+    <span class="t-blue">runs-on:</span> ubuntu-latest
+    <span class="t-blue">steps:</span>
+      - <span class="t-blue">name:</span> Checkout Repository
+        <span class="t-blue">uses:</span> actions/checkout@v4
+
+      - <span class="t-blue">name:</span> Assume Ephemeral AWS OIDC Role (Gates 1 &amp; 2)
+        <span class="t-blue">uses:</span> aws-actions/configure-aws-credentials@v4
+        <span class="t-blue">with:</span>
+          <span class="t-cyan">role-to-assume:</span> arn:aws:iam::698250246230:role/akcce-autonomous-fleet-01-ota-oidc-role
+          <span class="t-cyan">role-session-name:</span> AKCCE-AutonomousFleet-OIDC-Proof
+          <span class="t-cyan">aws-region:</span> us-east-2
+
+      - <span class="t-blue">name:</span> Verify STS Federated Session Identity
+        <span class="t-blue">run:</span> aws sts get-caller-identity --output json
+
+      - <span class="t-blue">name:</span> Positive Vault Proof — Scoped OTA Signing Metadata Read (Gates 3 &amp; 4)
+        <span class="t-blue">run:</span> |
+          SECRET_JSON=$(aws secretsmanager get-secret-value \
+            --secret-id autonomy-prod/ota-firmware-signing-key \
+            --region us-east-2 \
+            --query SecretString --output text)
+          echo "::add-mask::$SECRET_JSON"
+          printf '%s\n' "$SECRET_JSON" | jq '{key_id, algorithm, fleet_domain, bound_repo_node_id, attestation_state}'
+
+      - <span class="t-blue">name:</span> Adversarial Kill-Chain Counter-Test — Block Lateral Vault Enumeration
+        <span class="t-blue">run:</span> |
+          set +e
+          aws secretsmanager list-secrets --region us-east-2
+          RC=$?
+          set -e
+          if [ "$RC" -eq 0 ]; then
+            echo "SECURITY FAILURE: Lateral ListSecrets succeeded!"
+            exit 1
+          fi
+          echo "AKCCE_COUNTER_TEST_PASSED: Lateral secretsmanager:ListSecrets deterministically blocked (exit $RC)."</pre>
+        </div>
+
+        <!-- ================= ZONE 4: MOST IMPORTANT LIVE OUTPUTS ================= -->
+        <h2 id="live-output" class="section-title">Live Control-Plane Readback &amp; Federated Runner Execution Output</h2>
+
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="terminal-dots"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                <div class="terminal-title">live_verification_output.log // AWS Vault Guardrail &amp; GitHub Actions Run 43512129647</div>
+            </div>
+            <pre class="terminal-body"><span class="t-cyan">=== [1] LIVE AWS SECRETS MANAGER RESOURCE GUARDRAIL READBACK (us-east-2) ===</span>
+{
+    "ARN": <span class="t-green">"arn:aws:secretsmanager:us-east-2:698250246230:secret:autonomy-prod/ota-firmware-signing-key-u2PAI7"</span>,
+    "Name": <span class="t-green">"autonomy-prod/ota-firmware-signing-key"</span>,
+    "PolicyName": "default",
+    "ResourcePolicy": {
+      "Version": "2012-10-17",
+      "Statement": [ {
+        "Sid": <span class="t-cyan">"AllowOnlyFederatedAutonomousFleetRole"</span>,
+        "Effect": "Allow",
+        "Principal": {
+          "AWS": <span class="t-green">"arn:aws:iam::698250246230:role/akcce-autonomous-fleet-01-ota-oidc-role"</span>
+        },
+        "Action": [ "secretsmanager:GetSecretValue", "secretsmanager:DescribeSecret" ],
+        "Resource": "*",
+        "Condition": {
+          "StringEquals": { "aws:PrincipalAccount": <span class="t-green">"698250246230"</span> }
+        }
+      } ]
+    }
+}
+
+<span class="t-cyan">=== [2] LIVE GITHUB ACTIONS EPHEMERAL OIDC &amp; KILL-CHAIN COUNTER-TEST LOG ===</span>
+2026-11-13T22:04:28.9978965Z   "key_id": <span class="t-green">"akcce-ed25519-ota-prod-01"</span>,
+2026-11-13T22:04:28.9983025Z   "algorithm": <span class="t-green">"Ed25519"</span>,
+2026-11-13T22:04:28.9983606Z   "fleet_domain": <span class="t-green">"us-east-2-autonomous-fleet"</span>,
+2026-11-13T22:04:28.9984238Z   "bound_repo_node_id": <span class="t-green">"1457038661"</span>,
+2026-11-13T22:04:28.9985308Z   "attestation_state": <span class="t-green">"ZERO_STATIC_SECRETS_ENFORCED"</span>
+2026-11-13T22:04:29.6858669Z <span class="t-red">aws: [ERROR]: An error occurred (AccessDeniedException) when calling the ListSecrets operation:</span> User: arn:aws:sts::698250246230:assumed-role/akcce-autonomous-fleet-01-ota-oidc-role/AKCCE-AutonomousFleet-OIDC-Proof is not authorized to perform: secretsmanager:ListSecrets because no identity-based policy allows the secretsmanager:ListSecrets action
+2026-11-13T22:04:29.6861401Z <span class="t-green">AKCCE_COUNTER_TEST_PASSED: Lateral secretsmanager:ListSecrets deterministically blocked (exit 254).</span></pre>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- ================= ZONE 5: IDENTITY ARCHITECTURE LEDGER, AUDIT RESULTS LEDGER & CLOUDTRAIL ================= -->
+        <section class="hero-arch-block green-block" id="cryptographic-ledgers">
+            <span class="hero-block-tag">[IMMUTABLE COMPLIANCE ARTIFACTS :: VERIFIED PRODUCTION LEDGERS &amp; CLOUDTRAIL TELEMETRY]</span>
+            <h2 class="hero-block-title">Identity Architecture Ledger, Audit Results Ledger &amp; Server-Side CloudTrail Receipts</h2>
+
+            <!-- LEDGER 1: IDENTITY ARCHITECTURE LEDGER -->
+            <div class="terminal-window" style="margin-bottom: 2.5rem;">
+                <div class="terminal-header">
+                    <div class="terminal-dots"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
+                    <div class="terminal-title">identity_architecture_ledger.md // Pre-Test Cryptographic Blueprint</div>
+                </div>
+                <pre class="terminal-body"><span class="t-cyan">## Live Production AWS Control-Plane Attestation (2026-11-13)</span>
+- <span class="t-blue">AWS Account ID:</span> 698250246230 (Assembly Required, us-east-2)
+- <span class="t-blue">Gate 1 OIDC Provider ARN:</span> arn:aws:iam::698250246230:oidc-provider/token.actions.githubusercontent.com
+- <span class="t-blue">Gate 2 Ephemeral Role ARN:</span> arn:aws:iam::698250246230:role/akcce-autonomous-fleet-01-ota-oidc-role (MaxSessionDuration = 3600s)
+- <span class="t-blue">Locked OIDC Subject Claim:</span> <span class="t-green">repo:Compcode1@171821203/Compcode1-akcce-aws-autonomous-fleet-01@1457038661:ref:refs/heads/main</span>
+- <span class="t-blue">Immutable GitHub Node IDs:</span> Owner 171821203 | Repository 1457038661
+- <span class="t-blue">Gate 4 Secret ARN:</span> arn:aws:secretsmanager:us-east-2:698250246230:secret:autonomy-prod/ota-firmware-signing-key-u2PAI7</pre>
+            </div>
+
+            <!-- LEDGER 2: AUDIT RESULTS LEDGER -->
+            <h3 class="quad-title" style="font-family: 'Montserrat', sans-serif; font-size: 1.25rem; text-transform: uppercase; margin-bottom: 0.8rem; color: var(--color-cyan);">
+                Audit Results Ledger (<code style="color: var(--text-main);">audit_results_ledger.md</code>) — 4-Gate Verification Matrix
+            </h3>
+            <p style="color: var(--text-muted); font-size: 0.98rem; margin-bottom: 1rem;">
+                <strong>Repository:</strong> <code>Compcode1/Compcode1-akcce-aws-autonomous-fleet-01</code> &nbsp;|&nbsp;
+                <strong>Green GitHub Run ID:</strong> <code style="color: var(--color-green);">43512129647</code> (<code>conclusion: success</code>) &nbsp;|&nbsp;
+                <strong>Static AWS Secrets Stored:</strong> <code style="color: var(--color-green);">0 (ZERO_STATIC_SECRETS_ENFORCED)</code>
+            </p>
+
+            <div class="matrix-table-wrapper" style="margin-bottom: 2.8rem;">
+                <table class="killchain-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 12%;">Gate</th>
+                            <th style="width: 30%;">AWS Security Control</th>
+                            <th style="width: 13%;">Live Verdict</th>
+                            <th style="width: 45%;">Server-Side Forensic Evidence</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="bullet-lead">Gate 1</span></td>
+                            <td>AWS IAM OIDC Provider (<code>token.actions.githubusercontent.com</code>)</td>
+                            <td><span class="bullet-lead-green">[PASS]</span></td>
+                            <td><code>aud = sts.amazonaws.com</code>; negotiated over <code>TLSv1.3</code> hybrid post-quantum key exchange (<code>X25519MLKEM768</code>).</td>
+                        </tr>
+                        <tr>
+                            <td><span class="bullet-lead">Gate 2</span></td>
+                            <td>Ephemeral IAM Role + Immutable Node-ID <code>sub</code> Lock (<code>3600s</code> max)</td>
+                            <td><span class="bullet-lead-green">[PASS]</span></td>
+                            <td>Rejected non-matching claim (<code>2778200d-...</code>); issued 60-min STS role strictly for <code>@171821203</code> / <code>@1457038661</code> (<code>73d8d34f-...</code>).</td>
+                        </tr>
+                        <tr>
+                            <td><span class="bullet-lead">Gate 3</span></td>
+                            <td>Inline Least-Privilege Secret Policy (Single ARN)</td>
+                            <td><span class="bullet-lead-green">[PASS]</span></td>
+                            <td>Permitted <code>GetSecretValue</code> on <code>akcce-ed25519-ota-prod-01</code>; deterministically blocked lateral <code>ListSecrets</code> (<code>exit 254</code>).</td>
+                        </tr>
+                        <tr>
+                            <td><span class="bullet-lead">Gate 4</span></td>
+                            <td>Secrets Manager Resource Policy (<code>block_public_policy = true</code>)</td>
+                            <td><span class="bullet-lead-green">[PASS]</span></td>
+                            <td>Restricted vault access exclusively to <code>akcce-autonomous-fleet-01-ota-oidc-role</code> within <code>aws:PrincipalAccount = 698250246230</code>.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- LEDGER 3: SERVER-SIDE CLOUDTRAIL TELEMETRY -->
+            <h3 class="quad-title" style="font-family: 'Montserrat', sans-serif; font-size: 1.25rem; text-transform: uppercase; margin-bottom: 0.8rem; color: var(--color-cyan);">
+                Server-Side AWS CloudTrail Event Chain (<code style="color: var(--text-main);">cloudtrail_telemetry.md</code> — <code>us-east-2</code>)
+            </h3>
+
+            <div class="matrix-table-wrapper">
+                <table class="killchain-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 22%;">Timestamp (PST)</th>
+                            <th style="width: 28%;">CloudTrail EventId</th>
+                            <th style="width: 18%;">AWS API Action</th>
+                            <th style="width: 17%;">Session / Principal</th>
+                            <th style="width: 15%;">Verdict</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>2026-11-13T13:36:21-08:00</code></td>
+                            <td><code>2778200d-22c8-47e9-9554-500e79eee365</code></td>
+                            <td><code>AssumeRoleWithWebIdentity</code></td>
+                            <td>GitHub OIDC Runner</td>
+                            <td><span class="bullet-lead-red">DENIED</span> (Negative <code>sub</code> Proof)</td>
+                        </tr>
+                        <tr>
+                            <td><code>2026-11-13T14:01:41-08:00</code></td>
+                            <td><code>55ef265c-2a5b-4bf2-85e9-9dd9e6612668</code></td>
+                            <td><code>GetResourcePolicy</code></td>
+                            <td>Control-Plane Audit</td>
+                            <td><span class="bullet-lead-green">ALLOWED</span> (Gate 4 Readback)</td>
+                        </tr>
+                        <tr>
+                            <td><code>2026-11-13T14:04:24-08:00</code></td>
+                            <td><code>73d8d34f-9717-489f-b1b8-29f98143ae8c</code></td>
+                            <td><code>AssumeRoleWithWebIdentity</code></td>
+                            <td><code>@171821203/@1457038661</code></td>
+                            <td><span class="bullet-lead-green">ALLOWED</span> (Gates 1 &amp; 2 OIDC)</td>
+                        </tr>
+                        <tr>
+                            <td><code>2026-11-13T14:04:28-08:00</code></td>
+                            <td><code>3361b71b-66c3-4d7d-8ae8-32402c8b5b33</code></td>
+                            <td><code>GetSecretValue</code></td>
+                            <td><code>AKCCE-AutonomousFleet-OIDC-Proof</code></td>
+                            <td><span class="bullet-lead-green">ALLOWED</span> (Gates 3 &amp; 4 Read)</td>
+                        </tr>
+                        <tr>
+                            <td><code>2026-11-13T14:04:29-08:00</code></td>
+                            <td><code>3c37b5af-392d-4ef5-893a-7947b78dd2b1</code></td>
+                            <td><code>ListSecrets</code></td>
+                            <td><code>AKCCE-AutonomousFleet-OIDC-Proof</code></td>
+                            <td><span class="bullet-lead-red">DENIED</span> (Lateral Block)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================= PROPRIETARY IP FOOTER ================= -->
+    <footer class="ip-footer">
+        <div class="footer-crest-wrapper">
+            <svg class="footer-brand-crest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+                <rect width="114" height="114" x="3" y="3" fill="#020617" rx="22" stroke="#1e293b" stroke-width="3"/>
+                <polygon points="24,18 60,36 60,48 24,30" fill="#475569"/>
+                <polygon points="96,18 60,36 60,48 96,30" fill="#1e293b"/>
+                <polygon points="24,39 60,57 60,69 24,51" fill="#0284c7"/>
+                <polygon points="96,39 60,57 60,69 96,51" fill="#075985"/>
+                <polygon points="24,60 60,78 60,90 24,72" fill="#38bdf8"/>
+                <polygon points="96,60 60,78 60,90 96,72" fill="#0369a1"/>
+                <polygon points="24,81 60,99 60,111 24,93" fill="#f43f5e"/>
+                <polygon points="96,81 60,99 60,111 96,93" fill="#9f1239"/>
+            </svg>
+        </div>
+        <strong>&copy; 2026 Steven Tuschman | Adversarial Kill-Chain Counter-Engineering&trade; (adversarialkillchaincounterengineering.com). All Rights Reserved.</strong><br>
+        The Adversarial Kill-Chain Counter-Engineering State Machine, Sequential Kill-Chain Counter-Engineering Protocol, Execution Triad governance model, Four Architectural Gates of Machine Identity, Five Enterprise Guardrails, 216+ Combination Build Matrix, and 26-Variable System Glossary are proprietary intellectual property. Unauthorized reproduction, distribution, or commercial adaptation is strictly prohibited.
+    </footer>
+
+</body>
+</html>

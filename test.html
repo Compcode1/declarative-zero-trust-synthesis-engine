@@ -3,10 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intelligent Architecture - AI Systems Engineering Best Practices</title>
-    <link rel="icon" type="image/png" href="cropped-LOGO-IMPROVED.png">
+    <title>AKCCE | Human-Governed Machine Identity Engineering</title>
+    <meta name="description" content="An engineering portfolio for human-governed machine identity configuration: OIDC federation, scoped cloud permissions, infrastructure as code, and evidence-based validation.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    <!-- Google tag (gtag.js) -->
+    <script>
+      const blockAnalytics = new URLSearchParams(window.location.search).get('block_ga') === 'true';
+      if (blockAnalytics) window['ga-disable-G-80NYKHYN3R'] = true;
+      try {
+        if (blockAnalytics) localStorage.setItem('akcce_block_ga', 'true');
+        if (localStorage.getItem('akcce_block_ga') === 'true') {
+          window['ga-disable-G-80NYKHYN3R'] = true;
+        }
+      } catch (error) {
+        // The query-string opt-out still works when browser storage is unavailable.
+      }
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-80NYKHYN3R">
+</script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-80NYKHYN3R');
+    </script>
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -22,11 +46,13 @@
             --color-green: #10b981;
             --color-teal: #14b8a6;
             --color-red: #f43f5e;
+            --color-orange: #f97316;
+            --logo-blue: #2563eb;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body { background-color: var(--bg-page); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--text-main); line-height: 1.6; }
+        body { background-color: var(--bg-page); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--text-main); line-height: 1.6; padding-bottom: 4rem; }
 
         /* ================= NAVIGATION ================= */
         nav {
@@ -39,6 +65,7 @@
             display: flex; gap: 1.2rem; list-style: none; flex-wrap: wrap; 
             justify-content: center; align-items: center; 
         }
+        
         .nav-links a { 
             display: inline-block;
             color: var(--color-cyan); 
@@ -53,6 +80,7 @@
             text-transform: uppercase; 
             transition: all 0.3s ease; 
         }
+        
         .nav-links a:hover, 
         .nav-links a.active-link { 
             background: var(--color-cyan); 
@@ -60,162 +88,1608 @@
             box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
         }
 
-        /* ================= HERO HEADER ================= */
-        .hero { padding: 180px 20px 80px; text-align: center; border-bottom: 1px solid var(--border-base); }
-        .hero-title-container { display: flex; align-items: center; justify-content: center; margin-bottom: 25px; }
-        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 3.2rem; font-weight: 900; letter-spacing: 3px; color: var(--color-cyan); text-transform: uppercase; }
-        
-        /* ================= SHARED STACKED LAYOUT ================= */
-        .stacked-section { padding: 80px 20px; width: 100%; display: flex; flex-direction: column; align-items: center; }
-        .section-intro { max-width: 1050px; text-align: left; margin-bottom: 4rem; background: rgba(15, 23, 42, 0.4); padding: 3rem; border-radius: 8px; border: 1px solid var(--border-base); border-left: 4px solid var(--color-blue); }
-        .section-text { font-size: 1.2rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.5rem; }
-        .section-text:last-child { margin-bottom: 0; }
-        
-        .principles-lead { max-width: 1050px; text-align: center; margin-bottom: 3rem; font-size: 1.3rem; color: var(--text-main); font-weight: 600; }
+        .bullet-lead {
+            color: var(--color-cyan);
+            font-weight: 800;
+        }
 
-        /* ================= 4-PILLAR GRID ================= */
-        .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem; width: 100%; max-width: 1300px; margin-bottom: 4rem; }
-        .feature-card { background: rgba(15, 23, 42, 0.4); border-top: 4px solid; padding: 2.5rem; border-radius: 8px; text-align: left; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2); display: flex; flex-direction: column; }
-        
-        .feature-card.cyan { border-color: var(--color-cyan); }
-        .feature-card.red { border-color: var(--color-red); }
-        .feature-card.blue { border-color: var(--color-blue); }
-        .feature-card.purple { border-color: var(--color-purple); }
-        
-        .feature-title { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 800; margin-bottom: 1.5rem; color: var(--text-main); text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border-base); padding-bottom: 1rem; }
-        .feature-concept { color: var(--text-muted); font-size: 1.1rem; line-height: 1.7; margin-bottom: 2rem; flex-grow: 1; }
-        .feature-concept strong { color: var(--text-main); }
+        /* ================= HERO HEADER & BRAND INSIGNIA ================= */
+        .hero { padding: 155px 20px 60px; text-align: center; border-bottom: 1px solid var(--border-base); }
+        .hero-title-container { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 1.35rem; 
+            margin-bottom: 1.8rem; 
+            flex-wrap: wrap;
+        }
+        .hero-brand-crest {
+            width: 66px;
+            height: 66px;
+            flex-shrink: 0;
+            filter: drop-shadow(0 0 18px rgba(14, 165, 233, 0.35)) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.6));
+            transition: transform 0.3s ease;
+        }
+        .hero-brand-crest:hover {
+            transform: translateY(-2px) scale(1.04);
+        }
+      .hero-title-group { display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 3.1rem; font-weight: 900; letter-spacing: 3px; color: var(--text-main); text-transform: uppercase; line-height: 1.15; }
+        .hero-byline { font-family: 'Montserrat', sans-serif; font-size: 1.35rem; font-weight: 800; letter-spacing: 4px; color: var(--color-cyan); text-transform: uppercase; margin-top: 0.45rem; text-shadow: 0 0 18px rgba(14, 165, 233, 0.35); }
 
-        /* ================= CITATION BLOCK ================= */
-        .citation-block { background: rgba(2, 6, 23, 0.8); border: 1px solid var(--border-base); padding: 1.5rem; border-radius: 6px; }
-        .citation-header { font-size: 0.85rem; text-transform: uppercase; font-weight: 800; letter-spacing: 1px; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; }
-        .cyan .citation-header { color: var(--color-cyan); }
-        .red .citation-header { color: var(--color-red); }
-        .blue .citation-header { color: var(--color-blue); }
-        .purple .citation-header { color: var(--color-purple); }
+        /* JUMP LINKS BAR (TOP POSITION WITH EMBEDDED 6D INSIGNIA) */
+        .jump-links-container {
+            max-width: 1300px;
+            margin: 0 auto 3.2rem;
+            padding: 1.6rem 2rem;
+            background: rgba(15, 23, 42, 0.65);
+            border: 1px solid var(--border-base);
+            border-top: 3px solid var(--color-cyan);
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+        }
+        .jump-links-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.9rem;
+            margin-bottom: 1.15rem;
+            flex-wrap: wrap;
+        }
+        .jump-links-crest {
+            width: 42px;
+            height: 42px;
+            flex-shrink: 0;
+            filter: drop-shadow(0 0 12px rgba(14, 165, 233, 0.3));
+        }
+        .jump-links-intro {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: 0.5px;
+            margin-bottom: 0;
+        }
+        .jump-links { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 0.9rem; 
+        }
+        .jump-links a { 
+            color: var(--color-cyan); 
+            border: 1px solid var(--color-cyan); 
+            background: rgba(14, 165, 233, 0.08); 
+            padding: 0.65rem 1.3rem; 
+            border-radius: 8px; 
+            text-decoration: none; 
+            font-size: 0.88rem; 
+            font-weight: 700; 
+            letter-spacing: 1px; 
+            text-transform: uppercase; 
+            transition: all 0.3s ease; 
+        }
+        .jump-links a:hover { 
+            background: var(--color-cyan); 
+            color: #ffffff; 
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
+            transform: translateY(-2px); 
+        }
+
+        /* ELEVATED HERO ARCHITECTURAL CONTAINERS */
+        .hero-arch-block {
+            max-width: 1300px;
+            margin: 0 auto 3rem;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-base);
+            border-radius: 12px;
+            padding: 3rem 3.2rem;
+            text-align: left;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+        }
+        .hero-arch-block.topology-block { border-top: 4px solid var(--color-cyan); padding: 2.8rem 2.5rem; }
+        .hero-arch-block.math-block { border-top: 4px solid var(--color-blue); }
+        .hero-arch-block.gates-block { border-top: 4px solid var(--color-green); }
+        .hero-arch-block.solution-block { border-top: 4px solid var(--color-purple); }
+        .hero-arch-block.sequence-block { border-top: 4px solid var(--color-cyan); }
+
+        .hero-block-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.05rem;
+            font-weight: 800;
+            letter-spacing: 1.2px;
+            line-height: 1.55;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 0.85rem;
+        }
+        .topology-block .hero-block-tag { color: var(--color-cyan); font-size: 1.08rem; }
+        .math-block .hero-block-tag { color: var(--color-blue); }
+        .gates-block .hero-block-tag { color: var(--color-green); }
+        .solution-block .hero-block-tag { color: var(--color-purple); }
+        .sequence-block .hero-block-tag { color: var(--color-cyan); }
+
+        .hero-block-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.85rem;
+            font-weight: 900;
+            letter-spacing: 1px;
+            line-height: 1.35;
+            color: var(--text-main);
+            text-transform: uppercase;
+            margin-bottom: 1.6rem;
+            padding-bottom: 0.9rem;
+            border-bottom: 2px solid var(--border-base);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        /* FULL-WIDTH MASTER MISSION BANNER BOX (PART 01 TOP) */
+        .mission-master-banner {
+            background: rgba(10, 15, 29, 0.95);
+            border: 1px solid var(--border-base);
+            border-left: 5px solid var(--color-blue);
+            border-radius: 10px;
+            padding: 2.2rem 2.4rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+        .mission-banner-lead {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.22rem;
+            font-weight: 800;
+            color: var(--text-main);
+            line-height: 1.65;
+            margin-bottom: 1.25rem;
+            padding-bottom: 0.85rem;
+            border-bottom: 1px solid var(--border-base);
+        }
+
+        /* 2-COLUMN EXECUTIVE MISSION & PREREQUISITE SPLIT GRID (PART 01 MIDDLE) */
+        .mission-split-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.8rem;
+            margin-bottom: 2.2rem;
+        }
+        .mission-split-card {
+            background: rgba(10, 15, 29, 0.95);
+            border: 1px solid var(--border-base);
+            border-left: 4px solid var(--color-purple);
+            border-radius: 10px;
+            padding: 2.1rem 2.2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+            display: flex;
+            flex-direction: column;
+        }
+        .mission-split-card.cyan-left {
+            border-left-color: var(--color-cyan);
+        }
+        .mission-split-header {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.28rem;
+            font-weight: 900;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1.1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-base);
+        }
+        .mission-bullet-list {
+            list-style: disc;
+            padding-left: 1.4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.95rem;
+        }
+        .mission-bullet-list li {
+            font-size: 1.05rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.7;
+            padding-left: 0.2rem;
+        }
+        .mission-bullet-list li::marker {
+            color: var(--color-cyan);
+        }
+
+        /* 4-COLUMN GATE CARDS GRID */
+        .gates-4col-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+        .gate-card {
+            background: rgba(10, 15, 29, 0.95);
+            border: 1px solid var(--border-base);
+            border-top: 4px solid var(--color-green);
+            border-radius: 10px;
+            padding: 1.8rem 1.6rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+            display: flex;
+            flex-direction: column;
+        }
+        .gate-card.blue-top { border-top-color: var(--color-blue); }
+        .gate-card-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: var(--color-green);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        .gate-card.blue-top .gate-card-badge { color: var(--color-blue); }
+        .gate-card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 900;
+            color: var(--text-main);
+            text-transform: uppercase;
+            margin-bottom: 0.85rem;
+            padding-bottom: 0.7rem;
+            border-bottom: 1px solid var(--border-base);
+            line-height: 1.3;
+        }
+        .gate-card-text {
+            font-size: 1.02rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.65;
+        }
+
+        /* 2X2 ATTRIBUTES GRID FOR AI SOLUTION */
+        .attributes-2x2-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.75rem;
+        }
+        .attribute-card {
+            background: rgba(10, 15, 29, 0.95);
+            border: 1px solid var(--border-base);
+            border-left: 4px solid var(--color-purple);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+        }
+        .attribute-card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: var(--color-cyan);
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.65rem;
+            border-bottom: 1px solid var(--border-base);
+            letter-spacing: 0.5px;
+        }
+        .attribute-card-text {
+            font-size: 1.05rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.7;
+        }
+
+        /* 7 STEPPED PHASE CARDS */
+        .phase-cards-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 1.4rem;
+            margin-bottom: 2.2rem;
+        }
+        .phase-step-card {
+            background: rgba(10, 15, 29, 0.95);
+            border: 1px solid var(--border-base);
+            border-left: 4px solid var(--color-cyan);
+            border-radius: 10px;
+            padding: 1.85rem 2.2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+        }
+        .phase-step-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.7rem;
+            border-bottom: 1px solid var(--border-base);
+            flex-wrap: wrap;
+        }
+        .phase-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: #ffffff;
+            background: var(--color-cyan);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .phase-step-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .phase-step-lead {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.7;
+            margin-bottom: 0.85rem;
+        }
+        .phase-subgrid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+            list-style: none;
+            padding: 0;
+            margin-top: 0.85rem;
+        }
+        .phase-subgrid.three-col {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .phase-subitem {
+            background: rgba(2, 6, 23, 0.75);
+            border: 1px solid var(--border-base);
+            border-top: 2px solid var(--color-cyan);
+            border-radius: 6px;
+            padding: 1.1rem 1.25rem;
+            font-size: 1.02rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
+        /* GENERIC SUBLIST FOR OTHER SECTIONS */
+        .hero-step-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.75rem;
+        }
+        .hero-step-item {
+            font-size: 1.15rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.75;
+            padding-left: 1.15rem;
+            border-left: 3px solid var(--color-cyan);
+        }
+        .step-label {
+            color: var(--color-cyan);
+            font-weight: 800;
+        }
+        .step-sublist {
+            list-style: disc;
+            margin-top: 0.65rem;
+            padding-left: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+        .step-sublist li {
+            font-size: 1.08rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.65;
+            padding-left: 0.25rem;
+        }
+        .step-sublist li::marker {
+            color: var(--color-cyan);
+        }
+
+        /* ================= INSIGHT CALLOUT ================= */
+        .insight-box { border-left: 4px solid var(--color-purple); padding: 2.2rem 2.5rem; margin: 2.5rem auto 0; max-width: 1300px; border-radius: 0 8px 8px 0; text-align: left; }
+        .insight-header { font-family: 'Montserrat', sans-serif; font-size: 1.15rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.85rem; display: flex; align-items: center; gap: 8px; }
+        .insight-header::before { content: '>'; font-weight: 900; }
+        .insight-text { font-size: 1.2rem; color: var(--text-main); font-style: normal; line-height: 1.8; font-weight: 600; }
+
+        #system-topology, #scientific-foundation, #foundation-gates, #ai-solution, #execution-sequence, #execution-triad, #execution-flow, #enterprise-guardrails, #environment-agnostic { 
+            scroll-margin-top: 100px; 
+        }
+
+        /* ================= SECTION 2: EXECUTION TRIAD ================= */
+        .module-section { display: flex; flex-direction: column; align-items: center; padding: 5rem 20px 2rem; }
+        .architecture-container { width: 100%; max-width: 1300px; display: flex; flex-direction: column; align-items: center; }
         
-        .citation-title { font-style: italic; font-weight: 600; color: var(--text-main); margin-bottom: 0.5rem; display: block; font-size: 1rem; }
-        .citation-abstract { font-size: 0.95rem; color: var(--color-grey); line-height: 1.6; margin-bottom: 1rem; }
+        .summary-section { max-width: 1220px; text-align: center; margin-bottom: 4.5rem; }
+        .summary-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1.8rem; color: var(--color-cyan); }
+        .summary-text { font-size: 1.25rem; color: var(--text-main); font-weight: 600; line-height: 1.8; margin: 0 auto 2.8rem; max-width: 1050px; text-align: left; }
         
-        .citation-link { display: inline-block; font-family: monospace; font-size: 0.9rem; color: var(--text-main); text-decoration: none; border-bottom: 1px solid transparent; transition: all 0.3s ease; }
-        .citation-link:hover { border-bottom-color: var(--text-main); }
-        .cyan .citation-link:hover { color: var(--color-cyan); border-bottom-color: var(--color-cyan); }
-        .red .citation-link:hover { color: var(--color-red); border-bottom-color: var(--color-red); }
-        .blue .citation-link:hover { color: var(--color-blue); border-bottom-color: var(--color-blue); }
-        .purple .citation-link:hover { color: var(--color-purple); border-bottom-color: var(--color-purple); }
+        /* THE TRIAD GRID */
+        .triad-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; text-align: left; }
+        .triad-card { background: rgba(10, 15, 29, 0.95); border: 1px solid var(--border-base); border-top: 4px solid; padding: 2.2rem 2rem; border-radius: 10px; box-shadow: 0 15px 30px rgba(0,0,0,0.45); display: flex; flex-direction: column; }
+        .triad-card.architect { border-top-color: var(--color-blue); }
+        .triad-card.machine { border-top-color: var(--color-cyan); }
+        .triad-card.ai { border-top-color: var(--color-purple); }
+        
+        .triad-role { font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; font-weight: 800; letter-spacing: 1px; margin-bottom: 0.6rem; text-transform: uppercase; }
+        .triad-card.architect .triad-role { color: var(--color-blue); }
+        .triad-card.machine .triad-role { color: var(--color-cyan); }
+        .triad-card.ai .triad-role { color: var(--color-purple); }
+
+        .triad-header { font-family: 'Montserrat', sans-serif; font-size: 1.4rem; font-weight: 900; color: var(--text-main); margin-bottom: 1rem; padding-bottom: 0.85rem; border-bottom: 1px solid var(--border-base); text-transform: uppercase; letter-spacing: 1px; }
+        .triad-lead { font-size: 1.08rem; color: var(--text-main); font-weight: 600; line-height: 1.7; margin-bottom: 1.2rem; }
+        .triad-sublist {
+            list-style: disc;
+            padding-left: 1.35rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+        .triad-sublist li {
+            font-size: 1.02rem;
+            color: var(--text-main);
+            font-weight: 600;
+            line-height: 1.65;
+            padding-left: 0.2rem;
+        }
+        .triad-sublist li::marker {
+            color: var(--color-cyan);
+        }
+        
+        /* ================= THE GRAPHIC & ARCHITECTURAL FLOW (920PX FULL CLEARANCE, ZERO SCROLLBAR) ================= */
+        .flow-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 900; color: var(--color-cyan); margin-bottom: 2rem; text-transform: uppercase; letter-spacing: 1px; text-align: center; width: 100%; }
+        
+        .canvas-wrapper { width: 100%; overflow: visible; }
+        .diagram-canvas {
+            position: relative; width: 1180px; max-width: 100%; height: 920px; margin: 0 auto;
+            background-color: rgba(2, 6, 23, 0.92);
+            background-image: linear-gradient(to right, rgba(30, 41, 59, 0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(30, 41, 59, 0.5) 1px, transparent 1px);
+            background-size: 40px 40px; border: 1px solid var(--border-base); border-radius: 12px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .routing-lines { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+        
+        @keyframes flow { to { stroke-dashoffset: -20; } }
+        @keyframes ai-scanlines {
+            from { background-position: 0 0; }
+            to { background-position: 56px 56px; }
+        }
+        @keyframes pulse-cyan {
+            0% { box-shadow: 0 0 15px rgba(14, 165, 233, 0.35), inset 0 0 10px rgba(14, 165, 233, 0.15); }
+            50% { box-shadow: 0 0 35px rgba(14, 165, 233, 0.6), inset 0 0 20px rgba(14, 165, 233, 0.3); }
+            100% { box-shadow: 0 0 15px rgba(14, 165, 233, 0.35), inset 0 0 10px rgba(14, 165, 233, 0.15); }
+        }
+        @keyframes pulse-purple {
+            0% { box-shadow: 0 0 15px rgba(168, 85, 247, 0.35), inset 0 0 10px rgba(168, 85, 247, 0.15); }
+            50% { box-shadow: 0 0 35px rgba(168, 85, 247, 0.6), inset 0 0 20px rgba(168, 85, 247, 0.3); }
+            100% { box-shadow: 0 0 15px rgba(168, 85, 247, 0.35), inset 0 0 10px rgba(168, 85, 247, 0.15); }
+        }
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 15px rgba(244, 63, 94, 0.35), inset 0 0 10px rgba(244, 63, 94, 0.15); }
+            50% { box-shadow: 0 0 35px rgba(244, 63, 94, 0.6), inset 0 0 20px rgba(244, 63, 94, 0.3); }
+            100% { box-shadow: 0 0 15px rgba(244, 63, 94, 0.35), inset 0 0 10px rgba(244, 63, 94, 0.15); }
+        }
+        
+        .animated-path { stroke-dasharray: 8, 12; animation: flow 1s linear infinite; }
+
+        .node { position: absolute; background: var(--bg-node); border: 1px solid var(--border-base); border-radius: 8px; padding: 1.05rem; z-index: 2; backdrop-filter: blur(8px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3); }
+        .node-title { font-size: 0.92rem; font-weight: 900; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.55rem; line-height: 1.25; color: var(--text-main); }
+        .node-text { font-size: 0.8rem; color: var(--text-main); font-weight: 500; line-height: 1.48; }
+        .tag { font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; font-weight: 800; padding: 3px 6px; border: 1px solid; border-radius: 4px; display: inline-block; margin-bottom: 0.55rem; letter-spacing: 0.5px; }
+
+        /* TOP ROW NODES (y = 25px) */
+        .node-engineer { left: 15px; top: 25px; width: 205px; border-left: 4px solid var(--color-blue); }
+        .node-engineer .tag { color: var(--color-blue); border-color: rgba(59, 130, 246, 0.3); }
+        
+        .node-compiler { 
+            left: 245px; top: 25px; width: 225px; 
+            border: 2px solid var(--color-purple); border-left: 6px solid var(--color-purple); 
+            background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(168, 85, 247, 0.15) 4px, rgba(168, 85, 247, 0.15) 8px), linear-gradient(135deg, rgba(168, 85, 247, 0.2) 0%, rgba(10, 15, 29, 0.95) 100%), var(--bg-node);
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.35), inset 0 0 15px rgba(168, 85, 247, 0.15);
+            animation: ai-scanlines 1.5s linear infinite, pulse-purple 3s ease-in-out infinite;
+        }
+        .node-compiler .tag { color: var(--color-purple); border-color: rgba(168, 85, 247, 0.3); }
+
+        .node-iac { left: 495px; top: 25px; width: 195px; border-left: 4px solid var(--color-cyan); }
+        .node-iac .tag { color: var(--color-cyan); border-color: rgba(14, 165, 233, 0.3); }
+        
+        .node-core { left: 715px; top: 25px; width: 215px; border: 1px solid rgba(16, 185, 129, 0.3); border-left: 4px solid var(--color-green); }
+        .node-core .tag { color: var(--color-green); border-color: rgba(16, 185, 129, 0.3); }
+
+        .node-scale { left: 955px; top: 25px; width: 210px; border: 1px dashed var(--color-purple); border-left: 4px solid var(--color-purple); }
+        .node-scale .tag { color: var(--color-purple); border-color: rgba(168, 85, 247, 0.3); }
+        
+        /* BOTTOM ROW NODES (y = 450px / 500px — AMPLE CLEARANCE ABOVE 920PX FLOOR) */
+        .node-engine { 
+            left: 15px; top: 450px; width: 205px; 
+            border: 2px solid var(--color-cyan); border-left: 6px solid var(--color-cyan); 
+            background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(14, 165, 233, 0.18) 4px, rgba(14, 165, 233, 0.18) 8px), linear-gradient(135deg, rgba(14, 165, 233, 0.25) 0%, rgba(10, 15, 29, 0.95) 100%), var(--bg-node); 
+            box-shadow: 0 0 25px rgba(14, 165, 233, 0.45), inset 0 0 15px rgba(14, 165, 233, 0.25); 
+            animation: ai-scanlines 2s linear infinite, pulse-cyan 3.5s ease-in-out infinite;
+        }
+        .node-engine .tag { color: var(--color-cyan); border-color: rgba(14, 165, 233, 0.3); margin-right: 5px; }
+
+        .node-dpl { 
+            left: 245px; top: 500px; width: 385px; 
+            border: 2px solid var(--color-red); border-left: 6px solid var(--color-red); 
+            background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(244, 63, 94, 0.15) 4px, rgba(244, 63, 94, 0.15) 8px), linear-gradient(135deg, rgba(244, 63, 94, 0.15) 0%, rgba(10, 15, 29, 0.95) 100%), var(--bg-node); 
+            box-shadow: 0 0 25px rgba(244, 63, 94, 0.35), inset 0 0 15px rgba(244, 63, 94, 0.15); 
+            animation: ai-scanlines 2.5s linear infinite, pulse-red 4s ease-in-out infinite;
+        }
+        .node-dpl .tag { color: var(--color-red); border-color: rgba(244, 63, 94, 0.3); }
+
+        .node-ial { left: 655px; top: 500px; width: 240px; border-left: 4px solid var(--color-green); }
+        .node-ial .tag { color: var(--color-green); border-color: rgba(16, 185, 129, 0.3); }
+        
+        .node-arl { left: 920px; top: 500px; width: 245px; border-left: 4px solid var(--color-green); }
+        .node-arl .tag { color: var(--color-green); border-color: rgba(16, 185, 129, 0.3); }
+
+        /* ================= ARCHITECTURAL FLOW EXPLANATION (UNDER THE HOOD) ================= */
+        .flow-explanation { max-width: 1050px; margin: 1.5rem auto 0; padding: 0 20px; text-align: left; }
+        .flow-subheader { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 900; color: var(--color-cyan); margin-bottom: 1.2rem; text-transform: uppercase; letter-spacing: 1px; }
+        .flow-intro { font-size: 1.22rem; color: var(--text-main); font-weight: 600; line-height: 1.8; margin-bottom: 2rem; }
+        
+        .flow-mechanics-box {
+            background: rgba(10, 15, 29, 0.95);
+            border: 1px solid var(--border-base);
+            border-left: 4px solid var(--color-cyan);
+            border-radius: 0 10px 10px 0;
+            padding: 2.4rem 2.5rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+        }
+
+        .inline-link { color: var(--color-cyan); text-decoration: none; border-bottom: 1px solid var(--color-cyan); font-weight: 800; transition: color 0.3s ease, border-color 0.3s ease; }
+        .inline-link:hover { color: #ffffff; border-color: #ffffff; }
+
+        /* ================= SECTION 4: ENTERPRISE GUARDRAILS & 4 PILLARS ================= */
+        .guardrail-container { max-width: 1300px; margin: 0 auto; padding: 4rem 20px 3rem; }
+        
+        .prelude-box { background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-base); border-top: 4px solid var(--color-blue); border-radius: 12px; padding: 3.5rem; box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
+        .section-title { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 900; color: var(--color-cyan); text-transform: uppercase; margin-bottom: 1.8rem; letter-spacing: 1px; text-align: center; }
+        
+        .intro-text { font-size: 1.25rem; color: var(--text-main); font-weight: 600; line-height: 1.8; margin-bottom: 2rem; text-align: left; max-width: 1050px; margin-left: auto; margin-right: auto; }
+
+        .pillars-inset-box {
+            max-width: 1050px;
+            margin: 0 auto 2.8rem;
+            background: rgba(10, 15, 29, 0.95);
+            border: 1px solid var(--border-base);
+            border-left: 4px solid var(--color-cyan);
+            border-radius: 0 10px 10px 0;
+            padding: 2.4rem 2.5rem;
+            text-align: left;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+        }
+        .hero-sequence-header {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.45rem;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            color: var(--color-cyan);
+            text-transform: uppercase;
+            margin-bottom: 1.75rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border-base);
+        }
+
+        .guardrails-sub-header {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.45rem;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            color: var(--color-cyan);
+            text-transform: uppercase;
+            max-width: 1050px;
+            margin: 0 auto 1.2rem;
+            padding-bottom: 0.85rem;
+            border-bottom: 2px solid var(--border-base);
+            text-align: left;
+        }
+
+        .vulnerability-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 2rem; }
+        .vuln-card { background: rgba(10, 15, 29, 0.95); border: 1px solid var(--border-base); padding: 2.3rem 2.2rem; border-radius: 10px; border-left: 4px solid var(--color-purple); box-shadow: 0 10px 25px rgba(0,0,0,0.35); text-align: left; }
+        .vuln-title { font-family: 'Montserrat', sans-serif; font-size: 1.3rem; font-weight: 900; color: var(--text-main); margin-bottom: 0.9rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-base); letter-spacing: 0.5px; text-transform: uppercase; }
+        .vuln-lead { font-size: 1.1rem; color: var(--text-main); font-weight: 600; line-height: 1.7; margin-bottom: 1.1rem; }
+
+        .vuln-card:nth-child(5) { grid-column: 1 / -1; }
+
+        /* ================= SECTION 5: POLYMORPHIC COMBINATORIAL MATRIX ================= */
+        .polymorphic-container { max-width: 1300px; margin: 0 auto; padding: 2rem 20px 4rem; }
+        
+        .polymorphic-box {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-base);
+            border-top: 4px solid var(--color-cyan);
+            border-radius: 12px;
+            padding: 4rem 3.5rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .poly-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--color-cyan);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: block;
+            text-align: center;
+            margin-bottom: 0.75rem;
+        }
+
+        /* 5-Column Graphic Canvas */
+        .matrix-graphic-canvas {
+            background-image: linear-gradient(to right, rgba(30, 41, 59, 0.45) 1px, transparent 1px), linear-gradient(to bottom, rgba(30, 41, 59, 0.45) 1px, transparent 1px);
+            background-size: 32px 32px;
+            background-color: rgba(2, 6, 23, 0.9);
+            border: 1px solid var(--border-base);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            margin-bottom: 3.5rem;
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.6), 0 15px 30px rgba(0,0,0,0.4);
+        }
+
+        .matrix-5col-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.25rem;
+        }
+
+        .matrix-node {
+            background: var(--bg-node);
+            border: 1px solid rgba(14, 165, 233, 0.35);
+            border-top: 3px solid var(--color-cyan);
+            border-radius: 8px;
+            padding: 1.5rem 1.25rem;
+            box-shadow: 0 0 20px rgba(14, 165, 233, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .matrix-node-header {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 900;
+            letter-spacing: 1.5px;
+            color: var(--text-main);
+            text-transform: uppercase;
+            padding-bottom: 0.85rem;
+            margin-bottom: 1.1rem;
+            border-bottom: 1px solid var(--border-base);
+        }
+
+        .matrix-option {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            margin-bottom: 0.85rem;
+            line-height: 1.35;
+            font-weight: 600;
+        }
+        .matrix-option:last-child { margin-bottom: 0; }
+
+        .matrix-check {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 16px;
+            height: 16px;
+            border: 1px solid var(--color-cyan);
+            background: rgba(14, 165, 233, 0.08);
+            border-radius: 3px;
+            font-size: 11px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        /* Combinatorial Telemetry Readout Bar */
+        .combinatorial-bar {
+            margin-top: 2rem;
+            padding: 1.5rem 2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            border-left: 5px solid var(--color-purple);
+            background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(168, 85, 247, 0.08) 4px, rgba(168, 85, 247, 0.08) 8px), rgba(10, 15, 29, 0.95);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.2);
+        }
+
+        .combo-formula {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.98rem;
+            color: var(--text-main);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .combo-formula span { color: var(--color-cyan); }
+
+        .combo-result {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-green);
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+        }
+
+        /* 4-Card Adaptation Grid */
+        .adaptation-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .adapt-card {
+            background: rgba(10, 15, 29, 0.95);
+            border: 1px solid var(--border-base);
+            border-left: 4px solid var(--color-cyan);
+            padding: 2.3rem 2.2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+            text-align: left;
+        }
+
+        .adapt-card.purple { border-left-color: var(--color-purple); }
+        .adapt-card.green { border-left-color: var(--color-green); }
+        .adapt-card.orange { border-left-color: var(--color-orange); }
+
+        .adapt-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            display: block;
+            color: var(--color-cyan);
+        }
+        .adapt-card.purple .adapt-tag { color: var(--color-purple); }
+        .adapt-card.green .adapt-tag { color: var(--color-green); }
+        .adapt-card.orange .adapt-tag { color: var(--color-orange); }
+
+        /* ================= PROPRIETARY IP FOOTER ================= */
+        .ip-footer {
+            max-width: 1300px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            border-top: 1px solid var(--border-base);
+            background: rgba(10, 15, 29, 0.6);
+            border-radius: 8px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+            line-height: 1.8;
+        }
+        .footer-crest-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 0.85rem;
+        }
+        .footer-brand-crest {
+            width: 38px;
+            height: 38px;
+            filter: drop-shadow(0 0 10px rgba(14, 165, 233, 0.25));
+        }
+        .ip-footer strong {
+            color: var(--color-cyan);
+            font-weight: 700;
+        }
+
+        @media (max-width: 1260px) {
+            .canvas-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 10px; }
+            .diagram-canvas { min-width: 1180px; }
+        }
+
+        @media (max-width: 1100px) {
+            .gates-4col-grid { grid-template-columns: repeat(2, 1fr); }
+            .phase-subgrid.three-col { grid-template-columns: 1fr; }
+            .matrix-5col-grid { grid-template-columns: repeat(3, 1fr); }
+            .combinatorial-bar { flex-direction: column; text-align: center; }
+        }
 
         @media (max-width: 992px) {
-            .hero-title { font-size: 2.5rem; }
-            .feature-grid-2x2 { grid-template-columns: 1fr; }
+            .hero-title { font-size: 2.2rem; }
+            .hero-brand-crest { width: 54px; height: 54px; }
+            .summary-title, .section-title, .flow-title, .hero-block-title { font-size: 1.45rem; }
+            .hero-block-tag { font-size: 0.95rem; }
+            .triad-grid, .adaptation-grid, .attributes-2x2-grid, .phase-subgrid, .mission-split-grid { grid-template-columns: 1fr; }
+            .hero-arch-block, .polymorphic-box, .prelude-box { padding: 2rem 1.5rem; }
+            .insight-box, .flow-mechanics-box, .pillars-inset-box, .mission-master-banner { padding: 1.5rem; margin: 2rem 0; }
+            .hero-sequence-header, .guardrails-sub-header { font-size: 1.2rem; }
+            .vulnerability-grid { grid-template-columns: 1fr; }
         }
+        
+        @media (max-width: 700px) {
+            .gates-4col-grid, .matrix-5col-grid { grid-template-columns: 1fr; }
+        }
+
         @media (max-width: 600px) {
-            .hero-title { font-size: 1.8rem; }
-            .hero { padding-top: 150px; padding-bottom: 40px; }
+            .hero-title { font-size: 1.65rem; letter-spacing: 1px; }
+            .hero-brand-crest { width: 46px; height: 46px; }
+            .hero { padding-top: 190px; } 
+            
             nav { padding: 1rem; }
             .nav-links { gap: 0.6rem; }
-            .nav-links a { font-size: 0.75rem; padding: 0.4rem 0.8rem; }
-            .section-intro { padding: 1.5rem; }
-            .feature-card { padding: 1.5rem; }
+            .nav-links a { font-size: 0.75rem; padding: 0.4rem 0.8rem; letter-spacing: 0.5px; }
+        }
+      /* FIX FOR PHONES HELD HORIZONTALLY OR VERTICALLY */
+        @media (max-width: 992px), (max-height: 550px) {
+            nav {
+                position: relative !important;
+                padding: 0.75rem 0.5rem !important;
+            }
+            .nav-links {
+                gap: 0.45rem !important;
+            }
+            .nav-links a {
+                font-size: 0.72rem !important;
+                padding: 0.35rem 0.65rem !important;
+            }
+            .hero {
+                padding-top: 30px !important;
+            }
+        }  
+
+        /* Editorial revision: readable evidence boundaries and accessible navigation. */
+        nav { position: relative; }
+        .hero { padding-top: 40px; }
+        .skip-link { position: fixed; top: -100px; left: 1rem; z-index: 200; background: #f8fafc; color: #020617; padding: .7rem 1rem; border-radius: 6px; }
+        .skip-link:focus { top: .5rem; }
+        a:focus-visible, [tabindex]:focus-visible { outline: 3px solid #38bdf8; outline-offset: 5px; }
+        .hero-description { max-width: 850px; margin: 1rem auto; font-size: 1.15rem; color: var(--text-muted); }
+        .portfolio-status { max-width: 920px; margin: 1.5rem auto 2rem; padding: 1rem 1.25rem; border: 1px solid #334155; border-radius: 10px; text-align: left; color: var(--text-muted); }
+        .portfolio-status strong { color: #f8fafc; }
+        .hero-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .8rem; margin: 1.5rem 0; }
+        .hero-actions a { border: 1px solid #38bdf8; border-radius: 7px; padding: .65rem 1rem; color: #f8fafc; text-decoration: none; font-weight: 700; }
+        .hero-actions a:hover { background: #0c4a6e; }
+        main { min-width: 0; }
+        [id] { scroll-margin-top: 1.5rem; }
+        .hero-arch-block { text-align: left; }
+        .hero-block-title, .hero-block-tag { text-align: center; }
+        .node-text { overflow-wrap: anywhere; }
+        .ip-footer { overflow-wrap: anywhere; }
+        .routing-lines { opacity: .75; }
+        .source-links { display: flex; flex-wrap: wrap; gap: .7rem 1.2rem; list-style: none; margin-top: 1rem; }
+        .source-links a { color: #7dd3fc; text-underline-offset: 3px; }
+        .matrix-check { opacity: .55; }
+        @media (max-width: 1350px) {
+            .canvas-wrapper { overflow: visible; }
+            .diagram-canvas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; min-width: 0; width: 100%; height: auto; padding: 1rem; overflow: visible; }
+            .diagram-canvas .routing-lines { display: none; }
+            .diagram-canvas .node { position: static; width: auto; height: auto; min-height: 0; margin: 0; }
+        }
+        @media (max-width: 992px) { [id] { scroll-margin-top: 1rem; } }
+        @media (max-width: 700px) {
+            .diagram-canvas { grid-template-columns: 1fr; }
+            .hero-arch-block, .polymorphic-box, .prelude-box { padding: 1.5rem 1rem; }
+            .hero-title { overflow-wrap: anywhere; }
+            .hero-description { font-size: 1rem; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { animation: none !important; transition: none !important; }
         }
     </style>
 </head>
 <body>
-
-    <!-- MASTER NAVIGATION -->
-    <nav>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<nav aria-label="Main navigation">
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="ai-systems-engineering.html" class="active-link">AI Systems Engineering</a></li>
-            <li><a href="architectural.html">Pipeline Architecture</a></li>
-            <li><a href="workflow-portfolio.html">Machine Identity Execution Showcase</a></li>
-            <li><a href="add-capabilities.html">Additional Capability Integration Showcase</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li>
+<a href="index.html" class="active-link" aria-current="page">Home</a>
+</li>
+            <li>
+<a href="autonomous-systems.html">Autonomous Systems</a>
+</li>
+            <li>
+<a href="kill-chain.html">The Adversarial Kill Chain</a>
+</li>
+            <li>
+<a href="blueprint.html">7-Phase Counter-Engineering Blueprint</a>
+</li>
+            <li>
+<a href="ai-systems-engineering.html">Tethered AI Systems Engineering</a>
+</li>
+            <li>
+<a href="architectural.html">Exploit-Level Pipeline Architecture</a>
+</li>
+            <li>
+<a href="workflow-portfolio.html">Counter-Engineering Demonstrations</a>
+</li>
+            <li>
+<a href="add-capabilities.html">Day-2 Multi-Cloud Modules</a>
+</li>
+            <li>
+<a href="glossary.html">26-Variable System Glossary</a>
+</li>
+            <li>
+<a href="contact.html">Contact</a>
+</li>
         </ul>
     </nav>
-
-    <!-- HERO HEADER -->
-    <header class="hero">
-        <div class="hero-title-container">
-            <h1 class="hero-title">AI Systems Engineering Best Practices</h1>
+<main id="main-content">
+<header class="hero">
+<div class="hero-title-container">
+            <!-- 6D. 4-CHEVRON (3D MACHINED BEVEL) HERO BRAND CREST -->
+            <svg class="hero-brand-crest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Adversarial Kill-Chain Counter-Engineering 4-Chevron Crest">
+                <rect width="114" height="114" x="3" y="3" fill="#020617" rx="22" stroke="#1e293b" stroke-width="3"/>
+                <!-- Gate 1: Gunmetal Bevel -->
+                <polygon points="24,18 60,36 60,48 24,30" fill="#475569"/>
+                <polygon points="96,18 60,36 60,48 96,30" fill="#1e293b"/>
+                <!-- Gate 2: Cobalt Bevel -->
+                <polygon points="24,39 60,57 60,69 24,51" fill="#0284c7"/>
+                <polygon points="96,39 60,57 60,69 96,51" fill="#075985"/>
+                <!-- Gate 3: Electric Cyan Bevel -->
+                <polygon points="24,60 60,78 60,90 24,72" fill="#38bdf8"/>
+                <polygon points="96,60 60,78 60,90 96,72" fill="#0369a1"/>
+                <!-- Gate 4: Crimson Bevel -->
+                <polygon points="24,81 60,99 60,111 24,93" fill="#f43f5e"/>
+                <polygon points="96,81 60,99 60,111 96,93" fill="#9f1239"/>
+            </svg>
+          <div class="hero-title-group">
+                <h1 class="hero-title">ADVERSARIAL KILL-CHAIN COUNTER-ENGINEERING&trade;</h1>
+                <p class="hero-byline">All the Way Down to the Raw Mechanics</p>
+            </div>
         </div>
-    </header>
 
-    <!-- METHODOLOGY INTRODUCTION -->
-    <section class="stacked-section" style="padding-top: 0;">
-        <div class="section-intro">
-            <p class="section-text">
-                The Intelligent Architecture methodology details the application of governed artificial intelligence to Microsoft Entra ID Identity and Access Management. To safely operationalize generative models within mission-critical zero-trust environments, probabilistic intelligence is explicitly subordinated to deterministic architectural boundaries.
-            </p>
-            <p class="section-text">
-                By strictly implementing Agentic Workflows, Bounded Autonomy, and NIST-aligned Human-in-the-Loop (HITL) authorization protocols, this framework transforms unconstrained AI into a tightly governed infrastructure orchestration engine. The empirical manifestation of this engineering—the Zero Trust Interactive State Machine—and its resulting cryptographic execution ledgers serve as the objective, deployable proof of this methodology in action.
-            </p>
+<p class="hero-description">Human-governed workload identity configuration, from OIDC trust and resource permissions to deployment code and live validation.</p>
+<div class="hero-actions">
+<a href="workflow-portfolio.html">Explore the Demonstrations</a>
+<a href="contact.html">Contact Steven Tuschman</a>
+</div>
+<div class="portfolio-status">
+<strong>Engineering portfolio &amp; evolving workflow.</strong> Built to make machine identity configuration easier to review and validate. Results are specific to each implementation and test; production adoption requires environment-specific assessment.</div>
+<div class="hero-arch-block" style="border-top: 4px solid var(--color-red);">
+<span class="hero-block-tag" style="color: var(--color-red);">[ATTACKER-INFORMED MACHINE IDENTITY ENGINEERING]</span>
+<h2 class="hero-block-title">Trace the Trust. Scope the Access. Test the Result.</h2>
+<div class="mission-master-banner" style="border-left: 5px solid var(--color-red); margin-bottom: 0;">
+<p class="hero-subtitle">Machine identity security depends on the details: which workload can authenticate, how it obtains a credential, what that credential authorizes and what evidence confirms the result. This project brings those decisions into a structured engineering workflow.</p>
+<p class="hero-subtitle">Adversarial Kill-Chain Counter-Engineering&trade; combines attacker-informed analysis, infrastructure as code and AI assistance under human execution authority. It focuses on practical configuration risks across federation, permissions, deployment state and validation.</p>
+<p class="hero-subtitle">The System Directive guides the work from live discovery to reviewed configuration and retained evidence. Cloud IAM policies enforce access; engineers assess the configuration and test whether it behaves as intended.</p>
+</div>
+</div>
+<div class="jump-links-container">
+<div class="jump-links-intro">Explore the architecture, workflow and review criteria.</div>
+<div class="jump-links">
+<a href="#system-topology">1. System architecture</a>
+<a href="#scientific-foundation">2. Mission & engineering method</a>
+<a href="#foundation-gates">3. Four machine identity gates</a>
+<a href="#ai-solution">4. AI assistance & human control</a>
+<a href="#execution-sequence">5. Seven-phase workflow</a>
+<a href="#execution-triad">6. Roles & operational checks</a>
+<a href="#enterprise-guardrails">7. Governance & five guardrails</a>
+<a href="#environment-agnostic">8. Cloud adaptation & Day-2 operations</a>
+</div>
+</div>        <!-- TOP VISUAL SCHEMATIC: THE ADVERSARIAL KILL-CHAIN COUNTER-ENGINEERING STATE MACHINE (PATCH 3) -->
+        <div class="hero-arch-block topology-block" id="system-topology">
+            <span class="hero-block-tag">[MASTER SYSTEM SCHEMATIC :: HUMAN REVIEW, CLOUD CONTROLS &amp; DEPLOYMENT EVIDENCE]</span>
+            <h2 class="hero-block-title">The Adversarial Kill-Chain Counter-Engineering State Machine</h2>
+
+            <div class="canvas-wrapper">
+                <div class="diagram-canvas">
+                    <svg aria-hidden="true" class="routing-lines" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <marker id="arrow-blue" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6" />
+</marker>
+                            <marker id="arrow-cyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="#0ea5e9" />
+</marker>
+                            <marker id="arrow-purple" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="#a855f7" />
+</marker>
+                            <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="#10b981" />
+</marker>
+                            <marker id="arrow-red-end" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M 0 0 L 10 5 L 0 10 z" fill="#f43f5e" />
+</marker>
+                            <marker id="arrow-red-start" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+<path d="M 10 0 L 0 5 L 10 10 z" fill="#f43f5e" />
+</marker>
+                        </defs>
+                        <!-- Architect to AI Engine -->
+                        <path class="animated-path" d="M 220 115 L 245 115" fill="none" stroke="#3b82f6" stroke-width="3" marker-end="url(#arrow-blue)" />
+                        <!-- AI Engine to Architect -->
+                        <path class="animated-path" d="M 245 145 L 220 145" fill="none" stroke="#a855f7" stroke-width="2" marker-end="url(#arrow-purple)" />
+                        <!-- State Machine to AI Engine -->
+                        <path class="animated-path" d="M 220 470 L 357 470 L 357 380" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
+                        <!-- AI Engine to IaC Payload -->
+                        <path class="animated-path" d="M 470 115 L 495 115" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
+                        <!-- IaC Payload to Core Machine Identity -->
+                        <path class="animated-path" d="M 690 115 L 715 115" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arrow-cyan)" />
+                        <!-- Core Machine Identity to Day-2 Modules -->
+                        <path class="animated-path" d="M 930 115 L 955 115" fill="none" stroke="#a855f7" stroke-width="3" marker-end="url(#arrow-purple)" />
+
+                        <!-- Core Machine Identity Down to Verification Split -->
+                        <path class="animated-path" d="M 822 335 L 822 440" fill="none" stroke="#10b981" stroke-width="2" />
+                        <!-- Split to Identity Architecture Ledger -->
+                        <path class="animated-path" d="M 822 440 L 775 440 L 775 495" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
+                        <!-- Split to Live Telemetry & Compliance Ledgers -->
+                        <path class="animated-path" d="M 822 440 L 1042 440 L 1042 495" fill="none" stroke="#10b981" stroke-width="2" marker-end="url(#arrow-green)" />
+                        
+                        <!-- State Machine to Continuous Improvement (Bidirectional Feedback) -->
+                        <path class="animated-path" d="M 220 600 L 245 600" fill="none" stroke="#f43f5e" stroke-width="3" marker-start="url(#arrow-red-start)" marker-end="url(#arrow-red-end)" />
+                    </svg>
+
+                    <div class="node node-engineer">
+                        <div class="tag">[THE ARCHITECT]</div>
+                        <div class="node-title">Strategic Command &amp; Final Authority</div>
+                        <div class="node-text">Defines scope, reviews the proposed change and executes approved commands. Owns the risk decision, rollback plan and final acceptance.</div>
+                    </div>
+                    
+                    <div class="node node-engine">
+                        <div class="tag">[THE STATE MACHINE]</div>
+                        <div class="node-title">Adversarial Kill-Chain Counter-Engineering State Machine<br>
+<span style="font-size: 0.76rem; font-weight: 700; color: var(--color-cyan);">(THE WORKFLOW RULEBOOK)</span>
+</div>
+                        <div class="node-text">The System Directive organizes discovery, review gates and diagnostics. In chat, these are model instructions; cloud permissions and execution controls provide the technical enforcement.</div>
+                    </div>
+                    
+                    <div class="node node-compiler">
+                        <div class="tag">[THE AI ENGINE]</div>
+                        <div class="node-title">Tethered High-Performance Co-Pilot<br>
+<span style="font-size: 0.76rem; font-weight: 700; color: #a855f7;">(CONTROLLED COMPUTE)</span>
+</div>
+                        <div class="node-text">Drafts discovery commands, configuration and tests. Reports assumptions and errors for human review. In the advisory setup, it has no cloud credentials or deployment tools.</div>
+                    </div>
+                    
+                    <div class="node node-dpl">
+                        <div class="tag">[CONTINUOUS IMPROVEMENT]</div>
+                        <div class="node-title">Reviewed Workflow Improvement</div>
+                        <div class="node-text">Records defects and tested resolutions in the Patch Ledger. The Architect reviews which lessons belong in the next version of the directive.</div>
+                    </div>
+                    
+                    <div class="node node-iac">
+                        <div class="tag">[SYNTHESIZED CODE]</div>
+                        <div class="node-title">IaC Payload &amp; Runbook</div>
+                        <div class="node-text">Produces configuration and an execution runbook for the chosen cloud and tool. Generated code requires schema checks, plan review and testing before deployment.</div>
+                    </div>
+                    
+                    <div class="node node-core">
+                        <div class="tag">[CORE MACHINE IDENTITY]</div>
+                        <div class="node-title">Federated Workload Identity</div>
+                        <div class="node-text">Uses workload federation where supported, with narrowly defined trust conditions, short-lived credentials and resource-scoped permissions. Actual lifetime and effective access require verification.</div>
+                    </div>
+                    
+                    <div class="node node-scale">
+                        <div class="tag">[MODULAR TERRAIN EXPANSION]</div>
+                        <div class="node-title">Day-2 Multi-Cloud Security Modules</div>
+                        <div class="node-text">Extends the reviewed baseline with cloud-specific identity or network controls. Each expansion needs its own prerequisites, change review and validation.</div>
+                    </div>
+
+                    <div class="node node-ial">
+                        <div class="tag">[ARCHITECTURAL BASELINE]</div>
+                        <div class="node-title">Identity Architecture Ledger</div>
+                        <div class="node-text">Records discovered identifiers, trust conditions, resource scope and configuration version. It is a versioned architecture record, updated when the deployment changes.</div>
+                    </div>
+                    
+                    <div class="node node-arl">
+                        <div class="tag">[LIVE VERIFICATION &amp; AUDIT]</div>
+                        <div class="node-title">Live Telemetry &amp; Compliance Ledgers</div>
+                        <div class="node-text">Collects test results, audit queries and defects. Activity metrics support diagnosis; identity-specific request logs establish what the tested principal actually did.</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <p class="principles-lead">
-            This methodology is anchored entirely in the most advanced AI engineering research and federal risk-management standards currently recognized in the industry.
-        </p>
-
-        <!-- 4-PILLAR GRID -->
-        <div class="feature-grid-2x2">
-            
-            <!-- PILLAR 1: ReAct -->
-            <div class="feature-card cyan">
-                <h3 class="feature-title">1. Agentic Design Patterns</h3>
-                <div class="feature-concept">
-                    Standard AI workflows rely on fragile "zero-shot" prompting, where a model attempts to generate a flawless configuration on the first try. Aligned with current industry consensus on Agentic Workflows, this architecture forces the AI into a strict <strong>Generate-Validate-Fix</strong> loop. It utilizes the resulting execution friction (terminal error codes and telemetry) to iteratively self-correct, dramatically outperforming static generation.
-                </div>
-                <div class="citation-block">
-                    <div class="citation-header">Reference Standard</div>
-                    <span class="citation-title">ReAct: Synergizing Reasoning and Acting in Language Models (Yao et al.)</span>
-                    <p class="citation-abstract">This foundational research from Princeton and Google Brain proves that language models become significantly more reliable when forced to alternate between reasoning about a problem and taking observable actions in an environment, forming the academic basis for our iterative execution loop.</p>
-                    <a href="https://arxiv.org/abs/2210.03629" target="_blank" class="citation-link">[View Research] ↗</a>
-                </div>
-            </div>
-            
-            <!-- PILLAR 2: OWASP -->
-            <div class="feature-card red">
-                <h3 class="feature-title">2. Bounded Autonomy</h3>
-                <div class="feature-concept">
-                    Unconstrained language models prioritize making code "work," often hallucinating syntax or taking destructive shortcuts to bypass errors. This framework resolves vulnerability by trapping the AI inside a deterministic state machine. It mathematically forbids destructive state modifications, enforcing strict idempotency and granular data-plane scoping to neutralize blast radius.
-                </div>
-                <div class="citation-block">
-                    <div class="citation-header">Reference Standard</div>
-                    <span class="citation-title">OWASP Top 10 for LLM Applications (LLM08: Excessive Agency)</span>
-                    <p class="citation-abstract">The global standard for application security explicitly warns against granting AI unconstrained ability to interface with external systems. Our architectural boundary serves as the definitive mitigation for Excessive Agency, stripping the AI of rogue permissions.</p>
-                    <a href="https://genai.owasp.org/llmrisk2023-24/llm08-excessive-agency/" target="_blank" class="citation-link">[View Framework] ↗</a>
-                </div>
-            </div>
-            
-            <!-- PILLAR 3: NIST -->
-            <div class="feature-card blue">
-                <h3 class="feature-title">3. HITL Governance</h3>
-                <div class="feature-concept">
-                    Fully autonomous infrastructure generation is a massive compliance liability. This architecture enforces hard, un-bypassable authorization gates. The human architect retains absolute strategic command over the zero-trust baseline; the AI is strictly relegated to syntax synthesis and execution scale, unable to alter state without explicit human authorization.
-                </div>
-                <div class="citation-block">
-                    <div class="citation-header">Reference Standard</div>
-                    <span class="citation-title">NIST Artificial Intelligence Risk Management Framework (AI RMF 1.0)</span>
-                    <p class="citation-abstract">The definitive federal guideline for AI safety mandates explicit human oversight (the "Govern" function) for high-stakes systems, ensuring the framework is structurally prepared for strict SOC 2 compliance audits.</p>
-                    <a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" class="citation-link">[View Standard] ↗</a>
-                </div>
-            </div>
-
-            <!-- PILLAR 4: Circuit Breaking -->
-            <div class="feature-card purple">
-                <h3 class="feature-title">4. Cognitive Circuit Breaking</h3>
-                <div class="feature-concept">
-                    Generative models naturally degrade during complex, multi-step troubleshooting, often entering "hallucination spirals" where they drift further from the baseline. This architecture implements a mathematically triggered kill-switch (an <strong>Iteration 4 Halt</strong>) that automatically suspends AI execution to force a human-led Risk Management Assessment before context is lost.
-                </div>
-                <div class="citation-block">
-                    <div class="citation-header">Reference Standard</div>
-                    <span class="citation-title">A Survey on Hallucination in Large Language Models (Huang et al.)</span>
-                    <p class="citation-abstract">Extensive industry research documents how LLMs suffer from probabilistic drift as context windows degrade. This hardcoded circuit breaker provides a clinical engineering defense against context loss and hallucination spirals.</p>
-                    <a href="https://arxiv.org/abs/2311.05232" target="_blank" class="citation-link">[View Research] ↗</a>
-                </div>
-            </div>
-            
+<div class="hero-arch-block math-block" id="scientific-foundation">
+<span class="hero-block-tag">[PART 01 :: MISSION &amp; ENGINEERING METHOD]</span>
+<h2 class="hero-block-title">Make Machine Identity Configuration Reviewable, Repeatable &amp; Testable</h2>
+<div class="mission-master-banner">
+<div class="mission-banner-lead">The objective is to reduce preventable identity misconfiguration by connecting threat analysis to deployment code, explicit human decisions and retained evidence.</div>
+<ul class="mission-bullet-list">
+<li>
+<span class="bullet-lead">Attack-path analysis:</span> Examine how a workload obtains credentials, which trust conditions admit it, what permissions it receives and how those permissions could be abused.</li>
+<li>
+<span class="bullet-lead">Live discovery:</span> Resolve deployment coordinates and existing objects from authoritative APIs. Record the source and context instead of asking the model to invent missing values.</li>
+<li>
+<span class="bullet-lead">Human-governed changes:</span> Review the configuration and its expected effect before execution. Keep deployment authority with the engineer in the advisory workflow.</li>
+<li>
+<span class="bullet-lead">Evidence-based validation:</span> Record successful allowed operations, expected denials and relevant audit events. Leave checks pending when the required evidence is unavailable.</li>
+<li>
+<span class="bullet-lead">Reviewed improvement:</span> Use the Defect &amp; Patch Ledger to propose tested changes to the workflow, rather than treating every workaround as a permanent security rule.</li>
+</ul>
+</div>
+  <div class="mission-split-grid">
+    <div class="mission-split-card">
+<h3 class="mission-split-header">1. Attacker-Informed Configuration</h3>
+<ul class="mission-bullet-list">
+<li>
+<span class="bullet-lead">Concrete failure modes:</span> Overly broad trust, persistent workload credentials, excessive resource access, exposed outputs and unmanaged deployment state are practical review targets.</li>
+<li>
+<span class="bullet-lead">Defined threat model:</span> Document the workload, trusted issuer, repository or runtime, target resource and excluded scenarios. Cloud identity is an open operational environment, with dependencies beyond a single pipeline.</li>
+<li>
+<span class="bullet-lead">Measured outcomes:</span> A successful test establishes the observed behavior under its recorded conditions. It does not establish that every attack path has been removed.</li>
+</ul>
+</div>
+    <div class="mission-split-card cyan-left">
+<h3 class="mission-split-header">2. A Shared Engineering Vocabulary</h3>
+<ul class="mission-bullet-list">
+<li>
+<span class="bullet-lead">Consistent terms:</span> The <a href="glossary.html" class="inline-link">26-Variable System Glossary</a> gives the human and AI a shared vocabulary for the architecture.</li>
+<li>
+<span class="bullet-lead">Explicit dependencies:</span> Record which outputs become inputs to the next step, along with prerequisites and evidence needed to advance.</li>
+<li>
+<span class="bullet-lead">Practical purpose:</span> Naming and sequencing improve clarity and traceability. Their value is assessed through reviews and tests, without assigning unsupported reliability percentages.</li>
+</ul>
+</div>
+  </div>
+<div class="gates-4col-grid">
+<div class="gate-card">
+<span class="gate-card-badge">[PRINCIPLE 01]</span>
+<h3 class="gate-card-title">Explicit Scope</h3>
+<p class="gate-card-text">Define the identity, resource, operations and deployment boundary before generating changes.</p>
+</div>
+<div class="gate-card">
+<span class="gate-card-badge">[PRINCIPLE 02]</span>
+<h3 class="gate-card-title">Consistent Names</h3>
+<p class="gate-card-text">Use stable terms and distinguish application IDs, object IDs, resource IDs and repository identifiers.</p>
+</div>
+<div class="gate-card">
+<span class="gate-card-badge">[PRINCIPLE 03]</span>
+<h3 class="gate-card-title">Traceable Dependencies</h3>
+<p class="gate-card-text">Connect each configuration decision to its inputs, prerequisites and expected result.</p>
+</div>
+<div class="gate-card">
+<span class="gate-card-badge">[PRINCIPLE 04]</span>
+<h3 class="gate-card-title">Evidence &amp; Limits</h3>
+<p class="gate-card-text">Record what was observed, what failed and what remains untested. Keep claims within that scope.</p>
+</div>
+</div>
+</div>
+<div class="hero-arch-block gates-block" id="foundation-gates">
+<span class="hero-block-tag">[PART 02 :: TRUST BOUNDARIES, CREDENTIALS &amp; PERMISSIONS]</span>
+<h2 class="hero-block-title">The Four Architectural Gates of Machine Identity</h2>
+<p class="hero-subtitle">These four gates provide a review structure for workload identity. The cloud-specific dependency graph determines deployment order; existing resources, federation providers and permission bindings have different prerequisites.</p>
+<div class="gates-4col-grid">
+<div class="gate-card">
+<span class="gate-card-badge">[GATE 01 :: BOUNDARY]</span>
+<h3 class="gate-card-title">Where It Lives</h3>
+<p class="gate-card-text">
+<span class="bullet-lead">Review:</span> Confirm the intended account, tenant, subscription or project, deployment context and target resource.<br>
+<br>
+<span class="bullet-lead">Control:</span> Reference existing assets where appropriate, inspect planned changes and protect deployment state. Deletion safeguards reduce risk within their documented limits.</p>
+</div>
+<div class="gate-card">
+<span class="gate-card-badge">[GATE 02 :: PRINCIPAL]</span>
+<h3 class="gate-card-title">Who the Machine Is</h3>
+<p class="gate-card-text">
+<span class="bullet-lead">Review:</span> Identify the workload principal, its owners and any alternate credential paths.<br>
+<br>
+<span class="bullet-lead">Control:</span> Use managed identity or federation where suitable. Avoid introducing persistent workload secrets and remove unnecessary interactive application settings where applicable.</p>
+</div>
+<div class="gate-card">
+<span class="gate-card-badge">[GATE 03 :: FEDERATION]</span>
+<h3 class="gate-card-title">How It Authenticates</h3>
+<p class="gate-card-text">
+<span class="bullet-lead">Review:</span> Check the issuer, audience, subject or attribute conditions and the source workload protections.<br>
+<br>
+<span class="bullet-lead">Control:</span> Match current platform claims and restrict trusted sources. Test unauthorized branches or workloads as well as the allowed path; handle propagation with bounded retries.</p>
+</div>
+<div class="gate-card">
+<span class="gate-card-badge">[GATE 04 :: AUTHORIZATION]</span>
+<h3 class="gate-card-title">What It Can Touch</h3>
+<p class="gate-card-text">
+<span class="bullet-lead">Review:</span> Specify required operations and evaluate effective permissions, including inherited and resource-based grants.<br>
+<br>
+<span class="bullet-lead">Control:</span> Scope access to necessary resources and actions. Test expected denials and avoid broad administrative roles as a shortcut for workload access.</p>
+</div>
+</div>
+</div>
+<div class="hero-arch-block solution-block" id="ai-solution">
+<span class="hero-block-tag">[PART 03 :: HUMAN-GOVERNED AI ASSISTANCE]</span>
+<h2 class="hero-block-title">Use AI to Accelerate Engineering, with Clear Execution Authority</h2>
+<p class="hero-subtitle">The System Directive structures the conversation around discovery, configuration, troubleshooting and review. In the advisory setup, the engineer executes commands and retains cloud credentials. Instructions in a prompt can guide model behavior, but reliable execution gates require controls outside the model.</p>
+<div class="attributes-2x2-grid">
+<div class="attribute-card">
+<h3 class="attribute-card-title">1. Discover Before Generating</h3>
+<p class="attribute-card-text">Ground configuration in observed cloud objects and current provider schemas. Ask for missing inputs, identify assumptions and stop when the deployment boundary is uncertain.</p>
+</div>
+<div class="attribute-card">
+<h3 class="attribute-card-title">2. Review Before Applying</h3>
+<p class="attribute-card-text">Inspect generated code and planned changes before execution. Separate workload permissions from the privileged permissions needed to provision the identity.</p>
+</div>
+<div class="attribute-card">
+<h3 class="attribute-card-title">3. Validate Before Claiming</h3>
+<p class="attribute-card-text">Use targeted request results and audit events to support each conclusion. A pipeline green check or an API-volume spike alone does not establish least privilege or complete security.</p>
+</div>
+<div class="attribute-card">
+<h3 class="attribute-card-title">4. Diagnose Before Expanding</h3>
+<p class="attribute-card-text">Bound repeated troubleshooting attempts, retain the defect history and restore a known baseline when needed. Treat new capabilities as reviewed changes with their own tests.</p>
+</div>
+</div>
+</div>
+<div class="hero-arch-block sequence-block" id="execution-sequence">
+<span class="hero-block-tag">[PART 04 :: SEVEN-PHASE WORKFLOW]</span>
+<h2 class="hero-block-title">From Discovery to Deployment Evidence &amp; Handoff</h2>
+<p class="hero-subtitle">The sequence below describes the workflow and its review criteria. Assess each demonstration against its published configuration, actual test results and stated scope. A completed phase does not imply that every criterion has passed.</p>
+<div class="phase-cards-stack">
+<div class="phase-step-card">
+<div class="phase-step-header">
+<span class="phase-badge">Phase 01</span>
+<h3 class="phase-step-title">Scope &amp; Workspace Preparation</h3>
+</div>
+<p class="phase-step-lead">Establish the workload, target resource, cloud boundary, infrastructure state and tooling. Choose an approved execution environment and identify the owner of the change.</p>
+<div class="phase-subgrid">
+<div class="phase-subitem">
+<span class="bullet-lead">Discover the baseline:</span> Use read-only queries to confirm the current context, existing resources and identity configuration.</div>
+<div class="phase-subitem">
+<span class="bullet-lead">Prepare state &amp; files:</span> Keep configuration, deployment state and credentials under appropriate access controls. A clean folder helps organization; it is not a security boundary.</div>
+</div>
+</div>
+<div class="phase-step-card">
+<div class="phase-step-header">
+<span class="phase-badge">Phase 02</span>
+<h3 class="phase-step-title">Federation Metadata &amp; Trust Design</h3>
+</div>
+<p class="phase-step-lead">Resolve issuer and workload claims from the selected platform. Review repository, environment, branch or Kubernetes service account conditions before writing the trust policy.</p>
+<div class="phase-subgrid">
+<div class="phase-subitem">
+<span class="bullet-lead">Use current claim formats:</span> Check canonical names, required identifiers and any custom subject configuration. Do not infer token claims from naming conventions alone.</div>
+<div class="phase-subitem">
+<span class="bullet-lead">Define allowed &amp; denied sources:</span> Document which workloads may authenticate and which cases must fail, including relevant fork, branch and environment scenarios.</div>
+</div>
+</div>
+<div class="phase-step-card">
+<div class="phase-step-header">
+<span class="phase-badge">Phase 03</span>
+<h3 class="phase-step-title">Infrastructure Payload &amp; Change Review</h3>
+</div>
+<p class="phase-step-lead">Generate the configuration and an explicit execution runbook for the selected cloud and tool. The Architect reviews the plan, scope and recovery path before applying changes.</p>
+<div class="phase-subgrid">
+<div class="phase-subitem">
+<span class="bullet-lead">Protect existing infrastructure:</span> Use references or deliberate imports as appropriate. Review replacements, deletions and identity changes rather than assuming a lifecycle flag prevents every destructive action.</div>
+<div class="phase-subitem">
+<span class="bullet-lead">Apply scoped trust &amp; access:</span> Configure the principal, federation and necessary permissions. Validate the actual administrative authentication requirements instead of assuming a particular login flow always supplies MFA.</div>
+</div>
+</div>
+<div class="phase-step-card">
+<div class="phase-step-header">
+<span class="phase-badge">Phase 04</span>
+<h3 class="phase-step-title">Architecture Record &amp; Live Validation</h3>
+</div>
+<p class="phase-step-lead">Record the deployed configuration in the Identity Architecture Ledger (IAL), then run a validation workload against the intended resource without logging secret values.</p>
+<div class="phase-subgrid">
+<div class="phase-subitem">
+<span class="bullet-lead">Record the baseline honestly:</span> Capture identifiers, trust conditions, resource scope and configured session limits. Mark behavioral checks pending until their tests run.</div>
+<div class="phase-subitem">
+<span class="bullet-lead">Exercise the access boundary:</span> Verify the allowed operation and expected denials. Distinguish an authorization rejection from network, syntax, service or credential errors. Metrics provide supporting context.</div>
+</div>
+</div>
+<div class="phase-step-card">
+<div class="phase-step-header">
+<span class="phase-badge">Phase 05</span>
+<h3 class="phase-step-title">Audit Evidence &amp; Defect Records</h3>
+</div>
+<p class="phase-step-lead">Use the Audit Results Ledger (ARL) to connect each conclusion to a specific test or log record. Keep the Defect &amp; Patch Ledger (DPL) alongside the configuration.</p>
+<div class="phase-subgrid">
+<div class="phase-subitem">
+<span class="bullet-lead">Separate results from queries:</span> A generated CloudTrail, KQL or Cloud Audit query is a handoff artifact. The related verification remains pending until the query runs against the correct schema and its results are reviewed.</div>
+<div class="phase-subitem">
+<span class="bullet-lead">Retain evidence &amp; limitations:</span> Preserve timestamps, principal and resource identifiers, request outcomes and relevant run references. Record failures, missing logs and untested conditions.</div>
+</div>
+</div>
+<div class="phase-step-card">
+<div class="phase-step-header">
+<span class="phase-badge">Phase 06</span>
+<h3 class="phase-step-title">Repository Review &amp; Handoff</h3>
+</div>
+<p class="phase-step-lead">Review configuration and documentation before synchronizing the authorized repository and branch. Keep sensitive deployment state and credentials out of the publication.</p>
+<div class="phase-subgrid">
+<div class="phase-subitem">
+<span class="bullet-lead">Inspect the staged changes:</span> Use explicit file selection and secret checks. Ignore rules do not remove files already tracked in Git or secrets from prior commits.</div>
+<div class="phase-subitem">
+<span class="bullet-lead">Retain reproducibility:</span> Commit appropriate dependency lock files and the reviewed configuration. Resolve branch differences deliberately and record the deployed revision.</div>
+</div>
+</div>
+<div class="phase-step-card">
+<div class="phase-step-header">
+<span class="phase-badge">Phase 07</span>
+<h3 class="phase-step-title">Review, Lessons &amp; Next Version</h3>
+</div>
+<p class="phase-step-lead">Close the session with an evidence-based review of completed work, unresolved defects and accepted limitations. The Architect decides which tested lessons should change the directive.</p>
+<div class="phase-subgrid">
+<div class="phase-subitem">
+<span class="bullet-lead">Bound troubleshooting:</span> The original design uses three patch attempts before a fourth-attempt halt. This is a chosen review threshold; it is not a scientifically established reliability boundary.</div>
+<div class="phase-subitem">
+<span class="bullet-lead">Review proposed upgrades:</span> Compare the proposed directive changes with the observed defect, check for contradictions and test their behavior before adopting a new baseline.</div>
+</div>
+</div>
+</div>
+<div class="insight-box">
+<div class="insight-header">What the Ledgers Establish</div>
+<div class="insight-text">The IAL, ARL and DPL organize the configuration, observed results and change history. Markdown files are editable records. Cryptographic integrity or independent attestation requires additional mechanisms and verification; generating a ledger does not provide certification or guarantee audit acceptance.</div>
+</div>
+</div>
+</header>
+<section class="module-section">
+<div class="architecture-container">
+<div class="summary-section" id="execution-triad">
+<h2 class="summary-title">The Execution Triad: Human Authority, Workflow &amp; AI Assistance</h2>
+<p class="summary-text">Three named roles make responsibilities explicit. The directive and AI remain part of the same conversational system; the human execution boundary is established by how credentials and tools are actually configured.</p>
+<div class="triad-grid">
+<div class="triad-card architect">
+<div class="triad-role">[HUMAN AUTHORITY]</div>
+<h3 class="triad-header">1. The Architect</h3>
+<p class="triad-lead">Owns the deployment scope, credential access and acceptance decision.</p>
+<ul class="triad-sublist">
+<li>
+<span class="bullet-lead">Reviews &amp; executes:</span> Checks the proposed change, runs approved commands and provides relevant outputs with secrets removed.</li>
+<li>
+<span class="bullet-lead">Accepts the result:</span> Reviews allowed and denied test cases, unresolved risks and the recovery plan.</li>
+<li>
+<span class="bullet-lead">Controls publication:</span> Approves which configuration and evidence can be shared or committed.</li>
+</ul>
+</div>
+<div class="triad-card machine">
+<div class="triad-role">[WORKFLOW DEFINITION]</div>
+<h3 class="triad-header">2. The System Directive</h3>
+<p class="triad-lead">Defines the phase sequence, terminology, requested evidence and troubleshooting boundaries.</p>
+<ul class="triad-sublist">
+<li>
+<span class="bullet-lead">Organizes the work:</span> Requests discovery before synthesis, human review before execution and evidence before success claims.</li>
+<li>
+<span class="bullet-lead">Provides a review checklist:</span> Makes omissions and deviations easier to identify across the four gates and five guardrails.</li>
+<li>
+<span class="bullet-lead">Has a defined limit:</span> A prompt in the same chat is not an independent supervisor. Tool permissions and external approval systems must enforce any automated execution boundary.</li>
+</ul>
+</div>
+<div class="triad-card ai">
+<div class="triad-role">[ENGINEERING ASSISTANCE]</div>
+<h3 class="triad-header">3. The AI Engine</h3>
+<p class="triad-lead">Drafts code, explains tradeoffs and helps diagnose errors within the agreed scope.</p>
+<ul class="triad-sublist">
+<li>
+<span class="bullet-lead">Produces reviewable artifacts:</span> Generates configuration, runbooks, validation scripts and record templates for the chosen environment.</li>
+<li>
+<span class="bullet-lead">Reports uncertainty:</span> Separates hypotheses from observed causes and identifies when more evidence is needed.</li>
+<li>
+<span class="bullet-lead">Supports the engineer:</span> In the advisory configuration, it has no deployment credentials. Adding tools or cloud access changes the risk model and requires separate controls.</li>
+</ul>
+</div>
+</div>
+</div>
+  <div class="flow-explanation" id="execution-flow">
+<h3 class="flow-subheader">Under the Hood: Four Operational Checks</h3>
+<div class="flow-mechanics-box">
+<ul class="hero-step-list">
+<li>
+<span class="bullet-lead">Workspace &amp; state:</span> Use an approved, reproducible environment, with access-controlled state, backups and recovery procedures. Local terminals and cloud shells have different persistence settings; evaluate the actual configuration.</li>
+<li>
+<span class="bullet-lead">Federation &amp; readiness:</span> Inspect actual claims and trust conditions. A fixed delay may help with eventual consistency, but cannot prove readiness. Diagnose propagation errors and use bounded retries without weakening the policy to make a test pass.</li>
+<li>
+<span class="bullet-lead">Validation &amp; audit:</span> Collect request-level results that identify the principal, resource, operation and outcome. Audit ingestion delays vary; record pending work and return to it before closing the related evidence gate.</li>
+<li>
+<span class="bullet-lead">Day-2 changes:</span> Recheck ownership, effective permissions, alternate credentials and the current baseline. Apply new controls through a reviewed plan and test both intended access and unintended access paths.</li>
+</ul>
+</div>
+<div class="insight-box">
+<div class="insight-header">Enterprise Deployment Considerations</div>
+<div class="insight-text">The workflow can be adapted to an organization-approved AI environment. Data handling depends on the selected service, region, retention settings, network controls, integrations and organizational policy. A private endpoint or parameterized prompt alone does not establish complete data loss prevention.</div>
+</div>
+</div>
+</div>
+</section>
+<div class="guardrail-container" id="enterprise-guardrails">
+<div class="prelude-box">
+<h2 class="section-title">Four Governance Practices &amp; Five Configuration Guardrails</h2>
+<p class="intro-text">The approach draws on established security and AI risk-management ideas. Referencing a framework does not establish certification, standards compliance or independently validated model reliability.</p>
+<div class="pillars-inset-box">
+<div class="hero-sequence-header">[GOVERNANCE PRACTICES]</div>
+<ul class="hero-step-list">
+<li>
+<span class="bullet-lead">Grounding in external evidence:</span> Use authoritative APIs and observed results to challenge model assumptions. The ReAct research pattern is a useful influence, with benefits that depend on the task and implementation.</li>
+<li>
+<span class="bullet-lead">Bounded authority:</span> Limit credentials and tools to the task. The advisory workflow keeps execution with the engineer; an integrated agent needs external permission and approval controls.</li>
+<li>
+<span class="bullet-lead">Accountability &amp; review:</span> Assign ownership, define acceptance criteria and document risk decisions. NIST AI RMF provides voluntary guidance for managing AI risk.</li>
+<li>
+<span class="bullet-lead">Bounded troubleshooting:</span> Stop repeated unsuccessful changes, retain the error history and reconsider the assumptions. Use a chosen retry budget and evidence-based options rather than an unsupported numerical probability of success.</li>
+</ul>
+</div>
+<div class="guardrails-sub-header">[FIVE CONFIGURATION GUARDRAILS]</div>
+<p class="intro-text">These are review targets for the generated configuration and its operation. Their status must reflect the deployed controls and collected evidence, including failures or pending checks.</p>
+<div class="vulnerability-grid">
+<div class="vuln-card">
+<h3 class="vuln-title">1. Credential &amp; Context Protection</h3>
+<ul class="step-sublist">
+<li>
+<span class="bullet-lead">Control:</span> Avoid sharing credentials with the model. Prefer federation or managed identity where suitable, minimize sensitive output and handle setup tokens through an approved secret-input mechanism.</li>
+<li>
+<span class="bullet-lead">Verify:</span> Review prompt inputs, command history, logs and artifacts. Account and tenant IDs are routing identifiers, not authentication secrets, although organizational policy may restrict their disclosure.</li>
+</ul>
+</div>
+<div class="vuln-card">
+<h3 class="vuln-title">2. Existing Asset &amp; State Protection</h3>
+<ul class="step-sublist">
+<li>
+<span class="bullet-lead">Control:</span> Reference existing resources deliberately, inspect proposed changes and protect state with access controls, locking, recovery and appropriate deletion safeguards.</li>
+<li>
+<span class="bullet-lead">Verify:</span> Check the plan for replacement or deletion. Read-only references and lifecycle protections have specific limits and do not prevent all changes through other paths.</li>
+</ul>
+</div>
+<div class="vuln-card">
+<h3 class="vuln-title">3. Least-Privilege Workload Access</h3>
+<ul class="step-sublist">
+<li>
+<span class="bullet-lead">Control:</span> Grant only necessary operations on the required resources. Keep provisioning authority separate from workload access and review all applicable grants.</li>
+<li>
+<span class="bullet-lead">Verify:</span> Test an allowed operation and meaningful denied operations. Examine inherited roles, resource policies, impersonation and alternate credential paths. A narrow new policy alone does not establish narrow effective access.</li>
+</ul>
+</div>
+<div class="vuln-card">
+<h3 class="vuln-title">4. Dependency &amp; Schema Review</h3>
+<ul class="step-sublist">
+<li>
+<span class="bullet-lead">Control:</span> Use reviewed dependencies, appropriate lock files and current schemas for the selected tool. Prefer immutable action references when the platform supports them.</li>
+<li>
+<span class="bullet-lead">Verify:</span> Inspect actual resolved versions and hashes. Version selection improves reproducibility but does not establish that a dependency is safe or that the generated configuration is correct.</li>
+</ul>
+</div>
+<div class="vuln-card">
+<h3 class="vuln-title">5. Secret-Safe Validation Output</h3>
+<ul class="step-sublist">
+<li>
+<span class="bullet-lead">Control:</span> Avoid printing tokens or retrieved secret values. Use platform-supported masking as a secondary safeguard; keep shell tracing and verbose credential output under control.</li>
+<li>
+<span class="bullet-lead">Verify:</span> Inspect logs and artifacts for exposure. GitHub Actions masking redacts matching log output; it does not erase process memory or automatically protect every transformed value or other execution platform.</li>
+</ul>
+</div>
+</div>
+<div class="insight-box">
+<div class="insight-header">Primary References</div>
+<div class="insight-text">The review criteria above are informed by provider documentation and risk-management guidance. Verify details against the selected platform and deployment version.<ul class="source-links">
+<li>
+<a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html">AWS policy evaluation</a>
+</li>
+<li>
+<a href="https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation-considerations">Entra federation considerations</a>
+</li>
+<li>
+<a href="https://docs.github.com/en/actions/reference/security/secure-use">GitHub Actions secure use</a>
+</li>
+<li>
+<a href="https://www.nist.gov/itl/ai-risk-management-framework">NIST AI RMF</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="polymorphic-container" id="environment-agnostic">
+<div class="polymorphic-box">
+<span class="poly-tag">[CLOUD ADAPTATION &amp; DAY-2 OPERATIONS]</span>
+<h2 class="section-title">A Reusable Review Structure, with Cloud-Specific Implementations</h2>
+<p class="intro-text">The four gates and seven phases provide a common structure. The actual principal types, claim formats, permission models, session lifetimes and logging schemas differ by provider. The matrix below lists design choices; it is not a claim that every combination is compatible or tested.</p>
+<div class="matrix-graphic-canvas">
+<div class="matrix-5col-grid">
+<div class="matrix-node">
+<div class="matrix-node-header">1. Cloud Identity</div>
+<div class="matrix-option">
+<span class="matrix-check" aria-hidden="true">
+</span>AWS IAM &amp; STS</div>
+<div class="matrix-option">
+<span class="matrix-check" aria-hidden="true">
+</span>Microsoft Entra ID &amp; Azure</div>
+<div class="matrix-option">
+<span class="matrix-check" aria-hidden="true">
+</span>Google Cloud IAM</div>
+</div>
+<div class="matrix-node">
+<div class="matrix-node-header">2. Workload Platform</div>
+<div class="matrix-option">
+<span class="matrix-check" aria-hidden="true">
+</span>Kubernetes (EKS / AKS / GKE)</div>
+<div class="matrix-option">
+<span class="matrix-check" aria-hidden="true">
+</span>GitHub Actions</div>
+<div class="matrix-option">
+<span class="matrix-check" aria-hidden="true">
+</span>GitLab CI</div>
+<div class="matrix-option">
+<span class="matrix-check" aria-hidden="true">
+</span>Azure DevOps</div>
+</div>
+<div class="matrix-node">
+<div class="matrix-node-header">3. Infrastructure State</div>
+<div class="matrix-option">
+<span class="matrix-check" aria-hidden="true">
+</span>Brownfield (Existing)</div>
+<div class="matrix-option">
+<span class="matrix-check" aria-hidden="true">
+</span>Greenfield (Net-New)</div>
+</div>
+<div class="matrix-node">
+<div class="matrix-node-header">4. Target Resource</div>
+<div class="matrix-option">
+<span class="matrix-check" aria-hidden="true">
+</span>Secrets &amp; Key Services</div>
+<div class="matrix-option">
+<span class="matrix-check" aria-hidden="true">
+</span>Object Storage</div>
+<div class="matrix-option">
+<span class="matrix-check" aria-hidden="true">
+</span>Cloud Databases</div>
+</div>
+<div class="matrix-node">
+<div class="matrix-node-header">5. Deployment Tool</div>
+<div class="matrix-option">
+<span class="matrix-check" aria-hidden="true">
+</span>Terraform</div>
+<div class="matrix-option">
+<span class="matrix-check" aria-hidden="true">
+</span>Cloud-native IaC / CLI</div>
+<div class="matrix-option">
+<span class="matrix-check" aria-hidden="true">
+</span>PowerShell / Python SDKs</div>
+</div>
+</div>
+<div class="combinatorial-bar">
+<div class="combo-formula">Choose a cloud, workload, infrastructure state, resource and supported tool.</div>
+<div class="combo-result">Validate the selected implementation.</div>
+</div>
+</div>
+<div class="adaptation-grid">
+<div class="adapt-card ">
+<h3 class="vuln-title">Provider-Specific Federation</h3>
+<p class="vuln-lead">Choose the supported identity mechanism for the workload. Discover actual issuer and claim settings, review the trust expression and test both accepted and rejected sources. Numeric repository IDs, Kubernetes identities and CI service connections are not interchangeable.</p>
+</div>
+<div class="adapt-card green">
+<h3 class="vuln-title">Existing &amp; New Infrastructure</h3>
+<p class="vuln-lead">For brownfield work, inspect and preserve the current baseline while planning intended changes. For greenfield work, include state protection, ownership and recovery from the beginning. Review each change rather than assuming additive code is automatically safe.</p>
+</div>
+<div class="adapt-card orange">
+<h3 class="vuln-title">Resource-Specific Authorization</h3>
+<p class="vuln-lead">Match the required operation to the provider’s actual authorization model. Secret retrieval, key signing, object reads and database queries require different permissions and tests. Check credential expiry for the deployed mechanism instead of assuming a universal one-hour maximum.</p>
+</div>
+<div class="adapt-card purple">
+<h3 class="vuln-title">Day-2 Review &amp; Expansion</h3>
+<p class="vuln-lead">Extend the baseline only after checking prerequisites, applicability and impact. Conditional Access, AWS organization policies and Google Cloud service perimeters address different risks. Retest trust and access after changes, and retain the recovery procedure.</p>
+</div>
+</div>
+<div class="insight-box">
+<div class="insight-header">Current Scope &amp; Direction</div>
+<div class="insight-text">This is an evolving engineering portfolio and workflow design. The <a class="inline-link" href="workflow-portfolio.html">demonstrations</a> and <a class="inline-link" href="autonomous-proofs.html">AWS autonomous-systems example</a> should be assessed individually against their published evidence. Future work includes broader negative testing, externally enforced review gates and repeatable checks across cloud implementations. Workload access to an automation backend is one part of a larger system’s security.</div>
+</div>
+</div>
+</div>
+</main>
+    <!-- ================= PROPRIETARY IP FOOTER ================= -->
+    <footer class="ip-footer">
+        <div class="footer-crest-wrapper">
+            <svg class="footer-brand-crest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+                <rect width="114" height="114" x="3" y="3" fill="#020617" rx="22" stroke="#1e293b" stroke-width="3"/>
+                <polygon points="24,18 60,36 60,48 24,30" fill="#475569"/>
+                <polygon points="96,18 60,36 60,48 96,30" fill="#1e293b"/>
+                <polygon points="24,39 60,57 60,69 24,51" fill="#0284c7"/>
+                <polygon points="96,39 60,57 60,69 96,51" fill="#075985"/>
+                <polygon points="24,60 60,78 60,90 24,72" fill="#38bdf8"/>
+                <polygon points="96,60 60,78 60,90 96,72" fill="#0369a1"/>
+                <polygon points="24,81 60,99 60,111 24,93" fill="#f43f5e"/>
+                <polygon points="96,81 60,99 60,111 96,93" fill="#9f1239"/>
+            </svg>
         </div>
-    </section>
+        <strong>&copy; 2026 Steven Tuschman | Adversarial Kill-Chain Counter-Engineering&trade; (adversarialkillchaincounterengineering.com). All Rights Reserved.</strong>
+<br>
+        The Adversarial Kill-Chain Counter-Engineering State Machine, Sequential Kill-Chain Counter-Engineering Protocol, Execution Triad governance model, Four Architectural Gates of Machine Identity, Five Enterprise Guardrails, Build Coordinate Matrix, and 26-Variable System Glossary are proprietary intellectual property. Unauthorized reproduction, distribution, or commercial adaptation is strictly prohibited.
+    </footer>
 
 </body>
 </html>

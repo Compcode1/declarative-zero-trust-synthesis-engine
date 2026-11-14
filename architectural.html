@@ -3,1575 +3,388 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adversarial Kill-Chain Counter-Engineering - Exploit-Level Pipeline Architecture</title>
+    <title>Machine Identity Pipeline Architecture | AKCCE</title>
+<meta name="description" content="Machine identity trust flows, reviewed deployment artifacts, evidence-led audit templates and cloud-specific telemetry requirements.">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-80NYKHYN3R"></script>
-    <script>
-  if (window.location.search.indexOf('block_ga=true') !== -1) {
-    localStorage.setItem('akcce_block_ga', 'true');
-    alert('SUCCESS: Google Analytics is permanently disabled on this browser.');
-  }
-  if (localStorage.getItem('akcce_block_ga') === 'true') {
-    window['ga-disable-G-80NYKHYN3R'] = true;
-  }
-</script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-80NYKHYN3R');
-    </script>
+    
+    
+    
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
     
     <style>
-        :root {
-            --bg-page: #020617; 
-            --bg-node: rgba(10, 15, 29, 0.95);
-            --border-base: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #cbd5e1;
-            --color-blue: #3b82f6;
-            --color-cyan: #0ea5e9;
-            --color-purple: #a855f7;
-            --color-grey: #64748b;
-            --color-green: #10b981;
-            --color-teal: #14b8a6;
-            --color-red: #f43f5e;
-            --color-orange: #f97316;
-            --logo-blue: #2563eb;
+:root { --bg:#020617; --panel:#0a0f1d; --line:#263449; --text:#f8fafc; --muted:#cbd5e1; --cyan:#38bdf8; --blue:#60a5fa; --purple:#c084fc; --green:#6ee7b7; --red:#fda4af; }
+* { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; line-height:1.7; padding-bottom:3rem; }
+a { color:var(--cyan); text-underline-offset:4px; }
+a:hover { color:#fff; }
+a:focus-visible,pre:focus-visible { outline:3px solid #38bdf8; outline-offset:5px; }
+.skip-link { position:fixed; left:1rem; top:-100px; z-index:200; padding:.7rem 1rem; background:#f8fafc; color:#020617; border-radius:6px; }
+.skip-link:focus { top:.5rem; }
+nav { padding:1.2rem 2rem; border-bottom:1px solid var(--line); background:rgba(2,6,23,.95); }
+.nav-links { display:flex; flex-wrap:wrap; gap:1.2rem; justify-content:center; align-items:center; list-style:none; }
+.nav-links a { display:inline-block; padding:.5rem 1.2rem; color:#0ea5e9; border:1px solid #0ea5e9; border-radius:6px; background:rgba(14,165,233,.1); text-decoration:none; font-size:.9rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; transition:background .2s,color .2s; }
+.nav-links a:hover,.nav-links .active-link { color:#fff; background:#0ea5e9; box-shadow:0 0 15px rgba(14,165,233,.3); }
+.hero { padding:40px 20px 48px; text-align:center; border-bottom:1px solid var(--line); }
+.eyebrow { display:block; font:800 .85rem/1.65 'JetBrains Mono',monospace; letter-spacing:1.5px; color:var(--cyan); text-transform:uppercase; margin-bottom:.75rem; overflow-wrap:anywhere; }
+.hero-title-container { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:1.2rem; margin:1rem auto 1.5rem; max-width:1180px; }
+.hero-brand-crest { width:66px; height:66px; flex-shrink:0; }
+h1,h2,h3 { font-family:'Montserrat',sans-serif; font-weight:900; line-height:1.35; overflow-wrap:anywhere; }
+h1 { max-width:940px; font-size:clamp(2rem,4vw,3.25rem); letter-spacing:1.5px; text-transform:uppercase; }
+.hero-subtitle { font-size:1.2rem; color:var(--muted); max-width:850px; margin:0 auto 2rem; }
+.intro-box { max-width:1120px; text-align:left; padding:2rem 2.3rem; margin:0 auto 2rem; background:var(--panel); border:1px solid var(--line); border-left:4px solid var(--cyan); border-radius:10px; }
+.intro-lead { font:800 1.12rem/1.7 'Montserrat',sans-serif; padding-bottom:1rem; margin-bottom:1rem; border-bottom:1px solid var(--line); }
+.clean-list { padding-left:1.3rem; display:flex; flex-direction:column; gap:.8rem; }
+.clean-list li { padding-left:.15rem; color:var(--muted); }
+.clean-list li::marker,.clean-list strong { color:var(--cyan); }
+.jump-box { max-width:1180px; padding:1.3rem; margin:0 auto; background:#0f172a; border:1px solid var(--line); border-radius:10px; }
+.jump-box p { margin-bottom:.9rem; font-weight:700; }
+.jump-links { display:flex; flex-wrap:wrap; justify-content:center; gap:.75rem; }
+.jump-links a { padding:.6rem 1rem; border:1px solid #0ea5e9; border-radius:6px; background:rgba(14,165,233,.08); font-size:.87rem; font-weight:700; text-decoration:none; }
+.jump-links a:hover { background:#075985; }
+.page-section { max-width:1300px; margin:0 auto; padding:55px 24px 15px; min-width:0; }
+[id] { scroll-margin-top:1.5rem; }
+.section-heading { max-width:1050px; margin:0 auto 2rem; text-align:center; }
+h2 { font-size:clamp(1.7rem,3vw,2.25rem); text-transform:uppercase; margin-bottom:1rem; }
+.section-heading p { color:var(--muted); font-size:1.1rem; }
+.grid { display:grid; gap:1.5rem; }
+.cols-2 { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.cols-3 { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.card { padding:1.7rem; border:1px solid var(--line); border-top:3px solid var(--cyan); border-radius:10px; background:linear-gradient(140deg,#0f172a,#0a0f1d); min-width:0; }
+.card.purple { border-top-color:var(--purple); } .card.green { border-top-color:var(--green); } .card.red { border-top-color:var(--red); }
+h3 { font-size:1.16rem; margin-bottom:1rem; padding-bottom:.8rem; border-bottom:1px solid var(--line); text-transform:uppercase; }
+.card p { color:var(--muted); }
+.note { border:1px solid #334155; border-left:4px solid var(--purple); border-radius:8px; padding:1.15rem 1.4rem; margin:1.5rem 0; color:var(--muted); }
+.note strong { color:#f8fafc; }
+.schematic { padding:1.75rem; border:1px solid var(--line); border-radius:12px; margin:1.75rem 0; background:radial-gradient(ellipse at top,rgba(56,189,248,.07),transparent 60%),#050b1b; }
+.schematic figcaption { font:800 1rem/1.7 'Montserrat',sans-serif; color:#f8fafc; margin-bottom:1.4rem; }
+.reference-tag { display:block; color:var(--purple); font:700 .78rem 'JetBrains Mono',monospace; margin-top:.4rem; }
+.flow-node { border:1px solid #334155; border-left:4px solid var(--cyan); border-radius:8px; padding:1.2rem; background:#0a0f1d; min-width:0; }
+.flow-node strong { display:block; font:800 1rem/1.5 'Montserrat',sans-serif; margin-bottom:.5rem; }
+.flow-node p { color:var(--muted); font-size:.98rem; }
+.flow-node.purple { border-left-color:var(--purple); } .flow-node.green { border-left-color:var(--green); }
+.flow-node.center { max-width:750px; margin:auto; text-align:center; }
+.flow-arrow { text-align:center; color:var(--cyan); padding:.45rem; font-size:1.6rem; line-height:1; }
+.flow-caption { color:var(--muted); margin-top:1rem; font-size:.94rem; }
+.loop-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1rem; }
+.loop-number { display:inline-flex; justify-content:center; align-items:center; width:32px; height:32px; border:1px solid #075985; border-radius:50%; color:var(--cyan); margin-bottom:.6rem; font:700 .85rem 'JetBrains Mono',monospace; }
+.trust-flow { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:.8rem; list-style:none; }
+.trust-flow li { background:#0a0f1d; padding:1.1rem; border:1px solid #334155; border-top:3px solid var(--cyan); border-radius:8px; color:var(--muted); }
+.trust-flow strong { display:block; color:#f8fafc; font:800 .98rem/1.5 'Montserrat',sans-serif; margin-bottom:.65rem; }
+.artifact { margin:1.75rem 0; border:1px solid #334155; border-radius:10px; background:#040915; overflow:hidden; min-width:0; }
+.artifact figcaption { display:flex; flex-wrap:wrap; justify-content:space-between; gap:.7rem; padding:1rem 1.3rem; background:#0f172a; border-bottom:1px solid #334155; font:700 .9rem/1.6 'JetBrains Mono',monospace; color:var(--cyan); overflow-wrap:anywhere; }
+.artifact-state { color:#fde68a; font-size:.78rem; }
+pre { padding:1.5rem; white-space:pre-wrap; overflow-wrap:anywhere; color:#dbeafe; font:400 .89rem/1.8 'JetBrains Mono',monospace; }
+code { font-family:'JetBrains Mono',monospace; overflow-wrap:anywhere; }
+.status-legend { display:flex; flex-wrap:wrap; gap:.65rem; margin:1.2rem 0; }
+.status-pill { border:1px solid #475569; padding:.4rem .65rem; border-radius:5px; font:700 .8rem/1.6 'JetBrains Mono',monospace; }
+.status-pill.pass { color:var(--green); } .status-pill.fail { color:var(--red); } .status-pill.pending { color:#fde68a; } .status-pill.error { color:var(--purple); }
+.references { margin-top:1.2rem; color:var(--muted); line-height:1.9; }
+.references a { display:inline-block; margin-right:1rem; }
+.domain-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.2rem; }
+.domain-card { padding:1.5rem; background:#0a0f1d; border:1px solid #334155; border-radius:9px; }
+.domain-card h3 { font-size:1.05rem; }
+.domain-card ul { padding-left:1.2rem; color:var(--muted); }
+.domain-card li { margin-bottom:.5rem; }
+.domain-card p { margin-top:1rem; color:#c4b5fd; font-size:.94rem; }
+.ip-footer { max-width:1252px; margin:3rem auto 0; padding:2rem 1.5rem; border-top:1px solid var(--line); border-radius:8px; background:var(--panel); text-align:center; color:var(--muted); font:400 .83rem/1.8 'JetBrains Mono',monospace; overflow-wrap:anywhere; }
+.ip-footer strong { color:var(--cyan); } .footer-crest-wrapper { display:flex; justify-content:center; margin-bottom:1rem; } .footer-brand-crest { width:38px; height:38px; }
+@media(max-width:1050px) { .cols-3,.loop-grid,.trust-flow,.domain-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:760px) { .cols-2,.cols-3,.loop-grid,.trust-flow,.domain-grid { grid-template-columns:1fr; } .page-section { padding:40px 14px 10px; } .schematic { padding:1.2rem; } }
+@media(max-width:600px) {
+ nav { padding:.75rem .5rem; } .nav-links { gap:.45rem; } .nav-links a { font-size:.72rem; padding:.35rem .65rem; }
+ .hero { padding:30px 14px 35px; } .hero-brand-crest { width:48px; height:48px; } h1 { font-size:1.9rem; letter-spacing:1px; } .hero-subtitle { font-size:1.05rem; }
+ .eyebrow { font-size:.76rem; letter-spacing:1px; } .intro-box { padding:1.3rem 1.1rem; } .jump-links a { width:100%; } .card,.domain-card { padding:1.3rem; } .artifact figcaption { padding:1rem; } pre { padding:1.1rem; font-size:.81rem; } .note { padding:1rem; }
+}
+@media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation:none !important; transition:none !important; } }
+</style>
+<script>
+      const blockAnalytics = new URLSearchParams(window.location.search).get('block_ga') === 'true';
+      if (blockAnalytics) window['ga-disable-G-80NYKHYN3R'] = true;
+      try {
+        if (blockAnalytics) localStorage.setItem('akcce_block_ga', 'true');
+        if (localStorage.getItem('akcce_block_ga') === 'true') {
+          window['ga-disable-G-80NYKHYN3R'] = true;
         }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        body {
-            background-color: var(--bg-page);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            color: var(--text-main);
-            line-height: 1.6;
-            padding-bottom: 4rem;
-            overflow-x: hidden;
-        }
-
-        /* STRICT COLOR DISCIPLINE: ONLY FOR BULLET LEAD-IN LABELS BEFORE A COLON */
-        .bullet-lead {
-            color: var(--color-cyan);
-            font-weight: 800;
-        }
-
-        .inline-link {
-            color: var(--color-cyan);
-            text-decoration: none;
-            border-bottom: 1px solid var(--color-cyan);
-            font-weight: 800;
-            transition: color 0.3s ease, border-color 0.3s ease;
-        }
-        .inline-link:hover {
-            color: #ffffff;
-            border-color: #ffffff;
-        }
-
-        /* ================= NAVIGATION ================= */
-        nav {
-            position: fixed; top: 0; width: 100%;
-            background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-base); z-index: 100;
-            padding: 1.2rem 2rem; display: flex; justify-content: center;
-        }
-        .nav-links { 
-            display: flex; gap: 1.2rem; list-style: none; flex-wrap: wrap; 
-            justify-content: center; align-items: center; 
-        }
-        .nav-links a { 
-            display: inline-block; 
-            color: var(--color-cyan); 
-            border: 1px solid var(--color-cyan);
-            background: rgba(14, 165, 233, 0.1); 
-            padding: 0.5rem 1.2rem; 
-            border-radius: 6px;
-            text-decoration: none; 
-            font-size: 0.9rem; 
-            font-weight: 700; 
-            letter-spacing: 1px; 
-            text-transform: uppercase; 
-            transition: all 0.3s ease; 
-        }
-        .nav-links a:hover, 
-        .nav-links a.active-link { 
-            background: var(--color-cyan); 
-            color: #ffffff; 
-            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
-        }
-
-        /* ================= HERO HEADER & TOP SUB-NAV ================= */
-        .hero { padding: 145px 20px 60px; text-align: center; border-bottom: 1px solid var(--border-base); }
-
-        .jump-links-container {
-            max-width: 1180px;
-            margin: 0 auto 2.5rem;
-            padding: 1.25rem 1.8rem;
-            background: rgba(15, 23, 42, 0.55);
-            border: 1px solid var(--border-base);
-            border-radius: 10px;
-            text-align: center;
-        }
-        .jump-links-intro {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--text-main);
-            letter-spacing: 0.5px;
-            margin-bottom: 0.9rem;
-        }
-        .jump-links { 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: center; 
-            gap: 0.85rem; 
-        }
-        .jump-links a { 
-            color: var(--color-cyan); 
-            border: 1px solid var(--color-cyan); 
-            background: rgba(14, 165, 233, 0.08); 
-            padding: 0.6rem 1.2rem; 
-            border-radius: 8px; 
-            text-decoration: none; 
-            font-size: 0.85rem; 
-            font-weight: 700; 
-            letter-spacing: 1px; 
-            text-transform: uppercase; 
-            transition: all 0.3s ease; 
-        }
-        .jump-links a:hover { 
-            background: var(--color-cyan); 
-            color: #ffffff; 
-            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
-            transform: translateY(-2px); 
-        }
-
-        .hero-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; font-weight: 800; color: var(--color-cyan); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.75rem; display: block; }
-        .hero-title-container { display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
-        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 3.6rem; font-weight: 900; letter-spacing: 3px; color: var(--text-main); text-transform: uppercase; }
-
-        /* ================= BULLETED INTRO BOXES & LISTS ================= */
-        .section-intro-box {
-            max-width: 1120px;
-            margin: 0 auto 2.5rem;
-            background: rgba(10, 15, 29, 0.95);
-            border: 1px solid var(--border-base);
-            border-left: 4px solid var(--color-cyan);
-            border-radius: 10px;
-            padding: 2rem 2.4rem;
-            text-align: left;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-        }
-
-        .intro-lead-sentence {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.15rem;
-            font-weight: 800;
-            color: var(--text-main);
-            line-height: 1.65;
-            margin-bottom: 1.15rem;
-            padding-bottom: 0.8rem;
-            border-bottom: 1px solid var(--border-base);
-        }
-
-        .clean-bullet-list {
-            list-style: disc;
-            padding-left: 1.45rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.85rem;
-            text-align: left;
-        }
-        .clean-bullet-list li {
-            font-size: 1.04rem;
-            color: var(--text-main);
-            font-weight: 600;
-            line-height: 1.7;
-            padding-left: 0.2rem;
-        }
-        .clean-bullet-list li::marker {
-            color: var(--color-cyan);
-        }
-
-        #anatomy, #workflow, #federation, #ledger, #arl, #kql, #dpl, #index {
-            scroll-margin-top: 100px;
-        }
-
-        /* ================= INSIGHT CALLOUT ================= */
-        .insight-box {
-            border-left: 4px solid var(--color-purple);
-            background: linear-gradient(90deg, rgba(168, 85, 247, 0.1) 0%, transparent 100%);
-            padding: 2rem 2.4rem;
-            margin: 2rem auto 2.5rem;
-            max-width: 1120px;
-            border-radius: 0 8px 8px 0;
-            text-align: left;
-        }
-        .insight-header {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.15rem;
-            font-weight: 900;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--color-purple);
-        }
-        .insight-header::before {
-            content: '>';
-            font-weight: 900;
-        }
-        .insight-text {
-            font-size: 1.12rem;
-            color: var(--text-main);
-            font-style: normal;
-            line-height: 1.75;
-            font-weight: 600;
-        }
-
-        /* ================= TRANSITION BRIDGE ================= */
-        .transition-wrapper {
-            width: 100%; max-width: 1300px; margin: 5.5rem auto 3.5rem;
-            text-align: center; position: relative;
-        }
-        .section-divider-line {
-            position: absolute; top: 50%; left: 0; width: 100%; height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.5), transparent);
-            z-index: 1; transform: translateY(-50%);
-        }
-        .deep-dive-header {
-            position: relative; z-index: 2; display: inline-block;
-            background: var(--bg-page); padding: 0 30px;
-            font-family: 'Montserrat', sans-serif; font-size: 2.3rem; font-weight: 900;
-            letter-spacing: 3px; text-transform: uppercase; color: var(--color-cyan);
-        }
-
-        /* ================= SHARED STACKED LAYOUT ================= */
-        .stacked-section { padding: 30px 20px 60px; width: 100%; display: flex; flex-direction: column; align-items: center; }
-        .section-intro { width: 100%; max-width: 1120px; text-align: center; margin-bottom: 2.5rem; }
-        .section-kicker { font-family: 'JetBrains Mono', monospace; color: var(--color-cyan); font-weight: 800; font-size: 0.92rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.6rem; display: block; }
-        .section-title { font-family: 'Montserrat', sans-serif; font-size: 2.4rem; font-weight: 900; line-height: 1.25; margin-bottom: 1.5rem; color: var(--text-main); text-transform: uppercase; letter-spacing: 1px; }
-        
-        .feature-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; width: 100%; max-width: 1300px; margin-bottom: 3.5rem; }
-        .feature-grid-2x2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; width: 100%; max-width: 1120px; margin-bottom: 3.5rem; margin-left: auto; margin-right: auto; }
-        
-        .feature-card { background: rgba(10, 15, 29, 0.95); border: 1px solid var(--border-base); border-top: 4px solid; padding: 2rem 2.2rem; border-radius: 10px; text-align: left; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
-        .feature-card.blue { border-top-color: var(--color-blue); }
-        .feature-card.cyan { border-top-color: var(--color-cyan); }
-        .feature-card.green { border-top-color: var(--color-green); }
-        .feature-card.teal { border-top-color: var(--color-teal); }
-        .feature-card.purple { border-top-color: var(--color-purple); }
-        .feature-card.red { border-top-color: var(--color-red); }
-        
-        .feature-title { font-family: 'Montserrat', sans-serif; font-size: 1.28rem; font-weight: 900; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border-base); color: var(--text-main); text-transform: uppercase; letter-spacing: 0.5px; }
-        
-        /* ================= HOME-PAGE STYLE ANIMATED DIAGRAMS WITH FORMAL HEADER BARS ================= */
-        @keyframes flow { to { stroke-dashoffset: -20; } }
-        @keyframes ai-scanlines {
-            from { background-position: 0 0; }
-            to { background-position: 56px 56px; }
-        }
-        @keyframes pulse-cyan {
-            0% { box-shadow: 0 0 15px rgba(14, 165, 233, 0.35), inset 0 0 10px rgba(14, 165, 233, 0.15); }
-            50% { box-shadow: 0 0 35px rgba(14, 165, 233, 0.6), inset 0 0 20px rgba(14, 165, 233, 0.3); }
-            100% { box-shadow: 0 0 15px rgba(14, 165, 233, 0.35), inset 0 0 10px rgba(14, 165, 233, 0.15); }
-        }
-        @keyframes pulse-purple {
-            0% { box-shadow: 0 0 15px rgba(168, 85, 247, 0.35), inset 0 0 10px rgba(168, 85, 247, 0.15); }
-            50% { box-shadow: 0 0 35px rgba(168, 85, 247, 0.6), inset 0 0 20px rgba(168, 85, 247, 0.3); }
-            100% { box-shadow: 0 0 15px rgba(168, 85, 247, 0.35), inset 0 0 10px rgba(168, 85, 247, 0.15); }
-        }
-        @keyframes spin-slow {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
-        .animated-path { stroke-dasharray: 8, 12; animation: flow 1s linear infinite; }
-
-        .canvas-wrapper { width: 100%; overflow: visible; padding-bottom: 5px; }
-
-        .diagram-wrapper-wide {
-            position: relative; width: 1180px; max-width: 100%; margin: 0 auto;
-            background-color: rgba(2, 6, 23, 0.92);
-            background-image: linear-gradient(to right, rgba(30, 41, 59, 0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(30, 41, 59, 0.5) 1px, transparent 1px);
-            background-size: 40px 40px; border: 1px solid var(--border-base); border-top: 4px solid var(--color-cyan); border-radius: 12px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); overflow: hidden;
-        }
-
-        /* FORMAL DIAGRAM HEADER BAR INSIDE TOP OF CANVAS */
-        .diagram-header-bar {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 1.15rem 2rem;
-            background: rgba(10, 15, 29, 0.95);
-            border-bottom: 1px solid var(--border-base);
-            z-index: 5;
-            text-align: center;
-        }
-        .diagram-header-tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.78rem;
-            font-weight: 800;
-            color: var(--color-cyan);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            display: block;
-            margin-bottom: 0.25rem;
-        }
-        .diagram-header-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.35rem;
-            font-weight: 900;
-            color: var(--text-main);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .diagram-caption-box {
-            max-width: 1120px;
-            margin: 2rem auto 0;
-            background: rgba(10, 15, 29, 0.95);
-            border: 1px solid var(--border-base);
-            border-left: 4px solid var(--color-cyan);
-            border-radius: 8px;
-            padding: 1.5rem 2rem;
-            text-align: left;
-        }
-
-        /* ================= DIAGRAM 1: ANATOMY DIAGRAM (760PX HEIGHT, ZERO OVERLAP) ================= */
-        .anatomy-diagram { height: 760px; }
-        .a-node { position: absolute; background: var(--bg-node); border: 1px solid var(--border-base); border-radius: 8px; padding: 1.25rem 1.4rem; text-align: left; z-index: 2; backdrop-filter: blur(8px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.5); }
-        .a-node .tag { font-family: 'JetBrains Mono', monospace; font-weight: 800; border: 1px solid rgba(59, 130, 246, 0.4); color: var(--color-blue); font-size: 0.72rem; padding: 3px 8px; border-radius: 4px; display: inline-block; margin-bottom: 8px; }
-        .a-node .title { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.02rem; text-transform: uppercase; margin-bottom: 6px; color: var(--text-main); }
-        .a-node .sub { font-size: 0.88rem; color: var(--text-main); font-weight: 600; line-height: 1.5; }
-        
-        /* Tier 1 (Top Input Box): y = 110px to ~250px */
-        .a-input { width: 420px; top: 110px; left: 380px; border-left: 4px solid var(--color-blue); }
-        /* Tier 2 (Center State Machine Box): y = 315px to ~465px (65px clear gap below Tier 1) */
-        .a-engine { 
-            width: 460px; top: 315px; left: 360px; 
-            border: 2px solid var(--color-cyan); border-left: 6px solid var(--color-cyan);
-            background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(14, 165, 233, 0.18) 4px, rgba(14, 165, 233, 0.18) 8px), linear-gradient(135deg, rgba(14, 165, 233, 0.25) 0%, rgba(10, 15, 29, 0.95) 100%), var(--bg-node);
-            animation: ai-scanlines 2s linear infinite, pulse-cyan 3.5s ease-in-out infinite;
-        }
-        /* Tier 3 (Bottom Dual Stream Boxes): y = 555px to ~710px (90px clear gap below Tier 2, 50px above floor) */
-        .a-out-1 { width: 410px; top: 555px; left: 95px; border-left: 4px solid var(--color-purple); }
-        .a-out-2 { width: 410px; top: 555px; left: 675px; border-left: 4px solid var(--color-green); }
-
-        /* ================= DIAGRAM 2: WORKFLOW DIAGRAM (780PX HEIGHT, CENTERED AT Y=435PX) ================= */
-        .workflow-diagram { height: 780px; }
-        .w-center { 
-            position: absolute; top: 435px; left: 50%; transform: translate(-50%, -50%);
-            z-index: 3; width: 210px; height: 210px; border-radius: 50%; 
-            background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(14, 165, 233, 0.18) 4px, rgba(14, 165, 233, 0.18) 8px), radial-gradient(circle, rgba(14,165,233,0.3) 0%, var(--bg-page) 75%); 
-            border: 2px solid var(--color-cyan); display: flex; flex-direction: column; justify-content: center; align-items: center; 
-            text-align: center; padding: 1rem;
-            animation: ai-scanlines 2s linear infinite, pulse-cyan 3.5s ease-in-out infinite;
-        }
-        .w-center-title { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 800; color: var(--color-cyan); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
-        .w-center-main { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.05rem; color: var(--text-main); text-transform: uppercase; line-height: 1.3; }
-        
-        .w-ring { 
-            position: absolute; top: 435px; left: 50%; transform: translate(-50%, -50%); 
-            width: 470px; height: 470px; border-radius: 50%; 
-            border: 3px dashed var(--color-cyan); z-index: 1; 
-            box-shadow: 0 0 25px rgba(14, 165, 233, 0.2);
-            animation: spin-slow 28s linear infinite;
-        }
-        .w-node { position: absolute; background: var(--bg-node); border: 1px solid var(--border-base); border-left: 4px solid; border-radius: 8px; padding: 1.1rem 1.35rem; width: 280px; text-align: left; z-index: 3; box-shadow: 0 10px 20px rgba(0,0,0,0.5); color: var(--text-main); }
-        .w-node-title { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 0.98rem; text-transform: uppercase; margin-bottom: 4px; color: var(--text-main); }
-        .w-node-sub { font-size: 0.84rem; font-weight: 600; color: var(--text-main); line-height: 1.45; }
-        
-        .w-n1 { top: 115px; left: 50%; transform: translateX(-50%); border-left-color: var(--color-blue); }
-        .w-n2 { 
-            top: 435px; left: calc(50% + 340px); transform: translate(-50%, -50%); 
-            border: 2px solid var(--color-purple); border-left: 6px solid var(--color-purple);
-            background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(168, 85, 247, 0.15) 4px, rgba(168, 85, 247, 0.15) 8px), var(--bg-node);
-            animation: ai-scanlines 1.5s linear infinite, pulse-purple 3s ease-in-out infinite;
-        }
-        .w-n3 { top: 625px; left: 50%; transform: translateX(-50%); border-left-color: var(--color-red); }
-        .w-n4 { top: 435px; left: calc(50% - 340px); transform: translate(-50%, -50%); border-left-color: var(--color-green); }
-
-        /* ================= DIAGRAM 3: FEDERATION DIAGRAM (600PX HEIGHT, ZERO OVERLAP) ================= */
-        .federation-diagram { height: 600px; }
-        .f-node { position: absolute; background: var(--bg-node); border: 1px solid var(--border-base); border-radius: 8px; z-index: 2; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
-        .f-engine { 
-            width: 350px; top: 220px; left: 130px; text-align: left; padding: 1.6rem 1.8rem;
-            border: 2px solid var(--color-cyan); border-left: 6px solid var(--color-cyan);
-            background: repeating-linear-gradient(45deg, transparent, transparent 4px, rgba(14, 165, 233, 0.18) 4px, rgba(14, 165, 233, 0.18) 8px), linear-gradient(135deg, rgba(14, 165, 233, 0.25) 0%, rgba(10, 15, 29, 0.95) 100%), var(--bg-node);
-            animation: ai-scanlines 2s linear infinite, pulse-cyan 3.5s ease-in-out infinite;
-        }
-        .f-engine .logic { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; color: var(--color-cyan); font-weight: 800; letter-spacing: 1px; margin-bottom: 6px; }
-        .f-engine .title { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.15rem; color: var(--text-main); text-transform: uppercase; margin-bottom: 8px; }
-        .f-engine .desc { font-size: 0.88rem; color: var(--text-main); font-weight: 600; line-height: 1.5; }
-
-        .f-target { width: 420px; left: 630px; display: flex; align-items: center; padding: 1.2rem 1.4rem; border-left: 4px solid var(--color-purple); }
-        .f-tf { top: 120px; border-left-color: var(--color-cyan); }
-        .f-az { top: 270px; border-left-color: var(--color-blue); }
-        .f-api { top: 420px; border-left-color: var(--color-purple); }
-        .f-target-icon { font-family: 'JetBrains Mono', monospace; font-weight: 800; font-size: 1.1rem; color: var(--color-cyan); border-right: 1px solid var(--border-base); padding-right: 15px; margin-right: 15px; width: 65px; text-align: center; flex-shrink: 0; }
-        .f-target-text { display: flex; flex-direction: column; text-align: left; }
-        .f-target-title { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.05rem; color: var(--text-main); text-transform: uppercase; }
-        .f-target-sub { font-size: 0.86rem; color: var(--text-main); font-weight: 600; line-height: 1.45; margin-top: 4px; }
-
-        /* ================= TERMINAL UI (LEDGERS) ================= */
-        .terminal-window { background: #0d1117; border: 1px solid var(--border-base); border-radius: 10px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); width: 100%; max-width: 1120px; margin: 0 auto; text-align: left; overflow: hidden; }
-        .terminal-header { background: #161b22; padding: 12px 20px; display: flex; align-items: center; border-bottom: 1px solid var(--border-base); position: relative; }
-        .terminal-dots { display: flex; gap: 8px; position: absolute; left: 20px; }
-        .dot { width: 12px; height: 12px; border-radius: 50%; }
-        .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
-        .terminal-title { margin: 0 auto; color: var(--text-muted); font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; font-weight: 700; letter-spacing: 1px; }
-        .terminal-body { padding: 2.5rem; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: 0.95rem; line-height: 1.8; color: var(--text-main); overflow-y: auto; overflow-x: auto; max-height: 700px; white-space: pre-wrap; word-wrap: break-word; background: linear-gradient(rgba(13, 17, 23, 1) 0%, rgba(13, 17, 23, 0.95) 100%); }
-        .t-cyan { color: var(--color-cyan); font-weight: 700; } .t-green { color: var(--color-green); font-weight: 700; } .t-blue { color: var(--color-blue); font-weight: 700; } .t-purple { color: var(--color-purple); font-weight: 700; } .t-muted { color: var(--text-muted); } .t-comment { color: #94a3b8; }
-
-        /* ================= CAPABILITY INDEX ================= */
-        .capability-diagram { height: auto; padding-bottom: 1rem; width: 100%; max-width: 1300px; }
-        .capability-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: 3rem; width: 100%; }
-        .cap-card { background: rgba(10, 15, 29, 0.92); border: 1px solid var(--border-base); border-left: 4px solid var(--color-cyan); border-radius: 8px; padding: 1.75rem; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.35); text-align: left; }
-        .cap-card-full { grid-column: 1 / -1; }
-        .cap-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1.25rem; border-bottom: 1px solid var(--border-base); padding-bottom: 0.75rem; }
-        .cap-num { font-family: 'JetBrains Mono', monospace; color: var(--color-cyan); font-weight: 900; font-size: 1.25rem; }
-        .cap-title { font-family: 'Montserrat', sans-serif; color: var(--text-main); font-weight: 900; letter-spacing: 1px; text-transform: uppercase; font-size: 1.1rem; }
-        .cap-list { list-style: none; padding: 0; margin: 0; }
-        .cap-list li { font-size: 0.98rem; color: var(--text-main); font-weight: 600; margin-bottom: 0.6rem; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
-        .cap-list li::before { content: '>'; color: var(--color-cyan); font-weight: 900; }
-        .cap-2-col-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0 2rem; }
-
-        /* ================= PROPRIETARY IP FOOTER ================= */
-        .ip-footer {
-            max-width: 1300px;
-            margin: 2rem auto 0;
-            text-align: center;
-            padding: 2.5rem 1.5rem;
-            border-top: 1px solid var(--border-base);
-            background: rgba(10, 15, 29, 0.6);
-            border-radius: 8px;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            font-family: 'JetBrains Mono', monospace;
-            line-height: 1.8;
-        }
-        .ip-footer strong {
-            color: var(--color-cyan);
-            font-weight: 700;
-        }
-
-        @media (max-width: 1260px) {
-            .canvas-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 10px; }
-            .scrollable-diagram { min-width: 1180px; }
-        }
-
-        @media (max-width: 992px) {
-            .feature-grid-3, .feature-grid-2x2, .capability-grid, .cap-2-col-list { grid-template-columns: 1fr; }
-            .hero-title { font-size: 2.6rem; }
-            .section-title { font-size: 2rem; }
-            .deep-dive-header { font-size: 1.65rem; padding: 0 15px; }
-            .insight-box, .section-intro-box { padding: 1.5rem; margin: 2rem 0; }
-        }
-        
-        @media (max-width: 650px) {
-            .terminal-body { font-size: 0.85rem; padding: 1.5rem; }
-            .capability-grid { padding: 1.5rem; gap: 1rem; }
-        }
-
-        @media (max-width: 600px) {
-            .hero-title { font-size: 2rem; letter-spacing: 1px; }
-            .hero { padding-top: 190px; }
-            nav { padding: 1rem; }
-            .nav-links { gap: 0.6rem; }
-            .nav-links a { font-size: 0.75rem; padding: 0.4rem 0.8rem; letter-spacing: 0.5px; }
-        }
-        /* FIX FOR PHONES HELD HORIZONTALLY OR VERTICALLY */
-        @media (max-width: 992px), (max-height: 550px) {
-            nav {
-                position: relative !important;
-                padding: 0.75rem 0.5rem !important;
-            }
-            .nav-links {
-                gap: 0.45rem !important;
-            }
-            .nav-links a {
-                font-size: 0.72rem !important;
-                padding: 0.35rem 0.65rem !important;
-            }
-            .hero, .blueprint-page-container {
-                padding-top: 30px !important;
-            }
-        }
-    </style>
+      } catch (error) {
+        // The query-string opt-out still works when browser storage is unavailable.
+      }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-80NYKHYN3R"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-80NYKHYN3R');</script>
 </head>
-<body>
-
-    <!-- GLOBAL NAVIGATION (8-LINK SITE-WIDE BAR WITH 26-VARIABLE SYSTEM GLOSSARY) -->
-    <nav>
+<body><a class="skip-link" href="#main-content">Skip to main content</a><nav aria-label="Main navigation">
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="autonomous-systems.html">Autonomous Systems</a></li>
-            <li><a href="kill-chain.html">The Adversarial Kill Chain</a></li>
-            <li><a href="blueprint.html">7-Phase Counter-Engineering Blueprint</a></li>
-            <li><a href="ai-systems-engineering.html">Tethered AI Systems Engineering</a></li>
-            <li><a href="architectural.html" class="active-link">Exploit-Level Pipeline Architecture</a></li>
-            <li><a href="workflow-portfolio.html">Live Counter-Engineering Proofs</a></li>
-            <li><a href="add-capabilities.html">Day-2 Multi-Cloud Modules</a></li>
-            <li><a href="glossary.html">26-Variable System Glossary</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li>
+<a href="index.html">Home</a>
+</li>
+            <li>
+<a href="autonomous-systems.html">Autonomous Systems</a>
+</li>
+            <li>
+<a href="kill-chain.html">The Adversarial Kill Chain</a>
+</li>
+            <li>
+<a href="blueprint.html">7-Phase Counter-Engineering Blueprint</a>
+</li>
+            <li>
+<a href="ai-systems-engineering.html">Tethered AI Systems Engineering</a>
+</li>
+            <li>
+<a href="architectural.html" class="active-link" aria-current="page">Exploit-Level Pipeline Architecture</a>
+</li>
+            <li>
+<a href="workflow-portfolio.html">Counter-Engineering Demonstrations</a>
+</li>
+            <li>
+<a href="add-capabilities.html">Day-2 Multi-Cloud Modules</a>
+</li>
+            <li>
+<a href="glossary.html">26-Variable System Glossary</a>
+</li>
+            <li>
+<a href="contact.html">Contact</a>
+</li>
         </ul>
-    </nav>
+    </nav><main id="main-content">
+<header class="hero"><span class="eyebrow">[IDENTITY TRUST · PERMISSION BOUNDARIES · REVIEWABLE EVIDENCE]</span><div class="hero-title-container"><svg class="hero-brand-crest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Adversarial Kill-Chain Counter-Engineering 4-Chevron Crest">
+                <rect width="114" height="114" x="3" y="3" fill="#020617" rx="22" stroke="#1e293b" stroke-width="3"/>
+                <!-- Gate 1: Gunmetal Bevel -->
+                <polygon points="24,18 60,36 60,48 24,30" fill="#475569"/>
+                <polygon points="96,18 60,36 60,48 96,30" fill="#1e293b"/>
+                <!-- Gate 2: Cobalt Bevel -->
+                <polygon points="24,39 60,57 60,69 24,51" fill="#0284c7"/>
+                <polygon points="96,39 60,57 60,69 96,51" fill="#075985"/>
+                <!-- Gate 3: Electric Cyan Bevel -->
+                <polygon points="24,60 60,78 60,90 24,72" fill="#38bdf8"/>
+                <polygon points="96,60 60,78 60,90 96,72" fill="#0369a1"/>
+                <!-- Gate 4: Crimson Bevel -->
+                <polygon points="24,81 60,99 60,111 24,93" fill="#f43f5e"/>
+                <polygon points="96,81 60,99 60,111 96,93" fill="#9f1239"/>
+            </svg><h1>Exploit-Level Pipeline Architecture</h1></div><p class="hero-subtitle">A closer view of the trust flow, deployment artifacts and verification records used in machine identity engineering.</p>
+<div class="intro-box"><p class="intro-lead">The architecture links a reviewed deployment to its baseline, behavioral tests and operational evidence.</p><ul class="clean-list"><li><strong>Practical focus:</strong> Inspect the mechanisms an attacker might abuse: source workload control, federated trust, credential use, effective permissions and evidence gaps.</li><li><strong>Defined responsibilities:</strong> The assistant drafts, the engineer reviews and authorizes, and configured tools and cloud services enforce execution restrictions.</li><li><strong>Evidence scope:</strong> Diagrams are static reference models. Ledger and query examples are labeled templates, not live deployment records or completed audit findings.</li></ul></div>
+<div class="jump-box"><p>Explore the architecture and record formats:</p><div class="jump-links"><a href="#anatomy">1. Architecture anatomy</a><a href="#workflow">2. Review and diagnostics</a><a href="#federation">3. OIDC and payloads</a><a href="#ledger">4. Baseline ledger</a><a href="#arl">5. Audit results</a><a href="#kql">6. Telemetry evidence</a><a href="#dpl">7. Defects and lessons</a><a href="#index">8. Day-2 domains</a></div></div></header>
+<section class="page-section" id="anatomy" aria-labelledby="anatomy-title"><header class="section-heading"><span class="eyebrow">[SECTION 01]</span><h2 id="anatomy-title">Architecture: Configuration and Evidence</h2><p>The workflow organizes proposed configuration and verification artifacts around a shared deployment record. These streams are related, but a generated configuration does not establish that its intended controls are active.</p></header>
+<div class="grid cols-3">
+<article class="card cyan"><h3>1. Define the target</h3><ul class="clean-list"><li><strong>Intake:</strong> Identify the cloud boundary, workload source, target resource, infrastructure state and deployment tool. Record an owner, intended operation and approved environment.</li><li><strong>Discovery:</strong> Use authorized read-only queries to capture current identifiers, trust configuration, effective grants and logging prerequisites. Keep secrets out of shared transcripts.</li></ul></article>
+<article class="card purple"><h3>2. Review the proposed change</h3><ul class="clean-list"><li><strong>Four gates:</strong> Review Boundary, Identity, Federation and Access together. Include source workflow protections, inherited permissions, state ownership and recovery.</li><li><strong>Execution authority:</strong> Approve the concrete artifact and target context. A tool or pipeline must enforce the approval if the model can execute changes; a prompt alone cannot enforce it.</li></ul></article>
+<article class="card green"><h3>3. Retain observed results</h3><ul class="clean-list"><li><strong>Testing:</strong> Run the intended operation and meaningful denied cases. Capture identity, target, request outcome, revision and time without exposing secret contents.</li><li><strong>Records:</strong> Use the IAL, ARL, telemetry artifact and DPL to organize baseline facts, findings, query results and diagnostic history. Keep unresolved checks visible.</li></ul></article>
+</div>
+<figure class="schematic"><figcaption>Configuration and evidence share a reviewed baseline<span class="reference-tag">STATIC REFERENCE SCHEMATIC · NO LIVE CLOUD CONNECTION</span></figcaption>
+<div class="flow-node center"><strong>Discovery record and approved scope</strong><p>Workload, resource, cloud context, trust conditions, source revision, owner and assumptions.</p></div><div class="flow-arrow" aria-hidden="true">↓</div>
+<div class="flow-node center purple"><strong>Human review and execution controls</strong><p>The directive structures review. Scoped tools, cloud authorization and approval checks control execution.</p></div><div class="flow-arrow" aria-hidden="true">↓</div>
+<div class="grid cols-2"><div class="flow-node"><strong>Configuration stream</strong><p>IaC or native API payload, dependency records, plan or change preview, execution runbook and recovery instructions.</p></div><div class="flow-node green"><strong>Verification stream</strong><p>Baseline ledger, allow/deny tests, diagnostic output, attributable service logs and findings with evidence references.</p></div></div>
+<p class="flow-caption">Link both streams to the reviewed and executed revision. Generated files, executed commands and independently reviewed conclusions are separate milestones.</p></figure>
+<aside class="note"><strong>Architecture scope:</strong> This page describes a workflow and example record formats. It does not implement a separate state-machine controller, establish complete attack coverage or prove every multi-cloud combination.</aside></section><section class="page-section" id="workflow" aria-labelledby="workflow-title"><header class="section-heading"><span class="eyebrow">[SECTION 02]</span><h2 id="workflow-title">Closed-Loop Review and Diagnostics</h2><p>Preserve the intended security boundary while diagnosing failures. A revised command should be evaluated against the same approved scope as the original deployment.</p></header>
+<figure class="schematic"><figcaption>Review → act → observe → reassess<span class="reference-tag">REFERENCE WORKFLOW · APPROVALS REQUIRE AN ACTUAL EXECUTION GATE</span></figcaption>
+<div class="loop-grid">
+<div class="flow-node"><span class="loop-number">01</span><strong>Set the baseline</strong><p>Record scope, current state, expected result, reviewer and recovery options.</p></div>
+<div class="flow-node purple"><span class="loop-number">02</span><strong>Review the action</strong><p>Inspect the proposed artifact and permissions. Approve the exact change before execution.</p></div>
+<div class="flow-node"><span class="loop-number">03</span><strong>Capture the result</strong><p>Record the executed revision, command outcome, service response and evidence location.</p></div>
+<div class="flow-node green"><span class="loop-number">04</span><strong>Resolve or escalate</strong><p>Compare actual with expected. Record a finding, test a scoped repair or stop for review.</p></div>
+</div><p class="flow-caption">When a repair changes the artifact, repeat review before execution. Repeat discovery when context or dependencies may have changed.</p></figure>
+<div class="grid cols-2">
+<article class="card cyan"><h3>Human authority and persistent state</h3><ul class="clean-list"><li><strong>Accountability:</strong> Define who owns the identity, can approve a change, can execute it and can accept an exception. A shared glossary helps communication but does not validate an API payload.</li><li><strong>Execution mode:</strong> In advisory chat, the engineer runs reviewed commands. Tool-enabled operation needs independently enforced permissions and approvals. Persist run state outside chat when resumable, machine-enforced gates are required.</li></ul></article>
+<article class="card purple"><h3>Bounded troubleshooting</h3><ul class="clean-list"><li><strong>Defect loop:</strong> Record the error and observations, state a hypothesis, propose a minimal change and compare results. Preserve the last reviewed baseline.</li><li><strong>Escalation:</strong> The original fourth-iteration halt is a chosen review budget. Stop earlier for destructive changes, privilege expansion or conflicting evidence. Explain uncertainty without inventing success probabilities.</li></ul></article>
+</div>
+<aside class="note"><strong>Evidence-led learning:</strong> Log the verified outcome and residual risk before revising the directive or templates. Review and regression-test updates; obsolete or contradictory rules may need removal. Process counts are not security-success rates.</aside></section><section class="page-section" id="federation" aria-labelledby="federation-title"><header class="section-heading"><span class="eyebrow">[SECTION 03]</span><h2 id="federation-title">OIDC Trust and Cloud-Specific Payloads</h2><p>Workload federation can remove the need for a stored cloud credential on a particular access path. Trust configuration, source integrity and authorization still determine who can use that path and what they can do.</p></header>
+<figure class="schematic"><figcaption>From workload identity to an authorized operation<span class="reference-tag">CONCEPTUAL FLOW · PROVIDER-SPECIFIC DETAILS MUST BE VERIFIED</span></figcaption>
+<ol class="trust-flow">
+<li><strong>1. Source workload</strong>Protected repository, runner, pod or service account initiates the operation.</li>
+<li><strong>2. Issuer assertion</strong>The issuer signs identity claims. The signed assertion is a credential and must be protected.</li>
+<li><strong>3. Trust evaluation</strong>The relying service validates the assertion and applicable issuer, audience, subject and other supported conditions.</li>
+<li><strong>4. Cloud credentials</strong>The platform issues credentials or a session under its own duration and policy rules.</li>
+<li><strong>5. Resource access</strong>The service evaluates effective permissions, network restrictions and relevant policy for the requested operation.</li>
+</ol><p class="flow-caption">The source assertion and resulting cloud session are different credentials. Their lifetimes and validation rules are not a universal 60-minute property.</p></figure>
+<div class="grid cols-2">
+<article class="card cyan"><h3>Trust configuration</h3><ul class="clean-list"><li><strong>Inspect actual claims:</strong> Confirm the issuer, audience and subject format for the selected workload context. Do not infer the subject solely from a display name or assume every workflow uses a branch-based format.</li><li><strong>Protect the source:</strong> Review repository, branch, environment, reusable workflow, runner and service-account mutation paths. Exact matching is useful only when the authorized source is also controlled.</li><li><strong>Match the platform:</strong> AWS roles, Entra applications or managed identities, and Google Cloud federation configurations have different object models. Redirect URI settings apply only where relevant; a blank URI is not a general isolation control.</li></ul></article>
+<article class="card purple"><h3>Permissions and deployment safety</h3><ul class="clean-list"><li><strong>Separate privileges:</strong> Distinguish deployment privileges from runtime permissions. Scope required actions and resources; inspect inherited and resource-based grants and alternate credentials.</li><li><strong>Handle readiness:</strong> Use documented readiness checks and bounded retries. A fixed delay does not guarantee replication. Resolve authentication and authorization errors through the approved flow for the environment.</li><li><strong>Review state:</strong> Use existing-resource references and managed resources deliberately. Inspect replacement and deletion effects, protect state and define recovery. Additive code can still change effective access.</li></ul></article>
+</div>
+<div class="grid cols-3" style="margin-top:1.5rem">
+<article class="card cyan"><h3>Terraform HCL</h3><ul class="clean-list"><li><strong>Review inputs:</strong> Use the provider and resource schemas for the selected cloud, reviewed dependency locks and accurate state ownership.</li><li><strong>Inspect the plan:</strong> Review trust, grants, replacement and deletion before applying. Lifecycle rules have a defined scope.</li></ul></article>
+<article class="card purple"><h3>Native templates and CLI</h3><ul class="clean-list"><li><strong>Use native models:</strong> CloudFormation, Bicep and cloud CLIs have their own schemas and capabilities. Confirm the chosen tool supports each target object.</li><li><strong>Review changes:</strong> Use available previews and policy checks, then retain execution output and the resulting configuration.</li></ul></article>
+<article class="card green"><h3>REST APIs and SDKs</h3><ul class="clean-list"><li><strong>Use supported schemas:</strong> Use native API properties, documented versions and scoped authentication. Do not transfer Terraform property names directly into JSON.</li><li><strong>Handle operations:</strong> Check idempotency, pagination, throttling, retries and partial failure. A successful request is not a complete access review.</li></ul></article>
+</div>
+<p class="references">Claim reference: <a href="https://docs.github.com/en/actions/reference/security/oidc" target="_blank" rel="noopener noreferrer">GitHub Actions OIDC claims and subject formats ↗</a>. A shared review method does not establish equivalent support across these implementation tracks.</p></section><section class="page-section" id="ledger" aria-labelledby="ledger-title"><header class="section-heading"><span class="eyebrow">[SECTION 04]</span><h2 id="ledger-title">Identity Architecture Ledger (IAL)</h2><p>The baseline records what was discovered and deployed before behavioral testing. It should distinguish intended values, observed values and facts that remain unverified.</p></header>
+<div class="grid cols-2">
+<article class="card cyan"><h3>Record the actual boundary</h3><ul class="clean-list"><li><strong>Provenance:</strong> Link each observation to the run, revision, timestamp and source. Record which identity performed discovery and what configuration it could inspect.</li><li><strong>Object identity:</strong> Keep application client IDs, principal object IDs, role identifiers and resource IDs distinct. Record cross-account, cross-tenant or cross-project relationships explicitly.</li></ul></article>
+<article class="card purple"><h3>Keep the baseline honest</h3><ul class="clean-list"><li><strong>Pre-test status:</strong> Record the current configuration without claiming a successful read, denial or completed audit. Append or link later test results with their own timestamps.</li><li><strong>Integrity and handling:</strong> Protect the record according to its sensitivity. Markdown is editable; version history, signatures or protected storage require separate implementation and do not establish the truth of every recorded claim.</li></ul></article>
+</div>
+<figure class="artifact"><figcaption><span>identity_architecture_ledger.md</span><span class="artifact-state">ILLUSTRATIVE TEMPLATE · NOT VERIFIED</span></figcaption><pre tabindex="0" aria-label="identity_architecture_ledger.md example"><code># IDENTITY ARCHITECTURE LEDGER (IAL)
+Record type: ILLUSTRATIVE TEMPLATE — NOT DEPLOYMENT EVIDENCE
+Lifecycle stage: PRE-TEST BASELINE
+Status: PENDING — discovery and configuration read-back required
 
-    <!-- ================= ZONE 1: HERO HEADER ================= -->
-    <header class="hero">
-        
-        <!-- TOP ON-PAGE SUB-NAVIGATION BAR (ABOVE TITLE) -->
-        <div class="jump-links-container">
-            <div class="jump-links-intro">
-                Select any architectural component below to jump directly to its counter-engineering specification and live compliance ledgers:
-            </div>
-            <div class="jump-links">
-                <a href="#anatomy">1. State Machine Anatomy</a>
-                <a href="#workflow">2. Closed-Loop Governance</a>
-                <a href="#federation">3. OIDC &amp; IaC Payload Synthesis</a>
-                <a href="#ledger">4. Identity Architecture Ledger (IAL)</a>
-                <a href="#arl">5. Audit Results Ledger (ARL)</a>
-                <a href="#kql">6. Standby CloudTrail / KQL Telemetry</a>
-                <a href="#dpl">7. Defect &amp; Patch Ledger (DPL)</a>
-                <a href="#index">8. Day-2 Multi-Cloud Modules</a>
-            </div>
+## Provenance
+Run ID: [record the actual run]
+Configuration revision: [reviewed and executed revision]
+Owner / reviewer: [record accountable people]
+Observed at (UTC): [record the actual timestamp]
+Evidence index: [protected paths or record references]
+
+## Gate 1 — Boundary
+Cloud / environment: [discover and confirm]
+Account / directory / project: [discover and confirm]
+Target resource ID: [discover the full resource identifier]
+State ownership / recovery: [reviewed plan and evidence reference]
+
+## Gate 2 — Identity
+Principal type and identifier: [discover and confirm]
+Application client ID / principal object ID: [if applicable; distinguish them]
+Credential inventory and alternate access paths: [review results]
+
+## Gate 3 — Federation
+Issuer / audience / subject conditions: [observed configuration]
+Source workflow or service account protections: [evidence reference]
+Assertion and cloud-session lifetime settings: [platform-specific evidence]
+
+## Gate 4 — Access
+Required operation and resource: [approved intent]
+Direct, inherited and resource-based permissions: [effective-access review]
+Exceptions / limitations / next review: [record explicitly]
+
+Runtime validation: NOT RUN
+No access-test result is implied by this baseline record.</code></pre></figure>
+<aside class="note"><strong>About the example fields:</strong> The bracketed entries describe required evidence. They are intentionally not deployment identifiers or executable configuration. Replace them only with observations from an authorized environment when producing a real record.</aside></section><section class="page-section" id="arl" aria-labelledby="arl-title"><header class="section-heading"><span class="eyebrow">[SECTION 05]</span><h2 id="arl-title">Audit Results Ledger (ARL)</h2><p>Assess defined criteria using actual observations. An audit record should make failed checks, incomplete collection and unresolved findings as visible as successful tests.</p></header>
+<div class="status-legend" aria-label="Audit status definitions"><span class="status-pill pass">PASS · criterion met</span><span class="status-pill fail">FAIL · criterion violated</span><span class="status-pill pending">PENDING · evidence incomplete</span><span class="status-pill error">ERROR · check could not run</span></div>
+<div class="grid cols-2">
+<article class="card cyan"><h3>Test the relevant boundary</h3><ul class="clean-list"><li><strong>Allow and deny:</strong> Test the required operation plus relevant out-of-scope actions, resources and source identities. A nonzero exit code alone does not prove a permission boundary.</li><li><strong>Attribution:</strong> Retain enough evidence to identify the principal, target, operation and result. Success on one path does not exclude alternate access or excessive grants.</li></ul></article>
+<article class="card purple"><h3>Close the evidence gap</h3><ul class="clean-list"><li><strong>Asynchronous collection:</strong> Record immediate execution output, then attach service logs and query results when available. Leave dependent criteria pending until the required evidence has been reviewed.</li><li><strong>Scope and sign-off:</strong> State the observation window, limitations, unresolved findings and reviewer decision. A generated ledger does not confer SOC 2 certification, insurer acceptance or audit immunity.</li></ul></article>
+</div>
+<figure class="artifact"><figcaption><span>audit_results_ledger.md</span><span class="artifact-state">ILLUSTRATIVE TEMPLATE · ALL CRITERIA PENDING</span></figcaption><pre tabindex="0" aria-label="audit_results_ledger.md example"><code># AUDIT RESULTS LEDGER (ARL)
+Record type: ILLUSTRATIVE TEMPLATE — NOT A COMPLETED AUDIT
+Overall outcome: NOT ASSESSED
+Run / revision / observation window: [record actual values]
+Reviewer and assessment scope: [record actual values]
+
+| Review criterion | Status | Evidence / finding |
+| --- | --- | --- |
+| Gate 1: approved boundary and target context | PENDING | Not evaluated |
+| Gate 2: identity and credential configuration | PENDING | Not evaluated |
+| Gate 3: issuer, audience, subject and source controls | PENDING | Not evaluated |
+| Gate 4: effective permissions and access boundaries | PENDING | Not evaluated |
+| Guardrail 1: credentials and sensitive-data handling | PENDING | Not evaluated |
+| Guardrail 2: state, change safety and recovery | PENDING | Not evaluated |
+| Guardrail 3: effective least privilege | PENDING | Not evaluated |
+| Guardrail 4: dependency integrity and payload review | PENDING | Not evaluated |
+| Guardrail 5: runtime output and evidence handling | PENDING | Not evaluated |
+
+## Behavioral tests
+Intended operation: NOT RUN — expected outcome and evidence required
+Out-of-scope operation: NOT RUN — verify an authorization denial
+Untrusted workload or claim: NOT RUN — verify the intended trust rejection
+Authentication, network and missing-resource errors: classify separately
+
+## Evidence closure
+Runtime logs and query results: PENDING
+Missing evidence / defects / accepted exceptions: [record findings]
+Required remediation / owner / due date: [record findings]
+Final review decision: PENDING — no sign-off recorded</code></pre></figure></section><section class="page-section" id="kql" aria-labelledby="kql-title"><header class="section-heading"><span class="eyebrow">[SECTION 06]</span><h2 id="kql-title">Telemetry Queries and Evidence Collection</h2><p>Query generation, event collection, query execution and interpretation are separate steps. Collection and ingestion depend on the service and configuration; there is no universal completion delay.</p></header>
+<div class="grid cols-2">
+<article class="card cyan"><h3>Configure collection before testing</h3><ul class="clean-list"><li><strong>Azure:</strong> Confirm resource diagnostic settings, the actual workspace and whether logs use resource-specific tables or AzureDiagnostics. Service-principal sign-ins require their own available log export.</li><li><strong>AWS:</strong> Confirm the selected trail or event data store, event types and relevant resources. S3 object data events need the appropriate collection settings; do not assume they are present.</li><li><strong>Google Cloud:</strong> Verify the required audit log categories, resource and identity fields, access permissions and retention before designing the query.</li></ul></article>
+<article class="card purple"><h3>Interpret observations carefully</h3><ul class="clean-list"><li><strong>Metrics:</strong> A request-count spike can support troubleshooting, but does not by itself identify the caller, prove a successful secret read or establish least privilege.</li><li><strong>Correlate with context:</strong> Use validated principal or session mappings, target, operation, time and available request identifiers. Reused sessions and concurrent jobs can make time-only joins ambiguous.</li><li><strong>Missing evidence:</strong> Report collection or schema gaps. Optional-column handling cannot create missing events or make an unknown schema equivalent to a verified source.</li></ul></article>
+</div>
+<figure class="artifact"><figcaption><span>kql_telemetry.md</span><span class="artifact-state">ILLUSTRATIVE REVIEW RECORD · NOT RUN</span></figcaption><pre tabindex="0" aria-label="kql_telemetry.md example"><code># TELEMETRY REVIEW ARTIFACT
+Record type: ILLUSTRATIVE TEMPLATE
+Collection status: NOT CONFIGURED / NOT RUN
+
+Cloud / service / log destination: [confirm actual values]
+Required log categories or event selectors: [verify enabled]
+Run ID / principal / target / UTC window: [record actual values]
+Query version / schema checked at: [record actual values]
+Executed query and protected result location: [attach after execution]
+
+Required observations:
+1. Relevant identity or token-exchange events, where available.
+2. Target service operations and actual status or error codes.
+3. A documented identity/session mapping between records.
+4. Expected allow and deny tests distinguished from unrelated failures.
+
+Correlation limitations:
+- Similar timestamps or a shared IP are candidate links, not token identity.
+- A sign-in correlation ID is not automatically the resource request ID.
+- Missing tables, fields, events or collection must remain explicit gaps.
+- An empty result is not proof of no access or of a successful control.
+
+Review decision and remaining gaps: PENDING</code></pre></figure>
+<h3>Azure inspection examples with explicit schema assumptions</h3>
+<p class="flow-caption">These examples inspect separate event streams; they do not implement a validated end-to-end join. Review the actual schema, principal fields and test window before use. The empty target values deliberately avoid an unscoped search. No query has been executed against a customer workspace.</p>
+<figure class="artifact"><figcaption><span>Key Vault resource-specific events · KQL</span><span class="artifact-state">ILLUSTRATIVE QUERY · NOT EXECUTED</span></figcaption><pre tabindex="0" aria-label="Key Vault resource-specific events · KQL example"><code>// Illustrative Azure resource-specific event inspection — NOT EXECUTED.
+// Requires AZKVAuditLogs collection and permission to query the workspace.
+// Fill targetResourceId from verified discovery before use.
+// Empty input deliberately matches no records; zero rows are not PASS.
+let targetResourceId = "";
+AZKVAuditLogs
+| where TimeGenerated &gt; ago(30m)
+| where isnotempty(targetResourceId)
+| where _ResourceId =~ targetResourceId
+| project TimeGenerated, OperationName, HttpStatusCode,
+          ResultType, CallerIpAddress, Identity, CorrelationId
+| order by TimeGenerated desc</code></pre></figure>
+<figure class="artifact"><figcaption><span>Entra service-principal sign-ins · KQL</span><span class="artifact-state">ILLUSTRATIVE QUERY · NOT EXECUTED</span></figcaption><pre tabindex="0" aria-label="Entra service-principal sign-ins · KQL example"><code>// Illustrative Entra service-principal event inspection — NOT EXECUTED.
+// Requires the corresponding sign-in log export and query permissions.
+// Supply the verified application client ID, not a principal object ID.
+let targetAppId = "";
+AADServicePrincipalSignInLogs
+| where TimeGenerated &gt; ago(30m)
+| where isnotempty(targetAppId)
+| where AppId == targetAppId
+| project TimeGenerated, AppId, ServicePrincipalId,
+          ResultType, ResultSignature, CorrelationId, IPAddress
+| order by TimeGenerated desc</code></pre></figure>
+<p class="references">Schema references: <a href="https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/azkvauditlogs" target="_blank" rel="noopener noreferrer">AZKVAuditLogs ↗</a> <a href="https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/aadserviceprincipalsigninlogs" target="_blank" rel="noopener noreferrer">AADServicePrincipalSignInLogs ↗</a>. AWS collection reference: <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/logging-data-events-with-cloudtrail.html" target="_blank" rel="noopener noreferrer">CloudTrail data events ↗</a>.</p>
+<aside class="note"><strong>Cloud-specific query engines:</strong> CloudTrail Lake SQL, Athena SQL, Azure KQL and Google Cloud Logs Explorer use different sources and schemas. Build and test a query for the chosen destination rather than labeling a generic filter as universal forensic correlation.</aside></section><section class="page-section" id="dpl" aria-labelledby="dpl-title"><header class="section-heading"><span class="eyebrow">[SECTION 07]</span><h2 id="dpl-title">Defect, Patch and Improvement Records</h2><p>Capture diagnostic history while it is available. A reproducible lesson connects the symptom, cause, change and verification result without turning a local workaround into a universal rule.</p></header>
+<div class="grid cols-3">
+<article class="card cyan"><h3>1. Isolate the defect</h3><ul class="clean-list"><li><strong>Evidence:</strong> Record the exact error, context, affected revision and current hypothesis. Redact sensitive payloads.</li><li><strong>Controlled experiment:</strong> Review the smallest useful change, expected outcome and recovery before retrying.</li></ul></article>
+<article class="card purple"><h3>2. Reassess the trajectory</h3><ul class="clean-list"><li><strong>Attempt budget:</strong> The original three repair attempts followed by a fourth-iteration review can be retained as a chosen process rule. It is not a scientific safety threshold.</li><li><strong>Risk review:</strong> Use the observed error changes and blast radius. Do not weaken policy or invent a success percentage to justify continuation.</li></ul></article>
+<article class="card green"><h3>3. Release a tested lesson</h3><ul class="clean-list"><li><strong>Reproduction:</strong> Verify the fix, its security effects and relevant regression cases. A successful workaround does not establish a universal root cause.</li><li><strong>Versioned update:</strong> Review directive or template changes. Permit obsolete rules to be revised or retired. Record counts from actual entries.</li></ul></article>
+</div>
+<figure class="artifact"><figcaption><span>patch_ledger.md</span><span class="artifact-state">ILLUSTRATIVE TEMPLATE · NO VERIFIED FIX ASSERTED</span></figcaption><pre tabindex="0" aria-label="patch_ledger.md example"><code># DEFECT &amp; PATCH LEDGER (DPL)
+Record type: ILLUSTRATIVE TEMPLATE — NOT A VERIFIED INCIDENT HISTORY
+
+## Entry: [unique defect ID and descriptive title]
+Run / configuration revision / affected scope: [record actual values]
+Error / symptom: [exact sanitized error and evidence reference]
+Initial cause hypothesis: [separate inference from observation]
+
+| Attempt | Proposed change | Expected observation | Actual result | Evidence |
+| --- | --- | --- | --- | --- |
+| NOT RUN | No change authorized | Not evaluated | PENDING | None |
+
+Confirmed cause: NOT ESTABLISHED
+Verified fix: NOT ESTABLISHED
+Security effects / recovery / residual risk: PENDING REVIEW
+Decision: Continue scoped testing / escalate / abandon hypothesis
+Owner and review checkpoint: [record actual values]
+
+## Candidate lesson
+Proposed directive or template change: [only after evidence supports it]
+Regression cases and results: NOT RUN
+Reviewer approval and released revision: PENDING</code></pre></figure>
+<aside class="note"><strong>No invented incident provenance:</strong> The original examples of diagnostic collisions, claim mismatch, replication delay and MFA errors are useful failure categories. Without supporting execution records, this page does not label them proven incidents or claim that a fixed delay or portal handoff prevents recurrence.</aside></section><section class="page-section" id="index" aria-labelledby="index-title"><header class="section-heading"><span class="eyebrow">[SECTION 08]</span><h2 id="index-title">Day-2 Capability Review Domains</h2><p>Extend the baseline through scoped, cloud-specific changes. The domains below organize candidate work; they are not a catalog of implemented or validated modules.</p></header>
+<div class="grid cols-2">
+<article class="card cyan"><h3>Recheck before expansion</h3><ul class="clean-list"><li><strong>Refresh context:</strong> Read the current baseline and effective policies. Reuse prior facts only after verifying that their assumptions, dependencies and source protections remain current.</li><li><strong>Review the change:</strong> Identify privileges, licensing or platform prerequisites, new dependencies and the proposed state changes. Additive code can introduce denies, conflicts or broader access.</li></ul></article>
+<article class="card purple"><h3>Validate and own the result</h3><ul class="clean-list"><li><strong>Retest:</strong> Run relevant allow/deny cases and check log coverage. Update the baseline and findings using actual evidence; do not inherit a previous PASS automatically.</li><li><strong>Operational handoff:</strong> Assign monitoring, review and recovery ownership. Document exceptions and expiration, and include a safe rollback or compensating action.</li></ul></article>
+</div>
+<div class="domain-grid" style="margin-top:1.5rem"><article class="domain-card"><h3>01 · Boundary and Directory Foundations</h3><ul><li>Account, tenant, project and organization ownership</li><li>Principal inventory, administrative roles and organizational boundaries</li><li>Attributes, tags and access-policy prerequisites</li></ul><p>Review which objects and permissions the module changes.</p></article><article class="domain-card"><h3>02 · Conditional and Perimeter Controls</h3><ul><li>Workload conditional access where supported</li><li>Organization guardrails, permission boundaries and session restrictions</li><li>Private endpoints, network perimeters and service-access controls</li></ul><p>These controls operate at different layers and are not interchangeable across clouds.</p></article><article class="domain-card"><h3>03 · Credentials and Keys</h3><ul><li>Federation providers and alternate credential retirement</li><li>Key-management permissions, rotation and hardware-backed operations</li><li>Human administrator authentication and emergency access</li></ul><p>Human MFA and workload authentication require distinct designs.</p></article><article class="domain-card"><h3>04 · Cross-Boundary Federation</h3><ul><li>Cross-account, tenant or project trust</li><li>External issuers and workload identity pools</li><li>Resource sharing, attribute conditions and source ownership</li></ul><p>Review both sides of trust and the ability to modify the trusted source.</p></article><article class="domain-card"><h3>05 · Workload Lifecycle</h3><ul><li>Roles, applications, service principals and service accounts</li><li>Managed and Kubernetes workload identities</li><li>Ownership, credential inventory and deprovisioning</li></ul><p>Verify the specific identity mechanism and its supported controls.</p></article><article class="domain-card"><h3>06 · Privileged Governance</h3><ul><li>Deployment privileges and time-limited elevation</li><li>Access reviews, unused grants and exception expiration</li><li>Owner assignment, separation of duties and change approval</li></ul><p>Workforce governance features do not automatically govern machine identities.</p></article><article class="domain-card"><h3>07 · Hybrid and Multi-Cloud Telemetry</h3><ul><li>Federation or synchronization health where relevant</li><li>Cloud audit collection, alert routing and retention</li><li>Credential use, identity changes and effective-access drift</li></ul><p>A saved query becomes an operational detector only with a working collection and response process.</p></article></div>
+<aside class="note"><strong>Coverage should be demonstrated:</strong> For each module, show whether it is planned, implemented or tested, and link the matching configuration and evidence. Inspect the <a href="add-capabilities.html">Day-2 modules page</a> for project details and the <a href="workflow-portfolio.html">demonstrations</a> for the available execution records.</aside></section>
+</main><footer class="ip-footer">
+        <div class="footer-crest-wrapper">
+            <svg class="footer-brand-crest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+                <rect width="114" height="114" x="3" y="3" fill="#020617" rx="22" stroke="#1e293b" stroke-width="3"/>
+                <polygon points="24,18 60,36 60,48 24,30" fill="#475569"/>
+                <polygon points="96,18 60,36 60,48 96,30" fill="#1e293b"/>
+                <polygon points="24,39 60,57 60,69 24,51" fill="#0284c7"/>
+                <polygon points="96,39 60,57 60,69 96,51" fill="#075985"/>
+                <polygon points="24,60 60,78 60,90 24,72" fill="#38bdf8"/>
+                <polygon points="96,60 60,78 60,90 96,72" fill="#0369a1"/>
+                <polygon points="24,81 60,99 60,111 24,93" fill="#f43f5e"/>
+                <polygon points="96,81 60,99 60,111 96,93" fill="#9f1239"/>
+            </svg>
         </div>
-
-        <span class="hero-tag">[EXPLOIT-LEVEL PIPELINE MECHANICS, LIVE AUDIT LEDGERS &amp; MULTI-LANGUAGE SYNTHESIS]</span>
-        <div class="hero-title-container">
-            <h1 class="hero-title">EXPLOIT-LEVEL PIPELINE ARCHITECTURE</h1>
-        </div>
-
-        <!-- BULLETED HERO INTRO BOX -->
-        <div class="section-intro-box" style="margin-bottom: 0;">
-            <div class="intro-lead-sentence">
-                How The Adversarial Kill-Chain Counter-Engineering State Machine (System Directive v1.0) compiles verified multi-cloud coordinates (AWS IAM &amp; STS, Microsoft Entra ID &amp; Azure, and Google Cloud IAM) into a finished 4-Gate IaC Payload, Terminal Runbook, and four formal compliance ledgers across all 26 fixed variables defined in the <a href="glossary.html" class="inline-link">26-Variable System Glossary</a>:
-            </div>
-            <ul class="clean-bullet-list">
-                <li>
-                    <span class="bullet-lead">Hardwiring Code Synthesis to Mathematical Audit Proof:</span> Every deployment executed across Phases 1 through 7 physically links Phase 3 IaC Payload synthesis to two-stage live verification in Phases 4 and 5&mdash;making it structurally impossible to provision a non-human machine identity without neutralizing Offensive Stages 1 through 7 in sequence and generating its cryptographic audit proof.
-                </li>
-                <li>
-                    <span class="bullet-lead">Inspecting the Live Counter-Engineering Artifacts:</span> This specification details the dual-stream compilation mechanics of The State Machine, the orbital drift-prevention loop, multi-language synthesis across Terraform HCL, AWS CLI/CloudFormation, Azure Bicep, PowerShell REST API, and Python, the four generated compliance ledgers (Identity Architecture Ledger, Audit Results Ledger, standby CloudTrail/KQL/SIEM Telemetry, and Defect &amp; Patch Ledger), and the Day-2 Multi-Cloud security modules.
-                </li>
-            </ul>
-        </div>
-    </header>
-
-    <!-- ================= ZONE 2: MODULE 1 (ANATOMY) & MODULE 2 (WORKFLOW) ================= -->
-    <section id="anatomy" class="stacked-section" style="padding-top: 3.5rem;">
-        
-        <div class="section-intro">
-            <span class="section-kicker">[SECTION 01 :: THE CENTRAL COMPILER HARNESS]</span>
-            <h2 class="section-title">Anatomy of the Adversarial Kill-Chain Counter-Engineering State Machine</h2>
-            
-            <!-- ARCHITECTURAL INSIGHT -->
-            <div class="insight-box">
-                <div class="insight-header">Architectural Insight: Hardwiring Code Synthesis to Compliance Proof</div>
-                <div class="insight-text">
-                    In traditional cloud engineering, infrastructure is deployed first and audited months later&mdash;creating an unverified compliance gap (Offensive Stage 5) between what was written and what is actually enforced in production. The structural advantage of The Adversarial Kill-Chain Counter-Engineering State Machine is that it physically links Phase 3 IaC Payload synthesis to Phase 4 and Phase 5 verification: because the 4-Gate compiler and the ledger generator share the exact same 7-phase state pipeline, every IAM Role, Service Principal, and OpenID Connect (OIDC) Subject Claim is backed by live telemetry proof and formal audit ledgers.
-                </div>
-            </div>
-        </div>
-        
-        <div class="feature-grid-3">
-            <div class="feature-card blue">
-                <h3 class="feature-title">1. Deterministic Coordinate Intake</h3>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">5 Build Coordinates (Phase 1):</span> Operating from a clean local workspace with five blank deliverable files, The Architect locks in the Identity Core (AWS IAM &amp; STS, Microsoft Entra ID, or Google Cloud IAM), Execution Agent, Infrastructure State, Data-Plane Asset, and IaC Payload language across 216+ baseline combinations.
-                    </li>
-                    <li>
-                        <span class="bullet-lead">Live CLI Ground-Truth Extraction (Phase 2):</span> The Architect executes read-only terminal lookup scripts (using silent read -s input) to extract the verified AWS Account ID, Entra ID Tenant ID, Azure Subscription ID, Resource Group, or GCP Project ID and exact case-sensitive Code Repository and Branch string before any code is written.
-                    </li>
-                </ul>
-            </div>
-            
-            <div class="feature-card cyan">
-                <h3 class="feature-title">2. The 4-Gate Baseline Enforcer</h3>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">Gates 1, 2 &amp; 3 Enforcement:</span> Enforces Brownfield (Existing) read-only lookups or Greenfield (Net-New) deletion-prevention locks (Gate 1), account/tenant-isolated IAM Roles and Service Principals with Disabled Browser Redirect URLs and zero passwords/static keys (Gate 2), and wildcard-free OpenID Connect (OIDC) Subject Claims with a mandatory 30-Second Server Sync Timer (Gate 3).
-                    </li>
-                    <li>
-                        <span class="bullet-lead">Gate 4 Least Privilege &amp; MFA Handoff:</span> Blocks broad Admin, Owner, and Contributor Roles completely ("The Contributor Trap") and scopes one Data-Plane Role strictly to the single Data-Plane Asset&mdash;decoupling into a guided Cloud Console MFA Handoff whenever local terminals drop MFA claims.
-                    </li>
-                </ul>
-            </div>
-            
-            <div class="feature-card green">
-                <h3 class="feature-title">3. Two-Stage Proof &amp; Ledger Generator</h3>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">Phase 4 Baseline &amp; Stage 1 Metrics:</span> Saves the pre-test Identity Architecture Ledger (IAL), executes the live .yml Validation Bridge (with active Runtime Log Masking scrubbing tokens with ***) on the Execution Agent, and proves live access via cloud monitoring metrics (Total Service API Hits / CloudWatch / Portal Metrics).
-                    </li>
-                    <li>
-                        <span class="bullet-lead">Phase 5 Audit Immunity &amp; Phase 6 Sync:</span> Generates the Audit Results Ledger (ARL), standby CloudTrail/KQL/SIEM Telemetry (kql_telemetry.md), and finalized Defect &amp; Patch Ledger (patch_ledger.md or DPL) in Phase 5, and pushes the five sterilized files behind a .gitignore barrier in Phase 6.
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="canvas-wrapper">
-            <div class="diagram-wrapper-wide anatomy-diagram scrollable-diagram">
-                
-                <!-- FORMAL DIAGRAM HEADER BAR -->
-                <div class="diagram-header-bar">
-                    <span class="diagram-header-tag">[SCHEMATIC 01 :: DUAL-STREAM COMPILATION TOPOLOGY]</span>
-                    <div class="diagram-header-title">State Machine Anatomy: Dual-Stream Execution &amp; Verification</div>
-                </div>
-
-                <svg class="anatomy-svg" xmlns="http://www.w3.org/2000/svg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
-                    <defs>
-                        <marker id="arr-cyan-2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0ea5e9" /></marker>
-                        <marker id="arr-purple-2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#a855f7" /></marker>
-                        <marker id="arr-green-2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#10b981" /></marker>
-                    </defs>
-                    <!-- Tier 1 to Tier 2 -->
-                    <path class="animated-path" d="M 590 250 L 590 310" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arr-cyan-2)" />
-                    <!-- Tier 2 to Left Tier 3 -->
-                    <path class="animated-path" d="M 590 465 L 590 510 L 300 510 L 300 550" fill="none" stroke="#a855f7" stroke-width="3" marker-end="url(#arr-purple-2)" />
-                    <!-- Tier 2 to Right Tier 3 -->
-                    <path class="animated-path" d="M 590 465 L 590 510 L 880 510 L 880 550" fill="none" stroke="#10b981" stroke-width="3" marker-end="url(#arr-green-2)" />
-                </svg>
-
-                <div class="a-node a-input">
-                    <div class="tag">[PHASES 1 &amp; 2: ARCHITECT COORDINATE INTAKE]</div>
-                    <div class="title">5 Build Coordinates &amp; Live CLI Lookups</div>
-                    <div class="sub">AWS Account, Entra ID Tenant &amp; Subscription, or GCP Project IDs, wildcard-free Execution Agent Subject Claim, and Data-Plane Asset.</div>
-                </div>
-                
-                <div class="a-node a-engine">
-                    <div class="tag" style="color: var(--color-cyan); border-color: rgba(14,165,233,0.4);">[THE CENTRAL CONTROLLER :: SYSTEM DIRECTIVE v1.0]</div>
-                    <div class="title" style="font-size: 1.08rem;">Counter-Engineering State Machine</div>
-                    <div class="sub">Governs The Architect and The AI Engine across 7 sequential phases, locking in Gates 1 to 4 and the 5 Enterprise Guardrails.</div>
-                </div>
-                
-                <div class="a-node a-out-1">
-                    <div class="tag" style="color: var(--color-purple); border-color: rgba(168,85,247,0.4);">[PHASE 3: SYNTHESIZED FORCE]</div>
-                    <div class="title">4-Gate IaC Payload &amp; 60-Min OIDC Trust</div>
-                    <div class="sub">Finished Terraform HCL, AWS CLI, Azure Bicep, PowerShell REST API, or Python IaC Payload, Terminal Runbook, and 30s Sync Timer.</div>
-                </div>
-                
-                <div class="a-node a-out-2">
-                    <div class="tag" style="color: var(--color-green); border-color: rgba(16,185,129,0.4);">[PHASES 4 TO 7: PROOF &amp; EVOLUTION]</div>
-                    <div class="title">Two-Stage Proof &amp; 4 Audit Ledgers</div>
-                    <div class="sub">Masked Validation Bridge, Cloud Monitoring Metrics, IAL, ARL, CloudTrail/KQL/SIEM Telemetry, DPL, and Phase 7 Directive Compilation.</div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="diagram-caption-box">
-            <ul class="clean-bullet-list">
-                <li>
-                    <span class="bullet-lead">Dual-Stream Architectural Output:</span> As shown in the live schematic above, The Counter-Engineering State Machine compiles the verified Phase 1 and Phase 2 coordinates into two synchronized streams: the Phase 3 4-Gate IaC Payload and Terminal Runbook on the left, and the Phase 4 through Phase 7 verification and compliance ledgers on the right.
-                </li>
-            </ul>
-        </div>
-
-    </section>
-
-    <!-- TRANSITION BRIDGE -->
-    <div id="workflow" class="transition-wrapper">
-        <div class="section-divider-line"></div>
-        <h2 class="deep-dive-header">Closed-Loop Governance &amp; Drift Prevention</h2>
-    </div>
-
-    <!-- MODULE 2: ARCHITECTURAL WORKFLOW -->
-    <section class="stacked-section">
-        
-        <div class="section-intro">
-            <span class="section-kicker">[SECTION 02 :: TETHERED STATE-SWITCHING &amp; DIRECTIVE 05]</span>
-            <h2 class="section-title">The Closed-Loop Governance Workflow</h2>
-            
-            <!-- ARCHITECTURAL INSIGHT -->
-            <div class="insight-box">
-                <div class="insight-header">Architectural Insight: Eliminating Security Drift During Mid-Build Troubleshooting</div>
-                <div class="insight-text">
-                    The single greatest risk of using generative AI in cloud security occurs during high-pressure troubleshooting, where an untethered model loses context and weakens security controls (inserting a wildcard or granting Admin/Owner/Contributor) just to clear an error. The Adversarial Kill-Chain Counter-Engineering State Machine prevents this by acting as an un-bypassable governance anchor: The AI Engine steps out of the harness into [MODE: COLLABORATIVE TROUBLESHOOTING] only when authorized during the Standard Patch Loop (Iterations 1 to 3), and immediately tethers back into [MODE: RESUMING DETERMINISTIC EXECUTION] to output a real-time [DPL ENTRY] and a full-file State Re-Sync for The Architect's approval.
-                </div>
-            </div>
-        </div>
-        
-        <div class="feature-grid-2x2">
-            <div class="feature-card blue">
-                <h3 class="feature-title">1. Strategic Command (The Architect)</h3>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">Command Authority at the Keyboard (Variable 01):</span> Operating from Visual Studio Code and Git Bash inside a clean local folder, The Architect drives the entire build across Phases 1 through 7 and holds sole approval authority at every [STRICT HALT] gate.
-                    </li>
-                    <li>
-                        <span class="bullet-lead">Local Execution &amp; Guided MFA Handoffs:</span> The Architect executes the Terminal Runbook and IaC Payload locally (using silent read -s input) and completes the guided Cloud Console MFA Handoff whenever local terminal sessions drop interactive MFA claims.
-                    </li>
-                </ul>
-            </div>
-            
-            <div class="feature-card purple">
-                <h3 class="feature-title">2. Fixed 26-Variable Lexicon</h3>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">Bijective One-to-One Variable Control:</span> Grounded in the <a href="glossary.html" class="inline-link">26-Variable System Glossary</a>, every actor, coordinate, security gate component, and audit ledger is locked to one fixed Title-Case system variable from Phase 1 through Phase 7 with zero synonym drift.
-                    </li>
-                    <li>
-                        <span class="bullet-lead">Controlled AI State-Switching (Variable 03):</span> The AI Engine steps out of the harness only to synthesize the IaC Payload or diagnose errors under Directive 05, then snaps right back into The State Machine for human sign-off.
-                    </li>
-                </ul>
-            </div>
-
-            <div class="feature-card red">
-                <h3 class="feature-title">3. All-Phase Patching vs. Circuit Breaking</h3>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">Standard Patch Loop (Iterations 1 to 3 &mdash; Variable 24):</span> Routine errors at any phase are fixed in clinical diagnostic mode (resetting to Iteration 1 for each new, isolated defect), staged immediately in the Defect &amp; Patch Ledger (DPL), and followed by a mandatory full-file State Re-Sync of the IaC Payload.
-                    </li>
-                    <li>
-                        <span class="bullet-lead">The 4-Iteration Circuit Breaker (Variable 25):</span> Completely separate from routine DPL logging; trips only if a single isolated error fails 3 consecutive attempts and hits Iteration 4&mdash;forbidding new code generation and forcing an Estimated Probability of Success (X%) assessment.
-                    </li>
-                </ul>
-            </div>
-            
-            <div class="feature-card cyan">
-                <h3 class="feature-title">4. Two-Stage Verification &amp; Evolution</h3>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">Stage 1 Cloud Metrics Then Stage 2 Standby Telemetry:</span> Proves live Data-Plane Asset access immediately via cloud monitoring metrics (Total Service API Hits / CloudWatch / Portal Metrics) in Phase 4, followed by the ARL and standby CloudTrail/KQL/SIEM Telemetry (kql_telemetry.md) in Phase 5.
-                    </li>
-                    <li>
-                        <span class="bullet-lead">Phase 7 Self-Hardening Evolution (Variable 26):</span> Audits the session via the bullet-counted AI Performance Scorecard and compiles all verified DPL lessons permanently into the master System Directive at session close.
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="canvas-wrapper">
-            <div class="diagram-wrapper-wide workflow-diagram scrollable-diagram">
-                
-                <!-- FORMAL DIAGRAM HEADER BAR -->
-                <div class="diagram-header-bar">
-                    <span class="diagram-header-tag">[SCHEMATIC 02 :: CLOSED-LOOP GOVERNANCE ORBIT]</span>
-                    <div class="diagram-header-title">Tethered State-Switching &amp; Drift Prevention Loop</div>
-                </div>
-
-                <div class="w-ring"></div>
-                
-                <div class="w-center">
-                    <div class="w-center-title">[CENTRAL CONTROLLER]</div>
-                    <div class="w-center-main">Counter-Engineering<br>State Machine</div>
-                </div>
-
-                <div class="w-node w-n1">
-                    <div class="w-node-title">1. The Architect (HITL)</div>
-                    <div class="w-node-sub">Locks in the 5 Build Coordinates, runs read-only CLI lookups, and holds approval authority at every gate.</div>
-                </div>
-
-                <div class="w-node w-n2">
-                    <div class="w-node-title">2. The AI Engine</div>
-                    <div class="w-node-sub">Synthesizes the Phase 3 IaC Payload, Terminal Runbook, and Phase 4 Validation Bridge inside the harness.</div>
-                </div>
-
-                <div class="w-node w-n3">
-                    <div class="w-node-title">3. Patch Loop &amp; Circuit Breaker</div>
-                    <div class="w-node-sub">Logs Iterations 1 to 3 in the DPL with a full-file State Re-Sync, or halts on Iteration 4 for X% risk analysis.</div>
-                </div>
-
-                <div class="w-node w-n4">
-                    <div class="w-node-title">4. Live Proof &amp; Phase 7 Upgrade</div>
-                    <div class="w-node-sub">Verifies Cloud Monitoring Metrics, generates IAL, ARL, and CloudTrail/KQL, and compiles the upgraded System Directive.</div>
-                </div>
-
-            </div>
-        </div>
-        
-        <div class="diagram-caption-box">
-            <ul class="clean-bullet-list">
-                <li>
-                    <span class="bullet-lead">The Orbital Governance Loop:</span> Every interaction between The Architect, The AI Engine, the Directive 05 diagnostic protocol, and live cloud verification is tethered to The Adversarial Kill-Chain Counter-Engineering State Machine so the build can never drift.
-                </li>
-            </ul>
-        </div>
-
-    </section>
-
-    <!-- ================= ZONE 3: MODULE 3 (FEDERATION) & MODULE 4 (IAL LEDGER) ================= -->
-    <div id="federation" class="transition-wrapper">
-        <div class="section-divider-line"></div>
-        <h2 class="deep-dive-header">Federation &amp; Multi-Language IaC Synthesis</h2>
-    </div>
-
-    <!-- MODULE 3: FEDERATION EXECUTION -->
-    <section class="stacked-section">
-        
-        <div class="section-intro">
-            <span class="section-kicker">[SECTION 03 :: GATES 1, 2, 3 &amp; 4 IN CODE]</span>
-            <h2 class="section-title">Passwordless OIDC Federation &amp; Multi-Language IaC Payloads</h2>
-
-            <!-- ARCHITECTURAL INSIGHT -->
-            <div class="insight-box">
-                <div class="insight-header">Architectural Insight: Eradicating Static Passwords &amp; Wildcards at the Root</div>
-                <div class="insight-text">
-                    Rather than vaulting and rotating static client secrets or IAM access keys that attackers can harvest, The Adversarial Kill-Chain Counter-Engineering State Machine eliminates saved passwords completely across Gate 2 and Gate 3. By binding an account/tenant-isolated IAM Role, Application Registration &amp; Service Principal, or GCP Service Account (with Disabled Browser Redirect URLs) to a wildcard-free OpenID Connect (OIDC) Subject Claim and a mandatory 30-Second Server Sync Timer, the external Execution Agent trades its cryptographically signed identity card for a short-lived 60-Minute Login Token scoped strictly to one Data-Plane Role on one Data-Plane Asset.
-                </div>
-            </div>
-        </div>
-        
-        <div class="feature-grid-2x2">
-            <div class="feature-card blue">
-                <h3 class="feature-title">1. Zero Static Passwords (Gate 2)</h3>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">Isolated Identity Principal:</span> Provisions or binds a dedicated AWS IAM Role, Microsoft Entra Application Registration &amp; Service Principal, or GCP Service Account locked strictly to the organization's own boundary (such as Single-Tenant Mode / AzureADMyOrg or isolated AWS/GCP trust policies) with zero saved passwords, static access keys, or client secrets.
-                    </li>
-                    <li>
-                        <span class="bullet-lead">Disabled Browser Redirect URLs:</span> Turns off all interactive web browser redirect URLs (Blank Redirect URI) because a headless Execution Agent never authenticates through a web browser.
-                    </li>
-                </ul>
-            </div>
-            
-            <div class="feature-card cyan">
-                <h3 class="feature-title">2. 60-Minute OIDC Federation (Gate 3)</h3>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">Wildcard-Free Subject Claim (Blocks Stage 2):</span> Locks the OpenID Connect (OIDC) Subject Claim character-for-character to the exact capital-and-lowercase Code Repository and Branch string (such as CompCode1) extracted via CLI in Phase 2 with zero wildcards (*).
-                    </li>
-                    <li>
-                        <span class="bullet-lead">Mandatory 30-Second Server Sync Timer:</span> Embeds a 30-second pause (time_sleep / Start-Sleep -Seconds 30) into the Phase 3 IaC Payload so cloud IAM servers finish global replication before attaching Gate 3 rules.
-                    </li>
-                </ul>
-            </div>
-
-            <div class="feature-card purple">
-                <h3 class="feature-title">3. Multi-Language IaC Payload (Coordinate 5)</h3>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">Multi-Language IaC Payload Tracks:</span> Synthesizes 100% finished code in Terraform HCL, AWS CLI/CloudFormation, Azure Bicep, PowerShell REST API, or Python paired with a step-by-step local Terminal Runbook (with silent read -s parameter input).
-                    </li>
-                    <li>
-                        <span class="bullet-lead">Pinned Versions &amp; Pure Schemas (Guardrail 4):</span> Enforces exact pinned provider and API versions and pure provider JSON property names on REST API and SDK builds so cross-language syntax bleed never occurs.
-                    </li>
-                </ul>
-            </div>
-            
-            <div class="feature-card teal">
-                <h3 class="feature-title">4. Single-Asset Data-Plane Role (Gate 4)</h3>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">Blocking Admin, Owner &amp; Contributor Roles (Guardrail 3):</span> Neutralizes Offensive Stage 3 ("The Contributor Trap") by blocking broad management roles and assigning one specific Data-Plane Role scoped strictly to the single Data-Plane Asset (ARN / Resource ID).
-                    </li>
-                    <li>
-                        <span class="bullet-lead">Brownfield vs. Greenfield Protection (Guardrail 2):</span> Enforces strict read-only lookups on Brownfield (Existing) Data-Plane Assets and deletion-prevention locks (prevent_destroy = true / CanNotDelete) on Greenfield (Net-New) assets.
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="canvas-wrapper">
-            <div class="diagram-wrapper-wide federation-diagram scrollable-diagram">
-                
-                <!-- FORMAL DIAGRAM HEADER BAR -->
-                <div class="diagram-header-bar">
-                    <span class="diagram-header-tag">[SCHEMATIC 03 :: MULTI-LANGUAGE IAC PAYLOAD ENGINE]</span>
-                    <div class="diagram-header-title">4-Gate OIDC Counter-Engineering Across All IaC Payload Tracks</div>
-                </div>
-
-                <svg class="routing-lines" xmlns="http://www.w3.org/2000/svg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
-                    <defs>
-                        <marker id="arr-cyan-f" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0ea5e9" /></marker>
-                        <marker id="arr-blue-f" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6" /></marker>
-                        <marker id="arr-purple-f" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#a855f7" /></marker>
-                    </defs>
-                    <path class="animated-path" d="M 480 325 L 555 325 L 555 175 L 625 175" fill="none" stroke="#0ea5e9" stroke-width="3" marker-end="url(#arr-cyan-f)" />
-                    <path class="animated-path" d="M 480 325 L 625 325" fill="none" stroke="#3b82f6" stroke-width="3" marker-end="url(#arr-blue-f)" />
-                    <path class="animated-path" d="M 480 325 L 555 325 L 555 475 L 625 475" fill="none" stroke="#a855f7" stroke-width="3" marker-end="url(#arr-purple-f)" />
-                </svg>
-
-                <div class="f-node f-engine">
-                    <div class="logic">[PHASE 3 :: IAC PAYLOAD SYNTHESIS]</div>
-                    <div class="title">Counter-Engineering State Machine</div>
-                    <div class="desc">Compiles Gates 1 to 4, the 30-Second Server Sync Timer, and the 5 Enterprise Guardrails into any selected IaC Payload track:</div>
-                </div>
-
-                <div class="f-node f-target f-tf">
-                    <div class="f-target-icon">.tf</div>
-                    <div class="f-target-text">
-                        <span class="f-target-title">1. Terraform (HCL) IaC Payload</span>
-                        <span class="f-target-sub">Pinned aws, azurerm, azuread, google, and time_sleep (30s) providers with Brownfield data blocks or Greenfield prevent_destroy locks.</span>
-                    </div>
-                </div>
-
-                <div class="f-node f-target f-az">
-                    <div class="f-target-icon">CLI</div>
-                    <div class="f-target-text">
-                        <span class="f-target-title">2. AWS CLI / Azure Bicep IaC Payload</span>
-                        <span class="f-target-sub">Native AWS CLI / CloudFormation and Microsoft Graph Bicep templates using existing lookups for Brownfield assets and single-asset role bindings.</span>
-                    </div>
-                </div>
-
-                <div class="f-node f-target f-api">
-                    <div class="f-target-icon">API</div>
-                    <div class="f-target-text">
-                        <span class="f-target-title">3. PowerShell REST / Python IaC Payload</span>
-                        <span class="f-target-sub">Direct Invoke-RestMethod and Python (Boto3 / SDK) payloads enforcing pure JSON schemas, 30s Sync Timers, and Cloud Console MFA Handoffs.</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        
-        <div class="diagram-caption-box">
-            <ul class="clean-bullet-list">
-                <li>
-                    <span class="bullet-lead">Multi-Language Deterministic Synthesis:</span> Regardless of whether The Architect selects Terraform HCL, AWS CLI/Bicep, or PowerShell REST/Python as Coordinate 5 in Phase 1, The Counter-Engineering State Machine enforces the exact same Gate 1 through Gate 4 security baseline across all 72+ multi-cloud combinations.
-                </li>
-            </ul>
-        </div>
-
-    </section>
-
-    <!-- TRANSITION BRIDGE -->
-    <div id="ledger" class="transition-wrapper">
-        <div class="section-divider-line"></div>
-        <h2 class="deep-dive-header">Phase 4: Identity Architecture Ledger (IAL)</h2>
-    </div>
-
-    <!-- MODULE 4: IDENTITY ARCHITECTURE LEDGER -->
-    <section class="stacked-section">
-        
-        <div class="section-intro">
-            <span class="section-kicker">[SECTION 04 :: PRE-TEST CRYPTOGRAPHIC BASELINE RECORD (VARIABLE 19)]</span>
-            <h2 class="section-title">The Identity Architecture Ledger (IAL)</h2>
-
-            <!-- ARCHITECTURAL INSIGHT -->
-            <div class="insight-box">
-                <div class="insight-header">Architectural Insight: Transforming Infrastructure-as-Code into Compliance-as-Code</div>
-                <div class="insight-text">
-                    In enterprise cloud environments, an undocumented deployment is an un-auditable deployment. Generated at Step 1 of Phase 4 immediately after Phase 3 deployment finishes (and right before the live Validation Bridge runs), the Identity Architecture Ledger (identity_architecture_ledger.md or IAL) records the exact deployed Gate 1 boundary coordinates, Gate 2 IAM Role ARN, Application Registration Client ID &amp; Service Principal Object ID, or GCP Service Account, Gate 3 wildcard-free OpenID Connect (OIDC) Subject Claim, and Gate 4 single-asset Data-Plane Role scope established in the live cloud.
-                </div>
-            </div>
-        </div>
-        
-        <div class="feature-grid-2x2">
-            <div class="feature-card blue">
-                <h3 class="feature-title">1. Exact Gate 1 &amp; Gate 2 Coordinates</h3>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">Boundary Nesting Verification (Section 1):</span> Records the verified AWS Account ID, Entra ID Tenant ID &amp; Azure Subscription ID / Resource Group, or GCP Project ID holding the target Data-Plane Asset.
-                    </li>
-                    <li>
-                        <span class="bullet-lead">Isolated Identity Profile (Section 2):</span> Documents the IAM Role ARN, Application Registration Client ID &amp; Service Principal Object ID, or GCP Service Account with single-account/tenant isolation enforced and Disabled Browser Redirect URLs.
-                    </li>
-                </ul>
-            </div>
-            
-            <div class="feature-card cyan">
-                <h3 class="feature-title">2. Wildcard-Free Gate 3 Subject Claim</h3>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">Exact Casing Documentation (Section 3):</span> Captures the exact capital-and-lowercase Code Repository and Branch spelling (such as CompCode1) locked into the OpenID Connect (OIDC) Subject Claim with zero wildcards (*).
-                    </li>
-                    <li>
-                        <span class="bullet-lead">60-Minute Token &amp; 30s Sync Timer:</span> Confirms the 60-Minute Login Token ceiling and the 30-Second Server Sync Timer enforced during Phase 3.
-                    </li>
-                </ul>
-            </div>
-
-            <div class="feature-card purple">
-                <h3 class="feature-title">3. Gate 4 Data-Plane Role &amp; Masking</h3>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">Single-Asset Scope (Section 4):</span> Records the exact Data-Plane Role assigned to the identity principal on the single Data-Plane Asset (with broad Admin, Owner, and Contributor Roles blocked, plus any Cloud Console MFA Handoff execution).
-                    </li>
-                    <li>
-                        <span class="bullet-lead">Active Runtime Log Masking:</span> Confirms active asterisk (***) scrubbing (::add-mask::) inside the Phase 4 Validation Bridge workflow file.
-                    </li>
-                </ul>
-            </div>
-            
-            <div class="feature-card green">
-                <h3 class="feature-title">4. Stage 1 Live Metrics Verification</h3>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">Immediate Mathematical Cloud Proof:</span> Pairs the pre-test baseline ledger with Step 3 of Phase 4&mdash;checking cloud monitoring metrics (Total Service API Hits / CloudWatch / Portal Metrics over the last 30 minutes) directly on the Data-Plane Asset to prove the 60-Minute Login Token unlocked the asset with zero 403 drops.
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="terminal-window">
-            <div class="terminal-header">
-                <div class="terminal-dots">
-                    <div class="dot red"></div>
-                    <div class="dot yellow"></div>
-                    <div class="dot green"></div>
-                </div>
-                <div class="terminal-title">identity_architecture_ledger.md</div>
-            </div>
-            
-            <pre class="terminal-body"><span class="t-cyan">IDENTITY ARCHITECTURE LEDGER (IAL)</span>
-<span class="t-muted">Cryptographic baseline record generated by The Adversarial Kill-Chain Counter-Engineering State Machine (System Directive v1.0).</span>
-Execution Agent: <span class="t-blue">GitHub Actions</span> | Identity Core: <span class="t-blue">Microsoft Entra ID (Representative Multi-Cloud Proof)</span>
-Execution Date: <span class="t-purple">2026-08-10</span> | Ledger State: <span class="t-green">[PHASE 4 BASELINE VERIFIED]</span>
-
-<span class="t-cyan">[GATE 1: BOUNDARY (WHERE IT LIVES)]</span>
-<span class="t-muted">1.1 Verified Nested Routing Coordinates</span>
-Entra ID Tenant ID (Identity Root) : 8a1b2c3d-4e5f-6g7h-8i9j-0k112m3n4o5p
-Azure Subscription ID (Asset Root) : c2b1a3d4-e5f6-7g8h-9i0j-1k213m4n506p
-Resource Group Perimeter           : rg-identity-security-prod
-Data-Plane Asset Name              : kv-acphf-prod-eus-01
-Infrastructure State Mode          : Brownfield (Existing) Read-Only Lookup
-
-<span class="t-muted">Boundary Nesting Verification</span>
-Are the Azure Subscription ID and Resource Group holding the Data-Plane Asset nested under the same Entra ID Tenant ID?
-<span class="t-green">&gt; [PASS] Nested boundary verified via local terminal lookup.</span>
-
-<span class="t-cyan">[GATE 2: IDENTITY (WHO THE MACHINE IS)]</span>
-<span class="t-muted">2.1 Non-Human Identity Profile</span>
-Application Registration Name      : ia-workload-agent-01
-Application (Client) ID            : d7e8f9a0-b1c2-d3e4-f5g6-h7i8j9k011m2
-Service Principal Object ID        : f3a4b5c6-d7e8-9f0a-1b2c-3d4e5f6a7b8c
-
-<span class="t-muted">2.2 Attack Surface Lockdown</span>
-Single-Tenant Mode Enforced        : (AzureADMyOrg) Restricted strictly to home Entra ID Tenant ID.
-Disabled Browser Redirect URLs     : (Blank Redirect URI) Interactive web browser callbacks disabled.
-Static Passwords / Client Secrets  : 0 (Zero saved passwords).
-
-<span class="t-cyan">[GATE 3: FEDERATION (HOW IT AUTHENTICATES)]</span>
-<span class="t-muted">3.1 OpenID Connect (OIDC) Trust Parameters</span>
-OIDC Issuer URL                    : https://token.actions.githubusercontent.com
-Audience Mapping                   : api://AzureADTokenExchange
-30-Second Server Sync Timer        : Injected (30s pause between Gate 2 creation and Gate 3 attachment)
-
-<span class="t-muted">3.2 Wildcard-Free Subject Claim Mapping</span>
-Subject Claim Template             : repo:[Target_Org]/[Target_Repo]:ref:refs/heads/[Target_Branch]
-Applied Subject Claim              : repo:CompCode1/machine-identity-1:ref:refs/heads/main
-<span class="t-comment">Subject Claim contains zero wildcards (*). Exact Code Repository and Branch casing (CompCode1) verified in Phase 2.</span>
-
-<span class="t-cyan">[GATE 4: ACCESS (WHAT IT CAN TOUCH) &amp; PHASE 4 VALIDATION BRIDGE]</span>
-<span class="t-muted">4.1 Single-Asset Data-Plane Role Assignment</span>
-Blocked Management Roles           : Admin, Owner, and Contributor Roles strictly blocked
-Assigned Data-Plane Role           : Key Vault Secrets User
-Data-Plane Asset Resource ID Scope : /subscriptions/c2b1a3d4.../resourceGroups/rg-identity-security-prod/providers/Microsoft.KeyVault/vaults/kv-acphf-prod-eus-01
-
-<span class="t-muted">4.2 60-Minute Login Token &amp; Validation Bridge Proof</span>
-Login Token Lifetime Ceiling       : 60-Minute Login Token
-Validation Bridge Log Masking      : Active (::add-mask:: asterisk *** scrubbing in memory)
-Stage 1 Live Verification          : <span class="t-green">[PASS] Cloud Monitoring Metrics (Total Service API Hits) spike confirmed with 0 HTTP 403 drops.</span></pre>
-        </div>
-        
-        <div class="diagram-caption-box">
-            <ul class="clean-bullet-list">
-                <li>
-                    <span class="bullet-lead">Permanent Pre-Test Baseline Blueprint:</span> Saved in the local workspace at Step 1 of Phase 4 and pushed to the sterilized Code Repository and Branch in Phase 6, the Identity Architecture Ledger (IAL) serves as the permanent structural receipt of Gates 1 through 4 across AWS, Entra ID, or GCP.
-                </li>
-            </ul>
-        </div>
-
-    </section>
-
-    <!-- ================= ZONE 4: MODULE 5 (ARL LEDGER) & MODULE 6 (KQL TELEMETRY) ================= -->
-    <div id="arl" class="transition-wrapper">
-        <div class="section-divider-line"></div>
-        <h2 class="deep-dive-header">Phase 5: Audit Results Ledger (ARL)</h2>
-    </div>
-
-    <!-- MODULE 5: AUDIT RESULTS LEDGER -->
-    <section class="stacked-section">
-        
-        <div class="section-intro">
-            <span class="section-kicker">[SECTION 05 :: POST-VALIDATION COMPLIANCE SCORECARD (VARIABLE 22)]</span>
-            <h2 class="section-title">The Audit Results Ledger (ARL)</h2>
-
-            <!-- ARCHITECTURAL INSIGHT -->
-            <div class="insight-box">
-                <div class="insight-header">Architectural Insight: Proving Runtime Exploit-Level Lockdown &amp; Audit Immunity</div>
-                <div class="insight-text">
-                    An IaC Payload finishing without a syntax error does not prove the live cloud defense holds under fire (Offensive Stage 5). Generated in Phase 5 only after the external Execution Agent runs the masked Validation Bridge to a green checkmark and The Architect verifies the live spike in cloud monitoring metrics (Total Service API Hits / CloudWatch / Portal Metrics) on the Data-Plane Asset, the Audit Results Ledger (audit_results_ledger.md or ARL) formally grades all 4 Architectural Gates and all 5 Enterprise Guardrails as [PASS].
-                </div>
-            </div>
-        </div>
-        
-        <div class="feature-grid-2x2">
-            <div class="feature-card blue">
-                <h3 class="feature-title">1. Auditing All 4 Architectural Gates</h3>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">Coordinate, Character, Clock &amp; Plane Checks:</span> Formally grades Gate 1 (Boundary coordinates), Gate 2 (Account/Tenant-isolated principal), Gate 3 (exact Subject Claim casing and 60-Minute Login Token ceiling), and Gate 4 (single-asset Data-Plane Role with zero HTTP 403 drops).
-                    </li>
-                </ul>
-            </div>
-            
-            <div class="feature-card cyan">
-                <h3 class="feature-title">2. Scoring the 5 Enterprise Guardrails</h3>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">Hard [PASS/FAIL] Verification Matrix:</span> Verifies Secret &amp; Credential Protection (read -s), Existing Asset Protection, Stopping "The Contributor Trap", Supply Chain Version Pinning, and Validation Bridge Runtime Log Masking (***).
-                    </li>
-                </ul>
-            </div>
-
-            <div class="feature-card purple">
-                <h3 class="feature-title">3. Two-Stage Telemetry Correlation</h3>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">Stage 1 Immediate &amp; Stage 2 Standby Proof:</span> Links the immediate Stage 1 proof from cloud monitoring metrics (Total Service API Hits / CloudWatch / Portal Metrics) in Phase 4 directly to the Stage 2 SIEM correlation scripts in Standby Telemetry (kql_telemetry.md).
-                    </li>
-                </ul>
-            </div>
-            
-            <div class="feature-card green">
-                <h3 class="feature-title">4. Board, Cyber-Insurer &amp; SOC 2 Immunity</h3>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">Executive Sign-Off Record:</span> Provides a standardized, human-verified compliance scorecard committed directly to the remote Code Repository and Branch in Phase 6.
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="terminal-window">
-            <div class="terminal-header">
-                <div class="terminal-dots">
-                    <div class="dot red"></div>
-                    <div class="dot yellow"></div>
-                    <div class="dot green"></div>
-                </div>
-                <div class="terminal-title">audit_results_ledger.md</div>
-            </div>
-            
-            <pre class="terminal-body"><span class="t-cyan">ENTERPRISE SECURITY ENGINEERING: AUDIT RESULTS LEDGER (ARL)</span>
-<span class="t-muted">System Baseline: Adversarial Kill-Chain Counter-Engineering State Machine (System Directive v1.0)</span>
-Audit Document Class: <span class="t-blue">Phase 5 Post-Validation Gate &amp; Guardrail Compliance Report</span>
-
-<span class="t-cyan">[SECTION 1: AUDIT EXECUTION METADATA]</span>
-Audit Tracking ID                  : ARL-2026-0810-WORKLOAD-01
-Execution Timestamp (UTC)          : <span class="t-purple">2026-08-10 19:55:27 UTC</span>
-Evaluating Architect / Controller  : Steven Tuschman / Adversarial Kill-Chain Counter-Engineering State Machine
-Application Registration Client ID : d7e8f9a0-b1c2-d3e4-f5g6-h7i8j9k011m2
-Entra ID Tenant ID                 : 8a1b2c3d-4e5f-6g7h-8i9j-0k112m3n4o5p
-Data-Plane Asset Scope             : kv-acphf-prod-eus-01
-Evaluated Subject Claim            : repo:CompCode1/machine-identity-1:ref:refs/heads/main
-Overall Compliance Outcome         : <span class="t-green">[PASS]</span>
-
-<span class="t-cyan">[SECTION 2: THE 4 ARCHITECTURAL GATES AUDIT MATRIX]</span>
-<span class="t-blue">[GATE 1: BOUNDARY]</span> <span class="t-muted">Cloud Account / Tenant ID, Subscription ID &amp; Resource Group</span>
-Evaluated Evidence                 : Phase 2 Terminal Lookup &amp; Phase 3 Brownfield Read-Only Mode
-Gate Verification Status           : <span class="t-green">[PASS]</span>
-<span class="t-comment">&gt; Azure Subscription ID and Resource Group sit under the verified Entra ID Tenant ID. Brownfield Data-Plane Asset protected via read-only lookup.</span>
-
-<span class="t-blue">[GATE 2: IDENTITY]</span> <span class="t-muted">Account/Tenant-Isolated Identity Principal</span>
-Evaluated Evidence                 : Identity Manifest (signInAudience &amp; web.redirectUris / IAM Trust Policy)
-Gate Verification Status           : <span class="t-green">[PASS]</span>
-<span class="t-comment">&gt; Application Registration and Service Principal locked to Single-Tenant Mode (AzureADMyOrg) with browser redirect URLs disabled and zero passwords.</span>
-
-<span class="t-blue">[GATE 3: FEDERATION]</span> <span class="t-muted">OpenID Connect (OIDC) Subject Claim, 60-Min Token &amp; 30s Sync Timer</span>
-Evaluated Evidence                 : Federated Identity Credential &amp; Validation Bridge Handshake
-Gate Verification Status           : <span class="t-green">[PASS]</span>
-<span class="t-comment">&gt; Wildcard-free Subject Claim matches Code Repository and Branch (CompCode1) 100%. 60-Minute Login Token issued cleanly after 30-Second Server Sync Timer.</span>
-
-<span class="t-blue">[GATE 4: ACCESS]</span> <span class="t-muted">Single-Asset Data-Plane Role &amp; Zero HTTP 403 Drops</span>
-Evaluated Evidence                 : Cloud Monitoring Metrics (Total Service API Hits over 30m)
-Gate Verification Status           : <span class="t-green">[PASS]</span>
-<span class="t-comment">&gt; Admin, Owner, and Contributor Roles blocked. Execution Agent assumed identity principal and read Data-Plane Asset with 0 HTTP 403 Forbidden drops.</span>
-
-<span class="t-cyan">[SECTION 3: THE 5 ENTERPRISE GUARDRAILS COMPLIANCE MATRIX]</span>
-Guardrail 1: Secret &amp; Credential Protection (OIDC + read -s)     : <span class="t-green">[PASS]</span>
-Guardrail 2: Existing Asset Protection (Brownfield / Greenfield) : <span class="t-green">[PASS]</span>
-Guardrail 3: Stopping "The Contributor Trap" (Data-Plane Role)   : <span class="t-green">[PASS]</span>
-Guardrail 4: Supply Chain Version Pinning &amp; Pure Schemas         : <span class="t-green">[PASS]</span>
-Guardrail 5: Validation Bridge Runtime Log Masking (***)         : <span class="t-green">[PASS]</span>
-
-Final Architect Sign-Off : Steven Tuschman
-Audit State Locked       : <span class="t-green">[YES - READY FOR PHASE 6 REPOSITORY SYNC]</span></pre>
-        </div>
-        
-        <div class="diagram-caption-box">
-            <ul class="clean-bullet-list">
-                <li>
-                    <span class="bullet-lead">Verified Compliance Sign-Off:</span> Generated in Phase 5 after Stage 1 verification passes, the Audit Results Ledger (ARL) scores every gate and guardrail before the sterilized package is pushed to the Code Repository and Branch in Phase 6.
-                </li>
-            </ul>
-        </div>
-
-    </section>
-
-    <!-- TRANSITION BRIDGE -->
-    <div id="kql" class="transition-wrapper">
-        <div class="section-divider-line"></div>
-        <h2 class="deep-dive-header">Phase 5: Standby CloudTrail, KQL &amp; SIEM Telemetry (Stage 2 Proof)</h2>
-    </div>
-
-    <!-- MODULE 6: KQL TELEMETRY -->
-    <section class="stacked-section">
-        <div class="section-intro">
-            <span class="section-kicker">[SECTION 06 :: STANDBY SIEM &amp; LOG ANALYTICS CORRELATION (VARIABLE 23)]</span>
-            <h2 class="section-title">Standalone CloudTrail, KQL &amp; SIEM Telemetry (kql_telemetry.md)</h2>
-
-            <!-- ARCHITECTURAL INSIGHT -->
-            <div class="insight-box">
-                <div class="insight-header">Architectural Insight: Why Stage 1 Instant Cloud Metrics Are Separated from Stage 2 Standby SIEM Queries</div>
-                <div class="insight-text">
-                    In enterprise cloud environments, backend SIEM and log analytics tables (AWS CloudTrail Lake, Azure Log Analytics, and GCP Cloud Audit Logs) take 5 to 20 minutes to index new sign-in and data-plane events&mdash;a delay that routinely causes engineers to abandon deep log verification (Offensive Stage 5). That is why the System Directive enforces Two-Stage Live Verification: in Phase 4, The Architect checks cloud monitoring metrics (Total Service API Hits / CloudWatch / Portal Metrics over the last 30 minutes) on the Data-Plane Asset for immediate Stage 1 mathematical proof of access; then in Phase 5, The AI Engine packages standalone CloudTrail, KQL, and SIEM Telemetry (kql_telemetry.md) into the repository so SOC analysts and auditors can execute deep log correlation on demand whenever backend indexing finishes.
-                </div>
-            </div>
-        </div>
-
-        <div class="feature-grid-3">
-            <div class="feature-card cyan">
-                <h3 class="feature-title">1. Eliminating the 20-Minute SIEM Delay</h3>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">Two-Stage Verification Workflow:</span> By verifying cloud monitoring metrics (Total Service API Hits / CloudWatch / Portal Metrics) first in Phase 4, live deployment never stalls waiting on slow SIEM ingestion.
-                    </li>
-                    <li>
-                        <span class="bullet-lead">Ready-to-Run Stage 2 Standby Artifact:</span> Commits the exact CloudTrail Lake SQL, Kusto Query Language (KQL), or GCP Logs Explorer script inside kql_telemetry.md so forensic correlation is ready on standby forever.
-                    </li>
-                </ul>
-            </div>
-            <div class="feature-card blue">
-                <h3 class="feature-title">2. End-to-End Log Correlation</h3>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">Correlating Token Issuance to Vault Read:</span> Queries OIDC sign-in logs (AssumeRoleWithWebIdentity / ServicePrincipalSignInLogs) and data-plane audit logs (GetSecretValue / AzureDiagnostics / AuditEvent) to correlate the 60-Minute Login Token issuance with the exact Data-Plane Asset read event.
-                    </li>
-                </ul>
-            </div>
-            <div class="feature-card green">
-                <h3 class="feature-title">3. Schema-Safe Audit Portability</h3>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">Resilient Column Projection:</span> Uses schema-safe operators (such as column_ifexists() in KQL and structured CloudTrail event filters) so the query executes cleanly across any enterprise SIEM workspace without crashing on pending schema fields.
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="terminal-window">
-            <div class="terminal-header">
-                <div class="terminal-dots">
-                    <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
-                </div>
-                <div class="terminal-title">kql_telemetry.md</div>
-            </div>
-            <pre class="terminal-body"><span class="t-cyan"># MULTI-CLOUD TELEMETRY AUDIT ARTIFACT (STAGE 2 STANDBY FORENSIC VERIFICATION)</span>
-<span class="t-blue">**Data-Plane Asset:**</span> kv-acphf-prod-eus-01 (Azure Key Vault) / prod/fleet/ota-signing-key (AWS Secrets Manager)
-<span class="t-blue">**Stage 1 Prerequisite:**</span> Cloud Monitoring Metrics (Total Service API Hits / CloudWatch over 30m) verified in Phase 4.
-
-<span class="t-muted">Execute the matching Stage 2 forensic query below in Azure Log Analytics (KQL) or AWS CloudTrail Lake / Athena once backend log indexing completes to correlate OIDC token issuance with Data-Plane Asset read operations:</span>
-
-<span class="t-purple">```kql</span>
-// 1. MICROSOFT ENTRA ID &amp; AZURE LOG ANALYTICS (KQL)
-AzureDiagnostics
-| where ResourceProvider == "MICROSOFT.KEYVAULT"
-| where Resource == "kv-acphf-prod-eus-01"
-| extend SafeCallerIpAddress = column_ifexists("CallerIpAddress", "Pending Schema Sync")
-| extend SafeIdentityClaim = column_ifexists("identity_claim_sub_s", "Pending Schema Sync")
-| project TimeGenerated, DataPlaneAsset = Resource, OperationName, ResultSignature, SafeCallerIpAddress, SafeIdentityClaim
-| sort by TimeGenerated desc
-<span class="t-purple">```</span>
-
-<span class="t-purple">```sql</span>
--- 2. AWS CLOUDTRAIL LAKE / ATHENA CORRELATION (OIDC STS + SECRETS MANAGER / S3 DATA PLANE)
-SELECT eventTime, eventSource, eventName, userIdentity.arn, sourceIPAddress, errorCode
-FROM cloudtrail_events
-WHERE eventSource IN ('sts.amazonaws.com', 'secretsmanager.amazonaws.com', 's3.amazonaws.com')
-  AND eventName IN ('AssumeRoleWithWebIdentity', 'GetSecretValue', 'GetObject')
-ORDER BY eventTime DESC;
-<span class="t-purple">```</span></pre>
-        </div>
-        
-        <div class="diagram-caption-box">
-            <ul class="clean-bullet-list">
-                <li>
-                    <span class="bullet-lead">Stage 2 Standby Forensic Proof:</span> Committed to the Code Repository and Branch in Phase 6 alongside the IAL, ARL, and DPL, kql_telemetry.md provides permanent, reproducible SIEM log correlation across CloudTrail, Azure Log Analytics (KQL), and GCP Cloud Audit Logs for SOC teams and compliance auditors.
-                </li>
-            </ul>
-        </div>
-
-    </section>
-
-    <!-- ================= ZONE 5: MODULE 7 (DPL LEDGER), MODULE 8 (DAY-2 MODULES) & FOOTER ================= -->
-    <div id="dpl" class="transition-wrapper">
-        <div class="section-divider-line"></div>
-        <h2 class="deep-dive-header">All-Phase DPL, Circuit Breaker &amp; Phase 7 Upgrades</h2>
-    </div>
-
-    <!-- MODULE 7: PATCH LEDGER -->
-    <section class="stacked-section">
-        <div class="section-intro">
-            <span class="section-kicker">[SECTION 07 :: SELF-HARDENING SYSTEM EVOLUTION (VARIABLES 24 TO 26)]</span>
-            <h2 class="section-title">The Defect &amp; Patch Ledger (DPL), The 4-Iteration Circuit Breaker &amp; Phase 7</h2>
-
-            <!-- ARCHITECTURAL INSIGHT -->
-            <div class="insight-box">
-                <div class="insight-header">Architectural Insight: Compounding Institutional Memory After Every Build</div>
-                <div class="insight-text">
-                    Standard cloud deployment workflows lose their troubleshooting lessons the moment the chat window closes&mdash;leaving the organization vulnerable to repeating the exact same misconfiguration on the next build (Offensive Stage 7). The Adversarial Kill-Chain Counter-Engineering State Machine captures every verified fix in real time inside the Defect &amp; Patch Ledger (patch_ledger.md or DPL) during the Standard Patch Loop (Iterations 1 to 3), keeps routine bug logging completely separate from The 4-Iteration Circuit Breaker on Iteration 4, and compiles all verified DPL lessons permanently into the master System Directive at session close in Phase 7.
-                </div>
-            </div>
-        </div>
-
-        <div class="feature-grid-3">
-            <div class="feature-card red">
-                <h3 class="feature-title">1. Standard Patch Loop &amp; DPL (Tries 1 to 3)</h3>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">Clinical Diagnostic Mode (Variable 24):</span> When a terminal command or IaC Payload hits an error at any phase, Directive 05 forces The AI Engine to drop all analogies and provide up to 3 targeted fixes (resetting to Iteration 1 for each new, isolated defect).
-                    </li>
-                    <li>
-                        <span class="bullet-lead">Real-Time DPL &amp; Full-File State Re-Sync:</span> As soon as The Architect verifies a fix in the local terminal (without needing to trip the circuit breaker), it is staged immediately in the Defect &amp; Patch Ledger (DPL) alongside a full-file State Re-Sync of the IaC Payload.
-                    </li>
-                </ul>
-            </div>
-            <div class="feature-card teal">
-                <h3 class="feature-title">2. The 4-Iteration Circuit Breaker</h3>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">Emergency Stop on Iteration 4 (Variable 25):</span> Completely separate from routine DPL logging; trips only if a single isolated error fails 3 consecutive attempts and reaches Iteration 4.
-                    </li>
-                    <li>
-                        <span class="bullet-lead">Estimated Probability of Success (X%):</span> Structurally forbids The AI Engine from writing new code on Iteration 4, forcing it to analyze the 3 failed tries, calculate an X% success probability, and present alternative pathways for The Architect's decision.
-                    </li>
-                </ul>
-            </div>
-            <div class="feature-card blue">
-                <h3 class="feature-title">3. Phase 7 Scorecard &amp; Directive Upgrade</h3>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">Counted AI Performance Scorecard (Variable 26):</span> At session close in Phase 7, enforces a "list first, count second" audit of Total Diagnostic Loops Triggered, Total Iterations Executed, Circuit Breakers Pulled, and Protocol Deviations Logged.
-                    </li>
-                    <li>
-                        <span class="bullet-lead">Zero-Truncation System Directive Compilation:</span> Extracts every proven fix from the DPL and outputs 100% of the newly upgraded master System Directive in a single un-truncated code block.
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="terminal-window">
-            <div class="terminal-header">
-                <div class="terminal-dots">
-                    <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
-                </div>
-                <div class="terminal-title">patch_ledger.md</div>
-            </div>
-            <pre class="terminal-body"><span class="t-cyan"># DEFECT &amp; PATCH LEDGER (DPL)</span>
-<span class="t-blue">**Controller Engine:**</span> Adversarial Kill-Chain Counter-Engineering State Machine (System Directive v1.0)
-<span class="t-blue">**Purpose:**</span> Real-time recording of verified fixes during the Standard Patch Loop (Iterations 1 to 3) for Phase 7 System Directive Compilation.
-
-<span class="t-purple">## [ENTRY 001] Brownfield Diagnostic Setting Collision (Phase 3 / Gate 1)</span>
-- <span class="t-cyan">**Error / Symptom:**</span> IaC Payload deployment failed with a conflict error on an existing Brownfield Data-Plane Asset.
-- <span class="t-cyan">**Root Cause:**</span> The IaC Payload generated a new diagnostic setting name that collided with an existing logging sink on the Brownfield vault/resource.
-- <span class="t-cyan">**Verified Fix &amp; State Re-Sync (Iteration 1):**</span> Parameterized the diagnostic setting resource in read-only lookup mode and executed a full-file State Re-Sync of the IaC Payload.
-
-<span class="t-purple">## [ENTRY 002] Subject Claim Case-Sensitivity Drop (Phase 2 / Gate 3)</span>
-- <span class="t-cyan">**Error / Symptom:**</span> Phase 4 Validation Bridge failed token exchange with the cloud OIDC endpoint rejecting the Subject Claim (AADSTS700213 / STS AccessDenied).
-- <span class="t-cyan">**Root Cause:**</span> Cloud OIDC providers perform a 100% case-sensitive comparison on the Subject Claim; a lowercase letter in the Code Repository and Branch string (Compcode1 vs. CompCode1) caused the token drop.
-- <span class="t-cyan">**Verified Fix &amp; State Re-Sync (Iteration 1):**</span> Added mandatory Phase 2 terminal lookup script to extract the exact capital-and-lowercase spelling of the Code Repository and Branch (CompCode1) directly from the Execution Agent before Phase 3 synthesis.
-
-<span class="t-purple">## [ENTRY 003] Directory Replication Delay Between Gate 2 and Gate 3 (Phase 3)</span>
-- <span class="t-cyan">**Error / Symptom:**</span> Creating a new IAM Role or Application Registration &amp; Service Principal in Gate 2 and attaching an OpenID Connect (OIDC) Subject Claim a split-second later in Gate 3 failed (404 Resource Not Found / NoSuchEntity) because global directory servers had not finished syncing.
-- <span class="t-cyan">**Root Cause:**</span> Global directory replication latency across cloud IAM endpoints when provisioning Greenfield (Net-New) identities.
-- <span class="t-cyan">**Verified Fix &amp; State Re-Sync (Iteration 2):**</span> Injected a mandatory 30-Second Server Sync Timer (time_sleep in Terraform and Start-Sleep -Seconds 30 in PowerShell) into the Phase 3 IaC Payload between Gate 2 and Gate 3.
-
-<span class="t-purple">## [ENTRY 004] Local Terminal MFA Claim Drop on Role Assignment (Phase 3 / Gate 4)</span>
-- <span class="t-cyan">**Error / Symptom:**</span> Local terminal execution of the Gate 4 Data-Plane Role assignment failed (401/403 Request Disallowed) on a high-security build because the terminal credential broker dropped interactive MFA claims.
-- <span class="t-cyan">**Root Cause:**</span> Cloud control planes block local command-line terminals from completing privileged role assignments when policy requires an interactive browser MFA popup.
-- <span class="t-cyan">**Verified Fix &amp; State Re-Sync (Iteration 1):**</span> Separated the Gate 4 Data-Plane Role step from the IaC Payload on MFA-restricted builds and generated the guided Cloud Console MFA Handoff checklist so the terminal script completes cleanly.</pre>
-        </div>
-        
-        <div class="diagram-caption-box">
-            <ul class="clean-bullet-list">
-                <li>
-                    <span class="bullet-lead">Permanent Institutional Memory:</span> Every entry in patch_ledger.md represents a real-world cloud bug solved during Iterations 1 to 3 and permanently compiled into the master System Directive in Phase 7 so it can never recur on future builds.
-                </li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- TRANSITION BRIDGE -->
-    <div id="index" class="transition-wrapper">
-        <div class="section-divider-line"></div>
-        <h2 class="deep-dive-header">Day-2 Multi-Cloud Security Modules</h2>
-    </div>
-
-    <!-- MODULE 8: CAPABILITY INDEX -->
-    <section class="stacked-section">
-        
-        <div class="section-intro">
-            <span class="section-kicker">[SECTION 08 :: MODULAR DAY-2 SECURITY EXPANSION]</span>
-            <h2 class="section-title">The 35+ Multi-Cloud &amp; Entra ID Capability Index</h2>
-
-            <!-- ARCHITECTURAL INSIGHT -->
-            <div class="insight-box">
-                <div class="insight-header">Architectural Insight: Layering Advanced Security Modules onto a Verified 4-Gate Core</div>
-                <div class="insight-text">
-                    Once the core IAM Role, Application Registration &amp; Service Principal, or GCP Service Account, wildcard-free OpenID Connect (OIDC) Subject Claim, and single-asset Data-Plane Role are verified across Gates 1 through 4, the baseline architecture serves as a rock-solid foundation for modular enterprise expansion. Using Day-2 expansion mode, The Architect can bypass repeating Phases 1 and 2 setup work and layer any of the 35+ multi-cloud and Microsoft Entra ID capabilities below onto the verified identity core as non-destructive, additive code blocks inside the IaC Payload.
-                </div>
-            </div>
-        </div>
-        
-        <div class="feature-grid-3">
-            <div class="feature-card blue">
-                <h3 class="feature-title">1. Non-Destructive Day-2 Layering</h3>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">Additive IaC Payload Blocks:</span> Layers advanced capabilities (such as Conditional Access for Workload Identities with 90-subnet IPv4 chunking, AWS SCPs &amp; Session Policies, or GCP VPC Service Controls) directly onto the verified identity principal without overwriting Gates 1 through 4.
-                    </li>
-                </ul>
-            </div>
-            
-            <div class="feature-card purple">
-                <h3 class="feature-title">2. 35+ Capabilities Across 7 Domains</h3>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">Complete Control-Plane Taxonomy:</span> Organizes 35+ multi-cloud security modules across Boundary &amp; Directory Foundations, Conditional &amp; Network Perimeter Control, Credential Security, Cross-Account/Tenant Federation, Workload Control, Governance, and SIEM Telemetry.
-                    </li>
-                </ul>
-            </div>
-
-            <div class="feature-card cyan">
-                <h3 class="feature-title">3. Verified via Live Audit Scripts</h3>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">End-to-End Two-Stage Proof:</span> Every Day-2 module layered onto the identity core goes through the exact same Phase 4 masked Validation Bridge, Cloud Monitoring Metrics check, and Phase 5 ARL and CloudTrail/KQL verification.
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="diagram-wrapper-wide capability-diagram">
-            
-            <div class="capability-grid">
-                
-                <div class="cap-card">
-                    <div class="cap-header">
-                        <span class="cap-num">01</span>
-                        <span class="cap-title">Boundary &amp; Directory Foundations</span>
-                    </div>
-                    <ul class="cap-list">
-                        <li>Account, Tenant &amp; Organization Root Settings</li>
-                        <li>Built-In &amp; Custom Least-Privilege Roles (IAM / RBAC)</li>
-                        <li>Administrative Units (AUs) &amp; AWS Organizational Units</li>
-                        <li>Directory &amp; IAM Principal Objects</li>
-                        <li>Custom Security Attributes (CSAs) &amp; ABAC Session Tags</li>
-                        <li>Device &amp; Endpoint Trust Management</li>
-                    </ul>
-                </div>
-
-                <div class="cap-card">
-                    <div class="cap-header">
-                        <span class="cap-num">02</span>
-                        <span class="cap-title">Conditional &amp; Perimeter Access Control</span>
-                    </div>
-                    <ul class="cap-list">
-                        <li>Workload Conditional Access, AWS SCPs &amp; Permission Boundaries</li>
-                        <li>CA Authentication Context &amp; AWS STS Session Policies</li>
-                        <li>Protected Actions &amp; GCP VPC Service Controls</li>
-                        <li>Identity Protection &amp; IAM Access Analyzer</li>
-                        <li>Global Secure Access (GSA / SSE) &amp; PrivateLink / VPC Endpoints</li>
-                    </ul>
-                </div>
-
-                <div class="cap-card">
-                    <div class="cap-header">
-                        <span class="cap-num">03</span>
-                        <span class="cap-title">Credential &amp; Key Security</span>
-                    </div>
-                    <ul class="cap-list">
-                        <li>Passwordless Authentication Methods &amp; OIDC Providers</li>
-                        <li>MFA Enforcement &amp; Registration Campaigns</li>
-                        <li>Customer-Managed Keys (AWS KMS / Key Vault / Cloud KMS)</li>
-                        <li>Secret Rotation &amp; Zero-Static-Key Policies</li>
-                        <li>FIDO2 / WebAuthn &amp; Hardware-Backed Key Attestation</li>
-                        <li>Kerberos &amp; Legacy Protocol Deprecation</li>
-                    </ul>
-                </div>
-
-                <div class="cap-card">
-                    <div class="cap-header">
-                        <span class="cap-num">04</span>
-                        <span class="cap-title">Cross-Tenant &amp; Cross-Account Federation</span>
-                    </div>
-                    <ul class="cap-list">
-                        <li>External Collaboration &amp; Cross-Account Trust Policies</li>
-                        <li>Cross-Tenant Access Settings (XTAS) &amp; AWS RAM</li>
-                        <li>Cross-Tenant Synchronization (CTS) &amp; Workload Identity Pools</li>
-                        <li>External OIDC IdP Federation (GitHub, GitLab, EKS, AKS, GKE)</li>
-                    </ul>
-                </div>
-
-                <div class="cap-card">
-                    <div class="cap-header">
-                        <span class="cap-num">05</span>
-                        <span class="cap-title">App &amp; Workload Identity Control</span>
-                    </div>
-                    <ul class="cap-list">
-                        <li>IAM Roles, App Registrations &amp; Service Principals</li>
-                        <li>Managed Identities, EKS IRSA / Pod Identity &amp; GKE Workload Identity</li>
-                        <li>Enterprise Applications &amp; Service Account Governance</li>
-                        <li>Application Proxy &amp; Zero-Trust Ingress Gateways</li>
-                        <li>Cloud Access Security Broker (CASB / MDCA) Controls</li>
-                    </ul>
-                </div>
-
-                <div class="cap-card">
-                    <div class="cap-header">
-                        <span class="cap-num">06</span>
-                        <span class="cap-title">Privileged Identity Governance</span>
-                    </div>
-                    <ul class="cap-list">
-                        <li>Privileged Identity Management (PIM) &amp; AWS IAM Identity Center JIT</li>
-                        <li>Entitlement Management &amp; Permission Sets</li>
-                        <li>Automated Access Reviews &amp; Unused Role Pruning</li>
-                        <li>Lifecycle Workflows (LCW) &amp; Automated Deprovisioning</li>
-                        <li>Terms of Use (ToU) &amp; Compliance Attestation</li>
-                    </ul>
-                </div>
-
-                <div class="cap-card cap-card-full">
-                    <div class="cap-header">
-                        <span class="cap-num">07</span>
-                        <span class="cap-title">Hybrid Identity &amp; Multi-Cloud Telemetry Engines</span>
-                    </div>
-                    <div class="cap-2-col-list">
-                        <ul class="cap-list">
-                            <li>Hybrid Identity Engines (Connect Sync, Cloud Sync, AWS IAM Roles Anywhere)</li>
-                            <li>Seamless Single Sign-On (SSO) &amp; SAML/OIDC Brokering</li>
-                        </ul>
-                        <ul class="cap-list">
-                            <li>Directory &amp; Federation Health Monitoring</li>
-                            <li>CloudWatch, CloudTrail Lake, Azure Portal Metrics &amp; Log Analytics (KQL)</li>
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-        
-        <div class="diagram-caption-box">
-            <ul class="clean-bullet-list">
-                <li>
-                    <span class="bullet-lead">Modular Enterprise Scale:</span> Inspect the <a href="add-capabilities.html" class="inline-link">Day-2 Multi-Cloud Modules</a> page for a live execution walkthrough layering advanced network and identity restrictions onto a verified 4-Gate machine identity core.
-                </li>
-            </ul>
-        </div>
-
-    </section>
-
-    <!-- ================= PROPRIETARY IP FOOTER ================= -->
-    <footer class="ip-footer">
-        <strong>&copy; 2026 Steven Tuschman | Adversarial Kill-Chain Counter-Engineering&trade; (adversarialkillchaincounterengineering.com). All Rights Reserved.</strong><br>
-        The Adversarial Kill-Chain Counter-Engineering State Machine v1.0, Sequential Kill-Chain Counter-Engineering Protocol, Execution Triad governance model, Four Architectural Gates of Machine Identity, Five Enterprise Guardrails, 216+ Combination Build Matrix, and 26-Variable System Glossary are proprietary intellectual property. Unauthorized reproduction, distribution, or commercial adaptation is strictly prohibited.
-    </footer>
-
-</body>
-</html>
+        <strong>&copy; 2026 Steven Tuschman | Adversarial Kill-Chain Counter-Engineering&trade; (adversarialkillchaincounterengineering.com). All Rights Reserved.</strong>
+<br>
+        The Adversarial Kill-Chain Counter-Engineering State Machine, Sequential Kill-Chain Counter-Engineering Protocol, Execution Triad governance model, Four Architectural Gates of Machine Identity, Five Enterprise Guardrails, Build Coordinate Matrix, and 26-Variable System Glossary are proprietary intellectual property. Unauthorized reproduction, distribution, or commercial adaptation is strictly prohibited.
+    </footer></body></html>

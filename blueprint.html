@@ -3,11 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adversarial Kill-Chain Counter-Engineering - 7-Phase Counter-Engineering Blueprint</title>
+    <title>Seven-Phase Engineering Blueprint | AKCCE</title>
+<meta name="description" content="A human-governed seven-phase workflow for machine identity engineering, with discovery, reviewed changes, access tests, evidence and operational handoff.">
    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-80NYKHYN3R"></script>
+    <script>
+      const blockAnalytics = new URLSearchParams(window.location.search).get('block_ga') === 'true';
+      if (blockAnalytics) window['ga-disable-G-80NYKHYN3R'] = true;
+      try {
+        if (blockAnalytics) localStorage.setItem('akcce_block_ga', 'true');
+        if (localStorage.getItem('akcce_block_ga') === 'true') {
+          window['ga-disable-G-80NYKHYN3R'] = true;
+        }
+      } catch (error) {
+        // The query-string opt-out still works when browser storage is unavailable.
+      }
+    </script>
+<!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-80NYKHYN3R">
+</script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
@@ -648,839 +662,791 @@
                 padding-top: 30px !important;
             }
         }
+
+        /* Fluid reference board; decorative styling does not indicate live state. */
+        nav { position: relative; }
+        .blueprint-page-container { padding-top: 40px; }
+        .skip-link { position: fixed; top: -100px; left: 1rem; z-index: 200; background: #f8fafc; color: #020617; padding: .7rem 1rem; border-radius: 6px; }
+        .skip-link:focus { top: .5rem; }
+        a:focus-visible, [tabindex]:focus-visible { outline: 3px solid #38bdf8; outline-offset: 5px; }
+        [id] { scroll-margin-top: 1.5rem; }
+        main, .dashboard, .node, .bp-node, .class-card { min-width: 0; }
+        .blueprint-brand-header { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 1.2rem; margin-bottom: 1.5rem; text-align: center; }
+        .blueprint-crest { width: 66px; height: 66px; flex-shrink: 0; }
+        .page-title { font-family: 'Montserrat',sans-serif; font-size: 2.6rem; line-height: 1.2; font-weight: 900; text-transform: uppercase; letter-spacing: 1.5px; }
+        .page-subtitle { text-align: center; font-size: 1.15rem; color: var(--text-muted); margin: 0 auto 2rem; max-width: 900px; line-height: 1.7; }
+        .page-title, .blueprint-title, .bp-heading, .row-phase-title, .telemetry-node-title, .class-title, .ip-footer, code { overflow-wrap: anywhere; }
+        .jump-nav { grid-template-columns: repeat(3,minmax(0,1fr)); }
+        .jump-card .jump-title { display: block; font-family: 'Montserrat',sans-serif; font-size: 1.1rem; font-weight: 800; text-transform: uppercase; margin-bottom: .85rem; color: var(--color-cyan); }
+        .clean-bullet-list li { font-weight: 500; }
+        .reference-note { max-width: 1120px; margin: 1.4rem auto; border: 1px solid #334155; border-left: 4px solid #38bdf8; border-radius: 8px; padding: 1rem 1.25rem; text-align: left; line-height: 1.7; color: var(--text-muted); }
+        .reference-note strong { color: #f8fafc; }
+        .canvas-wrapper { overflow: visible; padding: 1rem 0; }
+        .dashboard { width: 100%; max-width: 1180px; padding: 1.5rem; overflow: visible; }
+        .telemetry-actor-headers, .telemetry-row-grid { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1rem; }
+        .col-label { width: auto; letter-spacing: 1px; }
+        .node { width: auto; min-width: 0; padding: 1.15rem; backdrop-filter: none; }
+        .node-purple { animation: none; }
+        .telemetry-node-header { font-size: .8rem; line-height: 1.5; }
+        .telemetry-node-title { font-size: 1.04rem; margin-bottom: .8rem; }
+        .telemetry-node-desc { font-weight: 500; }
+        .telemetry-node-desc .clean-bullet-list { padding-left: 1.1rem; gap: .7rem; }
+        .telemetry-node-desc li { font-size: .96rem; line-height: 1.65; }
+        .phase-input { color: var(--text-muted); line-height: 1.7; margin-bottom: 1.1rem; }
+        .phase-gate { margin-top: 1.2rem; padding: 1rem 1.1rem; border: 1px solid #334155; border-left: 4px solid #10b981; border-radius: 6px; color: var(--text-muted); line-height: 1.65; }
+        .phase-gate strong { color: #6ee7b7; }
+        .row-phase-title { margin: 0; }
+        .wide-3col-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
+        .bp-grid-3 { grid-template-columns: repeat(3,minmax(0,1fr)); }
+        .bp-grid-4 { grid-template-columns: repeat(2,minmax(0,1fr)); }
+        .bp-grid-5 { grid-template-columns: repeat(auto-fit,minmax(min(100%,180px),1fr)); }
+        .bp-node-desc { font-weight: 500; }
+        .bp-node-desc p { margin-bottom: .7rem; }
+        .blueprint-funnel { gap: 1.5rem; }
+        .bp-layer { padding: 2rem; }
+        .class-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
+        .class-card p { color: var(--text-muted); line-height: 1.7; }
+        .status-legend { display: flex; flex-wrap: wrap; gap: .65rem; margin: 1.1rem 0; }
+        .status-pill { border: 1px solid #475569; border-radius: 5px; padding: .4rem .65rem; font: 700 .83rem 'JetBrains Mono',monospace; }
+        .status-pass { color: #6ee7b7; } .status-fail { color: #fda4af; } .status-pending { color: #fde68a; } .status-error { color: #d8b4fe; }
+        .blueprint-table-wrap { width: 100%; overflow-x: auto; border: 1px solid #334155; border-radius: 9px; margin: 1rem 0; text-align: left; }
+        .blueprint-table { width: 100%; border-collapse: collapse; background: var(--bg-node); }
+        .blueprint-table caption { padding: 1rem; text-align: left; color: var(--text-muted); }
+        .blueprint-table th, .blueprint-table td { padding: 1rem; text-align: left; vertical-align: top; border-bottom: 1px solid #334155; line-height: 1.65; overflow-wrap: anywhere; }
+        .blueprint-table thead th { color: #7dd3fc; font-size: .95rem; }
+        .blueprint-table tbody th { color: #f8fafc; font-size: .95rem; }
+        .blueprint-table td { color: var(--text-muted); }
+        .source-links { display: flex; flex-wrap: wrap; gap: .7rem 1.2rem; list-style: none; margin-top: 1rem; }
+        .source-links a { color: #7dd3fc; text-underline-offset: 3px; }
+        .footer-crest-wrapper { display: flex; justify-content: center; margin-bottom: 1rem; }
+        .footer-brand-crest { width: 38px; height: 38px; }
+        @media(max-width:1260px) { .dashboard { min-width: 0; } .canvas-wrapper { overflow: visible; } }
+        @media(max-width:1000px) {
+            .telemetry-row-grid, .wide-3col-grid, .jump-nav, .bp-grid-3, .bp-grid-4, .class-grid { grid-template-columns: 1fr; }
+            .telemetry-actor-headers { display: none; }
+        }
+        @media(max-width:600px) {
+            .blueprint-page-container { padding-left: 12px; padding-right: 12px; }
+            .page-title { font-size: 1.65rem; letter-spacing: 1px; }
+            .blueprint-crest { width: 48px; height: 48px; }
+            .blueprint-section, .classification-section { padding: 1.5rem .9rem; }
+            .blueprint-title, .class-title { font-size: 1.55rem; }
+            .section-intro-box, .bp-layer-intro-box { padding: 1.2rem 1rem; }
+            .dashboard { padding: .75rem; }
+            .telemetry-row-block { padding: 1rem .75rem; }
+            .node, .bp-node, .bp-layer, .class-card { padding: 1.1rem; }
+            .bp-heading { font-size: 1.35rem; }
+            .all-phase-overlay { padding: 1.2rem 1rem; }
+            .blueprint-table, .blueprint-table tbody, .blueprint-table tr, .blueprint-table td, .blueprint-table tbody th { display: block; width: 100%; }
+            .blueprint-table thead { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+            .blueprint-table tbody tr { border-bottom: 3px solid #334155; }
+            .blueprint-table td::before { content: attr(data-label); display: block; color: #7dd3fc; font-weight: 800; margin-bottom: .3rem; }
+        }
+        @media(prefers-reduced-motion:reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+        }
     </style>
 </head>
 <body>
-
-    <!-- MASTER NAVIGATION (8-LINK SITE-WIDE BAR WITH 26-VARIABLE SYSTEM GLOSSARY) -->
-    <nav>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<nav aria-label="Main navigation">
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="autonomous-systems.html">Autonomous Systems</a></li>
-            <li><a href="kill-chain.html">The Adversarial Kill Chain</a></li>
-            <li><a href="blueprint.html" class="active-link">7-Phase Counter-Engineering Blueprint</a></li>
-            <li><a href="ai-systems-engineering.html">Tethered AI Systems Engineering</a></li>
-            <li><a href="architectural.html">Exploit-Level Pipeline Architecture</a></li>
-            <li><a href="workflow-portfolio.html">Live Counter-Engineering Proofs</a></li>
-            <li><a href="add-capabilities.html">Day-2 Multi-Cloud Modules</a></li>
-            <li><a href="glossary.html">26-Variable System Glossary</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li>
+<a href="index.html">Home</a>
+</li>
+            <li>
+<a href="autonomous-systems.html">Autonomous Systems</a>
+</li>
+            <li>
+<a href="kill-chain.html">The Adversarial Kill Chain</a>
+</li>
+            <li>
+<a href="blueprint.html" class="active-link" aria-current="page">7-Phase Counter-Engineering Blueprint</a>
+</li>
+            <li>
+<a href="ai-systems-engineering.html">Tethered AI Systems Engineering</a>
+</li>
+            <li>
+<a href="architectural.html">Exploit-Level Pipeline Architecture</a>
+</li>
+            <li>
+<a href="workflow-portfolio.html">Counter-Engineering Demonstrations</a>
+</li>
+            <li>
+<a href="add-capabilities.html">Day-2 Multi-Cloud Modules</a>
+</li>
+            <li>
+<a href="glossary.html">26-Variable System Glossary</a>
+</li>
+            <li>
+<a href="contact.html">Contact</a>
+</li>
         </ul>
     </nav>
-
-    <!-- CONTENT CONTAINER -->
-    <div class="blueprint-page-container">
-
-        <!-- ================= ZONE 1: OPENING SECTION (BULLETED INTRO + 3 JUMP CARDS) ================= -->
-        <div style="text-align: center; margin-bottom: 1rem;">
-            <h1 style="font-family: 'Montserrat', sans-serif; font-size: 2.6rem; font-weight: 900; color: var(--text-main); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.5rem;">7-Phase Counter-Engineering Blueprint &amp; Execution Telemetry</h1>
-            
-            <!-- BULLETED INTRO BOX -->
-            <div class="section-intro-box">
-                <div class="intro-lead-sentence">
-                    How The Adversarial Kill-Chain Counter-Engineering State Machine (System Directive v1.0) governs multi-cloud machine-identity deployments (AWS IAM &amp; STS, Microsoft Entra ID &amp; Azure, and Google Cloud IAM) across all 26 fixed system variables defined in the <a href="glossary.html" class="inline-link">26-Variable System Glossary</a>:
-                </div>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">The 7-Stage Exploitation Chain &amp; Probabilistic AI Risk:</span> A multi-cloud machine-identity pipeline across AWS, Microsoft Entra ID, and GCP has seven physical handoffs where automated adversaries strike in sequence (Offensive Stages 1 through 7). Attempting to close those seams with an untethered generative AI model is a severe operational risk: across a 10-step build, 85% single-step accuracy compounds down to 19.7% first-run reliability (0.85<sup>10</sup>)&mdash;causing The AI Engine to guess AWS Account IDs, Entra ID Tenant IDs, Azure Subscription IDs, or GCP Project IDs, insert wildcards (*) into OIDC Subject Claims, or grant broad Admin, Owner, and Contributor Roles just to clear an error.
-                    </li>
-                    <li>
-                        <span class="bullet-lead">The System Directive Is The Counter-Engineering State Machine:</span> Built through formal AI Systems Engineering standards (IEEE 15288, ISO 42001, NIST AI RMF 1.0, OWASP LLM) and first-principles mathematical variable control, the master System Directive (v1.0) is The Adversarial Kill-Chain Counter-Engineering State Machine&mdash;wrapping The AI Engine inside an un-bypassable seven-phase compiler harness that locks every step to 100% verified live CLI ground truth (1.0 &times; 1.0 &times; ... = 100%) before advancing.
-                    </li>
-                    <li>
-                        <span class="bullet-lead">100% Verified Lockdown, Audit Immunity &amp; Self-Hardening Evolution:</span> Every execution neutralizes the seven-stage exploitation chain in sequence, proves live Data-Plane Asset access via immediate cloud monitoring metrics (Total Service API Hits / CloudWatch / Portal Metrics), generates audit-ready compliance ledgers (IAL, ARL, CloudTrail/KQL/SIEM Telemetry, and DPL), and permanently compiles every verified fix from the Defect &amp; Patch Ledger (DPL) into the master System Directive in Phase 7. Select any of the three architectural views below to inspect the system:
-                    </li>
-                </ul>
-            </div>
-            
-            <div class="jump-nav">
-                <a href="#kinetic-telemetry" class="jump-card" style="text-align: left;">
-                    <h4>&#10148; 1. 7-Phase Kinetic Execution Telemetry</h4>
-                    <p>Walk phase-by-phase (Rows 1 to 7) through the exact counter-engineering sequence at the keyboard inside a local IDE and terminal environment&mdash;showing in plain English how The Architect, The State Machine, and The AI Engine neutralize Offensive Stages 1 through 7 across all 26 Glossary Variables.</p>
-                </a>
-                <a href="#operational-blueprint" class="jump-card" style="text-align: left;">
-                    <h4>&#10148; 2. 6-Layer Operational Systems Blueprint</h4>
-                    <p>Inspect the 6-layer vertical architecture of The State Machine (System Directive v1.0)&mdash;translating the 4 Global AI Engineering Standards (ReAct, OWASP LLM08, NIST AI RMF / ISO 42001, and Cognitive Circuit Breaking) into the 5 Enterprise Guardrails and The Execution Triad across Gates 1 through 4.</p>
-                </a>
-                <a href="#system-classification" class="jump-card" style="text-align: left;">
-                    <h4>&#10148; 3. L4 Agentic System Classification</h4>
-                    <p>Review how The Adversarial Kill-Chain Counter-Engineering State Machine aligns with industry L4 Agentic AI Systems Engineering classifications&mdash;harnessing The AI Engine for multi-language IaC Payload synthesis across 216+ multi-cloud build combinations under strict Human-in-the-Loop (HITL) command authority.</p>
-                </a>
-            </div>
+<main class="blueprint-page-container" id="main-content">
+<header>
+<div class="blueprint-brand-header">
+<svg class="blueprint-crest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Adversarial Kill-Chain Counter-Engineering 4-Chevron Crest">
+                <rect width="114" height="114" x="3" y="3" fill="#020617" rx="22" stroke="#1e293b" stroke-width="3"/>
+                <!-- Gate 1: Gunmetal Bevel -->
+                <polygon points="24,18 60,36 60,48 24,30" fill="#475569"/>
+                <polygon points="96,18 60,36 60,48 96,30" fill="#1e293b"/>
+                <!-- Gate 2: Cobalt Bevel -->
+                <polygon points="24,39 60,57 60,69 24,51" fill="#0284c7"/>
+                <polygon points="96,39 60,57 60,69 96,51" fill="#075985"/>
+                <!-- Gate 3: Electric Cyan Bevel -->
+                <polygon points="24,60 60,78 60,90 24,72" fill="#38bdf8"/>
+                <polygon points="96,60 60,78 60,90 96,72" fill="#0369a1"/>
+                <!-- Gate 4: Crimson Bevel -->
+                <polygon points="24,81 60,99 60,111 24,93" fill="#f43f5e"/>
+                <polygon points="96,81 60,99 60,111 96,93" fill="#9f1239"/>
+            </svg>
+<h1 class="page-title">7-Phase Counter-Engineering Blueprint</h1>
+</div>
+<p class="page-subtitle">Human review, deployment evidence and controlled changes across the workload identity lifecycle.</p>
+<div class="section-intro-box">
+<p class="intro-lead-sentence">A practical workflow for discovery, reviewed configuration, access testing and operational handoff.</p>
+<ul class="clean-bullet-list">
+<li>
+<span class="bullet-lead">Purpose:</span> Make the connection between a machine identity’s trust, permissions, deployment code and evidence easier to review.</li>
+<li>
+<span class="bullet-lead">Operating pattern:</span> The engineer owns execution and acceptance in the advisory setup. The AI drafts artifacts and helps diagnose problems.</li>
+<li>
+<span class="bullet-lead">Scope:</span> This page describes the workflow and its acceptance criteria. Evaluate actual implementations through their published source and execution evidence.</li>
+</ul>
+</div>
+<div class="jump-nav">
+<a class="jump-card" href="#kinetic-telemetry">
+<strong class="jump-title">1. Seven-Phase Execution Map</strong>
+<p>Review the engineer’s actions, directive criteria and AI outputs for each phase.</p>
+</a>
+<a class="jump-card" href="#operational-blueprint">
+<strong class="jump-title">2. Six-Layer Operational Blueprint</strong>
+<p>Connect governance and configuration controls to the four identity gates and evidence records.</p>
+</a>
+<a class="jump-card" href="#system-classification">
+<strong class="jump-title">3. Operating Mode &amp; Authority</strong>
+<p>Distinguish advisory assistance from tool-enabled and pipeline-controlled execution.</p>
+</a>
+</div>
+</header>
+<section class="blueprint-section" id="kinetic-telemetry">
+<h2 class="blueprint-title">Seven-Phase Execution Map</h2>
+<div class="section-intro-box">
+<p class="intro-lead-sentence">A reference view of responsibilities, artifacts and review criteria.</p>
+<ul class="clean-bullet-list">
+<li>
+<span class="bullet-lead">Three perspectives:</span> Each phase shows the engineer’s work, the directive’s review criteria and the AI’s proposed output.</li>
+<li>
+<span class="bullet-lead">Evidence before acceptance:</span> A failed or missing check returns work to the relevant phase or remains an explicit open item.</li>
+<li>
+<span class="bullet-lead">Workflow position:</span> Phase numbers describe the process sequence. They do not measure security coverage or confidence.</li>
+</ul>
+</div>
+<div class="reference-note">
+<strong>Reference board.</strong> This page is an explanatory workflow map. It is not connected to a live deployment and does not monitor or enforce its state.</div>
+<div class="canvas-wrapper">
+<div class="dashboard" id="dashboard">
+<div class="telemetry-actor-headers" aria-hidden="true">
+<div class="col-label lbl-architect">The Architect<br>Decisions &amp; execution</div>
+<div class="col-label lbl-framework">The Directive<br>Review criteria</div>
+<div class="col-label lbl-ai">The AI Engine<br>Drafts &amp; diagnostics</div>
+</div>
+<div class="telemetry-rows-stack">
+<section class="telemetry-row-block phase-row" aria-labelledby="phase-1-title">
+<div class="row-phase-banner">
+<h3 class="row-phase-title" id="phase-1-title">Phase 01: Scope &amp; Baseline Discovery</h3>
+<span class="row-vars-pill">Reference workflow</span>
+</div>
+<p class="phase-input">
+<strong>Inputs:</strong> Start with the intended workload, target resource and accountable engineer.</p>
+<div class="telemetry-row-grid">
+<article class="node node-cyan">
+<h4 class="telemetry-node-header">The Architect</h4>
+<p class="telemetry-node-title">Review &amp; execute</p>
+<div class="telemetry-node-desc">
+<ul class="clean-bullet-list">
+<li>
+<span class="bullet-lead">Choose the deployment scope:</span> Identify the cloud, workload platform, existing or new infrastructure, target resource and deployment tool. Confirm ownership and the approved execution environment.</li>
+<li>
+<span class="bullet-lead">Confirm current context:</span> Run reviewed read-only queries and check the active account, tenant, subscription or project. Keep credentials out of shared outputs.</li>
+</ul>
+</div>
+</article>
+<article class="node node-red">
+<h4 class="telemetry-node-header">The System Directive</h4>
+<p class="telemetry-node-title">Review criteria</p>
+<div class="telemetry-node-desc">
+<ul class="clean-bullet-list">
+<li>
+<span class="bullet-lead">Record prerequisites:</span> Identify existing assets, state storage, logging needs and the recovery owner. Track missing inputs rather than inventing values.</li>
+<li>
+<span class="bullet-lead">Review information handling:</span> Distinguish routing identifiers from secrets and follow the organization’s data-handling rules. A clean folder helps organization, not host isolation.</li>
+</ul>
+</div>
+</article>
+<article class="node node-purple">
+<h4 class="telemetry-node-header">The AI Engine</h4>
+<p class="telemetry-node-title">Proposed output</p>
+<div class="telemetry-node-desc">
+<ul class="clean-bullet-list">
+<li>
+<span class="bullet-lead">Draft discovery commands:</span> Produce cloud-specific lookups and explain which outputs establish the baseline.</li>
+<li>
+<span class="bullet-lead">Prepare the workspace record:</span> Name configuration and evidence artifacts and record assumptions, pending coordinates and the next review action.</li>
+</ul>
+</div>
+</article>
+</div>
+<div class="phase-gate">
+<strong>Ready to advance:</strong> The engineer has confirmed the target context, intended scope and unresolved prerequisites.</div>
+</section>
+<section class="telemetry-row-block phase-row" aria-labelledby="phase-2-title">
+<div class="row-phase-banner">
+<h3 class="row-phase-title" id="phase-2-title">Phase 02: Federation Metadata &amp; Trust Design</h3>
+<span class="row-vars-pill">Reference workflow</span>
+</div>
+<p class="phase-input">
+<strong>Inputs:</strong> Use the confirmed boundary and the workload platform’s actual identity settings.</p>
+<div class="telemetry-row-grid">
+<article class="node node-cyan">
+<h4 class="telemetry-node-header">The Architect</h4>
+<p class="telemetry-node-title">Review &amp; execute</p>
+<div class="telemetry-node-desc">
+<ul class="clean-bullet-list">
+<li>
+<span class="bullet-lead">Inspect the workload identity:</span> Confirm issuer, audience and subject or attribute inputs, including repository, environment, branch or Kubernetes service account where relevant.</li>
+<li>
+<span class="bullet-lead">Review trusted sources:</span> Decide which workload contexts may authenticate and which cases must be rejected.</li>
+</ul>
+</div>
+</article>
+<article class="node node-red">
+<h4 class="telemetry-node-header">The System Directive</h4>
+<p class="telemetry-node-title">Review criteria</p>
+<div class="telemetry-node-desc">
+<ul class="clean-bullet-list">
+<li>
+<span class="bullet-lead">Use the provider’s supported model:</span> Match the configured claim format and conditions. Numeric identifiers, naming rules and trust expressions differ across platforms.</li>
+<li>
+<span class="bullet-lead">Protect the trusted workload:</span> Include repository, runner and dependency protections. A compromised authorized job can satisfy an exact trust condition.</li>
+</ul>
+</div>
+</article>
+<article class="node node-purple">
+<h4 class="telemetry-node-header">The AI Engine</h4>
+<p class="telemetry-node-title">Proposed output</p>
+<div class="telemetry-node-desc">
+<ul class="clean-bullet-list">
+<li>
+<span class="bullet-lead">Draft the trust configuration:</span> Use discovered values or explicit IaC dependencies for resources that do not yet exist. Identify assumptions and applicability limits.</li>
+<li>
+<span class="bullet-lead">Prepare authentication tests:</span> Describe the allowed path and meaningful rejected-source cases without printing token values.</li>
+</ul>
+</div>
+</article>
+</div>
+<div class="phase-gate">
+<strong>Ready to advance:</strong> The trust design is reviewed, its inputs are traceable and the accepted and rejected workload cases are defined.</div>
+</section>
+<section class="telemetry-row-block phase-row" aria-labelledby="phase-3-title">
+<div class="row-phase-banner">
+<h3 class="row-phase-title" id="phase-3-title">Phase 03: Configuration, Plan Review &amp; Execution</h3>
+<span class="row-vars-pill">Reference workflow</span>
+</div>
+<p class="phase-input">
+<strong>Inputs:</strong> Use the reviewed principal, trust design, target operations and current infrastructure baseline.</p>
+<div class="telemetry-row-grid">
+<article class="node node-cyan">
+<h4 class="telemetry-node-header">The Architect</h4>
+<p class="telemetry-node-title">Review &amp; execute</p>
+<div class="telemetry-node-desc">
+<ul class="clean-bullet-list">
+<li>
+<span class="bullet-lead">Review the proposed change:</span> Inspect configuration, resolved dependencies and the deployment plan, including permission changes, replacements and deletions.</li>
+<li>
+<span class="bullet-lead">Authorize and execute:</span> Approve the intended artifact and scope, authenticate according to organizational policy and execute through the authorized channel.</li>
+</ul>
+</div>
+</article>
+<article class="node node-red">
+<h4 class="telemetry-node-header">The System Directive</h4>
+<p class="telemetry-node-title">Review criteria</p>
+<div class="telemetry-node-desc">
+<ul class="clean-bullet-list">
+<li>
+<span class="bullet-lead">Check effective access:</span> Separate provisioning authority from workload permissions. Consider inherited grants, resource policies and alternate credentials.</li>
+<li>
+<span class="bullet-lead">Protect state and recovery:</span> Review persistence, locking, backup and deletion safeguards. Handle propagation with bounded readiness checks and diagnose authentication errors from evidence.</li>
+</ul>
+</div>
+</article>
+<article class="node node-purple">
+<h4 class="telemetry-node-header">The AI Engine</h4>
+<p class="telemetry-node-title">Proposed output</p>
+<div class="telemetry-node-desc">
+<ul class="clean-bullet-list">
+<li>
+<span class="bullet-lead">Draft configuration and runbook:</span> Produce the selected cloud/tool payload, prerequisites and commands for review. Clearly identify anything that remains unverified.</li>
+<li>
+<span class="bullet-lead">Explain the plan and risks:</span> Summarize intended effects, scope changes and the recovery procedure before the human executes.</li>
+</ul>
+</div>
+</article>
+</div>
+<div class="phase-gate">
+<strong>Ready to advance:</strong> The engineer has reviewed and authorized the change, and the applied configuration and execution result are recorded.</div>
+</section>
+<section class="telemetry-row-block phase-row" aria-labelledby="phase-4-title">
+<div class="row-phase-banner">
+<h3 class="row-phase-title" id="phase-4-title">Phase 04: Architecture Baseline &amp; Access Tests</h3>
+<span class="row-vars-pill">Reference workflow</span>
+</div>
+<p class="phase-input">
+<strong>Inputs:</strong> Use the actual deployed configuration and the predefined allowed and denied cases.</p>
+<div class="telemetry-row-grid">
+<article class="node node-cyan">
+<h4 class="telemetry-node-header">The Architect</h4>
+<p class="telemetry-node-title">Review &amp; execute</p>
+<div class="telemetry-node-desc">
+<ul class="clean-bullet-list">
+<li>
+<span class="bullet-lead">Record the deployed baseline:</span> Save the Identity Architecture Ledger with principal, trust, resource scope, credential settings and configuration revision.</li>
+<li>
+<span class="bullet-lead">Run the validation workload:</span> Exercise required operations and selected denials. Inspect normal, error and artifact output for sensitive data.</li>
+</ul>
+</div>
+</article>
+<article class="node node-red">
+<h4 class="telemetry-node-header">The System Directive</h4>
+<p class="telemetry-node-title">Review criteria</p>
+<div class="telemetry-node-desc">
+<ul class="clean-bullet-list">
+<li>
+<span class="bullet-lead">Classify the test result:</span> Distinguish the expected authorization rejection from syntax, network, credential and service errors. A nonzero exit alone is insufficient.</li>
+<li>
+<span class="bullet-lead">Use attributable observations:</span> Record request outcomes and relevant identity/resource details. Metrics support diagnosis; secret values are unnecessary evidence.</li>
+</ul>
+</div>
+</article>
+<article class="node node-purple">
+<h4 class="telemetry-node-header">The AI Engine</h4>
+<p class="telemetry-node-title">Proposed output</p>
+<div class="telemetry-node-desc">
+<ul class="clean-bullet-list">
+<li>
+<span class="bullet-lead">Draft safe validation code:</span> Produce non-sensitive assertions and platform-appropriate output handling. Treat masking as a secondary safeguard.</li>
+<li>
+<span class="bullet-lead">Record what was tested:</span> Connect each result to a run or request reference, and leave delayed or unavailable log checks pending.</li>
+</ul>
+</div>
+</article>
+</div>
+<div class="phase-gate">
+<strong>Ready to advance:</strong> Behavioral results and unexpected errors are recorded; failed tests return to the appropriate design or configuration step.</div>
+</section>
+<section class="telemetry-row-block phase-row" aria-labelledby="phase-5-title">
+<div class="row-phase-banner">
+<h3 class="row-phase-title" id="phase-5-title">Phase 05: Evidence Review &amp; Audit Records</h3>
+<span class="row-vars-pill">Reference workflow</span>
+</div>
+<p class="phase-input">
+<strong>Inputs:</strong> Use the deployment baseline, test references and required authentication/resource logs.</p>
+<div class="telemetry-row-grid">
+<article class="node node-cyan">
+<h4 class="telemetry-node-header">The Architect</h4>
+<p class="telemetry-node-title">Review &amp; execute</p>
+<div class="telemetry-node-desc">
+<ul class="clean-bullet-list">
+<li>
+<span class="bullet-lead">Review the event evidence:</span> Execute the relevant queries, check the principal and operation fields and examine the result within the actual logging coverage.</li>
+<li>
+<span class="bullet-lead">Review outcomes and gaps:</span> Accept or reject results against the agreed criteria. Assign unresolved work and record any explicit risk decision.</li>
+</ul>
+</div>
+</article>
+<article class="node node-red">
+<h4 class="telemetry-node-header">The System Directive</h4>
+<p class="telemetry-node-title">Review criteria</p>
+<div class="telemetry-node-desc">
+<ul class="clean-bullet-list">
+<li>
+<span class="bullet-lead">Keep evidence states distinct:</span> Use PASS, FAIL, PENDING or ERROR for each defined check. A generated template or unexecuted query is not a completed verification.</li>
+<li>
+<span class="bullet-lead">Check provenance and limits:</span> Separate author summaries from raw events and independently validated records. Document uncertain correlation and ingestion gaps.</li>
+</ul>
+</div>
+</article>
+<article class="node node-purple">
+<h4 class="telemetry-node-header">The AI Engine</h4>
+<p class="telemetry-node-title">Proposed output</p>
+<div class="telemetry-node-desc">
+<ul class="clean-bullet-list">
+<li>
+<span class="bullet-lead">Draft the audit record:</span> Link observations to evidence, with timestamps, tested scope and limitations. Do not prepopulate success claims.</li>
+<li>
+<span class="bullet-lead">Prepare queries and defect history:</span> Use the actual schema, record prerequisites and consolidate tested fixes and unresolved issues in the DPL.</li>
+</ul>
+</div>
+</article>
+</div>
+<div class="phase-gate">
+<strong>Ready to advance:</strong> Results and gaps are explicit. Pending checks retain their status; release acceptance follows the organization’s defined criteria.</div>
+</section>
+<section class="telemetry-row-block phase-row" aria-labelledby="phase-6-title">
+<div class="row-phase-banner">
+<h3 class="row-phase-title" id="phase-6-title">Phase 06: Repository Review &amp; Operational Handoff</h3>
+<span class="row-vars-pill">Reference workflow</span>
+</div>
+<p class="phase-input">
+<strong>Inputs:</strong> Use the reviewed source, dependency locks, evidence records and authorized destination.</p>
+<div class="telemetry-row-grid">
+<article class="node node-cyan">
+<h4 class="telemetry-node-header">The Architect</h4>
+<p class="telemetry-node-title">Review &amp; execute</p>
+<div class="telemetry-node-desc">
+<ul class="clean-bullet-list">
+<li>
+<span class="bullet-lead">Inspect the publication set:</span> Review staged and tracked files for credentials, state, plans and restricted information. Confirm repository and branch.</li>
+<li>
+<span class="bullet-lead">Synchronize deliberately:</span> Resolve remote differences through the normal review process and record the published and deployed revisions.</li>
+</ul>
+</div>
+</article>
+<article class="node node-red">
+<h4 class="telemetry-node-header">The System Directive</h4>
+<p class="telemetry-node-title">Review criteria</p>
+<div class="telemetry-node-desc">
+<ul class="clean-bullet-list">
+<li>
+<span class="bullet-lead">Protect sensitive artifacts:</span> Apply suitable ignore rules and checks while preserving reproducibility records. Already tracked files and earlier exposure need separate handling.</li>
+<li>
+<span class="bullet-lead">Retain the handoff:</span> Include ownership, recovery, pending work and evidence locations. The number of files depends on the implementation.</li>
+</ul>
+</div>
+</article>
+<article class="node node-purple">
+<h4 class="telemetry-node-header">The AI Engine</h4>
+<p class="telemetry-node-title">Proposed output</p>
+<div class="telemetry-node-desc">
+<ul class="clean-bullet-list">
+<li>
+<span class="bullet-lead">Draft a shell-appropriate runbook:</span> Explain synchronization and explicit file selection using the actual repository state.</li>
+<li>
+<span class="bullet-lead">Prepare the handoff summary:</span> List the implementation, test results, limitations and next review tasks for the receiving engineer.</li>
+</ul>
+</div>
+</article>
+</div>
+<div class="phase-gate">
+<strong>Ready to advance:</strong> The intended files and destination are reviewed, synchronization is confirmed and the operating owner has a traceable handoff.</div>
+</section>
+<section class="telemetry-row-block phase-row" aria-labelledby="phase-7-title">
+<div class="row-phase-banner">
+<h3 class="row-phase-title" id="phase-7-title">Phase 07: Lessons, Baseline Review &amp; Next Version</h3>
+<span class="row-vars-pill">Reference workflow</span>
+</div>
+<p class="phase-input">
+<strong>Inputs:</strong> Use the recorded defects, results, exceptions and configuration changes from the session.</p>
+<div class="telemetry-row-grid">
+<article class="node node-cyan">
+<h4 class="telemetry-node-header">The Architect</h4>
+<p class="telemetry-node-title">Review &amp; execute</p>
+<div class="telemetry-node-desc">
+<ul class="clean-bullet-list">
+<li>
+<span class="bullet-lead">Review the session record:</span> Check counts against the underlying entries and assess the value of each proposed workflow change.</li>
+<li>
+<span class="bullet-lead">Approve the next baseline:</span> Review the directive/configuration diff and its tests before adopting a new version. Retain unresolved work and recovery information.</li>
+</ul>
+</div>
+</article>
+<article class="node node-red">
+<h4 class="telemetry-node-header">The System Directive</h4>
+<p class="telemetry-node-title">Review criteria</p>
+<div class="telemetry-node-desc">
+<ul class="clean-bullet-list">
+<li>
+<span class="bullet-lead">Test changes before adoption:</span> A successful local fix may not generalize. Check applicability and contradictions; update or retire obsolete instructions when needed.</li>
+<li>
+<span class="bullet-lead">Keep claims within evidence:</span> Iteration counts are process measures. They are not a security-success rate or a guarantee against future regressions.</li>
+</ul>
+</div>
+</article>
+<article class="node node-purple">
+<h4 class="telemetry-node-header">The AI Engine</h4>
+<p class="telemetry-node-title">Proposed output</p>
+<div class="telemetry-node-desc">
+<ul class="clean-bullet-list">
+<li>
+<span class="bullet-lead">Draft the lessons and update:</span> Connect each proposed change to the observed defect, tested resolution and remaining limits.</li>
+<li>
+<span class="bullet-lead">Produce a complete reviewable version:</span> Provide the agreed artifacts and revision history without presenting untested rules as established controls.</li>
+</ul>
+</div>
+</article>
+</div>
+<div class="phase-gate">
+<strong>Ready to advance:</strong> The next version is reviewed and saved, while unresolved risks and follow-up checks remain visible.</div>
+</section>
+</div>
+</div>
+</div>
+<section class="all-phase-overlay" aria-labelledby="diagnostics-title">
+<h3 class="telemetry-node-title" id="diagnostics-title">Troubleshooting Across All Phases</h3>
+<div class="wide-3col-grid">
+<article class="wide-subcard">
+<h4 class="wide-subcard-title">1. Preserve the Baseline</h4>
+<p class="telemetry-node-desc">Record the error, relevant non-sensitive output, artifact revision and current state. Separate observed facts from the proposed cause before changing anything.</p>
+</article>
+<article class="wide-subcard">
+<h4 class="wide-subcard-title">2. Test a Bounded Change</h4>
+<p class="telemetry-node-desc">Review one hypothesis and its proposed change. Record the test and result, retain the defect history and recheck any affected trust or permission boundary.</p>
+</article>
+<article class="wide-subcard">
+<h4 class="wide-subcard-title">3. Reassess or Recover</h4>
+<p class="telemetry-node-desc">Use a chosen retry budget and stop earlier when evidence or risk warrants it. The original fourth-attempt halt is a review policy, not a proven optimal threshold. The engineer chooses the next path.</p>
+</article>
+</div>
+<div class="reference-note">
+<strong>After a patch.</strong> Save the resulting configuration and diff, record the tested scope and resume from a known checkpoint. Any temporary exception needs an owner, scope and restoration criteria; a weakened control is not evidence that its intended protection works.</div>
+</section>
+</section>
+<section class="blueprint-section" id="operational-blueprint">
+<h2 class="blueprint-title">Six-Layer Operational Blueprint</h2>
+<div class="section-intro-box">
+<p class="intro-lead-sentence">A documentation view connecting governance, cloud controls and operational evidence.</p>
+<p class="bp-node-desc">The layers organize the design. The implementation must establish which controls exist and where they are enforced; drawing a layer does not deploy it.</p>
+</div>
+<div class="blueprint-funnel">
+<section class="bp-layer top" aria-labelledby="layer-1-title">
+<span class="bp-tag">[LAYER 1]</span>
+<h3 class="bp-heading" id="layer-1-title">Evidence &amp; Governance</h3>
+<div class="bp-grid-4">
+<article class="bp-node ">
+<h4 class="bp-node-title">Discover and Check</h4>
+<div class="bp-node-desc">Use authoritative APIs and observations to challenge assumptions. ReAct research informs the observation/action pattern; its benchmark results do not establish universal reliability.</div>
+</article>
+<article class="bp-node ">
+<h4 class="bp-node-title">Assign Responsibility</h4>
+<div class="bp-node-desc">Name the owner of scope, approval, execution and acceptance. Human oversight should match the consequences and actual deployment mode.</div>
+</article>
+<article class="bp-node ">
+<h4 class="bp-node-title">Limit Authority</h4>
+<div class="bp-node-desc">Constrain credentials, tools and resource access. External permission and approval controls are required when the assistant can perform state-changing actions.</div>
+</article>
+<article class="bp-node ">
+<h4 class="bp-node-title">Review Repeated Failure</h4>
+<div class="bp-node-desc">Choose a troubleshooting budget and a recovery path. Use observed error changes to explain options rather than inventing success probabilities.</div>
+</article>
+</div>
+<ul class="source-links">
+<li>
+<a class="inline-link" href="https://arxiv.org/abs/2210.03629" target="_blank" rel="noopener noreferrer">ReAct research</a>
+</li>
+<li>
+<a class="inline-link" href="https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" target="_blank" rel="noopener noreferrer">OWASP excessive agency</a>
+</li>
+<li>
+<a class="inline-link" href="https://airc.nist.gov/airmf-resources/airmf/appendices/app-c-ai-risk-management-and-human-ai-interaction/" target="_blank" rel="noopener noreferrer">NIST human–AI roles</a>
+</li>
+<li>
+<a class="inline-link" href="https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle" target="_blank" rel="noopener noreferrer">Terraform lifecycle limits</a>
+</li>
+</ul>
+</section>
+<section class="bp-layer guard" aria-labelledby="layer-2-title">
+<span class="bp-tag">[LAYER 2]</span>
+<h3 class="bp-heading" id="layer-2-title">Five Configuration Guardrails</h3>
+<div class="bp-grid-5">
+<article class="bp-node bp-node-red">
+<h4 class="bp-node-title">Credential Handling</h4>
+<div class="bp-node-desc">Avoid sharing credentials with the model. Review inputs, logs and artifacts against the organization’s data-handling rules.</div>
+</article>
+<article class="bp-node bp-node-red">
+<h4 class="bp-node-title">Asset &amp; State Protection</h4>
+<div class="bp-node-desc">Inspect planned changes, references/imports, deletion safeguards and state persistence. Each mechanism has a defined scope.</div>
+</article>
+<article class="bp-node bp-node-red">
+<h4 class="bp-node-title">Least-Privilege Access</h4>
+<div class="bp-node-desc">Grant required operations on necessary resources, then inspect effective permissions and test relevant denials.</div>
+</article>
+<article class="bp-node bp-node-red">
+<h4 class="bp-node-title">Dependency &amp; Schema Review</h4>
+<div class="bp-node-desc">Use reviewed dependencies, locks and supported schemas. Verify actual resolved artifacts instead of relying on version labels alone.</div>
+</article>
+<article class="bp-node bp-node-red">
+<h4 class="bp-node-title">Safe Validation Output</h4>
+<div class="bp-node-desc">Avoid printing tokens and secret values. Apply platform-supported redaction and inspect error paths and retained artifacts.</div>
+</article>
+</div>
+</section>
+<section class="bp-layer mid" aria-labelledby="layer-3-title">
+<span class="bp-tag">[LAYER 3]</span>
+<h3 class="bp-heading" id="layer-3-title">The Execution Triad</h3>
+<div class="bp-grid-3">
+<article class="bp-node bp-node-purple">
+<h4 class="bp-node-title">The Architect</h4>
+<div class="bp-node-desc">Defines scope, reviews artifacts, executes approved actions and accepts the outcome. Owns risk decisions and the recovery path.</div>
+</article>
+<article class="bp-node bp-node-purple">
+<h4 class="bp-node-title">The System Directive</h4>
+<div class="bp-node-desc">Defines the conversation sequence, expected evidence and review criteria. In chat it is an instruction set, not an independent supervisor.</div>
+</article>
+<article class="bp-node bp-node-purple">
+<h4 class="bp-node-title">The AI Engine</h4>
+<div class="bp-node-desc">Drafts discovery commands, configuration, tests and diagnostic explanations. Its actual tools and credentials determine its execution authority.</div>
+</article>
+</div>
+</section>
+<section class="bp-layer bot" aria-labelledby="layer-4-title">
+<span class="bp-tag">[LAYER 4]</span>
+<h3 class="bp-heading" id="layer-4-title">Four Architectural Gates</h3>
+<div class="bp-grid-4">
+<article class="bp-node bp-node-green">
+<h4 class="bp-node-title">1. Boundary</h4>
+<div class="bp-node-desc">Confirm the target account, tenant, subscription or project, approved relationships and the resource’s actual deployment context.</div>
+</article>
+<article class="bp-node bp-node-green">
+<h4 class="bp-node-title">2. Identity</h4>
+<div class="bp-node-desc">Identify the workload principal, ownership and alternate credential paths. Prefer suitable managed identity or federation over new persistent workload secrets.</div>
+</article>
+<article class="bp-node bp-node-green">
+<h4 class="bp-node-title">3. Federation</h4>
+<div class="bp-node-desc">Review issuer, audience, subject or attribute conditions and source-workload protections. Match the current provider configuration.</div>
+</article>
+<article class="bp-node bp-node-green">
+<h4 class="bp-node-title">4. Authorization</h4>
+<div class="bp-node-desc">Review required operations, resource scope and all effective grants. Protect provisioning authority separately from workload access.</div>
+</article>
+</div>
+<div class="reference-note">
+<strong>Dependency order.</strong> The selected cloud and tool determine the actual resource graph. Existing and new assets have different prerequisites; these four review gates are not a universal four-command deployment sequence.</div>
+</section>
+<section class="bp-layer outputs" aria-labelledby="layer-5-title">
+<span class="bp-tag">[LAYER 5]</span>
+<h3 class="bp-heading" id="layer-5-title">Artifacts, Results &amp; Handoff</h3>
+<div class="blueprint-table-wrap" role="region" aria-label="Engineering artifact groups" tabindex="0">
+<table class="blueprint-table" role="table">
+<caption>Five artifact groups; actual file counts and formats depend on the implementation.</caption>
+<thead>
+<tr role="row">
+<th scope="col">Artifact Group</th>
+<th scope="col">Purpose</th>
+<th scope="col">Evidence Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr role="row">
+<th scope="row">Configuration &amp; runbook</th>
+<td role="cell" data-label="Purpose">Reviewed code, dependencies, plan and execution instructions.</td>
+<td role="cell" data-label="Evidence rule">Record the deployed revision and actual execution result.</td>
+</tr>
+<tr role="row">
+<th scope="row">Identity Architecture Ledger</th>
+<td role="cell" data-label="Purpose">Principal, trust conditions, scope and credential settings.</td>
+<td role="cell" data-label="Evidence rule">Tie the baseline to discovered or deployed objects.</td>
+</tr>
+<tr role="row">
+<th scope="row">Audit Results Ledger</th>
+<td role="cell" data-label="Purpose">Defined checks, outcomes, references and limitations.</td>
+<td role="cell" data-label="Evidence rule">Use an outcome supported by the evidence for that check.</td>
+</tr>
+<tr role="row">
+<th scope="row">Telemetry queries &amp; results</th>
+<td role="cell" data-label="Purpose">Provider-specific collection and investigation handoff.</td>
+<td role="cell" data-label="Evidence rule">Distinguish query code from executed results and active monitoring.</td>
+</tr>
+<tr role="row">
+<th scope="row">Defect &amp; Patch Ledger</th>
+<td role="cell" data-label="Purpose">Symptoms, tested changes, exceptions and open work.</td>
+<td role="cell" data-label="Evidence rule">Separate hypotheses from confirmed causes and tested resolutions.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="status-legend" aria-label="Evidence status vocabulary">
+<span class="status-pill status-pass">PASS: defined check satisfied</span>
+<span class="status-pill status-fail">FAIL: expected property not met</span>
+<span class="status-pill status-pending">PENDING: evidence incomplete</span>
+<span class="status-pill status-error">ERROR: test could not determine result</span>
+</div>
+<div class="reference-note">
+<strong>Scope of a result.</strong> A passing check applies to its tested conditions. A Markdown ledger organizes records; signed integrity, independent attestation and regulatory acceptance require their own evidence and processes.</div>
+</section>
+<section class="bp-layer mid" aria-labelledby="layer-6-title">
+<span class="bp-tag">[LAYER 6]</span>
+<h3 class="bp-heading" id="layer-6-title">Diagnostics &amp; Reviewed Improvement</h3>
+<div class="bp-grid-4">
+<article class="bp-node bp-node-pink">
+<h4 class="bp-node-title">Retain the Checkpoint</h4>
+<div class="bp-node-desc">Persist the current configuration, evidence references and open issues so the next session can recover context.</div>
+</article>
+<article class="bp-node bp-node-pink">
+<h4 class="bp-node-title">Count Recorded Events</h4>
+<div class="bp-node-desc">Derive attempts and deviations from the defect record. Describe these as process measures, with clear definitions.</div>
+</article>
+<article class="bp-node bp-node-pink">
+<h4 class="bp-node-title">Review the Lesson</h4>
+<div class="bp-node-desc">Check whether a fix generalizes and whether it conflicts with existing instructions or cloud-specific behavior.</div>
+</article>
+<article class="bp-node bp-node-pink">
+<h4 class="bp-node-title">Adopt a Tested Version</h4>
+<div class="bp-node-desc">Review the complete proposed change, run relevant checks and retain its revision and recovery procedure.</div>
+</article>
+</div>
+</section>
+</div>
+</section>
+<section class="classification-section" id="system-classification">
+<p class="class-header">[OPERATING MODE &amp; ENFORCEMENT]</p>
+<h2 class="class-title">Human-Governed Assistance with Explicit Execution Authority</h2>
+<div class="bp-layer-intro-box">
+<p class="intro-lead-sentence">Describe the installation by its actual capabilities and controls.</p>
+<p class="bp-node-desc">The advisory pattern described here keeps cloud execution with the engineer. Adding tools or pipeline execution changes that boundary. An autonomy-level label is useful only when its taxonomy, scope and assessment are defined.</p>
+</div>
+<div class="class-grid">
+<article class="class-card">
+<h3>Advisory Chat</h3>
+<p>The assistant proposes code and commands. The engineer holds cloud credentials and performs the actions. Prompt checkpoints support the review procedure.</p>
+</article>
+<article class="class-card">
+<h3>Tool-Enabled Assistant</h3>
+<p>Tools may read or change external systems. The integration must restrict capabilities and credentials and enforce any required approval at the execution boundary.</p>
+</article>
+<article class="class-card">
+<h3>Pipeline-Controlled Execution</h3>
+<p>A runner executes a reviewed artifact through configured pipeline permissions and approvals. Its controls and records must bind execution to the intended revision and scope.</p>
+</article>
+</div>
+<div class="reference-note">
+<strong>Implementation distinction.</strong> The latter two cards describe integration patterns that need their own controls and validation. The prompt and this page do not create those controls. A model’s statement that it has no tools or has received approval is not an independently enforced boundary.</div>
+<div class="source-links">
+<a href="workflow-portfolio.html" class="inline-link">Engineering demonstrations</a>
+<a href="autonomous-proofs.html" class="inline-link">Reviewed AWS example</a>
+<a href="glossary.html" class="inline-link">System glossary</a>
+</div>
+</section>
+</main>
+<footer class="ip-footer">
+        <div class="footer-crest-wrapper">
+            <svg class="footer-brand-crest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+                <rect width="114" height="114" x="3" y="3" fill="#020617" rx="22" stroke="#1e293b" stroke-width="3"/>
+                <polygon points="24,18 60,36 60,48 24,30" fill="#475569"/>
+                <polygon points="96,18 60,36 60,48 96,30" fill="#1e293b"/>
+                <polygon points="24,39 60,57 60,69 24,51" fill="#0284c7"/>
+                <polygon points="96,39 60,57 60,69 96,51" fill="#075985"/>
+                <polygon points="24,60 60,78 60,90 24,72" fill="#38bdf8"/>
+                <polygon points="96,60 60,78 60,90 96,72" fill="#0369a1"/>
+                <polygon points="24,81 60,99 60,111 24,93" fill="#f43f5e"/>
+                <polygon points="96,81 60,99 60,111 96,93" fill="#9f1239"/>
+            </svg>
         </div>
+        <strong>&copy; 2026 Steven Tuschman | Adversarial Kill-Chain Counter-Engineering&trade; (adversarialkillchaincounterengineering.com). All Rights Reserved.</strong>
+<br>
+        The Adversarial Kill-Chain Counter-Engineering State Machine, Sequential Kill-Chain Counter-Engineering Protocol, Execution Triad governance model, Four Architectural Gates of Machine Identity, Five Enterprise Guardrails, Build Coordinate Matrix, and 26-Variable System Glossary are proprietary intellectual property. Unauthorized reproduction, distribution, or commercial adaptation is strictly prohibited.
+    </footer>
 
-        <!-- ================= ZONE 2: SECTION 1 — 7-PHASE KINETIC EXECUTION TELEMETRY (ROWS 1 TO 7 + ALL-PHASE OVERLAY) ================= -->
-        <div class="blueprint-section" id="kinetic-telemetry">
-            <h2 class="blueprint-title">7-Phase Kinetic Execution Telemetry</h2>
-            
-            <!-- BULLETED SECTION 1 INTRO BOX -->
-            <div class="section-intro-box">
-                <div class="intro-lead-sentence">
-                    This 7-row visual telemetry board maps how The Architect, The State Machine, and The AI Engine interact across Phases 1 through 7 of the master System Directive&mdash;neutralizing each stage of the 7-stage adversarial exploitation chain across all 26 fixed variables defined in the <a href="glossary.html" class="inline-link">26-Variable System Glossary</a>:
-                </div>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">Plain-Talk Three-Column Separation in Every Row:</span> Each row represents one chronological counter-engineering phase (Row 1: Phase 1 through Row 7: Phase 7) divided cleanly across the three actors of The Execution Triad: what The Architect physically executes at the keyboard (Column 1: The Architect), what rule or [STRICT HALT] The State Machine enforces and what exploit or crash it prevents (Column 2: The State Machine), and what exact file, read-only lookup command, or code block gets synthesized in the chat (Column 3: The AI Engine).
-                    </li>
-                    <li>
-                        <span class="bullet-lead">Rows 1 to 3 (Neutralizing Offensive Stages 1 to 3 &mdash; Workspace Isolation, Exact OIDC Extraction &amp; 4-Gate IaC Execution):</span> Row 1 (Phase 1) bans browser Cloud Shells, initializes a clean local folder with five blank deliverable files, enforces silent read -s memory input, locks the 5 Build Coordinates, and verifies the Gate 1 Boundary via read-only CLI checks; Row 2 (Phase 2) extracts the exact case-sensitive Code Repository and Branch string and permanent numeric IDs from the Execution Agent to lock the Gate 3 Subject Claim with zero wildcards (*); and Row 3 (Phase 3) synthesizes and executes the finished 4-Gate IaC Payload, Terminal Runbook, 30-Second Server Sync Timer, and guided Cloud Console MFA Handoff.
-                    </li>
-                    <li>
-                        <span class="bullet-lead">Rows 4 to 7 (Neutralizing Offensive Stages 4 to 7 &mdash; Masked Live Validation, Standby Telemetry, Sterilized Git Sync &amp; Directive Compilation):</span> Row 4 (Phase 4) saves the pre-test Identity Architecture Ledger (IAL), runs the live .yml Validation Bridge with active Runtime Log Masking (::add-mask::) on the Execution Agent, and verifies the immediate spike in cloud monitoring metrics (Total Service API Hits / CloudWatch / Portal Metrics); Row 5 (Phase 5) saves the Audit Results Ledger (ARL), packages standby CloudTrail/KQL/SIEM Telemetry (kql_telemetry.md), and compiles the Defect &amp; Patch Ledger (DPL); Row 6 (Phase 6) pulls remote workflow files first, locks a .gitignore barrier against .tfstate leaks, and pushes the five sterilized files to the Code Repository and Branch; and Row 7 (Phase 7) audits execution via the counted AI Performance Scorecard and compiles all verified DPL fixes permanently into the master System Directive.
-                    </li>
-                    <li>
-                        <span class="bullet-lead">Dedicated All-Phase Troubleshooting Overlay (Directive 05 &mdash; Active Across Phases 1 to 6):</span> Shown in the dedicated banner directly below Row 7, the global Directive 05 interrupt governs routine bug fixing inside the Standard Patch Loop (Iterations 1 to 3)&mdash;logging every verified fix in real time in the Defect &amp; Patch Ledger (DPL) alongside a top-to-bottom State Re-Sync of the IaC Payload&mdash;kept completely separate from The 4-Iteration Circuit Breaker on Iteration 4.
-                    </li>
-                </ul>
-            </div>
-
-            <div class="canvas-wrapper">
-                <div class="dashboard" id="dashboard">
-                    
-                    <div class="center-spine"></div>
-
-                    <!-- Column Headers: The 3 Core Actors -->
-                    <div class="telemetry-actor-headers">
-                        <div class="col-label lbl-architect">
-                            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                            1. The Architect (Human-in-the-Loop)
-                        </div>
-                        <div class="col-label lbl-framework">
-                            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                            2. The State Machine
-                        </div>
-                        <div class="col-label lbl-ai">
-                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
-                            3. The AI Engine
-                        </div>
-                    </div>
-
-                    <!-- AUTO-SIZING 7-ROW STACK (ZERO OVERLAP) -->
-                    <div class="telemetry-rows-stack">
-
-                        <!-- ================= ROW 1: PHASE 1 (0%): CLEAN WORKSPACE, 5 COORDINATES & BOUNDARY DISCOVERY ================= -->
-                        <div class="telemetry-row-block">
-                            <div class="row-phase-banner">
-                                <span class="row-phase-title">[ROW 1 :: PHASE 1 (0%): CLEAN WORKSPACE, 5 COORDINATES &amp; BOUNDARY DISCOVERY &mdash; NEUTRALIZES OFFENSIVE STAGE 1]</span>
-                                <span class="row-vars-pill">Glossary Variables 01 to 09 (The 3 Actors, 5 Build Coordinates &amp; Gate 1 Boundary)</span>
-                            </div>
-                            <div class="telemetry-row-grid">
-                                <svg class="row-connector-svg" xmlns="http://www.w3.org/2000/svg">
-                                    <path class="kinetic-path path-cyan" d="M 332 20 L 384 20" />
-                                    <path class="kinetic-path path-purple" d="M 768 20 L 716 20" />
-                                </svg>
-                                <!-- COL 1: ARCHITECT -->
-                                <div class="node node-cyan">
-                                    <div class="telemetry-node-header" style="color: var(--color-cyan);">
-                                        <span>[ROW 1 :: THE ARCHITECT]</span>
-                                        <svg class="architect-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                                    </div>
-                                    <div class="telemetry-node-title">Isolate Local Folder, Pick 5 Coordinates &amp; Check Boundary</div>
-                                    <div class="mandate-tag">[PHYSICAL EXECUTION AT THE KEYBOARD]</div>
-                                    <div class="telemetry-node-desc">
-                                        <ul>
-                                            <li><span class="bullet-lead">Initialize 5 Blank Deliverable Files:</span> Bypassing browser Cloud Shells completely, The Architect opens a brand-new, empty project folder inside a local IDE and terminal environment (Visual Studio Code and Git Bash) and initializes five blank files (main.tf/main.bicep/deploy.ps1/deploy.py, identity_architecture_ledger.md, audit_results_ledger.md, kql_telemetry.md, and patch_ledger.md) so leftover state files never contaminate the build and terminal paste buffers never truncate code.</li>
-                                            <li><span class="bullet-lead">Lock 5 Build Coordinates &amp; Verify Gate 1 Boundary:</span> The Architect selects one option from each column of the 5-Column Build Matrix (Identity Core, Execution Agent, Infrastructure State, Data-Plane Asset, and IaC Payload across 72+ combinations), loads sensitive inputs into terminal memory using silent input (read -s), and runs read-only CLI checks (AWS CLI, Azure CLI, or gcloud CLI) to prove the target AWS Account, Azure Subscription &amp; Resource Group, or GCP Project and Data-Plane Asset sit nested under the organization's verified root boundary.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- COL 2: STATE MACHINE -->
-                                <div class="node node-red">
-                                    <div class="telemetry-node-header" style="color: var(--color-red);">[ROW 1 :: THE STATE MACHINE]</div>
-                                    <div class="telemetry-node-title">Ban Cloud Shells, Enforce Silent Input &amp; Block Unverified Coding</div>
-                                    <div class="mandate-tag">[RULE ENFORCED &amp; EXPLOIT PREVENTED]</div>
-                                    <div class="telemetry-node-desc">
-                                        <ul>
-                                            <li><span class="bullet-lead">Neutralize Offensive Stage 1 (Workspace &amp; History Exposure):</span> Permanently bans browser Cloud Shells (AWS CloudShell, Azure Cloud Shell, GCP Cloud Shell&mdash;preventing 20-minute inactivity timeouts and abandoned cloud storage caches) and enforces Guardrail 1 (Secret &amp; Credential Protection) via DLP parameter variables and silent memory-buffered input (read -s) so setup tokens and corporate IDs never write to .bash_history.</li>
-                                            <li><span class="bullet-lead">Enforce Phase 1 [STRICT HALT] Until Gate 1 Is Proven:</span> Collapses 72+ baseline combinations down to 1 exact blueprint and blocks Phase 2 until live read-only CLI checks confirm that the target AWS Account, Azure Subscription &amp; Resource Group, or GCP Project belongs to the verified organization boundary and that modern IAM/RBAC is enabled on the Data-Plane Asset.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- COL 3: AI ENGINE -->
-                                <div class="node node-purple">
-                                    <div class="telemetry-node-header" style="color: var(--color-purple);">
-                                        <span class="cursor-blink">[ROW 1 :: THE AI ENGINE]</span>
-                                    </div>
-                                    <div class="telemetry-node-title">Output Workspace Init &amp; Read-Only Gate 1 CLI Lookups</div>
-                                    <div class="mandate-tag">[SYNTHESIZED OUTPUT IN THE CHAT WINDOW]</div>
-                                    <div class="telemetry-node-desc">
-                                        <ul>
-                                            <li><span class="bullet-lead">Print the 5-File Workspace Initialization Checklist:</span> Outputs the Phase 1 initialization checklist naming the five deliverable files and provides the exact terminal commands to create the clean local directory and blank files.</li>
-                                            <li><span class="bullet-lead">Output Read-Only Multi-Cloud CLI Discovery Commands:</span> If all 5 Build Coordinates and verified Gate 1 IDs are provided up front (or when layering a Day-2 module onto a verified core), locks them in immediately; if any coordinate or boundary ID is unverified, outputs read-only CLI lookup commands (aws sts, az account, or gcloud projects) and halts for The Architect's terminal confirmation.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ================= ROW 2: PHASE 2 (20%): COORDINATE LOCK & EXACT OIDC SUBJECT CLAIM EXTRACTION ================= -->
-                        <div class="telemetry-row-block">
-                            <div class="row-phase-banner">
-                                <span class="row-phase-title">[ROW 2 :: PHASE 2 (20%): COORDINATE LOCK &amp; EXACT OIDC SUBJECT CLAIM EXTRACTION &mdash; NEUTRALIZES OFFENSIVE STAGE 2]</span>
-                                <span class="row-vars-pill">Glossary Variables 09 (Gate 1 Boundary), 12 (OIDC) &amp; 13 (Subject Claim &amp; Code Repository and Branch)</span>
-                            </div>
-                            <div class="telemetry-row-grid">
-                                <svg class="row-connector-svg" xmlns="http://www.w3.org/2000/svg">
-                                    <path class="kinetic-path path-cyan" d="M 332 20 L 384 20" />
-                                    <path class="kinetic-path path-purple" d="M 768 20 L 716 20" />
-                                </svg>
-                                <!-- COL 1: ARCHITECT -->
-                                <div class="node node-cyan">
-                                    <div class="telemetry-node-header" style="color: var(--color-cyan);">
-                                        <span>[ROW 2 :: THE ARCHITECT]</span>
-                                        <svg class="architect-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                                    </div>
-                                    <div class="telemetry-node-title">Run Execution Agent CLI Lookup &amp; Lock Exact Casing</div>
-                                    <div class="mandate-tag">[PHYSICAL EXECUTION AT THE KEYBOARD]</div>
-                                    <div class="telemetry-node-desc">
-                                        <ul>
-                                            <li><span class="bullet-lead">Execute Read-Only Platform API Extraction:</span> With the Gate 1 Boundary verified, The Architect runs the Phase 2 read-only CLI extraction script in the local terminal directly against the selected Execution Agent (Kubernetes across EKS/AKS/GKE, GitHub Actions, GitLab CI, or Azure DevOps), loading any temporary query token silently into memory via read -s.</li>
-                                            <li><span class="bullet-lead">Paste Ground-Truth Output to Lock Gate 3:</span> Extracts the permanent numeric repository/owner IDs, the OpenID Connect (OIDC) Issuer URL, and the exact capital-and-lowercase Code Repository and Branch string from the platform's backend response, pasting the verified output back into the chat to lock Gate 3.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- COL 2: STATE MACHINE -->
-                                <div class="node node-green">
-                                    <div class="telemetry-node-header" style="color: var(--color-green);">[ROW 2 :: THE STATE MACHINE]</div>
-                                    <div class="telemetry-node-title">Ban Wildcards (*), Placeholders &amp; Case-Mismatch Guesswork</div>
-                                    <div class="mandate-tag">[RULE ENFORCED &amp; EXPLOIT PREVENTED]</div>
-                                    <div class="telemetry-node-desc">
-                                        <ul>
-                                            <li><span class="bullet-lead">Neutralize Offensive Stage 2 (OIDC Token Impersonation &amp; Wildcards):</span> AWS STS, Microsoft Entra ID, and Google Cloud IAM evaluate OpenID Connect (OIDC) Subject Claims with 100% case-sensitive strictness (such as AADSTS700213 or STS AccessDenied). The State Machine permanently bans wildcards (*) and loose branch filters&mdash;preventing unauthorized branches, forks, or pull requests from minting rogue tokens&mdash;and forces the Gate 3 Subject Claim to match the extracted Code Repository and Branch string character-for-character.</li>
-                                            <li><span class="bullet-lead">Forbid &lt;INSERT_HERE&gt; Placeholders &amp; Guide Past UI Traps:</span> Forbids The AI Engine from outputting &lt;YOUR_ACCOUNT_OR_TENANT_ID&gt; placeholders or guessing casing from memory, and guides The Architect step-by-step past platform UI traps (such as GitHub Fine-Grained Personal Access Token account vs. repository settings).</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- COL 3: AI ENGINE -->
-                                <div class="node node-purple">
-                                    <div class="telemetry-node-header" style="color: var(--color-purple);">
-                                        <span class="cursor-blink">[ROW 2 :: THE AI ENGINE]</span>
-                                    </div>
-                                    <div class="telemetry-node-title">Route Multi-Platform CLI Extraction &amp; Assemble Subject Claim</div>
-                                    <div class="mandate-tag">[SYNTHESIZED OUTPUT IN THE CHAT WINDOW]</div>
-                                    <div class="telemetry-node-desc">
-                                        <ul>
-                                            <li><span class="bullet-lead">Output Specialized Execution Agent Extraction Script:</span> Dynamically routes down one of four extraction paths matching Coordinate 2 (EKS/AKS/GKE Brownfield/Greenfield, GitHub Actions, GitLab CI, or Azure DevOps) and outputs the exact copy-paste terminal lookup command.</li>
-                                            <li><span class="bullet-lead">Assemble Wildcard-Free Gate 3 Subject Claim &amp; Halt:</span> Assembles the complete, wildcard-free Gate 3 Subject Claim directly from The Architect's pasted terminal output and halts at the end of Phase 2 for human sign-off before synthesizing any Phase 3 code.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ================= ROW 3: PHASE 3 (40%): SYNTHESIZING & RUNNING THE 4-GATE INFRASTRUCTURE PAYLOAD ================= -->
-                        <div class="telemetry-row-block">
-                            <div class="row-phase-banner">
-                                <span class="row-phase-title">[ROW 3 :: PHASE 3 (40%): SYNTHESIZING &amp; RUNNING THE 4-GATE INFRASTRUCTURE PAYLOAD &mdash; NEUTRALIZES OFFENSIVE STAGE 3]</span>
-                                <span class="row-vars-pill">Glossary Variables 10, 11 (Gate 2), 14, 15 (Gate 3 &amp; 30-Sec Sync Timer), 16, 17 &amp; 18 (Gate 4 &amp; MFA Handoff)</span>
-                            </div>
-                            <div class="telemetry-row-grid">
-                                <svg class="row-connector-svg" xmlns="http://www.w3.org/2000/svg">
-                                    <path class="kinetic-path path-cyan" d="M 332 20 L 384 20" />
-                                    <path class="kinetic-path path-purple" d="M 768 20 L 716 20" />
-                                </svg>
-                                <!-- COL 1: ARCHITECT -->
-                                <div class="node node-cyan">
-                                    <div class="telemetry-node-header" style="color: var(--color-cyan);">
-                                        <span>[ROW 3 :: THE ARCHITECT]</span>
-                                        <svg class="architect-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                                    </div>
-                                    <div class="telemetry-node-title">Verify Coordinate Echo, Execute IaC Payload &amp; MFA Handoff</div>
-                                    <div class="mandate-tag">[PHYSICAL EXECUTION AT THE KEYBOARD]</div>
-                                    <div class="telemetry-node-desc">
-                                        <ul>
-                                            <li><span class="bullet-lead">Verify Pre-Flight Echo &amp; Save IaC Payload:</span> The Architect verifies that the echoed IAM Role ARN, Application Registration Client ID, or GCP Service Account and case-sensitive Subject Claim at the top of Phase 3 match Phases 1 and 2 with zero drift, saves the complete IaC Payload into the local IDE file (main.tf, main.bicep, deploy.ps1, or deploy.py), and authenticates the terminal via MFA-backed CLI sign-in.</li>
-                                            <li><span class="bullet-lead">Execute Terminal Runbook &amp; Guided Cloud Console MFA Handoff:</span> Runs the copy-paste Terminal Runbook in the local terminal (using read -s for any parameter input) and, on high-security builds where local terminals drop interactive MFA claims, completes the guided Cloud Console MFA Handoff checklist in the browser to bind the single-asset Data-Plane Role.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- COL 2: STATE MACHINE -->
-                                <div class="node node-green">
-                                    <div class="telemetry-node-header" style="color: var(--color-green);">[ROW 3 :: THE STATE MACHINE]</div>
-                                    <div class="telemetry-node-title">Enforce Account/Tenant Isolation, 30-Sec Sync Timer &amp; Block Admin/Contributor</div>
-                                    <div class="mandate-tag">[RULE ENFORCED &amp; EXPLOIT PREVENTED]</div>
-                                    <div class="telemetry-node-desc">
-                                        <ul>
-                                            <li><span class="bullet-lead">Neutralize Offensive Stage 3 (Cross-Tenant Injection &amp; "The Contributor Trap"):</span> Enforces read-only lookups on Brownfield (Existing) assets or deletion-prevention locks on Greenfield (Net-New) assets with pinned provider versions (Gate 1 / Guardrails 2 &amp; 4); locks the IAM Role, Application Registration &amp; Service Principal, or GCP Service Account strictly to single-account/tenant isolation (such as AzureADMyOrg or isolated AWS/GCP trust policies) with Disabled Browser Redirect URLs and zero passwords/static keys (Gate 2); and blocks broad Admin, Owner, and Contributor Roles completely, restricting the identity to one Data-Plane Role on one Data-Plane Asset (Gate 4 / Guardrail 3).</li>
-                                            <li><span class="bullet-lead">Prevent Global Replication 404 Crashes &amp; Terminal 401/403 MFA Drops:</span> Embeds a mandatory 30-Second Server Sync Timer (time_sleep / Start-Sleep -Seconds 30) between Gate 2 object creation and Gate 3 Subject Claim attachment (plus 90-subnet IPv4 chunking for Conditional Access), and automatically decouples Gate 4 role assignment into the Cloud Console MFA Handoff when terminal MFA claims drop.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- COL 3: AI ENGINE -->
-                                <div class="node node-purple">
-                                    <div class="telemetry-node-header" style="color: var(--color-purple);">
-                                        <span class="cursor-blink">[ROW 3 :: THE AI ENGINE]</span>
-                                    </div>
-                                    <div class="telemetry-node-title">Synthesize 100% Finished 4-Gate IaC Payload &amp; Runbook</div>
-                                    <div class="mandate-tag">[SYNTHESIZED OUTPUT IN THE CHAT WINDOW]</div>
-                                    <div class="telemetry-node-desc">
-                                        <ul>
-                                            <li><span class="bullet-lead">Echo Coordinates &amp; Synthesize Complete 4-Gate IaC Payload:</span> Prints the mandatory Phase 3 Coordinate Echo first, then synthesizes the 100% finished Terraform HCL, AWS CLI/CloudFormation, Azure Bicep, PowerShell REST API, or Python IaC Payload (enforcing pure provider JSON schemas on REST/SDK builds) with the 30-Second Server Sync Timer built in.</li>
-                                            <li><span class="bullet-lead">Output Terminal Runbook, MFA Checklist &amp; Halt:</span> Outputs the step-by-step Terminal Runbook (and Cloud Console MFA Handoff checklist when applicable) and halts until The Architect confirms Phase 3 deployed cleanly in the terminal.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ================= ROW 4: PHASE 4 (60%): CRYPTOGRAPHIC BASELINE (IAL) & LIVE VALIDATION BRIDGE ================= -->
-                        <div class="telemetry-row-block">
-                            <div class="row-phase-banner">
-                                <span class="row-phase-title">[ROW 4 :: PHASE 4 (60%): CRYPTOGRAPHIC BASELINE (IAL) &amp; LIVE VALIDATION BRIDGE &mdash; NEUTRALIZES OFFENSIVE STAGE 4]</span>
-                                <span class="row-vars-pill">Glossary Variables 19 (IAL), 20 (Validation Bridge &amp; Runtime Log Masking) &amp; 21 (Total Service API Hits / Cloud Metrics)</span>
-                            </div>
-                            <div class="telemetry-row-grid">
-                                <svg class="row-connector-svg" xmlns="http://www.w3.org/2000/svg">
-                                    <path class="kinetic-path path-cyan" d="M 332 20 L 384 20" />
-                                    <path class="kinetic-path path-purple" d="M 768 20 L 716 20" />
-                                </svg>
-                                <!-- COL 1: ARCHITECT -->
-                                <div class="node node-cyan">
-                                    <div class="telemetry-node-header" style="color: var(--color-cyan);">
-                                        <span>[ROW 4 :: THE ARCHITECT]</span>
-                                        <svg class="architect-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                                    </div>
-                                    <div class="telemetry-node-title">Save Pre-Test IAL, Run Masked Bridge &amp; Verify Cloud Metrics</div>
-                                    <div class="mandate-tag">[PHYSICAL EXECUTION AT THE KEYBOARD]</div>
-                                    <div class="telemetry-node-desc">
-                                        <ul>
-                                            <li><span class="bullet-lead">Steps 1 &amp; 2 (Save Pre-Test IAL &amp; Trigger Live Validation Bridge):</span> Immediately after Phase 3 finishes, The Architect saves identity_architecture_ledger.md (IAL) in the local workspace (Step 1), then commits and triggers the live .yml Validation Bridge workflow on the external Execution Agent and waits for a green checkmark (Step 2).</li>
-                                            <li><span class="bullet-lead">Step 3 (Verify Stage 1 Mathematical Proof in Cloud Metrics):</span> Once the Validation Bridge turns green, The Architect opens the target Data-Plane Asset in the Cloud Console (Monitoring &rarr; Metrics &rarr; Total Service API Hits / CloudWatch / Portal Metrics over the Last 30 minutes) to verify the live API hit spike proving the 60-Minute Login Token read the asset with zero 403 errors.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- COL 2: STATE MACHINE -->
-                                <div class="node node-orange">
-                                    <div class="telemetry-node-header" style="color: var(--color-orange);">[ROW 4 :: THE STATE MACHINE]</div>
-                                    <div class="telemetry-node-title">Enforce 3-Step Halts &amp; Scrub Console Logs with Asterisks (***)</div>
-                                    <div class="mandate-tag">[RULE ENFORCED &amp; EXPLOIT PREVENTED]</div>
-                                    <div class="telemetry-node-desc">
-                                        <ul>
-                                            <li><span class="bullet-lead">Neutralize Offensive Stage 4 (CI/CD Console Log Scraping):</span> Enforces Guardrail 5 (Validation Bridge Runtime Log Masking &mdash; ::add-mask::) inside the .yml Validation Bridge so the Execution Agent scrubs the 60-Minute Login Token and retrieved vault secret with asterisks (***) in memory before a single character can reach the shared console log (stdout).</li>
-                                            <li><span class="bullet-lead">Enforce Un-Bundled 3-Step Verification &amp; Principal ID Binding:</span> Forbids bundling the Validation Bridge run and the Cloud Console metrics check into a single turn&mdash;enforcing a mandatory halt after Step 2 until the pipeline is green&mdash;and ensures the workflow authenticates using the exact Role ARN, Application Client ID, or GCP Service Account (never an internal Object ID).</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- COL 3: AI ENGINE -->
-                                <div class="node node-purple">
-                                    <div class="telemetry-node-header" style="color: var(--color-purple);">
-                                        <span class="cursor-blink">[ROW 4 :: THE AI ENGINE]</span>
-                                    </div>
-                                    <div class="telemetry-node-title">Generate 4-Section IAL, Masked .yml Bridge &amp; Metrics Path</div>
-                                    <div class="mandate-tag">[SYNTHESIZED OUTPUT IN THE CHAT WINDOW]</div>
-                                    <div class="telemetry-node-desc">
-                                        <ul>
-                                            <li><span class="bullet-lead">Synthesize Pre-Test Identity Architecture Ledger (Step 1):</span> Generates identity_architecture_ledger.md (IAL) documenting all four deployed sections (Core Cloud Boundary, Non-Human Identity Provisioning, Passwordless Cryptographic Federation, and Data-Plane Access &amp; Pipeline Enforcement).</li>
-                                            <li><span class="bullet-lead">Synthesize Masked .yml Validation Bridge (Step 2) &amp; Metrics Path (Step 3):</span> Outputs the native .yml/.yaml Validation Bridge file with active Runtime Log Masking and Git push commands, halts for the green run confirmation, and then outputs the exact 5-click Cloud Console path to verify Total Service API Hits.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ================= ROW 5: PHASE 5 (80%): COMPLIANCE AUDITING (ARL), STANDBY TELEMETRY & FINALIZED DPL ================= -->
-                        <div class="telemetry-row-block">
-                            <div class="row-phase-banner">
-                                <span class="row-phase-title">[ROW 5 :: PHASE 5 (80%): COMPLIANCE AUDITING (ARL), STANDBY TELEMETRY &amp; FINALIZED DPL &mdash; NEUTRALIZES OFFENSIVE STAGE 5]</span>
-                                <span class="row-vars-pill">Glossary Variables 22 (ARL), 23 (CloudTrail / KQL / SIEM Telemetry) &amp; 24 (Finalized Defect &amp; Patch Ledger)</span>
-                            </div>
-                            <div class="telemetry-row-grid">
-                                <svg class="row-connector-svg" xmlns="http://www.w3.org/2000/svg">
-                                    <path class="kinetic-path path-cyan" d="M 332 20 L 384 20" />
-                                    <path class="kinetic-path path-purple" d="M 768 20 L 716 20" />
-                                </svg>
-                                <!-- COL 1: ARCHITECT -->
-                                <div class="node node-cyan">
-                                    <div class="telemetry-node-header" style="color: var(--color-cyan);">
-                                        <span>[ROW 5 :: THE ARCHITECT]</span>
-                                        <svg class="architect-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                                    </div>
-                                    <div class="telemetry-node-title">Save ARL Scorecard, Standby Telemetry Query &amp; Finalized DPL</div>
-                                    <div class="mandate-tag">[PHYSICAL EXECUTION AT THE KEYBOARD]</div>
-                                    <div class="telemetry-node-desc">
-                                        <ul>
-                                            <li><span class="bullet-lead">Save the 3 Post-Validation Audit Deliverables:</span> Once Stage 1 Cloud Monitoring Metrics (Total Service API Hits / CloudWatch / Portal Metrics) confirms the live read in Phase 4, The Architect saves the three Phase 5 files into the local Visual Studio Code workspace: audit_results_ledger.md (ARL), kql_telemetry.md (CloudTrail/KQL/SIEM Telemetry), and patch_ledger.md (DPL).</li>
-                                            <li><span class="bullet-lead">Store Standby Telemetry for Asynchronous SIEM Correlation:</span> Because Phase 4 already proved live vault/asset access mathematically, The Architect commits kql_telemetry.md as an on-demand standby forensic resource so SOC analysts and auditors can correlate OIDC sign-in and data-plane logs whenever CloudTrail Lake, Azure Log Analytics, or GCP Cloud Audit Logs finish indexing.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- COL 2: STATE MACHINE -->
-                                <div class="node node-orange">
-                                    <div class="telemetry-node-header" style="color: var(--color-orange);">[ROW 5 :: THE STATE MACHINE]</div>
-                                    <div class="telemetry-node-title">Mandate 4-Gate / 5-Guardrail [PASS] Matrix &amp; Bypass SIEM Lag</div>
-                                    <div class="mandate-tag">[RULE ENFORCED &amp; EXPLOIT PREVENTED]</div>
-                                    <div class="telemetry-node-desc">
-                                        <ul>
-                                            <li><span class="bullet-lead">Neutralize Offensive Stage 5 (Unverified Compliance &amp; SIEM Blind Spots):</span> Locks the Audit Results Ledger (ARL) to a strict two-matrix schema grading all 4 Audit Gates (Coordinate, Character, Clock, and Plane Checks) and all 5 Enterprise Guardrails as [PASS] against live cloud evidence.</li>
-                                            <li><span class="bullet-lead">Eliminate the 5-to-20-Minute SIEM Indexing Abandonment Trap:</span> Decouples Standby Telemetry (kql_telemetry.md) into Phase 5 after Stage 1 Cloud Metrics proof in Phase 4 so 5-to-20-minute SIEM and log analytics indexing delays never stall deployment or tempt engineers to skip forensic query packaging.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- COL 3: AI ENGINE -->
-                                <div class="node node-purple">
-                                    <div class="telemetry-node-header" style="color: var(--color-purple);">
-                                        <span class="cursor-blink">[ROW 5 :: THE AI ENGINE]</span>
-                                    </div>
-                                    <div class="telemetry-node-title">Compile ARL, Joined Telemetry Script &amp; Unified DPL File</div>
-                                    <div class="mandate-tag">[SYNTHESIZED OUTPUT IN THE CHAT WINDOW]</div>
-                                    <div class="telemetry-node-desc">
-                                        <ul>
-                                            <li><span class="bullet-lead">Output Audit Results Ledger &amp; Pre-Engineered Telemetry Script:</span> Synthesizes audit_results_ledger.md (ARL) and kql_telemetry.md joining OIDC sign-in events (AssumeRoleWithWebIdentity / ServicePrincipalSignInLogs) with data-plane audit logs across a 5-minute window and 60-minute token buckets.</li>
-                                            <li><span class="bullet-lead">Compile Unified Defect &amp; Patch Ledger (patch_ledger.md):</span> Gathers every real-time [DPL ENTRY] staged during the Standard Patch Loop (Iterations 1 to 3) across Phases 1 through 5 (or records a verified zero-defect run) into one copy-pasteable patch_ledger.md block.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ================= ROW 6: PHASE 6 (90%): CODE REPOSITORY SYNCHRONIZATION & STATE-FILE PROTECTION ================= -->
-                        <div class="telemetry-row-block">
-                            <div class="row-phase-banner">
-                                <span class="row-phase-title">[ROW 6 :: PHASE 6 (90%): CODE REPOSITORY SYNCHRONIZATION &amp; STATE-FILE PROTECTION &mdash; NEUTRALIZES OFFENSIVE STAGE 6]</span>
-                                <span class="row-vars-pill">Synchronizing All 5 Sterilized Deliverables (IaC Payload, IAL, ARL, Telemetry &amp; DPL) to Code Repository and Branch</span>
-                            </div>
-                            <div class="telemetry-row-grid">
-                                <svg class="row-connector-svg" xmlns="http://www.w3.org/2000/svg">
-                                    <path class="kinetic-path path-cyan" d="M 332 20 L 384 20" />
-                                    <path class="kinetic-path path-purple" d="M 768 20 L 716 20" />
-                                </svg>
-                                <!-- COL 1: ARCHITECT -->
-                                <div class="node node-cyan">
-                                    <div class="telemetry-node-header" style="color: var(--color-cyan);">
-                                        <span>[ROW 6 :: THE ARCHITECT]</span>
-                                        <svg class="architect-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                                    </div>
-                                    <div class="telemetry-node-title">Confirm Repo Coordinate &amp; Execute Pull-First Git Push</div>
-                                    <div class="mandate-tag">[PHYSICAL EXECUTION AT THE KEYBOARD]</div>
-                                    <div class="telemetry-node-desc">
-                                        <ul>
-                                            <li><span class="bullet-lead">Confirm Target Repository &amp; Local Shell:</span> With all five deliverable files complete in the local folder, The Architect confirms the remote Code Repository and Branch destination and local terminal shell (Bash, Zsh, or PowerShell).</li>
-                                            <li><span class="bullet-lead">Execute Pull-First Synchronization &amp; .gitignore Barrier:</span> Runs the generated synchronization script in the local terminal to pull down the remote Phase 4 Validation Bridge workflow first, write the .gitignore exclusion barrier, and push the five sterilized deliverable files to the remote Code Repository and Branch.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- COL 2: STATE MACHINE -->
-                                <div class="node node-orange">
-                                    <div class="telemetry-node-header" style="color: var(--color-orange);">[ROW 6 :: THE STATE MACHINE]</div>
-                                    <div class="telemetry-node-title">Enforce Pull-First Merge &amp; Block .tfstate Repository Leaks</div>
-                                    <div class="mandate-tag">[RULE ENFORCED &amp; EXPLOIT PREVENTED]</div>
-                                    <div class="telemetry-node-desc">
-                                        <ul>
-                                            <li><span class="bullet-lead">Neutralize Offensive Stage 6 (Repository State-File Leakage &amp; Force-Pushes):</span> Mandates running git pull origin main before staging local files so the remote Phase 4 .yml Validation Bridge merges cleanly without triggering branch conflicts or destructive git push --force commands.</li>
-                                            <li><span class="bullet-lead">Physically Block Local State Files (.gitignore Barrier):</span> Mandates writing a strict .gitignore exclusion file before git add that blocks terraform.tfstate, .tfstate.backup, .tfvars, .terraform/, and .env caches so raw cloud metadata never leaves the workstation.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- COL 3: AI ENGINE -->
-                                <div class="node node-purple">
-                                    <div class="telemetry-node-header" style="color: var(--color-purple);">
-                                        <span class="cursor-blink">[ROW 6 :: THE AI ENGINE]</span>
-                                    </div>
-                                    <div class="telemetry-node-title">Generate Shell-Matched Pull, .gitignore &amp; Git Push Script</div>
-                                    <div class="mandate-tag">[SYNTHESIZED OUTPUT IN THE CHAT WINDOW]</div>
-                                    <div class="telemetry-node-desc">
-                                        <ul>
-                                            <li><span class="bullet-lead">Output Unified Git Synchronization Runbook:</span> Synthesizes a single copy-paste terminal script tailored to The Architect's shell that executes the remote pull, writes the .gitignore barrier, and stages, commits, and pushes only the five parameter-safe deliverable files (IaC Payload, IAL, ARL, Telemetry Queries, and DPL).</li>
-                                            <li><span class="bullet-lead">Halt for Repository Sync Confirmation:</span> Enforces a mandatory halt awaiting The Architect's confirmation that the push succeeded before unlocking Phase 7.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ================= ROW 7: PHASE 7 (100%): SESSION TERMINATION, AI SCORECARD & DIRECTIVE COMPILATION ================= -->
-                        <div class="telemetry-row-block">
-                            <div class="row-phase-banner">
-                                <span class="row-phase-title">[ROW 7 :: PHASE 7 (100%): SESSION TERMINATION, AI SCORECARD &amp; DIRECTIVE COMPILATION &mdash; NEUTRALIZES OFFENSIVE STAGE 7]</span>
-                                <span class="row-vars-pill">Glossary Variable 26 (AI Performance Scorecard &amp; System Directive Compilation)</span>
-                            </div>
-                            <div class="telemetry-row-grid">
-                                <svg class="row-connector-svg" xmlns="http://www.w3.org/2000/svg">
-                                    <path class="kinetic-path path-cyan" d="M 332 20 L 384 20" />
-                                    <path class="kinetic-path path-purple" d="M 768 20 L 716 20" />
-                                </svg>
-                                <!-- COL 1: ARCHITECT -->
-                                <div class="node node-cyan">
-                                    <div class="telemetry-node-header" style="color: var(--color-cyan);">
-                                        <span>[ROW 7 :: THE ARCHITECT]</span>
-                                        <svg class="architect-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                                    </div>
-                                    <div class="telemetry-node-title">Audit Counted Scorecard &amp; Authorize Directive Compilation</div>
-                                    <div class="mandate-tag">[PHYSICAL EXECUTION AT THE KEYBOARD]</div>
-                                    <div class="telemetry-node-desc">
-                                        <ul>
-                                            <li><span class="bullet-lead">Review Counted AI Performance Scorecard &amp; DPL Debrief:</span> The Architect reviews the explicit bulleted event list, the counted AI Performance Scorecard, and the specific Lesson Learned and additive rule upgrade proposed for every verified fix in the Defect &amp; Patch Ledger (DPL).</li>
-                                            <li><span class="bullet-lead">Authorize Zero-Truncation System Directive Compilation:</span> Because only empirically proven terminal fixes from the DPL are eligible for compilation, The Architect authorizes The AI Engine to weave those upgrades into the master System Directive and saves the complete, un-truncated output block as the new baseline for future builds.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- COL 2: STATE MACHINE -->
-                                <div class="node node-pink">
-                                    <div class="telemetry-node-header" style="color: var(--color-pink);">[ROW 7 :: THE STATE MACHINE]</div>
-                                    <div class="telemetry-node-title">Enforce List-First Counting &amp; Zero-Truncation Compilation</div>
-                                    <div class="mandate-tag">[RULE ENFORCED &amp; EXPLOIT PREVENTED]</div>
-                                    <div class="telemetry-node-desc">
-                                        <ul>
-                                            <li><span class="bullet-lead">Neutralize Offensive Stage 7 (Uncodified Memory &amp; Repeat Regressions):</span> Prevents hard-won security fixes from evaporating when the chat window closes by turning session termination into a mandatory self-hardening upgrade loop.</li>
-                                            <li><span class="bullet-lead">Enforce List-First Counting, Additive Evolution &amp; Zero Truncation:</span> Forbids guessed scorecard integers by forcing a bulleted event list before counting; forbids compiling untested ideas; and enforces the Additive Evolution Rule and Zero-Truncation Rule so 100% of the upgraded System Directive is printed from top to bottom without summarizing or deleting existing rules.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- COL 3: AI ENGINE -->
-                                <div class="node node-purple">
-                                    <div class="telemetry-node-header" style="color: var(--color-purple);">
-                                        <span class="cursor-blink">[ROW 7 :: THE AI ENGINE]</span>
-                                    </div>
-                                    <div class="telemetry-node-title">Output Counted Scorecard, DPL Lessons &amp; Full System Directive</div>
-                                    <div class="mandate-tag">[SYNTHESIZED OUTPUT IN THE CHAT WINDOW]</div>
-                                    <div class="telemetry-node-desc">
-                                        <ul>
-                                            <li><span class="bullet-lead">Print Bullet-Counted Scorecard &amp; DPL Rule Upgrades:</span> Delivers the physiological discharge wrap-up, prints the explicit bulleted event list, counts those bullets to output the 4-metric AI Performance Scorecard (Total Diagnostic Loops Triggered, Total Iterations Executed, Circuit Breakers Pulled, Protocol Deviations Logged), and maps each DPL entry to an actionable rule upgrade.</li>
-                                            <li><span class="bullet-lead">Compile 100% Un-Truncated Upgraded System Directive:</span> Upon The Architect's confirmation, integrates the new rules and outputs the complete, un-shortened master System Directive inside a single 4-backtick code block so the state machine starts the next build permanently smarter.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ================= DEDICATED ALL-PHASE OVERLAY BANNER (VARIABLES 24 & 25: ACTIVE ACROSS PHASES 1 TO 6) ================= -->
-                        <div class="all-phase-overlay">
-                            <div class="row-phase-banner" style="border-bottom-color: rgba(236, 72, 153, 0.35);">
-                                <span class="row-phase-title" style="color: var(--color-pink);">[ALL-PHASE DIAGNOSTIC INTERRUPT OVERLAY :: DIRECTIVE 05 (ACTIVE ACROSS PHASES 1 TO 6)]</span>
-                                <span class="row-vars-pill">Glossary Variables 24 (Standard Patch Loop, State Re-Sync &amp; DPL) &amp; 25 (The 4-Iteration Circuit Breaker)</span>
-                            </div>
-                            <div class="telemetry-node-title" style="font-size: 1.22rem; margin-bottom: 0.35rem;">How Routine Troubleshooting (Iterations 1 to 3) &amp; The 4-Iteration Circuit Breaker (Iteration 4) Protect Every Phase in Real Time</div>
-                            <div class="mandate-tag">[SEPARATING CLINICAL PATCHING &amp; FULL-FILE STATE RE-SYNC IN ATTEMPTS 1 TO 3 FROM THE ATTEMPT 4 EMERGENCY CIRCUIT BREAKER]</div>
-
-                            <div class="wide-3col-grid">
-                                <!-- SUBCARD 1: THE ARCHITECT -->
-                                <div class="wide-subcard">
-                                    <div class="wide-subcard-title" style="color: var(--color-cyan);">1. The Architect (All Phases 1 to 6)</div>
-                                    <div class="telemetry-node-desc">
-                                        <ul>
-                                            <li><span class="bullet-lead">Attempts 1 to 3 (Verify Terminal Fix &amp; Receive State Re-Sync):</span> Whenever live cloud or terminal friction occurs during Phases 1 through 6, The Architect pastes the error output into the chat and tests the targeted fix in the local terminal. The moment The Architect confirms the fix worked, it is logged in real time in the Defect &amp; Patch Ledger (DPL) alongside a complete, top-to-bottom State Re-Sync of the IaC Payload.</li>
-                                            <li><span class="bullet-lead">Attempt 4 (Strategic Risk Governance Decision):</span> If any single isolated defect fails 3 times in a row and trips The 4-Iteration Circuit Breaker on Attempt 4, The Architect evaluates the Estimated Probability of Success (X%) and alternative architectural pathways to decide whether to stay the course or pivot.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <!-- SUBCARD 2: THE STATE MACHINE -->
-                                <div class="wide-subcard">
-                                    <div class="wide-subcard-title" style="color: var(--color-pink);">2. The State Machine (All Phases 1 to 6)</div>
-                                    <div class="telemetry-node-desc">
-                                        <ul>
-                                            <li><span class="bullet-lead">Attempts 1 to 3 (Rule 7 Interrupt, Counter Reset &amp; Full-File Re-Sync):</span> Triggers Directive 05 ([MODE: COLLABORATIVE TROUBLESHOOTING]) the instant an error appears&mdash;forcing The AI Engine to drop all analogies, track the attempt (Iteration: 1 to 3, resetting to Iteration 1 for each new, separate defect), stage a real-time [DPL ENTRY] upon verification, and output a full-file State Re-Sync (Rules 9 &amp; 15) rather than partial code snippets.</li>
-                                            <li><span class="bullet-lead">Attempt 4 (The 4-Iteration Circuit Breaker Halt):</span> Completely separate from routine DPL logging: if any isolated defect fails 3 consecutive attempts and hits Iteration 4, The State Machine structurally forbids The AI Engine from generating any new code until a formal Risk Management Assessment is reviewed.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <!-- SUBCARD 3: THE AI ENGINE -->
-                                <div class="wide-subcard">
-                                    <div class="wide-subcard-title" style="color: var(--color-purple);">3. The AI Engine (All Phases 1 to 6)</div>
-                                    <div class="telemetry-node-desc">
-                                        <ul>
-                                            <li><span class="bullet-lead">Attempts 1 to 3 (Diagnose Defect, Stage [DPL ENTRY] &amp; Reprint Full File):</span> Explicitly announces [MODE: COLLABORATIVE TROUBLESHOOTING], provides a clinical fix for Attempt 1, 2, or 3, and upon The Architect's verification outputs the real-time [DPL ENTRY] (Error Signature, Root Cause, Engineered Fix) plus the entire updated IaC Payload from top to bottom before tethering back to [MODE: RESUMING DETERMINISTIC EXECUTION].</li>
-                                            <li><span class="bullet-lead">Attempt 4 (Halt Code Generation &amp; Calculate Trajectory Odds X%):</span> At Iteration 4, halts all code synthesis, summarizes how the error telemetry shifted across Attempts 1, 2, and 3, calculates an Estimated Probability of Success (X%), makes a logistical recommendation, and presents alternative pathways for The Architect's command decision.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <!-- ================= ZONE 3: SECTION 2 — THE 6-LAYER OPERATIONAL SYSTEMS BLUEPRINT (6-LAYER FUNNEL) ================= -->
-        <div class="blueprint-section" id="operational-blueprint">
-            <h2 class="blueprint-title">The 6-Layer Operational Systems Blueprint</h2>
-            
-            <!-- BULLETED SECTION 2 INTRO BOX -->
-            <div class="section-intro-box">
-                <div class="intro-lead-sentence">
-                    How The Adversarial Kill-Chain Counter-Engineering State Machine (System Directive v1.0) is architected vertically from top to bottom using the 26 fixed system variables defined in the <a href="glossary.html" class="inline-link">26-Variable System Glossary</a>:
-                </div>
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">Layers 1 &amp; 2 (Global AI Engineering Standards to Hardened Code Guardrails):</span> Translates four globally recognized AI Systems Engineering standards (Layer 1) directly into five concrete Enterprise Guardrails inside the generated IaC Payload and Validation Bridge (Layer 2).
-                    </li>
-                    <li>
-                        <span class="bullet-lead">Layers 3 &amp; 4 (Three-Party Command &amp; Control to the 4 Architectural Gates):</span> Enforces those guardrails at runtime through The Execution Triad (The Architect, The State Machine, and The AI Engine &mdash; Layer 3) to sequentially counter-engineer and lock down The Four Architectural Gates of Machine Identity across AWS, Microsoft Entra ID &amp; Azure, and GCP (Layer 4).
-                    </li>
-                    <li>
-                        <span class="bullet-lead">Layers 5 &amp; 6 (Two-Stage Live Verification &amp; Self-Hardening System Evolution):</span> Delivers a 100% finished IaC Payload, immediate Phase 4 Stage 1 operational proof via cloud monitoring metrics (Total Service API Hits / CloudWatch / Portal Metrics), and Phase 5 compliance ledgers (ARL, standby CloudTrail/KQL/SIEM Telemetry, and DPL &mdash; Layer 5), backed across all phases by the Standard Patch Loop (Iterations 1 to 3), The 4-Iteration Circuit Breaker, and Phase 7 System Directive Compilation (Layer 6).
-                    </li>
-                </ul>
-            </div>
-            
-            <div class="blueprint-funnel">
-                
-                <!-- LAYER 1: GLOBAL AI SYSTEMS ENGINEERING PILLARS -->
-                <div class="bp-layer top">
-                    <span class="bp-tag">[LAYER 1: GLOBAL AI SYSTEMS ENGINEERING PILLARS]</span>
-                    <div class="bp-heading">The 4 Global AI Engineering Standards of the System Directive</div>
-                    
-                    <div class="bp-layer-intro-box">
-                        <ul class="clean-bullet-list">
-                            <li>
-                                <span class="bullet-lead">Eliminating 19.7% Probabilistic Drift:</span> Left untethered, a generative model operates probabilistically (0.85<sup>10</sup> = 19.7% 10-step reliability)&mdash;guessing missing AWS Account IDs, Entra ID Tenant IDs, Azure Subscription IDs, or GCP Project IDs, inventing broken syntax, inserting wildcards (*) into Subject Claims, or granting broad Admin, Owner, and Contributor Roles just to clear an error.
-                            </li>
-                            <li>
-                                <span class="bullet-lead">Grounding the State Machine in Four Global Standards:</span> To achieve 100% step-by-step verification (1.0 &times; 1.0 &times; ... = 100%), the master System Directive (v1.0) translates four globally recognized AI Systems Engineering standards directly into the seven-phase workflow:
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="bp-grid-split">
-                        
-                        <div class="bp-node-split">
-                            <span class="bp-node-split-title">1. Agentic Patterns (The ReAct Framework)</span>
-                            <div class="def-block def-standard">
-                                <span class="def-label">The AI Systems Engineering Standard (Yao et al., Princeton &amp; Google Brain)</span>
-                                <span class="def-text">Foundational AI research proves that language models stop hallucinating in a vacuum when forced to alternate between reasoning steps and checking real external data sources.</span>
-                            </div>
-                            <div class="def-block def-translation">
-                                <span class="def-label">How the System Directive Enforces It</span>
-                                <span class="def-text">In Phases 1 and 2, The AI Engine is physically forbidden from guessing the AWS Account ID, Entra ID Tenant ID, Azure Subscription ID, Resource Group, GCP Project ID, or Subject Claim (Code Repository and Branch casing). Instead, it pauses, outputs read-only CLI extraction commands for The Architect to run in the local IDE and terminal environment, waits for the real console output to be pasted back, and only synthesizes the Phase 3 IaC Payload using 100% verified live IDs.</span>
-                            </div>
-                        </div>
-
-                        <div class="bp-node-split">
-                            <span class="bp-node-split-title">2. Bounded Autonomy (OWASP Top 10 for LLMs: LLM08)</span>
-                            <div class="def-block def-standard">
-                                <span class="def-label">The AI Systems Engineering Standard (OWASP LLM08: Excessive Agency)</span>
-                                <span class="def-text">The global OWASP application security standard for artificial intelligence mandates strict permission boundaries so an AI model cannot exercise unchecked agency or run destructive commands across enterprise systems.</span>
-                            </div>
-                            <div class="def-block def-translation">
-                                <span class="def-label">How the System Directive Enforces It</span>
-                                <span class="def-text">The AI Engine has zero direct network access to the cloud environment and is locked inside hard compiler rules: enforcing read-only lookups on Brownfield (Existing) builds so live assets are never modified or overwritten, attaching deletion-prevention locks on Greenfield (Net-New) builds, enforcing single-asset Data-Plane Roles (blocking Admin, Owner, and Contributor Roles), and decoupling into a guided Cloud Console MFA Handoff whenever role assignment requires interactive MFA.</span>
-                            </div>
-                        </div>
-
-                        <div class="bp-node-split">
-                            <span class="bp-node-split-title">3. Human-in-the-Loop Governance (NIST AI RMF 1.0 &amp; ISO/IEC 42001)</span>
-                            <div class="def-block def-standard">
-                                <span class="def-label">The AI Systems Engineering Standard (NIST AI RMF 1.0 &amp; ISO/IEC 42001)</span>
-                                <span class="def-text">The U.S. federal standard and ISO/IEC 42001 establishing the "Govern" function require continuous human oversight, explicit risk control, and clear human accountability at every critical decision gate in a high-impact AI system.</span>
-                            </div>
-                            <div class="def-block def-translation">
-                                <span class="def-label">How the System Directive Enforces It</span>
-                                <span class="def-text">The Counter-Engineering State Machine forbids The AI Engine from skipping ahead or stacking manual steps. Every phase ends with a mandatory [STRICT HALT] awaiting The Architect's explicit verification&mdash;from locking in the 5 Build Coordinates and extracting the OpenID Connect (OIDC) Subject Claim to running the live .yml Validation Bridge on the Execution Agent and verifying cloud monitoring metrics (Total Service API Hits / CloudWatch / Portal Metrics) on the Data-Plane Asset.</span>
-                            </div>
-                        </div>
-
-                        <div class="bp-node-split">
-                            <span class="bp-node-split-title">4. All-Phase Cognitive Circuit Breaking &amp; Phase 7 Continuous Evolution</span>
-                            <div class="def-block def-standard">
-                                <span class="def-label">The AI Systems Engineering Standard (Huang et al.)</span>
-                                <span class="def-text">Grounded in foundational AI reliability research, cognitive circuit breaking stops language models from drifting off their instructions and repeating false guesses ("hallucination spirals") during multi-turn troubleshooting sessions.</span>
-                            </div>
-                            <div class="def-block def-translation">
-                                <span class="def-label">How the System Directive Enforces It</span>
-                                <span class="def-text">Across Phases 1 through 6, Directive 05 separates routine bug fixing from emergency circuit breaking. Verified fixes during the Standard Patch Loop (Iterations 1 to 3) are logged immediately in the Defect &amp; Patch Ledger (DPL) with a mandatory full-file State Re-Sync of the IaC Payload. Separately, if any single isolated defect fails 3 times in a row and reaches Iteration 4, The 4-Iteration Circuit Breaker forbids new code generation and forces The AI Engine to calculate an Estimated Probability of Success (X%) for The Architect's strategic decision&mdash;before Phase 7 compiles every proven fix from the DPL permanently into the master System Directive.</span>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="bp-arrow-container"><div class="bp-arrow">&darr;</div></div>
-
-                <!-- LAYER 2: ENTERPRISE GUARDRAILS -->
-                <div class="bp-layer guard">
-                    <span class="bp-tag">[LAYER 2: TRANSLATING AI GOVERNANCE INTO HARDENED CODE]</span>
-                    <div class="bp-heading" style="color: var(--color-red);">The 5 Enterprise Guardrails (Built-In Code Safety Locks)</div>
-                    
-                    <div class="bp-layer-intro-box">
-                        <ul class="clean-bullet-list">
-                            <li>
-                                <span class="bullet-lead">From Conversation Rules to Hardened Code Locks:</span> While the four AI Systems Engineering standards in Layer 1 govern how The AI Engine behaves across the 7-phase conversation, the System Directive translates those principles directly into five concrete Enterprise Guardrails inside the generated IaC Payload and Validation Bridge.
-                            </li>
-                            <li>
-                                <span class="bullet-lead">Formally Audited and Scored in Phase 5:</span> Enforced at runtime by The Execution Triad and formally audited and scored as [PASS] in the Phase 5 Audit Results Ledger (ARL) alongside Gate 1 (Boundary), Gate 2 (Identity), Gate 3 (Federation), and Gate 4 (Access), these five safety locks weld shut specific adversarial exploit seams across the entire build:
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="bp-grid-5">
-                        <div class="bp-node bp-node-red">
-                            <span class="bp-node-title">1. Secret &amp; Credential Protection</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">OWASP LLM06 &amp; NIST Privacy (Blocks Offensive Stage 1):</span> Separates non-secret routing coordinates from private secrets. The AWS Account ID, Entra ID Tenant ID, Azure Subscription ID, GCP Project ID, and Code Repository and Branch casing are resolved via local CLI lookups so The AI Engine synthesizes a 100% finished IaC Payload with zero blank placeholders, while OpenID Connect (OIDC) 60-Minute Login Tokens eliminate static passwords/access keys and the Terminal Runbook enforces silent memory-buffered terminal input (read -s) so setup tokens never write to .bash_history.</span>
-                        </div>
-                        <div class="bp-node bp-node-red">
-                            <span class="bp-node-title">2. Existing Asset Protection</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">OWASP LLM08 (Idempotency &amp; State Safety):</span> Prevents the IaC Payload from overwriting or deleting live cloud resources across all Coordinate 5 languages (Terraform HCL, AWS CLI/CloudFormation, Azure Bicep, PowerShell REST API, and Python). Enforces strict read-only lookup mode (data blocks / existing keywords) when targeting Brownfield (Existing) Data-Plane Assets and identity principals, and attaches deletion-prevention lifecycle locks (prevent_destroy = true / CanNotDelete) when provisioning Greenfield (Net-New) assets.</span>
-                        </div>
-                        <div class="bp-node bp-node-red">
-                            <span class="bp-node-title">3. Stopping "The Contributor Trap"</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">OWASP LLM08 (Blocks Offensive Stage 3 Escalation):</span> Eliminates the untethered AI shortcut of granting broad Admin, Owner, and Contributor Roles that allow a compromised identity to modify or delete infrastructure across the cloud account, subscription, or project. In Gate 4, The State Machine blocks Admin, Owner, and Contributor wildcards completely and binds one narrowly scoped Data-Plane Role to the identity principal, locked strictly to the exact ARN or resource ID of the single Data-Plane Asset.</span>
-                        </div>
-                        <div class="bp-node bp-node-red">
-                            <span class="bp-node-title">4. Supply Chain Version Pinning</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">OWASP LLM05 (Supply Chain &amp; Schema Integrity):</span> Rejects floating version tags (such as "latest") by pinning every provider and API schema in the Phase 3 IaC Payload and every workflow login action in the Phase 4 Validation Bridge to an exact, verified version number. Also enforces pure provider JSON property names on REST API and SDK builds so cross-language syntax bleed never crashes execution.</span>
-                        </div>
-                        <div class="bp-node bp-node-red">
-                            <span class="bp-node-title">5. Validation Bridge Runtime Log Masking</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">OWASP LLM02 &amp; LLM06 (Blocks Offensive Stage 4 Log Scraping):</span> Injects active Runtime Log Masking (::add-mask::) into the Phase 4 .yml Validation Bridge runtime workflow file so the external Execution Agent scrubs any 60-Minute Login Token or Data-Plane Asset secret with asterisks (***) in memory before a single character prints to the shared console log (stdout).</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bp-arrow-container"><div class="bp-arrow" style="color: var(--color-red); text-shadow: 0 0 20px var(--color-red);">&darr;</div></div>
-
-                <!-- LAYER 3: THE EXECUTION TRIAD -->
-                <div class="bp-layer mid">
-                    <span class="bp-tag">[LAYER 3: THREE-PARTY COMMAND &amp; CONTROL AT THE KEYBOARD]</span>
-                    <div class="bp-heading">The Execution Triad (Variables 01 to 03)</div>
-                    
-                    <div class="bp-layer-intro-box">
-                        <ul class="clean-bullet-list">
-                            <li>
-                                <span class="bullet-lead">Three-Party Separation of Powers:</span> Inside The Adversarial Kill-Chain Counter-Engineering State Machine, runtime execution replaces the standard two-way chat interface with three fixed, non-overlapping actors (Variables 01 to 03 in the System Glossary) so no AI component ever acts autonomously against a live AWS Account, Entra ID Tenant &amp; Azure Subscription, GCP Project, or Data-Plane Asset:
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="bp-grid-3">
-                        <div class="bp-node bp-node-purple">
-                            <span class="bp-node-title">1. The Architect (Human-in-the-Loop)</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">Variable 01 &mdash; Strategic Command &amp; Final Approval Authority:</span> Operating from a clean project folder inside a persistent local IDE and terminal environment (Visual Studio Code and Git Bash), The Architect sits in the command seat and drives the entire build across Phases 1 through 7. The Architect initializes the five blank deliverable files and locks in the 5 Build Coordinates in Phase 1, runs read-only CLI extraction queries in Phase 2, executes the IaC Payload, Terminal Runbook, and any guided Cloud Console MFA Handoff in Phase 3, runs the live Validation Bridge and verifies cloud monitoring metrics (Total Service API Hits / CloudWatch / Portal Metrics) in Phase 4, saves the compliance ledgers in Phase 5, and pushes the sterilized repository in Phase 6. Whenever any error is solved during the Standard Patch Loop (Iterations 1 to 3), The Architect verifies the fix in the terminal so it is logged in the Defect &amp; Patch Ledger (DPL) with a full-file State Re-Sync (or exercises strategic risk governance if an isolated defect reaches Iteration 4), and in Phase 7 reviews the counted AI Performance Scorecard and authorizes The AI Engine to permanently compile all verified DPL fixes into the upgraded System Directive.</span>
-                        </div>
-                        <div class="bp-node bp-node-purple">
-                            <span class="bp-node-title">2. The State Machine (System Directive v1.0)</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">Variable 02 &mdash; The Central Compiler Harness &amp; Rulebook:</span> The master System Directive (v1.0) is The Adversarial Kill-Chain Counter-Engineering State Machine: the un-bypassable structural compiler rulebook (Directives 00&ndash;07 and Rules 1&ndash;32) standing directly between The Architect and The AI Engine. It paces the deployment through 7 sequential phases behind mandatory [STRICT HALT] human-in-the-loop gates and a continuous Watchdog check (Directive 07), enforces all 4 Architectural Gates and 5 Enterprise Guardrails, embeds the 30-Second Server Sync Timer, triggers Directive 05 whenever execution friction strikes (enforcing full-file State Re-Syncs in Iterations 1&ndash;3 or The 4-Iteration Circuit Breaker at Iteration 4), and permanently upgrades its own System Directive rules in Phase 7 from every verified fix logged in the Defect &amp; Patch Ledger (DPL).</span>
-                        </div>
-                        <div class="bp-node bp-node-purple">
-                            <span class="bp-node-title">3. The AI Engine (Controlled Compute)</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">Variable 03 &mdash; The Tethered High-Performance Co-Pilot:</span> Subordinated to The State Machine and The Architect's human sign-off with zero direct network access to the cloud environment, The AI Engine operates through controlled state-switching&mdash;explicitly announcing when it steps out into [MODE: COLLABORATIVE TROUBLESHOOTING] during a mid-phase patch loop and when it tethers back into [MODE: RESUMING DETERMINISTIC EXECUTION]. It outputs read-only CLI extraction scripts in Phases 1 and 2, synthesizes the 100% finished Terraform HCL, AWS CLI, Azure Bicep, PowerShell REST API, or Python IaC Payload and Terminal Runbook in Phase 3, generates the pre-test Identity Architecture Ledger (IAL) and masked .yml Validation Bridge (::add-mask::) in Phase 4, compiles the Audit Results Ledger (ARL), standby CloudTrail/KQL/SIEM Telemetry (kql_telemetry.md), and Defect &amp; Patch Ledger (DPL) in Phase 5, generates the Git synchronization script in Phase 6, and outputs the counted AI Performance Scorecard and upgraded System Directive in Phase 7.</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bp-arrow-container"><div class="bp-arrow" style="color: var(--color-purple); text-shadow: 0 0 20px var(--color-purple);">&darr;</div></div>
-
-                <!-- LAYER 4: THE 4 ARCHITECTURAL GATES OF MACHINE IDENTITY -->
-                <div class="bp-layer bot">
-                    <span class="bp-tag">[LAYER 4: THE CLOUD IAM FOUNDATION (VARIABLES 09 TO 18)]</span>
-                    <div class="bp-heading">The 4 Architectural Gates of Machine Identity (Boundary, Identity, Federation &amp; Access)</div>
-                    
-                    <div class="bp-layer-intro-box">
-                        <ul class="clean-bullet-list">
-                            <li>
-                                <span class="bullet-lead">The Four-Part Mathematical Dependency Chain:</span> Across all 72+ baseline build combinations and before layering on any Day-2 Multi-Cloud security modules, counter-engineering any non-human identity across AWS IAM/STS, Microsoft Entra ID &amp; Azure, or Google Cloud IAM comes down to sealing four sequential security gates across Phases 1, 2, and 3&mdash;where each gate depends mathematically on the verified completion of the gate before it:
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="bp-grid-4">
-                        <div class="bp-node bp-node-green">
-                            <span class="bp-node-title">Gate 1: Boundary (Where It Lives)</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">Counter-Engineering the Cloud Perimeter (Phases 1 to 3 / Variable 09):</span> Locks in the nested cloud routing coordinates&mdash;the AWS Account ID, Entra ID Tenant ID &amp; Azure Subscription ID / Resource Group, or GCP Project ID holding the target Data-Plane Asset&mdash;proving via read-only CLI checks that the target environment sits nested under the organization's verified root boundary. On Brownfield (Existing) builds, it locks the IaC Payload into strict read-only lookup mode so live assets are never overwritten; on Greenfield (Net-New) builds, it attaches deletion-prevention lifecycle locks (prevent_destroy = true / CanNotDelete).</span>
-                        </div>
-                        <div class="bp-node bp-node-green">
-                            <span class="bp-node-title">Gate 2: Identity (Who the Machine Is)</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">Account/Tenant-Isolated Passwordless Machine Identity (Phase 3 / Variables 10 &amp; 11):</span> Inside the verified Gate 1 boundary, the Phase 3 IaC Payload and Terminal Runbook reference or provision the non-human identity principal: the AWS IAM Role, Microsoft Entra Application Registration &amp; Service Principal, or GCP Service Account. To shut down cross-account/multi-tenant injection and browser callback phishing, the identity is provisioned with zero saved passwords or static access keys and locked strictly to the organization's own boundary (such as Single-Tenant Mode / AzureADMyOrg or isolated AWS/GCP trust policies) with Disabled Browser Redirect URLs.</span>
-                        </div>
-                        <div class="bp-node bp-node-green">
-                            <span class="bp-node-title">Gate 3: Federation (How It Authenticates)</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">Zero-Wildcard OIDC Trust &amp; 30-Second Sync Buffer (Phases 2 to 3 / Variables 12 to 15):</span> Because the Gate 2 identity has no password or static key, Gate 3 configures OpenID Connect (OIDC) federation so the external Execution Agent can trade its cryptographically signed Subject Claim for a short-lived 60-Minute Login Token. Phase 2 extracts the exact capital-and-lowercase Code Repository and Branch string via local CLI to lock the Subject Claim character-for-character with zero wildcards (*) (preventing case rejections and token forgery), while Phase 3 embeds a mandatory 30-Second Server Sync Timer (time_sleep / Start-Sleep -Seconds 30) so cloud IAM servers finish global replication before the trust rule attaches.</span>
-                        </div>
-                        <div class="bp-node bp-node-green">
-                            <span class="bp-node-title">Gate 4: Access (What It Can Touch)</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">Single-Asset Data-Plane Role &amp; Cloud Console MFA Handoff (Phases 3 to 4 / Variables 16 to 18):</span> In Phase 3, Gate 4 blocks broad Admin, Owner, and Contributor Roles ("The Contributor Trap") completely and binds one narrowly scoped Data-Plane Role (such as Secrets Manager/Key Vault secret readers, S3/Blob/GCS bucket readers, or DynamoDB/Cosmos DB data readers) to the identity principal, locked strictly to the exact ARN or resource ID of the single Data-Plane Asset. Whenever high-security builds drop interactive MFA claims in the local terminal (401/403 errors), The State Machine cleanly decouples the role assignment into a guided Cloud Console MFA Handoff checklist so the Execution Agent can use its 60-Minute Login Token in Phase 4 to read that single Data-Plane Asset and nothing else.</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bp-arrow-container"><div class="bp-arrow" style="color: var(--color-green); text-shadow: 0 0 20px var(--color-green);">&darr;</div></div>
-
-                <!-- LAYER 5: TWO-STAGE LIVE VERIFICATION & AUDIT DELIVERABLES -->
-                <div class="bp-layer outputs">
-                    <span class="bp-tag">[LAYER 5: TWO-STAGE LIVE VERIFICATION &amp; AUDIT IMMUNITY (VARIABLES 08 &amp; 19 TO 24)]</span>
-                    <div class="bp-heading">IaC Payload, Live Phase 4 Operational Proof &amp; Phase 5 Compliance Package (Phases 3 to 6)</div>
-                    
-                    <div class="bp-layer-intro-box">
-                        <ul class="clean-bullet-list">
-                            <li>
-                                <span class="bullet-lead">From Deterministic Synthesis to Mathematical Proof &amp; Sterilized Sync:</span> Once the 5 Build Coordinates and wildcard-free OpenID Connect (OIDC) Subject Claim are locked in Phases 1 and 2, The AI Engine synthesizes the complete IaC Payload and Terminal Runbook in Phase 3 and executes a strict two-stage live verification, compliance packaging, and state-file protection sequence across Phases 4, 5, and 6 (neutralizing Offensive Stages 3, 4, 5, and 6):
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="bp-grid-3">
-                        <div class="bp-node bp-node-orange">
-                            <span class="bp-node-title">Phases 3 &amp; 6: 4-Gate IaC Payload &amp; Sterilized Repository Sync</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">100% Finished Code &amp; Pull-First .gitignore Barrier (Variables 08 &amp; 13):</span> Synthesizes the complete Terraform HCL, AWS CLI/CloudFormation, Azure Bicep, PowerShell REST API, or Python IaC Payload and Terminal Runbook in Phase 3 (with the 30-Second Server Sync Timer and zero blank placeholders) for execution in The Architect's local IDE and terminal environment. Then, in Phase 6, executes git pull origin main first to merge remote workflow changes cleanly, writes a strict .gitignore barrier blocking terraform.tfstate, .tfvars, and .env caches from leaving the workstation, and pushes only the five sterilized deliverable files to the Code Repository and Branch.</span>
-                        </div>
-                        <div class="bp-node bp-node-orange">
-                            <span class="bp-node-title">Phase 4: Pre-Test IAL Baseline, Masked Bridge &amp; Stage 1 Cloud Metrics</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">Stage 1 Immediate Mathematical Proof (Variables 19, 20 &amp; 21):</span> At Step 1 of Phase 4 (immediately after Phase 3 finishes), generates the pre-test Identity Architecture Ledger (identity_architecture_ledger.md or IAL) recording all four deployed sections (Cloud Boundary, Non-Human Identity, Cryptographic Federation, and Data-Plane Access Scope). At Step 2, the external Execution Agent runs the live .yml Validation Bridge with active Runtime Log Masking (::add-mask::) scrubbing all 60-Minute Login Tokens and secrets with asterisks (***) in memory. At Step 3, The Architect inspects cloud monitoring metrics (Total Service API Hits / CloudWatch / Portal Metrics) over the last 30 minutes directly on the Data-Plane Asset for immediate Stage 1 mathematical proof of access.</span>
-                        </div>
-                        <div class="bp-node bp-node-orange">
-                            <span class="bp-node-title">Phase 5: ARL Scorecard, Standby Telemetry &amp; Finalized DPL</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">Stage 2 Compliance &amp; Standby Forensic Package (Variables 22, 23 &amp; 24):</span> Generates the formal Audit Results Ledger (audit_results_ledger.md or ARL) scoring Gate 1 (Boundary), Gate 2 (Identity), Gate 3 (Federation), Gate 4 (Access), and all 5 Enterprise Guardrails as [PASS]; packages standalone CloudTrail, KQL, and SIEM Telemetry (kql_telemetry.md) joining OIDC sign-ins with data-plane audit events as an on-demand standby forensic resource (so 5-to-20-minute SIEM indexing latency never stalls the build); and compiles all session fixes into the finished Defect &amp; Patch Ledger (patch_ledger.md or DPL).</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bp-arrow-container"><div class="bp-arrow" style="color: var(--color-orange); text-shadow: 0 0 20px var(--color-orange);">&darr;</div></div>
-
-                <!-- LAYER 6: ALL-PHASE DIAGNOSTIC OVERLAY & PHASE 7 SELF-HARDENING EVOLUTION -->
-                <div class="bp-feedback-loop">
-                    <div class="feedback-icon">&#10554;</div>
-                    <span class="bp-tag" style="color: var(--color-pink); align-self: center;">[LAYER 6: ALL-PHASE DIAGNOSTIC OVERLAY &amp; PHASE 7 SELF-HARDENING EVOLUTION (VARIABLES 24 TO 26)]</span>
-                    <div class="feedback-title">Directive 05 Troubleshooting, The Defect &amp; Patch Ledger, The 4-Iteration Circuit Breaker &amp; Phase 7 System Directive Compilation</div>
-                    
-                    <div class="bp-layer-intro-box">
-                        <ul class="clean-bullet-list">
-                            <li>
-                                <span class="bullet-lead">Two Separate All-Phase Diagnostic Mechanisms (Directive 05):</span> Across Phases 1 through 6, routine errors solved within Attempts 1, 2, or 3 of the Standard Patch Loop (Iterations 1 to 3) are logged immediately in the Defect &amp; Patch Ledger (DPL) alongside a mandatory full-file State Re-Sync of the IaC Payload, whereas The 4-Iteration Circuit Breaker trips only if a single isolated defect fails 3 consecutive times and reaches Iteration 4.
-                            </li>
-                            <li>
-                                <span class="bullet-lead">Neutralizing Offensive Stage 7 via Phase 7 Compilation:</span> Instead of losing hard-won troubleshooting fixes when the chat window closes, Phase 7 audits execution via the counted AI Performance Scorecard and permanently compiles every verified fix from the Defect &amp; Patch Ledger (DPL) into the master System Directive so The State Machine starts every subsequent build stronger:
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <div class="bp-grid-split">
-                        <div class="bp-node bp-node-pink">
-                            <span class="bp-node-title">1. Standard Patch Loop &amp; Full-File State Re-Sync (Iterations 1 to 3)</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">Clinical Patching &amp; Zero-Snippet Re-Sync (Variable 24):</span> Whenever a Terminal Runbook command or IaC Payload returns an error during any phase, Rule 7 triggers Directive 05&mdash;forcing The AI Engine to drop all analogies and enter [MODE: COLLABORATIVE TROUBLESHOOTING] inside the Standard Patch Loop (Iterations 1 to 3) (resetting to Iteration 1 for each new, isolated defect). Once The Architect confirms a fix worked in the local terminal, the System Directive enforces a mandatory State Re-Sync (Rules 9 &amp; 15), reprinting the complete IaC Payload file from top to bottom so partial code fragments never corrupt the workspace.</span>
-                        </div>
-                        
-                        <div class="bp-node bp-node-pink">
-                            <span class="bp-node-title">2. Real-Time Defect &amp; Patch Ledger Staging (patch_ledger.md or DPL)</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">Immediate Empirical Bug Logging (Variable 24):</span> Staging an entry in the Defect &amp; Patch Ledger (DPL) does not require hitting the circuit breaker. Every time The Architect verifies in the local terminal that a patch succeeded during Attempts 1, 2, or 3 across any phase, the exact Error Signature, Root Cause, and Engineered Fix are staged immediately in real time as a [DPL ENTRY] and compiled into patch_ledger.md in Phase 5.</span>
-                        </div>
-
-                        <div class="bp-node bp-node-pink">
-                            <span class="bp-node-title">3. The 4-Iteration Circuit Breaker (Iteration 4 Emergency Halt)</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">Iteration 4 Risk Management Assessment (Variable 25):</span> Completely separate from routine DPL logging: if any single isolated defect fails 3 times in a row during the Standard Patch Loop and reaches Iteration 4, The 4-Iteration Circuit Breaker trips automatically. The State Machine structurally forbids The AI Engine from generating any new code and forces a formal Risk Management Assessment: summarizing how the error telemetry shifted across Attempts 1&ndash;3, calculating an Estimated Probability of Success (X%), and presenting alternative architectural pathways for The Architect's strategic decision.</span>
-                        </div>
-
-                        <div class="bp-node bp-node-pink">
-                            <span class="bp-node-title">4. Phase 7 Counted Scorecard &amp; System Directive Compilation</span>
-                            <span class="bp-node-desc"><span class="bullet-lead">List-First Scorecard &amp; Zero-Truncation Upgrade (Variable 26):</span> At session close in Phase 7, The State Machine enforces a strict "list first, count second" rule to output the AI Performance Scorecard (Total Diagnostic Loops Triggered, Total Iterations Executed, Circuit Breakers Pulled, and Protocol Deviations Logged). Upon The Architect's authorization, The AI Engine translates every proven fix from the Defect &amp; Patch Ledger (DPL) into an additive rule upgrade and compiles 100% of the newly upgraded System Directive into one un-truncated code block so that vulnerability can never recur on any future build.</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- ================= ZONE 4: SECTION 3 — L4 AGENTIC SYSTEM CLASSIFICATION ================= -->
-        <div class="classification-section" id="system-classification">
-            <div class="class-header">[INDUSTRY AI SYSTEMS ENGINEERING CLASSIFICATION :: STATE-SPACE COLLAPSE &amp; BOUNDED AUTONOMY]</div>
-            <div class="class-title">L4 Agentic Architecture Under Strict Human-in-the-Loop (HITL) Command Governance</div>
-            
-            <!-- BULLETED SECTION 3 INTRO BOX -->
-            <div class="bp-layer-intro-box" style="margin-bottom: 0;">
-                <ul class="clean-bullet-list">
-                    <li>
-                        <span class="bullet-lead">Beyond Unchecked Autonomous Agents &amp; One-Shot Prompting:</span> Rather than allowing The AI Engine to operate as an unchecked autonomous agent against live cloud infrastructure or relying on one-shot probabilistic prompting (0.85<sup>10</sup> = 19.7% 10-step reliability), The Adversarial Kill-Chain Counter-Engineering State Machine enforces an L4 Agentic Architecture governed by strict human-in-the-loop command authority across all seven phases.
-                    </li>
-                    <li>
-                        <span class="bullet-lead">Deterministic Compute Under Human Command:</span> By tethering The AI Engine inside The State Machine (System Directive v1.0) and locking every component to the 26 fixed variables in the <a href="glossary.html" class="inline-link">26-Variable System Glossary</a>, the architecture
+</body>
+</html>

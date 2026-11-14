@@ -3,625 +3,292 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adversarial Kill-Chain Counter-Engineering - Day-2 Multi-Cloud Modules</title>
+    <title>Day-2 Machine Identity Controls | AKCCE</title>
+<meta name="description" content="A reviewed Day-2 workflow for machine identity controls, with an Entra workload Conditional Access case, schema diagnosis and explicit validation requirements.">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     
     <!-- Google tag (gtag.js) -->
-    <script>
-      if (window.location.search.indexOf('block_ga=true') !== -1) {
-        localStorage.setItem('akcce_block_ga', 'true');
-        alert('SUCCESS: Google Analytics is permanently disabled on this browser.');
-      }
-      if (localStorage.getItem('akcce_block_ga') === 'true') {
-        window['ga-disable-G-80NYKHYN3R'] = true;
-      }
-    </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-80NYKHYN3R"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-80NYKHYN3R');
-    </script>
+    
+    
+    
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
     
     <style>
-        :root {
-            --bg-page: #020617; 
-            --bg-node: rgba(10, 15, 29, 0.95);
-            --border-base: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #cbd5e1;
-            --color-blue: #3b82f6;
-            --color-cyan: #0ea5e9;
-            --color-purple: #a855f7;
-            --color-grey: #64748b;
-            --color-green: #10b981;
-            --color-red: #f43f5e;
-            --color-orange: #f97316;
-        }
+:root { --bg:#020617; --panel:#0a0f1d; --line:#263449; --text:#f8fafc; --muted:#cbd5e1; --cyan:#38bdf8; --blue:#60a5fa; --purple:#c084fc; --green:#6ee7b7; --red:#fda4af; }
+* { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; line-height:1.7; padding-bottom:3rem; }
+a { color:var(--cyan); text-underline-offset:4px; }
+a:hover { color:#fff; }
+a:focus-visible,pre:focus-visible { outline:3px solid #38bdf8; outline-offset:5px; }
+.skip-link { position:fixed; left:1rem; top:-100px; z-index:200; padding:.7rem 1rem; background:#f8fafc; color:#020617; border-radius:6px; }
+.skip-link:focus { top:.5rem; }
+nav { padding:1.2rem 2rem; border-bottom:1px solid var(--line); background:rgba(2,6,23,.95); }
+.nav-links { display:flex; flex-wrap:wrap; gap:1.2rem; justify-content:center; align-items:center; list-style:none; }
+.nav-links a { display:inline-block; padding:.5rem 1.2rem; color:#0ea5e9; border:1px solid #0ea5e9; border-radius:6px; background:rgba(14,165,233,.1); text-decoration:none; font-size:.9rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; transition:background .2s,color .2s; }
+.nav-links a:hover,.nav-links .active-link { color:#fff; background:#0ea5e9; box-shadow:0 0 15px rgba(14,165,233,.3); }
+.hero { padding:40px 20px 48px; text-align:center; border-bottom:1px solid var(--line); }
+.eyebrow { display:block; font:800 .85rem/1.65 'JetBrains Mono',monospace; letter-spacing:1.5px; color:var(--cyan); text-transform:uppercase; margin-bottom:.75rem; overflow-wrap:anywhere; }
+.hero-title-container { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:1.2rem; margin:1rem auto 1.5rem; max-width:1180px; }
+.hero-brand-crest { width:66px; height:66px; flex-shrink:0; }
+h1,h2,h3 { font-family:'Montserrat',sans-serif; font-weight:900; line-height:1.35; overflow-wrap:anywhere; }
+h1 { max-width:940px; font-size:clamp(2rem,4vw,3.25rem); letter-spacing:1.5px; text-transform:uppercase; }
+.hero-subtitle { font-size:1.2rem; color:var(--muted); max-width:850px; margin:0 auto 2rem; }
+.intro-box { max-width:1120px; text-align:left; padding:2rem 2.3rem; margin:0 auto 2rem; background:var(--panel); border:1px solid var(--line); border-left:4px solid var(--cyan); border-radius:10px; }
+.intro-lead { font:800 1.12rem/1.7 'Montserrat',sans-serif; padding-bottom:1rem; margin-bottom:1rem; border-bottom:1px solid var(--line); }
+.clean-list { padding-left:1.3rem; display:flex; flex-direction:column; gap:.8rem; }
+.clean-list li { padding-left:.15rem; color:var(--muted); }
+.clean-list li::marker,.clean-list strong { color:var(--cyan); }
+.jump-box { max-width:1180px; padding:1.3rem; margin:0 auto; background:#0f172a; border:1px solid var(--line); border-radius:10px; }
+.jump-box p { margin-bottom:.9rem; font-weight:700; }
+.jump-links { display:flex; flex-wrap:wrap; justify-content:center; gap:.75rem; }
+.jump-links a { padding:.6rem 1rem; border:1px solid #0ea5e9; border-radius:6px; background:rgba(14,165,233,.08); font-size:.87rem; font-weight:700; text-decoration:none; }
+.jump-links a:hover { background:#075985; }
+.page-section { max-width:1300px; margin:0 auto; padding:55px 24px 15px; min-width:0; }
+[id] { scroll-margin-top:1.5rem; }
+.section-heading { max-width:1050px; margin:0 auto 2rem; text-align:center; }
+h2 { font-size:clamp(1.7rem,3vw,2.25rem); text-transform:uppercase; margin-bottom:1rem; }
+.section-heading p { color:var(--muted); font-size:1.1rem; }
+.grid { display:grid; gap:1.5rem; }
+.cols-2 { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.cols-3 { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.card { padding:1.7rem; border:1px solid var(--line); border-top:3px solid var(--cyan); border-radius:10px; background:linear-gradient(140deg,#0f172a,#0a0f1d); min-width:0; }
+.card.purple { border-top-color:var(--purple); } .card.green { border-top-color:var(--green); } .card.red { border-top-color:var(--red); }
+h3 { font-size:1.16rem; margin-bottom:1rem; padding-bottom:.8rem; border-bottom:1px solid var(--line); text-transform:uppercase; }
+.card p { color:var(--muted); }
+.note { border:1px solid #334155; border-left:4px solid var(--purple); border-radius:8px; padding:1.15rem 1.4rem; margin:1.5rem 0; color:var(--muted); }
+.note strong { color:#f8fafc; }
+.schematic { padding:1.75rem; border:1px solid var(--line); border-radius:12px; margin:1.75rem 0; background:radial-gradient(ellipse at top,rgba(56,189,248,.07),transparent 60%),#050b1b; }
+.schematic figcaption { font:800 1rem/1.7 'Montserrat',sans-serif; color:#f8fafc; margin-bottom:1.4rem; }
+.reference-tag { display:block; color:var(--purple); font:700 .78rem 'JetBrains Mono',monospace; margin-top:.4rem; }
+.flow-node { border:1px solid #334155; border-left:4px solid var(--cyan); border-radius:8px; padding:1.2rem; background:#0a0f1d; min-width:0; }
+.flow-node strong { display:block; font:800 1rem/1.5 'Montserrat',sans-serif; margin-bottom:.5rem; }
+.flow-node p { color:var(--muted); font-size:.98rem; }
+.flow-node.purple { border-left-color:var(--purple); } .flow-node.green { border-left-color:var(--green); }
+.flow-node.center { max-width:750px; margin:auto; text-align:center; }
+.flow-arrow { text-align:center; color:var(--cyan); padding:.45rem; font-size:1.6rem; line-height:1; }
+.flow-caption { color:var(--muted); margin-top:1rem; font-size:.94rem; }
+.loop-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1rem; }
+.loop-number { display:inline-flex; justify-content:center; align-items:center; width:32px; height:32px; border:1px solid #075985; border-radius:50%; color:var(--cyan); margin-bottom:.6rem; font:700 .85rem 'JetBrains Mono',monospace; }
+.trust-flow { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:.8rem; list-style:none; }
+.trust-flow li { background:#0a0f1d; padding:1.1rem; border:1px solid #334155; border-top:3px solid var(--cyan); border-radius:8px; color:var(--muted); }
+.trust-flow strong { display:block; color:#f8fafc; font:800 .98rem/1.5 'Montserrat',sans-serif; margin-bottom:.65rem; }
+.artifact { margin:1.75rem 0; border:1px solid #334155; border-radius:10px; background:#040915; overflow:hidden; min-width:0; }
+.artifact figcaption { display:flex; flex-wrap:wrap; justify-content:space-between; gap:.7rem; padding:1rem 1.3rem; background:#0f172a; border-bottom:1px solid #334155; font:700 .9rem/1.6 'JetBrains Mono',monospace; color:var(--cyan); overflow-wrap:anywhere; }
+.artifact-state { color:#fde68a; font-size:.78rem; }
+pre { padding:1.5rem; white-space:pre-wrap; overflow-wrap:anywhere; color:#dbeafe; font:400 .89rem/1.8 'JetBrains Mono',monospace; }
+code { font-family:'JetBrains Mono',monospace; overflow-wrap:anywhere; }
+.status-legend { display:flex; flex-wrap:wrap; gap:.65rem; margin:1.2rem 0; }
+.status-pill { border:1px solid #475569; padding:.4rem .65rem; border-radius:5px; font:700 .8rem/1.6 'JetBrains Mono',monospace; }
+.status-pill.pass { color:var(--green); } .status-pill.fail { color:var(--red); } .status-pill.pending { color:#fde68a; } .status-pill.error { color:var(--purple); }
+.references { margin-top:1.2rem; color:var(--muted); line-height:1.9; }
+.references a { display:inline-block; margin-right:1rem; }
+.domain-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.2rem; }
+.domain-card { padding:1.5rem; background:#0a0f1d; border:1px solid #334155; border-radius:9px; }
+.domain-card h3 { font-size:1.05rem; }
+.domain-card ul { padding-left:1.2rem; color:var(--muted); }
+.domain-card li { margin-bottom:.5rem; }
+.domain-card p { margin-top:1rem; color:#c4b5fd; font-size:.94rem; }
+.ip-footer { max-width:1252px; margin:3rem auto 0; padding:2rem 1.5rem; border-top:1px solid var(--line); border-radius:8px; background:var(--panel); text-align:center; color:var(--muted); font:400 .83rem/1.8 'JetBrains Mono',monospace; overflow-wrap:anywhere; }
+.ip-footer strong { color:var(--cyan); } .footer-crest-wrapper { display:flex; justify-content:center; margin-bottom:1rem; } .footer-brand-crest { width:38px; height:38px; }
+@media(max-width:1050px) { .cols-3,.loop-grid,.trust-flow,.domain-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:760px) { .cols-2,.cols-3,.loop-grid,.trust-flow,.domain-grid { grid-template-columns:1fr; } .page-section { padding:40px 14px 10px; } .schematic { padding:1.2rem; } }
+@media(max-width:600px) {
+ nav { padding:.75rem .5rem; } .nav-links { gap:.45rem; } .nav-links a { font-size:.72rem; padding:.35rem .65rem; }
+ .hero { padding:30px 14px 35px; } .hero-brand-crest { width:48px; height:48px; } h1 { font-size:1.9rem; letter-spacing:1px; } .hero-subtitle { font-size:1.05rem; }
+ .eyebrow { font-size:.76rem; letter-spacing:1px; } .intro-box { padding:1.3rem 1.1rem; } .jump-links a { width:100%; } .card,.domain-card { padding:1.3rem; } .artifact figcaption { padding:1rem; } pre { padding:1.1rem; font-size:.81rem; } .note { padding:1rem; }
+}
+@media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation:none !important; transition:none !important; } }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        body {
-            background-color: var(--bg-page);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            color: var(--text-main);
-            line-height: 1.6;
-            padding-bottom: 4rem;
-            overflow-x: hidden;
-        }
+/* Selected scope and evidence state are descriptive, not interactive cloud controls. */
+.scope-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; }
+.scope-card { border:1px solid var(--line); border-top:3px solid var(--cyan); border-radius:8px; background:#0a0f1d; padding:1.4rem; min-width:0; }
+.scope-card h3 { font-size:1rem; text-transform:none; }
+.scope-value { color:var(--text); font-weight:700; margin-bottom:.65rem; }
+.scope-detail { color:var(--muted); font-size:.94rem; }
+.state-badge { display:inline-block; padding:.4rem .65rem; border:1px solid #665629; border-radius:5px; color:#fde68a; font:700 .78rem/1.7 'JetBrains Mono',monospace; margin:1rem 0; }
+.cloud-heading { margin:2rem 0 1rem; }
+.cloud-reference { margin-top:1rem; font-size:.93rem; }
+.step-gate { margin:1.5rem 0; padding:1.1rem 1.3rem; border:1px solid #334155; border-left:4px solid var(--green); border-radius:7px; color:var(--muted); }
+.step-gate strong { color:var(--green); }
+.module-grid { margin-top:1.4rem; }
+.source-details { border:1px solid #334155; border-radius:8px; margin:1.5rem 0; background:#050b1b; }
+.source-details summary { padding:1rem 1.2rem; cursor:pointer; color:#c4b5fd; font-weight:800; }
+.source-details summary:hover { color:#fff; }
+.source-details summary:focus-visible { outline:3px solid var(--cyan); outline-offset:4px; }
+.source-body { padding:.1rem 1.2rem 1.2rem; color:var(--muted); }
+.source-body p { font-size:.94rem; margin-bottom:1rem; }
+.source-body pre { border:1px solid var(--line); border-radius:7px; background:#020617; padding:1rem; }
+.table-wrap { width:100%; margin:1.5rem 0; border:1px solid #334155; border-radius:8px; overflow:hidden; }
+.review-table { width:100%; border-collapse:collapse; table-layout:fixed; background:#0a0f1d; }
+.review-table caption { padding:1rem 1.2rem; color:var(--muted); text-align:left; font-size:.94rem; }
+.review-table th,.review-table td { padding:1rem 1.15rem; border-bottom:1px solid var(--line); text-align:left; vertical-align:top; line-height:1.7; overflow-wrap:anywhere; }
+.review-table thead th { color:var(--cyan); background:#0f172a; font:800 .85rem/1.7 'Montserrat',sans-serif; }
+.review-table tbody th { width:25%; color:#f8fafc; font-size:.95rem; }
+.review-table td { color:var(--muted); font-size:.96rem; }
+.review-table tr:last-child td,.review-table tr:last-child th { border-bottom:0; }
+.review-table code { color:#c4b5fd; font-size:.87rem; }
+.evidence-label { display:inline-block; color:#fde68a; font:700 .77rem/1.6 'JetBrains Mono',monospace; }
+.source-list { padding-left:1.3rem; color:var(--muted); }
+.source-list li { margin-bottom:.65rem; }
+@media(max-width:1000px) { .scope-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:760px) {
+ .scope-grid { grid-template-columns:1fr; }
+ .review-table,.review-table tbody,.review-table tr,.review-table td,.review-table tbody th { display:block; width:100%; }
+ .review-table thead { position:absolute; width:1px; height:1px; margin:-1px; overflow:hidden; clip-path:inset(50%); }
+ .review-table tr { border-bottom:2px solid #334155; padding:.5rem; }
+ .review-table tbody th { color:var(--cyan); }
+ .review-table td::before { display:block; content:attr(data-label); margin-bottom:.4rem; color:#c4b5fd; font:800 .8rem/1.6 'Montserrat',sans-serif; }
+ .review-table caption { display:block; }
+}
+@media(max-width:600px) { .scope-card { padding:1.2rem; } .source-details summary { padding:1rem; } .source-body { padding:.1rem 1rem 1rem; } .step-gate { padding:1rem; } }
 
-        /* STRICT COLOR DISCIPLINE: ONLY FOR BULLET LEAD-IN LABELS BEFORE A COLON */
-        .bullet-lead {
-            color: var(--color-cyan);
-            font-weight: 800;
+</style>
+<script>
+      const blockAnalytics = new URLSearchParams(window.location.search).get('block_ga') === 'true';
+      if (blockAnalytics) window['ga-disable-G-80NYKHYN3R'] = true;
+      try {
+        if (blockAnalytics) localStorage.setItem('akcce_block_ga', 'true');
+        if (localStorage.getItem('akcce_block_ga') === 'true') {
+          window['ga-disable-G-80NYKHYN3R'] = true;
         }
-
-        .inline-link {
-            color: var(--color-cyan);
-            text-decoration: none;
-            border-bottom: 1px solid var(--color-cyan);
-            font-weight: 800;
-            transition: color 0.3s ease, border-color 0.3s ease;
-        }
-        .inline-link:hover {
-            color: #ffffff;
-            border-color: #ffffff;
-        }
-
-        /* ================= NAVIGATION ================= */
-        nav {
-            position: fixed; top: 0; width: 100%;
-            background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-base); z-index: 100;
-            padding: 1.2rem 2rem; display: flex; justify-content: center;
-        }
-        .nav-links { 
-            display: flex; gap: 1.2rem; list-style: none; flex-wrap: wrap; 
-            justify-content: center; align-items: center; 
-        }
-        .nav-links a { 
-            display: inline-block;
-            color: var(--color-cyan); 
-            border: 1px solid var(--color-cyan);
-            background: rgba(14, 165, 233, 0.1); 
-            padding: 0.5rem 1.2rem; 
-            border-radius: 6px;
-            text-decoration: none; 
-            font-size: 0.9rem; 
-            font-weight: 700; 
-            letter-spacing: 1px; 
-            text-transform: uppercase; 
-            transition: all 0.3s ease; 
-        }
-        .nav-links a:hover, 
-        .nav-links a.active-link { 
-            background: var(--color-cyan); 
-            color: #ffffff; 
-            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
-        }
-
-        /* ================= HERO HEADER & TOP SUB-NAVIGATION ================= */
-        .hero { padding: 145px 20px 60px; text-align: center; border-bottom: 1px solid var(--border-base); }
-
-        .jump-links-container {
-            max-width: 1120px;
-            margin: 0 auto 2.5rem;
-            padding: 1.25rem 1.8rem;
-            background: rgba(15, 23, 42, 0.55);
-            border: 1px solid var(--border-base);
-            border-radius: 10px;
-            text-align: center;
-        }
-        .jump-links-intro {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--text-main);
-            letter-spacing: 0.5px;
-            margin-bottom: 0.9rem;
-        }
-        .jump-links { 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: center; 
-            gap: 0.9rem; 
-        }
-        .jump-links a { 
-            color: var(--color-cyan); 
-            border: 1px solid var(--color-cyan); 
-            background: rgba(14, 165, 233, 0.08); 
-            padding: 0.65rem 1.25rem; 
-            border-radius: 8px; 
-            text-decoration: none; 
-            font-size: 0.86rem; 
-            font-weight: 700; 
-            letter-spacing: 1px; 
-            text-transform: uppercase; 
-            transition: all 0.3s ease; 
-        }
-        .jump-links a:hover { 
-            background: var(--color-cyan); 
-            color: #ffffff; 
-            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
-            transform: translateY(-2px); 
-        }
-
-        .hero-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; font-weight: 800; color: var(--color-purple); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.75rem; display: block; }
-        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 3rem; font-weight: 900; letter-spacing: 2px; color: var(--text-main); text-transform: uppercase; margin-bottom: 1.5rem; }
-
-        /* ================= BULLETED INTRO BOXES & LISTS ================= */
-        .section-intro-box {
-            max-width: 1100px;
-            margin: 0 auto 2.5rem;
-            background: rgba(10, 15, 29, 0.95);
-            border: 1px solid var(--border-base);
-            border-left: 4px solid var(--color-cyan);
-            border-radius: 10px;
-            padding: 2rem 2.4rem;
-            text-align: left;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-        }
-
-        .intro-lead-sentence {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.15rem;
-            font-weight: 800;
-            color: var(--text-main);
-            line-height: 1.65;
-            margin-bottom: 1.15rem;
-            padding-bottom: 0.8rem;
-            border-bottom: 1px solid var(--border-base);
-        }
-
-        .clean-bullet-list {
-            list-style: disc;
-            padding-left: 1.45rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.85rem;
-            text-align: left;
-        }
-        .clean-bullet-list li {
-            font-size: 1.04rem;
-            color: var(--text-main);
-            font-weight: 600;
-            line-height: 1.7;
-            padding-left: 0.2rem;
-        }
-        .clean-bullet-list li::marker {
-            color: var(--color-cyan);
-        }
-
-        #intake-matrix, #step-1, #step-2, #step-3, #step-4 {
-            scroll-margin-top: 100px;
-        }
-
-        /* ================= MAIN CONTAINER ================= */
-        .container { max-width: 1120px; margin: 0 auto; padding: 3.5rem 20px 1rem; }
-        .section-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; font-weight: 800; color: var(--color-cyan); letter-spacing: 2px; text-transform: uppercase; display: block; text-align: center; margin-bottom: 0.5rem; }
-        .section-title { font-family: 'Montserrat', sans-serif; font-size: 2rem; font-weight: 900; color: var(--text-main); text-transform: uppercase; margin-bottom: 1.8rem; text-align: center; letter-spacing: 1px; }
-        .divider { height: 1px; background: var(--border-base); margin: 4.5rem 0; width: 100%; }
-
-        /* ================= 6-BOX CAPABILITY MATRIX (WITH ACTIVE PROJECT CHECKMARKS RESTORED) ================= */
-        .matrix-grid-6 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 3rem; }
-        @media (max-width: 850px) { .matrix-grid-6 { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 600px) { .matrix-grid-6 { grid-template-columns: minmax(0, 1fr); } }
-
-        .matrix-card { background: rgba(10, 15, 29, 0.95); border: 1px solid var(--border-base); border-top: 3px solid var(--color-blue); padding: 1.5rem; border-radius: 8px; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.35); text-align: left; }
-        .matrix-card.highlight-card { border-top-color: var(--color-purple); background: rgba(168, 85, 247, 0.05); }
-        .matrix-card h3 { font-size: 1rem; font-weight: 900; color: var(--text-main); margin-bottom: 1rem; border-bottom: 1px solid var(--border-base); padding-bottom: 0.65rem; font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 1px; }
-        .matrix-card.highlight-card h3 { color: var(--color-purple); border-bottom-color: rgba(168, 85, 247, 0.3); }
-        .matrix-list { list-style: none; }
-        .matrix-list li { font-size: 0.95rem; color: var(--text-muted); font-weight: 500; margin-bottom: 0.75rem; display: flex; align-items: center; }
-        .matrix-list li:last-child { margin-bottom: 0; }
-        .matrix-list li.active { color: var(--color-cyan); font-weight: 700; }
-        .matrix-list li.active-purple { color: var(--color-purple); font-weight: 700; }
-        
-        .checkbox { display: inline-block; width: 16px; height: 16px; border: 1px solid var(--color-grey); border-radius: 3px; margin-right: 10px; position: relative; flex-shrink: 0; }
-        .active .checkbox { border-color: var(--color-cyan); background-color: rgba(14, 165, 233, 0.2); }
-        .active .checkbox::after { content: '\2714'; position: absolute; top: -3px; left: 2px; color: var(--color-cyan); font-size: 12px; }
-        .active-purple .checkbox { border-color: var(--color-purple); background-color: rgba(168, 85, 247, 0.2); }
-        .active-purple .checkbox::after { content: '\2714'; position: absolute; top: -3px; left: 2px; color: var(--color-purple); font-size: 12px; }
-
-        /* ================= INSIGHT BOX ================= */
-        .insight-box {
-            border-left: 4px solid var(--color-purple);
-            background: linear-gradient(90deg, rgba(168, 85, 247, 0.1) 0%, transparent 100%);
-            padding: 2rem 2.4rem;
-            margin: 0 auto 3.5rem;
-            border-radius: 0 8px 8px 0;
-            text-align: left;
-        }
-        .insight-title {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--color-purple);
-            font-weight: 900;
-            font-size: 1.1rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 0.75rem;
-        }
-        .insight-text { font-size: 1.1rem; color: var(--text-main); font-weight: 600; line-height: 1.75; }
-
-        /* ================= ARCHITECT COMMAND MODULE ================= */
-        .architect-command { background: #f8fafc; border-left: 6px solid var(--color-blue); border-radius: 8px; padding: 1.5rem 2.2rem; margin: 0 auto 2rem; width: 100%; box-sizing: border-box; box-shadow: 0 15px 30px rgba(0,0,0,0.4); color: #0f172a; position: relative; text-align: left; }
-        .architect-badge { display: inline-block; background: var(--color-blue); color: #ffffff; font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; font-weight: 800; letter-spacing: 1.5px; padding: 6px 14px; border-radius: 4px; margin-bottom: 10px; text-transform: uppercase; }
-        .architect-text { font-size: 1.1rem; font-weight: 700; line-height: 1.65; color: #0f172a; }
-
-        /* ================= TERMINAL STYLING ================= */
-        .terminal-window { background: #0d1117; border: 1px solid var(--border-base); border-radius: 10px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); width: 100%; margin: 0 auto 1rem; text-align: left; overflow: hidden; }
-        .terminal-header { background: #161b22; padding: 12px 20px; display: flex; align-items: center; border-bottom: 1px solid var(--border-base); position: relative; }
-        .terminal-dots { display: flex; gap: 8px; position: absolute; left: 20px; }
-        .dot { width: 12px; height: 12px; border-radius: 50%; }
-        .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
-        .terminal-title { margin: 0 auto; color: var(--text-muted); font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; font-weight: 700; letter-spacing: 1px; }
-        .terminal-body { padding: 2.2rem 2.4rem; font-family: 'JetBrains Mono', 'Consolas', monospace; font-size: 0.98rem; line-height: 1.8; color: var(--text-main); overflow-x: auto; white-space: pre-wrap; word-wrap: break-word; background: linear-gradient(rgba(13, 17, 23, 1) 0%, rgba(13, 17, 23, 0.95) 100%); }
-        
-        .t-cyan { color: var(--color-cyan); font-weight: 700; } 
-        .t-green { color: var(--color-green); font-weight: 700; } 
-        .t-blue { color: var(--color-blue); font-weight: 700; } 
-        .t-purple { color: var(--color-purple); font-weight: 700; } 
-        .t-muted { color: var(--text-muted); } 
-        .t-comment { color: #94a3b8; }
-        .t-red { color: #ff5f56; font-weight: 700; }
-
-        /* ================= PROPRIETARY IP FOOTER ================= */
-        .ip-footer {
-            max-width: 1120px;
-            margin: 2rem auto 0;
-            text-align: center;
-            padding: 2.5rem 1.5rem;
-            border-top: 1px solid var(--border-base);
-            background: rgba(10, 15, 29, 0.6);
-            border-radius: 8px;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            font-family: 'JetBrains Mono', monospace;
-            line-height: 1.8;
-        }
-        .ip-footer strong {
-            color: var(--color-cyan);
-            font-weight: 700;
-        }
-
-        @media (max-width: 600px) {
-            .hero-title { font-size: 2rem; letter-spacing: 1px; }
-            .hero { padding-top: 190px; padding-bottom: 40px; }
-            nav { padding: 1rem; }
-            .nav-links { gap: 0.6rem; }
-            .nav-links a { font-size: 0.75rem; padding: 0.4rem 0.8rem; letter-spacing: 0.5px; }
-            .section-title { font-size: 1.5rem; }
-            .terminal-body { font-size: 0.85rem; padding: 1.5rem; }
-            .architect-command { padding: 1.2rem 1.5rem; }
-            .insight-box, .section-intro-box { padding: 1.5rem; }
-            .matrix-card { padding: 1.2rem; }
-        }
-        /* FIX FOR PHONES HELD HORIZONTALLY OR VERTICALLY */
-        @media (max-width: 992px), (max-height: 550px) {
-            nav {
-                position: relative !important;
-                padding: 0.75rem 0.5rem !important;
-            }
-            .nav-links {
-                gap: 0.45rem !important;
-            }
-            .nav-links a {
-                font-size: 0.72rem !important;
-                padding: 0.35rem 0.65rem !important;
-            }
-            .hero, .blueprint-page-container {
-                padding-top: 30px !important;
-            }
-        }
-    </style>
+      } catch (error) {
+        // The query-string opt-out still works when browser storage is unavailable.
+      }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-80NYKHYN3R"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-80NYKHYN3R');</script>
 </head>
-<body>
-
-    <!-- GLOBAL NAVIGATION (8-LINK SITE-WIDE BAR WITH 26-VARIABLE SYSTEM GLOSSARY) -->
-    <nav>
+<body><a class="skip-link" href="#main-content">Skip to main content</a><nav aria-label="Main navigation">
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="autonomous-systems.html">Autonomous Systems</a></li>
-            <li><a href="kill-chain.html">The Adversarial Kill Chain</a></li>
-            <li><a href="blueprint.html">7-Phase Counter-Engineering Blueprint</a></li>
-            <li><a href="ai-systems-engineering.html">Tethered AI Systems Engineering</a></li>
-            <li><a href="architectural.html">Exploit-Level Pipeline Architecture</a></li>
-            <li><a href="workflow-portfolio.html">Live Counter-Engineering Proofs</a></li>
-            <li><a href="add-capabilities.html" class="active-link">Day-2 Multi-Cloud Modules</a></li>
-            <li><a href="glossary.html">26-Variable System Glossary</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li>
+<a href="index.html">Home</a>
+</li>
+            <li>
+<a href="autonomous-systems.html">Autonomous Systems</a>
+</li>
+            <li>
+<a href="kill-chain.html">The Adversarial Kill Chain</a>
+</li>
+            <li>
+<a href="blueprint.html">7-Phase Counter-Engineering Blueprint</a>
+</li>
+            <li>
+<a href="ai-systems-engineering.html">Tethered AI Systems Engineering</a>
+</li>
+            <li>
+<a href="architectural.html">Exploit-Level Pipeline Architecture</a>
+</li>
+            <li>
+<a href="workflow-portfolio.html">Counter-Engineering Demonstrations</a>
+</li>
+            <li>
+<a href="add-capabilities.html" class="active-link" aria-current="page">Day-2 Multi-Cloud Modules</a>
+</li>
+            <li>
+<a href="glossary.html">26-Variable System Glossary</a>
+</li>
+            <li>
+<a href="contact.html">Contact</a>
+</li>
         </ul>
-    </nav>
+    </nav><main id="main-content"><header class="hero"><span class="eyebrow">[SCOPED CHANGE · POLICY REVIEW · OPERATIONAL EVIDENCE]</span><div class="hero-title-container"><svg class="hero-brand-crest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Adversarial Kill-Chain Counter-Engineering 4-Chevron Crest">
+                <rect width="114" height="114" x="3" y="3" fill="#020617" rx="22" stroke="#1e293b" stroke-width="3"/>
+                <!-- Gate 1: Gunmetal Bevel -->
+                <polygon points="24,18 60,36 60,48 24,30" fill="#475569"/>
+                <polygon points="96,18 60,36 60,48 96,30" fill="#1e293b"/>
+                <!-- Gate 2: Cobalt Bevel -->
+                <polygon points="24,39 60,57 60,69 24,51" fill="#0284c7"/>
+                <polygon points="96,39 60,57 60,69 96,51" fill="#075985"/>
+                <!-- Gate 3: Electric Cyan Bevel -->
+                <polygon points="24,60 60,78 60,90 24,72" fill="#38bdf8"/>
+                <polygon points="96,60 60,78 60,90 96,72" fill="#0369a1"/>
+                <!-- Gate 4: Crimson Bevel -->
+                <polygon points="24,81 60,99 60,111 24,93" fill="#f43f5e"/>
+                <polygon points="96,81 60,99 60,111 96,93" fill="#9f1239"/>
+            </svg><h1>Day-2 Multi-Cloud Modules</h1></div><p class="hero-subtitle">Extend a machine identity baseline through reviewed, cloud-specific controls and explicit validation.</p>
+<div class="intro-box"><p class="intro-lead">Day-2 security work connects each proposed restriction to its prerequisites, expected behavior, evidence and operational owner.</p><ul class="clean-list"><li><strong>Start from current facts:</strong> Refresh identity, trust and effective-access observations before expanding a prior deployment. Reuse records deliberately rather than skipping discovery automatically.</li><li><strong>Review the impact:</strong> A new policy can reduce access, introduce an exception or interrupt a workload. Additive code does not guarantee a non-disruptive change.</li><li><strong>Separate design from proof:</strong> The Entra example below is based on a supplied case narrative. Cross-cloud controls are extension areas, and reported outcomes are distinguished from independently assessable evidence.</li></ul></div><div class="jump-box"><p>Explore the selected scope and four-step review:</p><div class="jump-links"><a href="#intake-matrix">1. Scope and cloud controls</a><a href="#step-1">2. Refresh the baseline</a><a href="#step-2">3. Design the expansion</a><a href="#step-3">4. Diagnose and test</a><a href="#step-4">5. Verify and hand off</a></div></div></header>
+<section class="page-section" id="intake-matrix" aria-labelledby="intake-matrix-title"><header class="section-heading"><span class="eyebrow">[CASE SCOPE]</span><h2 id="intake-matrix-title">Selected Scope and Cloud-Specific Controls</h2><p>This case concerns an Entra workload identity. The same review sequence can organize work in other clouds, but each control requires its own implementation and tests.</p></header>
+<div class="scope-grid"><article class="scope-card"><h3>1. Identity core</h3><p class="scope-value">Microsoft Entra ID</p><p class="scope-detail">Application and service principal described in the source case.</p></article><article class="scope-card"><h3>2. Execution agent</h3><p class="scope-value">GitHub Actions</p><p class="scope-detail">Repository OIDC assertion exchanged for cloud access.</p></article><article class="scope-card"><h3>3. Infrastructure state</h3><p class="scope-value">Existing identity and target resource</p><p class="scope-detail">Refresh the observed baseline before changing it.</p></article><article class="scope-card"><h3>4. Target asset</h3><p class="scope-value">Azure Key Vault</p><p class="scope-detail">Runtime role and resource access remain separate review areas.</p></article><article class="scope-card"><h3>5. Deployment tooling</h3><p class="scope-value">PowerShell REST API</p><p class="scope-detail">Graph policy and schema handling are the case’s primary focus.</p></article><article class="scope-card"><h3>6. Requested expansion</h3><p class="scope-value">Location-based and service-principal risk policies</p><p class="scope-detail">Reported deployment and workflow success; enforcement evidence remains incomplete.</p></article></div>
+<aside class="note"><strong>Evidence boundary:</strong> The supplied page contains operator requests, AI explanations and a reported successful retry. It does not include the complete failed/patched payload, policy exports, detailed Graph error body, sign-in evaluations or executed telemetry-query results. This is a reported case, not an independently verified control deployment.</aside>
+<h3 class="cloud-heading">Multi-cloud extension areas</h3>
+<div class="grid cols-3">
+<article class="card purple"><h3>Microsoft Entra / Azure</h3><ul class="clean-list"><li><strong>Control layer:</strong> Workload Conditional Access can restrict eligible service-principal token requests. Review identity support and policy prerequisites.</li><li><strong>Case coverage:</strong> The supplied narrative describes location and risk policy work. Final enforcement needs separate evidence.</li></ul></article>
+<article class="card cyan"><h3>AWS</h3><ul class="clean-list"><li><strong>Control layer:</strong> SCPs limit permissions for covered organization principals. Session policies constrain a created session. Neither grants permissions.</li><li><strong>Review focus:</strong> Evaluate attachments, exceptions, trust and effective access with the relevant IAM and resource policies.</li></ul></article>
+<article class="card green"><h3>Google Cloud</h3><ul class="clean-list"><li><strong>Control layer:</strong> VPC Service Controls adds context-based perimeters for supported services and complements IAM. It is not a general replacement for identity authorization.</li><li><strong>Review focus:</strong> Evaluate service coverage, ingress/egress rules, identity permissions and denial evidence.</li></ul></article>
+</div><p class="references">Control references: <a href="https://learn.microsoft.com/en-us/entra/identity/conditional-access/workload-identity" target="_blank" rel="noopener noreferrer">Entra workload Conditional Access ↗</a>, <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html" target="_blank" rel="noopener noreferrer">AWS SCPs ↗</a>, <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html" target="_blank" rel="noopener noreferrer">AWS policy types ↗</a>, <a href="https://docs.cloud.google.com/vpc-service-controls/docs/overview" target="_blank" rel="noopener noreferrer">Google Cloud VPC Service Controls ↗</a>.</p>
+<aside class="note"><strong>Portability means an adaptable method.</strong> This page does not claim that an AWS or Google Cloud module was implemented by the Entra example. Shared headings and additive code do not establish equivalent semantics or tested coverage.</aside></section><section class="page-section" id="step-1" aria-labelledby="step-1-title"><header class="section-heading"><span class="eyebrow">[STEP 1]</span><h2 id="step-1-title">Refresh the Identity Baseline</h2><p>Day-2 work starts from the current environment. Reuse prior discovery only after checking that the identity, trust, grants and operational assumptions remain valid.</p></header>
+<div class="grid cols-2">
+<article class="card cyan"><h3>Identity, trust and access</h3><ul class="clean-list"><li><strong>Confirm the target:</strong> Distinguish application client ID, application object ID and service-principal object ID. Link observations to a run, configuration revision and UTC timestamp.</li><li><strong>Review the trust source:</strong> Read the actual issuer, audience and subject conditions and inspect who can modify the repository, workflow, environment or service account supplying the assertion.</li><li><strong>Review effective permissions:</strong> Check direct, inherited and resource-based grants, alternate credentials and administrative mutation paths. Keep deployment privileges separate from runtime access.</li></ul></article>
+<article class="card purple"><h3>Policy prerequisites and recovery</h3><ul class="clean-list"><li><strong>Supported scope:</strong> Entra workload Conditional Access targets eligible single-tenant service principals and requires Workload ID Premium for policy creation/modification. Managed identities are excluded.</li><li><strong>Change authority:</strong> Use an approved administrative authentication flow. Portal use and device-code login do not universally guarantee that authorization requirements are satisfied.</li><li><strong>Recovery:</strong> Identify owners, approved exceptions, rollback criteria and persistent state. An added policy can interrupt a working service even if no resource is deleted.</li></ul></article>
+</div><p class="references">Supported scope: <a href="https://learn.microsoft.com/en-us/entra/identity/conditional-access/workload-identity" target="_blank" rel="noopener noreferrer">Microsoft’s workload policy documentation ↗</a>.</p>
+<aside class="note"><strong>Reading the reported foundation:</strong> The source states that federation and a Key Vault role were established, but it does not attach configuration read-back or a complete credential/grant inventory. It also assumes a fixed replication delay and token lifetime. Treat those as environment-specific items to verify, not universal prerequisites.</aside>
+<details class="source-details"><summary>Read the selected source excerpt · Foundation request</summary><div class="source-body"><p>From the supplied case narrative. This quotation records the request or report; it is not independent verification of the stated outcome.</p><pre tabindex="0"><code>5 Build Coordinates locked: Microsoft Entra ID (Identity Core), GitHub Actions (Execution Agent), Brownfield (Existing) (Infrastructure State), Azure Key Vault (Data-Plane Asset), and PowerShell REST API (IaC Payload). Synthesize the Gate 1 through Gate 4 foundation and stage the Azure Portal MFA Handoff.</code></pre></div></details>
+<div class="step-gate"><strong>Ready to review the expansion:</strong> The current identity and effective access are documented, prerequisites are checked, and the owner has a concrete change and recovery plan to assess.</div></section><section class="page-section" id="step-2" aria-labelledby="step-2-title"><header class="section-heading"><span class="eyebrow">[STEP 2]</span><h2 id="step-2-title">Design the Location and Risk Policies</h2><p>Define the condition each control is intended to enforce, its target and state, and the observations that would demonstrate its behavior.</p></header>
+<div class="grid cols-2 module-grid">
+<article class="card cyan"><h3>Module A · Location-Based Policy</h3><ul class="clean-list"><li><strong>Intended behavior:</strong> Restrict token requests for the selected service principal according to the configured location conditions. A shared runner IP range is a network attribute, not proof of repository ownership.</li><li><strong>Range handling:</strong> Review the complete intended egress set, IPv4/IPv6 behavior, named-location limits and refresh process. Partitioning must preserve coverage; a fixed 90-range rule is not a universal limit.</li><li><strong>Validation:</strong> Retain a fresh allowed-origin request and an approved outside-origin test, including the policy state, target principal and sign-in evaluation. A generic workflow failure is not enough.</li></ul></article>
+<article class="card purple"><h3>Module B · Service-Principal Risk Policy</h3><ul class="clean-list"><li><strong>Intended behavior:</strong> Use the configured service-principal risk condition to block applicable token requests. This is a different condition from human user or sign-in risk.</li><li><strong>Detection limits:</strong> Workload detections include offline signals and can depend on learned behavior. Detection and access-control scope differ. A successful request does not establish that all replay or compromise would be detected.</li><li><strong>Validation:</strong> Review policy targeting and risk evaluation. Use an approved, isolated test method if exercising risky-state behavior; do not create a real leak or compromise to demonstrate a policy.</li></ul></article>
+</div><p class="references">Risk capability and limits: <a href="https://learn.microsoft.com/en-us/entra/id-protection/concept-workload-identity-risk" target="_blank" rel="noopener noreferrer">Entra workload identity risk documentation ↗</a>.</p>
+<aside class="note"><strong>Token policy is not universal connection termination.</strong> Do not infer that these settings inspect every Key Vault API call, immediately invalidate every issued credential, or detect every replay. Any continuous enforcement has separate client/resource requirements that are not demonstrated in this case.</aside>
+<details class="source-details"><summary>Read the selected source excerpt · Expansion request</summary><div class="source-body"><p>From the supplied case narrative. This quotation records the request or report; it is not independent verification of the stated outcome.</p><pre tabindex="0"><code>Core foundation verified. Initiate Day-2 capability expansion on the existing Application Registration and Service Principal. Synthesize the additive PowerShell REST API IaC Payload for Conditional Access for Workload Identities (CAWI) and Entra ID Protection Workload Risk policies.</code></pre></div></details>
+<div class="step-gate"><strong>Ready for a controlled change:</strong> Target, conditions, exclusions, enabled/report-only state, complete network coverage and expected test outcomes have been reviewed. Additive code is still a security and availability change.</div></section><section class="page-section" id="step-3" aria-labelledby="step-3-title"><header class="section-heading"><span class="eyebrow">[STEP 3]</span><h2 id="step-3-title">Diagnose the Schema Failure</h2><p>The source reports an HTTP 400 during policy creation and a successful retry. That supports a troubleshooting account; the full request and structured response are needed to establish the exact cause.</p></header>
+<div class="grid cols-2">
+<article class="card cyan"><h3>Inspect the failing request</h3><ul class="clean-list"><li><strong>Isolate the operation:</strong> Record the endpoint/version, sanitized JSON, response body, request identifier and time. HTTP 400 alone does not identify which field failed.</li><li><strong>Check the native model:</strong> Compare Graph property names and types with the selected API schema. Terraform provider fields and native JSON are separate interfaces.</li><li><strong>Review the complete change:</strong> Show the unified artifact and its diff. Reprinting a whole file can aid review, but does not validate it or authorize execution.</li></ul></article>
+<article class="card purple"><h3>Verify before codifying</h3><ul class="clean-list"><li><strong>Stage the hypothesis:</strong> Record the proposed cause and repair before testing. Mark the fix verified only after the relevant response, read-back and behavioral result are captured.</li><li><strong>Reassess retries:</strong> A fourth-iteration halt is a chosen operating rule, not proof of safety. Stop earlier for scope expansion or damaging changes, and explain uncertainty without invented probabilities.</li><li><strong>Release a tested lesson:</strong> Version directive/template changes, test prior defects and allow obsolete rules to be revised. Do not promise that a prompt update makes an error impossible to repeat.</li></ul></article>
+</div>
+<div class="table-wrap"><table class="review-table"><caption>Schema-review examples only. This table is not a complete deployable policy.</caption><thead><tr><th scope="col">Review area</th><th scope="col">Native Graph field</th><th scope="col">Shape and interpretation</th></tr></thead><tbody><tr><th scope="row">Application scope</th><td data-label="Native Graph field"><code>conditions.applications.includeApplications</code></td><td data-label="Shape and interpretation">Array of application identifiers or supported values such as All. The Graph property is includeApplications.</td></tr><tr><th scope="row">Workload target</th><td data-label="Native Graph field"><code>conditions.clientApplications.includeServicePrincipals</code></td><td data-label="Shape and interpretation">Array identifying the targeted service principals. Do not substitute the application client ID or app-registration object ID.</td></tr><tr><th scope="row">User scope, when used</th><td data-label="Native Graph field"><code>conditions.users</code></td><td data-label="Shape and interpretation">An object. For example, { "includeUsers": ["None"] }; not the scalar string "None".</td></tr><tr><th scope="row">Workload risk condition</th><td data-label="Native Graph field"><code>conditions.servicePrincipalRiskLevels</code></td><td data-label="Shape and interpretation">Risk-level collection for service principals; do not assume userRiskLevels or signInRiskLevels is equivalent.</td></tr></tbody></table></div>
+<p class="references">Native schemas: <a href="https://learn.microsoft.com/en-us/graph/api/resources/conditionalaccessconditionset?view=graph-rest-1.0" target="_blank" rel="noopener noreferrer">condition set ↗</a>, <a href="https://learn.microsoft.com/en-us/graph/api/resources/conditionalaccessapplications?view=graph-rest-1.0" target="_blank" rel="noopener noreferrer">application scope ↗</a>, <a href="https://learn.microsoft.com/en-us/graph/api/resources/conditionalaccessusers?view=graph-rest-1.0" target="_blank" rel="noopener noreferrer">user scope ↗</a>.</p>
+<aside class="note"><strong>Avoid turning one repair into a universal requirement.</strong> The current condition-set schema says either users or clientApplications is required; it does not make an explicit users block mandatory for every workload policy. The source’s scalar shorthand for users is also different from a typed users object. Confirm the actual endpoint and payload rather than preserving either statement as an unconditional rule.</aside>
+<details class="source-details"><summary>Read the selected source excerpt · Reported execution error</summary><div class="source-body"><p>From the supplied case narrative. This quotation records the request or report; it is not independent verification of the stated outcome.</p><pre tabindex="0"><code>Local execution halted. The terminal returned an HTTP (400) Bad Request on the Invoke-RestMethod POST call during the Conditional Access policy creation step.</code></pre></div></details><figure class="artifact"><figcaption><span>patch_ledger.md</span><span class="artifact-state">ILLUSTRATIVE SUMMARY · REPORTED RETRY</span></figcaption><pre tabindex="0"><code># DEFECT &amp; PATCH LEDGER — ILLUSTRATIVE RECORD
+Record basis: the supplied Day-2 case narrative
+Error: Conditional Access policy POST reportedly returned HTTP 400
 
-    <!-- HERO HEADER -->
-    <header class="hero">
-        
-        <!-- TOP ON-PAGE SUB-NAVIGATION BAR (ABOVE TITLE) -->
-        <div class="jump-links-container">
-            <div class="jump-links-intro">
-                Select any phase of this Day-2 capability expansion showcase to jump directly to its execution record:
-            </div>
-            <div class="jump-links">
-                <a href="#intake-matrix">1. Day-2 Multi-Cloud Intake Matrix</a>
-                <a href="#step-1">2. Step 1: Verified Identity Core</a>
-                <a href="#step-2">3. Step 2: Day-2 Perimeter &amp; Risk Layering</a>
-                <a href="#step-3">4. Step 3: Standard Patch Loop &amp; DPL</a>
-                <a href="#step-4">5. Step 4: Two-Stage Verification &amp; Phase 7</a>
-            </div>
+Reported hypothesis:
+- API property naming differed from the generated payload.
+- User/workload condition shapes needed review.
+
+Proposed repair:
+- Check the exact endpoint/version and native Graph schema.
+- Inspect the sanitized request and structured error response.
+- Correct the payload and review the complete diff.
+
+Reported result: operator states the retry and workflow succeeded
+Verification gap: raw request/response, policy read-back and evaluations
+are not attached to this case.
+
+Lesson candidate: validate the API payload independently of IaC syntax.
+Directive/template release: only after reproduction, review and regression tests.</code></pre></figure>
+<div class="step-gate"><strong>Ready for behavioral verification:</strong> The intended policy has been read back, its target and state match the approved change, and the schema repair is supported by captured results.</div></section><section class="page-section" id="step-4" aria-labelledby="step-4-title"><header class="section-heading"><span class="eyebrow">[STEP 4]</span><h2 id="step-4-title">Verify Behavior and Record the Outcome</h2><p>Separate an observed functional path from a demonstrated security boundary. Complete the assessment only to the extent supported by evidence.</p></header>
+<div class="grid cols-2">
+<article class="card cyan"><h3>Immediate execution evidence</h3><ul class="clean-list"><li><strong>Record outcomes:</strong> Capture identity, target, requested operation, actual status and the executed revision. Avoid printing tokens or secret contents.</li><li><strong>Exercise relevant boundaries:</strong> Separate allowed access, trust rejection, location-policy denial and ordinary authentication/network failures. Keep approvals and recovery criteria for each test.</li><li><strong>Track the policy state:</strong> Report-only, enabled, disabled and deleted are different states. Removing a policy may restore functionality but removes the restriction it supplied.</li></ul></article>
+<article class="card purple"><h3>Policy and service evidence</h3><ul class="clean-list"><li><strong>Confirm evaluation:</strong> Review service-principal sign-in policy evaluation alongside the requested resource operation. A metric spike cannot establish risk level, policy applicability or caller attribution.</li><li><strong>Allow asynchronous collection:</strong> Wait for required observations or mark them pending. Collection, ingestion and query availability vary; a query file is not an executed query result.</li><li><strong>Close with ownership:</strong> Record findings, accepted exceptions, final policy state, monitoring and recovery owners. An editable ledger is not an immutable or automatically compliant audit receipt.</li></ul></article>
+</div>
+<details class="source-details"><summary>Read the selected source excerpt · Reported retry and validation</summary><div class="source-body"><p>From the supplied case narrative. This quotation records the request or report; it is not independent verification of the stated outcome.</p><pre tabindex="0"><code>The full-file State Re-Sync executed cleanly on Iteration 1. The Validation Bridge passed on GitHub Actions, and Azure Portal Monitoring Metrics (Total Service API Hits) on the Azure Key Vault Data-Plane Asset confirm the live read with zero HTTP 403 drops. Generate the Phase 5 ledgers and close out in Phase 7.</code></pre></div></details>
+<div class="table-wrap"><table class="review-table"><caption>Evidence available in the supplied case and what remains necessary for assessment.</caption><thead><tr><th scope="col">Area</th><th scope="col">Reported or supplied</th><th scope="col">Assessment gap</th></tr></thead><tbody><tr><th scope="row">Foundation</th><td data-label="Reported or supplied">Identity core described as verified</td><td data-label="Assessment gap">Identity/trust/grant read-back and source protections are not attached.</td></tr><tr><th scope="row">Policy deployment</th><td data-label="Reported or supplied">Patched execution reportedly succeeded</td><td data-label="Assessment gap">Complete policy export, target, exclusions and final state are not attached.</td></tr><tr><th scope="row">Allowed workflow</th><td data-label="Reported or supplied">GitHub validation reportedly passed</td><td data-label="Assessment gap">Run/revision and attributable operation responses are needed to assess the result.</td></tr><tr><th scope="row">Location denial</th><td data-label="Reported or supplied">No denied-origin outcome provided</td><td data-label="Assessment gap">A policy-attributed outside-origin token test is required for an enforcement claim.</td></tr><tr><th scope="row">Risk behavior</th><td data-label="Reported or supplied">Risk policy described in the narrative</td><td data-label="Assessment gap">No risk-triggered block or reviewed risk evaluation is provided.</td></tr><tr><th scope="row">Service evidence</th><td data-label="Reported or supplied">Key Vault metric observation reported</td><td data-label="Assessment gap">No raw service/sign-in records or executed query results are attached.</td></tr><tr><th scope="row">Operational handoff</th><td data-label="Reported or supplied">Ledgers, sync and directive update described</td><td data-label="Assessment gap">Ownership, evidence references, review decision and final configuration need records.</td></tr></tbody></table></div>
+<aside class="note"><strong>Case outcome: reported functional success; enforcement not fully demonstrated.</strong> The source records a successful retry, workflow and metric observation. Those reports do not establish that an outside origin was blocked, that a risk condition was evaluated as claimed, or that every guardrail passed. This page does not assign a deployment-wide PASS.</aside>
+<div class="grid cols-3">
+<article class="card cyan"><h3>Baseline and configuration</h3><ul class="clean-list"><li><strong>Retain:</strong> Reviewed payload, dependencies, change preview and identity architecture ledger linked to the actual run.</li></ul></article>
+<article class="card purple"><h3>Results and telemetry</h3><ul class="clean-list"><li><strong>Retain:</strong> Audit findings, executed queries and protected result references. Leave missing evidence and failed checks visible.</li></ul></article>
+<article class="card green"><h3>Lessons and handoff</h3><ul class="clean-list"><li><strong>Retain:</strong> Defect history, tested update revision, exceptions, ownership and recovery procedures. A Git ignore rule alone does not protect tracked history.</li></ul></article>
+</div>
+<div class="step-gate"><strong>Ready for handoff:</strong> The reviewer can identify what was changed, what was tested, what remains unresolved and who owns the deployed control. Evidence-dependent findings stay pending until supported.</div></section>
+<section class="page-section" aria-labelledby="references-title"><header class="section-heading"><span class="eyebrow">[PRIMARY REFERENCES]</span><h2 id="references-title">Control Semantics and API Schemas</h2><p>These references support the technical explanation. They do not verify the historical case execution.</p></header><ul class="source-list"><li><a href="https://learn.microsoft.com/en-us/entra/identity/conditional-access/workload-identity" target="_blank" rel="noopener noreferrer">Microsoft Entra workload Conditional Access — eligibility, targeting and evaluation ↗</a></li><li><a href="https://learn.microsoft.com/en-us/entra/id-protection/concept-workload-identity-risk" target="_blank" rel="noopener noreferrer">Microsoft Entra workload identity risk — detections and scope ↗</a></li><li><a href="https://learn.microsoft.com/en-us/graph/api/resources/conditionalaccessconditionset?view=graph-rest-1.0" target="_blank" rel="noopener noreferrer">Microsoft Graph condition-set schema ↗</a></li><li><a href="https://learn.microsoft.com/en-us/graph/api/resources/conditionalaccessapplications?view=graph-rest-1.0" target="_blank" rel="noopener noreferrer">Microsoft Graph application-condition schema ↗</a></li><li><a href="https://learn.microsoft.com/en-us/graph/api/resources/conditionalaccessusers?view=graph-rest-1.0" target="_blank" rel="noopener noreferrer">Microsoft Graph user-condition schema ↗</a></li><li><a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scps.html" target="_blank" rel="noopener noreferrer">AWS Organizations service control policies ↗</a></li><li><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html" target="_blank" rel="noopener noreferrer">AWS IAM policy types and session policies ↗</a></li><li><a href="https://docs.cloud.google.com/vpc-service-controls/docs/overview" target="_blank" rel="noopener noreferrer">Google Cloud VPC Service Controls overview ↗</a></li></ul><aside class="note"><strong>Related project material:</strong> See the <a href="workflow-portfolio.html">engineering case studies</a>, <a href="architectural.html">pipeline architecture</a> and <a href="glossary.html">project glossary</a> for the broader method and terminology.</aside></section>
+</main><footer class="ip-footer">
+        <div class="footer-crest-wrapper">
+            <svg class="footer-brand-crest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+                <rect width="114" height="114" x="3" y="3" fill="#020617" rx="22" stroke="#1e293b" stroke-width="3"/>
+                <polygon points="24,18 60,36 60,48 24,30" fill="#475569"/>
+                <polygon points="96,18 60,36 60,48 96,30" fill="#1e293b"/>
+                <polygon points="24,39 60,57 60,69 24,51" fill="#0284c7"/>
+                <polygon points="96,39 60,57 60,69 96,51" fill="#075985"/>
+                <polygon points="24,60 60,78 60,90 24,72" fill="#38bdf8"/>
+                <polygon points="96,60 60,78 60,90 96,72" fill="#0369a1"/>
+                <polygon points="24,81 60,99 60,111 24,93" fill="#f43f5e"/>
+                <polygon points="96,81 60,99 60,111 96,93" fill="#9f1239"/>
+            </svg>
         </div>
-
-        <span class="hero-tag">[MODULAR DAY-2 MULTI-CLOUD &amp; ENTRA ID EXPANSION SHOWCASE]</span>
-        <h1 class="hero-title">Day-2 Multi-Cloud Modules</h1>
-
-        <!-- BULLETED HERO INTRO BOX -->
-        <div class="section-intro-box" style="margin-bottom: 0;">
-            <div class="intro-lead-sentence">
-                How The Adversarial Kill-Chain Counter-Engineering State Machine (System Directive v1.0) layers advanced Day-2 multi-cloud security modules (across AWS IAM &amp; STS, Microsoft Entra ID &amp; Azure, and Google Cloud IAM) onto a verified machine identity core (using the fixed system variables in the <a href="glossary.html" class="inline-link">26-Variable System Glossary</a>):
-            </div>
-            <ul class="clean-bullet-list">
-                <li>
-                    <span class="bullet-lead">Non-Destructive Day-2 Expansion Across Any Cloud:</span> Once the IAM Role, Application Registration &amp; Service Principal, or GCP Service Account, OpenID Connect (OIDC) Subject Claim, and single-asset Data-Plane Role are verified across Gates 1 through 4, The Architect can bypass repeating Phases 1 and 2 setup work and layer advanced Day-2 controls&mdash;such as Workload Conditional Access (CAWI), AWS Service Control Policies (SCPs) &amp; STS Session Policies, or GCP VPC Service Controls&mdash;directly onto the live identity core.
-                </li>
-                <li>
-                    <span class="bullet-lead">Live Execution Case Study (Conditional Access for Workload Identities &amp; Entra ID Protection):</span> The telemetry showcase below demonstrates layering IPv4-fenced Conditional Access for Workload Identities (CAWI) and Entra ID Protection machine-learning risk policies onto a Brownfield (Existing) GitHub Actions Execution Agent and Azure Key Vault Data-Plane Asset using a PowerShell REST API IaC Payload.
-                </li>
-            </ul>
-        </div>
-    </header>
-
-    <div class="container">
-
-        <!-- ================= 6-BOX CAPABILITY MATRIX (ACTIVE PROJECT SELECTIONS CHECKED) ================= -->
-        <span class="section-tag" id="intake-matrix">[SELECTED BUILD COORDINATES + DAY-2 EXPANSION MODULES FOR THIS EXECUTION]</span>
-        <h2 class="section-title">Day-2 Multi-Cloud Capability Integration Matrix</h2>
-
-        <div class="matrix-grid-6">
-            <div class="matrix-card">
-                <h3>1. Identity Core</h3>
-                <ul class="matrix-list">
-                    <li><span class="checkbox"></span>AWS IAM &amp; STS</li>
-                    <li class="active"><span class="checkbox"></span>Microsoft Entra ID</li>
-                    <li><span class="checkbox"></span>Google Cloud IAM</li>
-                </ul>
-            </div>
-            <div class="matrix-card">
-                <h3>2. Execution Agent</h3>
-                <ul class="matrix-list">
-                    <li><span class="checkbox"></span>Kubernetes (EKS / AKS / GKE)</li>
-                    <li class="active"><span class="checkbox"></span>GitHub Actions</li>
-                    <li><span class="checkbox"></span>GitLab CI</li>
-                    <li><span class="checkbox"></span>Azure DevOps</li>
-                </ul>
-            </div>
-            <div class="matrix-card">
-                <h3>3. Infrastructure State</h3>
-                <ul class="matrix-list">
-                    <li class="active"><span class="checkbox"></span>Brownfield (Existing)</li>
-                    <li><span class="checkbox"></span>Greenfield (Net-New)</li>
-                </ul>
-            </div>
-            <div class="matrix-card">
-                <h3>4. Data-Plane Asset</h3>
-                <ul class="matrix-list">
-                    <li class="active"><span class="checkbox"></span>Secret &amp; Key Vaults (Key Vault / Secrets Mgr)</li>
-                    <li><span class="checkbox"></span>Object Storage (S3 / Blob / GCS)</li>
-                    <li><span class="checkbox"></span>Cloud Databases (DynamoDB / Cosmos)</li>
-                </ul>
-            </div>
-            <div class="matrix-card">
-                <h3>5. IaC Payload</h3>
-                <ul class="matrix-list">
-                    <li><span class="checkbox"></span>Terraform (HCL)</li>
-                    <li><span class="checkbox"></span>AWS CLI / Azure Bicep</li>
-                    <li class="active"><span class="checkbox"></span>PowerShell REST API / Python</li>
-                </ul>
-            </div>
-            <!-- ADDITIONAL CAPABILITY BOX -->
-            <div class="matrix-card highlight-card">
-                <h3>6. Day-2 Security Modules</h3>
-                <ul class="matrix-list">
-                    <li class="active-purple"><span class="checkbox"></span>Workload Identity CAWI (IPv4 Fence)</li>
-                    <li class="active-purple"><span class="checkbox"></span>Entra ID Protection (Risk Block)</li>
-                    <li><span class="checkbox"></span>AWS SCPs / GCP VPC Service Controls</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="insight-box">
-            <div class="insight-title">&gt; Architectural Insight: True Modular Scaling Without Expanding the Blast Radius</div>
-            <div class="insight-text">
-                The defining metric of an enterprise cloud architecture is not just how securely the initial identity is provisioned, but how cleanly the architecture can evolve. By establishing a passwordless IAM Role, Application Registration &amp; Service Principal, or GCP Service Account and single-asset Data-Plane Role first, The Adversarial Kill-Chain Counter-Engineering State Machine allows The Architect to layer network-fenced Conditional Access, AWS SCPs/Session Policies, or behavioral risk policies as additive code blocks inside the IaC Payload without disturbing live production resources.
-            </div>
-        </div>
-
-        <!-- ================= STEP 1 ================= -->
-        <span class="section-tag" id="step-1">[PREREQUISITE :: GATES 1 TO 4 ESTABLISHED]</span>
-        <h2 class="section-title">Step 1: The Verified Machine Identity Core &amp; Cloud Console MFA Handoff</h2>
-        
-        <div class="section-intro-box">
-            <div class="intro-lead-sentence">
-                Before layering Day-2 security modules, The Architect establishes the core machine identity across Gates 1 through 4:
-            </div>
-            <ul class="clean-bullet-list">
-                <li>
-                    <span class="bullet-lead">Gates 1, 2 &amp; 3 Configured via PowerShell REST API:</span> Using the verified Entra ID Tenant ID, Azure Subscription ID, and Resource Group (Gate 1), the PowerShell REST API IaC Payload provisions the Single-Tenant Application Registration and Service Principal with zero passwords (Gate 2) and binds the wildcard-free OpenID Connect (OIDC) Subject Claim for the GitHub Actions Execution Agent (CompCode1) with a 30-Second Server Sync Timer (Gate 3).
-                </li>
-                <li>
-                    <span class="bullet-lead">Gate 4 Cloud Console MFA Handoff:</span> Because local terminal credential brokers drop interactive MFA claims when assigning a Data-Plane Role on high-security REST API and Conditional Access builds, The State Machine cleanly separates the Gate 4 Data-Plane Role assignment (Key Vault Secrets User on the Azure Key Vault Data-Plane Asset) into a guided Azure Portal MFA Handoff checklist so the terminal script completes without crashing.
-                </li>
-            </ul>
-        </div>
-
-        <div class="architect-command">
-            <div class="architect-badge">[THE ARCHITECT (HITL) :: PHASE 3 FOUNDATION DIRECTIVE]</div>
-            <div class="architect-text">
-                5 Build Coordinates locked: Microsoft Entra ID (Identity Core), GitHub Actions (Execution Agent), Brownfield (Existing) (Infrastructure State), Azure Key Vault (Data-Plane Asset), and PowerShell REST API (IaC Payload). Synthesize the Gate 1 through Gate 4 foundation and stage the Azure Portal MFA Handoff.
-            </div>
-        </div>
-
-        <div class="terminal-window">
-            <div class="terminal-header">
-                <div class="terminal-dots"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
-                <div class="terminal-title">state_machine_console // Phase_3_Core_Foundation</div>
-            </div>
-            <pre class="terminal-body"><span class="t-cyan">[PHASE 3: CORE MACHINE IDENTITY &amp; OIDC FEDERATION ESTABLISHED]</span>
-The PowerShell REST API IaC Payload and Terminal Runbook have configured Gates 1, 2, and 3 in Microsoft Entra ID:
-
-1. <span class="t-blue">Gate 1 (Boundary):</span> Verified Brownfield (Existing) read-only lookup on Data-Plane Asset (Azure Key Vault) inside the Resource Group and Azure Subscription ID.
-2. <span class="t-blue">Gate 2 (Identity):</span> Provisioned Single-Tenant Application Registration and Service Principal with disabled browser redirect URLs and zero saved passwords.
-3. <span class="t-blue">Gate 3 (Federation):</span> Injected the 30-Second Server Sync Timer (Start-Sleep -Seconds 30) and bound the wildcard-free OpenID Connect (OIDC) Subject Claim (repo:CompCode1/machine-identity-1:ref:refs/heads/main) for a 60-Minute Login Token ceiling.
-
-<span class="t-muted">[GATE 4: CLOUD CONSOLE / AZURE PORTAL MFA HANDOFF REQUIRED]</span>
-To prevent a local terminal 401 MFA claim drop, the Gate 4 Data-Plane Role step has been decoupled from the terminal script. Please complete the guided Azure Portal MFA Handoff to assign the single-asset Data-Plane Role (Key Vault Secrets User) to the Service Principal on the Azure Key Vault Data-Plane Asset (Admin, Owner, and Contributor Roles remain strictly blocked).</pre>
-        </div>
-
-        <div class="divider"></div>
-
-        <!-- ================= STEP 2 ================= -->
-        <span class="section-tag" id="step-2">[DAY-2 EXPANSION :: LAYERING MODULES ONTO THE VERIFIED CORE]</span>
-        <h2 class="section-title">Step 2: Layering Workload Conditional Access &amp; Entra ID Protection</h2>
-        
-        <div class="section-intro-box">
-            <div class="intro-lead-sentence">
-                With the Gate 1 through Gate 4 identity core verified, The Architect directs The State Machine to layer two Day-2 security modules onto the existing Service Principal:
-            </div>
-            <ul class="clean-bullet-list">
-                <li>
-                    <span class="bullet-lead">Module 1 (Conditional Access for Workload Identities with IPv4 Chunking):</span> Extracts the live IPv4 CIDR ranges for the GitHub Actions Execution Agent, automatically chunks the IPv4 list into safe 90-subnet blocks so Microsoft Entra ID Named Location limits never overflow, pauses for a 30-Second Server Sync Timer, and locks a Conditional Access policy to the Service Principal that blocks any 60-Minute Login Token request outside that network fence.
-                </li>
-                <li>
-                    <span class="bullet-lead">Module 2 (Microsoft Entra ID Protection Workload Risk Block):</span> Layers an automated machine-learning risk policy onto the Service Principal that immediately blocks token issuance if Microsoft Entra ID detects anomalous behavioral telemetry or leaked token replay.
-                </li>
-            </ul>
-        </div>
-
-        <div class="architect-command">
-            <div class="architect-badge">[THE ARCHITECT (HITL) :: DAY-2 EXPANSION DIRECTIVE]</div>
-            <div class="architect-text">
-                Core foundation verified. Initiate Day-2 capability expansion on the existing Application Registration and Service Principal. Synthesize the additive PowerShell REST API IaC Payload for Conditional Access for Workload Identities (CAWI) and Entra ID Protection Workload Risk policies.
-            </div>
-        </div>
-
-        <div class="terminal-window">
-            <div class="terminal-header">
-                <div class="terminal-dots"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
-                <div class="terminal-title">state_machine_console // Day_2_Capability_Synthesis</div>
-            </div>
-            <pre class="terminal-body"><span class="t-purple">[MODE: DAY-2 CAPABILITY INTEGRATION :: NON-DESTRUCTIVE ADDITIVE SYNTHESIS]</span>
-Synthesizing additive PowerShell REST API IaC Payload blocks targeting the verified Service Principal:
-
-<span class="t-blue">1. Conditional Access for Workload Identities (IPv4 Network Fence):</span>
-Extracting GitHub Actions IPv4 CIDR ranges, chunking ranges into compliant Named Location blocks, injecting a 30-Second Server Sync Timer (Start-Sleep -Seconds 30), and binding a Conditional Access policy that blocks any OpenID Connect (OIDC) 60-Minute Login Token request originating outside the verified IPv4 boundary.
-
-<span class="t-blue">2. Microsoft Entra ID Protection (Workload Risk Policy):</span>
-Layering a high-confidence workload risk block policy onto the Service Principal. If Microsoft Entra ID telemetry detects anomalous token usage or impossible travel, the policy drops the connection immediately.
-
-<span class="t-muted">[PHASE HALT: AWAITING ARCHITECT EXECUTION]</span>
-Please execute the generated `deploy_cawi_expansion.ps1` Terminal Runbook in the local folder and confirm the console output.</pre>
-        </div>
-
-        <div class="divider"></div>
-
-        <!-- ================= STEP 3 ================= -->
-        <span class="section-tag" id="step-3">[ALL-PHASE TROUBLESHOOTING :: STANDARD PATCH LOOP (ITERATION 1 OF 3)]</span>
-        <h2 class="section-title">Step 3: Standard Patch Loop, Pure Graph JSON Fix &amp; Real-Time DPL Logging</h2>
-        
-        <div class="section-intro-box">
-            <div class="intro-lead-sentence">
-                How the System Directive handles a real-world REST API schema error during the Standard Patch Loop (Iterations 1 to 3) without needing to trip The 4-Iteration Circuit Breaker:
-            </div>
-            <ul class="clean-bullet-list">
-                <li>
-                    <span class="bullet-lead">The Schema Collision Error:</span> When The Architect executed the PowerShell REST API IaC Payload in the local terminal, Microsoft Graph returned an HTTP 400 Bad Request because The AI Engine used a Terraform property name (`includedApplications`) instead of the native Microsoft Graph JSON property name (`includeApplications`) and omitted `"users": "None"` on a workload identity Conditional Access policy.
-                </li>
-                <li>
-                    <span class="bullet-lead">Clinical Diagnostic Mode &amp; Full-File State Re-Sync (Iteration 1):</span> Instead of guessing in circles, The AI Engine immediately dropped all analogies, entered the Standard Patch Loop (Iteration 1 of 3), isolated the exact Microsoft Graph JSON schema rule, staged the real-time entry in the Defect &amp; Patch Ledger (patch_ledger.md or DPL), and performed a full-file State Re-Sync of the entire PowerShell REST API IaC Payload.
-                </li>
-            </ul>
-        </div>
-
-        <div class="architect-command">
-            <div class="architect-badge">[THE ARCHITECT (HITL) :: TERMINAL ERROR TELEMETRY]</div>
-            <div class="architect-text">
-                Local execution halted. The terminal returned an HTTP (400) Bad Request on the Invoke-RestMethod POST call during the Conditional Access policy creation step.
-            </div>
-        </div>
-
-        <div class="terminal-window">
-            <div class="terminal-header">
-                <div class="terminal-dots"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
-                <div class="terminal-title">state_machine_console // Standard_Patch_Loop_Iteration_1</div>
-            </div>
-            <pre class="terminal-body"><span class="t-purple">[STANDARD PATCH LOOP: CLINICAL DIAGNOSTIC MODE] | Iteration: 1 of 3</span>
-<span class="t-comment">(Note: The 4-Iteration Circuit Breaker remains on standby and only trips if an error reaches Iteration 4.)</span>
-
-<span class="t-cyan">Root Cause Diagnosis (Guardrail 4 Schema Integrity):</span>
-The PowerShell REST API IaC Payload created the IPv4 Named Location cleanly, but the HTTP 400 Bad Request occurred on the Conditional Access policy POST call due to two Microsoft Graph JSON schema mismatches:
-1. Used `"includedApplications"` (Terraform HCL provider naming) instead of `"includeApplications"` (native Microsoft Graph JSON schema).
-2. When a Conditional Access policy targets a non-human Service Principal (`clientApplications.includeServicePrincipals`), Microsoft Graph requires `"users": { "includeUsers": ["None"] }` to be explicitly declared.
-
-<span class="t-green">[REAL-TIME DEFECT &amp; PATCH LEDGER (DPL) ENTRY STAGED]</span>
-Logged Root Cause and Verified Fix into `patch_ledger.md` for Phase 7 System Directive Compilation.
-
-<span class="t-cyan">[FULL-FILE STATE RE-SYNC EXECUTED]</span>
-Outputting the complete, top-to-bottom patched `deploy_cawi_expansion.ps1` IaC Payload with pure Microsoft Graph JSON property names. Please replace the file in the local workspace and re-run.</pre>
-        </div>
-
-        <div class="divider"></div>
-
-        <!-- ================= STEP 4 ================= -->
-        <span class="section-tag" id="step-4">[PHASES 4 TO 7 :: TWO-STAGE LIVE VERIFICATION &amp; DIRECTIVE COMPILATION]</span>
-        <h2 class="section-title">Step 4: Two-Stage Live Verification, Compliance Ledgers &amp; Phase 7 Upgrade</h2>
-        
-        <div class="section-intro-box">
-            <div class="intro-lead-sentence">
-                Proving the Day-2 Conditional Access and Entra ID Protection expansion works in the live cloud and compiling the lesson into the master System Directive:
-            </div>
-            <ul class="clean-bullet-list">
-                <li>
-                    <span class="bullet-lead">Phase 4 Validation Bridge &amp; Stage 1 Cloud Metrics:</span> After the patched PowerShell REST API IaC Payload deployed cleanly, The Architect ran a terminal audit command to verify the Conditional Access policy was active in Microsoft Entra ID, executed the Validation Bridge on the GitHub Actions Execution Agent (with Runtime Log Masking active) to a green checkmark, and checked Azure Portal Monitoring Metrics (Total Service API Hits over 30 minutes) on the Azure Key Vault Data-Plane Asset for immediate Stage 1 proof.
-                </li>
-                <li>
-                    <span class="bullet-lead">Phases 5, 6 &amp; 7 (Compliance Package &amp; Continuous Improvement):</span> With the live API hit spike confirmed, The AI Engine generated the updated Identity Architecture Ledger (IAL), Audit Results Ledger (ARL), Standby Telemetry (kql_telemetry.md), and Defect &amp; Patch Ledger (patch_ledger.md), synced the Code Repository and Branch in Phase 6, and compiled the pure REST API JSON schema rule permanently into the master System Directive in Phase 7.
-                </li>
-            </ul>
-        </div>
-
-        <div class="architect-command">
-            <div class="architect-badge">[THE ARCHITECT (HITL) :: PHASE 4 &amp; PHASE 5 SIGN-OFF]</div>
-            <div class="architect-text">
-                The full-file State Re-Sync executed cleanly on Iteration 1. The Validation Bridge passed on GitHub Actions, and Azure Portal Monitoring Metrics (Total Service API Hits) on the Azure Key Vault Data-Plane Asset confirm the live read with zero HTTP 403 drops. Generate the Phase 5 ledgers and close out in Phase 7.
-            </div>
-        </div>
-
-        <div class="terminal-window">
-            <div class="terminal-header">
-                <div class="terminal-dots"><div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div></div>
-                <div class="terminal-title">state_machine_console // Phases_5_to_7_Complete</div>
-            </div>
-            <pre class="terminal-body"><span class="t-cyan">[TWO-STAGE VERIFICATION &amp; DAY-2 CAPABILITY INTEGRATION COMPLETE]</span>
-
-<span class="t-blue">1. Stage 1 &amp; Stage 2 Telemetry Proof (Phases 4 &amp; 5):</span>
-The live spike in Azure Portal Monitoring Metrics (Total Service API Hits) mathematically proves that the GitHub Actions Execution Agent satisfied the IPv4-fenced Conditional Access for Workload Identities policy and the Entra ID Protection low-risk evaluation, traded its Subject Claim for a 60-Minute Login Token, assumed the Service Principal, and read the Azure Key Vault Data-Plane Asset with zero access errors.
-
-<span class="t-blue">2. Compliance Ledgers &amp; Code Repository Sync (Phases 5 &amp; 6):</span>
-Generated `identity_architecture_ledger.md` (IAL), `audit_results_ledger.md` (ARL scoring Gates 1 to 4 and all 5 Enterprise Guardrails as [PASS]), `kql_telemetry.md`, and `patch_ledger.md` (DPL), and generated the Phase 6 Git synchronization script with `.gitignore` state protection.
-
-<span class="t-green">3. Phase 7 AI Performance Scorecard &amp; System Directive Compilation:</span>
-The Iteration 1 Microsoft Graph JSON schema fix from `patch_ledger.md` (enforcing `"includeApplications"` and `"users": "None"` on PowerShell REST API Conditional Access builds) has been permanently compiled into the master System Directive (Guardrail 4) so this schema error can never recur on future builds.</pre>
-        </div>
-
-        <!-- ================= PROPRIETARY IP FOOTER ================= -->
-        <footer class="ip-footer">
-            <strong>&copy; 2026 Steven Tuschman | Adversarial Kill-Chain Counter-Engineering&trade; (adversarialkillchaincounterengineering.com). All Rights Reserved.</strong><br>
-            The Adversarial Kill-Chain Counter-Engineering State Machine v1.0, Sequential Kill-Chain Counter-Engineering Protocol, Execution Triad governance model, Four Architectural Gates of Machine Identity, Five Enterprise Guardrails, 216+ Combination Build Matrix, and 26-Variable System Glossary are proprietary intellectual property. Unauthorized reproduction, distribution, or commercial adaptation is strictly prohibited.
-        </footer>
-
-    </div>
-
-</body>
-</html>
+        <strong>&copy; 2026 Steven Tuschman | Adversarial Kill-Chain Counter-Engineering&trade; (adversarialkillchaincounterengineering.com). All Rights Reserved.</strong>
+<br>
+        The Adversarial Kill-Chain Counter-Engineering State Machine, Sequential Kill-Chain Counter-Engineering Protocol, Execution Triad governance model, Four Architectural Gates of Machine Identity, Five Enterprise Guardrails, Build Coordinate Matrix, and 26-Variable System Glossary are proprietary intellectual property. Unauthorized reproduction, distribution, or commercial adaptation is strictly prohibited.
+    </footer></body></html>

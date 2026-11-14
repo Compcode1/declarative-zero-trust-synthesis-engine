@@ -3,414 +3,243 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adversarial Kill-Chain Counter-Engineering - Contact</title>
+    <title>Contact Steven Tuschman | AKCCE</title>
+<meta name="description" content="Contact Steven Tuschman about identity and access management, cloud security, machine identity engineering and AI-assisted engineering workflows.">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     
     <!-- Google tag (gtag.js) -->
-    <script>
-      if (window.location.search.indexOf('block_ga=true') !== -1) {
-        localStorage.setItem('akcce_block_ga', 'true');
-        alert('SUCCESS: Google Analytics is permanently disabled on this browser.');
-      }
-      if (localStorage.getItem('akcce_block_ga') === 'true') {
-        window['ga-disable-G-80NYKHYN3R'] = true;
-      }
-    </script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-80NYKHYN3R"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-80NYKHYN3R');
-    </script>
+    
+    
+    
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
     
     <style>
-        :root {
-            --bg-page: #020617; 
-            --bg-node: rgba(10, 15, 29, 0.95);
-            --border-base: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #cbd5e1;
-            --color-blue: #3b82f6;
-            --color-cyan: #0ea5e9;
-            --color-purple: #a855f7;
-            --color-grey: #64748b;
-            --color-green: #10b981;
-            --color-teal: #14b8a6;
-            --color-red: #f43f5e;
-        }
+:root { --bg:#020617; --panel:#0a0f1d; --line:#263449; --text:#f8fafc; --muted:#cbd5e1; --cyan:#38bdf8; --blue:#60a5fa; --purple:#c084fc; --green:#6ee7b7; --red:#fda4af; }
+* { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; line-height:1.7; padding-bottom:3rem; }
+a { color:var(--cyan); text-underline-offset:4px; }
+a:hover { color:#fff; }
+a:focus-visible,pre:focus-visible { outline:3px solid #38bdf8; outline-offset:5px; }
+.skip-link { position:fixed; left:1rem; top:-100px; z-index:200; padding:.7rem 1rem; background:#f8fafc; color:#020617; border-radius:6px; }
+.skip-link:focus { top:.5rem; }
+nav { padding:1.2rem 2rem; border-bottom:1px solid var(--line); background:rgba(2,6,23,.95); }
+.nav-links { display:flex; flex-wrap:wrap; gap:1.2rem; justify-content:center; align-items:center; list-style:none; }
+.nav-links a { display:inline-block; padding:.5rem 1.2rem; color:#0ea5e9; border:1px solid #0ea5e9; border-radius:6px; background:rgba(14,165,233,.1); text-decoration:none; font-size:.9rem; font-weight:700; letter-spacing:1px; text-transform:uppercase; transition:background .2s,color .2s; }
+.nav-links a:hover,.nav-links .active-link { color:#fff; background:#0ea5e9; box-shadow:0 0 15px rgba(14,165,233,.3); }
+.hero { padding:40px 20px 48px; text-align:center; border-bottom:1px solid var(--line); }
+.eyebrow { display:block; font:800 .85rem/1.65 'JetBrains Mono',monospace; letter-spacing:1.5px; color:var(--cyan); text-transform:uppercase; margin-bottom:.75rem; overflow-wrap:anywhere; }
+.hero-title-container { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:1.2rem; margin:1rem auto 1.5rem; max-width:1180px; }
+.hero-brand-crest { width:66px; height:66px; flex-shrink:0; }
+h1,h2,h3 { font-family:'Montserrat',sans-serif; font-weight:900; line-height:1.35; overflow-wrap:anywhere; }
+h1 { max-width:940px; font-size:clamp(2rem,4vw,3.25rem); letter-spacing:1.5px; text-transform:uppercase; }
+.hero-subtitle { font-size:1.2rem; color:var(--muted); max-width:850px; margin:0 auto 2rem; }
+.intro-box { max-width:1120px; text-align:left; padding:2rem 2.3rem; margin:0 auto 2rem; background:var(--panel); border:1px solid var(--line); border-left:4px solid var(--cyan); border-radius:10px; }
+.intro-lead { font:800 1.12rem/1.7 'Montserrat',sans-serif; padding-bottom:1rem; margin-bottom:1rem; border-bottom:1px solid var(--line); }
+.clean-list { padding-left:1.3rem; display:flex; flex-direction:column; gap:.8rem; }
+.clean-list li { padding-left:.15rem; color:var(--muted); }
+.clean-list li::marker,.clean-list strong { color:var(--cyan); }
+.jump-box { max-width:1180px; padding:1.3rem; margin:0 auto; background:#0f172a; border:1px solid var(--line); border-radius:10px; }
+.jump-box p { margin-bottom:.9rem; font-weight:700; }
+.jump-links { display:flex; flex-wrap:wrap; justify-content:center; gap:.75rem; }
+.jump-links a { padding:.6rem 1rem; border:1px solid #0ea5e9; border-radius:6px; background:rgba(14,165,233,.08); font-size:.87rem; font-weight:700; text-decoration:none; }
+.jump-links a:hover { background:#075985; }
+.page-section { max-width:1300px; margin:0 auto; padding:55px 24px 15px; min-width:0; }
+[id] { scroll-margin-top:1.5rem; }
+.section-heading { max-width:1050px; margin:0 auto 2rem; text-align:center; }
+h2 { font-size:clamp(1.7rem,3vw,2.25rem); text-transform:uppercase; margin-bottom:1rem; }
+.section-heading p { color:var(--muted); font-size:1.1rem; }
+.grid { display:grid; gap:1.5rem; }
+.cols-2 { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.cols-3 { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.card { padding:1.7rem; border:1px solid var(--line); border-top:3px solid var(--cyan); border-radius:10px; background:linear-gradient(140deg,#0f172a,#0a0f1d); min-width:0; }
+.card.purple { border-top-color:var(--purple); } .card.green { border-top-color:var(--green); } .card.red { border-top-color:var(--red); }
+h3 { font-size:1.16rem; margin-bottom:1rem; padding-bottom:.8rem; border-bottom:1px solid var(--line); text-transform:uppercase; }
+.card p { color:var(--muted); }
+.note { border:1px solid #334155; border-left:4px solid var(--purple); border-radius:8px; padding:1.15rem 1.4rem; margin:1.5rem 0; color:var(--muted); }
+.note strong { color:#f8fafc; }
+.schematic { padding:1.75rem; border:1px solid var(--line); border-radius:12px; margin:1.75rem 0; background:radial-gradient(ellipse at top,rgba(56,189,248,.07),transparent 60%),#050b1b; }
+.schematic figcaption { font:800 1rem/1.7 'Montserrat',sans-serif; color:#f8fafc; margin-bottom:1.4rem; }
+.reference-tag { display:block; color:var(--purple); font:700 .78rem 'JetBrains Mono',monospace; margin-top:.4rem; }
+.flow-node { border:1px solid #334155; border-left:4px solid var(--cyan); border-radius:8px; padding:1.2rem; background:#0a0f1d; min-width:0; }
+.flow-node strong { display:block; font:800 1rem/1.5 'Montserrat',sans-serif; margin-bottom:.5rem; }
+.flow-node p { color:var(--muted); font-size:.98rem; }
+.flow-node.purple { border-left-color:var(--purple); } .flow-node.green { border-left-color:var(--green); }
+.flow-node.center { max-width:750px; margin:auto; text-align:center; }
+.flow-arrow { text-align:center; color:var(--cyan); padding:.45rem; font-size:1.6rem; line-height:1; }
+.flow-caption { color:var(--muted); margin-top:1rem; font-size:.94rem; }
+.loop-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1rem; }
+.loop-number { display:inline-flex; justify-content:center; align-items:center; width:32px; height:32px; border:1px solid #075985; border-radius:50%; color:var(--cyan); margin-bottom:.6rem; font:700 .85rem 'JetBrains Mono',monospace; }
+.trust-flow { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:.8rem; list-style:none; }
+.trust-flow li { background:#0a0f1d; padding:1.1rem; border:1px solid #334155; border-top:3px solid var(--cyan); border-radius:8px; color:var(--muted); }
+.trust-flow strong { display:block; color:#f8fafc; font:800 .98rem/1.5 'Montserrat',sans-serif; margin-bottom:.65rem; }
+.artifact { margin:1.75rem 0; border:1px solid #334155; border-radius:10px; background:#040915; overflow:hidden; min-width:0; }
+.artifact figcaption { display:flex; flex-wrap:wrap; justify-content:space-between; gap:.7rem; padding:1rem 1.3rem; background:#0f172a; border-bottom:1px solid #334155; font:700 .9rem/1.6 'JetBrains Mono',monospace; color:var(--cyan); overflow-wrap:anywhere; }
+.artifact-state { color:#fde68a; font-size:.78rem; }
+pre { padding:1.5rem; white-space:pre-wrap; overflow-wrap:anywhere; color:#dbeafe; font:400 .89rem/1.8 'JetBrains Mono',monospace; }
+code { font-family:'JetBrains Mono',monospace; overflow-wrap:anywhere; }
+.status-legend { display:flex; flex-wrap:wrap; gap:.65rem; margin:1.2rem 0; }
+.status-pill { border:1px solid #475569; padding:.4rem .65rem; border-radius:5px; font:700 .8rem/1.6 'JetBrains Mono',monospace; }
+.status-pill.pass { color:var(--green); } .status-pill.fail { color:var(--red); } .status-pill.pending { color:#fde68a; } .status-pill.error { color:var(--purple); }
+.references { margin-top:1.2rem; color:var(--muted); line-height:1.9; }
+.references a { display:inline-block; margin-right:1rem; }
+.domain-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.2rem; }
+.domain-card { padding:1.5rem; background:#0a0f1d; border:1px solid #334155; border-radius:9px; }
+.domain-card h3 { font-size:1.05rem; }
+.domain-card ul { padding-left:1.2rem; color:var(--muted); }
+.domain-card li { margin-bottom:.5rem; }
+.domain-card p { margin-top:1rem; color:#c4b5fd; font-size:.94rem; }
+.ip-footer { max-width:1252px; margin:3rem auto 0; padding:2rem 1.5rem; border-top:1px solid var(--line); border-radius:8px; background:var(--panel); text-align:center; color:var(--muted); font:400 .83rem/1.8 'JetBrains Mono',monospace; overflow-wrap:anywhere; }
+.ip-footer strong { color:var(--cyan); } .footer-crest-wrapper { display:flex; justify-content:center; margin-bottom:1rem; } .footer-brand-crest { width:38px; height:38px; }
+@media(max-width:1050px) { .cols-3,.loop-grid,.trust-flow,.domain-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:760px) { .cols-2,.cols-3,.loop-grid,.trust-flow,.domain-grid { grid-template-columns:1fr; } .page-section { padding:40px 14px 10px; } .schematic { padding:1.2rem; } }
+@media(max-width:600px) {
+ nav { padding:.75rem .5rem; } .nav-links { gap:.45rem; } .nav-links a { font-size:.72rem; padding:.35rem .65rem; }
+ .hero { padding:30px 14px 35px; } .hero-brand-crest { width:48px; height:48px; } h1 { font-size:1.9rem; letter-spacing:1px; } .hero-subtitle { font-size:1.05rem; }
+ .eyebrow { font-size:.76rem; letter-spacing:1px; } .intro-box { padding:1.3rem 1.1rem; } .jump-links a { width:100%; } .card,.domain-card { padding:1.3rem; } .artifact figcaption { padding:1rem; } pre { padding:1.1rem; font-size:.81rem; } .note { padding:1rem; }
+}
+@media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation:none !important; transition:none !important; } }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+/* Contact labels describe the actual channel, without a confidentiality guarantee. */
+.hero-subtitle { max-width:850px; }
+.contact-intro { max-width:780px; margin:0 auto; color:var(--muted); font-size:1.05rem; }
+.contact-layout { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,.85fr); gap:1.5rem; align-items:start; }
+.contact-panel { background:linear-gradient(140deg,#0f172a,#0a0f1d); border:1px solid var(--line); border-top:3px solid var(--cyan); border-radius:10px; padding:2rem; min-width:0; }
+.contact-panel h3 { font-size:1.15rem; }
+.contact-panel p { color:var(--muted); }
+.required-note { font-size:.9rem; margin-bottom:1.5rem; }
+.form-group { margin-bottom:1.3rem; }
+.form-group label { display:block; color:var(--text); font-weight:700; margin-bottom:.45rem; }
+.form-input,.form-textarea { display:block; width:100%; border:1px solid #64748b; border-radius:7px; background:#020617; color:#f8fafc; padding:.85rem 1rem; font:400 1rem/1.6 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif; min-width:0; }
+.form-input::placeholder,.form-textarea::placeholder { color:#94a3b8; opacity:1; }
+.form-input:focus,.form-textarea:focus { border-color:var(--cyan); outline:3px solid rgba(56,189,248,.45); outline-offset:2px; }
+.form-textarea { resize:vertical; min-height:180px; }
+.field-help { display:block; margin-top:.4rem; color:#cbd5e1; font-size:.85rem; }
+.form-processing { padding:1rem; border:1px solid #334155; border-left:3px solid var(--purple); border-radius:7px; margin:1.5rem 0; color:#cbd5e1; font-size:.91rem; }
+.submit-btn { display:inline-block; background:#38bdf8; color:#020617; border:1px solid #38bdf8; border-radius:7px; padding:.85rem 1.4rem; font:800 1rem/1.5 'Montserrat',sans-serif; cursor:pointer; }
+.submit-btn:hover { background:#7dd3fc; }
+.submit-btn:focus-visible { outline:3px solid #f8fafc; outline-offset:4px; }
+.contact-aside { display:grid; gap:1.2rem; min-width:0; }
+.contact-route { display:block; padding:1.5rem; border:1px solid var(--line); border-left:3px solid var(--cyan); border-radius:9px; background:#0a0f1d; text-decoration:none; color:var(--text); min-width:0; }
+.contact-route:hover { border-color:#38bdf8; background:#0f1c32; }
+.contact-route h3 { font-size:1.05rem; margin-bottom:.7rem; padding:0; border:0; }
+.contact-route .route-value { color:var(--cyan); display:block; font-size:1rem; overflow-wrap:anywhere; }
+.route-help { display:block; color:var(--muted); font-size:.91rem; margin-top:.7rem; }
+.conversation-topics { border:1px solid #334155; border-radius:9px; padding:1.5rem; background:rgba(15,23,42,.65); }
+.conversation-topics h3 { font-size:1.03rem; }
+.conversation-topics ul { padding-left:1.2rem; color:var(--muted); }
+.conversation-topics li { margin-top:.55rem; }
+.certification-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.2rem; }
+.certification-card { border:1px solid var(--line); border-top:3px solid var(--blue); border-radius:9px; padding:1.5rem; background:#0a0f1d; min-width:0; }
+.certification-card.purple { border-top-color:#c084fc; } .certification-card.red { border-top-color:#fda4af; } .certification-card.green { border-top-color:#6ee7b7; } .certification-card.cyan { border-top-color:#38bdf8; } .certification-card.teal { border-top-color:#5eead4; }
+.certification-card h3 { font:700 .78rem/1.6 'JetBrains Mono',monospace; letter-spacing:.6px; color:#7dd3fc; padding-bottom:.75rem; margin-bottom:.9rem; }
+.credential-name { font:800 1.03rem/1.6 'Montserrat',sans-serif; color:#f8fafc; }
+.credential-detail { color:var(--muted); margin-top:.7rem; font-size:.91rem; }
+.credential-followup { margin:1.5rem auto 0; color:var(--muted); text-align:center; }
+.nav-links .active-link,.nav-links a:hover { background:#075985; }
+@media(max-width:1000px) { .contact-layout { grid-template-columns:1fr; } .certification-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:600px) { .contact-panel { padding:1.3rem; } .contact-route,.conversation-topics,.certification-card { padding:1.2rem; } .certification-grid { grid-template-columns:1fr; } .submit-btn { width:100%; } .contact-intro { font-size:1rem; } }
 
-        html { scroll-behavior: smooth; }
-
-        body {
-            background-color: var(--bg-page);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            color: var(--text-main);
-            line-height: 1.6;
-            padding-bottom: 4rem;
-            overflow-x: hidden;
+</style>
+<script>
+      const blockAnalytics = new URLSearchParams(window.location.search).get('block_ga') === 'true';
+      if (blockAnalytics) window['ga-disable-G-80NYKHYN3R'] = true;
+      try {
+        if (blockAnalytics) localStorage.setItem('akcce_block_ga', 'true');
+        if (localStorage.getItem('akcce_block_ga') === 'true') {
+          window['ga-disable-G-80NYKHYN3R'] = true;
         }
-
-        /* ================= NAVIGATION ================= */
-        nav {
-            position: fixed; top: 0; width: 100%;
-            background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-base); z-index: 100;
-            padding: 1.2rem 2rem; display: flex; justify-content: center;
-        }
-        .nav-links { 
-            display: flex; gap: 1.2rem; list-style: none; flex-wrap: wrap; 
-            justify-content: center; align-items: center; 
-        }
-        
-        .nav-links a { 
-            display: inline-block; 
-            color: var(--color-cyan); 
-            border: 1px solid var(--color-cyan);
-            background: rgba(14, 165, 233, 0.1); 
-            padding: 0.5rem 1.2rem; 
-            border-radius: 6px;
-            text-decoration: none; 
-            font-size: 0.9rem; 
-            font-weight: 700; 
-            letter-spacing: 1px; 
-            text-transform: uppercase; 
-            transition: all 0.3s ease; 
-        }
-        
-        .nav-links a:hover, 
-        .nav-links a.active-link { 
-            background: var(--color-cyan); 
-            color: #ffffff; 
-            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
-        }
-
-        /* ================= HERO HEADER ================= */
-        .hero { padding: 170px 20px 60px; text-align: center; border-bottom: 1px solid var(--border-base); }
-        .hero-title-container { display: flex; align-items: center; justify-content: center; margin-bottom: 15px; }
-        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 4rem; font-weight: 900; letter-spacing: 3px; color: var(--color-blue); text-transform: uppercase; }
-        .hero-subtitle { font-size: 1.5rem; color: var(--text-muted); font-weight: 500; max-width: 1000px; margin: 0 auto; letter-spacing: 1px; }
-
-        /* ================= SHARED STACKED LAYOUT ================= */
-        .stacked-section { padding: 40px 20px; width: 100%; display: flex; flex-direction: column; align-items: center; }
-        
-        /* 3-Column Grid for Certifications */
-        .feature-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; width: 100%; max-width: 1120px; margin-bottom: 2rem; }
-        
-        /* 2-Column Grid for Contact Cards */
-        .feature-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; width: 100%; max-width: 900px; margin-bottom: 2rem; }
-        
-        .feature-card { background: rgba(10, 15, 29, 0.95); border: 1px solid var(--border-base); border-top: 4px solid; padding: 2.2rem 2rem; border-radius: 10px; text-align: left; box-shadow: 0 10px 25px rgba(0,0,0,0.35); }
-        .feature-card.blue { border-top-color: var(--color-blue); }
-        .feature-card.cyan { border-top-color: var(--color-cyan); }
-        .feature-card.green { border-top-color: var(--color-green); }
-        .feature-card.teal { border-top-color: var(--color-teal); }
-        .feature-card.purple { border-top-color: var(--color-purple); }
-        .feature-card.red { border-top-color: var(--color-red); }
-
-        /* ================= CONTACT FORM ================= */
-        .contact-form-container {
-            width: 100%;
-            max-width: 900px;
-            background: rgba(10, 15, 29, 0.95);
-            border: 1px solid var(--border-base);
-            border-top: 4px solid var(--color-cyan);
-            padding: 3rem;
-            border-radius: 10px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.45);
-            margin-bottom: 2.5rem;
-        }
-
-        .form-header {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: var(--text-main);
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-align: center;
-        }
-
-        .form-group { margin-bottom: 1.5rem; text-align: left; }
-        
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 800;
-            color: var(--color-cyan);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.85rem;
-        }
-
-        .form-input, .form-textarea {
-            width: 100%;
-            padding: 1rem;
-            background: rgba(2, 6, 23, 0.9);
-            border: 1px solid var(--border-base);
-            color: var(--text-main);
-            border-radius: 6px;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .form-input:focus, .form-textarea:focus {
-            outline: none;
-            border-color: var(--color-cyan);
-            box-shadow: 0 0 10px rgba(14, 165, 233, 0.25);
-        }
-
-        .form-textarea { resize: vertical; min-height: 150px; }
-
-        .submit-btn {
-            background: var(--color-cyan);
-            color: #ffffff;
-            border: none;
-            padding: 1.2rem;
-            font-size: 1.05rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            font-family: 'Montserrat', sans-serif;
-            margin-top: 1rem;
-        }
-
-        .submit-btn:hover {
-            background: #0284c7;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px -5px rgba(14, 165, 233, 0.4);
-        }
-
-        /* ================= CERTIFICATIONS & CONTACT CARDS ================= */
-        .cert-card { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; text-align: left; text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease; }
-        .cert-card:hover { transform: translateY(-4px); box-shadow: 0 15px 30px -5px rgba(0,0,0,0.5); background: rgba(15, 23, 42, 0.95); }
-        
-        .cert-org { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 10px; font-weight: 800; }
-        
-        .cert-blue .cert-org { color: var(--color-blue); }
-        .cert-red .cert-org { color: var(--color-red); }
-        .cert-green .cert-org { color: var(--color-green); }
-        .cert-cyan .cert-org { color: var(--color-cyan); }
-        .cert-teal .cert-org { color: var(--color-teal); }
-        .cert-purple .cert-org { color: var(--color-purple); }
-
-        .cert-name { font-family: 'Montserrat', sans-serif; font-size: 1.2rem; font-weight: 800; color: var(--text-main); line-height: 1.4; }
-        .contact-value { color: var(--text-main); font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.98rem; margin-top: 12px; word-break: break-all; transition: color 0.3s ease; }
-        .cert-card:hover .contact-value { color: var(--color-cyan); }
-
-        /* ================= TRANSITION BRIDGE ================= */
-        .transition-wrapper {
-            width: 100%; max-width: 1120px; margin: 2rem auto 3rem;
-            text-align: center; position: relative;
-        }
-        .section-divider-line {
-            position: absolute; top: 50%; left: 0; width: 100%; height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.5), transparent);
-            z-index: 1; transform: translateY(-50%);
-        }
-        .deep-dive-header {
-            position: relative; z-index: 2; display: inline-block;
-            background: var(--bg-page); padding: 0 30px;
-            font-family: 'Montserrat', sans-serif; font-size: 2.1rem; font-weight: 900;
-            letter-spacing: 3px; text-transform: uppercase; color: var(--color-blue);
-        }
-
-        /* ================= PROPRIETARY IP FOOTER ================= */
-        .ip-footer {
-            max-width: 1120px;
-            margin: 3rem auto 0;
-            text-align: center;
-            padding: 2.5rem 1.5rem;
-            border-top: 1px solid var(--border-base);
-            background: rgba(10, 15, 29, 0.6);
-            border-radius: 8px;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            font-family: 'JetBrains Mono', monospace;
-            line-height: 1.8;
-        }
-        .ip-footer strong {
-            color: var(--color-cyan);
-            font-weight: 700;
-        }
-
-        @media (max-width: 992px) {
-            .feature-grid-3, .feature-grid-2 { grid-template-columns: 1fr; }
-            .hero-title { font-size: 2.8rem; }
-            .deep-dive-header { font-size: 1.6rem; padding: 0 15px; }
-        }
-
-        @media (max-width: 600px) {
-            .hero-title { font-size: 2.1rem; letter-spacing: 1px; }
-            .hero { padding-top: 190px; padding-bottom: 40px; }
-            
-            nav { padding: 1rem; }
-            .nav-links { gap: 0.6rem; }
-            .nav-links a { font-size: 0.75rem; padding: 0.4rem 0.8rem; letter-spacing: 0.5px; }
-
-            .deep-dive-header { font-size: 1.4rem; padding: 0 10px; }
-            
-            .feature-card, .contact-form-container { padding: 1.5rem; }
-        }
-        /* FIX FOR PHONES HELD HORIZONTALLY OR VERTICALLY */
-        @media (max-width: 992px), (max-height: 550px) {
-            nav {
-                position: relative !important;
-                padding: 0.75rem 0.5rem !important;
-            }
-            .nav-links {
-                gap: 0.45rem !important;
-            }
-            .nav-links a {
-                font-size: 0.72rem !important;
-                padding: 0.35rem 0.65rem !important;
-            }
-            .hero, .blueprint-page-container {
-                padding-top: 30px !important;
-            }
-        }
-    </style>
+      } catch (error) {
+        // The query-string opt-out still works when browser storage is unavailable.
+      }
+    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-80NYKHYN3R"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-80NYKHYN3R');</script>
 </head>
-<body>
-
-    <!-- GLOBAL NAVIGATION (8-LINK SITE-WIDE BAR WITH 26-VARIABLE SYSTEM GLOSSARY) -->
-    <nav>
+<body><a class="skip-link" href="#main-content">Skip to main content</a><nav aria-label="Main navigation">
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="autonomous-systems.html">Autonomous Systems</a></li>
-            <li><a href="kill-chain.html">The Adversarial Kill Chain</a></li>
-            <li><a href="blueprint.html">7-Phase Counter-Engineering Blueprint</a></li>
-            <li><a href="ai-systems-engineering.html">Tethered AI Systems Engineering</a></li>
-            <li><a href="architectural.html">Exploit-Level Pipeline Architecture</a></li>
-            <li><a href="workflow-portfolio.html">Live Counter-Engineering Proofs</a></li>
-            <li><a href="add-capabilities.html">Day-2 Multi-Cloud Modules</a></li>
-            <li><a href="glossary.html">26-Variable System Glossary</a></li>
-            <li><a href="contact.html" class="active-link">Contact</a></li>
+            <li>
+<a href="index.html">Home</a>
+</li>
+            <li>
+<a href="autonomous-systems.html">Autonomous Systems</a>
+</li>
+            <li>
+<a href="kill-chain.html">The Adversarial Kill Chain</a>
+</li>
+            <li>
+<a href="blueprint.html">7-Phase Counter-Engineering Blueprint</a>
+</li>
+            <li>
+<a href="ai-systems-engineering.html">Tethered AI Systems Engineering</a>
+</li>
+            <li>
+<a href="architectural.html">Exploit-Level Pipeline Architecture</a>
+</li>
+            <li>
+<a href="workflow-portfolio.html">Counter-Engineering Demonstrations</a>
+</li>
+            <li>
+<a href="add-capabilities.html">Day-2 Multi-Cloud Modules</a>
+</li>
+            <li>
+<a href="glossary.html">26-Variable System Glossary</a>
+</li>
+            <li>
+<a href="contact.html" class="active-link" aria-current="page">Contact</a>
+</li>
         </ul>
-    </nav>
-
-    <!-- HERO HEADER -->
-    <header class="hero">
-        <div class="hero-title-container">
-            <h1 class="hero-title">CONTACT</h1>
+    </nav><main id="main-content">
+<header class="hero"><span class="eyebrow">[PROFESSIONAL CONTACT]</span><div class="hero-title-container"><svg class="hero-brand-crest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Adversarial Kill-Chain Counter-Engineering 4-Chevron Crest">
+                <rect width="114" height="114" x="3" y="3" fill="#020617" rx="22" stroke="#1e293b" stroke-width="3"/>
+                <!-- Gate 1: Gunmetal Bevel -->
+                <polygon points="24,18 60,36 60,48 24,30" fill="#475569"/>
+                <polygon points="96,18 60,36 60,48 96,30" fill="#1e293b"/>
+                <!-- Gate 2: Cobalt Bevel -->
+                <polygon points="24,39 60,57 60,69 24,51" fill="#0284c7"/>
+                <polygon points="96,39 60,57 60,69 96,51" fill="#075985"/>
+                <!-- Gate 3: Electric Cyan Bevel -->
+                <polygon points="24,60 60,78 60,90 24,72" fill="#38bdf8"/>
+                <polygon points="96,60 60,78 60,90 96,72" fill="#0369a1"/>
+                <!-- Gate 4: Crimson Bevel -->
+                <polygon points="24,81 60,99 60,111 24,93" fill="#f43f5e"/>
+                <polygon points="96,81 60,99 60,111 96,93" fill="#9f1239"/>
+            </svg><h1>Contact Steven Tuschman</h1></div><p class="hero-subtitle">Identity and access management, cloud security and AI-assisted engineering.</p><p class="contact-intro">For role opportunities, technical discussions or collaboration related to the project, please get in touch.</p></header>
+<section class="page-section" aria-labelledby="contact-title"><header class="section-heading"><h2 id="contact-title">Start a Conversation</h2><p>Send a brief introduction using the form, email or LinkedIn.</p></header>
+<div class="contact-layout"><div class="contact-panel"><h3 id="form-title">Send a Message</h3><p class="required-note">All three fields are required.</p>
+<form action="https://formsubmit.co/steven@intelligent-architecture.com" method="POST" aria-labelledby="form-title" aria-describedby="form-processing">
+<input type="hidden" name="_subject" value="New Inquiry via AdversarialKillChainCounterEngineering.com">
+<input type="hidden" name="_template" value="box">
+<div class="form-group"><label for="contact-name">Name</label><input id="contact-name" type="text" name="name" class="form-input" required autocomplete="name" maxlength="200" placeholder="Your name"></div>
+<div class="form-group"><label for="contact-email">Email address</label><input id="contact-email" type="email" name="email" class="form-input" required autocomplete="email" maxlength="254" placeholder="you@example.com"></div>
+<div class="form-group"><label for="contact-message">Message</label><textarea id="contact-message" name="message" class="form-textarea" required rows="7" maxlength="5000" aria-describedby="message-help" placeholder="A brief introduction and what you would like to discuss."></textarea><span id="message-help" class="field-help">Maximum 5,000 characters.</span></div>
+<p id="form-processing" class="form-processing">This form sends your name, email address and message through <a href="https://formsubmit.co/" target="_blank" rel="noopener noreferrer">FormSubmit</a> for email delivery to Steven Tuschman. Please use it for general inquiries and keep credentials and confidential system details out of your message.</p>
+<button type="submit" class="submit-btn">Send message</button>
+</form></div>
+<aside class="contact-aside" aria-label="Other ways to connect and discussion topics">
+<a class="contact-route" href="mailto:steven@intelligent-architecture.com"><h3>Email</h3><span class="route-value">steven@intelligent-architecture.com</span><span class="route-help">Compose a message in your email application.</span></a>
+<a class="contact-route" href="https://www.linkedin.com/in/steven-tuschman/" target="_blank" rel="noopener noreferrer"><h3>LinkedIn</h3><span class="route-value">linkedin.com/in/steven-tuschman</span><span class="route-help">View my professional profile in a new tab.</span></a>
+<div class="conversation-topics"><h3>Areas of Interest</h3><ul><li>Workload federation and machine identity configuration</li><li>Cloud IAM, least privilege and operational evidence</li><li>Human review in AI-assisted engineering</li><li>Security automation and technical documentation</li></ul></div>
+</aside></div></section>
+<section class="page-section" aria-labelledby="credentials-title"><header class="section-heading"><span class="eyebrow">[QUALIFICATIONS]</span><h2 id="credentials-title">Certifications and Professional Development</h2><p>Identity, cybersecurity, project management, programming and data engineering.</p></header>
+<div class="certification-grid"><article class="certification-card blue"><h3>Microsoft Certified</h3><p class="credential-name">Identity and Access Administrator Associate</p><p class="credential-detail">SC-300</p></article><article class="certification-card purple"><h3>Project Management Institute</h3><p class="credential-name">Project Management Professional</p><p class="credential-detail">PMP</p></article><article class="certification-card red"><h3>CompTIA</h3><p class="credential-name">Cybersecurity Analyst and Security+</p><p class="credential-detail">CySA+ · Security+ ce</p></article><article class="certification-card green"><h3>Python Institute</h3><p class="credential-name">Certified Associate in Python Programming</p><p class="credential-detail">PCAP-31-03</p></article><article class="certification-card cyan"><h3>Microsoft Certified</h3><p class="credential-name">Security, Compliance, and Identity Fundamentals</p><p class="credential-detail">SC-900</p></article><article class="certification-card teal"><h3>Dataquest</h3><p class="credential-name">Data Engineering Professional</p><p class="credential-detail">Professional development</p></article></div>
+<p class="credential-followup">For credential details or questions about the <a href="workflow-portfolio.html">project case studies</a>, please get in touch.</p>
+</section></main><footer class="ip-footer">
+        <div class="footer-crest-wrapper">
+            <svg class="footer-brand-crest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+                <rect width="114" height="114" x="3" y="3" fill="#020617" rx="22" stroke="#1e293b" stroke-width="3"/>
+                <polygon points="24,18 60,36 60,48 24,30" fill="#475569"/>
+                <polygon points="96,18 60,36 60,48 96,30" fill="#1e293b"/>
+                <polygon points="24,39 60,57 60,69 24,51" fill="#0284c7"/>
+                <polygon points="96,39 60,57 60,69 96,51" fill="#075985"/>
+                <polygon points="24,60 60,78 60,90 24,72" fill="#38bdf8"/>
+                <polygon points="96,60 60,78 60,90 96,72" fill="#0369a1"/>
+                <polygon points="24,81 60,99 60,111 24,93" fill="#f43f5e"/>
+                <polygon points="96,81 60,99 60,111 96,93" fill="#9f1239"/>
+            </svg>
         </div>
-        <p class="hero-subtitle">Professional Outreach &amp; Validated Multi-Cloud Capabilities</p>
-    </header>
-
-    <!-- MODULE 1: DIRECT CONTACT FORMS & LINKS -->
-    <section class="stacked-section">
-        
-        <!-- SECURE MESSAGE FORM -->
-        <div class="contact-form-container">
-            <h2 class="form-header">Direct Secure Message</h2>
-            <form action="https://formsubmit.co/steven@intelligent-architecture.com" method="POST">
-                <!-- Hidden fields to clean up the email received -->
-                <input type="hidden" name="_subject" value="New Inquiry via AdversarialKillChainCounterEngineering.com">
-                <input type="hidden" name="_template" value="box">
-                
-                <div class="form-group">
-                    <label class="form-label">Full Name / Title</label>
-                    <input type="text" name="name" class="form-input" required placeholder="e.g., Jane Doe, VP of Engineering / CISO">
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Return Email Address</label>
-                    <input type="email" name="email" class="form-input" required placeholder="name@enterprise.com">
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Message Payload</label>
-                    <textarea name="message" class="form-textarea" required placeholder="Enter communication details here..."></textarea>
-                </div>
-                
-                <button type="submit" class="submit-btn">Transmit Secure Message</button>
-            </form>
-        </div>
-
-        <!-- SECONDARY CONTACT METHODS -->
-        <div class="feature-grid-2">
-            <!-- Email -->
-            <a href="mailto:steven@intelligent-architecture.com" class="feature-card cert-card cert-cyan cyan">
-                <div class="cert-org">Direct Email</div>
-                <div class="cert-name">Standard Routing</div>
-                <div class="contact-value">steven@intelligent-architecture.com</div>
-            </a>
-            
-            <!-- LinkedIn -->
-            <a href="https://www.linkedin.com/in/steven-tuschman/" target="_blank" class="feature-card cert-card cert-blue blue">
-                <div class="cert-org">LinkedIn</div>
-                <div class="cert-name">Professional Network</div>
-                <div class="contact-value">linkedin.com/in/steven-tuschman</div>
-            </a>
-        </div>
-    </section>
-
-    <!-- TRANSITION BRIDGE -->
-    <div class="transition-wrapper">
-        <div class="section-divider-line"></div>
-        <h2 class="deep-dive-header">Professional Certifications</h2>
-    </div>
-
-    <!-- MODULE 2: PROFESSIONAL CERTIFICATIONS -->
-    <section class="stacked-section" style="padding-top: 1rem;">
-        
-        <div class="feature-grid-3">
-            <!-- SC-300 -->
-            <div class="feature-card cert-card cert-blue blue">
-                <div class="cert-org">Microsoft Certified</div>
-                <div class="cert-name">Identity and Access Administrator Associate (SC-300)</div>
-            </div>
-            
-            <!-- PMP -->
-            <div class="feature-card cert-card cert-purple purple">
-                <div class="cert-org">Project Management Institute</div>
-                <div class="cert-name">Project Management Professional (PMP)</div>
-            </div>
-
-            <!-- CompTIA -->
-            <div class="feature-card cert-card cert-red red">
-                <div class="cert-org">CompTIA</div>
-                <div class="cert-name">Cybersecurity Analyst (CySA+) &amp; Security+ ce</div>
-            </div>
-
-            <!-- Python PCAP -->
-            <div class="feature-card cert-card cert-green green">
-                <div class="cert-org">Python Institute</div>
-                <div class="cert-name">PCAP-31-03: Certified Associate in Python Programming</div>
-            </div>
-            
-            <!-- SC-900 -->
-            <div class="feature-card cert-card cert-cyan cyan">
-                <div class="cert-org">Microsoft Certified</div>
-                <div class="cert-name">Security, Compliance, and Identity Fundamentals (SC-900)</div>
-            </div>
-
-            <!-- Dataquest -->
-            <div class="feature-card cert-card cert-teal teal">
-                <div class="cert-org">Dataquest</div>
-                <div class="cert-name">Data Engineering Professional</div>
-            </div>
-        </div>
-
-        <!-- ================= PROPRIETARY IP FOOTER ================= -->
-        <footer class="ip-footer" style="width: 100%;">
-            <strong>&copy; 2026 Steven Tuschman | Adversarial Kill-Chain Counter-Engineering&trade; (adversarialkillchaincounterengineering.com). All Rights Reserved.</strong><br>
-            The Adversarial Kill-Chain Counter-Engineering State Machine v1.0, Sequential Kill-Chain Counter-Engineering Protocol, Execution Triad governance model, Four Architectural Gates of Machine Identity, Five Enterprise Guardrails, 216-Combination Multi-Cloud Build Matrix, and 26-Variable System Glossary are proprietary intellectual property. Unauthorized reproduction, distribution, or commercial adaptation is strictly prohibited.
-        </footer>
-
-    </section>
-
-</body>
-</html>
+        <strong>&copy; 2026 Steven Tuschman | Adversarial Kill-Chain Counter-Engineering&trade; (adversarialkillchaincounterengineering.com). All Rights Reserved.</strong>
+<br>
+        The Adversarial Kill-Chain Counter-Engineering State Machine, Sequential Kill-Chain Counter-Engineering Protocol, Execution Triad governance model, Four Architectural Gates of Machine Identity, Five Enterprise Guardrails, Build Coordinate Matrix, and 26-Variable System Glossary are proprietary intellectual property. Unauthorized reproduction, distribution, or commercial adaptation is strictly prohibited.
+    </footer></body></html>

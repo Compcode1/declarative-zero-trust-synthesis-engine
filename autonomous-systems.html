@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autonomous Systems | Machine Identity Engineering | AKCCE</title>
-<meta name="description" content="Applying human-governed machine identity engineering to training, simulation and fleet software delivery, with scoped cloud access and evidence-based validation.">
+    <title>AWS Workload Identity Demonstration | Autonomous Systems | AKCCE</title>
+<meta name="description" content="A source-linked AWS workload identity demonstration using GitHub OIDC, AWS STS and scoped Secrets Manager access, with execution evidence and explicit validation limits.">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="apple-touch-icon" href="favicon.svg">
     <!-- Google tag (gtag.js) -->
@@ -26,15 +26,14 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-80NYKHYN3R');
     </script>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
-    
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --bg-page: #020617; 
+            --bg-page: #020617;
             --bg-node: rgba(10, 15, 29, 0.95);
             --border-base: #1e293b;
             --text-main: #f8fafc;
@@ -47,12 +46,17 @@
             --color-teal: #14b8a6;
             --color-red: #f43f5e;
             --color-orange: #f97316;
-            --logo-blue: #2563eb;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body { background-color: var(--bg-page); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--text-main); line-height: 1.6; padding-bottom: 4rem; }
+        body {
+            background-color: var(--bg-page);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 4rem;
+        }
 
         /* ================= NAVIGATION ================= */
         nav {
@@ -61,31 +65,29 @@
             border-bottom: 1px solid var(--border-base); z-index: 100;
             padding: 1.2rem 2rem; display: flex; justify-content: center;
         }
-        .nav-links { 
-            display: flex; gap: 1.1rem; list-style: none; flex-wrap: wrap; 
-            justify-content: center; align-items: center; 
+        .nav-links {
+            display: flex; gap: 1.1rem; list-style: none; flex-wrap: wrap;
+            justify-content: center; align-items: center;
         }
-        
-        .nav-links a { 
+        .nav-links a {
             display: inline-block;
-            color: var(--color-cyan); 
+            color: var(--color-cyan);
             border: 1px solid var(--color-cyan);
-            background: rgba(14, 165, 233, 0.1); 
-            padding: 0.5rem 1.15rem; 
+            background: rgba(14, 165, 233, 0.1);
+            padding: 0.5rem 1.15rem;
             border-radius: 6px;
-            text-decoration: none; 
-            font-size: 0.88rem; 
-            font-weight: 700; 
-            letter-spacing: 1px; 
-            text-transform: uppercase; 
-            transition: all 0.3s ease; 
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
         }
-        
-        .nav-links a:hover, 
-        .nav-links a.active-link { 
-            background: var(--color-cyan); 
-            color: #ffffff; 
-            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
+        .nav-links a:hover,
+        .nav-links a.active-link {
+            background: var(--color-cyan);
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
         }
 
         .bullet-lead { color: var(--color-cyan); font-weight: 800; }
@@ -94,531 +96,389 @@
         .bullet-lead-orange { color: var(--color-orange); font-weight: 800; }
         .bullet-lead-purple { color: var(--color-purple); font-weight: 800; }
 
-        /* ================= HERO HEADER & BRAND INSIGNIA ================= */
-        .hero { padding: 155px 20px 40px; text-align: center; }
-        .hero-title-container { 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 1.35rem; 
-            margin-bottom: 0.8rem; 
-            flex-wrap: wrap;
+        /* ================= HERO HEADER ================= */
+        .hero { padding: 155px 20px 35px; text-align: center; border-bottom: 1px solid var(--border-base); }
+        .hero-title-container {
+            display: flex; align-items: center; justify-content: center;
+            gap: 1.35rem; margin-bottom: 0.8rem; flex-wrap: wrap;
         }
         .hero-brand-crest {
-            width: 66px;
-            height: 66px;
-            flex-shrink: 0;
+            width: 66px; height: 66px; flex-shrink: 0;
             filter: drop-shadow(0 0 18px rgba(14, 165, 233, 0.4)) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.6));
-            transition: transform 0.3s ease;
         }
-        .hero-brand-crest:hover {
-            transform: translateY(-2px) scale(1.04);
+        .hero-title {
+            font-family: 'Montserrat', sans-serif; font-size: 2.8rem; font-weight: 900;
+            letter-spacing: 2px; color: var(--text-main); text-transform: uppercase; line-height: 1.15;
         }
-        .hero-title { font-family: 'Montserrat', sans-serif; font-size: 2.95rem; font-weight: 900; letter-spacing: 2.5px; color: var(--text-main); text-transform: uppercase; line-height: 1.15; }
         .hero-page-subtitle {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.08rem;
-            font-weight: 800;
-            color: var(--color-cyan);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 1.6rem;
+            font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; font-weight: 800;
+            color: var(--color-cyan); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.4rem;
+        }
+        .hero-intro-copy {
+            font-size: 1.12rem; color: var(--text-muted); max-width: 960px;
+            margin: 0 auto 1.6rem; font-weight: 500; line-height: 1.7;
         }
 
-        /* HERO GREEN PROOF CTA BUTTON */
-        .hero-proof-btn-wrapper {
-            margin: 0 auto 2.5rem;
-            text-align: center;
-        }
-        .proof-cta-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.85rem;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.05rem;
-            font-weight: 900;
-            letter-spacing: 1.4px;
-            text-transform: uppercase;
-            text-decoration: none;
-            color: #020617;
-            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
-            border: 2px solid #34d399;
-            padding: 1.05rem 2.4rem;
-            border-radius: 9px;
-            box-shadow: 0 0 25px rgba(16, 185, 129, 0.45), 0 8px 20px rgba(0, 0, 0, 0.5);
-            transition: all 0.25s ease;
-        }
-        .proof-cta-button:hover {
-            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
-            border-color: #7dd3fc;
-            color: #020617;
-            transform: translateY(-3px) scale(1.015);
-            box-shadow: 0 0 32px rgba(14, 165, 233, 0.65), 0 12px 26px rgba(0, 0, 0, 0.6);
-        }
-        .proof-cta-button svg {
-            width: 20px;
-            height: 20px;
-            stroke: currentColor;
-            stroke-width: 2.8;
-            fill: none;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            flex-shrink: 0;
-        }
-
-        /* JUMP LINKS BAR */
-        .jump-links-container {
-            max-width: 1300px;
-            margin: 0 auto 3.2rem;
-            padding: 1.6rem 2rem;
-            background: rgba(15, 23, 42, 0.65);
-            border: 1px solid var(--border-base);
-            border-top: 3px solid var(--color-cyan);
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
-        }
-        .jump-links-header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.9rem;
-            margin-bottom: 1.15rem;
-            flex-wrap: wrap;
-        }
-        .jump-links-crest {
-            width: 42px;
-            height: 42px;
-            flex-shrink: 0;
-            filter: drop-shadow(0 0 12px rgba(14, 165, 233, 0.35));
-        }
-        .jump-links-intro {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.08rem;
-            font-weight: 800;
-            color: var(--text-main);
-            letter-spacing: 0.5px;
-            margin-bottom: 0;
-        }
-        .jump-links { 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: center; 
-            gap: 0.85rem; 
-        }
-        .jump-links a { 
-            color: var(--color-cyan); 
-            border: 1px solid var(--color-cyan); 
-            background: rgba(14, 165, 233, 0.08); 
-            padding: 0.62rem 1.15rem; 
-            border-radius: 8px; 
-            text-decoration: none; 
-            font-size: 0.84rem; 
-            font-weight: 700; 
-            letter-spacing: 1px; 
-            text-transform: uppercase; 
-            transition: all 0.3s ease; 
-        }
-        .jump-links a:hover { 
-            background: var(--color-cyan); 
-            color: #ffffff; 
-            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); 
-            transform: translateY(-2px); 
-        }
-
-        /* ELEVATED ARCHITECTURAL CONTAINERS */
-        .hero-arch-block {
-            max-width: 1300px;
-            margin: 0 auto 3rem;
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid var(--border-base);
-            border-radius: 12px;
-            padding: 3rem 3.2rem;
-            text-align: left;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
-        }
-        .hero-arch-block.red-block { border-top: 4px solid var(--color-red); }
-        .hero-arch-block.cyan-block { border-top: 4px solid var(--color-cyan); }
-        .hero-arch-block.green-block { border-top: 4px solid var(--color-green); }
-        .hero-arch-block.purple-block { border-top: 4px solid var(--color-purple); }
-        .hero-arch-block.orange-block { border-top: 4px solid var(--color-orange); }
-
-        .hero-block-tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.0rem;
-            font-weight: 800;
-            letter-spacing: 1.2px;
-            line-height: 1.55;
-            text-transform: uppercase;
-            display: block;
-            margin-bottom: 0.75rem;
-        }
-        .red-block .hero-block-tag { color: var(--color-red); }
-        .cyan-block .hero-block-tag { color: var(--color-cyan); }
-        .green-block .hero-block-tag { color: var(--color-green); }
-        .purple-block .hero-block-tag { color: var(--color-purple); }
-        .orange-block .hero-block-tag { color: var(--color-orange); }
-
-        .hero-block-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 900;
-            letter-spacing: 1px;
-            line-height: 1.35;
-            color: var(--text-main);
-            text-transform: uppercase;
-            margin-bottom: 1.6rem;
-            padding-bottom: 0.9rem;
-            border-bottom: 2px solid var(--border-base);
-        }
-
-        .hero-subtitle {
-            font-size: 1.16rem;
-            color: var(--text-main);
-            font-weight: 600;
-            line-height: 1.8;
-            margin-bottom: 1.4rem;
-            text-align: left;
-        }
-
-        .mission-master-banner {
-            background: rgba(10, 15, 29, 0.95);
-            border: 1px solid var(--border-base);
-            border-left: 5px solid var(--color-cyan);
-            border-radius: 10px;
-            padding: 2.2rem 2.4rem;
-            margin-bottom: 2.2rem;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-        }
-
-        /* PUBLISHED EVIDENCE QUOTE BOX */
-        .evidence-quote {
-            background: rgba(2, 6, 23, 0.9);
-            border-left: 3px solid var(--color-purple);
-            padding: 1rem 1.25rem;
-            margin: 0.95rem 0;
-            border-radius: 0 6px 6px 0;
-            font-size: 0.99rem;
-            color: var(--text-main);
-            font-weight: 600;
-            line-height: 1.68;
-        }
-
-        /* STAGE HEADER BADGE & FLEX */
-        .stage-header-row {
-            display: flex;
-            align-items: center;
-            gap: 1.1rem;
-            margin-bottom: 1.4rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid var(--border-base);
-            flex-wrap: wrap;
-        }
-        .stage-badge-red {
+        /* RETURN BUTTON */
+        .back-banner-btn {
+            display: inline-block;
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.86rem;
             font-weight: 800;
-            color: #ffffff;
-            background: var(--color-red);
-            padding: 0.35rem 0.9rem;
-            border-radius: 5px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            box-shadow: 0 0 15px rgba(244, 63, 94, 0.35);
-        }
-        .stage-badge-green {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.82rem;
-            font-weight: 800;
-            color: var(--color-green);
-            background: rgba(16, 185, 129, 0.12);
-            border: 1px solid rgba(16, 185, 129, 0.45);
-            padding: 0.32rem 0.85rem;
-            border-radius: 5px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-        .stage-main-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.62rem;
-            font-weight: 900;
-            color: var(--text-main);
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            line-height: 1.3;
-            width: 100%;
-            margin-top: 0.3rem;
-        }
-
-        /* 2X2 STAGE QUADRANT GRID */
-        .stage-quadrant-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.6rem;
-        }
-        .quad-card {
-            background: rgba(10, 15, 29, 0.95);
-            border: 1px solid var(--border-base);
-            border-radius: 10px;
-            padding: 2rem 2.1rem;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
-            display: flex;
-            flex-direction: column;
-        }
-        .quad-card.hacker-play { border-left: 4px solid var(--color-red); }
-        .quad-card.tech-seam { border-left: 4px solid var(--color-orange); }
-        .quad-card.authority-proof { border-left: 4px solid var(--color-purple); }
-        .quad-card.akcce-strike { border-left: 4px solid var(--color-green); }
-        .quad-card.cyan-card { border-left: 4px solid var(--color-cyan); }
-
-        .quad-tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.78rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 0.45rem;
-        }
-        .quad-card.hacker-play .quad-tag { color: var(--color-red); }
-        .quad-card.tech-seam .quad-tag { color: var(--color-orange); }
-        .quad-card.authority-proof .quad-tag { color: var(--color-purple); }
-        .quad-card.akcce-strike .quad-tag { color: var(--color-green); }
-        .quad-card.cyan-card .quad-tag { color: var(--color-cyan); }
-
-        .quad-title {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.18rem;
-            font-weight: 900;
-            color: var(--text-main);
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-            padding-bottom: 0.7rem;
-            border-bottom: 1px solid var(--border-base);
-            letter-spacing: 0.5px;
-            line-height: 1.35;
-        }
-        .quad-text {
-            font-size: 1.04rem;
-            color: var(--text-main);
-            font-weight: 600;
-            line-height: 1.72;
-        }
-
-        .quad-list {
-            list-style: disc;
-            padding-left: 1.35rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.85rem;
-        }
-        .quad-list li {
-            font-size: 1.02rem;
-            color: var(--text-main);
-            font-weight: 600;
-            line-height: 1.65;
-            padding-left: 0.2rem;
-        }
-        .quad-card.tech-seam .quad-list li::marker { color: var(--color-orange); }
-        .quad-card.authority-proof .quad-list li::marker { color: var(--color-purple); }
-        .quad-card.akcce-strike .quad-list li::marker { color: var(--color-green); }
-        .quad-card.cyan-card .quad-list li::marker { color: var(--color-cyan); }
-
-        /* 5 DELIVERABLES GRID */
-        .deliverables-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-            gap: 1.6rem;
-        }
-        .deliverable-card {
-            background: rgba(10, 15, 29, 0.95);
-            border: 1px solid var(--border-base);
-            border-top: 4px solid var(--color-green);
-            border-radius: 10px;
-            padding: 1.95rem 2rem;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
-            display: flex;
-            flex-direction: column;
-        }
-        .deliverable-card:nth-child(5) {
-            grid-column: 1 / -1;
-        }
-
-        /* EXTERNAL AUTHORITY REFERENCE BUTTONS */
-        .authority-link-badge {
-            display: inline-block;
-            margin-top: 0.5rem;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.78rem;
-            font-weight: 800;
             color: var(--color-cyan);
-            background: rgba(14, 165, 233, 0.1);
-            border: 1px solid rgba(14, 165, 233, 0.45);
-            padding: 0.3rem 0.78rem;
-            border-radius: 4px;
+            background: rgba(14, 165, 233, 0.08);
+            border: 1px solid var(--color-cyan);
+            padding: 0.6rem 1.25rem;
+            border-radius: 6px;
             text-decoration: none;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
             transition: all 0.25s ease;
-            align-self: flex-start;
         }
-        .authority-link-badge:hover {
+        .back-banner-btn:hover {
             background: var(--color-cyan);
             color: #ffffff;
-            box-shadow: 0 0 12px rgba(14, 165, 233, 0.4);
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
         }
 
-        .inline-link { color: var(--color-cyan); text-decoration: none; border-bottom: 1px solid var(--color-cyan); font-weight: 800; transition: color 0.3s ease, border-color 0.3s ease; }
-        .inline-link:hover { color: #ffffff; border-color: #ffffff; }
+        /* ================= MAIN CONTAINER & PROOF NAV MATRIX ================= */
+        .container { max-width: 1250px; margin: 0 auto; padding: 3.2rem 20px 0; }
 
-        /* MASTER SUMMARY COMPARISON TABLE */
-        .matrix-table-wrapper {
-            width: 100%;
-            overflow-x: auto;
-            border-radius: 10px;
-            border: 1px solid var(--border-base);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
-        }
-        .killchain-table {
-            width: 100%;
-            border-collapse: collapse;
-            background: rgba(10, 15, 29, 0.95);
-            text-align: left;
-        }
-        .killchain-table th {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--color-cyan);
-            background: rgba(2, 6, 23, 0.95);
-            padding: 1.25rem 1.15rem;
-            border-bottom: 2px solid var(--border-base);
-        }
-        .killchain-table td {
-            padding: 1.25rem 1.15rem;
-            font-size: 0.97rem;
-            color: var(--text-main);
-            font-weight: 600;
-            line-height: 1.62;
-            border-bottom: 1px solid var(--border-base);
-            vertical-align: top;
-        }
-        .killchain-table tr:hover td {
-            background: rgba(14, 165, 233, 0.04);
-        }
-
-        /* INSIGHT BOX */
-        .insight-box { border-left: 4px solid var(--color-purple); padding: 2.2rem 2.5rem; margin: 2.5rem auto 0; max-width: 1300px; border-radius: 0 8px 8px 0; text-align: left; }
-        .insight-header { font-family: 'Montserrat', sans-serif; font-size: 1.15rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.85rem; display: flex; align-items: center; gap: 8px; }
-        .insight-header::before { content: '>'; font-weight: 900; }
-        .insight-text { font-size: 1.15rem; color: var(--text-main); font-style: normal; line-height: 1.8; font-weight: 600; }
-
-        #industry-reality, #auto-stage-1, #auto-stage-2, #auto-stage-3, #auto-stage-4, #auto-stage-5, #auto-stage-6, #auto-stage-7, #proof-deliverables, #autonomous-matrix {
+        .project-links-header {
+            text-align: center; margin-bottom: 1.8rem;
+            font-family: 'Montserrat', sans-serif; font-size: 1.65rem; font-weight: 900;
+            color: var(--text-main); text-transform: uppercase; letter-spacing: 2px;
             scroll-margin-top: 105px;
         }
 
-        /* ================= PROPRIETARY IP FOOTER ================= */
-        .ip-footer {
-            max-width: 1300px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 2.5rem 1.5rem;
-            border-top: 1px solid var(--border-base);
-            background: rgba(10, 15, 29, 0.6);
+        .nav-matrix-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 3.5rem;
+        }
+        .nav-matrix-link {
+            text-decoration: none;
+            display: block;
+            background: rgba(15, 23, 42, 0.55);
+            border: 1px solid var(--border-base);
+            border-left: 4px solid var(--color-green);
             border-radius: 8px;
-            color: var(--text-muted);
-            font-size: 0.85rem;
+            padding: 1.55rem 1.65rem;
+            transition: all 0.3s ease;
+        }
+        .nav-matrix-link:hover {
+            background: rgba(16, 185, 129, 0.09);
+            border-color: var(--color-green);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
+        }
+        .nav-matrix-title {
+            font-family: 'Montserrat', sans-serif;
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 1.12rem;
+            margin-bottom: 0.45rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .nav-matrix-stack {
             font-family: 'JetBrains Mono', monospace;
-            line-height: 1.8;
-        }
-        .footer-crest-wrapper {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 0.85rem;
-        }
-        .footer-brand-crest {
-            width: 38px;
-            height: 38px;
-            filter: drop-shadow(0 0 10px rgba(14, 165, 233, 0.25));
-        }
-        .ip-footer strong {
             color: var(--color-cyan);
+            font-size: 0.84rem;
             font-weight: 700;
+            margin-bottom: 0.9rem;
+            line-height: 1.45;
+        }
+        .nav-matrix-guardrail {
+            font-size: 0.95rem;
+            color: var(--color-green);
+            font-weight: 600;
+            border-top: 1px solid var(--border-base);
+            padding-top: 0.8rem;
+            line-height: 1.55;
+        }
+        .nav-matrix-guardrail strong { color: var(--text-main); }
+
+        /* JUMP BAR FOR CURRENT PROOF */
+        .jump-links-container {
+            max-width: 1250px; margin: 0 auto 2.8rem; padding: 1.4rem 1.8rem;
+            background: rgba(15, 23, 42, 0.65); border: 1px solid var(--border-base);
+            border-top: 3px solid var(--color-cyan); border-radius: 10px;
+            text-align: center; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+        }
+        .jump-links-intro {
+            font-family: 'Montserrat', sans-serif; font-size: 1.0rem; font-weight: 800;
+            color: var(--text-main); letter-spacing: 0.5px; margin-bottom: 0.95rem;
+        }
+        .jump-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
+        .jump-links a {
+            color: var(--color-cyan); border: 1px solid var(--color-cyan);
+            background: rgba(14, 165, 233, 0.08); padding: 0.52rem 1.05rem;
+            border-radius: 8px; text-decoration: none; font-size: 0.8rem;
+            font-weight: 700; letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s ease;
+        }
+        .jump-links a:hover {
+            background: var(--color-cyan); color: #ffffff;
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); transform: translateY(-2px);
         }
 
-        @media (max-width: 992px) {
-            .hero-title { font-size: 2.15rem; }
-            .hero-brand-crest { width: 54px; height: 54px; }
-            .hero-block-title, .stage-main-title { font-size: 1.45rem; }
-            .stage-quadrant-grid, .deliverables-grid { grid-template-columns: 1fr; }
-            .hero-arch-block { padding: 2rem 1.5rem; }
-            .mission-master-banner, .insight-box { padding: 1.5rem; }
-            .proof-cta-button { font-size: 0.92rem; padding: 0.95rem 1.5rem; }
+        /* ================= ARCHITECTURAL BLOCKS ================= */
+        .hero-arch-block {
+            max-width: 1250px; margin: 0 auto 3rem;
+            background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-base);
+            border-radius: 12px; padding: 2.8rem 3rem; text-align: left;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+            scroll-margin-top: 105px;
+        }
+        .hero-arch-block.cyan-block { border-top: 4px solid var(--color-cyan); }
+        .hero-arch-block.green-block { border-top: 4px solid var(--color-green); }
+        .hero-arch-block.red-block { border-top: 4px solid var(--color-red); }
+
+        .hero-block-tag {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; font-weight: 800;
+            letter-spacing: 1.2px; text-transform: uppercase; display: block; margin-bottom: 0.7rem;
+        }
+        .cyan-block .hero-block-tag { color: var(--color-cyan); }
+        .green-block .hero-block-tag { color: var(--color-green); }
+        .red-block .hero-block-tag { color: var(--color-red); }
+
+        .hero-block-title {
+            font-family: 'Montserrat', sans-serif; font-size: 1.7rem; font-weight: 900;
+            letter-spacing: 1px; line-height: 1.35; color: var(--text-main); text-transform: uppercase;
+            margin-bottom: 1.5rem; padding-bottom: 0.9rem; border-bottom: 2px solid var(--border-base);
+        }
+        .hero-lead-p {
+            font-size: 1.12rem; color: var(--text-main); font-weight: 600;
+            line-height: 1.8; margin-bottom: 1.3rem;
         }
 
-        @media (max-width: 600px) {
-            .hero-title { font-size: 1.65rem; letter-spacing: 1px; }
-            .hero-brand-crest { width: 46px; height: 46px; }
-            .hero { padding-top: 190px; }
-            nav { padding: 1rem; }
-            .nav-links { gap: 0.6rem; }
-            .nav-links a { font-size: 0.75rem; padding: 0.4rem 0.8rem; letter-spacing: 0.5px; }
-            .proof-cta-button { width: 100%; font-size: 0.85rem; padding: 0.9rem 1.1rem; }
+        /* MICRO CARDS */
+        .micro-card {
+            background: rgba(10, 15, 29, 0.92); border: 1px solid var(--border-base);
+            border-radius: 8px; padding: 1.6rem 1.8rem; margin-bottom: 1.25rem;
         }
-        /* FIX FOR PHONES HELD HORIZONTALLY OR VERTICALLY */
+        .micro-card-challenge { border-left: 4px solid var(--color-purple); }
+        .micro-card-execution { border-left: 4px solid var(--color-cyan); }
+        .micro-card-value { border-left: 4px solid var(--color-green); margin-bottom: 0; }
+
+        .micro-header {
+            font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.15rem;
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem;
+        }
+        .mc-color-challenge { color: var(--color-purple); }
+        .mc-color-execution { color: var(--color-cyan); }
+        .mc-color-value { color: var(--color-green); }
+
+        .micro-text { font-size: 1.04rem; line-height: 1.75; color: var(--text-muted); }
+        .micro-text strong { color: var(--text-main); font-weight: 700; }
+
+        .bottom-line {
+            margin-top: 1.1rem; padding: 1.1rem 1.25rem;
+            background: rgba(255, 255, 255, 0.03); border-radius: 6px;
+            border-left: 3px solid var(--color-grey); font-size: 0.98rem;
+            font-style: italic; color: var(--text-muted); line-height: 1.65;
+        }
+        .bottom-line strong { color: var(--text-main); font-weight: 700; font-style: normal; }
+
+        /* ================= 5-COLUMN CAPABILITY MATRIX ================= */
+        .section-title {
+            font-family: 'Montserrat', sans-serif; font-size: 1.7rem; font-weight: 800;
+            color: var(--color-cyan); text-transform: uppercase; letter-spacing: 1.5px;
+            margin: 3.2rem 0 1.8rem; text-align: center; scroll-margin-top: 105px;
+        }
+        .matrix-grid {
+            display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.15rem; margin-bottom: 3rem;
+        }
+        .matrix-card {
+            background: rgba(15, 23, 42, 0.55); border: 1px solid var(--border-base);
+            border-top: 3px solid var(--color-blue); padding: 1.45rem; border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+        }
+        .matrix-card h3 {
+            font-size: 1.02rem; color: var(--text-main); margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-base); padding-bottom: 0.5rem;
+            font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .matrix-list { list-style: none; }
+        .matrix-list li {
+            font-size: 0.93rem; color: var(--text-muted); margin-bottom: 0.68rem;
+            display: flex; align-items: center;
+        }
+        .matrix-list li.active { color: var(--color-cyan); font-weight: 700; }
+        .checkbox {
+            display: inline-block; width: 16px; height: 16px; border: 1px solid var(--color-grey);
+            border-radius: 3px; margin-right: 10px; position: relative; flex-shrink: 0;
+        }
+        .active .checkbox { border-color: var(--color-cyan); background-color: rgba(14, 165, 233, 0.2); }
+        .active .checkbox::after { content: '✔'; position: absolute; top: -3px; left: 2px; color: var(--color-cyan); font-size: 12px; }
+
+        /* ================= 7 LOCKDOWN CARDS ================= */
+        .lockdown-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 1rem;
+        }
+        .lockdown-card {
+            background: rgba(10, 15, 29, 0.95); border: 1px solid var(--border-base);
+            border-left: 4px solid var(--color-green); border-radius: 10px;
+            padding: 1.85rem 2rem; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+        }
+        .lockdown-card.full-span { grid-column: 1 / -1; }
+        .lockdown-badge-row {
+            display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.75rem;
+        }
+        .lockdown-num {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 800;
+            color: #ffffff; background: var(--color-red); padding: 0.25rem 0.7rem;
+            border-radius: 4px; letter-spacing: 1px; text-transform: uppercase;
+        }
+        .lockdown-gate {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; font-weight: 800;
+            color: var(--color-green); background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.45); padding: 0.23rem 0.7rem;
+            border-radius: 4px; letter-spacing: 0.8px; text-transform: uppercase;
+        }
+        .lockdown-title {
+            font-family: 'Montserrat', sans-serif; font-size: 1.18rem; font-weight: 900;
+            color: var(--text-main); text-transform: uppercase; margin-bottom: 0.85rem;
+            padding-bottom: 0.6rem; border-bottom: 1px solid var(--border-base);
+        }
+        .lockdown-list {
+            list-style: disc; padding-left: 1.3rem; display: flex; flex-direction: column; gap: 0.65rem;
+        }
+        .lockdown-list li {
+            font-size: 0.99rem; color: var(--text-main); font-weight: 600; line-height: 1.65;
+        }
+        .lockdown-list li::marker { color: var(--color-green); }
+
+        /* ================= TERMINAL STYLING ================= */
+        .terminal-window {
+            background: #0d1117; border: 1px solid var(--border-base); border-radius: 10px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); width: 100%;
+            max-width: 1180px; margin: 0 auto 3.2rem; text-align: left; overflow: hidden;
+            scroll-margin-top: 105px;
+        }
+        .terminal-header {
+            background: #161b22; padding: 12px 20px; display: flex; align-items: center;
+            border-bottom: 1px solid var(--border-base); position: relative;
+        }
+        .terminal-dots { display: flex; gap: 8px; position: absolute; left: 20px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot.red { background: #ff5f56; }
+        .dot.yellow { background: #ffbd2e; }
+        .dot.green { background: #27c93f; }
+        .terminal-title {
+            margin: 0 auto; color: var(--text-muted); font-size: 0.86rem;
+            font-family: 'JetBrains Mono', monospace; letter-spacing: 1px;
+        }
+        .terminal-body {
+            padding: 2.2rem 2.4rem; font-family: 'JetBrains Mono', 'Consolas', monospace;
+            font-size: 0.9rem; line-height: 1.75; color: var(--text-main);
+            overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;
+            background: linear-gradient(rgba(13, 17, 23, 1) 0%, rgba(13, 17, 23, 0.96) 100%);
+        }
+
+        .t-cyan { color: var(--color-cyan); font-weight: 700; }
+        .t-green { color: var(--color-green); font-weight: 700; }
+        .t-blue { color: var(--color-blue); font-weight: 700; }
+        .t-purple { color: var(--color-purple); font-weight: 700; }
+        .t-muted { color: var(--text-muted); }
+        .t-comment { color: var(--color-grey); font-style: italic; }
+        .t-red { color: #ff5f56; font-weight: 700; }
+
+        /* ================= FORENSIC LEDGER TABLES ================= */
+        .matrix-table-wrapper {
+            width: 100%; overflow-x: auto; border-radius: 10px;
+            border: 1px solid var(--border-base); margin-top: 1.1rem;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+        }
+        .killchain-table {
+            width: 100%; border-collapse: collapse; background: rgba(10, 15, 29, 0.95); text-align: left;
+        }
+        .killchain-table th {
+            font-family: 'Montserrat', sans-serif; font-size: 0.86rem; font-weight: 900;
+            text-transform: uppercase; letter-spacing: 1px; color: var(--color-cyan);
+            background: rgba(2, 6, 23, 0.95); padding: 1.1rem 1.1rem; border-bottom: 2px solid var(--border-base);
+        }
+        .killchain-table td {
+            padding: 1.1rem 1.1rem; font-size: 0.94rem; color: var(--text-main);
+            font-weight: 600; line-height: 1.6; border-bottom: 1px solid var(--border-base); vertical-align: top;
+        }
+        .killchain-table tr:hover td { background: rgba(14, 165, 233, 0.04); }
+
+        .return-bar {
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 1rem; margin: 2rem 0 1rem;
+        }
+        .divider { height: 1px; background: var(--border-base); margin: 3.2rem auto; max-width: 1250px; }
+
+        /* ================= FOOTER ================= */
+        .ip-footer {
+            max-width: 1250px; margin: 3rem auto 0; text-align: center; padding: 2.5rem 1.5rem;
+            border-top: 1px solid var(--border-base); background: rgba(10, 15, 29, 0.6);
+            border-radius: 8px; color: var(--text-muted); font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace; line-height: 1.8;
+        }
+        .footer-crest-wrapper { display: flex; justify-content: center; margin-bottom: 0.85rem; }
+        .footer-brand-crest { width: 38px; height: 38px; filter: drop-shadow(0 0 10px rgba(14, 165, 233, 0.25)); }
+        .ip-footer strong { color: var(--color-cyan); font-weight: 700; }
+
+        @media (max-width: 1050px) {
+            .matrix-grid { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+            .lockdown-grid { grid-template-columns: 1fr; }
+        }
         @media (max-width: 992px), (max-height: 550px) {
-            nav {
-                position: relative !important;
-                padding: 0.75rem 0.5rem !important;
-            }
-            .nav-links {
-                gap: 0.45rem !important;
-            }
-            .nav-links a {
-                font-size: 0.72rem !important;
-                padding: 0.35rem 0.65rem !important;
-            }
-            .hero {
-                padding-top: 30px !important;
-            }
+            nav { position: relative !important; padding: 0.75rem 0.5rem !important; }
+            .nav-links { gap: 0.45rem !important; }
+            .nav-links a { font-size: 0.72rem !important; padding: 0.35rem 0.65rem !important; }
+            .hero { padding-top: 30px !important; }
+            .hero-arch-block { padding: 2rem 1.4rem; }
+            .terminal-body { padding: 1.4rem; font-size: 0.82rem; }
         }
 
-        /* Shared editorial and accessibility improvements. */
+        /* Evidence presentation and shared accessibility improvements. */
         nav { position: relative; }
         .hero { padding-top: 40px; }
         .skip-link { position: fixed; top: -100px; left: 1rem; z-index: 200; background: #f8fafc; color: #020617; padding: .7rem 1rem; border-radius: 6px; }
         .skip-link:focus { top: .5rem; }
         a:focus-visible, [tabindex]:focus-visible { outline: 3px solid #38bdf8; outline-offset: 5px; }
-        main { min-width: 0; }
         [id] { scroll-margin-top: 1.5rem !important; }
-        .hero-title, .hero-page-subtitle, .quad-title, .stage-main-title, .ip-footer, code { overflow-wrap: anywhere; }
-        .hero-description { max-width: 900px; margin: 0 auto 1.5rem; font-size: 1.12rem; color: var(--text-muted); }
-        .page-scope { max-width: 1000px; margin: 1.5rem auto 2.5rem; padding: 1rem 1.25rem; text-align: left; border: 1px solid #334155; border-radius: 10px; color: var(--text-muted); }
-        .page-scope strong { color: var(--text-main); }
-        .stage-quadrant-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-        .quad-card, .deliverable-card { min-width: 0; }
-        .deliverables-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); }
-        .quad-text, .quad-list li { font-weight: 500; }
-        .verification { margin-top: 1.1rem; padding: 1rem; border: 1px solid #334155; border-radius: 7px; font-size: 1rem; line-height: 1.65; }
-        .verification strong { color: #6ee7b7; }
-        .source-context { margin-top: 1rem; color: var(--text-muted); line-height: 1.6; }
-        .killchain-table caption { text-align: left; padding: 1rem 1.15rem; color: var(--text-muted); background: rgba(10,15,29,.95); }
+        main, .container, .lockdown-card, .matrix-card { min-width: 0; }
+        .hero-title, .hero-page-subtitle, .section-title, .hero-block-title, .lockdown-title, .ip-footer, .terminal-title, code, .source-link { overflow-wrap: anywhere; }
+        .hero-lead-p { font-weight: 500; }
+        .source-link { color: #7dd3fc; text-underline-offset: 3px; font-weight: 700; }
+        .source-actions { display: flex; flex-wrap: wrap; gap: .7rem 1.2rem; margin: 1.2rem 0; }
+        .source-actions a { color: #7dd3fc; text-underline-offset: 3px; font-weight: 700; }
+        .evidence-note { border: 1px solid #334155; border-left: 4px solid #38bdf8; border-radius: 7px; padding: 1rem 1.2rem; margin: 1.3rem 0; color: var(--text-muted); line-height: 1.7; }
+        .evidence-note strong { color: var(--text-main); }
+        .evidence-kicker { max-width: 960px; margin: 1.2rem auto; text-align: left; }
+        .nav-matrix-grid { grid-template-columns: repeat(auto-fit,minmax(min(100%,300px),1fr)); }
+        .matrix-grid { grid-template-columns: repeat(5,minmax(0,1fr)); }
+        .matrix-card p { color: var(--text-muted); line-height: 1.7; }
+        .lockdown-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+        .lockdown-list li { font-weight: 500; }
+        .review-limit { margin-top: 1rem; padding-top: .8rem; border-top: 1px solid #334155; color: var(--text-muted); line-height: 1.65; font-size: .97rem; }
+        .terminal-header { padding: 12px 20px; }
+        .terminal-title { margin: 0; }
+        .terminal-body { white-space: pre; overflow-x: auto; overflow-wrap: normal; word-wrap: normal; max-width: 100%; }
+        .terminal-body code { overflow-wrap: normal; }
+        .artifact-description { max-width: 1180px; margin: 0 auto 1rem; color: var(--text-muted); line-height: 1.7; }
+        .killchain-table caption { text-align: left; padding: 1rem 1.1rem; color: var(--text-muted); background: var(--bg-node); }
         .killchain-table th, .killchain-table td { overflow-wrap: anywhere; }
-        .killchain-table tbody th { color: #f8fafc; text-align: left; vertical-align: top; font-size: .95rem; }
-        .proof-cta-button { max-width: 100%; }
-        @media (max-width: 992px) {
-            .stage-quadrant-grid, .deliverables-grid { grid-template-columns: 1fr; }
-        }
-        @media (max-width: 600px) {
-            .hero { padding-left: 12px; padding-right: 12px; }
-            .hero-arch-block { padding: 1.5rem 1rem; }
-            .quad-card, .deliverable-card { padding: 1.3rem 1rem; }
+        .killchain-table tbody th { color: #f8fafc; text-align: left; vertical-align: top; font-size: .93rem; }
+        .result-observed { color: #6ee7b7; font-weight: 700; }
+        .result-reported { color: #7dd3fc; font-weight: 700; }
+        .result-open { color: #fbbf24; font-weight: 700; }
+        .artifact-files { display: flex; flex-wrap: wrap; gap: .8rem 1.2rem; margin: 1rem 0 1.5rem; }
+        @media(max-width:1050px) { .matrix-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } .lockdown-grid { grid-template-columns: 1fr; } }
+        @media(max-width:600px) {
+            .hero-title { font-size: 1.7rem; letter-spacing: 1px; }
             .hero-page-subtitle { font-size: .9rem; letter-spacing: 1px; }
-            .hero-description { font-size: 1rem; }
-            .jump-links-container { padding: 1.25rem 1rem; }
-            .stage-badge-red, .stage-badge-green { font-size: .72rem; letter-spacing: .5px; }
-            .authority-link-badge { overflow-wrap: anywhere; }
+            .hero, .container { padding-left: 12px; padding-right: 12px; }
+            .hero-arch-block { padding: 1.5rem 1rem; }
+            .micro-card, .lockdown-card { padding: 1.3rem 1rem; }
+            .matrix-grid { grid-template-columns: 1fr; }
+            .nav-matrix-link, .jump-links-container { padding: 1.25rem 1rem; }
+            .section-title { font-size: 1.4rem; }
             .killchain-table, .killchain-table tbody, .killchain-table tr, .killchain-table td, .killchain-table tbody th { display: block; width: 100%; }
             .killchain-table thead { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
             .killchain-table tbody tr { border-bottom: 3px solid #334155; }
@@ -626,12 +486,11 @@
             .killchain-table td { padding: .8rem 1rem; }
             .killchain-table td::before { content: attr(data-label); display: block; font-weight: 800; color: #7dd3fc; margin-bottom: .3rem; }
         }
-        @media (prefers-reduced-motion: reduce) {
+        @media(prefers-reduced-motion:reduce) {
             html { scroll-behavior: auto; }
             *, *::before, *::after { animation: none !important; transition: none !important; }
         }
     </style>
-<style>.page-content { padding: 0 20px; } @media(max-width:600px) { .page-content { padding:0 12px; } }</style>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -641,7 +500,7 @@
 <a href="index.html">Home</a>
 </li>
             <li>
-<a href="autonomous-systems.html" class="active-link" aria-current="page">Autonomous Systems</a>
+<a href="autonomous-systems.html" class="active-link" aria-current="location">Autonomous Systems</a>
 </li>
             <li>
 <a href="kill-chain.html">The Adversarial Kill Chain</a>
@@ -669,10 +528,8 @@
 </li>
         </ul>
     </nav>
-<main id="main-content">
 <header class="hero">
 <div class="hero-title-container">
-            <!-- 6D. 4-CHEVRON (3D MACHINED BEVEL) HERO BRAND CREST -->
             <svg class="hero-brand-crest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Adversarial Kill-Chain Counter-Engineering 4-Chevron Crest">
                 <rect width="114" height="114" x="3" y="3" fill="#020617" rx="22" stroke="#1e293b" stroke-width="3"/>
                 <polygon points="24,18 60,36 60,48 24,30" fill="#475569"/>
@@ -684,573 +541,622 @@
                 <polygon points="24,81 60,99 60,111 24,93" fill="#f43f5e"/>
                 <polygon points="96,81 60,99 60,111 96,93" fill="#9f1239"/>
             </svg>
-            <h1 class="hero-title">AUTONOMOUS SYSTEMS APPLICATIONS</h1>
+            <h1 class="hero-title">AUTONOMOUS WORKLOAD IDENTITY</h1>
         </div>
-<p class="hero-page-subtitle">Machine Identity Controls for Training, Simulation &amp; Fleet Software Delivery</p>
-<p class="hero-description">Applying human-governed workload identity engineering to the cloud services that support autonomous systems.</p>
-<div class="hero-proof-btn-wrapper">
-<a href="autonomous-proofs.html" class="proof-cta-button">Explore the AWS Demonstration <svg viewBox="0 0 24 24" aria-hidden="true">
-<path d="M5 12h14M12 5l7 7-7 7"/>
-</svg>
-</a>
-</div>
-<div class="page-scope">
-<strong>Scope:</strong> cloud workload identity and supporting CI/CD controls. Firmware trust, device identity, communications security and physical safety require additional system-specific engineering.</div>
+<p class="hero-page-subtitle">AWS Federation &amp; Scoped Secret Access</p>
+<p class="hero-intro-copy">A source-linked GitHub Actions demonstration using AWS STS and Secrets Manager, with recorded results and a clear boundary between observed behavior and further validation.</p>
+<a href="autonomous-systems.html" class="back-banner-btn">&larr; Return to Autonomous Systems Overview</a>
 </header>
-<div class="page-content">
+<main class="container" id="main-content">
+<h2 id="proof-index" class="project-links-header">Demonstration Directory</h2>
+<div class="nav-matrix-grid">
+<a href="#proof-01" class="nav-matrix-link">
+<div class="nav-matrix-title">Example 01: GitHub Actions to AWS</div>
+<div class="nav-matrix-stack">GitHub OIDC &bull; AWS STS &bull; Secrets Manager &bull; Terraform</div>
+<div class="nav-matrix-guardrail">
+<strong>Recorded scope:</strong> federated session, simulated signing metadata read and a reported enumeration denial.</div>
+</a>
+</div>
+<h2 id="proof-01" class="section-title">Example 01: Federation &amp; Secret-Metadata Access</h2>
 <div class="jump-links-container">
-<div class="jump-links-header">
-<div class="jump-links-intro">Explore the seven review areas and engineering handoff.</div>
-</div>
+<div class="jump-links-intro">Example 01 navigation</div>
 <div class="jump-links">
-<a href="#industry-reality">Application context</a>
-<a href="#auto-stage-1">1. Credentials &amp; context</a>
-<a href="#auto-stage-2">2. Federation trust</a>
-<a href="#auto-stage-3">3. Effective permissions</a>
-<a href="#auto-stage-4">4. Secrets &amp; signing</a>
-<a href="#auto-stage-5">5. Audit evidence</a>
-<a href="#auto-stage-6">6. State &amp; repositories</a>
-<a href="#auto-stage-7">7. Drift &amp; AI review</a>
-<a href="#proof-deliverables">Five artifact groups</a>
-<a href="#autonomous-matrix">Review summary</a>
+<a href="#proof-01-brief">Overview &amp; sources</a>
+<a href="#proof-01-lockdowns">Seven review areas</a>
+<a href="#proof-01-iac">Recorded Terraform</a>
+<a href="#proof-01-workflow">Recorded workflow</a>
+<a href="#proof-01-output">Execution results</a>
+<a href="#proof-01-ledgers">Evidence &amp; next tests</a>
 </div>
 </div>
-<section class="hero-arch-block cyan-block" id="industry-reality">
-<span class="hero-block-tag">[APPLICATION CONTEXT :: TRAINING, SIMULATION &amp; SOFTWARE DELIVERY]</span>
-<h2 class="hero-block-title">Why Cloud Workload Identity Matters to Autonomous Systems</h2>
-<div class="mission-master-banner">
-<p class="hero-subtitle">Robotics, connected-vehicle and space-system teams may use cloud services to train models, run simulation, store operational data and deliver software. Automated jobs need access to those services, often through machine identities such as IAM roles, service principals or service accounts.</p>
-<p class="hero-subtitle">A compromised workload or misconfigured trust policy can expose valuable data or release infrastructure. The engineering task is to define which workload may authenticate, which operations it needs and how those boundaries will be tested.</p>
-<p class="hero-subtitle">AKCCE applies the four-gate review structure to these cloud connections. The engineer retains execution authority in the advisory workflow; the cloud provider’s deployed policies enforce access.</p>
+<section class="hero-arch-block cyan-block" id="proof-01-brief">
+<span class="hero-block-tag">[EXAMPLE 01 :: GITHUB ACTIONS / AWS / SECRETS MANAGER]</span>
+<h2 class="hero-block-title">A Recorded Federation &amp; Secret-Access Exercise</h2>
+<p class="hero-lead-p">This example connects a GitHub Actions job to an AWS IAM role through OpenID Connect, then reads a designated AWS Secrets Manager secret and attempts an account-level secret-listing operation. Terraform records the role, trust and permissions used in the exercise.</p>
+<p class="hero-lead-p">The secret contains simulated Ed25519 signing-key metadata. The exercise uses AWS services, but its published evidence covers workload authentication and selected resource operations. It does not demonstrate firmware signing, private-key custody, device acceptance or a production fleet rollout.</p>
+<div class="micro-card micro-card-execution">
+<h3 class="micro-header mc-color-execution">Recorded Source &amp; Run</h3>
+<p class="micro-text">
+<strong>Repository:</strong> Compcode1/Compcode1-akcce-aws-autonomous-fleet-01<br>
+<strong>Source commit:</strong> <code>3d0bcda93c837976baaa74352933c2847604f35d</code>
+<br>
+<strong>Successful run:</strong> <a href="https://github.com/Compcode1/Compcode1-akcce-aws-autonomous-fleet-01/actions/runs/43516181033" class="source-link" target="_blank" rel="noopener noreferrer">43516181033</a> &bull; started <code>2026-11-13T22:04:19Z</code>
+<br>
+<strong>Recorded conclusion:</strong> <span class="result-observed">success</span>
+</p>
+<div class="source-actions">
+<a href="https://github.com/Compcode1/Compcode1-akcce-aws-autonomous-fleet-01/tree/3d0bcda93c837976baaa74352933c2847604f35d" class="source-link" target="_blank" rel="noopener noreferrer">Complete source snapshot</a>
+<a href="https://github.com/Compcode1/Compcode1-akcce-aws-autonomous-fleet-01/actions/runs/43516181033" class="source-link" target="_blank" rel="noopener noreferrer">Open the successful run</a>
+<a href="https://github.com/Compcode1/Compcode1-akcce-aws-autonomous-fleet-01/actions/runs/43512129647" class="source-link" target="_blank" rel="noopener noreferrer">Earlier failed run</a>
 </div>
-<div class="stage-quadrant-grid">
-<article class="quad-card authority-proof">
-<span class="quad-tag">[MOBILITY THREAT CONTEXT]</span>
-<h3 class="quad-title">Upstream: 2026 Mobility Cybersecurity Analysis</h3>
-<p class="quad-text">Upstream reports that 92% of incidents in its mobility analysis were remote, and 67% involved telematics and cloud attack vectors. These figures describe the publisher’s mobility dataset, rather than all robots, vehicles or space systems.</p>
-<a class="authority-link-badge" href="https://upstream.auto/blog/the-kinetic-responsibility-governance-and-resilience-in-the-age-of-physical-ai/" target="_blank" rel="noopener noreferrer">Read Upstream’s analysis <span aria-hidden="true">&rarr;</span>
-</a>
-</article>
-<article class="quad-card authority-proof">
-<span class="quad-tag">[MODEL-WEIGHT PROTECTION]</span>
-<h3 class="quad-title">RAND: Securing AI Model Weights</h3>
-<p class="quad-text">RAND’s 2024 study examines theft risks for frontier-model weights and recommends a comprehensive security approach, including restricted access and monitored storage. It supports treating model access as a sensitive trust boundary; it does not validate this workflow.</p>
-<a class="authority-link-badge" href="https://www.rand.org/pubs/research_reports/RRA2849-1.html" target="_blank" rel="noopener noreferrer">Read the RAND report <span aria-hidden="true">&rarr;</span>
-</a>
-</article>
-<article class="quad-card authority-proof">
-<span class="quad-tag">[SOFTWARE DELIVERY SECURITY]</span>
-<h3 class="quad-title">NSA &amp; CISA: Defending CI/CD Environments</h3>
-<p class="quad-text">The agencies’ 2023 guidance addresses authentication, access control, development tools and delivery processes. These are relevant to automated training, simulation and release pipelines that connect to cloud resources.</p>
-<a class="authority-link-badge" href="https://www.nsa.gov/Press-Room/Press-Releases-Statements/Press-Release-View/Article/3441780/nsa-and-cisa-best-practices-to-secure-cloud-continuous-integrationcontinuous-de/" target="_blank" rel="noopener noreferrer">Read the NSA/CISA overview <span aria-hidden="true">&rarr;</span>
-</a>
-</article>
-<article class="quad-card authority-proof">
-<span class="quad-tag">[VEHICLE UPDATE INTEGRITY]</span>
-<h3 class="quad-title">NHTSA: Vehicle Cybersecurity Best Practices</h3>
-<p class="quad-text">NHTSA’s voluntary 2022 guidance addresses firmware authorization, rollback protection and the integrity of OTA updates and update infrastructure. Cloud identity controls contribute to this broader engineering problem.</p>
-<a class="authority-link-badge" href="https://www.nhtsa.gov/sites/nhtsa.gov/files/2022-09/cybersecurity-best-practices-safety-modern-vehicles-2022-tag.pdf" target="_blank" rel="noopener noreferrer">Read NHTSA’s guidance (PDF) <span aria-hidden="true">&rarr;</span>
-</a>
-</article>
 </div>
-<div class="insight-box">
-<h3 class="insight-header">How to Read This Page</h3>
-<div class="insight-text">The seven areas below map practical risks to workflow controls and evidence to collect. They are an AKCCE review structure, not a claim that all intrusions follow seven stages. The sources describe relevant risks and practices; they do not certify or endorse AKCCE.</div>
-</div>
+<div class="evidence-note">
+<strong>Evidence scope.</strong> GitHub run and step metadata, pinned source files and the lock file were checked for this page. Runner text below is an owner-supplied excerpt; CloudTrail entries are an author-published summary. Raw CloudTrail JSON, digest-validation results and the repository secrets inventory were not independently verified.</div>
+<div class="evidence-note">
+<strong>Reference correction.</strong> Run <code>43512129647</code>, cited as successful on the earlier page, failed at the OIDC-exchange step. Its later identity, read and negative-test steps were skipped. Run <code>43516181033</code> is the successful execution associated with the source snapshot shown here.</div>
 </section>
-<section class="hero-arch-block red-block review-area" id="auto-stage-1">
-<div class="stage-header-row">
-<span class="stage-badge-red">REVIEW AREA 01</span>
-<span class="stage-badge-green">PHASE 1 / GATE 1</span>
-<h2 class="stage-main-title">Workstation Credentials &amp; Deployment Boundaries</h2>
-</div>
-<div class="stage-quadrant-grid">
-<article class="quad-card hacker-play">
-<span class="quad-tag">[RISK SCENARIO]</span>
-<h3 class="quad-title">How the Exposure Can Arise</h3>
-<p class="quad-text">An attacker with access to an engineering workstation or runner may recover credentials from command history, files or cached sessions. Separately, an engineer can accidentally run a valid deployment against the wrong account or production resource.</p>
+<h2 class="section-title">Example 01 Configuration</h2>
+<div class="matrix-grid">
+<article class="matrix-card">
+<h3>Identity</h3>
+<p>AWS IAM role and GitHub OIDC provider</p>
 </article>
-<article class="quad-card tech-seam">
-<span class="quad-tag">[ASSETS &amp; TRUST BOUNDARIES]</span>
-<h3 class="quad-title">What to Examine</h3>
-<ul class="quad-list">
-<li>
-<span class="bullet-lead">Setup credentials:</span> Tokens or keys embedded in command arguments, scripts or shared troubleshooting output.</li>
-<li>
-<span class="bullet-lead">Execution context:</span> The active account, tenant, subscription, project and resource selection.</li>
-<li>
-<span class="bullet-lead">Workspaces &amp; state:</span> Local files or persistent cloud-shell storage that require access control and appropriate cleanup.</li>
-</ul>
+<article class="matrix-card">
+<h3>Workload</h3>
+<p>GitHub Actions job on <code>ubuntu-latest</code>
+</p>
 </article>
-<article class="quad-card authority-proof">
-<span class="quad-tag">[SUPPORTING REFERENCES]</span>
-<h3 class="quad-title">Relevant Security Guidance</h3>
-<ul class="quad-list">
-<li>
-<span class="bullet-lead">MITRE ATT&amp;CK: Shell History (T1552.003):</span> Describes credential recovery from shell history on compromised systems.<br>
-<a class="authority-link-badge" aria-label="Read MITRE ATT&amp;CK: Shell History (T1552.003)" href="https://attack.mitre.org/techniques/T1552/003/" target="_blank" rel="noopener noreferrer">Read the source <span aria-hidden="true">&rarr;</span>
-</a>
-</li>
-<li>
-<span class="bullet-lead">OWASP NHI2:2025 — Secret Leakage:</span> Covers exposed keys, tokens and other non-human identity credentials.<br>
-<a class="authority-link-badge" aria-label="Read OWASP NHI2:2025 — Secret Leakage" href="https://owasp.org/projects/non-human-identities-top-10" target="_blank" rel="noopener noreferrer">Read the source <span aria-hidden="true">&rarr;</span>
-</a>
-</li>
-</ul>
+<article class="matrix-card">
+<h3>Environment</h3>
+<p>Greenfield demonstration in <code>us-east-2</code>
+</p>
 </article>
-<article class="quad-card akcce-strike">
-<span class="quad-tag">[WORKFLOW RESPONSE]</span>
-<h3 class="quad-title">Controls &amp; Acceptance Checks</h3>
-<ul class="quad-list">
-<li>
-<span class="bullet-lead">Discover before changing:</span> Confirm the current identity, cloud context and intended target through read-only queries.</li>
-<li>
-<span class="bullet-lead">Handle credentials deliberately:</span> Keep credentials out of chat and source code. Use an approved secret-input method instead of putting sensitive values directly in command arguments.</li>
-<li>
-<span class="bullet-lead">Use an approved environment:</span> Assess host security, session persistence and state protection. A clean folder or a local terminal alone does not provide isolation.</li>
-</ul>
-<p class="verification">
-<strong>Evidence to collect:</strong> Record the discovered deployment context and review the runbook, logs and staged files for credential exposure. Account and tenant IDs identify routes; they are not authentication secrets.</p>
+<article class="matrix-card">
+<h3>Resource</h3>
+<p>Secrets Manager secret with simulated signing metadata</p>
+</article>
+<article class="matrix-card">
+<h3>Tooling</h3>
+<p>Terraform; AWS provider <code>6.73.0</code> in the committed lock file</p>
 </article>
 </div>
-</section>
-<section class="hero-arch-block red-block review-area" id="auto-stage-2">
-<div class="stage-header-row">
-<span class="stage-badge-red">REVIEW AREA 02</span>
-<span class="stage-badge-green">PHASE 2 / GATE 3</span>
-<h2 class="stage-main-title">Overly Broad Federation Trust</h2>
+<section class="hero-arch-block red-block" id="proof-01-lockdowns">
+<span class="hero-block-tag">[SEVEN REVIEW AREAS :: OBSERVATIONS &amp; LIMITS]</span>
+<h2 class="hero-block-title">What the Published Example Supports</h2>
+<div class="lockdown-grid">
+<article class="lockdown-card">
+<div class="lockdown-badge-row">
+<span class="lockdown-num">AREA 01</span>
+<span class="lockdown-gate">Source-inspected</span>
 </div>
-<div class="stage-quadrant-grid">
-<article class="quad-card hacker-play">
-<span class="quad-tag">[RISK SCENARIO]</span>
-<h3 class="quad-title">How the Exposure Can Arise</h3>
-<p class="quad-text">A signed workload token can be accepted from an unintended source when a trust policy is too broad. This is a trust-configuration problem: the attacker may be using a legitimately issued token rather than forging its signature. Repository, branch, environment and service-account conditions must match the intended workload.</p>
+<h3 class="lockdown-title">Account Context</h3>
+<p class="micro-text">The AWS provider sets <code>allowed_account_ids</code> and includes a caller-identity lookup. These help establish the intended deployment account.</p>
+<p class="review-limit">
+<strong>Review limit:</strong> The source snapshot does not establish host isolation, complete shell-history protection or the security of the bootstrap session.</p>
 </article>
-<article class="quad-card tech-seam">
-<span class="quad-tag">[ASSETS &amp; TRUST BOUNDARIES]</span>
-<h3 class="quad-title">What to Examine</h3>
-<ul class="quad-list">
-<li>
-<span class="bullet-lead">Release jobs:</span> Trust that admits an unapproved repository, branch or execution context.</li>
-<li>
-<span class="bullet-lead">Training &amp; simulation workloads:</span> Namespaces, service accounts or runners with access beyond their intended purpose.</li>
-<li>
-<span class="bullet-lead">Trust conditions:</span> Issuer, audience, subject and provider-specific attribute rules.</li>
-</ul>
+<article class="lockdown-card">
+<div class="lockdown-badge-row">
+<span class="lockdown-num">AREA 02</span>
+<span class="lockdown-gate">Source-inspected</span>
+</div>
+<h3 class="lockdown-title">Federation &amp; Session Duration</h3>
+<p class="micro-text">Trust uses <code>StringEquals</code> for the audience and a subject containing repository names plus numeric owner/repository IDs. The role maximum and workflow request are both <code>3600</code> seconds.</p>
+<p class="review-limit">
+<strong>Review limit:</strong> These are numeric GitHub identifiers, distinct from opaque GraphQL node IDs. The complete configured subject must match. Authentication from unauthorized sources needs separate negative tests.</p>
 </article>
-<article class="quad-card authority-proof">
-<span class="quad-tag">[SUPPORTING REFERENCES]</span>
-<h3 class="quad-title">Relevant Security Guidance</h3>
-<ul class="quad-list">
-<li>
-<span class="bullet-lead">OWASP NHI6:2025 — Insecure Cloud Deployment Configurations:</span> Includes insufficient validation of OIDC tokens and their claims.<br>
-<a class="authority-link-badge" aria-label="Read OWASP NHI6:2025 — Insecure Cloud Deployment Configurations" href="https://owasp.org/projects/non-human-identities-top-10" target="_blank" rel="noopener noreferrer">Read the source <span aria-hidden="true">&rarr;</span>
-</a>
-</li>
-<li>
-<span class="bullet-lead">GitHub OIDC reference:</span> Documents claims, subject formats and trust-condition inputs for GitHub Actions.<br>
-<a class="authority-link-badge" aria-label="Read GitHub OIDC reference" href="https://docs.github.com/en/actions/reference/security/oidc" target="_blank" rel="noopener noreferrer">Read the source <span aria-hidden="true">&rarr;</span>
-</a>
-</li>
-</ul>
+<article class="lockdown-card">
+<div class="lockdown-badge-row">
+<span class="lockdown-num">AREA 03</span>
+<span class="lockdown-gate">Source-inspected</span>
+</div>
+<h3 class="lockdown-title">Resource Permissions</h3>
+<p class="micro-text">The inline role policy grants <code>GetSecretValue</code> and <code>DescribeSecret</code> on one secret ARN. A resource-policy Allow names the role and account; <code>block_public_policy</code> is enabled.</p>
+<p class="review-limit">
+<strong>Review limit:</strong> The resource Allow does not itself deny every other same-account identity. Effective access requires reviewing all applicable grants. An authorization denial for ListSecrets does not establish denial of every other secret read.</p>
 </article>
-<article class="quad-card akcce-strike">
-<span class="quad-tag">[WORKFLOW RESPONSE]</span>
-<h3 class="quad-title">Controls &amp; Acceptance Checks</h3>
-<ul class="quad-list">
-<li>
-<span class="bullet-lead">Inspect actual claims:</span> Resolve the issuer and configured claim format from the workload platform. Use immutable identifiers where supported and relevant.</li>
-<li>
-<span class="bullet-lead">Constrain the trusted source:</span> Use exact matching or appropriately bounded provider-specific conditions. Avoid expanding trust just to bypass a deployment error.</li>
-<li>
-<span class="bullet-lead">Protect the trusted job:</span> Review workflow permissions, repository protections and runner security. An attacker inside an authorized job may still obtain its intended credentials.</li>
-</ul>
-<p class="verification">
-<strong>Evidence to collect:</strong> Test the intended workload and selected unauthorized claim or source cases. Record the credential lifetime for the actual mechanism; a universal one-hour limit cannot be assumed.</p>
+<article class="lockdown-card">
+<div class="lockdown-badge-row">
+<span class="lockdown-num">AREA 04</span>
+<span class="lockdown-gate">Run metadata + supplied excerpt</span>
+</div>
+<h3 class="lockdown-title">Positive &amp; Negative Checks</h3>
+<p class="micro-text">GitHub reports success for the identity check, metadata-read step and negative-test step. The supplied excerpt reports <code>AccessDeniedException</code> for <code>ListSecrets</code>.</p>
+<p class="review-limit">
+<strong>Review limit:</strong> The recorded negative-test script accepts any nonzero exit. A service, credential or syntax error can therefore pass that script; a stronger oracle must check the expected authorization error.</p>
+</article>
+<article class="lockdown-card">
+<div class="lockdown-badge-row">
+<span class="lockdown-num">AREA 05</span>
+<span class="lockdown-gate">Author-published summary</span>
+</div>
+<h3 class="lockdown-title">CloudTrail Record</h3>
+<p class="micro-text">The repository document lists token exchange, secret retrieval, policy readback and denied enumeration events with timestamps and event IDs.</p>
+<p class="review-limit">
+<strong>Review limit:</strong> The published table is a lookup aid. Raw events and integrity-validation evidence are needed for independent forensic verification. No post-quantum transport claim is established by the displayed records.</p>
+</article>
+<article class="lockdown-card">
+<div class="lockdown-badge-row">
+<span class="lockdown-num">AREA 06</span>
+<span class="lockdown-gate">Source-inspected</span>
+</div>
+<h3 class="lockdown-title">Repository &amp; Dependency Records</h3>
+<p class="micro-text">The repository includes ignore rules and a lock file selecting AWS provider <code>6.73.0</code> with checksums. The complete snapshot also includes variables and outputs.</p>
+<p class="review-limit">
+<strong>Review limit:</strong> The HCL provider constraint remains <code>&gt;= 5.0</code>. Actions use mutable <code>@v4</code> tags and the runner uses <code>ubuntu-latest</code>. Ignore rules do not remove already tracked files or prior exposure.</p>
+</article>
+<article class="lockdown-card full-span">
+<div class="lockdown-badge-row">
+<span class="lockdown-num">AREA 07</span>
+<span class="lockdown-gate">Review criteria</span>
+</div>
+<h3 class="lockdown-title">Change History &amp; Next Validation</h3>
+<p class="micro-text">Architecture, audit and patch records preserve the author’s deployment history. The website separates those records from independently checked run metadata.</p>
+<p class="review-limit">
+<strong>Review limit:</strong> Next checks include effective permissions, rejected-source cases, another-secret reads, precise error classification and source/run provenance. Improvements require new execution evidence before being described as validated.</p>
 </article>
 </div>
 </section>
-<section class="hero-arch-block red-block review-area" id="auto-stage-3">
-<div class="stage-header-row">
-<span class="stage-badge-red">REVIEW AREA 03</span>
-<span class="stage-badge-green">PHASE 3 / GATES 2 &amp; 4</span>
-<h2 class="stage-main-title">Excessive Permissions &amp; Access to Adjacent Resources</h2>
+<section aria-labelledby="proof-01-iac">
+<h2 id="proof-01-iac" class="section-title">Recorded Infrastructure Source: main.tf</h2>
+<p class="artifact-description">This is the source at commit <code>3d0bcda</code>, reproduced without changes. Names, IDs and comments belong to that demonstration. Use the <a href="https://github.com/Compcode1/Compcode1-akcce-aws-autonomous-fleet-01/tree/3d0bcda93c837976baaa74352933c2847604f35d" class="source-link" target="_blank" rel="noopener noreferrer">complete source snapshot</a> for context, including <code>variables.tf</code>, <code>outputs.tf</code> and the dependency lock file.</p>
+<div class="evidence-note">
+<strong>Review before reuse.</strong> This historical configuration sets <code>recovery_window_in_days = 0</code> and shows no remote backend or deletion-prevention lifecycle. Those settings need deliberate review for a production deployment. The local gate numbers in source comments are retained from the original artifact.</div>
+<p class="artifact-description">
+<a href="https://github.com/Compcode1/Compcode1-akcce-aws-autonomous-fleet-01/blob/3d0bcda93c837976baaa74352933c2847604f35d/main.tf" class="source-link" target="_blank" rel="noopener noreferrer">Open main.tf at the recorded commit</a>
+</p>
+<div class="terminal-window">
+<div class="terminal-header">
+<div class="terminal-title">main.tf — recorded source</div>
 </div>
-<div class="stage-quadrant-grid">
-<article class="quad-card hacker-play">
-<span class="quad-tag">[RISK SCENARIO]</span>
-<h3 class="quad-title">How the Exposure Can Arise</h3>
-<p class="quad-text">A compromised build or simulation job can misuse every operation its identity is allowed to perform. Broad administrative access can permit resource changes or privilege escalation. Cloud role semantics differ: infrastructure-management permission does not always include direct data reads, but may create other routes to sensitive access.</p>
-</article>
-<article class="quad-card tech-seam">
-<span class="quad-tag">[ASSETS &amp; TRUST BOUNDARIES]</span>
-<h3 class="quad-title">What to Examine</h3>
-<ul class="quad-list">
-<li>
-<span class="bullet-lead">Model weights &amp; datasets:</span> Reads or changes outside the workload’s required model and data scope.</li>
-<li>
-<span class="bullet-lead">Customer &amp; operational information:</span> Facility maps, sensor records and telemetry that require appropriate confidentiality and retention controls.</li>
-<li>
-<span class="bullet-lead">Release infrastructure:</span> The ability to change trust policies, permissions, storage or signing-service configuration.</li>
-</ul>
-</article>
-<article class="quad-card authority-proof">
-<span class="quad-tag">[SUPPORTING REFERENCES]</span>
-<h3 class="quad-title">Relevant Security Guidance</h3>
-<ul class="quad-list">
-<li>
-<span class="bullet-lead">OWASP NHI5:2025 — Overprivileged NHI:</span> Addresses machine identities granted more privilege than their function needs.<br>
-<a class="authority-link-badge" aria-label="Read OWASP NHI5:2025 — Overprivileged NHI" href="https://owasp.org/projects/non-human-identities-top-10" target="_blank" rel="noopener noreferrer">Read the source <span aria-hidden="true">&rarr;</span>
-</a>
-</li>
-<li>
-<span class="bullet-lead">AWS IAM policy evaluation:</span> Explains how applicable policy types contribute to the access decision.<br>
-<a class="authority-link-badge" aria-label="Read AWS IAM policy evaluation" href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html" target="_blank" rel="noopener noreferrer">Read the source <span aria-hidden="true">&rarr;</span>
-</a>
-</li>
-</ul>
-</article>
-<article class="quad-card akcce-strike">
-<span class="quad-tag">[WORKFLOW RESPONSE]</span>
-<h3 class="quad-title">Controls &amp; Acceptance Checks</h3>
-<ul class="quad-list">
-<li>
-<span class="bullet-lead">Define required operations:</span> Select actions and resource scope from the workload’s actual task. Separate provisioning authority from runtime access.</li>
-<li>
-<span class="bullet-lead">Review effective access:</span> Consider inherited grants, resource policies, impersonation and alternate credentials. A narrow new policy does not cancel existing permissions.</li>
-<li>
-<span class="bullet-lead">Review infrastructure changes:</span> Inspect planned replacements, deletions and permission changes; use appropriate state and deletion safeguards.</li>
-</ul>
-<p class="verification">
-<strong>Evidence to collect:</strong> Test required reads or operations and relevant denied operations on adjacent resources. Record policy evidence and any remaining access paths rather than declaring zero lateral movement.</p>
-</article>
-</div>
-</section>
-<section class="hero-arch-block red-block review-area" id="auto-stage-4">
-<div class="stage-header-row">
-<span class="stage-badge-red">REVIEW AREA 04</span>
-<span class="stage-badge-green">PHASE 4 / VALIDATION</span>
-<h2 class="stage-main-title">Secret-Safe Validation &amp; Signing Authority</h2>
-</div>
-<div class="stage-quadrant-grid">
-<article class="quad-card hacker-play">
-<span class="quad-tag">[RISK SCENARIO]</span>
-<h3 class="quad-title">How the Exposure Can Arise</h3>
-<p class="quad-text">Debug output can expose active tokens or retrieved secrets in shared logs and artifacts. Firmware signing introduces a separate boundary: permission to read a secret, invoke a signing operation, approve a release and install an update are different capabilities.</p>
-</article>
-<article class="quad-card tech-seam">
-<span class="quad-tag">[ASSETS &amp; TRUST BOUNDARIES]</span>
-<h3 class="quad-title">What to Examine</h3>
-<ul class="quad-list">
-<li>
-<span class="bullet-lead">Runtime credentials:</span> Bearer tokens and API credentials exposed through tracing or output.</li>
-<li>
-<span class="bullet-lead">Signing authority:</span> Private-key custody and the permissions that permit artifacts to be signed.</li>
-<li>
-<span class="bullet-lead">Release integrity:</span> Which artifact is approved, signed and accepted by the target device.</li>
-</ul>
-</article>
-<article class="quad-card authority-proof">
-<span class="quad-tag">[SUPPORTING REFERENCES]</span>
-<h3 class="quad-title">Relevant Security Guidance</h3>
-<ul class="quad-list">
-<li>
-<span class="bullet-lead">GitHub Actions masking:</span> Describes masking values in logs; this is log redaction, not memory erasure.<br>
-<a class="authority-link-badge" aria-label="Read GitHub Actions masking" href="https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands#masking-a-value-in-a-log" target="_blank" rel="noopener noreferrer">Read the source <span aria-hidden="true">&rarr;</span>
-</a>
-</li>
-<li>
-<span class="bullet-lead">NHTSA 2022 guidance &amp; AWS KMS:</span> NHTSA addresses firmware and OTA integrity. <a class="inline-link" href="https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html" target="_blank" rel="noopener noreferrer">AWS KMS documentation</a> distinguishes managed asymmetric key operations from exporting a private key.<br>
-<a class="authority-link-badge" aria-label="Read NHTSA 2022 guidance &amp; AWS KMS" href="https://www.nhtsa.gov/sites/nhtsa.gov/files/2022-09/cybersecurity-best-practices-safety-modern-vehicles-2022-tag.pdf" target="_blank" rel="noopener noreferrer">Read the source <span aria-hidden="true">&rarr;</span>
-</a>
-</li>
-</ul>
-</article>
-<article class="quad-card akcce-strike">
-<span class="quad-tag">[WORKFLOW RESPONSE]</span>
-<h3 class="quad-title">Controls &amp; Acceptance Checks</h3>
-<ul class="quad-list">
-<li>
-<span class="bullet-lead">Avoid printing secret values:</span> Validate outcomes using non-sensitive assertions. Treat platform masking as a secondary safeguard and inspect artifacts as well as logs.</li>
-<li>
-<span class="bullet-lead">Design signing separately:</span> For real release signing, assess managed signing or protected key custody, narrowly scoped signing permission and independent release authorization.</li>
-<li>
-<span class="bullet-lead">Record the deployment baseline:</span> Use the Identity Architecture Ledger to document configuration. Behavioral checks remain pending until their tests run.</li>
-</ul>
-<p class="verification">
-<strong>Evidence to collect:</strong> Retain the principal, resource, operation and result without publishing credentials. A secret-read test establishes neither a successful firmware signature nor device-side verification or rollback protection.</p>
-</article>
-</div>
-</section>
-<section class="hero-arch-block red-block review-area" id="auto-stage-5">
-<div class="stage-header-row">
-<span class="stage-badge-red">REVIEW AREA 05</span>
-<span class="stage-badge-green">PHASE 5 / EVIDENCE REVIEW</span>
-<h2 class="stage-main-title">Audit Coverage, Ingestion Delays &amp; Evidence Quality</h2>
-</div>
-<div class="stage-quadrant-grid">
-<article class="quad-card hacker-play">
-<span class="quad-tag">[RISK SCENARIO]</span>
-<h3 class="quad-title">How the Exposure Can Arise</h3>
-<p class="quad-text">Incomplete audit coverage and delayed ingestion can leave a deployment insufficiently understood. The timing depends on the service, logging configuration and monitoring pipeline. A generated query or an aggregate activity spike cannot establish which identity performed a successful data operation.</p>
-</article>
-<article class="quad-card tech-seam">
-<span class="quad-tag">[ASSETS &amp; TRUST BOUNDARIES]</span>
-<h3 class="quad-title">What to Examine</h3>
-<ul class="quad-list">
-<li>
-<span class="bullet-lead">Visibility:</span> The relevant authentication, data access and configuration-change events.</li>
-<li>
-<span class="bullet-lead">Attribution:</span> Enough principal, resource, operation and timing information to investigate a request.</li>
-<li>
-<span class="bullet-lead">Handoff accuracy:</span> Audit records that distinguish observed results from assumptions and pending work.</li>
-</ul>
-</article>
-<article class="quad-card authority-proof">
-<span class="quad-tag">[SUPPORTING REFERENCES]</span>
-<h3 class="quad-title">Relevant Security Guidance</h3>
-<ul class="quad-list">
-<li>
-<span class="bullet-lead">OWASP CI/CD: Insufficient Logging and Visibility (CICD-SEC-10):</span> Identifies inadequate pipeline visibility as a security risk.<br>
-<a class="authority-link-badge" aria-label="Read OWASP CI/CD: Insufficient Logging and Visibility (CICD-SEC-10)" href="https://owasp.org/projects/top-10-cicd-security-risks" target="_blank" rel="noopener noreferrer">Read the source <span aria-hidden="true">&rarr;</span>
-</a>
-</li>
-<li>
-<span class="bullet-lead">NSA/CISA CI/CD guidance:</span> Provides broader recommendations for securing the development and delivery environment.<br>
-<a class="authority-link-badge" aria-label="Read NSA/CISA CI/CD guidance" href="https://www.nsa.gov/Press-Room/Press-Releases-Statements/Press-Release-View/Article/3441780/nsa-and-cisa-best-practices-to-secure-cloud-continuous-integrationcontinuous-de/" target="_blank" rel="noopener noreferrer">Read the source <span aria-hidden="true">&rarr;</span>
-</a>
-</li>
-</ul>
-</article>
-<article class="quad-card akcce-strike">
-<span class="quad-tag">[WORKFLOW RESPONSE]</span>
-<h3 class="quad-title">Controls &amp; Acceptance Checks</h3>
-<ul class="quad-list">
-<li>
-<span class="bullet-lead">Define evidence prerequisites:</span> Check that the required events are enabled, retained and available to the reviewer. Keep monitoring health visible.</li>
-<li>
-<span class="bullet-lead">Correlate supported fields:</span> Use the provider’s actual log schema and documented identifiers. Record ambiguity where a unique linkage cannot be established.</li>
-<li>
-<span class="bullet-lead">Report the actual result:</span> Populate the Audit Results Ledger with evidence-backed PASS, FAIL, PENDING or ERROR statuses as appropriate.</li>
-</ul>
-<p class="verification">
-<strong>Evidence to collect:</strong> Run the queries and review their results before closing the related check. Record missing events and uncertain attribution. Detection, response and access controls remain complementary responsibilities.</p>
-</article>
+<pre class="terminal-body" tabindex="0" aria-label="main.tf — recorded source">
+<code id="recorded-main-source">terraform {
+  required_version = &quot;&gt;= 1.15.0&quot;
+  required_providers {
+    aws = {
+      source  = &quot;hashicorp/aws&quot;
+      version = &quot;&gt;= 5.0&quot;
+    }
+  }
+}
+
+provider &quot;aws&quot; {
+  region              = var.aws_region
+  allowed_account_ids = [var.aws_account_id]
+  default_tags {
+    tags = {
+      Architecture       = &quot;AKCCE-Zero-Trust-Machine-Identity&quot;
+      Project            = &quot;akcce-aws-autonomous-fleet-01&quot;
+      GitHubOwnerID      = var.github_owner_id
+      GitHubRepositoryID = var.github_repo_id
+      ManagedBy          = &quot;Terraform&quot;
+    }
+  }
+}
+
+data &quot;aws_caller_identity&quot; &quot;current&quot; {}
+
+# Gate 1: Singleton AWS IAM OIDC Trust Anchor
+resource &quot;aws_iam_openid_connect_provider&quot; &quot;github_actions&quot; {
+  url            = &quot;https://token.actions.githubusercontent.com&quot;
+  client_id_list = [&quot;sts.amazonaws.com&quot;]
+  thumbprint_list = [
+    &quot;6938fd4d98bab03faadb97b34396831e3780aea1&quot;,
+    &quot;1c58a3a8518e8759bf075b76b750d4f2df264fcd&quot;
+  ]
+}
+
+# Gate 2: 60-Min Ephemeral Role &amp; Exact Subject/Audience Claim Lock
+data &quot;aws_iam_policy_document&quot; &quot;github_oidc_assume_role&quot; {
+  statement {
+    sid     = &quot;EnforceGitHubActionsOIDCExactSubjectAndAudience&quot;
+    effect  = &quot;Allow&quot;
+    actions = [&quot;sts:AssumeRoleWithWebIdentity&quot;]
+    principals {
+      type        = &quot;Federated&quot;
+      identifiers = [aws_iam_openid_connect_provider.github_actions.arn]
+    }
+    condition {
+      test     = &quot;StringEquals&quot;
+      variable = &quot;token.actions.githubusercontent.com:aud&quot;
+      values   = [&quot;sts.amazonaws.com&quot;]
+    }
+    condition {
+      test     = &quot;StringEquals&quot;
+      variable = &quot;token.actions.githubusercontent.com:sub&quot;
+      values   = [&quot;repo:${var.github_owner}@${var.github_owner_id}/${var.github_repo}@${var.github_repo_id}:ref:refs/heads/${var.github_branch}&quot;]
+    }
+    condition {
+      test     = &quot;Null&quot;
+      variable = &quot;token.actions.githubusercontent.com:sub&quot;
+      values   = [&quot;false&quot;]
+    }
+  }
+}
+
+resource &quot;aws_iam_role&quot; &quot;autonomous_fleet_ota_signer&quot; {
+  name                 = &quot;akcce-autonomous-fleet-01-ota-oidc-role&quot;
+  description          = &quot;AKCCE OIDC role bound to Compcode1/Compcode1-akcce-aws-autonomous-fleet-01 (Repo ID 1457038661)&quot;
+  assume_role_policy   = data.aws_iam_policy_document.github_oidc_assume_role.json
+  max_session_duration = 3600
+}
+
+# Gate 4A: Autonomous Fleet OTA Signing Secret (us-east-2)
+resource &quot;aws_secretsmanager_secret&quot; &quot;ota_firmware_signing_key&quot; {
+  name                    = &quot;autonomy-prod/ota-firmware-signing-key&quot;
+  description             = &quot;Simulated Ed25519 OTA firmware signing key metadata&quot;
+  recovery_window_in_days = 0
+}
+
+resource &quot;aws_secretsmanager_secret_version&quot; &quot;ota_firmware_signing_key_v1&quot; {
+  secret_id = aws_secretsmanager_secret.ota_firmware_signing_key.id
+  secret_string = jsonencode({
+    key_id              = &quot;akcce-ed25519-ota-prod-01&quot;
+    algorithm           = &quot;Ed25519&quot;
+    fleet_domain        = &quot;us-east-2-autonomous-fleet&quot;
+    bound_repo_node_id  = var.github_repo_id
+    bound_owner_node_id = var.github_owner_id
+    attestation_state   = &quot;ZERO_STATIC_SECRETS_ENFORCED&quot;
+  })
+}
+
+# Gate 3: Identity-Based Least-Privilege Inline Policy
+data &quot;aws_iam_policy_document&quot; &quot;ota_secret_least_privilege&quot; {
+  statement {
+    sid       = &quot;AllowReadSingleOTASigningSecretOnly&quot;
+    effect    = &quot;Allow&quot;
+    actions   = [&quot;secretsmanager:GetSecretValue&quot;, &quot;secretsmanager:DescribeSecret&quot;]
+    resources = [aws_secretsmanager_secret.ota_firmware_signing_key.arn]
+  }
+}
+
+resource &quot;aws_iam_role_policy&quot; &quot;autonomous_fleet_ota_signer_policy&quot; {
+  name   = &quot;akcce-ota-secret-read-only&quot;
+  role   = aws_iam_role.autonomous_fleet_ota_signer.id
+  policy = data.aws_iam_policy_document.ota_secret_least_privilege.json
+}
+
+# Gate 4B: Resource-Based Vault Guardrail Policy
+data &quot;aws_iam_policy_document&quot; &quot;ota_secret_resource_guardrail&quot; {
+  statement {
+    sid    = &quot;AllowOnlyFederatedAutonomousFleetRole&quot;
+    effect = &quot;Allow&quot;
+    principals {
+      type        = &quot;AWS&quot;
+      identifiers = [aws_iam_role.autonomous_fleet_ota_signer.arn]
+    }
+    actions   = [&quot;secretsmanager:GetSecretValue&quot;, &quot;secretsmanager:DescribeSecret&quot;]
+    resources = [&quot;*&quot;]
+    condition {
+      test     = &quot;StringEquals&quot;
+      variable = &quot;aws:PrincipalAccount&quot;
+      values   = [var.aws_account_id]
+    }
+  }
+}
+
+resource &quot;aws_secretsmanager_secret_policy&quot; &quot;ota_firmware_signing_key_policy&quot; {
+  secret_arn          = aws_secretsmanager_secret.ota_firmware_signing_key.arn
+  policy              = data.aws_iam_policy_document.ota_secret_resource_guardrail.json
+  block_public_policy = true
+}
+</code>
+</pre>
 </div>
 </section>
-<section class="hero-arch-block red-block review-area" id="auto-stage-6">
-<div class="stage-header-row">
-<span class="stage-badge-red">REVIEW AREA 06</span>
-<span class="stage-badge-green">PHASE 6 / HANDOFF</span>
-<h2 class="stage-main-title">Deployment State &amp; Repository Exposure</h2>
+  <section aria-labelledby="proof-01-workflow">
+<h2 id="proof-01-workflow" class="section-title">Recorded GitHub Actions Workflow</h2>
+<p class="artifact-description">The workflow below is the file attached to the successful source revision. It includes <code>role-duration-seconds: 3600</code> and does not contain the additional <code>::add-mask::</code> line shown in the earlier website rendering. Its JSON projection prints selected fields from the simulated payload.</p>
+<p class="artifact-description">
+<a href="https://github.com/Compcode1/Compcode1-akcce-aws-autonomous-fleet-01/blob/3d0bcda93c837976baaa74352933c2847604f35d/.github/workflows/akcce-ota-oidc-attestation.yml" class="source-link" target="_blank" rel="noopener noreferrer">Open the recorded workflow</a>
+</p>
+<div class="terminal-window">
+<div class="terminal-header">
+<div class="terminal-title">.github/workflows/akcce-ota-oidc-attestation.yml — recorded source</div>
 </div>
-<div class="stage-quadrant-grid">
-<article class="quad-card hacker-play">
-<span class="quad-tag">[RISK SCENARIO]</span>
-<h3 class="quad-title">How the Exposure Can Arise</h3>
-<p class="quad-text">State, plan files and environment files may contain sensitive configuration or credentials. Repository readers can recover exposed information from commits. Unreviewed synchronization or history changes can also remove validated configuration or obscure what was deployed.</p>
-</article>
-<article class="quad-card tech-seam">
-<span class="quad-tag">[ASSETS &amp; TRUST BOUNDARIES]</span>
-<h3 class="quad-title">What to Examine</h3>
-<ul class="quad-list">
-<li>
-<span class="bullet-lead">Infrastructure state &amp; plans:</span> Provider-managed metadata and sensitive values retained in deployment artifacts.</li>
-<li>
-<span class="bullet-lead">Repository history:</span> Credentials or state files already committed, even if later ignored.</li>
-<li>
-<span class="bullet-lead">Reproducibility:</span> The configuration, dependency locks and workflow revision used for a deployment.</li>
-</ul>
-</article>
-<article class="quad-card authority-proof">
-<span class="quad-tag">[SUPPORTING REFERENCES]</span>
-<h3 class="quad-title">Relevant Security Guidance</h3>
-<ul class="quad-list">
-<li>
-<span class="bullet-lead">HashiCorp: Manage sensitive data:</span> Explains sensitive information in state and plan files and the need to protect it.<br>
-<a class="authority-link-badge" aria-label="Read HashiCorp: Manage sensitive data" href="https://developer.hashicorp.com/terraform/language/manage-sensitive-data" target="_blank" rel="noopener noreferrer">Read the source <span aria-hidden="true">&rarr;</span>
-</a>
-</li>
-<li>
-<span class="bullet-lead">MITRE ATT&amp;CK: Code Repositories (T1213.003):</span> Describes collection of valuable data from compromised repositories.<br>
-<a class="authority-link-badge" aria-label="Read MITRE ATT&amp;CK: Code Repositories (T1213.003)" href="https://attack.mitre.org/techniques/T1213/003/" target="_blank" rel="noopener noreferrer">Read the source <span aria-hidden="true">&rarr;</span>
-</a>
-</li>
-</ul>
-</article>
-<article class="quad-card akcce-strike">
-<span class="quad-tag">[WORKFLOW RESPONSE]</span>
-<h3 class="quad-title">Controls &amp; Acceptance Checks</h3>
-<ul class="quad-list">
-<li>
-<span class="bullet-lead">Protect state deliberately:</span> Use an approved backend or storage with access control, encryption, locking and recovery suitable for the tool and environment.</li>
-<li>
-<span class="bullet-lead">Review before staging:</span> Use explicit file selection, appropriate ignore rules and secret checks. Preserve the dependency locks needed for reproducibility.</li>
-<li>
-<span class="bullet-lead">Synchronize deliberately:</span> Inspect the working tree, branch and remote changes. Resolve differences through review rather than assuming a pull command prevents conflicts.</li>
-</ul>
-<p class="verification">
-<strong>Evidence to collect:</strong> Inspect the staged diff and tracked files. <a class="inline-link" href="https://docs.github.com/en/get-started/git-basics/ignoring-files" target="_blank" rel="noopener noreferrer">Ignore rules</a> do not remove already tracked files or historical exposure. Revoke exposed credentials and follow the incident process where needed.</p>
-</article>
+<pre class="terminal-body" tabindex="0" aria-label=".github/workflows/akcce-ota-oidc-attestation.yml — recorded source">
+<code id="recorded-workflow-source">name: AKCCE Zero-Trust AWS OIDC Attestation
+
+on:
+  push:
+    branches: [ &quot;main&quot; ]
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  oidc-ephemeral-sts-attestation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Gate 1 &amp; 2 - Exchange GitHub OIDC JWT for Ephemeral AWS STS Role
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::698250246230:role/akcce-autonomous-fleet-01-ota-oidc-role
+          aws-region: us-east-2
+          role-session-name: AKCCE-AutonomousFleet-OIDC-Proof
+          role-duration-seconds: 3600
+
+      - name: Verify Ephemeral STS Assumed-Role Identity
+        run: |
+          aws sts get-caller-identity --output json
+
+      - name: Gate 3 &amp; 4 Positive Proof - Scoped OTA Signing Key Metadata Read
+        run: |
+          SECRET_JSON=$(aws secretsmanager get-secret-value \
+            --secret-id autonomy-prod/ota-firmware-signing-key \
+            --region us-east-2 \
+            --query SecretString \
+            --output text)
+          echo &quot;$SECRET_JSON&quot; | jq '{key_id, algorithm, fleet_domain, bound_repo_node_id, bound_owner_node_id, attestation_state}'
+
+      - name: Kill-Chain Counter-Test - Prove Lateral Vault Enumeration is Denied
+        run: |
+          set +e
+          OUT=$(aws secretsmanager list-secrets --region us-east-2 2&gt;&amp;1)
+          RC=$?
+          set -e
+          echo &quot;$OUT&quot;
+          if [ &quot;$RC&quot; -eq 0 ]; then
+            echo &quot;SECURITY_FAILURE: Lateral ListSecrets unexpectedly succeeded!&quot;
+            exit 1
+          fi
+          echo &quot;AKCCE_COUNTER_TEST_PASSED: Lateral secretsmanager:ListSecrets deterministically blocked (exit $RC).&quot;
+</code>
+</pre>
 </div>
+<div class="evidence-note">
+<strong>Negative-test interpretation.</strong> The final step fails when listing succeeds, but treats every other exit as a pass. AWS CLI code <code>254</code> means a service returned an error; it is not specific to access denial. See the <a class="source-link" href="https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-returncodes.html" target="_blank" rel="noopener noreferrer">AWS CLI return-code reference</a>. A revised test should distinguish the expected denial from unrelated failures and then be rerun.</div>
 </section>
-<section class="hero-arch-block red-block review-area" id="auto-stage-7">
-<div class="stage-header-row">
-<span class="stage-badge-red">REVIEW AREA 07</span>
-<span class="stage-badge-green">ALL PHASES / PHASE 7</span>
-<h2 class="stage-main-title">Configuration Drift &amp; AI-Assisted Change Review</h2>
-</div>
-<div class="stage-quadrant-grid">
-<article class="quad-card hacker-play">
-<span class="quad-tag">[RISK SCENARIO]</span>
-<h3 class="quad-title">How the Exposure Can Arise</h3>
-<p class="quad-text">As environments and workloads grow, configuration can diverge and earlier decisions can be lost. AI-generated patches may introduce incorrect assumptions or weaken a policy while resolving an error. A chat history is an unreliable substitute for a reviewed, versioned baseline.</p>
-</article>
-<article class="quad-card tech-seam">
-<span class="quad-tag">[ASSETS &amp; TRUST BOUNDARIES]</span>
-<h3 class="quad-title">What to Examine</h3>
-<ul class="quad-list">
-<li>
-<span class="bullet-lead">Trust &amp; permission baselines:</span> New environments that silently acquire broader access or outdated assumptions.</li>
-<li>
-<span class="bullet-lead">Troubleshooting history:</span> Errors, tested fixes and exceptions needed to understand later changes.</li>
-<li>
-<span class="bullet-lead">Execution authority:</span> The credentials and tools made available to an assistant or integrated agent.</li>
-</ul>
-</article>
-<article class="quad-card authority-proof">
-<span class="quad-tag">[SUPPORTING REFERENCES]</span>
-<h3 class="quad-title">Relevant Security Guidance</h3>
-<ul class="quad-list">
-<li>
-<span class="bullet-lead">NIST AI Risk Management Framework:</span> Provides voluntary guidance for managing AI risk and accountability.<br>
-<a class="authority-link-badge" aria-label="Read NIST AI Risk Management Framework" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer">Read the source <span aria-hidden="true">&rarr;</span>
-</a>
-</li>
-<li>
-<span class="bullet-lead">OWASP LLM06:2025 — Excessive Agency:</span> Addresses excessive functionality, permissions and autonomy in AI systems.<br>
-<a class="authority-link-badge" aria-label="Read OWASP LLM06:2025 — Excessive Agency" href="https://genai.owasp.org/llmrisk/llm062025-excessive-agency/" target="_blank" rel="noopener noreferrer">Read the source <span aria-hidden="true">&rarr;</span>
-</a>
-</li>
-</ul>
-</article>
-<article class="quad-card akcce-strike">
-<span class="quad-tag">[WORKFLOW RESPONSE]</span>
-<h3 class="quad-title">Controls &amp; Acceptance Checks</h3>
-<ul class="quad-list">
-<li>
-<span class="bullet-lead">Retain the baseline:</span> Version the configuration and defect record, including evidence and unresolved issues. Recheck current cloud state before Day-2 changes.</li>
-<li>
-<span class="bullet-lead">Bound repeated patches:</span> Use a defined retry budget and an engineer-led review when troubleshooting stalls. The original fourth-attempt halt is a design choice, not a proven reliability threshold.</li>
-<li>
-<span class="bullet-lead">Review proposed lessons:</span> Test directive changes before adoption and check for conflicting rules. External tool permissions and approval gates must enforce automated execution limits.</li>
-</ul>
-<p class="verification">
-<strong>Evidence to collect:</strong> Use repeatable checks to detect drift and regressions. A complete file or a larger prompt does not guarantee correctness; record what was tested and what remains open.</p>
-</article>
-</div>
-</section>
-<section class="hero-arch-block green-block" id="proof-deliverables">
-<span class="hero-block-tag">[FIVE ARTIFACT GROUPS :: CONFIGURATION, EVIDENCE &amp; CHANGE HISTORY]</span>
-<h2 class="hero-block-title">A Reviewable Engineering Handoff</h2>
-<p class="hero-subtitle">The intended handoff brings the implementation and its evidence together. These are five artifact groups, not a guarantee of exactly five files. Review sensitive content before publishing or committing the package.</p>
-<div class="deliverables-grid">
-<article class="deliverable-card">
-<span class="quad-tag" style="color:var(--color-green)">[CONFIGURATION &amp; RUNBOOK]</span>
-<h3 class="quad-title">1. Infrastructure Payload &amp; Execution Runbook</h3>
-<p class="quad-text">The cloud-specific configuration, prerequisites and commands for the reviewed change. Retain appropriate version locks, plan review, workload trust and permission scope. A deployment may require several files, modules and workflow definitions.</p>
-</article>
-<article class="deliverable-card">
-<span class="quad-tag" style="color:var(--color-green)">[ARCHITECTURE BASELINE]</span>
-<h3 class="quad-title">2. Identity Architecture Ledger</h3>
-<p class="quad-text">
-<code>identity_architecture_ledger.md</code> records the deployed principal, trust conditions, resource scope, credential settings and configuration revision. It describes the baseline and links to supporting observations.</p>
-</article>
-<article class="deliverable-card">
-<span class="quad-tag" style="color:var(--color-green)">[OBSERVED RESULTS]</span>
-<h3 class="quad-title">3. Audit Results Ledger</h3>
-<p class="quad-text">
-<code>audit_results_ledger.md</code> records each check, its evidence, outcome and limitations. Separate completed tests from pending verification. The ledger can support a review, but does not establish regulatory compliance or guarantee audit acceptance.</p>
-</article>
-<article class="deliverable-card">
-<span class="quad-tag" style="color:var(--color-green)">[LOGGING &amp; QUERY HANDOFF]</span>
-<h3 class="quad-title">4. Telemetry Queries &amp; Results</h3>
-<p class="quad-text">Provider-specific CloudTrail, KQL or Cloud Audit queries, with prerequisites, schema assumptions and reviewed results when available. A query file is not an active detector or an executed verification result.</p>
-</article>
-<article class="deliverable-card">
-<span class="quad-tag" style="color:var(--color-green)">[DEFECTS &amp; CHANGES]</span>
-<h3 class="quad-title">5. Defect &amp; Patch Ledger</h3>
-<p class="quad-text">
-<code>patch_ledger.md</code> records error signatures, root-cause confidence, tested fixes, exceptions and unresolved issues. Proposed workflow improvements remain subject to review and regression checks.</p>
-</article>
-</div>
-</section>
-<section class="hero-arch-block cyan-block" id="autonomous-matrix">
-<span class="hero-block-tag">[ENGINEERING SUMMARY]</span>
-<h2 class="hero-block-title">Seven Review Areas, Controls &amp; Evidence</h2>
-<div class="matrix-table-wrapper" role="region" aria-label="Autonomous systems identity review summary" tabindex="0">
+<section class="hero-arch-block cyan-block" id="proof-01-output">
+<span class="hero-block-tag">[RECORDED EXECUTION :: METADATA &amp; SUPPLIED OUTPUT]</span>
+<h2 class="hero-block-title">Execution Results with Explicit Provenance</h2>
+<div class="matrix-table-wrapper" role="region" aria-label="Recorded workflow step results" tabindex="0">
 <table class="killchain-table" role="table">
-<caption>Acceptance depends on the selected implementation and recorded results.</caption>
+<caption>GitHub-reported step conclusions for successful run 43516181033.</caption>
 <thead>
 <tr role="row">
-<th scope="col">Review Area</th>
-<th scope="col">Example Risk</th>
-<th scope="col">Workflow Response</th>
-<th scope="col">Evidence</th>
+<th scope="col">Step</th>
+<th scope="col">Reported Result</th>
+<th scope="col">Interpretation</th>
 </tr>
 </thead>
 <tbody>
 <tr role="row">
-<th scope="row">1. Credentials &amp; context</th>
-<td data-label="Example risk" role="cell">Exposed setup credentials or commands directed at the wrong environment.</td>
-<td data-label="Workflow response" role="cell">Approved workspace, controlled credential handling and read-only context discovery.</td>
-<td data-label="Evidence" role="cell">Recorded context, reviewed commands and inspected artifacts.</td>
+<th scope="row">Gate 1 &amp; 2 - Exchange GitHub OIDC JWT for Ephemeral AWS STS Role</th>
+<td role="cell" data-label="Reported Result">
+<span class="result-observed">success</span>
+</td>
+<td role="cell" data-label="Interpretation">GitHub reports successful completion of this workflow step.</td>
 </tr>
 <tr role="row">
-<th scope="row">2. Federation trust</th>
-<td data-label="Example risk" role="cell">Tokens from an unintended source satisfy an overly broad trust condition.</td>
-<td data-label="Workflow response" role="cell">Current claim discovery, narrow trust and protection of the trusted job.</td>
-<td data-label="Evidence" role="cell">Allowed authentication plus meaningful rejected-source tests.</td>
+<th scope="row">Verify Ephemeral STS Assumed-Role Identity</th>
+<td role="cell" data-label="Reported Result">
+<span class="result-observed">success</span>
+</td>
+<td role="cell" data-label="Interpretation">GitHub reports successful completion of this workflow step.</td>
 </tr>
 <tr role="row">
-<th scope="row">3. Effective permissions</th>
-<td data-label="Example risk" role="cell">A compromised job can read, change or administer more than its task requires.</td>
-<td data-label="Workflow response" role="cell">Operation-level scope, effective-permission review and change-plan inspection.</td>
-<td data-label="Evidence" role="cell">Policy review, allowed operations and expected denials.</td>
+<th scope="row">Gate 3 &amp; 4 Positive Proof - Scoped OTA Signing Key Metadata Read</th>
+<td role="cell" data-label="Reported Result">
+<span class="result-observed">success</span>
+</td>
+<td role="cell" data-label="Interpretation">GitHub reports successful completion of this workflow step.</td>
 </tr>
 <tr role="row">
-<th scope="row">4. Secrets &amp; signing</th>
-<td data-label="Example risk" role="cell">Credentials leak in output, or secret retrieval is mistaken for validated release signing.</td>
-<td data-label="Workflow response" role="cell">Minimal output, supported redaction and separate signing/release controls.</td>
-<td data-label="Evidence" role="cell">Inspected logs; distinct access, signing and device tests when applicable.</td>
-</tr>
-<tr role="row">
-<th scope="row">5. Audit evidence</th>
-<td data-label="Example risk" role="cell">Missing or delayed events lead to unsupported success and compliance claims.</td>
-<td data-label="Workflow response" role="cell">Explicit logging prerequisites and evidence-linked result statuses.</td>
-<td data-label="Evidence" role="cell">Executed queries, reviewed events and documented coverage limits.</td>
-</tr>
-<tr role="row">
-<th scope="row">6. State &amp; repositories</th>
-<td data-label="Example risk" role="cell">Sensitive deployment artifacts enter the repository or reviewed configuration is overwritten.</td>
-<td data-label="Workflow response" role="cell">Protected state, explicit staging and deliberate branch synchronization.</td>
-<td data-label="Evidence" role="cell">Reviewed staged diff, tracked-file checks and deployed revision.</td>
-</tr>
-<tr role="row">
-<th scope="row">7. Drift &amp; AI review</th>
-<td data-label="Example risk" role="cell">Repeated configuration mistakes or AI-generated changes weaken the baseline.</td>
-<td data-label="Workflow response" role="cell">Versioned records, bounded troubleshooting and reviewed updates.</td>
-<td data-label="Evidence" role="cell">Change diffs, regression results and current-state checks.</td>
+<th scope="row">Kill-Chain Counter-Test - Prove Lateral Vault Enumeration is Denied</th>
+<td role="cell" data-label="Reported Result">
+<span class="result-observed">success</span>
+</td>
+<td role="cell" data-label="Interpretation">The negative-test script completed according to its current acceptance logic.</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="insight-box">
-<h3 class="insight-header">Implementation Scope &amp; Next Steps</h3>
-<div class="insight-text">The linked <a href="autonomous-proofs.html" class="inline-link">AWS demonstration</a> can be reviewed separately from this application overview. The <a href="https://github.com/Compcode1/Compcode1-akcce-aws-autonomous-fleet-01/blob/3d0bcda93c837976baaa74352933c2847604f35d/main.tf#L73" class="inline-link" target="_blank" rel="noopener noreferrer">reviewed source snapshot</a> models a secret containing simulated signing-key metadata; that access exercise does not demonstrate a complete firmware signing or device-update chain. Each cloud adaptation needs its own permission, trust and evidence checks.</div>
+<p class="hero-lead-p">The excerpt below was supplied in the original page. It reports simulated metadata and an access-denied response for the enumeration request. It is presented as supplied, rather than described as a newly downloaded, complete raw runner log.</p>
+<div class="terminal-window">
+<div class="terminal-header">
+<div class="terminal-title">Owner-supplied runner excerpt — original page text</div>
 </div>
-<p class="source-context">Continue with the <a href="blueprint.html" class="inline-link">seven-phase blueprint</a>, <a href="workflow-portfolio.html" class="inline-link">engineering demonstrations</a> or <a href="contact.html" class="inline-link">contact Steven Tuschman</a>. Use an organization-approved AI environment with reviewed data handling and tool access.</p>
+<pre class="terminal-body" tabindex="0" aria-label="Owner-supplied runner excerpt — original page text">
+<code id="supplied-runner-excerpt">2026-11-13T22:04:28.9978965Z   &quot;key_id&quot;: &quot;akcce-ed25519-ota-prod-01&quot;,
+2026-11-13T22:04:28.9983025Z   &quot;algorithm&quot;: &quot;Ed25519&quot;,
+2026-11-13T22:04:28.9983606Z   &quot;fleet_domain&quot;: &quot;us-east-2-autonomous-fleet&quot;,
+2026-11-13T22:04:28.9984238Z   &quot;bound_repo_node_id&quot;: &quot;1457038661&quot;,
+2026-11-13T22:04:28.9985308Z   &quot;attestation_state&quot;: &quot;ZERO_STATIC_SECRETS_ENFORCED&quot;
+2026-11-13T22:04:29.6858669Z aws: [EXPECTED COUNTER-TEST REJECTION]: AccessDeniedException when calling ListSecrets: User: arn:aws:sts::698250246230:assumed-role/akcce-autonomous-fleet-01-ota-oidc-role/AKCCE-AutonomousFleet-OIDC-Proof is not authorized to perform: secretsmanager:ListSecrets
+2026-11-13T22:04:29.6861401Z AKCCE_COUNTER_TEST_PASSED: Lateral secretsmanager:ListSecrets deterministically blocked (exit 254).</code>
+</pre>
+</div>
+<div class="evidence-note">
+<strong>Reading the success message.</strong> The excerpt’s “deterministically blocked” wording is retained as historical script output. The supported result is the reported denial of this <code>ListSecrets</code> request in this context; broader lateral-movement containment requires additional tests.</div>
 </section>
+<section class="hero-arch-block green-block" id="proof-01-ledgers">
+<span class="hero-block-tag">[EVIDENCE REGISTER :: SOURCE, RUN &amp; AUTHOR RECORDS]</span>
+<h2 class="hero-block-title">Architecture Records &amp; Published CloudTrail Summary</h2>
+<p class="hero-lead-p">The repository’s ledgers are author-maintained records. The review below distinguishes source-visible configuration, GitHub execution metadata and reported cloud events; it does not turn every ledger assertion into an independently verified result.</p>
+<div class="artifact-files">
+<a href="https://github.com/Compcode1/Compcode1-akcce-aws-autonomous-fleet-01/blob/797de2425db0dcf78c0aefbf0456a6f9f4b25524/identity_architecture_ledger.md" class="source-link" target="_blank" rel="noopener noreferrer">Identity Architecture Ledger</a>
+<a href="https://github.com/Compcode1/Compcode1-akcce-aws-autonomous-fleet-01/blob/797de2425db0dcf78c0aefbf0456a6f9f4b25524/audit_results_ledger.md" class="source-link" target="_blank" rel="noopener noreferrer">Audit Results Ledger</a>
+<a href="https://github.com/Compcode1/Compcode1-akcce-aws-autonomous-fleet-01/blob/797de2425db0dcf78c0aefbf0456a6f9f4b25524/cloudtrail_telemetry.md" class="source-link" target="_blank" rel="noopener noreferrer">CloudTrail summary</a>
+<a href="https://github.com/Compcode1/Compcode1-akcce-aws-autonomous-fleet-01/blob/797de2425db0dcf78c0aefbf0456a6f9f4b25524/patch_ledger.md" class="source-link" target="_blank" rel="noopener noreferrer">Defect &amp; Patch Ledger</a>
+<a href="https://github.com/Compcode1/Compcode1-akcce-aws-autonomous-fleet-01/blob/3d0bcda93c837976baaa74352933c2847604f35d/.terraform.lock.hcl" class="source-link" target="_blank" rel="noopener noreferrer">Dependency lock file</a>
+</div>
+<div class="matrix-table-wrapper" role="region" aria-label="Evidence scope register" tabindex="0">
+<table class="killchain-table" role="table">
+<caption>Scope of the evidence available for this page.</caption>
+<thead>
+<tr role="row">
+<th scope="col">Review Item</th>
+<th scope="col">Evidence Type</th>
+<th scope="col">Supported Conclusion</th>
+<th scope="col">Remaining Verification</th>
+</tr>
+</thead>
+<tbody>
+<tr role="row">
+<th scope="row">OIDC authentication</th>
+<td role="cell" data-label="Evidence Type">GitHub run/step metadata + source</td>
+<td role="cell" data-label="Supported Conclusion">The selected OIDC-exchange step completed successfully.</td>
+<td role="cell" data-label="Remaining Verification">Inspect raw token-exchange details and run explicit rejected-source cases.</td>
+</tr>
+<tr role="row">
+<th scope="row">Single-secret read</th>
+<td role="cell" data-label="Evidence Type">Source + successful read-step metadata</td>
+<td role="cell" data-label="Supported Conclusion">The workflow selected the designated secret and completed its metadata projection.</td>
+<td role="cell" data-label="Remaining Verification">Independently retained request records and broader denied-operation tests.</td>
+</tr>
+<tr role="row">
+<th scope="row">ListSecrets denial</th>
+<td role="cell" data-label="Evidence Type">Owner-supplied excerpt + author event summary</td>
+<td role="cell" data-label="Supported Conclusion">The supplied record reports an authorization rejection.</td>
+<td role="cell" data-label="Remaining Verification">Improve the script’s acceptance logic and retain complete run/error evidence.</td>
+</tr>
+<tr role="row">
+<th scope="row">Other identities’ access</th>
+<td role="cell" data-label="Evidence Type">Resource-policy and role-policy source</td>
+<td role="cell" data-label="Supported Conclusion">The named role receives a scoped Allow.</td>
+<td role="cell" data-label="Remaining Verification">Review all applicable policies; an exclusive-access guarantee is not established.</td>
+</tr>
+<tr role="row">
+<th scope="row">Static credential storage</th>
+<td role="cell" data-label="Evidence Type">Workflow source</td>
+<td role="cell" data-label="Supported Conclusion">No static AWS credential input is visible in this workflow.</td>
+<td role="cell" data-label="Remaining Verification">The repository secrets inventory and workstation credential handling were not audited.</td>
+</tr>
+<tr role="row">
+<th scope="row">Signing / transport / compliance</th>
+<td role="cell" data-label="Evidence Type">Simulation metadata and author ledgers</td>
+<td role="cell" data-label="Supported Conclusion">The payload labels itself as simulated signing-key metadata.</td>
+<td role="cell" data-label="Remaining Verification">Firmware signing, device verification, post-quantum transport and compliance outcomes are outside the independently verified scope.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 class="section-title">Author-Published CloudTrail Event References</h3>
+<div class="matrix-table-wrapper" role="region" aria-label="Author-published CloudTrail events" tabindex="0">
+<table class="killchain-table" role="table">
+<caption>Reproduced from the pinned cloudtrail_telemetry.md document; timestamps retain the original -08:00 offset.</caption>
+<thead>
+<tr role="row">
+<th scope="col">Reported Timestamp</th>
+<th scope="col">Event ID</th>
+<th scope="col">API Action</th>
+<th scope="col">Reported Principal / Session</th>
+<th scope="col">Author-Reported Outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr role="row">
+<th scope="row">
+<code>2026-11-13T13:36:21-08:00</code>
+</th>
+<td role="cell" data-label="Event ID">
+<code>2778200d-22c8-47e9-9554-500e79eee365</code>
+</td>
+<td role="cell" data-label="API Action">
+<code>AssumeRoleWithWebIdentity</code>
+</td>
+<td role="cell" data-label="Reported Principal / Session">
+<code>repo:Compcode1@171821203/Compcode1-akcce-aws-autonomous-fleet-01@1457038661:ref:refs/heads/main</code>
+</td>
+<td role="cell" data-label="Author-Reported Outcome">
+<code>DENIED (Pre-PCH-10 negative proof)</code>
+</td>
+</tr>
+<tr role="row">
+<th scope="row">
+<code>2026-11-13T14:01:41-08:00</code>
+</th>
+<td role="cell" data-label="Event ID">
+<code>55ef265c-2a5b-4bf2-85e9-9dd9e6612668</code>
+</td>
+<td role="cell" data-label="API Action">
+<code>GetResourcePolicy</code>
+</td>
+<td role="cell" data-label="Reported Principal / Session">
+<code>8448d4c8-d081-7059-da2b-3dbde3377623</code>
+</td>
+<td role="cell" data-label="Author-Reported Outcome">
+<code>ALLOWED (Gate 4 readback)</code>
+</td>
+</tr>
+<tr role="row">
+<th scope="row">
+<code>2026-11-13T14:04:24-08:00</code>
+</th>
+<td role="cell" data-label="Event ID">
+<code>73d8d34f-9717-489f-b1b8-29f98143ae8c</code>
+</td>
+<td role="cell" data-label="API Action">
+<code>AssumeRoleWithWebIdentity</code>
+</td>
+<td role="cell" data-label="Reported Principal / Session">
+<code>repo:Compcode1@171821203/Compcode1-akcce-aws-autonomous-fleet-01@1457038661:ref:refs/heads/main</code>
+</td>
+<td role="cell" data-label="Author-Reported Outcome">
+<code>ALLOWED (Gates 1 &amp; 2 OIDC exchange)</code>
+</td>
+</tr>
+<tr role="row">
+<th scope="row">
+<code>2026-11-13T14:04:28-08:00</code>
+</th>
+<td role="cell" data-label="Event ID">
+<code>3361b71b-66c3-4d7d-8ae8-32402c8b5b33</code>
+</td>
+<td role="cell" data-label="API Action">
+<code>GetSecretValue</code>
+</td>
+<td role="cell" data-label="Reported Principal / Session">
+<code>AKCCE-AutonomousFleet-OIDC-Proof</code>
+</td>
+<td role="cell" data-label="Author-Reported Outcome">
+<code>ALLOWED (Gates 3 &amp; 4 positive proof)</code>
+</td>
+</tr>
+<tr role="row">
+<th scope="row">
+<code>2026-11-13T14:04:29-08:00</code>
+</th>
+<td role="cell" data-label="Event ID">
+<code>3c37b5af-392d-4ef5-893a-7947b78dd2b1</code>
+</td>
+<td role="cell" data-label="API Action">
+<code>ListSecrets</code>
+</td>
+<td role="cell" data-label="Reported Principal / Session">
+<code>AKCCE-AutonomousFleet-OIDC-Proof</code>
+</td>
+<td role="cell" data-label="Author-Reported Outcome">
+<code>DENIED (Kill-chain lateral block)</code>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="evidence-note">
+<strong>Forensic validation remains separate.</strong> Event IDs and timestamps help locate records, but a Markdown table is not a signed event export. Independent correlation needs the raw principal/session fields, request details and outcomes. Reused session names alone are not a unique correlation key. CloudTrail log integrity validation also requires its own <a class="source-link" href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-log-file-validation-intro.html" target="_blank" rel="noopener noreferrer">digest and validation process</a>.</div>
+<h3 class="section-title">Priority Improvements to Test Next</h3>
+<ul class="lockdown-list">
+<li>
+<span class="bullet-lead">Strengthen the negative-test oracle:</span> Require the expected authorization denial, fail on unrelated errors and preserve useful non-sensitive diagnostics.</li>
+<li>
+<span class="bullet-lead">Expand the access tests:</span> Check unauthorized source claims, known adjacent-resource reads and unnecessary write or administration operations in a controlled environment.</li>
+<li>
+<span class="bullet-lead">Review effective permissions:</span> Evaluate role, resource and other applicable policies. Design any exclusive-access requirement deliberately rather than inferring it from an Allow statement.</li>
+<li>
+<span class="bullet-lead">Improve reproducibility &amp; recovery:</span> Review immutable workflow dependencies, runner assumptions, state protection, secret recovery settings and deployment rollback.</li>
+<li>
+<span class="bullet-lead">Retain evidence for stronger claims:</span> Store raw event exports and their validation results, identify the source revision for each run and test actual signing separately if it becomes part of the implementation.</li>
+</ul>
+</section>
+<div class="return-bar">
+<a href="autonomous-systems.html" class="back-banner-btn">&larr; Autonomous Systems Overview</a>
+<a href="#proof-index" class="back-banner-btn">&uarr; Demonstration Directory</a>
 </div>
 </main>    <!-- ================= PROPRIETARY IP FOOTER ================= -->
     <footer class="ip-footer">

@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 02: Two-Worker Configuration Isolation | Autonomous Systems | AKCCE</title>
+<meta name="description" content="Recorded two-worker AWS configuration-isolation lab with GitHub OIDC, separate roles and secrets, selected access results and normalized CloudTrail evidence.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    <!-- Google tag (gtag.js) -->
+    <script>
+      const blockAnalytics = new URLSearchParams(window.location.search).get('block_ga') === 'true';
+      if (blockAnalytics) window['ga-disable-G-80NYKHYN3R'] = true;
+      try {
+        if (blockAnalytics) localStorage.setItem('akcce_block_ga', 'true');
+        if (localStorage.getItem('akcce_block_ga') === 'true') {
+          window['ga-disable-G-80NYKHYN3R'] = true;
+        }
+      } catch (error) {
+        // The query-string opt-out still works when browser storage is unavailable.
+      }
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-80NYKHYN3R">
+</script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-80NYKHYN3R');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-page: #020617;
+            --bg-node: rgba(10, 15, 29, 0.95);
+            --border-base: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+            --color-blue: #3b82f6;
+            --color-cyan: #0ea5e9;
+            --color-purple: #a855f7;
+            --color-grey: #64748b;
+            --color-green: #10b981;
+            --color-teal: #14b8a6;
+            --color-red: #f43f5e;
+            --color-orange: #f97316;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--bg-page);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 4rem;
+        }
+
+        /* ================= NAVIGATION ================= */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-base); z-index: 100;
+            padding: 1.2rem 2rem; display: flex; justify-content: center;
+        }
+        .nav-links {
+            display: flex; gap: 1.1rem; list-style: none; flex-wrap: wrap;
+            justify-content: center; align-items: center;
+        }
+        .nav-links a {
+            display: inline-block;
+            color: var(--color-cyan);
+            border: 1px solid var(--color-cyan);
+            background: rgba(14, 165, 233, 0.1);
+            padding: 0.5rem 1.15rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a.active-link {
+            background: var(--color-cyan);
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
+        }
+
+        .bullet-lead { color: var(--color-cyan); font-weight: 800; }
+        .bullet-lead-red { color: var(--color-red); font-weight: 800; }
+        .bullet-lead-green { color: var(--color-green); font-weight: 800; }
+        .bullet-lead-orange { color: var(--color-orange); font-weight: 800; }
+        .bullet-lead-purple { color: var(--color-purple); font-weight: 800; }
+
+        /* ================= HERO HEADER ================= */
+        .hero { padding: 155px 20px 35px; text-align: center; border-bottom: 1px solid var(--border-base); }
+        .hero-title-container {
+            display: flex; align-items: center; justify-content: center;
+            gap: 1.35rem; margin-bottom: 0.8rem; flex-wrap: wrap;
+        }
+        .hero-brand-crest {
+            width: 66px; height: 66px; flex-shrink: 0;
+            filter: drop-shadow(0 0 18px rgba(14, 165, 233, 0.4)) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.6));
+        }
+        .hero-title {
+            font-family: 'Montserrat', sans-serif; font-size: 2.8rem; font-weight: 900;
+            letter-spacing: 2px; color: var(--text-main); text-transform: uppercase; line-height: 1.15;
+        }
+        .hero-page-subtitle {
+            font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; font-weight: 800;
+            color: var(--color-cyan); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.4rem;
+        }
+        .hero-intro-copy {
+            font-size: 1.12rem; color: var(--text-muted); max-width: 960px;
+            margin: 0 auto 1.6rem; font-weight: 500; line-height: 1.7;
+        }
+
+        /* RETURN BUTTON */
+        .back-banner-btn {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.86rem;
+            font-weight: 800;
+            color: var(--color-cyan);
+            background: rgba(14, 165, 233, 0.08);
+            border: 1px solid var(--color-cyan);
+            padding: 0.6rem 1.25rem;
+            border-radius: 6px;
+            text-decoration: none;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            transition: all 0.25s ease;
+        }
+        .back-banner-btn:hover {
+            background: var(--color-cyan);
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
+        }
+
+        /* ================= MAIN CONTAINER & PROOF NAV MATRIX ================= */
+        .container { max-width: 1250px; margin: 0 auto; padding: 3.2rem 20px 0; }
+
+        .project-links-header {
+            text-align: center; margin-bottom: 1.8rem;
+            font-family: 'Montserrat', sans-serif; font-size: 1.65rem; font-weight: 900;
+            color: var(--text-main); text-transform: uppercase; letter-spacing: 2px;
+            scroll-margin-top: 105px;
+        }
+
+        .nav-matrix-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 3.5rem;
+        }
+        .nav-matrix-link {
+            text-decoration: none;
+            display: block;
+            background: rgba(15, 23, 42, 0.55);
+            border: 1px solid var(--border-base);
+            border-left: 4px solid var(--color-green);
+            border-radius: 8px;
+            padding: 1.55rem 1.65rem;
+            transition: all 0.3s ease;
+        }
+        .nav-matrix-link:hover {
+            background: rgba(16, 185, 129, 0.09);
+            border-color: var(--color-green);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
+        }
+        .nav-matrix-title {
+            font-family: 'Montserrat', sans-serif;
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 1.12rem;
+            margin-bottom: 0.45rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .nav-matrix-stack {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--color-cyan);
+            font-size: 0.84rem;
+            font-weight: 700;
+            margin-bottom: 0.9rem;
+            line-height: 1.45;
+        }
+        .nav-matrix-guardrail {
+            font-size: 0.95rem;
+            color: var(--color-green);
+            font-weight: 600;
+            border-top: 1px solid var(--border-base);
+            padding-top: 0.8rem;
+            line-height: 1.55;
+        }
+        .nav-matrix-guardrail strong { color: var(--text-main); }
+
+        /* JUMP BAR FOR CURRENT PROOF */
+        .jump-links-container {
+            max-width: 1250px; margin: 0 auto 2.8rem; padding: 1.4rem 1.8rem;
+            background: rgba(15, 23, 42, 0.65); border: 1px solid var(--border-base);
+            border-top: 3px solid var(--color-cyan); border-radius: 10px;
+            text-align: center; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+        }
+        .jump-links-intro {
+            font-family: 'Montserrat', sans-serif; font-size: 1.0rem; font-weight: 800;
+            color: var(--text-main); letter-spacing: 0.5px; margin-bottom: 0.95rem;
+        }
+        .jump-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
+        .jump-links a {
+            color: var(--color-cyan); border: 1px solid var(--color-cyan);
+            background: rgba(14, 165, 233, 0.08); padding: 0.52rem 1.05rem;
+            border-radius: 8px; text-decoration: none; font-size: 0.8rem;
+            font-weight: 700; letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s ease;
+        }
+        .jump-links a:hover {
+            background: var(--color-cyan); color: #ffffff;
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); transform: translateY(-2px);
+        }
+
+        /* ================= ARCHITECTURAL BLOCKS ================= */
+        .hero-arch-block {
+            max-width: 1250px; margin: 0 auto 3rem;
+            background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-base);
+            border-radius: 12px; padding: 2.8rem 3rem; text-align: left;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+            scroll-margin-top: 105px;
+        }
+        .hero-arch-block.cyan-block { border-top: 4px solid var(--color-cyan); }
+        .hero-arch-block.green-block { border-top: 4px solid var(--color-green); }
+        .hero-arch-block.red-block { border-top: 4px solid var(--color-red); }
+
+        .hero-block-tag {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; font-weight: 800;
+            letter-spacing: 1.2px; text-transform: uppercase; display: block; margin-bottom: 0.7rem;
+        }
+        .cyan-block .hero-block-tag { color: var(--color-cyan); }
+        .green-block .hero-block-tag { color: var(--color-green); }
+        .red-block .hero-block-tag { color: var(--color-red); }
+
+        .hero-block-title {
+            font-family: 'Montserrat', sans-serif; font-size: 1.7rem; font-weight: 900;
+            letter-spacing: 1px; line-height: 1.35; color: var(--text-main); text-transform: uppercase;
+            margin-bottom: 1.5rem; padding-bottom: 0.9rem; border-bottom: 2px solid var(--border-base);
+        }
+        .hero-lead-p {
+            font-size: 1.12rem; color: var(--text-main); font-weight: 600;
+            line-height: 1.8; margin-bottom: 1.3rem;
+        }
+
+        /* MICRO CARDS */
+        .micro-card {
+            background: rgba(10, 15, 29, 0.92); border: 1px solid var(--border-base);
+            border-radius: 8px; padding: 1.6rem 1.8rem; margin-bottom: 1.25rem;
+        }
+        .micro-card-challenge { border-left: 4px solid var(--color-purple); }
+        .micro-card-execution { border-left: 4px solid var(--color-cyan); }
+        .micro-card-value { border-left: 4px solid var(--color-green); margin-bottom: 0; }
+
+        .micro-header {
+            font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.15rem;
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem;
+        }
+        .mc-color-challenge { color: var(--color-purple); }
+        .mc-color-execution { color: var(--color-cyan); }
+        .mc-color-value { color: var(--color-green); }
+
+        .micro-text { font-size: 1.04rem; line-height: 1.75; color: var(--text-muted); }
+        .micro-text strong { color: var(--text-main); font-weight: 700; }
+
+        .bottom-line {
+            margin-top: 1.1rem; padding: 1.1rem 1.25rem;
+            background: rgba(255, 255, 255, 0.03); border-radius: 6px;
+            border-left: 3px solid var(--color-grey); font-size: 0.98rem;
+            font-style: italic; color: var(--text-muted); line-height: 1.65;
+        }
+        .bottom-line strong { color: var(--text-main); font-weight: 700; font-style: normal; }
+
+        /* ================= 5-COLUMN CAPABILITY MATRIX ================= */
+        .section-title {
+            font-family: 'Montserrat', sans-serif; font-size: 1.7rem; font-weight: 800;
+            color: var(--color-cyan); text-transform: uppercase; letter-spacing: 1.5px;
+            margin: 3.2rem 0 1.8rem; text-align: center; scroll-margin-top: 105px;
+        }
+        .matrix-grid {
+            display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.15rem; margin-bottom: 3rem;
+        }
+        .matrix-card {
+            background: rgba(15, 23, 42, 0.55); border: 1px solid var(--border-base);
+            border-top: 3px solid var(--color-blue); padding: 1.45rem; border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+        }
+        .matrix-card h3 {
+            font-size: 1.02rem; color: var(--text-main); margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-base); padding-bottom: 0.5rem;
+            font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .matrix-list { list-style: none; }
+        .matrix-list li {
+            font-size: 0.93rem; color: var(--text-muted); margin-bottom: 0.68rem;
+            display: flex; align-items: center;
+        }
+        .matrix-list li.active { color: var(--color-cyan); font-weight: 700; }
+        .checkbox {
+            display: inline-block; width: 16px; height: 16px; border: 1px solid var(--color-grey);
+            border-radius: 3px; margin-right: 10px; position: relative; flex-shrink: 0;
+        }
+        .active .checkbox { border-color: var(--color-cyan); background-color: rgba(14, 165, 233, 0.2); }
+        .active .checkbox::after { content: '✔'; position: absolute; top: -3px; left: 2px; color: var(--color-cyan); font-size: 12px; }
+
+        /* ================= 7 LOCKDOWN CARDS ================= */
+        .lockdown-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 1rem;
+        }
+        .lockdown-card {
+            background: rgba(10, 15, 29, 0.95); border: 1px solid var(--border-base);
+            border-left: 4px solid var(--color-green); border-radius: 10px;
+            padding: 1.85rem 2rem; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+        }
+        .lockdown-card.full-span { grid-column: 1 / -1; }
+        .lockdown-badge-row {
+            display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.75rem;
+        }
+        .lockdown-num {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 800;
+            color: #ffffff; background: var(--color-red); padding: 0.25rem 0.7rem;
+            border-radius: 4px; letter-spacing: 1px; text-transform: uppercase;
+        }
+        .lockdown-gate {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; font-weight: 800;
+            color: var(--color-green); background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.45); padding: 0.23rem 0.7rem;
+            border-radius: 4px; letter-spacing: 0.8px; text-transform: uppercase;
+        }
+        .lockdown-title {
+            font-family: 'Montserrat', sans-serif; font-size: 1.18rem; font-weight: 900;
+            color: var(--text-main); text-transform: uppercase; margin-bottom: 0.85rem;
+            padding-bottom: 0.6rem; border-bottom: 1px solid var(--border-base);
+        }
+        .lockdown-list {
+            list-style: disc; padding-left: 1.3rem; display: flex; flex-direction: column; gap: 0.65rem;
+        }
+        .lockdown-list li {
+            font-size: 0.99rem; color: var(--text-main); font-weight: 600; line-height: 1.65;
+        }
+        .lockdown-list li::marker { color: var(--color-green); }
+
+        /* ================= TERMINAL STYLING ================= */
+        .terminal-window {
+            background: #0d1117; border: 1px solid var(--border-base); border-radius: 10px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); width: 100%;
+            max-width: 1180px; margin: 0 auto 3.2rem; text-align: left; overflow: hidden;
+            scroll-margin-top: 105px;
+        }
+        .terminal-header {
+            background: #161b22; padding: 12px 20px; display: flex; align-items: center;
+            border-bottom: 1px solid var(--border-base); position: relative;
+        }
+        .terminal-dots { display: flex; gap: 8px; position: absolute; left: 20px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot.red { background: #ff5f56; }
+        .dot.yellow { background: #ffbd2e; }
+        .dot.green { background: #27c93f; }
+        .terminal-title {
+            margin: 0 auto; color: var(--text-muted); font-size: 0.86rem;
+            font-family: 'JetBrains Mono', monospace; letter-spacing: 1px;
+        }
+        .terminal-body {
+            padding: 2.2rem 2.4rem; font-family: 'JetBrains Mono', 'Consolas', monospace;
+            font-size: 0.9rem; line-height: 1.75; color: var(--text-main);
+            overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;
+            background: linear-gradient(rgba(13, 17, 23, 1) 0%, rgba(13, 17, 23, 0.96) 100%);
+        }
+
+        .t-cyan { color: var(--color-cyan); font-weight: 700; }
+        .t-green { color: var(--color-green); font-weight: 700; }
+        .t-blue { color: var(--color-blue); font-weight: 700; }
+        .t-purple { color: var(--color-purple); font-weight: 700; }
+        .t-muted { color: var(--text-muted); }
+        .t-comment { color: var(--color-grey); font-style: italic; }
+        .t-red { color: #ff5f56; font-weight: 700; }
+
+        /* ================= FORENSIC LEDGER TABLES ================= */
+        .matrix-table-wrapper {
+            width: 100%; overflow-x: auto; border-radius: 10px;
+            border: 1px solid var(--border-base); margin-top: 1.1rem;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+        }
+        .killchain-table {
+            width: 100%; border-collapse: collapse; background: rgba(10, 15, 29, 0.95); text-align: left;
+        }
+        .killchain-table th {
+            font-family: 'Montserrat', sans-serif; font-size: 0.86rem; font-weight: 900;
+            text-transform: uppercase; letter-spacing: 1px; color: var(--color-cyan);
+            background: rgba(2, 6, 23, 0.95); padding: 1.1rem 1.1rem; border-bottom: 2px solid var(--border-base);
+        }
+        .killchain-table td {
+            padding: 1.1rem 1.1rem; font-size: 0.94rem; color: var(--text-main);
+            font-weight: 600; line-height: 1.6; border-bottom: 1px solid var(--border-base); vertical-align: top;
+        }
+        .killchain-table tr:hover td { background: rgba(14, 165, 233, 0.04); }
+
+        .return-bar {
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 1rem; margin: 2rem 0 1rem;
+        }
+        .divider { height: 1px; background: var(--border-base); margin: 3.2rem auto; max-width: 1250px; }
+
+        /* ================= FOOTER ================= */
+        .ip-footer {
+            max-width: 1250px; margin: 3rem auto 0; text-align: center; padding: 2.5rem 1.5rem;
+            border-top: 1px solid var(--border-base); background: rgba(10, 15, 29, 0.6);
+            border-radius: 8px; color: var(--text-muted); font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace; line-height: 1.8;
+        }
+        .footer-crest-wrapper { display: flex; justify-content: center; margin-bottom: 0.85rem; }
+        .footer-brand-crest { width: 38px; height: 38px; filter: drop-shadow(0 0 10px rgba(14, 165, 233, 0.25)); }
+        .ip-footer strong { color: var(--color-cyan); font-weight: 700; }
+
+        @media (max-width: 1050px) {
+            .matrix-grid { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+            .lockdown-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 992px), (max-height: 550px) {
+            nav { position: relative !important; padding: 0.75rem 0.5rem !important; }
+            .nav-links { gap: 0.45rem !important; }
+            .nav-links a { font-size: 0.72rem !important; padding: 0.35rem 0.65rem !important; }
+            .hero { padding-top: 30px !important; }
+            .hero-arch-block { padding: 2rem 1.4rem; }
+            .terminal-body { padding: 1.4rem; font-size: 0.82rem; }
+        }
+
+        /* Evidence presentation and shared accessibility improvements. */
+        nav { position: relative; }
+        .hero { padding-top: 40px; }
+        .skip-link { position: fixed; top: -100px; left: 1rem; z-index: 200; background: #f8fafc; color: #020617; padding: .7rem 1rem; border-radius: 6px; }
+        .skip-link:focus { top: .5rem; }
+        a:focus-visible, [tabindex]:focus-visible { outline: 3px solid #38bdf8; outline-offset: 5px; }
+        [id] { scroll-margin-top: 1.5rem !important; }
+        main, .container, .lockdown-card, .matrix-card { min-width: 0; }
+        .hero-title, .hero-page-subtitle, .section-title, .hero-block-title, .lockdown-title, .ip-footer, .terminal-title, code, .source-link { overflow-wrap: anywhere; }
+        .hero-lead-p { font-weight: 500; }
+        .source-link { color: #7dd3fc; text-underline-offset: 3px; font-weight: 700; }
+        .source-actions { display: flex; flex-wrap: wrap; gap: .7rem 1.2rem; margin: 1.2rem 0; }
+        .source-actions a { color: #7dd3fc; text-underline-offset: 3px; font-weight: 700; }
+        .evidence-note { border: 1px solid #334155; border-left: 4px solid #38bdf8; border-radius: 7px; padding: 1rem 1.2rem; margin: 1.3rem 0; color: var(--text-muted); line-height: 1.7; }
+        .evidence-note strong { color: var(--text-main); }
+        .evidence-kicker { max-width: 960px; margin: 1.2rem auto; text-align: left; }
+        .nav-matrix-grid { grid-template-columns: repeat(auto-fit,minmax(min(100%,300px),1fr)); }
+        .matrix-grid { grid-template-columns: repeat(5,minmax(0,1fr)); }
+        .matrix-card p { color: var(--text-muted); line-height: 1.7; }
+        .lockdown-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+        .lockdown-list li { font-weight: 500; }
+        .review-limit { margin-top: 1rem; padding-top: .8rem; border-top: 1px solid #334155; color: var(--text-muted); line-height: 1.65; font-size: .97rem; }
+        .terminal-header { padding: 12px 20px; }
+        .terminal-title { margin: 0; }
+        .terminal-body { white-space: pre; overflow-x: auto; overflow-wrap: normal; word-wrap: normal; max-width: 100%; }
+        .terminal-body code { overflow-wrap: normal; }
+        .artifact-description { max-width: 1180px; margin: 0 auto 1rem; color: var(--text-muted); line-height: 1.7; }
+        .killchain-table caption { text-align: left; padding: 1rem 1.1rem; color: var(--text-muted); background: var(--bg-node); }
+        .killchain-table th, .killchain-table td { overflow-wrap: anywhere; }
+        .killchain-table tbody th { color: #f8fafc; text-align: left; vertical-align: top; font-size: .93rem; }
+        .result-observed { color: #6ee7b7; font-weight: 700; }
+        .result-reported { color: #7dd3fc; font-weight: 700; }
+        .result-open { color: #fbbf24; font-weight: 700; }
+        .artifact-files { display: flex; flex-wrap: wrap; gap: .8rem 1.2rem; margin: 1rem 0 1.5rem; }
+        @media(max-width:1050px) { .matrix-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } .lockdown-grid { grid-template-columns: 1fr; } }
+        @media(max-width:600px) {
+            .hero-title { font-size: 1.7rem; letter-spacing: 1px; }
+            .hero-page-subtitle { font-size: .9rem; letter-spacing: 1px; }
+            .hero, .container { padding-left: 12px; padding-right: 12px; }
+            .hero-arch-block { padding: 1.5rem 1rem; }
+            .micro-card, .lockdown-card { padding: 1.3rem 1rem; }
+            .matrix-grid { grid-template-columns: 1fr; }
+            .nav-matrix-link, .jump-links-container { padding: 1.25rem 1rem; }
+            .section-title { font-size: 1.4rem; }
+            .killchain-table, .killchain-table tbody, .killchain-table tr, .killchain-table td, .killchain-table tbody th { display: block; width: 100%; }
+            .killchain-table thead { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+            .killchain-table tbody tr { border-bottom: 3px solid #334155; }
+            .killchain-table tbody th { padding: 1rem; color: #7dd3fc; }
+            .killchain-table td { padding: .8rem 1rem; }
+            .killchain-table td::before { content: attr(data-label); display: block; font-weight: 800; color: #7dd3fc; margin-bottom: .3rem; }
+        }
+        @media(prefers-reduced-motion:reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+        }
+    </style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<nav aria-label="Main navigation">
+        <ul class="nav-links">
+            <li>
+<a href="index.html">Home</a>
+</li>
+            <li>
+<a href="autonomous-systems.html" class="active-link" aria-current="location">Autonomous Systems</a>
+</li>
+            <li>
+<a href="kill-chain.html">The Adversarial Kill Chain</a>
+</li>
+            <li>
+<a href="blueprint.html">7-Phase Counter-Engineering Blueprint</a>
+</li>
+            <li>
+<a href="ai-systems-engineering.html">Tethered AI Systems Engineering</a>
+</li>
+            <li>
+<a href="architectural.html">Exploit-Level Pipeline Architecture</a>
+</li>
+            <li>
+<a href="workflow-portfolio.html">Counter-Engineering Demonstrations</a>
+</li>
+            <li>
+<a href="add-capabilities.html">Day-2 Multi-Cloud Modules</a>
+</li>
+            <li>
+<a href="glossary.html">26-Variable System Glossary</a>
+</li>
+            <li>
+<a href="contact.html">Contact</a>
+</li>
+        </ul>
+    </nav>
+<header class="hero"><div class="hero-title-container"><svg class="hero-brand-crest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Adversarial Kill-Chain Counter-Engineering 4-Chevron Crest">
+                <rect width="114" height="114" x="3" y="3" fill="#020617" rx="22" stroke="#1e293b" stroke-width="3"/>
+                <polygon points="24,18 60,36 60,48 24,30" fill="#475569"/>
+                <polygon points="96,18 60,36 60,48 96,30" fill="#1e293b"/>
+                <polygon points="24,39 60,57 60,69 24,51" fill="#0284c7"/>
+                <polygon points="96,39 60,57 60,69 96,51" fill="#075985"/>
+                <polygon points="24,60 60,78 60,90 24,72" fill="#38bdf8"/>
+                <polygon points="96,60 60,78 60,90 96,72" fill="#0369a1"/>
+                <polygon points="24,81 60,99 60,111 24,93" fill="#f43f5e"/>
+                <polygon points="96,81 60,99 60,111 96,93" fill="#9f1239"/>
+            </svg><h1 class="hero-title">TWO-WORKER CONFIGURATION ISOLATION</h1></div>
+<p class="hero-page-subtitle">Project 02 &bull; GitHub OIDC / AWS STS / Secrets Manager</p><p class="hero-intro-copy">Two simulated support workers, two scoped AWS roles and explicit tests of own and adjacent configuration access.</p>
+<div class="source-actions" style="justify-content:center"><a href="autonomous-systems.html" class="back-banner-btn">&larr; Autonomous Systems Overview</a><a href="aws-demonstrations.html" class="back-banner-btn">AWS Demonstrations</a></div></header>
+<main class="container" id="main-content"><div class="jump-links-container"><div class="jump-links-intro">Project 02 Navigation</div><div class="jump-links"><a href="#proof-02-overview">Overview</a><a href="#proof-02-architecture">Architecture &amp; Controls</a><a href="#proof-02-source">Source &amp; Workflows</a><a href="#proof-02-results">Results</a><a href="#proof-02-evidence">Evidence &amp; Limits</a></div></div><section class="hero-arch-block cyan-block" id="proof-02-overview"><span class="hero-block-tag">[PROJECT 02 :: TWO INDEPENDENTLY SCOPED WORKERS]</span><h2 class="hero-block-title">Two Workers, Separate Configuration Boundaries</h2><p class="hero-lead-p">A fleet-planning support job and a maintenance-support job may need different configuration even when they share an AWS account. This lab represents those jobs with two GitHub Actions workers. Each authenticates into a distinct IAM role and requests its own harmless Secrets Manager configuration.</p><p class="hero-lead-p">Completed <strong>15 November 2026</strong> in account <code>698250246230</code>, region <code>us-east-2</code>. Each worker retrieved and described its own configuration. Attempts to list secrets or retrieve the other worker’s configuration received the expected authorization denial.</p><div class="evidence-note"><strong>Relation to Project 01.</strong> This extends the learning sequence to two separately scoped workers and explicit adjacent-secret tests. Lab 02 checks the expected denial response; Project 01’s historical script accepted arbitrary nonzero results. This lab did not rerun or upgrade Project 01’s evidence.</div><p class="hero-lead-p">The workers simulate configuration access for autonomous-support services. They do not implement a planner, a maintenance system or vehicle controls. The lab ran under <strong>AWS v2.0 Language Candidate 01</strong>; later v2.0.1/v2.0.2 directives were not its tested runtime source.</p></section><section class="hero-arch-block green-block" id="proof-02-architecture"><span class="hero-block-tag">[ARCHITECTURE :: FOUR-GATE REVIEW]</span><h2 class="hero-block-title">From Repository Identity to One Configuration</h2><p class="hero-lead-p">Both paths use the existing GitHub OIDC provider. Exact repository-specific subject and audience conditions admit each selected workflow context into its own role. The workflows request 900-second temporary credentials; each role has a 3600-second maximum session duration.</p><div class="matrix-table-wrapper" role="region" aria-label="Recorded worker bindings" tabindex="0"><table class="killchain-table"><caption>Recorded worker bindings</caption><thead><tr><th scope="col">Worker &amp; purpose</th><th scope="col">IAM role</th><th scope="col">Own configuration ARN</th><th scope="col">Exact subject condition</th></tr></thead><tbody><tr><th scope="row">Worker A<br>Fleet-planning support simulation</th><td data-label="IAM role"><code>akcce-fleet-02-worker-a-role</code></td><td data-label="Own configuration ARN"><code>arn:aws:secretsmanager:us-east-2:698250246230:secret:autonomy-lab/fleet-02/worker-a/config-Sm8XS1</code></td><td data-label="Exact subject condition"><code>repo:Compcode1@171821203/Compcode1-akcce-aws-fleet-02-worker-a@1458881060:ref:refs/heads/main</code></td></tr><tr><th scope="row">Worker B<br>Maintenance-support simulation</th><td data-label="IAM role"><code>akcce-fleet-02-worker-b-role</code></td><td data-label="Own configuration ARN"><code>arn:aws:secretsmanager:us-east-2:698250246230:secret:autonomy-lab/fleet-02/worker-b/config-joigf3</code></td><td data-label="Exact subject condition"><code>repo:Compcode1@171821203/Compcode1-akcce-aws-fleet-02-worker-b@1458883195:ref:refs/heads/main</code></td></tr></tbody></table></div><div class="matrix-table-wrapper" role="region" aria-label="Four-gate organization of the implemented controls" tabindex="0"><table class="killchain-table"><caption>Four-gate organization of the implemented controls</caption><thead><tr><th scope="col">Review area</th><th scope="col">Recorded configuration</th><th scope="col">What the run supports</th></tr></thead><tbody><tr><th scope="row">1. Provider registration</th><td data-label="Recorded configuration">Existing <code>token.actions.githubusercontent.com</code> provider referenced through a Terraform data lookup; audience <code>sts.amazonaws.com</code>.</td><td data-label="What the run supports">Both selected contexts completed federation.</td></tr><tr><th scope="row">2. Role admission / trust</th><td data-label="Recorded configuration">Distinct roles; exact <code>StringEquals</code> audience and subject conditions with numeric GitHub REST owner/repository IDs and <code>main</code>.</td><td data-label="What the run supports">Selected admitted contexts succeeded; arbitrary unauthorized sources and opposite-role exchanges were not tested.</td></tr><tr><th scope="row">3. Role permissions</th><td data-label="Recorded configuration">Each role permits <code>GetSecretValue</code> and <code>DescribeSecret</code> on its own secret ARN.</td><td data-label="What the run supports">Own access succeeded; the specified enumeration and adjacent-secret operations were denied.</td></tr><tr><th scope="row">4. Resource permissions</th><td data-label="Recorded configuration">Each secret’s resource policy names its assigned role, scoped actions and secret ARN; <code>block_public_policy = true</code>.</td><td data-label="What the run supports">Policy readbacks and observed effective access support the selected checks.</td></tr></tbody></table></div><div class="evidence-note"><strong>Policy semantics.</strong> The four gates organize the review. Same-account identity-policy and resource-policy Allows are not independent mandatory AND gates. Removing one Allow or adding future permissions was not tested; an exclusive-access guarantee is not established. <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic_policy-eval-basics.html" class="source-link" target="_blank" rel="noopener noreferrer">AWS policy evaluation reference</a>.</div><p class="hero-lead-p">No static worker IAM keys were provisioned. A repository-secrets inventory audit was not performed. Terraform records 30-day secret recovery and destruction guards. Those settings concern the retained lab; this page does not initiate cleanup or a fresh deployment.</p></section><section class="hero-arch-block cyan-block" id="proof-02-source"><span class="hero-block-tag">[RECORDED SOURCE :: PINNED REVISIONS]</span><h2 class="hero-block-title">Infrastructure &amp; Validation Workflows</h2><p class="hero-lead-p">The source below is reproduced from the supplied completed-lab files. Worker A’s final synchronized commit contains shared Terraform for both roles under <code>infrastructure/</code>; both repositories contain audit records. The owner-supplied sync receipt records unchanged workflow fingerprints after synchronization.</p><div class="matrix-table-wrapper" role="region" aria-label="Source and run provenance" tabindex="0"><table class="killchain-table"><caption>Source and run provenance — GitHub access required</caption><thead><tr><th scope="col">Worker</th><th scope="col">Validation run / attempt</th><th scope="col">Workflow validation commit</th><th scope="col">Final synchronized main commit</th></tr></thead><tbody><tr><th scope="row">Worker A</th><td data-label="Validation run / attempt"><span>43743148670 / 1</span></td><td data-label="Workflow validation commit"><code>4fe10bb2e15b9dff10565fbb38fe15497a2126ca</code></td><td data-label="Final synchronized main commit"><span>84c8758502207b1641305b81fc2884b0d07a1315</span></td></tr><tr><th scope="row">Worker B</th><td data-label="Validation run / attempt"><span>43743154728 / 1</span></td><td data-label="Workflow validation commit"><code>8789e93f59e17bce3b59b8eaed47ef715d64120f</code></td><td data-label="Final synchronized main commit"><span>11c538bc78ebb9ce18ccb3c55ddf77ff8edbd304</span></td></tr></tbody></table></div><div class="artifact-files"><span>Shared main.tf</span><span>variables.tf</span><span>outputs.tf</span><span>Provider lock file</span></div><p class="hero-lead-p">Terraform requires <code>&gt;= 1.10.0, &lt; 2.0.0</code>, AWS provider <code>6.73.0</code> and Time provider <code>0.14.2</code>. The reference relies on separately protected deployment inputs and existing active state. It is presented for review; do not apply independent new state against the retained objects.</p><div class="terminal-window"><div class="terminal-header"><div class="terminal-title">infrastructure/main.tf — complete recorded source</div></div><pre class="terminal-body" tabindex="0" aria-label="infrastructure/main.tf — complete recorded source"><code id="proof-02-main-source">terraform {
+  required_version = &quot;&gt;= 1.10.0, &lt; 2.0.0&quot;
+
+  required_providers {
+    aws = {
+      source  = &quot;hashicorp/aws&quot;
+      version = &quot;= 6.73.0&quot;
+    }
+    time = {
+      source  = &quot;hashicorp/time&quot;
+      version = &quot;= 0.14.2&quot;
+    }
+  }
+}
+
+provider &quot;aws&quot; {
+  region              = var.aws_region
+  profile             = var.aws_profile
+  allowed_account_ids = [var.aws_account_id]
+
+  default_tags {
+    tags = {
+      Project   = &quot;AKCCE-AWS-Lab-02&quot;
+      ManagedBy = &quot;Terraform&quot;
+      Purpose   = &quot;Simulated worker configuration isolation&quot;
+    }
+  }
+}
+
+data &quot;aws_iam_openid_connect_provider&quot; &quot;github&quot; {
+  arn = &quot;arn:aws:iam::${var.aws_account_id}:oidc-provider/token.actions.githubusercontent.com&quot;
+
+  lifecycle {
+    postcondition {
+      condition     = contains(self.client_id_list, &quot;sts.amazonaws.com&quot;)
+      error_message = &quot;The shared GitHub OIDC provider must accept the sts.amazonaws.com audience.&quot;
+    }
+  }
+}
+
+locals {
+  oidc_issuer = &quot;token.actions.githubusercontent.com&quot;
+  subjects = {
+    for key, worker in var.workers : key =&gt;
+    &quot;repo:${var.github_owner}@${var.github_owner_id}/${worker.github_repo}@${worker.github_repo_id}:ref:refs/heads/${worker.github_branch}&quot;
+  }
+  secret_read_actions = [
+    &quot;secretsmanager:GetSecretValue&quot;,
+    &quot;secretsmanager:DescribeSecret&quot;,
+  ]
+}
+
+resource &quot;aws_iam_role&quot; &quot;worker&quot; {
+  for_each = var.workers
+
+  name                 = each.value.role_name
+  description          = &quot;Lab 02 worker ${each.key}: exact GitHub subject and single configuration secret.&quot;
+  max_session_duration = 3600
+  assume_role_policy = jsonencode({
+    Version = &quot;2012-10-17&quot;
+    Statement = [{
+      Sid    = &quot;ExactGitHubWorkload&quot;
+      Effect = &quot;Allow&quot;
+      Principal = {
+        Federated = data.aws_iam_openid_connect_provider.github.arn
+      }
+      Action = &quot;sts:AssumeRoleWithWebIdentity&quot;
+      Condition = {
+        StringEquals = {
+          &quot;${local.oidc_issuer}:aud&quot; = &quot;sts.amazonaws.com&quot;
+          &quot;${local.oidc_issuer}:sub&quot; = local.subjects[each.key]
+        }
+      }
+    }]
+  })
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+resource &quot;aws_secretsmanager_secret&quot; &quot;worker_config&quot; {
+  for_each = var.workers
+
+  name                    = each.value.secret_name
+  description             = &quot;Harmless simulation configuration for fleet-support worker ${each.key}.&quot;
+  recovery_window_in_days = var.secret_recovery_window_days
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+resource &quot;aws_secretsmanager_secret_version&quot; &quot;worker_config&quot; {
+  for_each = var.workers
+
+  secret_id     = aws_secretsmanager_secret.worker_config[each.key].id
+  secret_string = jsonencode(each.value.configuration)
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+resource &quot;aws_iam_role_policy&quot; &quot;worker_read&quot; {
+  for_each = var.workers
+
+  name = &quot;${each.value.role_name}-read-own-config&quot;
+  role = aws_iam_role.worker[each.key].id
+  policy = jsonencode({
+    Version = &quot;2012-10-17&quot;
+    Statement = [{
+      Sid      = &quot;ReadOwnWorkerConfiguration&quot;
+      Effect   = &quot;Allow&quot;
+      Action   = local.secret_read_actions
+      Resource = aws_secretsmanager_secret.worker_config[each.key].arn
+    }]
+  })
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+resource &quot;aws_secretsmanager_secret_policy&quot; &quot;worker_config&quot; {
+  for_each = var.workers
+
+  secret_arn          = aws_secretsmanager_secret.worker_config[each.key].arn
+  block_public_policy = true
+  policy = jsonencode({
+    Version = &quot;2012-10-17&quot;
+    Statement = [{
+      Sid    = &quot;AllowAssignedWorkerConfigRead&quot;
+      Effect = &quot;Allow&quot;
+      Principal = {
+        AWS = aws_iam_role.worker[each.key].arn
+      }
+      Action   = local.secret_read_actions
+      Resource = aws_secretsmanager_secret.worker_config[each.key].arn
+    }]
+  })
+
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+resource &quot;time_sleep&quot; &quot;iam_propagation&quot; {
+  create_duration = &quot;30s&quot;
+  depends_on = [
+    aws_iam_role_policy.worker_read,
+    aws_secretsmanager_secret_policy.worker_config,
+    aws_secretsmanager_secret_version.worker_config,
+  ]
+
+  triggers = {
+    policy_digest = sha256(jsonencode({
+      role_policies   = { for key, item in aws_iam_role_policy.worker_read : key =&gt; item.policy }
+      secret_policies = { for key, item in aws_secretsmanager_secret_policy.worker_config : key =&gt; item.policy }
+    }))
+  }
+}
+</code></pre></div><h3 class="section-title">Worker A Validation Workflow</h3><p class="artifact-description"><span>.github/workflows/validate-bridge.yml at validation commit</span><br>Run 43743148670, attempt 1. The complete bounded workflow is shown below.</p><div class="terminal-window"><div class="terminal-header"><div class="terminal-title">Worker A — recorded validate-bridge.yml</div></div><pre class="terminal-body" tabindex="0" aria-label="Worker A — recorded validate-bridge.yml"><code id="proof-02-worker-a-workflow">name: Lab 02 Worker a Configuration Isolation
+
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/validate-bridge.yml']
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: lab02-worker-a-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      AWS_PAGER: &quot;&quot;
+      AWS_REGION: us-east-2
+      AWS_DEFAULT_REGION: us-east-2
+      WORKER_ID: a
+      OWN_ROLE_ARN: arn:aws:iam::698250246230:role/akcce-fleet-02-worker-a-role
+      OWN_SECRET_ARN: arn:aws:secretsmanager:us-east-2:698250246230:secret:autonomy-lab/fleet-02/worker-a/config-Sm8XS1
+      OTHER_SECRET_ARN: arn:aws:secretsmanager:us-east-2:698250246230:secret:autonomy-lab/fleet-02/worker-b/config-joigf3
+      EXPECTED_SESSION_PREFIX: arn:aws:sts::698250246230:assumed-role/akcce-fleet-02-worker-a-role/
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Obtain temporary AWS credentials through OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ env.OWN_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+          audience: sts.amazonaws.com
+          role-session-name: lab02-worker-a-${{ github.run_id }}-${{ github.run_attempt }}
+          role-duration-seconds: 900
+          mask-aws-account-id: true
+
+      - name: Verify acting worker identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          identity=$(aws sts get-caller-identity --query Arn --output text)
+          [[ &quot;$identity&quot; == &quot;$EXPECTED_SESSION_PREFIX&quot;* ]]
+          printf 'LAB02_IDENTITY worker=%s arn=%s run=%s attempt=%s\n' &quot;$WORKER_ID&quot; &quot;$identity&quot; &quot;$GITHUB_RUN_ID&quot; &quot;$GITHUB_RUN_ATTEMPT&quot;
+
+      - name: Retrieve and immediately mask own configuration
+        shell: bash
+        run: |
+          set -euo pipefail
+          secret=$(aws secretsmanager get-secret-value --secret-id &quot;$OWN_SECRET_ARN&quot; --query SecretString --output text)
+          printf '::add-mask::%s\n' &quot;$secret&quot;
+          jq -e --arg worker &quot;$WORKER_ID&quot; '.worker_id == $worker and .simulation_only == true and .fleet_actuation_enabled == false' &lt;&lt;&lt; &quot;$secret&quot; &gt;/dev/null
+          unset secret
+          described=$(aws secretsmanager describe-secret --secret-id &quot;$OWN_SECRET_ARN&quot; --query ARN --output text)
+          [[ &quot;$described&quot; == &quot;$OWN_SECRET_ARN&quot; ]]
+          printf 'LAB02_POSITIVE worker=%s target=%s result=SUCCESS http=200\n' &quot;$WORKER_ID&quot; &quot;$OWN_SECRET_ARN&quot;
+
+      - name: Verify lateral enumeration is denied
+        shell: bash
+        run: |
+          set -euo pipefail
+          set +e; aws secretsmanager list-secrets --max-items 1 &gt;/dev/null 2&gt;&amp;1; EXIT_CODE=$?; set -e
+          [[ &quot;$EXIT_CODE&quot; -eq 254 ]]
+          error_file=&quot;$RUNNER_TEMP/lab02-list-error.txt&quot;
+          set +e
+          aws secretsmanager list-secrets --max-items 1 &gt;/dev/null 2&gt;&quot;$error_file&quot;
+          classified_exit=$?
+          set -e
+          [[ &quot;$classified_exit&quot; -eq 254 ]]
+          grep -Fq '(AccessDeniedException)' &quot;$error_file&quot;
+          grep -Fq 'ListSecrets operation' &quot;$error_file&quot;
+          rm -f &quot;$error_file&quot;
+          printf 'LAB02_ENUM_DENIED worker=%s exit=%s error=AccessDeniedException\n' &quot;$WORKER_ID&quot; &quot;$EXIT_CODE&quot;
+
+      - name: Verify the other worker configuration is denied
+        shell: bash
+        run: |
+          set -euo pipefail
+          error_file=&quot;$RUNNER_TEMP/lab02-cross-error.txt&quot;
+          set +e
+          aws secretsmanager get-secret-value --secret-id &quot;$OTHER_SECRET_ARN&quot; &gt;/dev/null 2&gt;&quot;$error_file&quot;
+          cross_exit=$?
+          set -e
+          [[ &quot;$cross_exit&quot; -eq 254 ]]
+          grep -Fq '(AccessDeniedException)' &quot;$error_file&quot;
+          grep -Fq 'GetSecretValue operation' &quot;$error_file&quot;
+          rm -f &quot;$error_file&quot;
+          printf 'LAB02_CROSS_DENIED worker=%s target=%s exit=%s error=AccessDeniedException\n' &quot;$WORKER_ID&quot; &quot;$OTHER_SECRET_ARN&quot; &quot;$cross_exit&quot;
+
+      - name: Record selected checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf 'LAB02_RESULT worker=%s own_get=SUCCESS describe=SUCCESS list=AccessDeniedException cross_get=AccessDeniedException\n' &quot;$WORKER_ID&quot;
+</code></pre></div><h3 class="section-title">Worker B Validation Workflow</h3><p class="artifact-description"><span>.github/workflows/validate-bridge.yml at validation commit</span><br>Run 43743154728, attempt 1. The complete bounded workflow is shown below.</p><div class="terminal-window"><div class="terminal-header"><div class="terminal-title">Worker B — recorded validate-bridge.yml</div></div><pre class="terminal-body" tabindex="0" aria-label="Worker B — recorded validate-bridge.yml"><code id="proof-02-worker-b-workflow">name: Lab 02 Worker b Configuration Isolation
+
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/validate-bridge.yml']
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: lab02-worker-b-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      AWS_PAGER: &quot;&quot;
+      AWS_REGION: us-east-2
+      AWS_DEFAULT_REGION: us-east-2
+      WORKER_ID: b
+      OWN_ROLE_ARN: arn:aws:iam::698250246230:role/akcce-fleet-02-worker-b-role
+      OWN_SECRET_ARN: arn:aws:secretsmanager:us-east-2:698250246230:secret:autonomy-lab/fleet-02/worker-b/config-joigf3
+      OTHER_SECRET_ARN: arn:aws:secretsmanager:us-east-2:698250246230:secret:autonomy-lab/fleet-02/worker-a/config-Sm8XS1
+      EXPECTED_SESSION_PREFIX: arn:aws:sts::698250246230:assumed-role/akcce-fleet-02-worker-b-role/
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Obtain temporary AWS credentials through OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ env.OWN_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+          audience: sts.amazonaws.com
+          role-session-name: lab02-worker-b-${{ github.run_id }}-${{ github.run_attempt }}
+          role-duration-seconds: 900
+          mask-aws-account-id: true
+
+      - name: Verify acting worker identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          identity=$(aws sts get-caller-identity --query Arn --output text)
+          [[ &quot;$identity&quot; == &quot;$EXPECTED_SESSION_PREFIX&quot;* ]]
+          printf 'LAB02_IDENTITY worker=%s arn=%s run=%s attempt=%s\n' &quot;$WORKER_ID&quot; &quot;$identity&quot; &quot;$GITHUB_RUN_ID&quot; &quot;$GITHUB_RUN_ATTEMPT&quot;
+
+      - name: Retrieve and immediately mask own configuration
+        shell: bash
+        run: |
+          set -euo pipefail
+          secret=$(aws secretsmanager get-secret-value --secret-id &quot;$OWN_SECRET_ARN&quot; --query SecretString --output text)
+          printf '::add-mask::%s\n' &quot;$secret&quot;
+          jq -e --arg worker &quot;$WORKER_ID&quot; '.worker_id == $worker and .simulation_only == true and .fleet_actuation_enabled == false' &lt;&lt;&lt; &quot;$secret&quot; &gt;/dev/null
+          unset secret
+          described=$(aws secretsmanager describe-secret --secret-id &quot;$OWN_SECRET_ARN&quot; --query ARN --output text)
+          [[ &quot;$described&quot; == &quot;$OWN_SECRET_ARN&quot; ]]
+          printf 'LAB02_POSITIVE worker=%s target=%s result=SUCCESS http=200\n' &quot;$WORKER_ID&quot; &quot;$OWN_SECRET_ARN&quot;
+
+      - name: Verify lateral enumeration is denied
+        shell: bash
+        run: |
+          set -euo pipefail
+          set +e; aws secretsmanager list-secrets --max-items 1 &gt;/dev/null 2&gt;&amp;1; EXIT_CODE=$?; set -e
+          [[ &quot;$EXIT_CODE&quot; -eq 254 ]]
+          error_file=&quot;$RUNNER_TEMP/lab02-list-error.txt&quot;
+          set +e
+          aws secretsmanager list-secrets --max-items 1 &gt;/dev/null 2&gt;&quot;$error_file&quot;
+          classified_exit=$?
+          set -e
+          [[ &quot;$classified_exit&quot; -eq 254 ]]
+          grep -Fq '(AccessDeniedException)' &quot;$error_file&quot;
+          grep -Fq 'ListSecrets operation' &quot;$error_file&quot;
+          rm -f &quot;$error_file&quot;
+          printf 'LAB02_ENUM_DENIED worker=%s exit=%s error=AccessDeniedException\n' &quot;$WORKER_ID&quot; &quot;$EXIT_CODE&quot;
+
+      - name: Verify the other worker configuration is denied
+        shell: bash
+        run: |
+          set -euo pipefail
+          error_file=&quot;$RUNNER_TEMP/lab02-cross-error.txt&quot;
+          set +e
+          aws secretsmanager get-secret-value --secret-id &quot;$OTHER_SECRET_ARN&quot; &gt;/dev/null 2&gt;&quot;$error_file&quot;
+          cross_exit=$?
+          set -e
+          [[ &quot;$cross_exit&quot; -eq 254 ]]
+          grep -Fq '(AccessDeniedException)' &quot;$error_file&quot;
+          grep -Fq 'GetSecretValue operation' &quot;$error_file&quot;
+          rm -f &quot;$error_file&quot;
+          printf 'LAB02_CROSS_DENIED worker=%s target=%s exit=%s error=AccessDeniedException\n' &quot;$WORKER_ID&quot; &quot;$OTHER_SECRET_ARN&quot; &quot;$cross_exit&quot;
+
+      - name: Record selected checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          printf 'LAB02_RESULT worker=%s own_get=SUCCESS describe=SUCCESS list=AccessDeniedException cross_get=AccessDeniedException\n' &quot;$WORKER_ID&quot;
+</code></pre></div><div class="evidence-note"><strong>Reading the checks.</strong> The workflows validate simulation fields without printing the retrieved value, check the acting role, and require exit 254 plus the expected <code>AccessDeniedException</code> operation text. Enumeration runs twice to retain the suppressed-output probe and then classify the denial. The <code>http=200</code> marker denotes the successful API contract, without a raw HTTP debug trace. Both actions still use mutable <code>@v4</code> tags; immutable action commit pinning remains a hardening gap.</div></section><section class="hero-arch-block green-block" id="proof-02-results"><span class="hero-block-tag">[RECORDED RESULTS :: FIRST-ATTEMPT VALIDATIONS]</span><h2 class="hero-block-title">Own Access Passed; Adjacent Access Denied</h2><div class="matrix-table-wrapper" role="region" aria-label="Selected checks in the two successful workflow runs" tabindex="0"><table class="killchain-table"><caption>Selected checks in the two successful workflow runs</caption><thead><tr><th scope="col">Worker</th><th scope="col">Own GetSecretValue</th><th scope="col">Own DescribeSecret</th><th scope="col">ListSecrets</th><th scope="col">Other worker GetSecretValue</th></tr></thead><tbody><tr><th scope="row">Worker A</th><td data-label="Own GetSecretValue"><span class="result-observed">SUCCESS</span></td><td data-label="Own DescribeSecret"><span class="result-observed">SUCCESS</span></td><td data-label="ListSecrets"><span class="result-observed">Expected denial</span></td><td data-label="Other worker GetSecretValue"><span class="result-observed">Expected denial</span></td></tr><tr><th scope="row">Worker B</th><td data-label="Own GetSecretValue"><span class="result-observed">SUCCESS</span></td><td data-label="Own DescribeSecret"><span class="result-observed">SUCCESS</span></td><td data-label="ListSecrets"><span class="result-observed">Expected denial</span></td><td data-label="Other worker GetSecretValue"><span class="result-observed">Expected denial</span></td></tr></tbody></table></div><p class="hero-lead-p">These are the selected results recorded for run A <code>43743148670</code> and run B <code>43743154728</code>, each on attempt 1. Own <code>DescribeSecret</code> success is supported by workflow/policy evidence; it is not an additional event in the eight-entry CloudTrail selection.</p><div class="terminal-window"><div class="terminal-header"><div class="terminal-title">Recorded result marker summary — not a complete raw runner log</div></div><pre class="terminal-body" tabindex="0" aria-label="Recorded result marker summary — not a complete raw runner log"><code id="proof-02-result-markers">LAB02_RESULT worker=a own_get=SUCCESS describe=SUCCESS list=AccessDeniedException cross_get=AccessDeniedException
+LAB02_RESULT worker=b own_get=SUCCESS describe=SUCCESS list=AccessDeniedException cross_get=AccessDeniedException</code></pre></div><p class="hero-lead-p">The useful lesson is concrete: test the intended read and a known neighboring resource, then classify the expected error. A generic failing command alone cannot distinguish an authorization boundary from a broken test. These results remain bounded to the recorded identities, targets and operations.</p></section><section class="hero-arch-block cyan-block" id="proof-02-evidence"><span class="hero-block-tag">[EVIDENCE REGISTER :: NORMALIZED OWNER RECORDS]</span><h2 class="hero-block-title">Eight Selected CloudTrail Events &amp; Their Limits</h2><p class="hero-lead-p">The table reproduces the eight selected entries in the owner-supplied <code>cloudtrail-evidence.json</code>. The recorded audit used CloudTrail event history and correlated exact first-attempt sessions, role issuers, account, region, operation and outcome. It selected one enumeration denial per worker, rather than every event generated by the jobs.</p><div class="matrix-table-wrapper" role="region" aria-label="Owner-recorded normalized CloudTrail selection — UTC" tabindex="0"><table class="killchain-table"><caption>Owner-recorded normalized CloudTrail selection — UTC</caption><thead><tr><th scope="col">Worker / session</th><th scope="col">Operation / outcome</th><th scope="col">Target</th><th scope="col">Event ID / time</th></tr></thead><tbody><tr><th scope="row">A<br><code>lab02-worker-a-43743148670-1</code></th><td data-label="Operation / outcome"><code>AssumeRoleWithWebIdentity</code><br>SUCCESS</td><td data-label="Target"><code>arn:aws:iam::698250246230:role/akcce-fleet-02-worker-a-role</code></td><td data-label="Event ID / time"><code>53e6973f-e488-47d7-981c-d40f90aa7d89</code><br><code>2026-11-15T17:48:24Z</code></td></tr><tr><th scope="row">A<br><code>lab02-worker-a-43743148670-1</code></th><td data-label="Operation / outcome"><code>GetSecretValue</code><br>SUCCESS</td><td data-label="Target"><code>arn:aws:secretsmanager:us-east-2:698250246230:secret:autonomy-lab/fleet-02/worker-a/config-Sm8XS1</code></td><td data-label="Event ID / time"><code>26a594ba-58cf-4de7-b71d-1daac26cdc82</code><br><code>2026-11-15T17:48:29Z</code></td></tr><tr><th scope="row">A<br><code>lab02-worker-a-43743148670-1</code></th><td data-label="Operation / outcome"><code>ListSecrets</code><br>AccessDenied</td><td data-label="Target">Account-level enumeration (<code>*</code> in normalized target)</td><td data-label="Event ID / time"><code>3ce00a32-1c05-4931-beaa-f9e4cd431a83</code><br><code>2026-11-15T17:48:31Z</code></td></tr><tr><th scope="row">A<br><code>lab02-worker-a-43743148670-1</code></th><td data-label="Operation / outcome"><code>GetSecretValue</code><br>AccessDenied</td><td data-label="Target"><code>arn:aws:secretsmanager:us-east-2:698250246230:secret:autonomy-lab/fleet-02/worker-b/config-joigf3</code></td><td data-label="Event ID / time"><code>cbef7a8e-5f41-4226-93c8-79a15da3dd13</code><br><code>2026-11-15T17:48:32Z</code></td></tr><tr><th scope="row">B<br><code>lab02-worker-b-43743154728-1</code></th><td data-label="Operation / outcome"><code>AssumeRoleWithWebIdentity</code><br>SUCCESS</td><td data-label="Target"><code>arn:aws:iam::698250246230:role/akcce-fleet-02-worker-b-role</code></td><td data-label="Event ID / time"><code>817e1cda-16de-4c67-9772-d37dfb6360c5</code><br><code>2026-11-15T17:48:25Z</code></td></tr><tr><th scope="row">B<br><code>lab02-worker-b-43743154728-1</code></th><td data-label="Operation / outcome"><code>GetSecretValue</code><br>SUCCESS</td><td data-label="Target"><code>arn:aws:secretsmanager:us-east-2:698250246230:secret:autonomy-lab/fleet-02/worker-b/config-joigf3</code></td><td data-label="Event ID / time"><code>be27b2a3-139d-4936-978c-c19769918d5a</code><br><code>2026-11-15T17:48:27Z</code></td></tr><tr><th scope="row">B<br><code>lab02-worker-b-43743154728-1</code></th><td data-label="Operation / outcome"><code>ListSecrets</code><br>AccessDenied</td><td data-label="Target">Account-level enumeration (<code>*</code> in normalized target)</td><td data-label="Event ID / time"><code>d0a1b3fd-6ad3-4879-99d6-771f0a4116ec</code><br><code>2026-11-15T17:48:29Z</code></td></tr><tr><th scope="row">B<br><code>lab02-worker-b-43743154728-1</code></th><td data-label="Operation / outcome"><code>GetSecretValue</code><br>AccessDenied</td><td data-label="Target"><code>arn:aws:secretsmanager:us-east-2:698250246230:secret:autonomy-lab/fleet-02/worker-a/config-Sm8XS1</code></td><td data-label="Event ID / time"><code>4a6c58e0-a335-4942-9398-fab64650bfd6</code><br><code>2026-11-15T17:48:30Z</code></td></tr></tbody></table></div><div class="evidence-note"><strong>Target and provenance limits.</strong> For cross-secret denials, the recorded matcher used exact <code>resources[].ARN</code> because <code>requestParameters</code> was null. The normalized <code>*</code> target for <code>ListSecrets</code> denotes an account-level operation, not a permission wildcard granted to either worker. These normalized records and owner-supplied receipts are not a signed raw CloudTrail archive or an independent log-integrity validation.</div><h3 class="section-title">Recorded Sources</h3><div class="artifact-files"><span>identity_architecture_ledger.md</span><span>audit_results_ledger.md</span><span>cloudtrail_telemetry.md</span><span>cloudtrail-evidence.json</span><span>semantic_refinement_ledger.md</span></div><p class="hero-lead-p">The audit ledger is a pre-publication snapshot: its repository-sync-pending wording is historical. The final scorecard and owner-supplied sync receipt record the completed synchronization to the final commits shown above. The narrative, code and selected results are presented on this page; optional source references follow.</p><h3 class="section-title">Further Checks</h3><ul class="lockdown-list"><li>Test meaningful unauthorized-source claims and opposite-role exchanges; the admitted-context runs did not cover those cases.</li><li>Review all effective policies and future permission changes, then rerun the relevant access matrix.</li><li>Review and pin immutable action revisions; retain complete non-sensitive execution evidence and separately validate any raw-log integrity claim.</li><li>Treat CloudTrail Lake and Logs Insights query examples as unexecuted references. The completed audit used event history; no new audit store or logging pipeline was created.</li></ul><div class="evidence-note"><strong>Application boundary.</strong> No firmware signing, protected signing-key custody, device acceptance, fleet rollout, physical-safety result or compliance certification was tested. The selected checks establish historical configuration-access behavior; they do not guarantee universal exclusivity or live cloud state after publication.</div></section><details class="evidence-note"><summary style="cursor:pointer;font-weight:700">Optional repository and run references</summary><p class="micro-text">GitHub source and run links require repository access. Both repositories were recorded as private. The case study above is self-contained.</p><ul class="lockdown-list"><li><a href="https://github.com/Compcode1/Compcode1-akcce-aws-fleet-02-worker-a/actions/runs/43743148670/attempts/1" class="source-link" target="_blank" rel="noopener noreferrer">43743148670 / 1</a></li><li><a href="https://github.com/Compcode1/Compcode1-akcce-aws-fleet-02-worker-a/tree/84c8758502207b1641305b81fc2884b0d07a1315" class="source-link" target="_blank" rel="noopener noreferrer">84c8758502207b1641305b81fc2884b0d07a1315</a></li><li><a href="https://github.com/Compcode1/Compcode1-akcce-aws-fleet-02-worker-b/actions/runs/43743154728/attempts/1" class="source-link" target="_blank" rel="noopener noreferrer">43743154728 / 1</a></li><li><a href="https://github.com/Compcode1/Compcode1-akcce-aws-fleet-02-worker-b/tree/11c538bc78ebb9ce18ccb3c55ddf77ff8edbd304" class="source-link" target="_blank" rel="noopener noreferrer">11c538bc78ebb9ce18ccb3c55ddf77ff8edbd304</a></li><li><a href="https://github.com/Compcode1/Compcode1-akcce-aws-fleet-02-worker-a/blob/84c8758502207b1641305b81fc2884b0d07a1315/infrastructure/main.tf" class="source-link" target="_blank" rel="noopener noreferrer">Shared main.tf</a></li><li><a href="https://github.com/Compcode1/Compcode1-akcce-aws-fleet-02-worker-a/blob/84c8758502207b1641305b81fc2884b0d07a1315/infrastructure/variables.tf" class="source-link" target="_blank" rel="noopener noreferrer">variables.tf</a></li><li><a href="https://github.com/Compcode1/Compcode1-akcce-aws-fleet-02-worker-a/blob/84c8758502207b1641305b81fc2884b0d07a1315/infrastructure/outputs.tf" class="source-link" target="_blank" rel="noopener noreferrer">outputs.tf</a></li><li><a href="https://github.com/Compcode1/Compcode1-akcce-aws-fleet-02-worker-a/blob/84c8758502207b1641305b81fc2884b0d07a1315/infrastructure/.terraform.lock.hcl" class="source-link" target="_blank" rel="noopener noreferrer">Provider lock file</a></li><li><a href="https://github.com/Compcode1/Compcode1-akcce-aws-fleet-02-worker-a/blob/4fe10bb2e15b9dff10565fbb38fe15497a2126ca/.github/workflows/validate-bridge.yml" class="source-link" target="_blank" rel="noopener noreferrer">.github/workflows/validate-bridge.yml at validation commit</a></li><li><a href="https://github.com/Compcode1/Compcode1-akcce-aws-fleet-02-worker-b/blob/8789e93f59e17bce3b59b8eaed47ef715d64120f/.github/workflows/validate-bridge.yml" class="source-link" target="_blank" rel="noopener noreferrer">.github/workflows/validate-bridge.yml at validation commit</a></li><li><a href="https://github.com/Compcode1/Compcode1-akcce-aws-fleet-02-worker-a/blob/84c8758502207b1641305b81fc2884b0d07a1315/identity_architecture_ledger.md" class="source-link" target="_blank" rel="noopener noreferrer">identity_architecture_ledger.md</a></li><li><a href="https://github.com/Compcode1/Compcode1-akcce-aws-fleet-02-worker-a/blob/84c8758502207b1641305b81fc2884b0d07a1315/audit_results_ledger.md" class="source-link" target="_blank" rel="noopener noreferrer">audit_results_ledger.md</a></li><li><a href="https://github.com/Compcode1/Compcode1-akcce-aws-fleet-02-worker-a/blob/84c8758502207b1641305b81fc2884b0d07a1315/cloudtrail_telemetry.md" class="source-link" target="_blank" rel="noopener noreferrer">cloudtrail_telemetry.md</a></li><li><a href="https://github.com/Compcode1/Compcode1-akcce-aws-fleet-02-worker-a/blob/84c8758502207b1641305b81fc2884b0d07a1315/cloudtrail-evidence.json" class="source-link" target="_blank" rel="noopener noreferrer">cloudtrail-evidence.json</a></li><li><a href="https://github.com/Compcode1/Compcode1-akcce-aws-fleet-02-worker-a/blob/84c8758502207b1641305b81fc2884b0d07a1315/semantic_refinement_ledger.md" class="source-link" target="_blank" rel="noopener noreferrer">semantic_refinement_ledger.md</a></li></ul></details><div class="return-bar"><a href="aws-demonstrations.html" class="back-banner-btn">&larr; AWS Demonstrations</a><a href="autonomous-proofs.html" class="back-banner-btn">Project 01</a><a href="autonomous-systems.html" class="back-banner-btn">Industry Overview</a><a href="#proof-02-overview" class="back-banner-btn">&uarr; Project 02 Overview</a></div></main>
+<footer class="ip-footer">
+        <div class="footer-crest-wrapper">
+            <svg class="footer-brand-crest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+                <rect width="114" height="114" x="3" y="3" fill="#020617" rx="22" stroke="#1e293b" stroke-width="3"/>
+                <polygon points="24,18 60,36 60,48 24,30" fill="#475569"/>
+                <polygon points="96,18 60,36 60,48 96,30" fill="#1e293b"/>
+                <polygon points="24,39 60,57 60,69 24,51" fill="#0284c7"/>
+                <polygon points="96,39 60,57 60,69 96,51" fill="#075985"/>
+                <polygon points="24,60 60,78 60,90 24,72" fill="#38bdf8"/>
+                <polygon points="96,60 60,78 60,90 96,72" fill="#0369a1"/>
+                <polygon points="24,81 60,99 60,111 24,93" fill="#f43f5e"/>
+                <polygon points="96,81 60,99 60,111 96,93" fill="#9f1239"/>
+            </svg>
+        </div>
+        <strong>&copy; 2026 Steven Tuschman | Adversarial Kill-Chain Counter-Engineering&trade; (adversarialkillchaincounterengineering.com). All Rights Reserved.</strong>
+<br>
+        The Adversarial Kill-Chain Counter-Engineering State Machine, Sequential Kill-Chain Counter-Engineering Protocol, Execution Triad governance model, Four Architectural Gates of Machine Identity, Five Enterprise Guardrails, Build Coordinate Matrix, and 26-Variable System Glossary are proprietary intellectual property. Unauthorized reproduction, distribution, or commercial adaptation is strictly prohibited.
+    </footer>
+</body>
+</html>

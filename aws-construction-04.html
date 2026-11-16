@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 04: Cloud Identity for Construction AI | Autonomous Systems | AKCCE</title>
+<meta name="description" content="Project 04 applies and tests separate AWS workload identities for construction AI upload and analysis coordination, with selected allowed/denied results, CloudTrail correlations and a team-facing engineering handoff.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    <!-- Google tag (gtag.js) -->
+    <script>
+      const blockAnalytics = new URLSearchParams(window.location.search).get('block_ga') === 'true';
+      if (blockAnalytics) window['ga-disable-G-80NYKHYN3R'] = true;
+      try {
+        if (blockAnalytics) localStorage.setItem('akcce_block_ga', 'true');
+        if (localStorage.getItem('akcce_block_ga') === 'true') {
+          window['ga-disable-G-80NYKHYN3R'] = true;
+        }
+      } catch (error) {
+        // The query-string opt-out still works when browser storage is unavailable.
+      }
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-80NYKHYN3R">
+</script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-80NYKHYN3R');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-page: #020617;
+            --bg-node: rgba(10, 15, 29, 0.95);
+            --border-base: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+            --color-blue: #3b82f6;
+            --color-cyan: #0ea5e9;
+            --color-purple: #a855f7;
+            --color-grey: #64748b;
+            --color-green: #10b981;
+            --color-teal: #14b8a6;
+            --color-red: #f43f5e;
+            --color-orange: #f97316;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--bg-page);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 4rem;
+        }
+
+        /* ================= NAVIGATION ================= */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-base); z-index: 100;
+            padding: 1.2rem 2rem; display: flex; justify-content: center;
+        }
+        .nav-links {
+            display: flex; gap: 1.1rem; list-style: none; flex-wrap: wrap;
+            justify-content: center; align-items: center;
+        }
+        .nav-links a {
+            display: inline-block;
+            color: var(--color-cyan);
+            border: 1px solid var(--color-cyan);
+            background: rgba(14, 165, 233, 0.1);
+            padding: 0.5rem 1.15rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a.active-link {
+            background: var(--color-cyan);
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
+        }
+
+        .bullet-lead { color: var(--color-cyan); font-weight: 800; }
+        .bullet-lead-red { color: var(--color-red); font-weight: 800; }
+        .bullet-lead-green { color: var(--color-green); font-weight: 800; }
+        .bullet-lead-orange { color: var(--color-orange); font-weight: 800; }
+        .bullet-lead-purple { color: var(--color-purple); font-weight: 800; }
+
+        /* ================= HERO HEADER ================= */
+        .hero { padding: 155px 20px 35px; text-align: center; border-bottom: 1px solid var(--border-base); }
+        .hero-title-container {
+            display: flex; align-items: center; justify-content: center;
+            gap: 1.35rem; margin-bottom: 0.8rem; flex-wrap: wrap;
+        }
+        .hero-brand-crest {
+            width: 66px; height: 66px; flex-shrink: 0;
+            filter: drop-shadow(0 0 18px rgba(14, 165, 233, 0.4)) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.6));
+        }
+        .hero-title {
+            font-family: 'Montserrat', sans-serif; font-size: 2.8rem; font-weight: 900;
+            letter-spacing: 2px; color: var(--text-main); text-transform: uppercase; line-height: 1.15;
+        }
+        .hero-page-subtitle {
+            font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; font-weight: 800;
+            color: var(--color-cyan); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.4rem;
+        }
+        .hero-intro-copy {
+            font-size: 1.12rem; color: var(--text-muted); max-width: 960px;
+            margin: 0 auto 1.6rem; font-weight: 500; line-height: 1.7;
+        }
+
+        /* RETURN BUTTON */
+        .back-banner-btn {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.86rem;
+            font-weight: 800;
+            color: var(--color-cyan);
+            background: rgba(14, 165, 233, 0.08);
+            border: 1px solid var(--color-cyan);
+            padding: 0.6rem 1.25rem;
+            border-radius: 6px;
+            text-decoration: none;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            transition: all 0.25s ease;
+        }
+        .back-banner-btn:hover {
+            background: var(--color-cyan);
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
+        }
+
+        /* ================= MAIN CONTAINER & PROOF NAV MATRIX ================= */
+        .container { max-width: 1250px; margin: 0 auto; padding: 3.2rem 20px 0; }
+
+        .project-links-header {
+            text-align: center; margin-bottom: 1.8rem;
+            font-family: 'Montserrat', sans-serif; font-size: 1.65rem; font-weight: 900;
+            color: var(--text-main); text-transform: uppercase; letter-spacing: 2px;
+            scroll-margin-top: 105px;
+        }
+
+        .nav-matrix-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 3.5rem;
+        }
+        .nav-matrix-link {
+            text-decoration: none;
+            display: block;
+            background: rgba(15, 23, 42, 0.55);
+            border: 1px solid var(--border-base);
+            border-left: 4px solid var(--color-green);
+            border-radius: 8px;
+            padding: 1.55rem 1.65rem;
+            transition: all 0.3s ease;
+        }
+        .nav-matrix-link:hover {
+            background: rgba(16, 185, 129, 0.09);
+            border-color: var(--color-green);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
+        }
+        .nav-matrix-title {
+            font-family: 'Montserrat', sans-serif;
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 1.12rem;
+            margin-bottom: 0.45rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .nav-matrix-stack {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--color-cyan);
+            font-size: 0.84rem;
+            font-weight: 700;
+            margin-bottom: 0.9rem;
+            line-height: 1.45;
+        }
+        .nav-matrix-guardrail {
+            font-size: 0.95rem;
+            color: var(--color-green);
+            font-weight: 600;
+            border-top: 1px solid var(--border-base);
+            padding-top: 0.8rem;
+            line-height: 1.55;
+        }
+        .nav-matrix-guardrail strong { color: var(--text-main); }
+
+        /* JUMP BAR FOR CURRENT PROOF */
+        .jump-links-container {
+            max-width: 1250px; margin: 0 auto 2.8rem; padding: 1.4rem 1.8rem;
+            background: rgba(15, 23, 42, 0.65); border: 1px solid var(--border-base);
+            border-top: 3px solid var(--color-cyan); border-radius: 10px;
+            text-align: center; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+        }
+        .jump-links-intro {
+            font-family: 'Montserrat', sans-serif; font-size: 1.0rem; font-weight: 800;
+            color: var(--text-main); letter-spacing: 0.5px; margin-bottom: 0.95rem;
+        }
+        .jump-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
+        .jump-links a {
+            color: var(--color-cyan); border: 1px solid var(--color-cyan);
+            background: rgba(14, 165, 233, 0.08); padding: 0.52rem 1.05rem;
+            border-radius: 8px; text-decoration: none; font-size: 0.8rem;
+            font-weight: 700; letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s ease;
+        }
+        .jump-links a:hover {
+            background: var(--color-cyan); color: #ffffff;
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); transform: translateY(-2px);
+        }
+
+        /* ================= ARCHITECTURAL BLOCKS ================= */
+        .hero-arch-block {
+            max-width: 1250px; margin: 0 auto 3rem;
+            background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-base);
+            border-radius: 12px; padding: 2.8rem 3rem; text-align: left;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+            scroll-margin-top: 105px;
+        }
+        .hero-arch-block.cyan-block { border-top: 4px solid var(--color-cyan); }
+        .hero-arch-block.green-block { border-top: 4px solid var(--color-green); }
+        .hero-arch-block.red-block { border-top: 4px solid var(--color-red); }
+
+        .hero-block-tag {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; font-weight: 800;
+            letter-spacing: 1.2px; text-transform: uppercase; display: block; margin-bottom: 0.7rem;
+        }
+        .cyan-block .hero-block-tag { color: var(--color-cyan); }
+        .green-block .hero-block-tag { color: var(--color-green); }
+        .red-block .hero-block-tag { color: var(--color-red); }
+
+        .hero-block-title {
+            font-family: 'Montserrat', sans-serif; font-size: 1.7rem; font-weight: 900;
+            letter-spacing: 1px; line-height: 1.35; color: var(--text-main); text-transform: uppercase;
+            margin-bottom: 1.5rem; padding-bottom: 0.9rem; border-bottom: 2px solid var(--border-base);
+        }
+        .hero-lead-p {
+            font-size: 1.12rem; color: var(--text-main); font-weight: 600;
+            line-height: 1.8; margin-bottom: 1.3rem;
+        }
+
+        /* MICRO CARDS */
+        .micro-card {
+            background: rgba(10, 15, 29, 0.92); border: 1px solid var(--border-base);
+            border-radius: 8px; padding: 1.6rem 1.8rem; margin-bottom: 1.25rem;
+        }
+        .micro-card-challenge { border-left: 4px solid var(--color-purple); }
+        .micro-card-execution { border-left: 4px solid var(--color-cyan); }
+        .micro-card-value { border-left: 4px solid var(--color-green); margin-bottom: 0; }
+
+        .micro-header {
+            font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.15rem;
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem;
+        }
+        .mc-color-challenge { color: var(--color-purple); }
+        .mc-color-execution { color: var(--color-cyan); }
+        .mc-color-value { color: var(--color-green); }
+
+        .micro-text { font-size: 1.04rem; line-height: 1.75; color: var(--text-muted); }
+        .micro-text strong { color: var(--text-main); font-weight: 700; }
+
+        .bottom-line {
+            margin-top: 1.1rem; padding: 1.1rem 1.25rem;
+            background: rgba(255, 255, 255, 0.03); border-radius: 6px;
+            border-left: 3px solid var(--color-grey); font-size: 0.98rem;
+            font-style: italic; color: var(--text-muted); line-height: 1.65;
+        }
+        .bottom-line strong { color: var(--text-main); font-weight: 700; font-style: normal; }
+
+        /* ================= 5-COLUMN CAPABILITY MATRIX ================= */
+        .section-title {
+            font-family: 'Montserrat', sans-serif; font-size: 1.7rem; font-weight: 800;
+            color: var(--color-cyan); text-transform: uppercase; letter-spacing: 1.5px;
+            margin: 3.2rem 0 1.8rem; text-align: center; scroll-margin-top: 105px;
+        }
+        .matrix-grid {
+            display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.15rem; margin-bottom: 3rem;
+        }
+        .matrix-card {
+            background: rgba(15, 23, 42, 0.55); border: 1px solid var(--border-base);
+            border-top: 3px solid var(--color-blue); padding: 1.45rem; border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+        }
+        .matrix-card h3 {
+            font-size: 1.02rem; color: var(--text-main); margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-base); padding-bottom: 0.5rem;
+            font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .matrix-list { list-style: none; }
+        .matrix-list li {
+            font-size: 0.93rem; color: var(--text-muted); margin-bottom: 0.68rem;
+            display: flex; align-items: center;
+        }
+        .matrix-list li.active { color: var(--color-cyan); font-weight: 700; }
+        .checkbox {
+            display: inline-block; width: 16px; height: 16px; border: 1px solid var(--color-grey);
+            border-radius: 3px; margin-right: 10px; position: relative; flex-shrink: 0;
+        }
+        .active .checkbox { border-color: var(--color-cyan); background-color: rgba(14, 165, 233, 0.2); }
+        .active .checkbox::after { content: '✔'; position: absolute; top: -3px; left: 2px; color: var(--color-cyan); font-size: 12px; }
+
+        /* ================= 7 LOCKDOWN CARDS ================= */
+        .lockdown-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 1rem;
+        }
+        .lockdown-card {
+            background: rgba(10, 15, 29, 0.95); border: 1px solid var(--border-base);
+            border-left: 4px solid var(--color-green); border-radius: 10px;
+            padding: 1.85rem 2rem; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+        }
+        .lockdown-card.full-span { grid-column: 1 / -1; }
+        .lockdown-badge-row {
+            display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.75rem;
+        }
+        .lockdown-num {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 800;
+            color: #ffffff; background: var(--color-red); padding: 0.25rem 0.7rem;
+            border-radius: 4px; letter-spacing: 1px; text-transform: uppercase;
+        }
+        .lockdown-gate {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; font-weight: 800;
+            color: var(--color-green); background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.45); padding: 0.23rem 0.7rem;
+            border-radius: 4px; letter-spacing: 0.8px; text-transform: uppercase;
+        }
+        .lockdown-title {
+            font-family: 'Montserrat', sans-serif; font-size: 1.18rem; font-weight: 900;
+            color: var(--text-main); text-transform: uppercase; margin-bottom: 0.85rem;
+            padding-bottom: 0.6rem; border-bottom: 1px solid var(--border-base);
+        }
+        .lockdown-list {
+            list-style: disc; padding-left: 1.3rem; display: flex; flex-direction: column; gap: 0.65rem;
+        }
+        .lockdown-list li {
+            font-size: 0.99rem; color: var(--text-main); font-weight: 600; line-height: 1.65;
+        }
+        .lockdown-list li::marker { color: var(--color-green); }
+
+        /* ================= TERMINAL STYLING ================= */
+        .terminal-window {
+            background: #0d1117; border: 1px solid var(--border-base); border-radius: 10px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); width: 100%;
+            max-width: 1180px; margin: 0 auto 3.2rem; text-align: left; overflow: hidden;
+            scroll-margin-top: 105px;
+        }
+        .terminal-header {
+            background: #161b22; padding: 12px 20px; display: flex; align-items: center;
+            border-bottom: 1px solid var(--border-base); position: relative;
+        }
+        .terminal-dots { display: flex; gap: 8px; position: absolute; left: 20px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot.red { background: #ff5f56; }
+        .dot.yellow { background: #ffbd2e; }
+        .dot.green { background: #27c93f; }
+        .terminal-title {
+            margin: 0 auto; color: var(--text-muted); font-size: 0.86rem;
+            font-family: 'JetBrains Mono', monospace; letter-spacing: 1px;
+        }
+        .terminal-body {
+            padding: 2.2rem 2.4rem; font-family: 'JetBrains Mono', 'Consolas', monospace;
+            font-size: 0.9rem; line-height: 1.75; color: var(--text-main);
+            overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;
+            background: linear-gradient(rgba(13, 17, 23, 1) 0%, rgba(13, 17, 23, 0.96) 100%);
+        }
+
+        .t-cyan { color: var(--color-cyan); font-weight: 700; }
+        .t-green { color: var(--color-green); font-weight: 700; }
+        .t-blue { color: var(--color-blue); font-weight: 700; }
+        .t-purple { color: var(--color-purple); font-weight: 700; }
+        .t-muted { color: var(--text-muted); }
+        .t-comment { color: var(--color-grey); font-style: italic; }
+        .t-red { color: #ff5f56; font-weight: 700; }
+
+        /* ================= FORENSIC LEDGER TABLES ================= */
+        .matrix-table-wrapper {
+            width: 100%; overflow-x: auto; border-radius: 10px;
+            border: 1px solid var(--border-base); margin-top: 1.1rem;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+        }
+        .killchain-table {
+            width: 100%; border-collapse: collapse; background: rgba(10, 15, 29, 0.95); text-align: left;
+        }
+        .killchain-table th {
+            font-family: 'Montserrat', sans-serif; font-size: 0.86rem; font-weight: 900;
+            text-transform: uppercase; letter-spacing: 1px; color: var(--color-cyan);
+            background: rgba(2, 6, 23, 0.95); padding: 1.1rem 1.1rem; border-bottom: 2px solid var(--border-base);
+        }
+        .killchain-table td {
+            padding: 1.1rem 1.1rem; font-size: 0.94rem; color: var(--text-main);
+            font-weight: 600; line-height: 1.6; border-bottom: 1px solid var(--border-base); vertical-align: top;
+        }
+        .killchain-table tr:hover td { background: rgba(14, 165, 233, 0.04); }
+
+        .return-bar {
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 1rem; margin: 2rem 0 1rem;
+        }
+        .divider { height: 1px; background: var(--border-base); margin: 3.2rem auto; max-width: 1250px; }
+
+        /* ================= FOOTER ================= */
+        .ip-footer {
+            max-width: 1250px; margin: 3rem auto 0; text-align: center; padding: 2.5rem 1.5rem;
+            border-top: 1px solid var(--border-base); background: rgba(10, 15, 29, 0.6);
+            border-radius: 8px; color: var(--text-muted); font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace; line-height: 1.8;
+        }
+        .footer-crest-wrapper { display: flex; justify-content: center; margin-bottom: 0.85rem; }
+        .footer-brand-crest { width: 38px; height: 38px; filter: drop-shadow(0 0 10px rgba(14, 165, 233, 0.25)); }
+        .ip-footer strong { color: var(--color-cyan); font-weight: 700; }
+
+        @media (max-width: 1050px) {
+            .matrix-grid { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+            .lockdown-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 992px), (max-height: 550px) {
+            nav { position: relative !important; padding: 0.75rem 0.5rem !important; }
+            .nav-links { gap: 0.45rem !important; }
+            .nav-links a { font-size: 0.72rem !important; padding: 0.35rem 0.65rem !important; }
+            .hero { padding-top: 30px !important; }
+            .hero-arch-block { padding: 2rem 1.4rem; }
+            .terminal-body { padding: 1.4rem; font-size: 0.82rem; }
+        }
+
+        /* Evidence presentation and shared accessibility improvements. */
+        nav { position: relative; }
+        .hero { padding-top: 40px; }
+        .skip-link { position: fixed; top: -100px; left: 1rem; z-index: 200; background: #f8fafc; color: #020617; padding: .7rem 1rem; border-radius: 6px; }
+        .skip-link:focus { top: .5rem; }
+        a:focus-visible, [tabindex]:focus-visible { outline: 3px solid #38bdf8; outline-offset: 5px; }
+        [id] { scroll-margin-top: 1.5rem !important; }
+        main, .container, .lockdown-card, .matrix-card { min-width: 0; }
+        .hero-title, .hero-page-subtitle, .section-title, .hero-block-title, .lockdown-title, .ip-footer, .terminal-title, code, .source-link { overflow-wrap: anywhere; }
+        .hero-lead-p { font-weight: 500; }
+        .source-link { color: #7dd3fc; text-underline-offset: 3px; font-weight: 700; }
+        .source-actions { display: flex; flex-wrap: wrap; gap: .7rem 1.2rem; margin: 1.2rem 0; }
+        .source-actions a { color: #7dd3fc; text-underline-offset: 3px; font-weight: 700; }
+        .evidence-note { border: 1px solid #334155; border-left: 4px solid #38bdf8; border-radius: 7px; padding: 1rem 1.2rem; margin: 1.3rem 0; color: var(--text-muted); line-height: 1.7; }
+        .evidence-note strong { color: var(--text-main); }
+        .evidence-kicker { max-width: 960px; margin: 1.2rem auto; text-align: left; }
+        .nav-matrix-grid { grid-template-columns: repeat(auto-fit,minmax(min(100%,300px),1fr)); }
+        .matrix-grid { grid-template-columns: repeat(5,minmax(0,1fr)); }
+        .matrix-card p { color: var(--text-muted); line-height: 1.7; }
+        .lockdown-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+        .lockdown-list li { font-weight: 500; }
+        .review-limit { margin-top: 1rem; padding-top: .8rem; border-top: 1px solid #334155; color: var(--text-muted); line-height: 1.65; font-size: .97rem; }
+        .terminal-header { padding: 12px 20px; }
+        .terminal-title { margin: 0; }
+        .terminal-body { white-space: pre; overflow-x: auto; overflow-wrap: normal; word-wrap: normal; max-width: 100%; }
+        .terminal-body code { overflow-wrap: normal; }
+        .artifact-description { max-width: 1180px; margin: 0 auto 1rem; color: var(--text-muted); line-height: 1.7; }
+        .killchain-table caption { text-align: left; padding: 1rem 1.1rem; color: var(--text-muted); background: var(--bg-node); }
+        .killchain-table th, .killchain-table td { overflow-wrap: anywhere; }
+        .killchain-table tbody th { color: #f8fafc; text-align: left; vertical-align: top; font-size: .93rem; }
+        .result-observed { color: #6ee7b7; font-weight: 700; }
+        .result-reported { color: #7dd3fc; font-weight: 700; }
+        .result-open { color: #fbbf24; font-weight: 700; }
+        .artifact-files { display: flex; flex-wrap: wrap; gap: .8rem 1.2rem; margin: 1rem 0 1.5rem; }
+        @media(max-width:1050px) { .matrix-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } .lockdown-grid { grid-template-columns: 1fr; } }
+        @media(max-width:600px) {
+            .hero-title { font-size: 1.7rem; letter-spacing: 1px; }
+            .hero-page-subtitle { font-size: .9rem; letter-spacing: 1px; }
+            .hero, .container { padding-left: 12px; padding-right: 12px; }
+            .hero-arch-block { padding: 1.5rem 1rem; }
+            .micro-card, .lockdown-card { padding: 1.3rem 1rem; }
+            .matrix-grid { grid-template-columns: 1fr; }
+            .nav-matrix-link, .jump-links-container { padding: 1.25rem 1rem; }
+            .section-title { font-size: 1.4rem; }
+            .killchain-table, .killchain-table tbody, .killchain-table tr, .killchain-table td, .killchain-table tbody th { display: block; width: 100%; }
+            .killchain-table thead { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+            .killchain-table tbody tr { border-bottom: 3px solid #334155; }
+            .killchain-table tbody th { padding: 1rem; color: #7dd3fc; }
+            .killchain-table td { padding: .8rem 1rem; }
+            .killchain-table td::before { content: attr(data-label); display: block; font-weight: 800; color: #7dd3fc; margin-bottom: .3rem; }
+        }
+        @media(prefers-reduced-motion:reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+        }
+    </style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<nav aria-label="Main navigation">
+        <ul class="nav-links">
+            <li>
+<a href="index.html">Home</a>
+</li>
+            <li>
+<a href="autonomous-systems.html" class="active-link" aria-current="location">Autonomous Systems</a>
+</li>
+            <li>
+<a href="kill-chain.html">The Adversarial Kill Chain</a>
+</li>
+            <li>
+<a href="blueprint.html">7-Phase Counter-Engineering Blueprint</a>
+</li>
+            <li>
+<a href="ai-systems-engineering.html">Tethered AI Systems Engineering</a>
+</li>
+            <li>
+<a href="architectural.html">Exploit-Level Pipeline Architecture</a>
+</li>
+            <li>
+<a href="workflow-portfolio.html">Counter-Engineering Demonstrations</a>
+</li>
+            <li>
+<a href="add-capabilities.html">Day-2 Multi-Cloud Modules</a>
+</li>
+            <li>
+<a href="glossary.html">26-Variable System Glossary</a>
+</li>
+            <li>
+<a href="contact.html">Contact</a>
+</li>
+        </ul>
+    </nav>
+<header class="hero"><div class="hero-title-container"><svg class="hero-brand-crest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Adversarial Kill-Chain Counter-Engineering 4-Chevron Crest">
+                <rect width="114" height="114" x="3" y="3" fill="#020617" rx="22" stroke="#1e293b" stroke-width="3"/>
+                <polygon points="24,18 60,36 60,48 24,30" fill="#475569"/>
+                <polygon points="96,18 60,36 60,48 96,30" fill="#1e293b"/>
+                <polygon points="24,39 60,57 60,69 24,51" fill="#0284c7"/>
+                <polygon points="96,39 60,57 60,69 96,51" fill="#075985"/>
+                <polygon points="24,60 60,78 60,90 24,72" fill="#38bdf8"/>
+                <polygon points="96,60 60,78 60,90 96,72" fill="#0369a1"/>
+                <polygon points="24,81 60,99 60,111 24,93" fill="#f43f5e"/>
+                <polygon points="96,81 60,99 60,111 96,93" fill="#9f1239"/>
+            </svg><h1 class="hero-title">PROJECT 04: CLOUD IDENTITY FOR CONSTRUCTION AI</h1></div><p class="hero-page-subtitle">Upload Coordination &bull; Analysis Coordination &bull; Separate AWS Access</p><p class="hero-intro-copy">Two jobs reached their own roles and settings. Attempts to cross into the other role or configuration were denied and matched to AWS audit records.</p><div class="source-actions" style="justify-content:center"><a href="aws-demonstrations.html" class="back-banner-btn">&larr; AWS Demonstrations Menu</a><a href="autonomous-systems.html" class="back-banner-btn">Autonomous Systems Overview</a></div></header><main class="container" id="main-content"><div class="jump-links-container"><div class="jump-links-intro">Project 04 Navigation</div><div class="jump-links"><a href="#proof-04-purpose">Construction AI Scenario</a><a href="#proof-04-architecture">Two-Job Architecture</a><a href="#proof-04-controls">Controls &amp; Results</a><a href="#proof-04-evidence">AWS Evidence</a><a href="#proof-04-handoff">Engineering Handoff</a><a href="#proof-04-next">Selected Next Connections</a><a href="#proof-04-scope">Scope &amp; Lessons</a></div></div>
+<section class="hero-arch-block cyan-block" id="proof-04-purpose"><span class="hero-block-tag">[PROJECT 04 :: CONSTRUCTION AI APPLICATION]</span><h2 class="hero-block-title">Separate Cloud Identities for Two Coordination Jobs</h2><p class="hero-lead-p">Project 04 built and tested separate AWS identities for two jobs representing <strong>upload coordination</strong> and <strong>analysis coordination</strong>. Each job entered its own role and read its own harmless settings. Requests to enter the other role, read the other configuration or list secrets received the expected denials. AWS CloudTrail records were correlated to the actual runs and targets.</p><p class="hero-lead-p">In a construction video/AI scenario, wearable-camera footage may move through cloud upload and analysis stages. Those stages can have different responsibilities and should have deliberately assigned access. This independent exploration models the supporting job-identity boundary with configuration reads, making the access decisions easy to inspect and test.</p><p class="hero-lead-p"><strong>Progress from Project 03:</strong> the familiar two-worker admission and access pattern is now applied to a concrete industry workflow, with an attack-oriented review and a receiving-engineer handoff. The advance is application and evidence discipline; the technical pattern and selected checks remain comparable to Project 03.</p><p class="artifact-description"><strong>Lab date:</strong> 16 November 2026 &bull; account <code>698250246230</code> &bull; region <code>us-east-2</code> &bull; executed directive <strong>v2.2.1</strong>.</p></section>
+<section class="hero-arch-block green-block" id="proof-04-architecture"><span class="hero-block-tag">[IMPLEMENTED ARCHITECTURE :: ADMISSION THEN ACCESS]</span><h2 class="hero-block-title">A Job Identity Is Not a Shared Permission Pool</h2><p class="hero-lead-p">The upload-coordination job and analysis-coordination job have different GitHub repositories, IAM roles and Secrets Manager secrets. GitHub OIDC supplies the workload assertion. AWS STS checks whether that identity may enter the requested role; the resulting session then uses the role’s effective permissions to request configuration.</p><div class="lockdown-grid" aria-label="Implemented two-job identity architecture"><article class="lockdown-card"><h3 class="lockdown-title">Upload coordination</h3><p class="micro-text"><strong>GitHub Actions job</strong><br>&darr; exact repository identity token<br><strong>Own AWS IAM role</strong><br>&darr; temporary session &amp; scoped read<br><strong>Own harmless configuration</strong></p><p class="review-limit">Tested across the boundary: opposite-role admission and opposite-secret retrieval <strong>denied</strong>.</p></article><article class="lockdown-card"><h3 class="lockdown-title">Analysis coordination</h3><p class="micro-text"><strong>GitHub Actions job</strong><br>&darr; exact repository identity token<br><strong>Own AWS IAM role</strong><br>&darr; temporary session &amp; scoped read<br><strong>Own harmless configuration</strong></p><p class="review-limit">Tested across the boundary: opposite-role admission and opposite-secret retrieval <strong>denied</strong>.</p></article></div><p class="hero-lead-p">Both jobs use the existing GitHub OIDC provider, referenced through a data lookup. Each role trust policy uses exact <code>StringEquals</code> audience and subject conditions. The audience is <code>sts.amazonaws.com</code>; the subject binds the canonical repository name, numeric owner/repository IDs and <code>main</code>.</p><div class="matrix-table-wrapper" role="region" aria-label="Actual AWS role and configuration bindings" tabindex="0"><table class="killchain-table"><caption>Actual AWS role and configuration bindings</caption><thead><tr><th scope="col">Job</th><th scope="col">IAM role ARN</th><th scope="col">Own configuration ARN</th></tr></thead><tbody><tr><th scope="row">Upload coordination</th><td data-label="IAM role ARN"><code>arn:aws:iam::698250246230:role/akcce-construction-04-coordination-role</code></td><td data-label="Own configuration ARN"><code>arn:aws:secretsmanager:us-east-2:698250246230:secret:construction-lab/project-04/coordination/config-Fhb7DU</code></td></tr><tr><th scope="row">Analysis coordination</th><td data-label="IAM role ARN"><code>arn:aws:iam::698250246230:role/akcce-construction-04-analysis-role</code></td><td data-label="Own configuration ARN"><code>arn:aws:secretsmanager:us-east-2:698250246230:secret:construction-lab/project-04/analysis/config-Qh8laV</code></td></tr></tbody></table></div><div class="matrix-table-wrapper" role="region" aria-label="Exact admitted repository subjects" tabindex="0"><table class="killchain-table"><caption>Exact admitted repository subjects</caption><thead><tr><th scope="col">Job</th><th scope="col">Subject condition</th></tr></thead><tbody><tr><th scope="row">Upload coordination</th><td data-label="Subject condition"><code>repo:Compcode1@171821203/Compcode1-akcce-aws-construction-04-coordination@1460243079:ref:refs/heads/main</code></td></tr><tr><th scope="row">Analysis coordination</th><td data-label="Subject condition"><code>repo:Compcode1@171821203/Compcode1-akcce-aws-construction-04-analysis@1460243839:ref:refs/heads/main</code></td></tr></tbody></table></div><p class="hero-lead-p">One narrow inline policy per role and the corresponding secret resource policy grant <code>GetSecretValue</code> and <code>DescribeSecret</code> on the assigned secret ARN. Readbacks recorded no attached managed policies for either role, and <code>block_public_policy = true</code> was configured. Same-account policy Allows combine under AWS policy evaluation; they are not independent mandatory AND barriers.</p></section>
+<section class="hero-arch-block green-block" id="proof-04-controls"><span class="hero-block-tag">[CONTROLS :: INTENDED PATHS &amp; DELIBERATE DENIALS]</span><h2 class="hero-block-title">Both Jobs Passed the Selected Access Tests</h2><div class="matrix-table-wrapper" role="region" aria-label="Original workflow attempt 1 results" tabindex="0"><table class="killchain-table"><caption>Original workflow attempt 1 results</caption><thead><tr><th scope="col">Job</th><th scope="col">Own role</th><th scope="col">Own Get / Describe</th><th scope="col">ListSecrets</th><th scope="col">Other secret Get</th><th scope="col">Other role WebIdentity</th></tr></thead><tbody><tr><th scope="row">Upload coordination</th><td data-label="Own role">PASS</td><td data-label="Own Get / Describe">PASS / PASS</td><td data-label="ListSecrets">DENY</td><td data-label="Other secret Get">DENY</td><td data-label="Other role WebIdentity">DENY</td></tr><tr><th scope="row">Analysis coordination</th><td data-label="Own role">PASS</td><td data-label="Own Get / Describe">PASS / PASS</td><td data-label="ListSecrets">DENY</td><td data-label="Other secret Get">DENY</td><td data-label="Other role WebIdentity">DENY</td></tr></tbody></table></div><p class="hero-lead-p">The opposite-role test presents the same GitHub OIDC identity context to the other role. It tests role admission directly, rather than attempting ordinary <code>AssumeRole</code> chaining. Denied requests were classified by their expected authorization outcomes; a generic failed command alone was not accepted as proof of a boundary.</p><div class="matrix-table-wrapper" role="region" aria-label="Attack prerequisites, control and observed result" tabindex="0"><table class="killchain-table"><caption>Attack prerequisites, control and observed result</caption><thead><tr><th scope="col">Review area / term</th><th scope="col">Concrete prerequisite</th><th scope="col">Implemented AWS control</th><th scope="col">Observed test</th><th scope="col">Boundary to retain</th></tr></thead><tbody><tr><th scope="row">02. Federation trust<br><strong>Workload Federation</strong></th><td data-label="Concrete prerequisite">A job can obtain a signed GitHub assertion and target a cloud role.</td><td data-label="Implemented AWS control">Existing IAM OIDC provider; exact audience and repository-ID/main subject in each role trust policy.</td><td data-label="Observed test">Own-role exchange PASS; opposite-role WebIdentity DENY for each job.</td><td data-label="Boundary to retain">A compromised admitted repository/job can still obtain its intended role.</td></tr><tr><th scope="row">03. Effective permissions<br><strong>Data-Plane Permission Grant</strong></th><td data-label="Concrete prerequisite">An admitted job has temporary credentials and attempts a neighboring resource or account listing.</td><td data-label="Implemented AWS control">Single-secret role/read grants and assigned-role secret policy.</td><td data-label="Observed test">Own Get/Describe PASS; ListSecrets and opposite-secret Get DENY for each job.</td><td data-label="Boundary to retain">These selected tests do not exhaust every account identity or future policy change.</td></tr><tr><th scope="row">04. Secrets &amp; validation</th><td data-label="Concrete prerequisite">Retrieved settings or token material could be exposed through troubleshooting output.</td><td data-label="Implemented AWS control">Mask-before-output and selected safe evidence markers in the workflows.</td><td data-label="Observed test">Selected log review retained expected markers without raw secret/token values.</td><td data-label="Boundary to retain">Masking is output handling, not process isolation or proof of memory erasure.</td></tr><tr><th scope="row">05. Audit evidence</th><td data-label="Concrete prerequisite">A success label could be accepted without identifying who made which request.</td><td data-label="Implemented AWS control">Regional CloudTrail Event History correlation using exact session/principal, issuer, target, request ID, time and outcome.</td><td data-label="Observed test">Ten baseline selections plus two denied admissions matched.</td><td data-label="Boundary to retain">This is selected activity evidence, not a tamper-resistant detector.</td></tr></tbody></table></div><p class="hero-lead-p">Use the site’s <a href="glossary.html" class="source-link">26-Variable System Glossary</a> for the vocabulary and <a href="kill-chain.html" class="source-link">Adversarial Kill Chain</a> for the review context. The rows above connect the relevant concepts to standard AWS objects and observed tests, rather than treating every threat as a completed lab result.</p></section>
+<section class="hero-arch-block cyan-block" id="proof-04-evidence"><span class="hero-block-tag">[RECORDED AWS EVIDENCE :: EXACT CURRENT RUNS]</span><h2 class="hero-block-title">Twelve Selected Correlations, Traceable to the Runs</h2><div class="matrix-table-wrapper" role="region" aria-label="Validation revisions and successful runs" tabindex="0"><table class="killchain-table"><caption>Validation revisions and successful runs</caption><thead><tr><th scope="col">Job</th><th scope="col">Run / attempt</th><th scope="col">Validation commit</th><th scope="col">Final archive commit</th></tr></thead><tbody><tr><th scope="row">Upload coordination</th><td data-label="Run / attempt">43934658051 / 1</td><td data-label="Validation commit"><code>7bff0be8814c133c6f645585fa6996a7821fdd29</code></td><td data-label="Final archive commit"><code>91432d062b8c869e4152a2b73d32952d62f773b9</code></td></tr><tr><th scope="row">Analysis coordination</th><td data-label="Run / attempt">43934665505 / 1</td><td data-label="Validation commit"><code>aa39da7a1f83b26e9365c3864f94b1e59064066c</code></td><td data-label="Final archive commit"><code>18bf6df66a996ff742ab04e3a823181732f499ee</code></td></tr></tbody></table></div><p class="hero-lead-p">CloudTrail Event History lookups matched <strong>ten baseline selections and two opposite-role admission denials</strong>. These are selected correlations for the current runs, not a total count of API requests or all matching event IDs. The baseline includes successful own-role admission, own Get/Describe, denied listing and denied cross-secret retrieval for each job.</p><div class="matrix-table-wrapper" role="region" aria-label="Selected CloudTrail events — exact recorded UTC" tabindex="0"><table class="killchain-table"><caption>Selected CloudTrail events — exact recorded UTC</caption><thead><tr><th scope="col">Job</th><th scope="col">Operation / outcome</th><th scope="col">Exact target</th><th scope="col">Event ID / UTC</th></tr></thead><tbody><tr><th scope="row">coordination</th><td data-label="Operation / outcome"><code>AssumeRoleWithWebIdentity</code><br>SUCCESS /</td><td data-label="Exact target"><code>arn:aws:iam::698250246230:role/akcce-construction-04-coordination-role</code></td><td data-label="Event ID / UTC"><code>e3884b14-5b84-4629-8346-5233b2a1b49b</code><br><code>2026-11-16T18:59:59.0000000+00:00</code></td></tr><tr><th scope="row">coordination</th><td data-label="Operation / outcome"><code>GetSecretValue</code><br>SUCCESS /</td><td data-label="Exact target"><code>arn:aws:secretsmanager:us-east-2:698250246230:secret:construction-lab/project-04/coordination/config-Fhb7DU</code></td><td data-label="Event ID / UTC"><code>65732d49-37f2-44d6-be00-3d8aa78a0c8e</code><br><code>2026-11-16T19:00:01.0000000+00:00</code></td></tr><tr><th scope="row">coordination</th><td data-label="Operation / outcome"><code>DescribeSecret</code><br>SUCCESS /</td><td data-label="Exact target"><code>arn:aws:secretsmanager:us-east-2:698250246230:secret:construction-lab/project-04/coordination/config-Fhb7DU</code></td><td data-label="Event ID / UTC"><code>53328331-a0ae-43d8-a970-c4dab6de4f47</code><br><code>2026-11-16T19:00:02.0000000+00:00</code></td></tr><tr><th scope="row">coordination</th><td data-label="Operation / outcome"><code>ListSecrets</code><br>AccessDenied / AccessDenied</td><td data-label="Exact target">Account-level listing (<code>*</code>)</td><td data-label="Event ID / UTC"><code>e9ed332b-31ab-4972-8f49-8031696c9f07</code><br><code>2026-11-16T19:00:03.0000000+00:00</code></td></tr><tr><th scope="row">coordination</th><td data-label="Operation / outcome"><code>GetSecretValue</code><br>AccessDenied / AccessDenied</td><td data-label="Exact target"><code>arn:aws:secretsmanager:us-east-2:698250246230:secret:construction-lab/project-04/analysis/config-Qh8laV</code></td><td data-label="Event ID / UTC"><code>bba1bd5d-ddee-4c96-b06f-2b8f5ba06496</code><br><code>2026-11-16T19:00:05.0000000+00:00</code></td></tr><tr><th scope="row">analysis</th><td data-label="Operation / outcome"><code>AssumeRoleWithWebIdentity</code><br>SUCCESS /</td><td data-label="Exact target"><code>arn:aws:iam::698250246230:role/akcce-construction-04-analysis-role</code></td><td data-label="Event ID / UTC"><code>9289473c-bbf2-4d6c-833c-1514b61d67ed</code><br><code>2026-11-16T19:00:01.0000000+00:00</code></td></tr><tr><th scope="row">analysis</th><td data-label="Operation / outcome"><code>GetSecretValue</code><br>SUCCESS /</td><td data-label="Exact target"><code>arn:aws:secretsmanager:us-east-2:698250246230:secret:construction-lab/project-04/analysis/config-Qh8laV</code></td><td data-label="Event ID / UTC"><code>099b4cc4-ea73-4ad4-80de-3025d1547439</code><br><code>2026-11-16T19:00:03.0000000+00:00</code></td></tr><tr><th scope="row">analysis</th><td data-label="Operation / outcome"><code>DescribeSecret</code><br>SUCCESS /</td><td data-label="Exact target"><code>arn:aws:secretsmanager:us-east-2:698250246230:secret:construction-lab/project-04/analysis/config-Qh8laV</code></td><td data-label="Event ID / UTC"><code>793f2d14-19d4-49a7-939b-b397896a431c</code><br><code>2026-11-16T19:00:04.0000000+00:00</code></td></tr><tr><th scope="row">analysis</th><td data-label="Operation / outcome"><code>ListSecrets</code><br>AccessDenied / AccessDenied</td><td data-label="Exact target">Account-level listing (<code>*</code>)</td><td data-label="Event ID / UTC"><code>e570b67d-50e6-42fc-ac0b-cafbb2c6d80b</code><br><code>2026-11-16T19:00:04.0000000+00:00</code></td></tr><tr><th scope="row">analysis</th><td data-label="Operation / outcome"><code>GetSecretValue</code><br>AccessDenied / AccessDenied</td><td data-label="Exact target"><code>arn:aws:secretsmanager:us-east-2:698250246230:secret:construction-lab/project-04/coordination/config-Fhb7DU</code></td><td data-label="Event ID / UTC"><code>445c76d2-466e-4688-8bfe-abd5669ca8f7</code><br><code>2026-11-16T19:00:06.0000000+00:00</code></td></tr><tr><th scope="row">coordination</th><td data-label="Operation / outcome"><code>rejected AssumeRoleWithWebIdentity</code><br>AccessDenied</td><td data-label="Exact target"><code>arn:aws:iam::698250246230:role/akcce-construction-04-analysis-role</code></td><td data-label="Event ID / UTC"><code>8a7f785c-790b-483b-b11c-77ce220ab668</code><br><code>2026-11-16T19:00:01.0000000+00:00</code></td></tr><tr><th scope="row">analysis</th><td data-label="Operation / outcome"><code>rejected AssumeRoleWithWebIdentity</code><br>AccessDenied</td><td data-label="Exact target"><code>arn:aws:iam::698250246230:role/akcce-construction-04-coordination-role</code></td><td data-label="Event ID / UTC"><code>cad512b4-3102-43a9-8c25-38e7b4e70396</code><br><code>2026-11-16T19:00:02.0000000+00:00</code></td></tr></tbody></table></div><div class="matrix-table-wrapper" role="region" aria-label="Successful own-role lifetimes and denied-request identifiers" tabindex="0"><table class="killchain-table"><caption>Successful own-role lifetimes and denied-request identifiers</caption><thead><tr><th scope="col">Job</th><th scope="col">Own-role issue UTC</th><th scope="col">Own-role expiration UTC</th><th scope="col">Issued / role ceiling</th><th scope="col">Denied opposite-role request ID</th></tr></thead><tbody><tr><th scope="row">Upload coordination</th><td data-label="Own-role issue UTC"><code>2026-11-16T18:59:59.0000000+00:00</code></td><td data-label="Own-role expiration UTC"><code>2026-11-16T19:14:59.0000000+00:00</code></td><td data-label="Issued / role ceiling">900s / 3600s</td><td data-label="Denied opposite-role request ID"><code>4117d3f6-5613-4d7a-9bf2-8224e3159ac9</code></td></tr><tr><th scope="row">Analysis coordination</th><td data-label="Own-role issue UTC"><code>2026-11-16T19:00:01.0000000+00:00</code></td><td data-label="Own-role expiration UTC"><code>2026-11-16T19:15:01.0000000+00:00</code></td><td data-label="Issued / role ceiling">900s / 3600s</td><td data-label="Denied opposite-role request ID"><code>acf52683-7ea3-4c63-93f3-1d6818bd5ec1</code></td></tr></tbody></table></div><p class="hero-lead-p">The denied exchanges issued no credentials or expiration. Their absent request role-session fields remain absent; the matcher used the recorded request IDs, WebIdentity principal/provider and exact opposite roles in <code>resources</code>. Secret targets were matched through the request secret ID or exact resource ARN. A listing target <code>*</code> identifies the account-level operation, not a wildcard permission granted to either job.</p><div class="evidence-note"><strong>Evidence route.</strong> The executed route was regional CloudTrail Event History, indexed separately by STS event name and Secrets Manager event source. Lake and Logs Insights query examples were prepared as <strong>reference only, not executed</strong>; no new trail, event store, log group or detector was created.</div><details class="evidence-note"><summary style="cursor:pointer;font-weight:700">Selected sanitized architecture record</summary><p class="micro-text">The following lines are reproduced from the reviewed Identity Architecture Ledger; later post-test results are shown above.</p><div class="terminal-window"><div class="terminal-header"><div class="terminal-title">identity_architecture_ledger.md — selected record</div></div><pre class="terminal-body" tabindex="0" aria-label="Selected architecture record"><code id="proof-04-architecture-excerpt">Each role/secret policy permits only GetSecretValue and DescribeSecret on its
+own exact secret ARN. Two same-account Allows are not independent AND barriers.</code></pre></div></details></section>
+<section class="hero-arch-block cyan-block" id="proof-04-handoff"><span class="hero-block-tag">[TEAM-FACING HANDOFF :: WHAT AN ENGINEER CAN REVIEW]</span><h2 class="hero-block-title">From a Demonstration to a Team-Owned Boundary</h2><p class="hero-lead-p">The handoff pairs the implemented object with its test evidence and the next decision its receiving engineer must own. It gives a team a concrete starting point for adapting the pattern to real jobs and assets.</p><div class="matrix-table-wrapper" role="region" aria-label="Receiving engineer review map" tabindex="0"><table class="killchain-table"><caption>Receiving engineer review map</caption><thead><tr><th scope="col">Capability / boundary</th><th scope="col">Actual control object</th><th scope="col">Test evidence</th><th scope="col">Receiving-engineer question</th></tr></thead><tbody><tr><th scope="row">Admit the intended job</th><td data-label="Actual control object"><code>akcce-construction-04-coordination-role</code> and <code>akcce-construction-04-analysis-role</code> trust policies; existing GitHub OIDC provider.</td><td data-label="Test evidence">Both own exchanges succeeded; both opposite-role requests were denied.</td><td data-label="Receiving-engineer question">Who owns repository, branch/environment and trust-policy changes, and which real jobs should be admitted?</td></tr><tr><th scope="row">Give the job only its selected settings access</th><td data-label="Actual control object">Own-secret inline policies and Secrets Manager resource policies on the exact ARNs above.</td><td data-label="Test evidence">Own Get/Describe succeeded; listing and cross-secret reads were denied.</td><td data-label="Receiving-engineer question">Which real configuration, data and operations belong to each job, and what additional grants already exist?</td></tr><tr><th scope="row">Make the decision reviewable</th><td data-label="Actual control object">Run/commit provenance and selected CloudTrail records with exact targets and outcomes.</td><td data-label="Test evidence">Twelve selected correlations, actual 900-second issued sessions and denied-request identifiers.</td><td data-label="Receiving-engineer question">What retention, monitoring, incident-response ownership and periodic revalidation does the team need?</td></tr><tr><th scope="row">Carry forward a reviewed baseline</th><td data-label="Actual control object">Final coordination/analysis archive commits; unchanged runtime trees and retained architecture/audit records.</td><td data-label="Test evidence">Remote branches and selected staged blobs were verified in the handoff.</td><td data-label="Receiving-engineer question">Who reviews Day-2 changes, deployed-state drift and recovery, rather than treating this snapshot as current forever?</td></tr></tbody></table></div><p class="hero-lead-p">The engineering record retains the exact validation runs, tested role/resource bindings and final archive revisions. The executed directive was <strong>v2.2.1</strong>; its recorded SHA-256 is <code>66f94631642b6c92b159cc90fae13c17858bf94c09b80c76f22257c7818b7b28</code>.</p></section>
+<section class="hero-arch-block green-block" id="proof-04-next"><span class="hero-block-tag">[SELECTED NEXT CONNECTIONS :: PROPOSED, NOT IMPLEMENTED]</span><h2 class="hero-block-title">Connect the Boundary to Real Pipeline Responsibilities</h2><p class="hero-lead-p">The next questions extend this foundation toward a construction video/AI system. They are proposed connection points and new lab tests, not claims about an employer’s architecture or capabilities already implemented here.</p><div class="matrix-table-wrapper" role="region" aria-label="Proposed connections and the next test each needs" tabindex="0"><table class="killchain-table"><caption>Proposed connections and the next test each needs</caption><thead><tr><th scope="col">Possible connection</th><th scope="col">Engineering question</th><th scope="col">A next lab would need to test</th></tr></thead><tbody><tr><th scope="row">Device identity, enrollment and upload pipeline</th><td data-label="Engineering question">How is a camera or uploader enrolled, associated with a project and allowed to submit footage?</td><td data-label="A next lab would need to test">A separate device/uploader identity, authorization for the intended upload target, and rejection of an unenrolled or wrong-project source.</td></tr><tr><th scope="row">Training and model-asset access</th><td data-label="Engineering question">Which analysis/training jobs need which datasets, model versions and output locations?</td><td data-label="A next lab would need to test">Separate job roles against real test storage objects, with allowed reads/writes and explicit neighboring-project or model denials.</td></tr><tr><th scope="row">Build provenance and agent identity</th><td data-label="Engineering question">Which reviewed artifact may run, and what may an automated agent do on its behalf?</td><td data-label="A next lab would need to test">Artifact/provenance checks plus an agent’s bounded tool/resource permissions, rejected unapproved revisions and evidence tying actions to the tested identity.</td></tr></tbody></table></div></section>
+<section class="hero-arch-block cyan-block" id="proof-04-scope"><span class="hero-block-tag">[SCOPE &amp; TESTED LESSONS]</span><h2 class="hero-block-title">A Useful Cloud Boundary with a Clear Next Step</h2><div class="evidence-note"><strong>Scope:</strong> this independent lab implements CI/workload role admission and harmless configuration access for two construction-AI coordination jobs. Camera identity, footage ingestion, model protection and production operation are proposed connections, not implemented components.</div><p class="hero-lead-p">The demonstrated capability is concrete: two intended jobs obtained separate temporary roles, accessed their assigned settings and were denied the specified cross-boundary requests. Applying that familiar pattern to an industry scenario makes the access responsibilities and receiving-team questions explicit.</p><details class="evidence-note"><summary style="cursor:pointer;font-weight:700">Engineering lessons and retained responsibilities</summary><p class="hero-lead-p">Initial setup and the diagnostic interface caused real operator friction. Steve reported that Low/Light felt smoother and later work flowed smoothly, but the record does not establish an exact setting-switch point or a causal speed improvement. The PCH-04 experience/counter-interface issue remains OPEN; attempt allocation and attempt-four enforcement were not verified. Technical success is separate from that unresolved product finding.</p><p class="hero-lead-p">The records retain eight diagnostic pairs/candidates and four completed local functional recovery invocations. A wholly rejected-before-body submission and a separate mixed terminal/apply submission are different, overlapping categories; they are not added as a synthetic retry total. Zero breaker activations and zero observed paired-ID drift do not establish counter correctness. The selected v2.2.1 source was unchanged; the frozen v2.2.2 candidate was unselected and unexecuted.</p><p class="hero-lead-p">Mutable <code>@v4</code> actions and the authorized job’s own access remain part of the review surface. The evidence covers selected requests; comprehensive policy-path review, immutable dependency provenance and raw-log integrity validation are separate work. No cryptographic/log-integrity certification, formal proof or universal exclusivity follows from these results.</p><p class="hero-lead-p">The two roles/configurations remain retained for review on <strong>23 November 2026</strong>. No automated cleanup was configured. Future source, trust, permission or asset changes need fresh review and tests; v2.2.2 was not adopted as a post-run update.</p></details></section>
+<div class="return-bar"><a href="aws-demonstrations.html" class="back-banner-btn">&larr; AWS Demonstrations Menu</a><a href="aws-fleet-03.html" class="back-banner-btn">Project 03</a><a href="autonomous-systems.html" class="back-banner-btn">Industry Overview</a><a href="#proof-04-purpose" class="back-banner-btn">&uarr; Project 04 Overview</a></div></main>
+<footer class="ip-footer">
+        <div class="footer-crest-wrapper">
+            <svg class="footer-brand-crest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+                <rect width="114" height="114" x="3" y="3" fill="#020617" rx="22" stroke="#1e293b" stroke-width="3"/>
+                <polygon points="24,18 60,36 60,48 24,30" fill="#475569"/>
+                <polygon points="96,18 60,36 60,48 96,30" fill="#1e293b"/>
+                <polygon points="24,39 60,57 60,69 24,51" fill="#0284c7"/>
+                <polygon points="96,39 60,57 60,69 96,51" fill="#075985"/>
+                <polygon points="24,60 60,78 60,90 24,72" fill="#38bdf8"/>
+                <polygon points="96,60 60,78 60,90 96,72" fill="#0369a1"/>
+                <polygon points="24,81 60,99 60,111 24,93" fill="#f43f5e"/>
+                <polygon points="96,81 60,99 60,111 96,93" fill="#9f1239"/>
+            </svg>
+        </div>
+        <strong>&copy; 2026 Steven Tuschman | Adversarial Kill-Chain Counter-Engineering&trade; (adversarialkillchaincounterengineering.com). All Rights Reserved.</strong>
+<br>
+        The Adversarial Kill-Chain Counter-Engineering State Machine, Sequential Kill-Chain Counter-Engineering Protocol, Execution Triad governance model, Four Architectural Gates of Machine Identity, Five Enterprise Guardrails, Build Coordinate Matrix, and 26-Variable System Glossary are proprietary intellectual property. Unauthorized reproduction, distribution, or commercial adaptation is strictly prohibited.
+    </footer>
+</body>
+</html>

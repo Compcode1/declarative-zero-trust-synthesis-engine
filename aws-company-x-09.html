@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 09: Company X Settings Delivery | AKCCE</title>
+<meta name="description" content="Company X construction-AI lab: separate AWS publisher and consumer jobs transferred a harmless settings fixture with matching hashes, tested selected denials and retained current-run API and CloudTrail evidence.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    <!-- Google tag (gtag.js) -->
+    <script>
+      const blockAnalytics = new URLSearchParams(window.location.search).get('block_ga') === 'true';
+      if (blockAnalytics) window['ga-disable-G-80NYKHYN3R'] = true;
+      try {
+        if (blockAnalytics) localStorage.setItem('akcce_block_ga', 'true');
+        if (localStorage.getItem('akcce_block_ga') === 'true') {
+          window['ga-disable-G-80NYKHYN3R'] = true;
+        }
+      } catch (error) {
+        // The query-string opt-out still works when browser storage is unavailable.
+      }
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-80NYKHYN3R">
+</script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-80NYKHYN3R');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-page: #020617;
+            --bg-node: rgba(10, 15, 29, 0.95);
+            --border-base: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #cbd5e1;
+            --color-blue: #3b82f6;
+            --color-cyan: #0ea5e9;
+            --color-purple: #a855f7;
+            --color-grey: #64748b;
+            --color-green: #10b981;
+            --color-teal: #14b8a6;
+            --color-red: #f43f5e;
+            --color-orange: #f97316;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--bg-page);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 4rem;
+        }
+
+        /* ================= NAVIGATION ================= */
+        nav {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(2, 6, 23, 0.95); backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-base); z-index: 100;
+            padding: 1.2rem 2rem; display: flex; justify-content: center;
+        }
+        .nav-links {
+            display: flex; gap: 1.1rem; list-style: none; flex-wrap: wrap;
+            justify-content: center; align-items: center;
+        }
+        .nav-links a {
+            display: inline-block;
+            color: var(--color-cyan);
+            border: 1px solid var(--color-cyan);
+            background: rgba(14, 165, 233, 0.1);
+            padding: 0.5rem 1.15rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+        .nav-links a:hover,
+        .nav-links a.active-link {
+            background: var(--color-cyan);
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
+        }
+
+        .bullet-lead { color: var(--color-cyan); font-weight: 800; }
+        .bullet-lead-red { color: var(--color-red); font-weight: 800; }
+        .bullet-lead-green { color: var(--color-green); font-weight: 800; }
+        .bullet-lead-orange { color: var(--color-orange); font-weight: 800; }
+        .bullet-lead-purple { color: var(--color-purple); font-weight: 800; }
+
+        /* ================= HERO HEADER ================= */
+        .hero { padding: 155px 20px 35px; text-align: center; border-bottom: 1px solid var(--border-base); }
+        .hero-title-container {
+            display: flex; align-items: center; justify-content: center;
+            gap: 1.35rem; margin-bottom: 0.8rem; flex-wrap: wrap;
+        }
+        .hero-brand-crest {
+            width: 66px; height: 66px; flex-shrink: 0;
+            filter: drop-shadow(0 0 18px rgba(14, 165, 233, 0.4)) drop-shadow(0 6px 14px rgba(0, 0, 0, 0.6));
+        }
+        .hero-title {
+            font-family: 'Montserrat', sans-serif; font-size: 2.8rem; font-weight: 900;
+            letter-spacing: 2px; color: var(--text-main); text-transform: uppercase; line-height: 1.15;
+        }
+        .hero-page-subtitle {
+            font-family: 'JetBrains Mono', monospace; font-size: 1.05rem; font-weight: 800;
+            color: var(--color-cyan); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.4rem;
+        }
+        .hero-intro-copy {
+            font-size: 1.12rem; color: var(--text-muted); max-width: 960px;
+            margin: 0 auto 1.6rem; font-weight: 500; line-height: 1.7;
+        }
+
+        /* RETURN BUTTON */
+        .back-banner-btn {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.86rem;
+            font-weight: 800;
+            color: var(--color-cyan);
+            background: rgba(14, 165, 233, 0.08);
+            border: 1px solid var(--color-cyan);
+            padding: 0.6rem 1.25rem;
+            border-radius: 6px;
+            text-decoration: none;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            transition: all 0.25s ease;
+        }
+        .back-banner-btn:hover {
+            background: var(--color-cyan);
+            color: #ffffff;
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);
+        }
+
+        /* ================= MAIN CONTAINER & PROOF NAV MATRIX ================= */
+        .container { max-width: 1250px; margin: 0 auto; padding: 3.2rem 20px 0; }
+
+        .project-links-header {
+            text-align: center; margin-bottom: 1.8rem;
+            font-family: 'Montserrat', sans-serif; font-size: 1.65rem; font-weight: 900;
+            color: var(--text-main); text-transform: uppercase; letter-spacing: 2px;
+            scroll-margin-top: 105px;
+        }
+
+        .nav-matrix-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 3.5rem;
+        }
+        .nav-matrix-link {
+            text-decoration: none;
+            display: block;
+            background: rgba(15, 23, 42, 0.55);
+            border: 1px solid var(--border-base);
+            border-left: 4px solid var(--color-green);
+            border-radius: 8px;
+            padding: 1.55rem 1.65rem;
+            transition: all 0.3s ease;
+        }
+        .nav-matrix-link:hover {
+            background: rgba(16, 185, 129, 0.09);
+            border-color: var(--color-green);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
+        }
+        .nav-matrix-title {
+            font-family: 'Montserrat', sans-serif;
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 1.12rem;
+            margin-bottom: 0.45rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .nav-matrix-stack {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--color-cyan);
+            font-size: 0.84rem;
+            font-weight: 700;
+            margin-bottom: 0.9rem;
+            line-height: 1.45;
+        }
+        .nav-matrix-guardrail {
+            font-size: 0.95rem;
+            color: var(--color-green);
+            font-weight: 600;
+            border-top: 1px solid var(--border-base);
+            padding-top: 0.8rem;
+            line-height: 1.55;
+        }
+        .nav-matrix-guardrail strong { color: var(--text-main); }
+
+        /* JUMP BAR FOR CURRENT PROOF */
+        .jump-links-container {
+            max-width: 1250px; margin: 0 auto 2.8rem; padding: 1.4rem 1.8rem;
+            background: rgba(15, 23, 42, 0.65); border: 1px solid var(--border-base);
+            border-top: 3px solid var(--color-cyan); border-radius: 10px;
+            text-align: center; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+        }
+        .jump-links-intro {
+            font-family: 'Montserrat', sans-serif; font-size: 1.0rem; font-weight: 800;
+            color: var(--text-main); letter-spacing: 0.5px; margin-bottom: 0.95rem;
+        }
+        .jump-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
+        .jump-links a {
+            color: var(--color-cyan); border: 1px solid var(--color-cyan);
+            background: rgba(14, 165, 233, 0.08); padding: 0.52rem 1.05rem;
+            border-radius: 8px; text-decoration: none; font-size: 0.8rem;
+            font-weight: 700; letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s ease;
+        }
+        .jump-links a:hover {
+            background: var(--color-cyan); color: #ffffff;
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); transform: translateY(-2px);
+        }
+
+        /* ================= ARCHITECTURAL BLOCKS ================= */
+        .hero-arch-block {
+            max-width: 1250px; margin: 0 auto 3rem;
+            background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-base);
+            border-radius: 12px; padding: 2.8rem 3rem; text-align: left;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+            scroll-margin-top: 105px;
+        }
+        .hero-arch-block.cyan-block { border-top: 4px solid var(--color-cyan); }
+        .hero-arch-block.green-block { border-top: 4px solid var(--color-green); }
+        .hero-arch-block.red-block { border-top: 4px solid var(--color-red); }
+
+        .hero-block-tag {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.95rem; font-weight: 800;
+            letter-spacing: 1.2px; text-transform: uppercase; display: block; margin-bottom: 0.7rem;
+        }
+        .cyan-block .hero-block-tag { color: var(--color-cyan); }
+        .green-block .hero-block-tag { color: var(--color-green); }
+        .red-block .hero-block-tag { color: var(--color-red); }
+
+        .hero-block-title {
+            font-family: 'Montserrat', sans-serif; font-size: 1.7rem; font-weight: 900;
+            letter-spacing: 1px; line-height: 1.35; color: var(--text-main); text-transform: uppercase;
+            margin-bottom: 1.5rem; padding-bottom: 0.9rem; border-bottom: 2px solid var(--border-base);
+        }
+        .hero-lead-p {
+            font-size: 1.12rem; color: var(--text-main); font-weight: 600;
+            line-height: 1.8; margin-bottom: 1.3rem;
+        }
+
+        /* MICRO CARDS */
+        .micro-card {
+            background: rgba(10, 15, 29, 0.92); border: 1px solid var(--border-base);
+            border-radius: 8px; padding: 1.6rem 1.8rem; margin-bottom: 1.25rem;
+        }
+        .micro-card-challenge { border-left: 4px solid var(--color-purple); }
+        .micro-card-execution { border-left: 4px solid var(--color-cyan); }
+        .micro-card-value { border-left: 4px solid var(--color-green); margin-bottom: 0; }
+
+        .micro-header {
+            font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.15rem;
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem;
+        }
+        .mc-color-challenge { color: var(--color-purple); }
+        .mc-color-execution { color: var(--color-cyan); }
+        .mc-color-value { color: var(--color-green); }
+
+        .micro-text { font-size: 1.04rem; line-height: 1.75; color: var(--text-muted); }
+        .micro-text strong { color: var(--text-main); font-weight: 700; }
+
+        .bottom-line {
+            margin-top: 1.1rem; padding: 1.1rem 1.25rem;
+            background: rgba(255, 255, 255, 0.03); border-radius: 6px;
+            border-left: 3px solid var(--color-grey); font-size: 0.98rem;
+            font-style: italic; color: var(--text-muted); line-height: 1.65;
+        }
+        .bottom-line strong { color: var(--text-main); font-weight: 700; font-style: normal; }
+
+        /* ================= 5-COLUMN CAPABILITY MATRIX ================= */
+        .section-title {
+            font-family: 'Montserrat', sans-serif; font-size: 1.7rem; font-weight: 800;
+            color: var(--color-cyan); text-transform: uppercase; letter-spacing: 1.5px;
+            margin: 3.2rem 0 1.8rem; text-align: center; scroll-margin-top: 105px;
+        }
+        .matrix-grid {
+            display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.15rem; margin-bottom: 3rem;
+        }
+        .matrix-card {
+            background: rgba(15, 23, 42, 0.55); border: 1px solid var(--border-base);
+            border-top: 3px solid var(--color-blue); padding: 1.45rem; border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+        }
+        .matrix-card h3 {
+            font-size: 1.02rem; color: var(--text-main); margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-base); padding-bottom: 0.5rem;
+            font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .matrix-list { list-style: none; }
+        .matrix-list li {
+            font-size: 0.93rem; color: var(--text-muted); margin-bottom: 0.68rem;
+            display: flex; align-items: center;
+        }
+        .matrix-list li.active { color: var(--color-cyan); font-weight: 700; }
+        .checkbox {
+            display: inline-block; width: 16px; height: 16px; border: 1px solid var(--color-grey);
+            border-radius: 3px; margin-right: 10px; position: relative; flex-shrink: 0;
+        }
+        .active .checkbox { border-color: var(--color-cyan); background-color: rgba(14, 165, 233, 0.2); }
+        .active .checkbox::after { content: '✔'; position: absolute; top: -3px; left: 2px; color: var(--color-cyan); font-size: 12px; }
+
+        /* ================= 7 LOCKDOWN CARDS ================= */
+        .lockdown-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 1rem;
+        }
+        .lockdown-card {
+            background: rgba(10, 15, 29, 0.95); border: 1px solid var(--border-base);
+            border-left: 4px solid var(--color-green); border-radius: 10px;
+            padding: 1.85rem 2rem; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+        }
+        .lockdown-card.full-span { grid-column: 1 / -1; }
+        .lockdown-badge-row {
+            display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.75rem;
+        }
+        .lockdown-num {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 800;
+            color: #ffffff; background: var(--color-red); padding: 0.25rem 0.7rem;
+            border-radius: 4px; letter-spacing: 1px; text-transform: uppercase;
+        }
+        .lockdown-gate {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; font-weight: 800;
+            color: var(--color-green); background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.45); padding: 0.23rem 0.7rem;
+            border-radius: 4px; letter-spacing: 0.8px; text-transform: uppercase;
+        }
+        .lockdown-title {
+            font-family: 'Montserrat', sans-serif; font-size: 1.18rem; font-weight: 900;
+            color: var(--text-main); text-transform: uppercase; margin-bottom: 0.85rem;
+            padding-bottom: 0.6rem; border-bottom: 1px solid var(--border-base);
+        }
+        .lockdown-list {
+            list-style: disc; padding-left: 1.3rem; display: flex; flex-direction: column; gap: 0.65rem;
+        }
+        .lockdown-list li {
+            font-size: 0.99rem; color: var(--text-main); font-weight: 600; line-height: 1.65;
+        }
+        .lockdown-list li::marker { color: var(--color-green); }
+
+        /* ================= TERMINAL STYLING ================= */
+        .terminal-window {
+            background: #0d1117; border: 1px solid var(--border-base); border-radius: 10px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); width: 100%;
+            max-width: 1180px; margin: 0 auto 3.2rem; text-align: left; overflow: hidden;
+            scroll-margin-top: 105px;
+        }
+        .terminal-header {
+            background: #161b22; padding: 12px 20px; display: flex; align-items: center;
+            border-bottom: 1px solid var(--border-base); position: relative;
+        }
+        .terminal-dots { display: flex; gap: 8px; position: absolute; left: 20px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot.red { background: #ff5f56; }
+        .dot.yellow { background: #ffbd2e; }
+        .dot.green { background: #27c93f; }
+        .terminal-title {
+            margin: 0 auto; color: var(--text-muted); font-size: 0.86rem;
+            font-family: 'JetBrains Mono', monospace; letter-spacing: 1px;
+        }
+        .terminal-body {
+            padding: 2.2rem 2.4rem; font-family: 'JetBrains Mono', 'Consolas', monospace;
+            font-size: 0.9rem; line-height: 1.75; color: var(--text-main);
+            overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;
+            background: linear-gradient(rgba(13, 17, 23, 1) 0%, rgba(13, 17, 23, 0.96) 100%);
+        }
+
+        .t-cyan { color: var(--color-cyan); font-weight: 700; }
+        .t-green { color: var(--color-green); font-weight: 700; }
+        .t-blue { color: var(--color-blue); font-weight: 700; }
+        .t-purple { color: var(--color-purple); font-weight: 700; }
+        .t-muted { color: var(--text-muted); }
+        .t-comment { color: var(--color-grey); font-style: italic; }
+        .t-red { color: #ff5f56; font-weight: 700; }
+
+        /* ================= FORENSIC LEDGER TABLES ================= */
+        .matrix-table-wrapper {
+            width: 100%; overflow-x: auto; border-radius: 10px;
+            border: 1px solid var(--border-base); margin-top: 1.1rem;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+        }
+        .killchain-table {
+            width: 100%; border-collapse: collapse; background: rgba(10, 15, 29, 0.95); text-align: left;
+        }
+        .killchain-table th {
+            font-family: 'Montserrat', sans-serif; font-size: 0.86rem; font-weight: 900;
+            text-transform: uppercase; letter-spacing: 1px; color: var(--color-cyan);
+            background: rgba(2, 6, 23, 0.95); padding: 1.1rem 1.1rem; border-bottom: 2px solid var(--border-base);
+        }
+        .killchain-table td {
+            padding: 1.1rem 1.1rem; font-size: 0.94rem; color: var(--text-main);
+            font-weight: 600; line-height: 1.6; border-bottom: 1px solid var(--border-base); vertical-align: top;
+        }
+        .killchain-table tr:hover td { background: rgba(14, 165, 233, 0.04); }
+
+        .return-bar {
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 1rem; margin: 2rem 0 1rem;
+        }
+        .divider { height: 1px; background: var(--border-base); margin: 3.2rem auto; max-width: 1250px; }
+
+        /* ================= FOOTER ================= */
+        .ip-footer {
+            max-width: 1250px; margin: 3rem auto 0; text-align: center; padding: 2.5rem 1.5rem;
+            border-top: 1px solid var(--border-base); background: rgba(10, 15, 29, 0.6);
+            border-radius: 8px; color: var(--text-muted); font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace; line-height: 1.8;
+        }
+        .footer-crest-wrapper { display: flex; justify-content: center; margin-bottom: 0.85rem; }
+        .footer-brand-crest { width: 38px; height: 38px; filter: drop-shadow(0 0 10px rgba(14, 165, 233, 0.25)); }
+        .ip-footer strong { color: var(--color-cyan); font-weight: 700; }
+
+        @media (max-width: 1050px) {
+            .matrix-grid { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+            .lockdown-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 992px), (max-height: 550px) {
+            nav { position: relative !important; padding: 0.75rem 0.5rem !important; }
+            .nav-links { gap: 0.45rem !important; }
+            .nav-links a { font-size: 0.72rem !important; padding: 0.35rem 0.65rem !important; }
+            .hero { padding-top: 30px !important; }
+            .hero-arch-block { padding: 2rem 1.4rem; }
+            .terminal-body { padding: 1.4rem; font-size: 0.82rem; }
+        }
+
+        /* Evidence presentation and shared accessibility improvements. */
+        nav { position: relative; }
+        .hero { padding-top: 40px; }
+        .skip-link { position: fixed; top: -100px; left: 1rem; z-index: 200; background: #f8fafc; color: #020617; padding: .7rem 1rem; border-radius: 6px; }
+        .skip-link:focus { top: .5rem; }
+        a:focus-visible, [tabindex]:focus-visible { outline: 3px solid #38bdf8; outline-offset: 5px; }
+        [id] { scroll-margin-top: 1.5rem !important; }
+        main, .container, .lockdown-card, .matrix-card { min-width: 0; }
+        .hero-title, .hero-page-subtitle, .section-title, .hero-block-title, .lockdown-title, .ip-footer, .terminal-title, code, .source-link { overflow-wrap: anywhere; }
+        .hero-lead-p { font-weight: 500; }
+        .source-link { color: #7dd3fc; text-underline-offset: 3px; font-weight: 700; }
+        .source-actions { display: flex; flex-wrap: wrap; gap: .7rem 1.2rem; margin: 1.2rem 0; }
+        .source-actions a { color: #7dd3fc; text-underline-offset: 3px; font-weight: 700; }
+        .evidence-note { border: 1px solid #334155; border-left: 4px solid #38bdf8; border-radius: 7px; padding: 1rem 1.2rem; margin: 1.3rem 0; color: var(--text-muted); line-height: 1.7; }
+        .evidence-note strong { color: var(--text-main); }
+        .evidence-kicker { max-width: 960px; margin: 1.2rem auto; text-align: left; }
+        .nav-matrix-grid { grid-template-columns: repeat(auto-fit,minmax(min(100%,300px),1fr)); }
+        .matrix-grid { grid-template-columns: repeat(5,minmax(0,1fr)); }
+        .matrix-card p { color: var(--text-muted); line-height: 1.7; }
+        .lockdown-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+        .lockdown-list li { font-weight: 500; }
+        .review-limit { margin-top: 1rem; padding-top: .8rem; border-top: 1px solid #334155; color: var(--text-muted); line-height: 1.65; font-size: .97rem; }
+        .terminal-header { padding: 12px 20px; }
+        .terminal-title { margin: 0; }
+        .terminal-body { white-space: pre; overflow-x: auto; overflow-wrap: normal; word-wrap: normal; max-width: 100%; }
+        .terminal-body code { overflow-wrap: normal; }
+        .artifact-description { max-width: 1180px; margin: 0 auto 1rem; color: var(--text-muted); line-height: 1.7; }
+        .killchain-table caption { text-align: left; padding: 1rem 1.1rem; color: var(--text-muted); background: var(--bg-node); }
+        .killchain-table th, .killchain-table td { overflow-wrap: anywhere; }
+        .killchain-table tbody th { color: #f8fafc; text-align: left; vertical-align: top; font-size: .93rem; }
+        .result-observed { color: #6ee7b7; font-weight: 700; }
+        .result-reported { color: #7dd3fc; font-weight: 700; }
+        .result-open { color: #fbbf24; font-weight: 700; }
+        .artifact-files { display: flex; flex-wrap: wrap; gap: .8rem 1.2rem; margin: 1rem 0 1.5rem; }
+        @media(max-width:1050px) { .matrix-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } .lockdown-grid { grid-template-columns: 1fr; } }
+        @media(max-width:600px) {
+            .hero-title { font-size: 1.7rem; letter-spacing: 1px; }
+            .hero-page-subtitle { font-size: .9rem; letter-spacing: 1px; }
+            .hero, .container { padding-left: 12px; padding-right: 12px; }
+            .hero-arch-block { padding: 1.5rem 1rem; }
+            .micro-card, .lockdown-card { padding: 1.3rem 1rem; }
+            .matrix-grid { grid-template-columns: 1fr; }
+            .nav-matrix-link, .jump-links-container { padding: 1.25rem 1rem; }
+            .section-title { font-size: 1.4rem; }
+            .killchain-table, .killchain-table tbody, .killchain-table tr, .killchain-table td, .killchain-table tbody th { display: block; width: 100%; }
+            .killchain-table thead { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+            .killchain-table tbody tr { border-bottom: 3px solid #334155; }
+            .killchain-table tbody th { padding: 1rem; color: #7dd3fc; }
+            .killchain-table td { padding: .8rem 1rem; }
+            .killchain-table td::before { content: attr(data-label); display: block; font-weight: 800; color: #7dd3fc; margin-bottom: .3rem; }
+        }
+        @media(prefers-reduced-motion:reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { animation: none !important; transition: none !important; }
+        }
+    </style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<nav aria-label="Main navigation">
+        <ul class="nav-links">
+            <li>
+<a href="index.html">Home</a>
+</li>
+            <li>
+<a href="autonomous-systems.html" class="active-link" aria-current="location">Autonomous Systems</a>
+</li>
+            <li>
+<a href="kill-chain.html">The Adversarial Kill Chain</a>
+</li>
+            <li>
+<a href="blueprint.html">7-Phase Counter-Engineering Blueprint</a>
+</li>
+            <li>
+<a href="ai-systems-engineering.html">Tethered AI Systems Engineering</a>
+</li>
+            <li>
+<a href="architectural.html">Exploit-Level Pipeline Architecture</a>
+</li>
+            <li>
+<a href="workflow-portfolio.html">Counter-Engineering Demonstrations</a>
+</li>
+            <li>
+<a href="add-capabilities.html">Day-2 Multi-Cloud Modules</a>
+</li>
+            <li>
+<a href="glossary.html">26-Variable System Glossary</a>
+</li>
+            <li>
+<a href="contact.html">Contact</a>
+</li>
+        </ul>
+    </nav>
+<header class="hero"><div class="hero-title-container"><svg class="hero-brand-crest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-label="Adversarial Kill-Chain Counter-Engineering 4-Chevron Crest">
+                <rect width="114" height="114" x="3" y="3" fill="#020617" rx="22" stroke="#1e293b" stroke-width="3"/>
+                <polygon points="24,18 60,36 60,48 24,30" fill="#475569"/>
+                <polygon points="96,18 60,36 60,48 96,30" fill="#1e293b"/>
+                <polygon points="24,39 60,57 60,69 24,51" fill="#0284c7"/>
+                <polygon points="96,39 60,57 60,69 96,51" fill="#075985"/>
+                <polygon points="24,60 60,78 60,90 24,72" fill="#38bdf8"/>
+                <polygon points="96,60 60,78 60,90 96,72" fill="#0369a1"/>
+                <polygon points="24,81 60,99 60,111 24,93" fill="#f43f5e"/>
+                <polygon points="96,81 60,99 60,111 96,93" fill="#9f1239"/>
+            </svg><h1 class="hero-title">PROJECT 09: COMPANY X SETTINGS DELIVERY</h1></div><p class="hero-page-subtitle">One job publishes the settings &bull; Another reads them &bull; Access tests passed</p><p class="hero-intro-copy">One automated job published a settings file. Another read that file and was prevented from replacing it.</p><div class="source-actions" style="justify-content:center"><a href="aws-demonstrations.html" class="back-banner-btn">&larr; AWS Demonstrations Menu</a><a href="autonomous-systems.html" class="back-banner-btn">Autonomous Systems Overview</a></div></header><main class="container" id="main-content"><div class="jump-links-container"><div class="jump-links-intro">Project 09 Navigation</div><div class="jump-links"><a href="#proof-09-purpose">Company X Scenario</a><a href="#proof-09-architecture">Publisher &amp; Consumer</a><a href="#proof-09-tests">Tested Boundaries</a><a href="#proof-09-evidence">Evidence</a><a href="#proof-09-handoff">Engineer Handoff</a><a href="#proof-09-connections">Proposed Connections</a><a href="#proof-09-scope">Scope &amp; Next Work</a></div></div><section class="hero-arch-block cyan-block" id="proof-09-purpose"><span class="hero-block-tag">COMPANY X SCENARIO</span><h2 class="hero-block-title">Why Company X Needs Shared Settings</h2><p class="hero-lead-p">Company X is a fictional business that uses camera footage to help site managers review construction progress. Its proposed daily report would show which areas changed, which captures were missing and which findings need a person to review. The analysis service would need agreed settings to produce that report.</p><p class="hero-lead-p">We built and tested the part that shares those settings. Two automated tasks (<strong>jobs</strong>) ran from separate GitHub repositories. The publishing job wrote a harmless sample file to one chosen place in private AWS storage (<strong>S3</strong>). The reading job received the same <strong>114 bytes</strong>. We then checked that the reader could not replace the file, the publisher could not write to another location or read the shared file, and the reader could not list the bucket. AWS denied each of those selected attempts.</p><div class="micro-card micro-card-challenge"><h3 class="micro-header mc-color-challenge">The proposed camera-to-report workflow</h3><p class="micro-text">Camera or site gateway &rarr; upload service and private footage storage &rarr; analysis service &rarr; report application &rarr; site manager.</p><p class="review-limit">This surrounding workflow is a proposed Company X design. The part implemented here is the settings file and the two jobs that publish and read it. A real analysis application could use that same approach when its connection is built and tested.</p></div><p class="hero-lead-p"><strong>How this expands Project 04:</strong> the earlier project checked that two jobs received their intended AWS identities and could read their own private settings. Project 09 keeps those checks and adds a file shared between jobs with different permissions: one writes, the other reads. The transfer uses harmless settings, with no footage or personal data.</p><p class="artifact-description"><strong>Completed:</strong> 17 November 2026 &bull; instructions used: <strong>v2.3.4</strong> &bull; two jobs and one shared settings file. Company X and its wider business workflow are fictional.</p></section>
+<section class="hero-arch-block green-block" id="proof-09-architecture"><span class="hero-block-tag">WHAT EACH JOB CAN DO</span><h2 class="hero-block-title">One Job Writes the Settings; the Other Reads Them</h2><div class="lockdown-grid"><article class="lockdown-card"><h3 class="lockdown-title">Job 1: publishes the settings</h3><p class="micro-text">Job from the approved GitHub repository and branch<br>&darr; receives temporary AWS access<br>Publishing identity<br>&darr; writes the chosen settings file (<code>PutObject</code>)<br><strong>One file in private S3 storage</strong></p><p class="review-limit">It also reads its own separate sample private settings in AWS Secrets Manager. Tests denied writing to another file location, reading the shared file, and obtaining the reading job&rsquo;s AWS identity.</p></article><article class="lockdown-card"><h3 class="lockdown-title">Job 2: reads the settings</h3><p class="micro-text">Job from the approved GitHub repository and branch<br>&darr; receives temporary AWS access<br>Reading identity<br>&darr; reads the chosen settings file (<code>GetObject</code>)<br><strong>The same settings bytes</strong></p><p class="review-limit">It also reads its own separate sample private settings in AWS Secrets Manager. Tests denied replacing the shared file, listing the bucket&rsquo;s contents, and obtaining the publishing job&rsquo;s AWS identity.</p></article></div><div class="matrix-table-wrapper" role="region" aria-label="Implemented lab components and readbacks" tabindex="0"><table class="killchain-table"><caption>Implemented lab components and readbacks</caption><thead><tr><th scope="col">Component</th><th scope="col">Applied configuration</th><th scope="col">Recorded result</th></tr></thead><tbody><tr><th scope="row">Workload identities</th><td data-label="Applied configuration">Two separate GitHub jobs and AWS roles; exact provider/audience/repository subject conditions.</td><td data-label="Recorded result"><span class="result-observed">PASS — selected readbacks/tests</span></td></tr><tr><th scope="row">Own configuration baseline</th><td data-label="Applied configuration">Each job retains its own harmless Secrets Manager fixture and selected Get/Describe access.</td><td data-label="Recorded result"><span class="result-observed">PASS — selected readbacks/tests</span></td></tr><tr><th scope="row">Shared artifact</th><td data-label="Applied configuration">One private general-purpose S3 bucket; exact object key <code>configuration/analysis-settings.json</code>.</td><td data-label="Recorded result"><span class="result-observed">PASS — selected readbacks/tests</span></td></tr><tr><th scope="row">S3 authorization</th><td data-label="Applied configuration">Separately scoped publisher <code>PutObject</code> and consumer <code>GetObject</code> policies on the selected object.</td><td data-label="Recorded result"><span class="result-observed">PASS — selected readbacks/tests</span></td></tr><tr><th scope="row">Bucket configuration</th><td data-label="Applied configuration">All four Block Public Access settings; Bucket owner enforced ownership with ACLs disabled; explicit SSE-S3 default encryption (AES256). No bucket policy was present.</td><td data-label="Recorded result"><span class="result-observed">PASS — selected readbacks/tests</span></td></tr></tbody></table></div><p class="hero-lead-p">The same four security checks (<strong>gates</strong>) remain: the service that supplies job identities; which job AWS accepts; what that job is allowed to read; and who may read each stored secret. The S3 file permissions add test cases within the existing review, rather than creating a fifth gate. AWS considers all applicable access rules, so we checked actual results instead of assuming two permission statements act as two mandatory locks.</p></section>
+<section class="hero-arch-block green-block" id="proof-09-tests"><span class="hero-block-tag">ACCESS TEST RESULTS</span><h2 class="hero-block-title">What the Access Tests Showed</h2><div class="matrix-table-wrapper" role="region" aria-label="Six observed S3 outcomes — sanitized API request evidence" tabindex="0"><table class="killchain-table"><caption>Six observed S3 outcomes — sanitized API request evidence</caption><thead><tr><th scope="col">Actor</th><th scope="col">Request</th><th scope="col">Observed outcome</th><th scope="col">S3 request ID</th></tr></thead><tbody><tr><th scope="row">Publisher</th><td data-label="Request">Put selected key</td><td data-label="Observed outcome">SUCCESS</td><td data-label="S3 request ID"><code>R01D6PYS62HXNAYZ</code></td></tr><tr><th scope="row">Consumer</th><td data-label="Request">Get selected key; compare fixture bytes</td><td data-label="Observed outcome">SUCCESS — matching SHA-256</td><td data-label="S3 request ID"><code>WJK8C7SCNWBCAG64</code></td></tr><tr><th scope="row">Consumer</th><td data-label="Request">Put selected key</td><td data-label="Observed outcome">AccessDenied</td><td data-label="S3 request ID"><code>G2WCW0DSWD34B40W</code></td></tr><tr><th scope="row">Publisher</th><td data-label="Request">Put off-key probe</td><td data-label="Observed outcome">AccessDenied</td><td data-label="S3 request ID"><code>ZNREA2063TBJHDJK</code></td></tr><tr><th scope="row">Publisher</th><td data-label="Request">Get selected key</td><td data-label="Observed outcome">AccessDenied</td><td data-label="S3 request ID"><code>RWRBZ16EX6JC93PZ</code></td></tr><tr><th scope="row">Consumer</th><td data-label="Request">ListObjectsV2</td><td data-label="Observed outcome">AccessDenied</td><td data-label="S3 request ID"><code>G2W52FS7KZ8ADC11</code></td></tr></tbody></table></div><p class="hero-lead-p">The permitted file location was <code>configuration/analysis-settings.json</code>. We also tried a different location, <code>configuration/denied-write-probe.json</code>, and AWS refused that write. None of the selected writes that should have been blocked succeeded. The successful upload was not repeated during the later correction.</p><div class="matrix-table-wrapper" role="region" aria-label="Retained role and secret results" tabindex="0"><table class="killchain-table"><caption>Retained role and secret results</caption><thead><tr><th scope="col">Actor</th><th scope="col">Observed successes</th><th scope="col">Observed denials</th></tr></thead><tbody><tr><th scope="row">Publisher</th><td data-label="Observed successes">Own-role admission; own secret GetSecretValue/DescribeSecret.</td><td data-label="Observed denials">ListSecrets, cross-secret Get/Describe and opposite-role WebIdentity admission.</td></tr><tr><th scope="row">Consumer</th><td data-label="Observed successes">Own-role admission; own secret GetSecretValue/DescribeSecret.</td><td data-label="Observed denials">ListSecrets, cross-secret Get/Describe and opposite-role WebIdentity admission.</td></tr></tbody></table></div><p class="hero-lead-p">We asked AWS to give each job the other job&rsquo;s identity; AWS refused. Each job was also denied the selected attempts to read the other job&rsquo;s private settings or list secrets. We checked that these were actual permission refusals, not a network problem or an unrelated command failure. The detailed records retain the returned <code>AccessDeniedException</code> and <code>AccessDenied</code> messages.</p><div class="evidence-note"><strong>Authorized-publisher risk.</strong> The publisher can replace the selected object by design. Matching downloaded bytes and denying consumer writes do not establish publisher intent or independent release approval. Those are separate design decisions.</div></section>
+<section class="hero-arch-block cyan-block" id="proof-09-evidence"><span class="hero-block-tag">SUPPORTING RECORDS</span><h2 class="hero-block-title">How We Checked the Results</h2><p class="hero-lead-p">We checked results in two ways. The jobs&rsquo; saved responses show what happened to the shared file. AWS&rsquo;s activity history (<strong>CloudTrail Event History</strong>) separately identifies the temporary-access and private-settings requests. Ordinary Event History does not include S3 file reads and writes, so we did not claim it recorded those file operations.</p><details class="evidence-note"><summary>See the file fingerprints and byte comparison</summary><div class="matrix-table-wrapper" role="region" aria-label="Reviewed fixture and received bytes" tabindex="0"><table class="killchain-table"><caption>Reviewed fixture and received bytes</caption><thead><tr><th scope="col">Item</th><th scope="col">Recorded value</th></tr></thead><tbody><tr><th scope="row">Harmless fixture length</th><td data-label="Recorded value">114 bytes</td></tr><tr><th scope="row">Reviewed / published-fixture / received SHA-256</th><td data-label="Recorded value"><code>f9d4977074dc895240de4a15d65a98f13886563401b4b2dc539c1583bb40e02b</code></td></tr><tr><th scope="row">Observed comparison</th><td data-label="Recorded value">All three fingerprints agree. This establishes the selected byte transfer, not a publisher signature.</td></tr></tbody></table></div></details><details class="evidence-note"><summary>See the recorded job results and source versions</summary><div class="matrix-table-wrapper" role="region" aria-label="Actual workflow history — original failure preserved" tabindex="0"><table class="killchain-table"><caption>Actual workflow history — original failure preserved</caption><thead><tr><th scope="col">Execution</th><th scope="col">Run / attempt</th><th scope="col">Validation revision</th><th scope="col">Recorded conclusion</th></tr></thead><tbody><tr><th scope="row">Publisher original</th><td data-label="Run / attempt">44105608105 / 1</td><td data-label="Validation revision"><code>d8ed5af73609ffbf735ed4195b4d613fcf25be5e</code></td><td data-label="Recorded conclusion">Failed — evidence parser; actual API effects retained.</td></tr><tr><th scope="row">Publisher continuation</th><td data-label="Run / attempt">44110247062 / 1</td><td data-label="Validation revision"><code>6b318ae9131bda8d3928921c2aab75b577a8cbb4</code></td><td data-label="Recorded conclusion">Success — completed the missing GetObject denial only.</td></tr><tr><th scope="row">Consumer</th><td data-label="Run / attempt">44112300001 / 1</td><td data-label="Validation revision"><code>cd52aefc642d987dc74b49b97fa8ded9beb44f5e</code></td><td data-label="Recorded conclusion">Success — selected consumer tests.</td></tr></tbody></table></div></details><p class="hero-lead-p">The publishing job originally stopped because our report-reading script rejected a receipt number that appeared twice in its output. The upload had already succeeded. We corrected the script to keep both appearances while recognising one request number, then ran only the unfinished check that the publisher could not read the file. That check passed. The original job remains recorded as failed; we did not repeat its successful upload or hide the failure.</p><div class="evidence-note"><strong>Management-event correlation:</strong> <strong>15 selected distinct native events</strong> matched: ten secret operations, three successful role issuances (including the continuation) and two denied opposite-role admissions. This is a selected case count, not all account activity. CloudTrail Lake and Logs Insights examples remain <strong>reference only — not executed</strong>; no new logging service was created.</div><details class="evidence-note"><summary style="cursor:pointer;font-weight:700">Selected management-event references — UTC</summary><details class="evidence-note"><summary>See the 15 matched AWS activity records</summary><div class="matrix-table-wrapper" role="region" aria-label="Fifteen selected CloudTrail management events" tabindex="0"><table class="killchain-table"><caption>Fifteen selected CloudTrail management events</caption><thead><tr><th scope="col">Selected case</th><th scope="col">UTC event time</th><th scope="col">Native event ID</th><th scope="col">Native request ID</th></tr></thead><tbody><tr><th scope="row">44105608105 intended admission</th><td data-label="UTC event time"><code>2026-11-17T14:40:12.0000000Z</code></td><td data-label="Native event ID"><code>ca965e0d-6ce4-4117-93d8-7ab580b9af9a</code></td><td data-label="Native request ID"><code>6c041710-ceee-4f88-83a4-2b31679112fd</code></td></tr><tr><th scope="row">publisher own-GetSecretValue</th><td data-label="UTC event time"><code>2026-11-17T14:40:14.0000000Z</code></td><td data-label="Native event ID"><code>f1181d54-8211-4506-8ba8-8c2d7f8c096e</code></td><td data-label="Native request ID"><code>a76b643c-741e-4af3-b875-7e5be57f1370</code></td></tr><tr><th scope="row">publisher own-DescribeSecret</th><td data-label="UTC event time"><code>2026-11-17T14:40:14.0000000Z</code></td><td data-label="Native event ID"><code>b2d7c328-1c06-4ff6-9f86-7c12ab5734e2</code></td><td data-label="Native request ID"><code>f155d6b1-2729-4221-a5c1-ff9ed381dd9c</code></td></tr><tr><th scope="row">publisher ListSecrets-denied</th><td data-label="UTC event time"><code>2026-11-17T14:40:15.0000000Z</code></td><td data-label="Native event ID"><code>d1642612-8451-49e5-862d-18da39b76752</code></td><td data-label="Native request ID"><code>04368b9b-bff2-4c3f-9d04-45745231df1e</code></td></tr><tr><th scope="row">publisher cross-get-secret-value-denied</th><td data-label="UTC event time"><code>2026-11-17T14:40:16.0000000Z</code></td><td data-label="Native event ID"><code>1e9a3ba6-3cba-4c45-bb6a-7c8bfe34855b</code></td><td data-label="Native request ID"><code>ad2f2b48-d1cf-438c-a427-ed9baa1f3aaf</code></td></tr><tr><th scope="row">publisher cross-describe-secret-denied</th><td data-label="UTC event time"><code>2026-11-17T14:40:16.0000000Z</code></td><td data-label="Native event ID"><code>6d832cc5-05a6-415f-8e8f-979f70c79f94</code></td><td data-label="Native request ID"><code>51420cb8-8d26-4bdb-932b-81ca6634848d</code></td></tr><tr><th scope="row">publisher opposite-role admission denied</th><td data-label="UTC event time"><code>2026-11-17T14:40:17.0000000Z</code></td><td data-label="Native event ID"><code>07996a84-7eab-431b-b055-e546e08f2469</code></td><td data-label="Native request ID"><code>5e1bd40c-f0f3-4b9a-a5f7-f8d71f354a44</code></td></tr><tr><th scope="row">44110247062 intended admission</th><td data-label="UTC event time"><code>2026-11-17T15:05:13.0000000Z</code></td><td data-label="Native event ID"><code>53a1dae7-1743-4f60-bc65-46935061c302</code></td><td data-label="Native request ID"><code>53effbce-6492-4f71-b28c-f19847f38023</code></td></tr><tr><th scope="row">44112300001 intended admission</th><td data-label="UTC event time"><code>2026-11-17T15:16:02.0000000Z</code></td><td data-label="Native event ID"><code>e194d378-5c8b-4847-ac8c-689fce13c273</code></td><td data-label="Native request ID"><code>84b8e30b-dc17-4ce2-83aa-d648132c6227</code></td></tr><tr><th scope="row">consumer own-GetSecretValue</th><td data-label="UTC event time"><code>2026-11-17T15:16:04.0000000Z</code></td><td data-label="Native event ID"><code>efe0062b-c6c0-461e-b934-2388a1866643</code></td><td data-label="Native request ID"><code>12601d17-75c4-4445-a5f1-ad7524b807a1</code></td></tr><tr><th scope="row">consumer own-DescribeSecret</th><td data-label="UTC event time"><code>2026-11-17T15:16:04.0000000Z</code></td><td data-label="Native event ID"><code>efbe8c4a-7ce3-42f8-a207-ae27233172ac</code></td><td data-label="Native request ID"><code>3c46b819-7bf6-486c-832b-78e6d0693f4d</code></td></tr><tr><th scope="row">consumer ListSecrets-denied</th><td data-label="UTC event time"><code>2026-11-17T15:16:05.0000000Z</code></td><td data-label="Native event ID"><code>db86e4ca-adc0-41b0-b165-d089edb67a09</code></td><td data-label="Native request ID"><code>b825fb6a-175b-4867-9ae4-49782f377fb3</code></td></tr><tr><th scope="row">consumer cross-get-secret-value-denied</th><td data-label="UTC event time"><code>2026-11-17T15:16:06.0000000Z</code></td><td data-label="Native event ID"><code>e5b4dfc7-eda7-4a33-8e22-87fa8a0ee0e2</code></td><td data-label="Native request ID"><code>a09dbc44-b879-46ae-8a2d-471936ea7498</code></td></tr><tr><th scope="row">consumer cross-describe-secret-denied</th><td data-label="UTC event time"><code>2026-11-17T15:16:07.0000000Z</code></td><td data-label="Native event ID"><code>82313457-9a27-4c1b-90ee-3a5a11af65c2</code></td><td data-label="Native request ID"><code>2599b1f4-a484-46e9-8416-ee220426d6d3</code></td></tr><tr><th scope="row">consumer opposite-role admission denied</th><td data-label="UTC event time"><code>2026-11-17T15:16:07.0000000Z</code></td><td data-label="Native event ID"><code>2e474cf4-795b-46b8-ba4c-e35c64da48f3</code></td><td data-label="Native request ID"><code>e2425c08-fae3-4121-9143-bea2a6b56666</code></td></tr></tbody></table></div></details></details><details class="evidence-note"><summary>See the 15 matched AWS activity records</summary><div class="matrix-table-wrapper" role="region" aria-label="Observed successful session lifetimes — 17 November UTC" tabindex="0"><table class="killchain-table"><caption>Observed successful session lifetimes — 17 November UTC</caption><thead><tr><th scope="col">Execution</th><th scope="col">Issued UTC</th><th scope="col">Expiration UTC</th><th scope="col">Interval / role ceiling</th></tr></thead><tbody><tr><th scope="row">Publisher original</th><td data-label="Issued UTC">14:40:12Z</td><td data-label="Expiration UTC">14:55:12Z</td><td data-label="Interval / role ceiling">900s / 3600s</td></tr><tr><th scope="row">Publisher continuation</th><td data-label="Issued UTC">15:05:13Z</td><td data-label="Expiration UTC">15:20:13Z</td><td data-label="Interval / role ceiling">900s / 3600s</td></tr><tr><th scope="row">Consumer</th><td data-label="Issued UTC">15:16:02Z</td><td data-label="Expiration UTC">15:31:02Z</td><td data-label="Interval / role ceiling">900s / 3600s</td></tr></tbody></table></div></details><p class="hero-lead-p">The matched AWS records identify the tested jobs, requested operations, targets, times and outcomes. Requests that AWS refused did not contain an issued session or expiry. Where an event omitted a field, we used the target information actually present and retained the omission. The detailed table shows the 15 selected matches.</p></section>
+<section class="hero-arch-block cyan-block" id="proof-09-handoff"><span class="hero-block-tag">CONNECTING ANOTHER ENGINEER&rsquo;S WORK</span><h2 class="hero-block-title">What Other Engineers Need to Connect</h2><p class="hero-lead-p">This is the harmless settings file the jobs exchanged, laid out for easier reading. It asks a future application for a daily progress summary. The <code>interval: "daily"</code> setting does not itself start a daily job; the application would need to implement that behaviour. The file fingerprint above describes the exact 114 bytes transferred, before this display formatting.</p><div class="terminal-window"><div class="terminal-header"><div class="terminal-title">Harmless analysis-settings.json source fixture</div></div><pre class="terminal-body" tabindex="0" aria-label="Harmless analysis settings fixture"><code id="proof-09-fixture">{
+  &quot;schema_version&quot;: 1,
+  &quot;site&quot;: &quot;fictional-company-x-site-09&quot;,
+  &quot;analysis&quot;: {
+    &quot;progress_summary&quot;: true,
+    &quot;interval&quot;: &quot;daily&quot;
+  }
+}</code></pre></div><div class="matrix-table-wrapper" role="region" aria-label="Company X receiving-engineer contract" tabindex="0"><table class="killchain-table"><caption>Company X receiving-engineer contract</caption><thead><tr><th scope="col">Receiving team</th><th scope="col">What this lab hands over</th><th scope="col">What the team must decide next</th></tr></thead><tbody><tr><th scope="row">Platform engineering</th><td data-label="What this lab hands over">Separate publisher/consumer assignments, selected object key and reviewed policy/source revisions. Exact private bucket/role coordinates belong in the authorized team handoff.</td><td data-label="What the team must decide next">Who owns the repositories, role trust, selected bucket/object and permission-change review?</td></tr><tr><th scope="row">Application / analysis engineering</th><td data-label="What this lab hands over">Schema version 1, the harmless fixture, exact selected key, read-without-list access and verified transferred bytes.</td><td data-label="What the team must decide next">How should the real application validate settings and fail on missing configuration or AccessDenied without falling back to broader credentials?</td></tr><tr><th scope="row">Security / operations</th><td data-label="What this lab hands over">The six API outcomes, fifteen selected management-event matches, validation history and known authorized-publisher boundary.</td><td data-label="What the team must decide next">What retention, alerting, incident ownership and change-triggered rechecks are required?</td></tr></tbody></table></div><p class="hero-lead-p">An analysis engineer could build the next connection: read the file, check that its format and site are correct, then use its settings. If the file is missing, invalid or access is refused, the proposed behaviour is to stop that analysis task and report a useful error. This application connection is the next piece to implement.</p><p class="artifact-description"><strong>Saved engineering handoff:</strong> the publishing repository records the reviewed source and results at <code>15ebe774cac4dfbd8fed3a93a5cba6a739ebfd3d</code>. It includes the infrastructure files, selected provider versions and complete project records. Saving that handoff did not change the existing workflows or start another test.</p></section>
+<section class="hero-arch-block green-block" id="proof-09-connections"><span class="hero-block-tag">PROPOSED NEXT CONNECTIONS</span><h2 class="hero-block-title">Where This Could Fit in a Larger System</h2><div class="matrix-table-wrapper" role="region" aria-label="Company X interface contract — lab component versus proposed connections" tabindex="0"><table class="killchain-table"><caption>Company X interface contract — lab component versus proposed connections</caption><thead><tr><th scope="col">Interface / status</th><th scope="col">Information and purpose</th><th scope="col">Identity boundary / owner</th><th scope="col">Next requirement</th></tr></thead><tbody><tr><th scope="row">Device &rarr; ingest<br><strong>Proposed</strong></th><td data-label="Information and purpose">Synthetic device/site label, batch ID, capture interval, file count and checksums; media would move separately to private capture storage.</td><td data-label="Identity boundary / owner">Device enrollment and site authorization; device/firmware and ingest engineers.</td><td data-label="Next requirement">Reject a revoked or wrong-site source and define incomplete-upload retry behavior. No device or upload endpoint exists in this lab.</td></tr><tr><th scope="row">Stored batch &rarr; analysis<br><strong>Proposed</strong></th><td data-label="Information and purpose">Accepted capture references and time window; worker returns job status and result reference.</td><td data-label="Identity boundary / owner">A future analysis role needs separately reviewed capture-read/result-write access; ingest/backend and analysis engineers.</td><td data-label="Next requirement">A local mock handles duplicate work items consistently and stops on missing captures or invalid settings. Lab ordering is not a production queue.</td></tr><tr><th scope="row">Platform release &rarr; settings reader<br><strong>Observed lab component; application connection proposed</strong></th><td data-label="Information and purpose">The harmless fixture at the selected key; the reviewed and downloaded fingerprints matched.</td><td data-label="Identity boundary / owner">Separate publisher/consumer role admission and selected write/read scope; platform, analysis and security engineers.</td><td data-label="Next requirement">Add an application parser and test unsupported schema, wrong site, missing settings and AccessDenied without broader-credential fallback. Authorized-publisher trust remains a separate release-design question.</td></tr><tr><th scope="row">Analysis result &rarr; report user<br><strong>Proposed</strong></th><td data-label="Information and purpose">Synthetic site/batch, coverage, status, draft summary and settings/model reference; make incomplete work visible.</td><td data-label="Identity boundary / owner">Workload result-write permissions and signed-in user site authorization; analysis, backend/product and designated site reviewer.</td><td data-label="Next requirement">Show a synthetic incomplete-analysis state and reject a reader from another site. No reporting API or user login is implemented here.</td></tr></tbody></table></div><p class="hero-lead-p">The four connections below show how the work could fit into Company X&rsquo;s larger system. A practical next project would use a made-up capture batch, read valid settings and produce either a sample report or a clear error. The camera, analysis and reporting connections described here are proposed designs.</p><div class="evidence-note"><strong>Further proposed Company X security work:</strong><ul><li>Keep a record of the software components and model versions running on each device or service, so engineers can find affected systems after a supplier is compromised.</li><li>Check that a release came from the expected source and build process before allowing deployment.</li><li>Limit the operations internal AI tools may perform, with deployment permission kept separate.</li></ul></div></section>
+<section class="hero-arch-block cyan-block" id="proof-09-scope"><span class="hero-block-tag">RESULT AND NEXT STEPS</span><h2 class="hero-block-title">What We Built and What Comes Next</h2><div class="evidence-note"><strong>Scope:</strong> two CI jobs, harmless own-secret fixtures and one shared configuration object. The selected role-admission, secret-access and S3 transfer/denial cases passed. The camera, analysis and report interfaces remain proposed application work.</div><p class="hero-lead-p">We have demonstrated controlled settings delivery between two jobs. Next, a small local analysis example could check the file&rsquo;s format and site, read it without listing other files, and produce a sample result or a clear error. Approving what the publisher writes and keeping older approved settings are separate improvements to design and test.</p><details class="evidence-note"><summary style="cursor:pointer;font-weight:700">Engineering lessons and retained responsibilities</summary><p class="hero-lead-p">One correction was needed in the publisher&rsquo;s report-reading script. We kept the successful upload and the original failure in the record, then completed only the missing check. The records show one known correction attempt and one recovery workflow for that problem. The number of earlier folder-guidance corrections is unknown. The four-attempt stopping rule was not exercised in this run.</p><p class="hero-lead-p">The access tests completed, but the engineer-facing explanations still need work. Steve reported that they were hard to follow and that the expected charts did not appear. Those experience problems remain open; this technical completion does not mark them fixed.</p><p class="hero-lead-p">The lab ran using instruction version <strong>v2.3.4</strong>. A proposed v2.3.5 update has been written for review and has not been used in another run. The saved evidence also notes dependencies that can change over time. Matching the transferred bytes is not a signature proving who approved the publisher&rsquo;s content, and matching activity records does not prove those records cannot be altered.</p><p class="hero-lead-p">The recorded technical completion time is <code>2026-11-17T16:10:07Z</code>. The resources are retained for review on <strong>24 November 2026</strong>. No automatic cleanup, deletion or reminder was set. Closing the chat is a separate choice.</p></details></section>
+<div class="return-bar"><a href="aws-demonstrations.html" class="back-banner-btn">&larr; AWS Demonstrations Menu</a><a href="aws-construction-04.html" class="back-banner-btn">Project 04</a><a href="autonomous-systems.html" class="back-banner-btn">Industry Overview</a><a href="#proof-09-purpose" class="back-banner-btn">&uarr; Project 09 Overview</a></div></main>
+<footer class="ip-footer">
+        <div class="footer-crest-wrapper">
+            <svg class="footer-brand-crest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
+                <rect width="114" height="114" x="3" y="3" fill="#020617" rx="22" stroke="#1e293b" stroke-width="3"/>
+                <polygon points="24,18 60,36 60,48 24,30" fill="#475569"/>
+                <polygon points="96,18 60,36 60,48 96,30" fill="#1e293b"/>
+                <polygon points="24,39 60,57 60,69 24,51" fill="#0284c7"/>
+                <polygon points="96,39 60,57 60,69 96,51" fill="#075985"/>
+                <polygon points="24,60 60,78 60,90 24,72" fill="#38bdf8"/>
+                <polygon points="96,60 60,78 60,90 96,72" fill="#0369a1"/>
+                <polygon points="24,81 60,99 60,111 24,93" fill="#f43f5e"/>
+                <polygon points="96,81 60,99 60,111 96,93" fill="#9f1239"/>
+            </svg>
+        </div>
+        <strong>&copy; 2026 Steven Tuschman | Adversarial Kill-Chain Counter-Engineering&trade; (adversarialkillchaincounterengineering.com). All Rights Reserved.</strong>
+<br>
+        The Adversarial Kill-Chain Counter-Engineering State Machine, Sequential Kill-Chain Counter-Engineering Protocol, Execution Triad governance model, Four Architectural Gates of Machine Identity, Five Enterprise Guardrails, Build Coordinate Matrix, and 26-Variable System Glossary are proprietary intellectual property. Unauthorized reproduction, distribution, or commercial adaptation is strictly prohibited.
+    </footer>
+</body>
+</html>
